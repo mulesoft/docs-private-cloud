@@ -21,5 +21,5 @@
 * xref:demo-ldap-server.adoc[About the Demo LDAP Server]
 * xref:upgrade.adoc[About Migrating Anypoint Platform Private Cloud]
  ** xref:upgrade-1.6.1.adoc[To Migrate Anypoint Platform Private Cloud Edition, Version 1.5.x to 1.6.1]
- ** link:/anypoint-private-cloud/v/1.6.1/upgrade-1.6.0-1.6.1[To Migrate Anypoint Platform Private Cloud, Version 1.6.0 to 1.6.1]
- ** link:/anypoint-private-cloud/v/1.6.1/upgrade-1.6.0-1.6.1-one-node[To Migrate Anypoint Platform Private Cloud Edition, Version 1.6.0 to 1.6.1 (One Node)]
+ ** xref:anypoint-private-cloud/v/1.6.1/upgrade-1.6.0-1.6.1[To Migrate Anypoint Platform Private Cloud, Version 1.6.0 to 1.6.1]
+ ** xref:anypoint-private-cloud/v/1.6.1/upgrade-1.6.0-1.6.1-one-node[To Migrate Anypoint Platform Private Cloud Edition, Version 1.6.0 to 1.6.1 (One Node)]
