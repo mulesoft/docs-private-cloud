@@ -71,9 +71,9 @@ Unless specified, Docker configuration defaults to the use of Device Mapper in l
 Unformatted devices potentially usable for system directory / Device Mapper are automatically discovered by agents running on each node. Discovered devices are offered on a drop-down menu for configuration before the installation is started.
 
 You can list unmounted devices with the following command:
----
+----
 lsblk --output=NAME,TYPE,SIZE,FSTYPE -P -I 8,9,202|grep 'FSTYPE=""'
----
+----
 
 Unmounted devices have an empty value in FSTYPE column. Devices with TYPE="part" are partitions on another device. This command only lists specific device types:
 
