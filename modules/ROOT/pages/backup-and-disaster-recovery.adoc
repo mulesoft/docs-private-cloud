@@ -19,7 +19,13 @@ To create a backup, run the following command on any node in the cluster. You ca
 gravity backup /var/lib/gravity/planet/share/backup.tar.gz
 ----
 
-This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`.
+This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. You can pass the following optional parameters:
+
+----
+--follow: output backup job logs to stdout
+--timeout: deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
+--log-file: output logs to a file
+----
 
 == Perform a System Restore
 
@@ -42,7 +48,13 @@ scp /backup-path/to-restore.tar.gz your_username@remotehost.edu:/var/lib/gravity
 sudo gravity restore /var/lib/gravity/planet/share/to-restore.tar.gz
 ----
 
-This will take a few minutes.
+This will take a few minutes. You can pass the following optional parameters:
+
+----
+--follow: output backup job logs to stdout
+--timeout: deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
+--log-file: output logs to a file
+----
 
 == See Also
 
