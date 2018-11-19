@@ -78,9 +78,17 @@ image::ops-center-settings.png[]
 
 . Choose Settings, then click the Logs tab.
 
-. Select the protocol you want to use.
+. Click on Create and set your log forward like the example below:
 
-. Enter the Destination IP address and port, then click Add.
+----
+kind: logforwarder
+version: v2
+metadata:
+   name: forwarder1
+spec:
+   address: 192.168.100.1:514
+   protocol: udp
+----
 
 == Monitoring Stability and Performance
 
