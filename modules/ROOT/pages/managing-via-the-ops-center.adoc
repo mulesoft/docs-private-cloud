@@ -78,7 +78,7 @@ image::ops-center-settings.png[]
 
 . Choose Settings, then click the Logs tab.
 
-. Click on Create and set your log forward like the example below:
+. Click on Create (or New Connector you already have a forwarder configured) and set your log forward like the example below:
 
 ----
 kind: logforwarder
