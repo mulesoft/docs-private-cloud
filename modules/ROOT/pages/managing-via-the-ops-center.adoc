@@ -76,11 +76,21 @@ Anypoint Platform uses `rsyslog` to handle logging. To forward these logs to rem
 +
 image::ops-center-settings.png[]
 
-. Choose Settings, then click the Logs tab.
+. Choose *Settings*, then click the Logs tab.
 
-. Select the protocol you want to use.
+. Click *Create* or *New Connector* if you already have a log forwarder configured.
 
-. Enter the Destination IP address and port, then click Add.
+. Configure your log forward as shown in the following example:
+
+----
+kind: logforwarder
+version: v2
+metadata:
+   name: forwarder1
+spec:
+   address: 192.168.100.1:514
+   protocol: udp
+----
 
 == Monitoring Stability and Performance
 
