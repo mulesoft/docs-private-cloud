@@ -21,7 +21,6 @@ gravity backup /var/lib/gravity/planet/share/backup.tar.gz
 
 This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. You can pass the following optional parameters to the gravity backup command:
 
-
 * `--follow`: outputs the backup job logs to stdout
 * `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
 * `--log-file`: outputs logs to a file
@@ -47,7 +46,7 @@ scp /backup-path/to-restore.tar.gz your_username@remotehost.edu:/var/lib/gravity
 sudo gravity restore /var/lib/gravity/planet/share/to-restore.tar.gz
 ----
 
-This will take a few minutes. You can pass the following optional parameters:
+This takes a few minutes. You can pass the following optional parameters:
 
 * `--follow`: outputs the backup job logs to stdout
 * `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
