@@ -15,6 +15,63 @@ The following Linux distributions are supported:
 == SELinux
 Anypoint Platform Private Cloud Edition supports the default SELinux profile running in strict mode. If your environment uses a custom profile, it must provide an unconstrained user context when running the installer. Review any custom profiles with your customer support representative.
 
-== IPV4 Requirements
+== Kernel Modules
 
-To run the platform, the IPV4 forwarding flag must be set to true. You must ensure that there are no processes on your system that set this flag to false. If the IPV4 flag is set to false, the platform fails.
+Modules that should be enabled:
+
+* `br_netfilter`
+* `ebtable_filter`
+* `ip_tables`
+* `iptable_filter`
+* `iptable_nat`
+
+The following examples use br_netfilter for demonstration purpuses but they should be done for each of the modules above
+
+To check a module is loaded:
+
+```
+root$ lsmod | grep br_netfilter
+```
+
+If the above command didn't produce any output, then the module is not loaded. Load it with `modprobe`:
+
+```
+root$ modprobe br_netfilter
+```
+
+Ensure the module will be loaded after a reboot:
+
+```
+root$ echo 'br_netfilter' > /etc/modules-load.d/br_netfilter.conf
+```
+
+Replace br_netfilter by the module you are checking.
+
+== Kernel Settings
+
+The following flags should be turned on:
+
+* `net.bridge.bridge-nf-call-iptables=1`
+* `net.ipv4.ip_forward=1`
+* `fs.may_detach_mounts=1`
+* `fs.inotify.max_user_watches=524288`
+
+You must ensure that there are no processes on your system that set this flag to false.
+
+To set a parameter you can use `sysctl -w`, e.g.
+
+```
+root$ sysctl -w net.ipv4.ip_forward=1
+```
+
+To make the changes permanent for the next reboot, write it to a file under `/etc/sysctl.d`:
+
+e.g.:
+
+```
+echo net.ipv4.ip_forward=1 >> /etc/sysconf.d/10-ipv4-forwarding.conf
+```
+
+Replace the setting above by the setting you are configuring.
+
+Ensure there is no process or any other file conflicting with those settings.
