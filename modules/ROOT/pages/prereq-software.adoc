@@ -17,7 +17,7 @@ Anypoint Platform Private Cloud Edition supports the default SELinux profile run
 
 == Kernel Modules
 
-Modules that should be enabled:
+Ensure that the following kernel modules are enabled:
 
 * `br_netfilter`
 * `ebtable_filter`
@@ -25,53 +25,45 @@ Modules that should be enabled:
 * `iptable_filter`
 * `iptable_nat`
 
-The following examples use br_netfilter for demonstration purpuses but they should be done for each of the modules above
-
-To check a module is loaded:
-
-```
+Verify that each module is loaded using the following as an example:
++
+----
 root$ lsmod | grep br_netfilter
-```
+----
 
-If the above command didn't produce any output, then the module is not loaded. Load it with `modprobe`:
-
-```
+Repeat this commend for each of the kernel modules above. If this command does not display any output, then the module is not loaded. In this case, load the module using `modprobe`:
++
+----
 root$ modprobe br_netfilter
-```
+----
 
-Ensure the module will be loaded after a reboot:
+To ensure the module is loaded after a reboot:
 
-```
+----
 root$ echo 'br_netfilter' > /etc/modules-load.d/br_netfilter.conf
-```
+----
 
-Replace br_netfilter by the module you are checking.
+Replace `br_netfilter` with the name of the kernel module you are checking.
 
 == Kernel Settings
 
-The following flags should be turned on:
+The following flags must be turned on:
 
 * `net.bridge.bridge-nf-call-iptables=1`
 * `net.ipv4.ip_forward=1`
 * `fs.may_detach_mounts=1`
 * `fs.inotify.max_user_watches=524288`
 
-You must ensure that there are no processes on your system that set this flag to false.
-
-To set a parameter you can use `sysctl -w`, e.g.
-
-```
+Ensure that there are no processes on your system that set this flag to false. To set a parameter you can use `sysctl -w`, for example:
++
+----
 root$ sysctl -w net.ipv4.ip_forward=1
-```
+----
 
 To make the changes permanent for the next reboot, write it to a file under `/etc/sysctl.d`:
-
-e.g.:
-
-```
++
+----
 echo net.ipv4.ip_forward=1 >> /etc/sysconf.d/10-ipv4-forwarding.conf
-```
+----
 
-Replace the setting above by the setting you are configuring.
-
-Ensure there is no process or any other file conflicting with those settings.
+Replace the setting above with the setting you are configuring. Ensure there are no processes or files conflicting with those settings.
