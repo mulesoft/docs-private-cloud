@@ -26,13 +26,13 @@ Ensure that the following kernel modules are enabled:
 * `iptable_nat`
 
 Verify that each module is loaded using the following as an example:
-+
+
 ----
 root$ lsmod | grep br_netfilter
 ----
 
 Repeat this commend for each of the kernel modules above. If this command does not display any output, then the module is not loaded. In this case, load the module using `modprobe`:
-+
+
 ----
 root$ modprobe br_netfilter
 ----
@@ -55,13 +55,13 @@ The following flags must be turned on:
 * `fs.inotify.max_user_watches=524288`
 
 Ensure that there are no processes on your system that set this flag to false. To set a parameter you can use `sysctl -w`, for example:
-+
+
 ----
 root$ sysctl -w net.ipv4.ip_forward=1
 ----
 
 To make the changes permanent for the next reboot, write it to a file under `/etc/sysctl.d`:
-+
+
 ----
 echo net.ipv4.ip_forward=1 >> /etc/sysconf.d/10-ipv4-forwarding.conf
 ----
