@@ -58,7 +58,8 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 | AWS_ACCESS_KEY_ID | Specifies the AWS access ID Terraform uses to connect to your AWS account.
 | AWS_SECRET_ACCESS_KEY | Specifies the AWS access key Terraform uses to connect to your AWS account.
 | AWS_KEY_NAME | Specifies the AWS SSH key. Do not include the .pem extension.
-| AWS_REGION | Specifies the AWS region where Terraform creates the cluster. For example: `us-east-2`
+| AWS_REGION | Specifies the AWS region where Terraform creates the cluster. For example: `us-east-2`. Must have the same value as AWS_DEFAULT_REGION.
+| AWS_DEFAULT_REGION | Same as above. Must have the same value as AWS_REGION.
 | TF_VAR_ssh_user=<SSH_USER> | Specifies the ssh user. For example: `ec2-user`, `centos`, etc)
 | CLOUD_PROVIDER | Must be `aws`
 | CLUSTER_TYPE | Must be `pce`
@@ -76,11 +77,11 @@ You can also include the following set of optional environment variables:
 | TF_VAR_ami_name | Enables you to specify the version of RedHat or CentOS AMI. If you do not set this variable, the provisioner uses the folowing AMI by default: `RHEL-7.4_HVM_GA-20170808-x86_64-2-Hourly2-GP2`.
 | TF_VAR_monitoring=<true or false> | If true it will create basic instance alarms in Cloudwatch.
 | TF_VAR_use_bastion=<true or false> | If true it will create a small instance (using an ASG) in a public subnet as a jumpbox and associate a public IP address, and launch the cluster instances in the private subnets.
-| TF_VAR_internal=<true or false> | If true the cluster instances will be launched in private subnets and will not have public ips associated with them. The provisioned load balancer will be internal only.
+| TF_VAR_internal=<true or false> | If true the cluster instances will be launched in private subnets and will not have public ips associated with them. Also, the provisioned load balancer will be internal only.
 | AWS_VPC_ID=<VPC_ID> | Specifies an existing VPC. It should already have an internet gateway attached to it. Subnets will still be provisioned within the existing VPC.
 | TF_VAR_vpc_cidr=<VPC_CIDR> | You can pass a preferred CIDR for the new VPC that will be provisioned.
-| TF_VAR_subnets=<PRIVATE_SUBNETS_CIDRs> | You can pass the preferred CIDRs blocks for the new subnets that will be provisioned. You must pass exactly the minimum num	ber between the number of AZs of the region and the number of nodes you selected for your cluster
-| TF_VAR_public_subnets=<PUBLIC_SUBNETS_CIDRs> | You can pass the preferred CIDRs blocks for the new subnets that will be provisioned. You must pass exactly min(length(var.azs), var.node_count)
+| TF_VAR_subnets=<PRIVATE_SUBNETS_CIDRs> | You can pass the preferred CIDRs blocks for the new subnets that will be provisioned. You must pass exactly the minimum num	ber between the number of AZs of the region and the number of nodes you selected for your cluster. For example: `'["10.1.0.0/24", "10.1.1.0/24", "10.1.2.0/24"]'`
+| TF_VAR_public_subnets=<PUBLIC_SUBNETS_CIDRs> | You can pass the preferred CIDRs blocks for the new subnets that will be provisioned. You must pass exactly the minimum num	ber between the number of AZs of the region and the number of nodes you selected for your cluster. For example: `'["10.1.3.0/24", "10.1.4.0/24", "10.1.5.0/24"]'`
 | TF_VAR_role_tag_value=<AWS_TAG_VALUE_FOR_ROLE_LABEL> | You can provide a value for a ROLE tag that all AWS resources will have
 |===
 
