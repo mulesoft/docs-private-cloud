@@ -95,6 +95,13 @@ docker load -i pce2.0-aws-provisioner.gz
 
 . Record the image ID after running the `docker load` command. This is required in the following step.
 
+.  (Optional) Perform a dry-run
++
+----
+docker run --rm --env-file pce.env IMAGE_ID dry-run
+----
++
+
 .  Run the provisioner
 +
 ----
@@ -119,6 +126,24 @@ After provisioning resources in your AWS environment and uploading the installer
 == Disabling Port 61009 After Installation
 
 After installation is finished you can close port 61009 in the cluster security group using the AWS Web console.
+
+== Troubleshooting
+
+* 403 Forbidden
+
+Check that your keys policies are not denying access to any EC2 or S3 resource. You should be able to run the following basic command using AWS CLI with your keys:
+
+----
+aws sts get-caller-identity
+----
+
+* Limit excedded
+
+The AWS account might have some limits set on the amount of the resources you can create. Delete some unused resources or request a limit increason from AWS.
+
+* AMI not found
+
+Make sure you are using the AMI name as the value for the environment variable and not the ID.
 
 == See Also
 
