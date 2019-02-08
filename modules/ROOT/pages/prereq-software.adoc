@@ -31,7 +31,7 @@ Verify that each module is loaded using the following as an example:
 root$ lsmod | grep br_netfilter
 ----
 
-Repeat this commend for each of the kernel modules above. If this command does not display any output, then the module is not loaded. In this case, load the module using `modprobe`:
+Repeat this command for each of the kernel modules above. If this command does not display any output, then the module is not loaded. In this case, load the module using `modprobe`:
 
 ----
 root$ modprobe br_netfilter
