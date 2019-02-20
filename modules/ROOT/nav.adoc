@@ -1,7 +1,7 @@
 .xref:index.adoc[About Anypoint Platform Private Cloud Edition]
 * xref:index.adoc[About Anypoint Platform Private Cloud Edition]
 * xref:supported-cluster-config.adoc[Supported Network Topologies]
-* xref:prereq-workflow.adoc[Workflow: Install and Verify Prerequisites]
+* xref:prereq-workflow.adoc[Workflow: Verify Prerequisites for Install]
  ** xref:prereq-hardware.adoc[Hardware Requirements]
  ** xref:prereq-verify-disk.adoc[To Verify Disk Requirements]
  ** xref:prereq-verify-device.adoc[To Verify Device Requirements]
