@@ -5,7 +5,7 @@ endif::[]
 
 To ensure platform performance, stability, and high-availability, Anypoint Platform Private Cloud Edition supports two network topologies outlined in the sections below.
 
-In both configurations, to ensure high availability and performance, each node must run on its own physical server. If you are using a virtual machine to host these nodes, you must ensure that each VM node is running on a separate physical server.
+In both configurations, to ensure high availability and performance, each node must run on its own server. If you are using a virtual machine to host these nodes, you must ensure that each VM node is running on a separate physical server.
 
 [WARNING]
 Only VMWare bare metal virtualization environments, physical servers and AWS are supported.
@@ -32,6 +32,5 @@ You must configure a load balancer to use round-robin distribution of traffic am
 
 == See Also
 
-* xref:prereq-workflow.adoc[Workflow: Install and Verify Prerequisites for Physical Servers]
 * xref:prereq-workflow.adoc[Workflow: Install and Verify Prerequisites]
 * xref:install-workflow.adoc[Workflow: Install Anypoint Platform Private Cloud Edition]

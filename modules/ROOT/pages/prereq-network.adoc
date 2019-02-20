@@ -5,13 +5,6 @@ endif::[]
 
 The this topic describes the network requirements for running Anypoint Platform Private Cloud Edition.
 
-== IP Forwarding and Bridging
-
-To ensure proper cluster load balancing and routing, you must enable and correctly configure the following:
-
-* Kernel IP forwarding: to enable internal Kubernetes load balancing you must enable IPv4 forwarding on all servers.
-* Bridge-netfilter: enables the Linux kernel to translate packets to and from hosted containers.
-
 == Static IPs
 
 All servers in the cluster should have static private IPv4 assigned to them, these must persist after server restarts. If IP addresses are not persistent between reboots, the cluster may enter a failed state.
@@ -56,3 +49,19 @@ You must register the same SSL certificate on every server containing Mule Runti
 == SMTP Server Requirements
 
 Your network must include an SMTP server to manage e-mail alerts that are triggered by the platform.
+
+== External Identity Provider and Client Management 
+
+To configure an Exernal Identity Provider for users single sign on (LDAP, OpenID, SAML) or for external client management as OpenID Connect, the cluster must be able to access the External Identity Provider endpoint. 
+
+== IP Forwarding and Bridging
+
+To ensure proper cluster load balancing and routing, you must enable and correctly configure the following:
+
+* Kernel IP forwarding: to enable internal Kubernetes load balancing you must enable IPv4 forwarding on all servers.
+* Bridge-netfilter: enables the Linux kernel to translate packets to and from hosted containers.
+
+== See Also
+
+* xref:prereq-software.adoc[About Software Requirements]
+* xref:supported-cluster-config.adoc[Supported Network Topologies]

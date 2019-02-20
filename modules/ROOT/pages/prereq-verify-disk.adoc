@@ -70,3 +70,7 @@ $ sudo ./iops --time 2 /dev/xvdb
  128 KiB blocks:  327.6 IO/s,  40.9 MiB/s (343.5 Mbit/s)
 ...
 ----
+
+== See also
+
+* xref:prereq-verify-device.adoc[To Verify Device Requirements]
