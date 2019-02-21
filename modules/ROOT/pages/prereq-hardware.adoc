@@ -8,7 +8,7 @@ To ensure the performance and stability of Anypoint Platform Private Cloud Editi
 [WARNING]
 If your system does not meet all of the minimum system requirements, you cannot install Anypoint Platform Private Cloud Edition.
 
-Two cluster topologies are supported for Anypoint Platform Private Cloud Edition: 3-nodes & 6-nodes. See xref:supported-cluster-config.adoc[Supported Network Topologies]. The requirements for all nodes are the same.
+Two cluster topologies are supported for Anypoint Platform Private Cloud Edition: 3-nodes and 6-nodes. See xref:supported-cluster-config.adoc[Supported Network Topologies]. The requirements for all nodes are the same.
 
 == Memory and CPU Requirements
 
@@ -43,7 +43,7 @@ For production usage, each node in your configuration must have the following de
 The devices should be formatted either as *xfs* or *ext4*. It's recommended to have dedicated devices for each component:
 
 * System data: Stores system configuration and metadata, including databases and packages. As package sizes can be arbitrary large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
-* Application data: |tores application configuration and data. The amount of space required should be at leasat 250GB, but might vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+* Application data: Stores application configuration and data. The amount of space required should be at leasat 250GB, but might vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 * Docker: Used by Docker’s Device Mapper storage driver.
 * Etcd: Provides dedicated storage for the distributed database used for cluster coordination. This device must be a dedicated device.
 
