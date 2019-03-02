@@ -6,6 +6,9 @@ endif::[]
 Anypoint Platform Private Cloud Edition must be run in production environment with multiple servers. To distribute traffic among servers and to restrict access to specific ports, you must install and configure a load balancer.
 
 [NOTE]
+If using the xref:prereq-aws-terraform.adoc[AWS Provisioner for Anypoint Private Cloud Edition], an Amazon ELB is already created with the required configuration and you can skip this section.
+
+[NOTE]
 In a single server development environment, MuleSoft recommends using a load balancer.
 
 You can configure your load balancer to use any method for distributing client requests, but in most contexts a round robin strategy is ideal. This load balancer should be reachable through an IP address that is accessible to all machines in your network.
@@ -28,9 +31,9 @@ Your load balancer should poll the address `HTTP:10248/healthz` to run a health 
 
 
 [NOTE]
-You do not need to configure SSL credentials in your load balancer. You can configure them using Access Management.
+You must not configure SSL credentials in your load balancer. TLS termination is done by the platform with the certificates configured using Access Management. See xref:install-add-tasks.adoc[To Perform Additional Installation Tasks]
 
-== To Configure a Load Balancer
+== Example: Implementing a Load Balancer using Nginx 
 
 . Enable stream block in your `/etc/nginx/nginx.conf` file, by referencing all the configuration properties defined in `/etc/nginx/stream.d/*`. You can achieve that by adding the following:
 +
@@ -87,3 +90,8 @@ server {
 ----
 service nginx restart
 ----
+
+== See Also 
+* xref:install-add-tasks.adoc[To Perform Additional Installation Tasks]
+* xref:prereq-aws-terraform.adoc[AWS Provisioner for Anypoint Private Cloud Edition]
+* https://www.nginx.com/[Nginx]

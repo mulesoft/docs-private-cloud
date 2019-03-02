@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to run the GUI-based installer for  Anypoint Platform Private Cloud Edition. This installer provides a wizard that walks you through the process of configuring much of the infrastructure required to run Anypoint Platform Private Cloud Edition. It automatically installs Kubernetes and creates multiple Docker containers that host the platform components.
+This topic describes how to run the GUI-based installer for Anypoint Platform Private Cloud Edition. This installer provides a wizard that walks you through the process of configuring much of the infrastructure required to run Anypoint Platform Private Cloud Edition. It automatically installs Kubernetes and creates multiple Docker containers that host the platform components.
 
 == Prerequisites
 
@@ -11,7 +11,7 @@ This topic describes how to run the GUI-based installer for  Anypoint Platform P
 +
 The installer automatically validates requirements for disk space, disk speed, network speed and operating system version. You must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation.
 
-* Anypoint Private Cloud, version 2.0 requires that you have an NFS server installed and configured. Ensure that this is installed before beginning the upgrade. See xref:prereq-network.adoc[Private Cloud Edition Network Requirements]
+* Anypoint Private Cloud, version 2.0 requires that you have an NFS server installed and configured. Ensure that this is installed before beginning. See xref:prereq-network.adoc[Private Cloud Edition Network Requirements]
 
 == Running the Installer
 
@@ -62,7 +62,7 @@ The following configurations are supported:
 	* **3-node configuration**: installs and registers all servers as *General Purpose Nodes*.
 	* **6-node configuration**: installs and registers three nodes as *App-only* and three nodes as *Data Store*.
 +
-After installation, you can add or remove nodes as necessary using the Ops Center. Depending on the number of nodes you select, the installer displayes one or more `curl` commands.
+Depending on the number of nodes you select, the installer displays one or more `curl` commands.
 
 . Run the 'curl' command from the command line of each node in your installation.
 +
@@ -74,6 +74,11 @@ You must have administrator privileges to run this command. The command should h
 curl -s --tlsv1.2 --insecure "https://{HOST}:443/t/{TOKEN}/node" | sudo bash
 ----
 +
+[WARNING]
+If you are running the above command from a ssh session ensure the session does not time out during installation or the installer will fail.
+Using `nohup` and `&` at the end, e.g. `sudo nohup bash &` will make the process to start in the background and will keep running if your ssh session expires.
+Using `screen` or `tmux` is another alternative that keeps you process running if your ssh-session ends.
+
 After running the `curl` command on a node, the node appears in the installer UI.
 
 . Click Verify, to ensure that each of your servers meets the minimum disk and system requirements.
@@ -84,7 +89,7 @@ This may take a few minutes to complete. If you system meets all of the requirem
 +
 This IP address is used to communicate within the cluster.
 
-. Choose a Docker devise from the drop-down list, or manually specify the path to your own. Ensure that on each of your nodes, both devices are configured with enough space.
+. Choose a Docker device from the drop-down list, or manually specify the path to your own. Ensure that on each of your nodes, both devices are configured with enough space.
 +
 This is the device Docker uses for volume management.
 
@@ -109,3 +114,9 @@ Platform users sign in to accounts that belong to the organization name that you
 +
 * NFS Server
 * NFS Path
+
+== See Also
+
+* xref:prereq-workflow.adoc[Workflow: Verify Prerequisites]
+* xref:install-auto-install.adoc[To Install using CLI-Based installer]
+* xref:demo-ldap-server.adoc[About the Demo LDAP Server]

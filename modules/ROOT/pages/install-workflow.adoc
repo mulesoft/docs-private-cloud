@@ -3,12 +3,17 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition provides two installers.
+Anypoint Platform Private Cloud Edition provides two installation modes:
 
-* GUI-based installer: Walks you through a set of wizard pages that enable you to specify configuration options.
-* Command line installer: Enables you to perform the install
+* GUI-based
+* CLI-based
+
+The GUI based installer requires extra ports to be opened and a web browser to access the pages. 
+It's interactive and it walks you through a set of wizard pages that enable you to specify configuration options.
+
+The Command line based installer does not require human interaction using a web browser, it is useful for automation.
 
 == See Also
 
-* xref:install-installer.adoc[To Run the Anypoint Platform Private Cloud Edition Installer]
-* xref:install-auto-install.adoc[To Install Anypoint Platform Private Cloud Using the Automated Installer]
+* xref:install-installer.adoc[To Install using the GUI-based installer]
+* xref:install-auto-install.adoc[To Install using the CLI-based installer]

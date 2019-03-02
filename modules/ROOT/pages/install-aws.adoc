@@ -1,4 +1,0 @@
-= To Install Anypoint Private Cloud on Amazon Web Services
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]

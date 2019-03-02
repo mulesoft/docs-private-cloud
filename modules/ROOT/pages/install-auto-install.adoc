@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to install Anypoint Platform Private Cloud Edition using an automated installer. The automated installer enables you to specify all required parameters from the command line.
+This topic describes how to install Anypoint Platform Private Cloud Edition using an CLI-based installer. The automated installer enables you to specify all required parameters from the command line.
 
 [WARNING]
 ====
@@ -17,9 +17,9 @@ To run the automated installer, ensure that you have root access on all of the s
 Before running the installer, you will need the following:
 
 * The IP address of each server in your installation.
-* The path to the Docker installation on each server
+* The Docker device on each server
 * Your Anypoint Platform Private Cloud Edition license file
-* Anypoint Private Cloud, version 2.0 requires that you have an NFS server installed and configured. Ensure that this is installed before beginning the upgrade. See xref:prereq-network.adoc[Private Cloud Edition Network Requirements]
+* Anypoint Private Cloud, version 2.0 requires that you have an NFS server installed and configured. Ensure that this is installed before beginning. See xref:prereq-workflow.adoc[Private Cloud Edition Verify Prerequisites]
 
 == About the Installation Scripts
 
@@ -82,6 +82,11 @@ sudo ./gravity join <installer_IP> --advertise-addr=<node_IP> --token=<secret_to
 +
 This command causes each of the nodes to join the cluster created by the `./gravity install` command.
 +
+[WARNING]
+If you are running the above command from a ssh session ensure the session does not time out during installation or the installer will fail.
+Using `nohup` and `&` at the end, e.g. `sudo nohup ./gravity ...rest of command... &` will make the process to start in the background and will keep running if your ssh session expires.
+Using `screen` or `tmux` is another alternative that keeps you process running if your ssh-session ends.
++
 Wait for the `./gravity install` and `./gravity join` commands to complete. This may take some time.
 
 . From the node where you ran `./gravity install`, enter the gravity shell:
@@ -102,6 +107,6 @@ curl -X POST http://bandwagon-mulesoft.default.svc.cluster.local/api/complete -H
 
 == See Also
 
-* xref:prereq-workflow.adoc[Workflow: Install and Verify Prerequisites for Physical Servers]
-* xref:install-installer.adoc[To Run the Anypoint Platform Private Cloud Edition Installer]
+* xref:prereq-workflow.adoc[Workflow: Verify Prerequisites]
+* xref:install-installer.adoc[To Install using the GUI-based installer]
 * xref:demo-ldap-server.adoc[About the Demo LDAP Server]
