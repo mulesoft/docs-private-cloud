@@ -1,40 +1,37 @@
-= Workflow: Verify Prerequisites for Physical Servers
+= Workflow: Verify Prerequisites
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes the workflow for verifying that your environment meets the minimum system requirements to install Anypoint Platform Private Cloud Edition on a physical server.
+This topic describes the workflow for verifying that your environment meets the minimum system requirements to install Anypoint Platform Private Cloud Edition.
 
-. Contact your customer success representative to obtain a product license for Anypoint Platform Private Cloud Edition.
-
-. xref:prereq-hardware.adoc[About Hardware and Device Requirements for Anypoint Private Cloud]
-+
-Review the minimum hardware and device requirements for Anypoint Platform Private Cloud Edition.
-+
 [WARNING]
 If your system does not meet all of the minimum system requirements, you cannot install Anypoint Platform Private Cloud Edition.
 
-. xref:prereq-network.adoc[About Private Cloud Edition Network Requirements]
-+
-Review the minimum network requirements require to run Anypoint Platform Private Cloud Edition.
+. Contact your customer success representative to obtain a product license for Anypoint Platform Private Cloud Edition.
 
-. xref:prereq-verify-disk.adoc[To Verify Hardware Requirements]
+. xref:prereq-hardware.adoc[Hardware and Device Requirements]
 +
-Perform theses procedures to verify that your disk and network performance meets the minimum requirements.
+Review the minimum hardware and device requirements for Anypoint Platform Private Cloud Edition.
 
-. xref:prereq-gravity-check.adoc[To Verify System Requirements for Anypoint Private Cloud on a Physical Server]
+* xref:prereq-verify-disk.adoc[To Verify Disk Requirements]
+* xref:prereq-verify-device.adoc[To Verify Device Requirements]
 +
-Run the `gravity check` script to verify that your system meets the minimum requirements required to install Anypoint Platform Private Cloud Edition.
 
-. (Optional) Create a Virtual Machine
+. xref:prereq-network.adoc[Network Requirements]
 +
-If you are installing Anypoint Private Cloud on a physical server, you must install and configure a virtual machine. Only VMware and Bare Metal running RHEL are supported. See the documentation from your vendor for more information.
+About static IPs, network ports and other network requirements.
 
-. xref:prereq-firewalld-forwarding.adoc[To Enable Forwarding When Using firewalld]
+. xref:prereq-software.adoc[Software Requirements]
 +
-If you are running Red Hat Enterprise Linux (RHEL), 7.3 using firewalld, you must enable forwarding.
+Supported OS versions and required modules
 
-. Ensure that the clocks on all servers are synchronized. Unsynchronized clocks can cause problems with platform communications.
+* xref:prereq-verify-software.adoc[To Uninstall Unsupported Software]
++
+
+. xref:prereq-gravity-check.adoc[Verify System Requirements]
++
+Run the `gravity check` tool to verify most requirements automatically.
 
 
 After installing and verifying these prerequisites, you are ready to perform the installation. See xref:install-workflow.adoc[About Anypoint Platform Private Cloud Edition Installation].
