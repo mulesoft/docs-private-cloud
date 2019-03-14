@@ -69,6 +69,7 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 | TELEKUBE_NODE_PROFILE_INSTANCE_TYPE_node | Must be `m4.4xlarge`
 | TELEKUBE_NODE_PROFILES | Must be set to `node`
 | TF_VAR_high_performance_disks | Must be set to `true` for production environments
+| TF_VAR_disable_outbound_traffic | Disables outside internet access using iptables rules. Defaults to `true`.
 |===
 
 You can also include the following set of optional environment variables:
