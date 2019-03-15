@@ -15,7 +15,7 @@ To install Anypoint Platform Private Cloud Edition on AWS, you must have an AWS 
 [%header%autowidth.spread]
 |===
 | AWS Resource | Number required (3-node) | Number required (6-node)
-| m4.4xlarge | 3 | 6
+| m4.2xlarge | 3 | 6
 | root disk @ 500 iops | 3 | 6
 | EBS volumes @ 1500 iops | 6 | 12
 | EBS volume @ 3000 iops | 6 | 12
@@ -66,7 +66,7 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 | CLUSTER_TYPE | Must be `pce`
 | TELEKUBE_CLUSTER_NAME | Specifies the name of the cluster and the corresponding AWS resources
 | TELEKUBE_NODE_PROFILE_COUNT_node | Specifies the number of nodes in your cluster. Possible values are `3`, and `6`
-| TELEKUBE_NODE_PROFILE_INSTANCE_TYPE_node | Must be `m4.4xlarge`
+| TELEKUBE_NODE_PROFILE_INSTANCE_TYPE_node | Must be `m4.2xlarge`
 | TELEKUBE_NODE_PROFILES | Must be set to `node`
 | TF_VAR_high_performance_disks | Must be set to `true` for production environments
 | TF_VAR_disable_outbound_traffic | Disables outside internet access using iptables rules. Defaults to `true`.
