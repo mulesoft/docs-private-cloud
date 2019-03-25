@@ -36,7 +36,7 @@ You can also run provisioner remotely from any other machine with Docker and int
 . Download the provisioner Docker image from the following URL:
 +
 ----
-https://onprem-standalone-installers.s3.amazonaws.com/pce-2.0-provisioner.tar.gz?Signature=jYdE6HCDAzwLS6c3bQjua6v0ldE%3D&Expires=1694920896&AWSAccessKeyId=AKIAI3RYALJL3PWNBRSQ
+https://onprem-standalone-installers.s3.amazonaws.com/pce2.0.1-aws-provisioner.tar.gz?Expires=1709789111&AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Signature=4aQ4wJNuRDzCiz%2BF6iKfwZIUyPM%3D
 ----
 
 Copy the provisioner Docker image to the instance via SCP
