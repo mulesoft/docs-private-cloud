@@ -3,15 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition must be run in production environment with multiple servers. To distribute traffic among servers and to restrict access to specific ports, you must install and configure a load balancer.
+Anypoint Platform Private Cloud Edition must run in a production environment with multiple servers. To distribute traffic among servers and to restrict access to specific ports, you must install and configure a load balancer. Also, in a single server development environment, MuleSoft recommends using a load balancer.
 
 [NOTE]
-If using the xref:prereq-aws-terraform.adoc[AWS Provisioner for Anypoint Private Cloud Edition], an Amazon ELB is already created with the required configuration and you can skip this section.
+If using the xref:prereq-aws-terraform.adoc[AWS Provisioner for Anypoint Private Cloud Edition] skip this section. An Amazon ELB is created during installation with the required configuration.
 
-[NOTE]
-In a single server development environment, MuleSoft recommends using a load balancer.
 
-You can configure your load balancer to use any method for distributing client requests, but in most contexts a round robin strategy is ideal. This load balancer should be reachable through an IP address that is accessible to all machines in your network.
+You can configure your load balancer to use any method for distributing client requests, but in most contexts a round robin strategy is ideal. The load balancer should be accessible through an IP address that is available to all machines in your network.
 
 Your load balancer must route the following TCP ports:
 
@@ -25,15 +23,15 @@ Your load balancer must route the following TCP ports:
 |===
 
 
-In each case, your load balancer must listen on the Load Balancer Port and redirect incoming requests to the Instance Port. Your  Anypoint Platform installation includes an internal NGINX server that listens on each of the configured instance ports, then performs the action listed in the Internal Usage column.
+In each case, your load balancer must listen on the Load Balancer Port and redirect incoming requests to the Instance Port. Your Anypoint Platform installation includes an internal NGINX server that listens on each of the configured instance ports, then performs the action listed in the Internal Usage column.
 
 Your load balancer should poll the address `HTTP:10248/healthz` to run a health check on your platform servers and confirm that they are accessible.
 
 
 [NOTE]
-You must not configure SSL credentials in your load balancer. TLS termination is done by the platform with the certificates configured using Access Management. See xref:install-add-tasks.adoc[To Perform Additional Installation Tasks]
+Do not configure SSL credentials in your load balancer. TLS termination is handled by the platform with the certificates configured using Access Management. See xref:install-add-tasks.adoc[To Perform Additional Installation Tasks].
 
-== Example: Implementing a Load Balancer using Nginx 
+== Implement a Load Balancer using Nginx
 
 . Enable stream block in your `/etc/nginx/nginx.conf` file, by referencing all the configuration properties defined in `/etc/nginx/stream.d/*`. You can achieve that by adding the following:
 +
@@ -75,14 +73,13 @@ server {
    proxy_pass 0.0.0.0:30083;
 }
 ----
-+
 
 . Enable the default ports on SELinux before starting the NGINX. Run the following commands one by one:
 +
 ----
-`semanage port -a -t http_port_t  -p tcp 8889`
-`semanage port -a -t http_port_t  -p tcp 9500`
-`semanage port -a -t http_port_t  -p tcp 9501`
+semanage port -a -t http_port_t  -p tcp 8889
+semanage port -a -t http_port_t  -p tcp 9500
+semanage port -a -t http_port_t  -p tcp 9501
 ----
 
 . Start NGINX:
@@ -91,7 +88,7 @@ server {
 service nginx restart
 ----
 
-== See Also 
+== See Also
 * xref:install-add-tasks.adoc[To Perform Additional Installation Tasks]
 * xref:prereq-aws-terraform.adoc[AWS Provisioner for Anypoint Private Cloud Edition]
 * https://www.nginx.com/[Nginx]

@@ -3,15 +3,15 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition provides two installation modes:
+There are two ways to install Anypoint Private Cloud Edition:
 
-* GUI-based
-* CLI-based
+* Using a GUI installer.
+* Using the CLI.
 
-The GUI based installer requires extra ports to be opened and a web browser to access the pages. 
-It's interactive and it walks you through a set of wizard pages that enable you to specify configuration options.
+The GUI based installer requires you to open extra ports and a web browser to access the pages.
+The installer is interactive and walks you through a set of wizard pages that enable you to specify configuration options.
 
-The Command line based installer does not require human interaction using a web browser, it is useful for automation.
+The CLI installer does not require human interaction using a web browser and is useful for automation.
 
 == See Also
 
