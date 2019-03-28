@@ -12,7 +12,9 @@ endif::[]
     * xref:access-management-security.adoc[Set Certificates]
     * Log Forwarding
     * xref:access-management-smtp.adoc[Configure SMTP]
-    * Third Party Authentication: See xref:install-config-ldap-pce.adoc[To Configure LDAP], xref:install-disable-local-user.adoc[To Delete the Local User (optional)].
+    * Third Party Authentication
+    +
+	See xref:install-config-ldap-pce.adoc[To Configure LDAP], xref:install-disable-local-user.adoc[To Delete the Local User (optional)]
     * Register Mule runtimes
 
 After completing the steps in this workflow, you can deploy and manage applications, register APIs and use the API Exchange on an Anypoint Platform environment running on your own local network.
