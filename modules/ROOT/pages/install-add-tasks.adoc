@@ -30,7 +30,7 @@ You must forward logs to a 3rd-party log solution like Splunk. It's not supporte
 
 == Set up SMTP
 
-To handle e-mail alerts for both Runtime Manager and API Manager, you must have an SMTP server configured on your network. You must direct your local installation of Anypoint Platform to this server from the Access Management panel. See xref:access-management-smtp.adoc[Configure SMTP].
+To handle e-mail alerts for both Runtime Manager and API Manager, you must have an SMTP server configured on your network. You must direct your local installation of Anypoint Platform to this server from the Access Management panel. See xref:access-management-SMTP.adoc[Configure SMTP].
 
 == Use Third Party Authentication
 
