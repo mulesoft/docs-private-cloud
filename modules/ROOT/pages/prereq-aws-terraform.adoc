@@ -25,7 +25,7 @@ To install Anypoint Platform Private Cloud Edition on AWS, you must have an AWS 
 
 == Run the AWS Provisioner
 
-MuleSoft provides a Docker image that you can use to provision the resources for your AWS account.
+MuleSoft provides a Docker image that you can use to provision the resources for your AWS account. You can also run custom shell scripts on the provisioned instances (see below).
 
 . Create an initial instance (t2.small) on your AWS account on any VPC with internet access.
 +
@@ -96,7 +96,7 @@ docker load -i pce2.0-aws-provisioner.gz
 
 . Record the image ID after running the `docker load` command. This is required in the following step.
 
-.  (Optional) Perform a dry-run
+. Perform a dry-run
 +
 ----
 docker run --rm --env-file pce.env IMAGE_ID dry-run
@@ -112,6 +112,14 @@ docker run --rm --env-file pce.env IMAGE_ID cluster-provision
 After the provisioner runs successfully, it displays information about your environment including IP addresses, DNS name of the load balancer, etc.
 
 . Verify that the provisioning script ran successfully by checking the existence of /var/lib/bootstrap_complete on the instances
+
+== Custom provisioning scripts (Optional)
+
+You can have your own shell scripts to run on the provisioned instances before and/or after the PCE provisioner scripts. In order to do so, place your shell scripts with .sh extension inside a folder named `pre-user-data` and/or `post-user-data`. Finally include the following volume mounts on the docker run command:
+
+----
+docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/external/pre-user-data -v $(pwd)/post-user-data:/usr/local/bin/provisioner/terraform/external/post-user-data --env-file pce.env IMAGE_ID cluster-provision
+----
 
 == Open Port 61009 Before Installation (Optional)
 
