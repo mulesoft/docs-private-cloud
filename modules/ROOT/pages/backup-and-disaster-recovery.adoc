@@ -51,7 +51,6 @@ This takes a few minutes. You can pass the following optional parameters:
 * `--follow`: outputs the backup job logs to stdout
 * `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
 * `--log-file`: outputs logs to a file
-----
 
 == See Also
 

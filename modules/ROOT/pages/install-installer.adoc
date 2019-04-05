@@ -3,15 +3,15 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to run the GUI-based installer for  Anypoint Platform Private Cloud Edition. This installer provides a wizard that walks you through the process of configuring much of the infrastructure required to run Anypoint Platform Private Cloud Edition. It automatically installs Kubernetes and creates multiple Docker containers that host the platform components.
+This topic describes how to run the GUI-based installer for Anypoint Platform Private Cloud Edition. This installer provides a wizard that walks you through the process of configuring much of the infrastructure required to run Anypoint Platform Private Cloud Edition. It automatically installs Kubernetes and creates multiple Docker containers that host the platform components.
 
 == Prerequisites
 
-*Before running the installer, ensure that your system meets the minimum system requirements.
-+
+Before running the installer, ensure that your system meets the minimum system requirements.
+
 The installer automatically validates requirements for disk space, disk speed, network speed and operating system version. You must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation.
 
-* Anypoint Private Cloud, version 2.0 requires that you have an NFS server installed and configured. Ensure that this is installed before beginning the upgrade. See xref:prereq-network.adoc[Private Cloud Edition Network Requirements]
+Anypoint Private Cloud, version 2.0 requires that you have an NFS server installed and configured. Ensure that this is installed before beginning. See xref:prereq-network.adoc[Private Cloud Edition Network Requirements]
 
 == Running the Installer
 
@@ -42,9 +42,9 @@ OPEN THIS IN BROWSER: https://{HOST}:61009/web/installer/new/gravitational.io/an
 +
 The installer runs on an internal IP that you can use to access from within your network. To access the URL from outside the network you must replace the hostname in the URL with a public IP address.
 +
-After launching the installation wizard, perform the following steps to install Anypoint Platform Private Cloud Edition:
+After launching the installation wizard, perform the following steps to install Anypoint Platform Private Cloud Edition.
 
-. Enter your Anypoint Platform license key, then click Continue.
+. Enter your Anypoint Platform license key, then click *Continue*.
 +
 You must obtain the license key from your MuleSoft account representative. After applying a new license, it may take time for the installer to recognize the license.
 
@@ -58,13 +58,13 @@ This name should be unique to your company. For example: `anypoint.yourcompany`.
 +
 The following configurations are supported:
 +
-	* **1-node configuration**: installs all platform components run on a single node. This configuration is intended for demo purposes only and has lower hardware requirements. It is not supported for development or production environments. The demo installation includes its own LDAP server to use for testing.
-	* **3-node configuration**: installs and registers all servers as *General Purpose Nodes*.
-	* **6-node configuration**: installs and registers three nodes as *App-only* and three nodes as *Data Store*.
+	* 1-node configuration: installs all platform components run on a single node. This configuration is intended for demo purposes only and has lower hardware requirements. It is not supported for development or production environments. The demo installation includes its own LDAP server to use for testing.
+	* 3-node configuration: installs and registers all servers as *General Purpose Nodes*.
+	* 6-node configuration: installs and registers three nodes as *App-only* and three nodes as *Data Store*.
 +
-After installation, you can add or remove nodes as necessary using the Ops Center. Depending on the number of nodes you select, the installer displayes one or more `curl` commands.
+Depending on the number of nodes you select, the installer displays one or more `curl` commands.
 
-. Run the 'curl' command from the command line of each node in your installation.
+. Run the `curl command from the command line of each node in your installation.
 +
 If you are running a 3-node configuration, you must Run the same command on each server in your environment. If you are running a 6-node configuration, you must run different `curl` commands on the app and data nodes.
 +
@@ -73,6 +73,10 @@ You must have administrator privileges to run this command. The command should h
 ----
 curl -s --tlsv1.2 --insecure "https://{HOST}:443/t/{TOKEN}/node" | sudo bash
 ----
++
+[WARNING]
+If you are running the command above from an SSH session, ensure the session does not time out during installation or the installer will fail. Using `nohup` and `&` at the end, e.g. `sudo nohup bash &` will make the process to start in the background and will keep running if your ssh session expires.
+Using `screen` or `tmux` is another alternative that keeps you process running if your ssh-session ends.
 +
 After running the `curl` command on a node, the node appears in the installer UI.
 
@@ -84,7 +88,7 @@ This may take a few minutes to complete. If you system meets all of the requirem
 +
 This IP address is used to communicate within the cluster.
 
-. Choose a Docker devise from the drop-down list, or manually specify the path to your own. Ensure that on each of your nodes, both devices are configured with enough space.
+. Choose a Docker device from the drop-down list, or manually specify the path to your own. Ensure that on each of your nodes, both devices are configured with enough space.
 +
 This is the device Docker uses for volume management.
 
@@ -103,9 +107,15 @@ The installer passes through several different stages. Wait for this process to 
 * Administrator username
 * Administrator password
 +
-Platform users sign in to accounts that belong to the organization name that you provide here or a business group within it.
+Platform users access their accounts based on the organization name that you provide here or a business group within it.
 
 . Enter the following information about your NFS server:
 +
 * NFS Server
 * NFS Path
+
+== See Also
+
+* xref:prereq-workflow.adoc[Workflow: Verify Prerequisites]
+* xref:install-auto-install.adoc[To Install using CLI-Based installer]
+* xref:demo-ldap-server.adoc[About the Demo LDAP Server]

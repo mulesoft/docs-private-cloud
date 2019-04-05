@@ -16,11 +16,12 @@ The version of Kubernetes supported by Anypoint Platform Private Cloud Edition u
 [%header%autowidth.spread]
 |===
 |Protocol |Port/Range |Purpose
+|TCP/UDP | 53 | Internal cluster DNS
 |TCP | 2379, 2380, 4001, 7001 | etcd distributed database
 |TCP | 4242 | Installer
 |TCP | 6060 | Health check
 |TCP | 6443 | Kubernetes API server
-|TCP | 7373 | Serf RPC agent
+|TCP | 7496, 7373 | Serf RPC agent
 |TCP | 8080 | Kubernetes API server
 |TCP | 10248, 10249, 10250, 10255 | Kubernetes Kubelet
 |TCP | 5000 | Docker registry
@@ -32,6 +33,7 @@ The version of Kubernetes supported by Anypoint Platform Private Cloud Edition u
 |TCP | 61008-61010 | Installer port ranges (only used during install)
 |TCP | 61022-61024 | Installer port ranges (only used during install)
 |UDP | 8472 | Overlay VXLAN network
+|TCP | 32009 | Ops Center Admin UI
 |===
 
 
