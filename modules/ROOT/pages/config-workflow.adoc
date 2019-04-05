@@ -11,7 +11,7 @@ endif::[]
     * xref:access-management-dns.adoc[Configure DNS]
     * xref:access-management-security.adoc[Set Certificates]
     * Log Forwarding
-    * xref:access-management-smtp.adoc[Configure SMTP]
+    * xref:access-management-SMTP.adoc[Configure SMTP]
     * Third Party Authentication
     +
 	See xref:install-config-ldap-pce.adoc[To Configure LDAP], xref:install-disable-local-user.adoc[To Delete the Local User (optional)]
