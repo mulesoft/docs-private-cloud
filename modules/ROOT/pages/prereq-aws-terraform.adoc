@@ -33,10 +33,10 @@ This instance is used to run the actual provisioning of the cluster. You must us
 +
 You can also run provisioner remotely from any other machine with Docker and internet access.
 
-. Download the provisioner Docker image from the following URL:
+. Download the Private Cloud Provisioner (PCP) Docker image from the following URL:
 +
 ----
-https://onprem-standalone-installers.s3.amazonaws.com/pce-2.0-provisioner.tar.gz?Signature=jYdE6HCDAzwLS6c3bQjua6v0ldE%3D&Expires=1694920896&AWSAccessKeyId=AKIAI3RYALJL3PWNBRSQ
+https://anypoint-anywhere.s3.amazonaws.com/pcp/pcp-1.0.tar.gz?AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Expires=1712193983&Signature=noiRGBIBJtwsMLQxTux%2FiM%2F5SP0%3D
 ----
 
 Copy the provisioner Docker image to the instance via SCP
