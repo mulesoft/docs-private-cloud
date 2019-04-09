@@ -15,7 +15,7 @@ To install Anypoint Platform Private Cloud Edition on AWS, you must have an AWS 
 [%header%autowidth.spread]
 |===
 | AWS Resource | Number required (3-node) | Number required (6-node)
-| m4.2xlarge | 3 | 6
+| m5.2xlarge | 3 | 6
 | root disk @ 500 iops | 3 | 6
 | EBS volumes @ 1500 iops | 6 | 12
 | EBS volume @ 3000 iops | 6 | 12
@@ -33,10 +33,10 @@ This instance is used to run the actual provisioning of the cluster. You must us
 +
 You can also run provisioner remotely from any other machine with Docker and internet access.
 
-. Download the provisioner Docker image from the following URL:
+. Download the Private Cloud Provisioner (PCP) Docker image from the following URL:
 +
 ----
-https://onprem-standalone-installers.s3.amazonaws.com/pce2.0.1-aws-provisioner.tar.gz?Expires=1709789111&AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Signature=4aQ4wJNuRDzCiz%2BF6iKfwZIUyPM%3D
+https://anypoint-anywhere.s3.amazonaws.com/pcp/pcp-1.0.tar.gz?AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Expires=1712193983&Signature=noiRGBIBJtwsMLQxTux%2FiM%2F5SP0%3D
 ----
 
 Copy the provisioner Docker image to the instance via SCP
@@ -66,7 +66,7 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 | CLUSTER_TYPE | Must be `pce`
 | TELEKUBE_CLUSTER_NAME | Specifies the name of the cluster and the corresponding AWS resources
 | TELEKUBE_NODE_PROFILE_COUNT_node | Specifies the number of nodes in your cluster. Possible values are `3`, and `6`
-| TELEKUBE_NODE_PROFILE_INSTANCE_TYPE_node | Must be `m4.2xlarge`
+| TELEKUBE_NODE_PROFILE_INSTANCE_TYPE_node | Must be `m5.2xlarge`
 | TELEKUBE_NODE_PROFILES | Must be set to `node`
 | TF_VAR_high_performance_disks | Must be set to `true` for production environments
 | TF_VAR_disable_outbound_traffic | Disables outside internet access using iptables rules. Defaults to `true`.
@@ -82,9 +82,10 @@ You can also include the following set of optional environment variables:
 | TF_VAR_use_bastion=<true or false> | If true it will create a small instance (using an ASG) in a public subnet as a jumpbox and associate a public IP address, and launch the cluster instances in the private subnets
 | TF_VAR_internal=<true or false> | If true the cluster instances will be launched in private subnets and will not have public ips associated with them. Also, the provisioned load balancer will be internal only
 | AWS_VPC_ID=<VPC_ID> | Specifies an existing VPC. It should already have an internet gateway attached to it. Subnets will still be provisioned within the existing VPC
-| AWS_VPC_CIDR=<VPC_CIDR> | You can pass a preferred CIDR for the new VPC that will be provisioned. (Requires not to pass a VPC_ID)
-| TF_VAR_subnets=<PRIVATE_SUBNETS_CIDRs> | You can pass the preferred CIDRs blocks for the new subnets that will be provisioned. You must pass exactly the minimum num	ber between the number of AZs of the region and the number of nodes you selected for your cluster. For example: `'["10.1.0.0/24", "10.1.1.0/24", "10.1.2.0/24"]'`
-| TF_VAR_public_subnets=<PUBLIC_SUBNETS_CIDRs> | You can pass the preferred CIDRs blocks for the new subnets that will be provisioned. You must pass exactly the minimum num	ber between the number of AZs of the region and the number of nodes you selected for your cluster. For example: `'["10.1.3.0/24", "10.1.4.0/24", "10.1.5.0/24"]'`
+| AWS_VPC_CIDR=<VPC_CIDR> | You can pass a preferred CIDR for the new VPC that will be provisioned. (Requires not to pass a AWS_VPC_ID)
+| TF_VAR_aws_selected_subnets_ids=<SUBNETS_IDS> | You can pass a list of subnets IDs where the instances will be launched on. If you reuse your own subnets, you need to set up Route Tables, NAT Gateways and Internet Gateway. For example: `["subnet-0a17317984065f98f", "subnet-0600b4befb27c7949", "subnet-02103e0c935eff75a"]`
+| TF_VAR_subnets=<PRIVATE_SUBNETS_CIDRs> | You can optionally pass the preferred CIDRs blocks for the NEW subnets that will be provisioned. You must pass exactly the minimum number between the number of AZs of the region and the number of nodes you selected for your cluster. For example: `'["10.1.0.0/24", "10.1.1.0/24", "10.1.2.0/24"]'`
+| TF_VAR_public_subnets=<PUBLIC_SUBNETS_CIDRs> | You can optionally pass the preferred CIDRs blocks for the NEW subnets that will be provisioned. You must pass exactly the minimum number between the number of AZs of the region and the number of nodes you selected for your cluster. For example: `'["10.1.3.0/24", "10.1.4.0/24", "10.1.5.0/24"]'`
 | TF_VAR_role_tag_value=<AWS_TAG_VALUE_FOR_ROLE_LABEL> | You can provide a value for a ROLE tag that all AWS resources will have
 |===
 
