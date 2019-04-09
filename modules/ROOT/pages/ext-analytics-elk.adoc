@@ -52,7 +52,7 @@ To export business and event tracking data, you must enable event tracking in ru
 
 . From Anypoint Platform, click Runtime Manager.
 . Click Servers.
-. Click the row containing the server wher you want to configure ELK.
+. Click the row containing the server where you want to configure ELK.
 . Click Manager Server, then click the Plugins tab.
 . Under Event Tracking, select Business Events from the Levels drop down.
 . Click the switch to Enable event tracking on ELK.
@@ -68,7 +68,7 @@ To export API analytics, you must enable API analytics in Runtime Manager.
 
 . From Anypoint Platform, click Runtime Manager.
 . Click Servers.
-. Click the row containing the server wher you want to configure ELK.
+. Click the row containing the server where you want to configure ELK.
 . Click the switch to enable API analytics, the click the switch next to ELK.
 . Configure the log files as necessary.
 . Click Apply

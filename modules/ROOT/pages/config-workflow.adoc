@@ -5,12 +5,16 @@ endif::[]
 
 . Setup a balancer as described in xref:install-create-lb.adoc[To Setup a Load Balancer].
 
+. Ensure that you have configured your system to perform regular backups. See xref:backup-and-disaster-recovery.adoc[About Backup and Recovery]
+
 . Perform additional installation tasks as described in xref:install-add-tasks.adoc[To Perform Additional Installation Tasks].
-
-. Ensure that you have configured your system to perform regular backups. See xref:backup-and-disaster-recovery.adoc[About Backup and Recovery].
-
-. Configure an external authentication provider. See xref:install-config-ldap-pce.adoc[To Configure LDAP in Anypoint Platform Private Cloud]
-
-. (Optional) Delete the default Anypoint Platform user created during installation. See xref:install-disable-local-user.adoc[To Delete the Local User after Installing Private Cloud Edition].
+    * xref:access-management-dns.adoc[Configure DNS]
+    * xref:access-management-security.adoc[Set Certificates]
+    * Log Forwarding
+    * xref:access-management-SMTP.adoc[Configure SMTP]
+    * Third Party Authentication
+    +
+	See xref:install-config-ldap-pce.adoc[To Configure LDAP], xref:install-disable-local-user.adoc[To Delete the Local User (optional)]
+    * Register Mule runtimes
 
 After completing the steps in this workflow, you can deploy and manage applications, register APIs and use the API Exchange on an Anypoint Platform environment running on your own local network.

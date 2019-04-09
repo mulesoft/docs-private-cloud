@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to install Anypoint Platform Private Cloud Edition using an automated installer. The automated installer enables you to specify all required parameters from the command line.
+This topic describes how to install Anypoint Platform Private Cloud Edition using a CLI-based installer. This  installer enables you to specify all required parameters from the command line.
 
 [WARNING]
 ====
@@ -12,18 +12,18 @@ Before running the installer, ensure that your system meets the minimum system r
 
 == Prerequisites
 
-To run the automated installer, ensure that you have root access on all of the servers in your environment.
+To run the CLI-based installer, ensure that you have root access on all of the servers in your environment.
 
-Before running the installer, you will need the following:
+Before running the installer, you need the following:
 
 * The IP address of each server in your installation.
-* The path to the Docker installation on each server
+* The Docker device on each server
 * Your Anypoint Platform Private Cloud Edition license file
-* Anypoint Private Cloud, version 2.0 requires that you have an NFS server installed and configured. Ensure that this is installed before beginning the upgrade. See xref:prereq-network.adoc[Private Cloud Edition Network Requirements]
+* Anypoint Private Cloud requires that you have an NFS server installed and configured. Ensure that this is installed before beginning. See xref:prereq-workflow.adoc[Private Cloud Edition Verify Prerequisites].
 
 == About the Installation Scripts
 
-The automated installation consists of two scripts:
+The automated installation uses two scripts:
 
 * `gravity install`: begins the installation and handles intra-server communication during the install. This script also installs the platform on the server.
 * `gravity join`: installs the platform on each additional server.
@@ -43,7 +43,7 @@ The script you run on each node of your installation and the values of the `role
 
 When installing a single-node configuration, the automated installer also installs and configures the demo LDAP server.
 
-== Running the Command Line Installation
+== Run the Command Line Installation
 
 . Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative.
 . Copy the archive to each server node in your cluster.
@@ -82,6 +82,11 @@ sudo ./gravity join <installer_IP> --advertise-addr=<node_IP> --token=<secret_to
 +
 This command causes each of the nodes to join the cluster created by the `./gravity install` command.
 +
+[WARNING]
+If you are running the above command using `ssh` ensure the session does not time out during installation or the installer fails.
+Using `nohup` and `&` at the end, e.g. `sudo nohup ./gravity ...rest of command... &` will causes the process to start in the background and continue running if your SSH session expires.
+Using `screen` or `tmux` is another alternative to keep a process running if your ssh-session ends.
++
 Wait for the `./gravity install` and `./gravity join` commands to complete. This may take some time.
 
 . From the node where you ran `./gravity install`, enter the gravity shell:
@@ -90,10 +95,10 @@ Wait for the `./gravity install` and `./gravity join` commands to complete. This
 sudo gravity enter
 ----
 
-. Create the Ops Center and the Anypoint Platform user by running the following command in the gravity shell
+. Create the Ops Center and the Anypoint Platform users by running the following command in the gravity shell
 +
 [NOTE]
-Before running this script, replace the `email`, `name`, and `password` parameters with the corresponding values for your environment. These are the credentials that a system administrator will use to manage the system.
+Before running this script, replace the `email`, `name`, and `password` parameters with the corresponding values for your environment. These are the credentials that a system administrator uses to manage the system.
 +
 ----
 curl -X POST http://bandwagon-mulesoft.default.svc.cluster.local/api/complete -H "Content-Type:application/json" -d '{"organization": "Test Org", "email": "username@mulesoft.com", "name": "username", "password": "my_password", "support": false, "nfsServer": "NFS_SERVER_HOST", "nfsPath": "NFS_SERVER_PATH", "platformDns": "PLATFORM_DNS"}'
@@ -102,6 +107,6 @@ curl -X POST http://bandwagon-mulesoft.default.svc.cluster.local/api/complete -H
 
 == See Also
 
-* xref:prereq-workflow.adoc[Workflow: Install and Verify Prerequisites for Physical Servers]
-* xref:install-installer.adoc[To Run the Anypoint Platform Private Cloud Edition Installer]
+* xref:prereq-workflow.adoc[Workflow: Verify Prerequisites]
+* xref:install-installer.adoc[To Install using the GUI-based installer]
 * xref:demo-ldap-server.adoc[About the Demo LDAP Server]

@@ -5,15 +5,13 @@ endif::[]
 
 This topic describes additional installation steps that you may need to perform after installing Anypoint Platform Private Cloud Edition.
 
-== Configure Backup and Restore
-
-After installing Anypoint Platform Private Cloud Edition, you must ensure that you have configured your system to perform regular backups. You must schedule your backup to run at least once per day. However, MuleSoft recommends that your backup runs at least once per hour.
-
-See xref:backup-and-disaster-recovery.adoc[About Backup and Recovery] for more information.
-
 == Provide Platform IP or Domain
 
-You need to provide the DNS or IP with which your instance of the Anypoint Platform is exposed to the local network, this is necessary for Mule runtimes to be able to communicate with it. You can easily do this by accessing the *Access Management* section.
+Provide the DNS or IP with which your instance of the Anypoint Platform is exposed to the local network, this is necessary for Mule runtimes to be able to communicate with it. See xref:access-management-dns.adoc[Configure DNS].
+
+== TLS Certificate
+
+To use Anypoint Platform, you must provide TLS credentials. You can upload a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine connected to the platform, including Mule runtimes. See xref:access-management-security.adoc[Set Certificates] for more information.
 
 == Configure Log Forwarding
 
@@ -32,17 +30,18 @@ You must forward logs to a 3rd-party log solution like Splunk. It's not supporte
 
 == Set up SMTP
 
-In order to handle e-mail alerts for both Runtime Manager and API Manager, you must have an SMTP server configured on your network. You must direct your local installation of Anypoint Platform to this server from the Access Management panel.
-
-
-== SSL Certificate
-
-In order to use Anypoint Platform, you must provide SSL credentials. You can upload a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine that’s connected to the platform.
-
+To handle e-mail alerts for both Runtime Manager and API Manager, you must have an SMTP server configured on your network. You must direct your local installation of Anypoint Platform to this server from the Access Management panel. See xref:access-management-SMTP.adoc[Configure SMTP].
 
 == Use Third Party Authentication
 
-You can have your users log in to Anypoint Platform via various third party authentication tools. See xref:access-management::external-identity.adoc[External Identity] for how to configure this on each of the available options. You can use xref:access-management::managing-users.adoc#configure-ldap[LDAP], xref:access-management::managing-api-clients.adoc#ping-federate[ping federate], xref:access-management::managing-users.adoc#instructions-for-saml-configuration[SAML] or xref:access-management::managing-api-clients.adoc#openam[OpenAM]. On this version of the platform, all of your users must be registered in the platform via external identity (except the admin you register via the installation wizard).
+Users can log in to Anypoint Platform using third-party authentication tools. See xref:access-management::external-identity.adoc[External Identity] to configure third-party access for each of the available options. The following providers are supported:
+
+* xref:install-config-ldap-pce.adoc[LDAP]
+* xref:access-management::managing-api-clients.adoc#ping-federate[ping federate]
+* xref:access-management::managing-users.adoc#instructions-for-saml-configuration[SAML]
+* xref:access-management::managing-api-clients.adoc#openam[OpenAM].
+
+In the current version, all users must be registered in the platform via external identity, except the admin you register from the installation wizard.
 
 == Add a Custom Disclaimer Message
 
@@ -54,4 +53,26 @@ Now that your installation is complete, your platform is ready for being used. U
 
 The developers of your organization that create Mule apps through the xref:6@studio::index.adoc[Anypoint Studio] IDE should set up their editors so that these interface with your locally installed Anypoint Platform (instead of the default cloud Anypoint Platform). See xref:6@studio::setting-up-your-development-environment.adoc#enable-on-premises-setup[Enable on-premises Setup].
 
-See xref:managing-via-the-ops-center.adoc[Managing via the Ops Center] for instructions on how to add or remove servers from the platform cluster and other changes you may want to carry out after installation.
+See xref:managing-via-the-ops-center.adoc[Managing via the Ops Center] to add or remove servers from the platform cluster and other changes you may want to carry out after installation.
+
+== Registering Servers
+
+Before registering a server, you must configure Mule runtime to trust the TLS certificates you configured:
+
+1. Get the public certificate for you server.
+2. Add the certiticate to the trusture of the JVM you are using for the Mule runtime.
+
+Example:
+
+----
+$ keytool -printcert -sslserver $ANYPOINT_DNS:443 -rfc > /tmp/anypoint.crt
+$ keytool -importcert -alias anypoint.my-company -keystore /etc/ssl/certs/java/cacerts -storepass changeit -file /tmp/anypoint.crt
+----
+
+In this example, $ANYPOINT_DNS should be set to your DNS for Anypoint Platform Private Cloud Edition.
+Replace the location and password for your JVM's trustore for your environment.
+
+== See Also
+
+* xref:backup-and-disaster-recovery.adoc[Backup and Recovery].
+* xref:runtime-manager::managing-servers.adoc[About Servers, Server Groups, and Clusters]
