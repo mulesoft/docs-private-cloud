@@ -72,7 +72,94 @@ $ keytool -importcert -alias anypoint.my-company -keystore /etc/ssl/certs/java/c
 In this example, $ANYPOINT_DNS should be set to your DNS for Anypoint Platform Private Cloud Edition.
 Replace the location and password for your JVM's trustore for your environment.
 
+
+== Uploading Custom Policies / Publishing Assets to Exchange Using the Maven Client
+
+This section focuses in the differences between Anypoint Private Cloud Edition and the cloud version of Anypoint.
+For complete details see the corresponding documentation for xref:2.0@api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development],
+xref:2.0@api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies] and https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/exchange-maven-facade-api-http/[Maven facade API].
+
+1. Configure settings.xml with archtype adding the server section and the repository:
++
+This snippet shows the relevant sections:
+[source,xml,linenums]
++
+----
+    ...
+    <server>
+       <id>apce-repository</id>
+       <username>myusername</username>
+       <password>mypassword</password>
+    </server>
+    ...
+    <repository>
+       <id>apce-repository</id>
+       <name>Anypoint PCE Repository</name>
+       <url>https://${ANYPOINT_DNS}/exchange/maven</url>
+    </repository>
+    ...
+----
++
+In the examples below, ${ANYPOINT_DNS} should be set to your DNS for Anypoint Platform Private Cloud Edition. username and password should correspond with your installation.
+
+2. Generate the archtype
++
+Follow the standard process: xref:2.0@api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development].
+e.g.
++
+----
+mvn -Parchetype-repository archetype:generate \
+-DarchetypeGroupId=org.mule.tools \
+-DarchetypeArtifactId=api-gateway-custom-policy-archetype \
+-DarchetypeVersion=1.0.0 \
+-DgroupId=${orgId} \
+-DartifactId=${policyName} \
+-Dversion=1.0.0-SNAPSHOT \
+-Dpackage=mule-policy
+----
+
+3. Replace the exchange.url in the pom.xml file
+exchange.url is by default pointing to the Cloud version of Anypoint: maven.anypoint.mulesoft.com must point to PCE endpoint:
++
+----
+<exchange.url>https://${ANYPOINT_DNS}/exchange/maven/api/v1/organizations/${orgId}/maven</exchange.url>
+----
++
+Make sure the repositoryId matches the one you configured for maven in settings.xml
+
+4. Package the custom policy
++
+Follow the standard process: xref:api-manager::custom-policy-packaging-policy
+
+5. Upload the custom policy
++
+Following the standard process: xref:api-manager::custom-policy-uploading-to-exchange
++
+If you receive an error simmilar to:
++
+----
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy (default-deploy) on project ${policyName}:
+Failed to retrieve remote metadata ${groupId}:${policyName}:1.0.0-SNAPSHOT/maven-metadata.xml: Could not transfer metadata ${orgId}:${policyName}:1.0.0-SNAPSHOT/maven-metadata.xml from/to exchange-server (https://${ANYPOINT_DNS}/exchange/maven/api/v1/organizations/${orgId}/maven): PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target -> [Help 1]
+----
++
+It means the certificate of the platform is not trusted by the local maven. As in <<Registering Servers>> the solution is to
+trust the certificate in the environment where maven is running.
+Example:
++
+----
+keytool -printcert -sslserver ${ANYPOINT_DNS}:443 -rfc > /tmp/anypoint.crt
+keytool -importcert -alias my-company.com -keystore /etc/ssl/certs/java/cacerts -storepass changeit -file /tmp/anypoint.crt
+----
++
+In this example, $ANYPOINT_DNS should be set to your DNS for Anypoint Platform Private Cloud Edition. Replace the location and password for your JVM’s trustore for your environment.
+
+Check your policy was uploaded by visiting https://${ANYPOINT_DNS}/exchange/?type=policy or https://${ANYPOINT_DNS}/exchange/${orgID}/${artifactId}/ directly
+
+For an API managed by Mule 4 or above, the policy will appear in the Apply Policy dialog.
+
 == See Also
 
 * xref:backup-and-disaster-recovery.adoc[Backup and Recovery].
-* xref:runtime-manager::managing-servers.adoc[About Servers, Server Groups, and Clusters]
+* xref:runtime-manager::managing-servers.adoc[About Servers, Server Groups, and Clusters].
+* xref:2.0@api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies].
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/exchange-maven-facade-api-http/[Maven facade API].
