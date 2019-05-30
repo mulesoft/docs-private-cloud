@@ -55,7 +55,7 @@ Now that your installation is complete, your instance of Anypoint Platform is re
 
 You can also xref:runtime-manager::managing-servers.adoc[register servers] so that you can then xref:runtime-manager::deploying-to-your-own-servers.adoc[deploy to them], and so on.
 
-Mule app developers in your organization who create Mule apps through the xref:6@studio::index.adoc[Anypoint Studio] IDE must set up their editors so the Mule apps interface with your locally installed Anypoint Platform (instead of the default cloud Anypoint Platform). See xref:6@studio::setting-up-your-development-environment.adoc#enable-on-premises-setup[Enable on-premises Setup].
+Mule app developers in your organization who create Mule apps through the xref:studio::index.adoc[Anypoint Studio] IDE must set up their editors so the Mule apps interface with your locally installed Anypoint Platform (instead of the default cloud Anypoint Platform). 
 
 See xref:managing-via-the-ops-center.adoc[Manage Anypoint Platform Private Cloud Edition Using Ops Center] to add or remove servers from the Anypoint Platform cluster as well as other changes you want to make after installation.
 
@@ -167,7 +167,7 @@ For an API managed by Mule 4 or above, the policy appears in the *Apply Policy* 
 
 == See Also
 
-* xref:backup-and-disaster-recovery.adoc[Backup and Recovery].
-* xref:runtime-manager::managing-servers.adoc[About Servers, Server Groups, and Clusters].
-* xref:2.0@api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies].
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/exchange-maven-facade-api-http/[Maven facade API].
+* xref:backup-and-disaster-recovery.adoc[Backup and Recovery]
+* xref:runtime-manager::managing-servers.adoc[About Servers, Server Groups, and Clusters]
+* xref:2.0@api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/exchange-maven-facade-api-http/[Maven facade API]
