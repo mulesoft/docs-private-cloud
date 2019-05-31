@@ -57,7 +57,13 @@ The high level steps for validating NFS performance include the following:
 
 === Writing and Reading Large files on the NFS server
 
-These tests will be run using large files (128 MB each), a block size of 4 KB, and an amount of blocks of 32768. These tests are run by generating different files during the tests (one file per test).
+These tests are run using large files:
+
+* File size: 128 MB
+* Block size: 4 KB
+* Number of blocks: 32768  
+
+During the time the tests are running, different files are generated (one file per test).
 
 . To start with the testing, create a directory where the NFS server will be mounted: +
 
@@ -72,13 +78,13 @@ mkdir -p /mnt/home
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
 
-. Run the following command to perform writes (five files of 128MB each) on the NFS server:
+. Perform writes (five files of 128MB each) on the NFS server by running the following command:
 
 ----
 time for i in {1..5}; do dd if=/dev/zero of=/mnt/home/greatfile$i.test bs=4k count=32768; done
 ----
 
-The command outputs something like:
+The command outputs something similar to the following:
 
 ----
 [root@ip-10-1-1-97 ec2-user]# time for i in {1..5}; do dd if=/dev/zero of=/mnt/home/greatfile$i.test bs=4k count=32768; done
@@ -93,9 +99,9 @@ user 0m0.034s
 sys 0m0.792s
 ----
 
-==== Validation
+==== Validate Reads from the NFS Server
 
-The important parameter is the `real` one. It should be around 10 seconds.
+The important parameter in the test output is the `real` parameter, which should be around 10 seconds.
 
 . Umount the NFS server:
 
@@ -109,15 +115,15 @@ umount /mnt/home
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
 
-. Run the following command to perform reads from the NFS server:
+. Perform reads from the NFS server by running the following command:
 
 ----
 time for i in {1..5}; do dd if=/mnt/home/greatfile$i.test of=/dev/null bs=4k; done
 ----
 
-==== Validation 
+==== Clear the Caches 
 
-The important parameter is the `real` one. It should be around 10 seconds.
+The important parameter in the test output is the `real` parameter, which should be around 10 seconds.
 
 Umount the NFS server to clear out any caches.
 
@@ -127,9 +133,13 @@ umount /mnt/home
 
 === Writing and Reading Small files on the NFS server
 
-Perform the same type of testing you ran on large files with smaller files.  In this case, the tests are performed with file sizes of 80 KB, block size of 4 KB, and amount of blocks 20.
+Perform the same type of testing you ran on large files with smaller files.  In this case, the tests are performed with:
 
-To start with the testing make sure you have the `/mnt/home` directory created in the previous test, and follow the steps below:
+* File size: 80 KB 
+* Block size: 4 KB
+* Number of blocks: 20
+
+To start testing verify the `/mnt/home` directory from the previous test is created, then follow these steps:
 
 1. Mount the NFS server:
    
