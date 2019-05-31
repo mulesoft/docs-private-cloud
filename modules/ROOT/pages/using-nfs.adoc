@@ -1,16 +1,22 @@
-= Using the Network File System (NFS) Protocol
+= Configuring and Testing the NFS Protocol
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== Check that the NFS ports 111 and 2049 are opened
+Private Cloud Edition supports the Network File System (NFSv4) protocol.
+//I'm assuming this whole thing is in reference to an existing NFS. It seems like this info is more around testing/performance/validating/troubleshooting. Probably need a different title. 
 
-Using the tool netcat, which is a computer networking utility for reading from and writing to network connections using TCP or UDP, you can check that the NFS ports are opened. Execute the following commands:
+== Verify the Required Ports are Open
+
+The NFS server requires ports 2049 and 111 to be open.
+You can use the netcat tool to verify the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
+
+To verify the required ports are open, execute the following commands:
 
 - `nc -zvu <host_name> 111`
 - `nc -zv <host_name> 2049`
 
-When the responses are successful you should receive a response like the following:
+When the responses are successful you receive a response like the following:
 
 ----
 [ec2-user@ip-10-1-1-97 ~]$ nc -zv <nfs_host_name> 2049
@@ -19,60 +25,60 @@ Ncat: Connected to 10.1.0.155:2049.
 Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.
 ----
 
-== Mount the NFS server in a temporary directory on the host
+== Mount the NFS Server
 
-The set of commands of this section allows to check that your NFS server has the correct permissions and policies to be used. First of all, switch to root by typing:
+Mount the NFS server in a temporary directory on the host. Use the set of commands in this section to check that your NFS server has the correct permissions and policies to be used. 
 
+//I don't get how this is checking that the NFS server has the correct permissions and policies. Or does this mean, you should just verify that you have the proper permissions to mount nfs?
+
+. Switch to root by typing: +
 `sudo su`
-
-To mount the NFS in temporary directory run the following commands (replace both the `<nfs-server>` and the `<nfs-path>` with your own values):
-
-`mkdir -p /mnt/home`
-
-and then:
-
+. To mount the NFS in a temporary directory, run the following commands and replace both the `<nfs-server>` and the `<nfs-path>` with your own values. +
+Run: +
+`mkdir -p /mnt/home` +
+and then: +
 `mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/`
-
-If the mount fails, it is possible you are missing some NFS required libraries, intall them:
-
+. If the mount fails, it is possible you are missing some NFS-required libraries. If this happens, install them: +
 `yum install nfs-utils nfs-utils-lib`
 
-== Validate NFS performance
+== Validate NFS Performance
 
-Careful analysis of your environment, both from the client and from the server point of view, is the first step necessary for optimal NFS performance. This section addresses the performance testing of an NFS system.
+Perform careful analysis of your environment, both from the client and from the server point of view for optimal NFS performance. 
 
-You will need to perform some basic operations to test the performance and latency of your NFS server. Specifically, these operations will transfer data from the client (Anypoint platform environment) to the NFS server, and they will also measure how long it takes in each transfer.
+The high level steps for validating NFS performance include the following:
 
-Then, in order to perform a similar behavior about how the Anypoint Platform handles NFS files transfers, both `read` and `write` operations will be tested, with big files (128MB) and with small ones (80KB).
+. Perform some basic operations to test the performance and latency of your NFS server. Specifically, these operations will: +
+* Transfer data from the client (Anypoint Platform environment) to the NFS server 
+* Measure how long each transfer takes 
+2. Then, to perform the inverse, to see how the Anypoint Platform handles NFS files transfers, `read` and `write` operations will be tested, with both large (128MB) and small (80KB) files.
+3. The command `time dd if=/dev/zero of=/mnt/home/<nameOfFile> bs=<blockSize> count=<amountOfBlocks>` will be used for the performance testing of the NFS server to transfer files with: +
+* Names `<nameOfFile>` 
+* The block size and the amount of blocks of the transfer are `<blockSize>` and `<amountOfBlocks>`, respectively.
 
-The command `time dd if=/dev/zero of=/mnt/home/<nameOfFile> bs=<blockSize> count=<amountOfBlocks>` will be used for the performance testing of the NFS server, to transfer files with names `<nameOfFile>` and where the block size and the amount of blocks of the transfer are `<blockSize>` and `<amountOfBlocks>`, respectively.
+=== Writing and Reading Large files on the NFS server
 
-== Writing and Reading big files on the NFS server
+These tests will be run using large files (128 MB each), a block size of 4 KB, and an amount of blocks of 32768. These tests are run by generating different files during the tests (one file per test).
 
-First, the tests will be ran using big files of 128MB each, a block size of 4KB and an amount of blocks of 32768. These tests are ran by generating different files during the tests (one file per test).
-
-To start with the testing first you need to create a directory where the NFS server is going to be mounted:
+. To start with the testing, create a directory where the NFS server will be mounted: +
 
 ----
 sudo su
 mkdir -p /mnt/home
 ----
 
-Now, in order to continue with the testing, follow the steps below:
-
-1. Mount the NFS server:
+. Mount the NFS server:
    
-```
+----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
-```
+----
 
-2. Run the following command to perform writes (five files of 128MB each) on the NFS server:
+. Run the following command to perform writes (five files of 128MB each) on the NFS server:
 
 ----
 time for i in {1..5}; do dd if=/dev/zero of=/mnt/home/greatfile$i.test bs=4k count=32768; done
 ----
 
-The command will output something like:
+The command outputs something like:
 
 ----
 [root@ip-10-1-1-97 ec2-user]# time for i in {1..5}; do dd if=/dev/zero of=/mnt/home/greatfile$i.test bs=4k count=32768; done
@@ -87,83 +93,92 @@ user 0m0.034s
 sys 0m0.792s
 ----
 
-*Validation:* the important parameter is the `real` one. It should be around 10 seconds.
+==== Validation
 
-1. Umount the NFS server:
+The important parameter is the `real` one. It should be around 10 seconds.
 
-```
+. Umount the NFS server:
+
+----
 umount /mnt/home
-```
+----
 
-4. Mount the NFS server again with:
+. Mount the NFS server again with:
 
-```
+----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
-```
+----
 
-5. Run the following command to perform reads from the NFS server:
+. Run the following command to perform reads from the NFS server:
 
-```
+----
 time for i in {1..5}; do dd if=/mnt/home/greatfile$i.test of=/dev/null bs=4k; done
-```
+----
 
-*Validation:* the important parameter is the `real` one. It should be around 10 seconds.
+==== Validation 
 
-6. Umount the NFS server to to clear out any caches.
+The important parameter is the `real` one. It should be around 10 seconds.
 
-```
+Umount the NFS server to clear out any caches.
+
+----
 umount /mnt/home
-```
+----
 
-== Writing and Reading small files on the NFS server
+=== Writing and Reading Small files on the NFS server
 
-The same type of testing we ran in the previous section is now performed with smaller files. In this case, the tests were performed with files of 80KB (block size = 4KB and amount of blocks = 20).
+Perform the same type of testing you ran on large files with smaller files.  In this case, the tests are performed with file sizes of 80 KB, block size of 4 KB, and amount of blocks 20.
 
-To start with the testing make sure you have the `/mnt/home` directory created from the previous version, and follow the steps below:
+To start with the testing make sure you have the `/mnt/home` directory created in the previous test, and follow the steps below:
 
 1. Mount the NFS server:
    
-```
+----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
-```
+----
 
-2. Run the following command to perform writes (five files of 80KB each) on the NFS server:
+2. Run the following command to perform writes (five files of 80 KB each) on the NFS server:
 
-```
+----
 time for i in {1..30}; do dd if=/dev/zero of=/mnt/home/smallfile$i.test bs=4k count=20; done
-```
+----
 
-*Validation:* the important parameter is the `real` one. It should be around 2 seconds.
+==== Validation
+
+The important parameter is the `real` one. It should be around 2 seconds.
 
 3. Umount the NFS server:
 
-```
+----
 umount <nfs-server>
-```
+----
 
 4. Mount the NFS server again with:
 
-```
+----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
-```
+----
 
 5. Run the following command to perform reads from the NFS server:
 
-```
+----
 time for i in {1..30}; do dd if=/mnt/home/smallfile$i.test of=/dev/null bs=4k; done
-```
+----
 
-*Validation:* the important parameter is the `real` one. It should be around 2 seconds.
+==== Validation
+//I don't get why this is repeated
 
-6. When you finish the performance testing be sure to delete the test files. You can remove all generated files by running:
+The important parameter is the `real` one. It should be around 2 seconds.
 
-```
+When you finish the performance testing, delete the test files. Remove all generated files by running:
+
+----
 rm -f /mnt/home/*.test
-```
+----
 
 Finally, umount the NFS server:
 
-```
+----
 umount /mnt/home
-```
+----
 
