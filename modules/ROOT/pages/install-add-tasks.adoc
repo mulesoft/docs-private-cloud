@@ -83,8 +83,8 @@ Replace the location and password for your JVM's trustore for your environment.
 There are differences differences between Anypoint Private Cloud Edition and the cloud version of Anypoint Platform you need to consider when uploading custom policies and publishing assets to Exchange using the Maven Client.
 See the corresponding documentation for the cloud version of Anypoint Platform for details. 
 
-* xref:2.0@api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development],
-* xref:2.0@api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies]
+* xref:api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development],
+* xref:api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/exchange-maven-facade-api-http/[Maven facade API].
 
 1. Add the server and repository sections in the `settings.xml` file to set up the archetype for your project: 
@@ -112,7 +112,7 @@ In the examples below, ${ANYPOINT_DNS} is set to your DNS for Anypoint Platform 
 
 2. Generate the archetype:
 +
-Follow the standard process: xref:2.0@api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development].
+Follow the standard process: xref:api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development].
 For example:
 +
 ----
@@ -169,5 +169,5 @@ For an API managed by Mule 4 or above, the policy appears in the *Apply Policy* 
 
 * xref:backup-and-disaster-recovery.adoc[Backup and Recovery]
 * xref:runtime-manager::managing-servers.adoc[About Servers, Server Groups, and Clusters]
-* xref:2.0@api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies]
+* xref:api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies]
 * https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/exchange-maven-facade-api-http/[Maven facade API]
