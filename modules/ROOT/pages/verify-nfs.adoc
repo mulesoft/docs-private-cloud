@@ -9,7 +9,7 @@ Private Cloud Edition supports the Network File System (NFSv4) protocol.
 
 The NFS server requires ports 2049 and 111 to be open.
  
-You can use the netcat tool to verify the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
+Use the netcat tool to verify the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
 
 To verify the required ports are open, execute the following commands:
 
@@ -62,27 +62,25 @@ These `write` and `read` tests are performed using large files:
 
 During the time the tests are running, different files are generated (one file per test).
 
-. To start with the testing, create a directory in which to mount the NFS server: +
-
+. To start with the testing, create a directory in which to mount the NFS server: 
++
 ----
 sudo su
 mkdir -p /mnt/home
 ----
-
-. Mount the NFS server:
-   
+. Mount the NFS server: 
++ 
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-
-. Perform writes (five files of 128 MB each) on the NFS server by running the following command:
-
+. Perform writes (five files of 128 MB each) on the NFS server by running the following command: 
++
 ----
 time for i in {1..5}; do dd if=/dev/zero of=/mnt/home/greatfile$i.test bs=4k count=32768; done
 ----
-
-The command outputs something similar to the following:
-
++
+The command output is similar to the following:
++
 ----
 [root@ip-10-1-1-97 ec2-user]# time for i in {1..5}; do dd if=/dev/zero of=/mnt/home/greatfile$i.test bs=4k count=32768; done
 32768+0 records in
@@ -95,29 +93,27 @@ real 0m8.378s
 user 0m0.034s
 sys 0m0.792s
 ----
-
++
 The `real` parameter in the test output should be less than 15 seconds. 
 
 ==== Validate read Performance
 
-. Umount the NFS server:
-
+. Umount the NFS server: 
++
 ----
 umount /mnt/home
 ----
-
-. Mount the NFS server again by running:
-
+. Mount the NFS server again by running: 
++
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-
-. Perform reads from the NFS server by running the following command:
-
+. Perform reads from the NFS server by running the following command: 
++
 ----
 time for i in {1..5}; do dd if=/mnt/home/greatfile$i.test of=/dev/null bs=4k; done
 ----
-
++
 The `real` parameter in the test output should be less than 15 seconds.
 
 ==== Clear the Caches 
@@ -132,61 +128,60 @@ umount /mnt/home
 
 Perform the same type of testing you ran on large files with smaller files.  In this case, the tests are performed with:
 
-* File size: 80 KB 
-* Block size: 4 KB
-* Number of blocks: 20
+ * File size: 80 KB 
+ * Block size: 4 KB
+ * Number of blocks: 20
+ 
+Before starting the test, verify the `/mnt/home` directory from the previous test is created.
 
-. Before starting the test, verify the `/mnt/home` directory from the previous test is created.
-
-. Mount the NFS server:
-   
+. Mount the NFS server: 
++   
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-
-. Run the following command to perform writes (five files of 80 KB each) on the NFS server:
-
+. Run the following command to perform writes (five files of 80 KB each) on the NFS server: 
++
 ----
 time for i in {1..30}; do dd if=/dev/zero of=/mnt/home/smallfile$i.test bs=4k count=20; done
 ----
-
++
 The `real` parameter in the test output should be around 2 seconds.
 
 ==== Validate read Performance
 
-. Umount the NFS server:
-
+. Umount the NFS server: 
++
 ----
 umount <nfs-server>
 ----
-
-. Mount the NFS server again with:
-
+. Mount the NFS server again with: 
++
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-
-. Run the following command to perform reads from the NFS server:
-
+. Run the following command to perform reads from the NFS server: 
++
 ----
 time for i in {1..30}; do dd if=/mnt/home/smallfile$i.test of=/dev/null bs=4k; done
 ----
-
++
 The important parameter in the test output is the `real` parameter, which should be around 2 seconds.
 
 ==== Delete the Test Files
 
 When you finish the performance testing, delete the test files. 
 
-. Remove all generated files by running:
-
+. Remove all generated files by running: 
++
 ----
 rm -f /mnt/home/*.test
 ----
-
-. Finally, umount the NFS server:
-
+. Finally, umount the NFS server: 
++
 ----
 umount /mnt/home
 ----
 
+== See Also
+
+* xref:troubleshoot-nfs.adoc[Troubleshoot NFS]
