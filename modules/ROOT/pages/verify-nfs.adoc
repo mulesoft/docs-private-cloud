@@ -1,15 +1,14 @@
-= Testing NFS 
+= Verify NFS Server Communication
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 Private Cloud Edition supports the Network File System (NFSv4) protocol.
-//I'm assuming this whole thing is in reference to an existing NFS. It seems like this info is more around testing/performance/validating/troubleshooting. Probably need a different title. 
 
 == Verify the Required Ports are Open
 
 The NFS server requires ports 2049 and 111 to be open.
-//Both ports have to be open or does it depend on if they are using TCP or UDP? 
+ 
 You can use the netcat tool to verify the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
 
 To verify the required ports are open, execute the following commands:
@@ -28,9 +27,7 @@ Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.
 
 == Mount the NFS Server
 
-Mount the NFS server in a temporary directory on the host. Use the set of commands in this section to verify that your NFS server has the correct permissions and policies to be used. 
-
-//I don't get how this is checking that the NFS server has the correct permissions and policies. Or does this mean, you should just verify that you have the proper permissions to mount nfs? Is there any way to check for the required libraries besides having the mount fail? Better to prevent failure if possible.
+Mount the NFS server in a temporary directory on the host. 
 
 . Switch to root by typing: +
 `sudo su`
@@ -38,14 +35,12 @@ Mount the NFS server in a temporary directory on the host. Use the set of comman
 Run: +
 `mkdir -p /mnt/home` +
 and then: +
-`mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/`
-. If the mount fails, it is possible you are missing some NFS-required libraries. If this happens, install them: +
-`yum install nfs-utils nfs-utils-lib`
+`mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/` +
+If the mount fails, you do not have the required permissions. 
 
 == Validate NFS Performance
 
 Perform careful analysis of your environment, both from the client and server point of view for optimal NFS performance.
-//I'm not sure what this analysis would entail TBH 
 
 These are the high level steps for validating NFS performance:
 
@@ -101,8 +96,7 @@ user 0m0.034s
 sys 0m0.792s
 ----
 
-The `real` parameter in the test output should be around 10 seconds. 
-//around 10 seconds, or less than 10 seconds?
+The `real` parameter in the test output should be less than 15 seconds. 
 
 ==== Validate read Performance
 
@@ -124,7 +118,7 @@ mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 time for i in {1..5}; do dd if=/mnt/home/greatfile$i.test of=/dev/null bs=4k; done
 ----
 
-The `real` parameter in the test output should be around 10 seconds.
+The `real` parameter in the test output should be less than 15 seconds.
 
 ==== Clear the Caches 
 

@@ -6,11 +6,11 @@ endif::[]
 
 == Error: “Server Not Responding”
 
-Use common tools such as ping, traceroute or tracepath to verify that the client and server machines can reach each other. If not, examine the network interface card (NIC) settings using either ifconfig or ethtool to verify the IP settings.
+Use common tools such as ping, traceroute or tracepath to verify that the client and server machines can reach each other. If communication fails between the client and server machines, examine the network interface card (NIC) settings using either `ifconfig` or `ethtool` to verify the IP settings.
 
 == Error: “mount clntudp_create: RPC: Port mapper failure – RPC: Unable to receive”
 
-The Linux NFS implementation requires that both the NFS service and the portmapper (RPC) service be running on both the client and the server. Check it like this:
+The Linux NFS implementation requires that both the NFS service and the portmapper (RPC) service are running on both the client and the server. Check it like this:
 
 ```
 23:59:54 root@ip-10-1-1-215:/# rpcinfo -p
@@ -25,11 +25,13 @@ The Linux NFS implementation requires that both the NFS service and the portmapp
 
 == Error: “Access Denied” or "Permission Denied"
 
-Check the export permissions for the NFS file system. You can do this from the client:
+Check the export permissions for the NFS file system. You can do this from the client or from the server.
+
+From the client:
 
 `showmount -e server_name`
 
-or from server:
+From the server:
 
 `exportfs -a`
 
@@ -37,6 +39,15 @@ or from server:
 
 Error message:
 
-```Unable to access file system at [NFS SERVER]: rpc mount export: RPC: Timed out```
+`Unable to access file system at [NFS SERVER]: rpc mount export: RPC: Timed out`
 
-This is caused by DNS name resolution issue. NFS(RPC) needs reverse name resolution. If NFS server or client cannot resolve their name, this error occurs. In case gets the error message, check DNS configuration and /etc/hosts configuration.
+This error is caused by a DNS name resolution issue. NFS(RPC) needs reverse name resolution. If the NFS server or client cannot resolve their name, this error occurs. If you receive this error message, check the DNS configuration and the `/etc/hosts` configuration.
+
+== Mounting the NFS Server Fails
+
+If the mount fails, you are probably missing some NFS-required libraries. If this happens, install them by running: +
+`yum install nfs-utils nfs-utils-lib`
+
+== See Also
+
+* xref:verify-nfs.adoc[Verify NFS Server Communication]

@@ -43,7 +43,7 @@ For production usage, each node in your configuration must have the following de
 The devices should be formatted either as *xfs* or *ext4*. It's recommended to have dedicated devices for each component:
 
 * System data: Stores system configuration and metadata, including databases and packages. As package sizes can be arbitrary large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
-* Application data: Stores application configuration and data. The amount of space required should be at leasat 250GB, but might vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+* Application data: Stores application configuration and data. The amount of space required should be at least 250GB, but might vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 * Docker: Used by Docker’s Device Mapper storage driver.
 * Etcd: Provides dedicated storage for the distributed database used for cluster coordination. This device must be a dedicated device.
 
@@ -51,7 +51,7 @@ See also xref:prereq-verify-disk.adoc[To Verify Disk Requirements] and xref:prer
 
 ==  Network File System (NFS) Server
 
-To use Anypoint Private Cloud, version 2.0+ you must install and configure an NFS server. Before installing or upgrding, you must have an NFS endpoint available. You NFS server must meet the following requirements:
+To use Anypoint Private Cloud, version 2.0+ you must install and configure an NFS server. Before installing or upgrading, you must have an NFS endpoint available. You NFS server must meet the following requirements:
 
 * Must be running on a filesystem that has at least 250 GB available.
 * Must be using NFS version 4.0.
@@ -68,6 +68,7 @@ A Load Balancer is required to run Anypoint Platform Private Cloud Edition. See 
 == See Also
 
 * xref:supported-cluster-config.adoc[Supported Network Topologies]
-* xref:prereq-verify-disk.adoc[To Verify Disk Requirements]
-* xref:prereq-verify-device.adoc[To Verify Device Requirements]
-* xref:install-create-lb.adoc[To Setup a Load Balancer for Anypoint Platform Private Cloud Edition]
+* xref:prereq-verify-disk.adoc[Verify Disk Requirements]
+* xref:prereq-verify-device.adoc[Verify Device Requirements]
+* xref:verify-nfs.adoc[Verify NFS Server Communication]
+* xref:install-create-lb.adoc[Set up a Load Balancer for Anypoint Platform Private Cloud Edition]
