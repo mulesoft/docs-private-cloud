@@ -70,5 +70,5 @@ A Load Balancer is required to run Anypoint Platform Private Cloud Edition. See 
 * xref:supported-cluster-config.adoc[Supported Network Topologies]
 * xref:prereq-verify-disk.adoc[Verify Disk Requirements]
 * xref:prereq-verify-device.adoc[Verify Device Requirements]
-* xref:verify-nfs.adoc[Verify NFS Server Communication]
+* xref:verify-nfs.adoc[Verify NFS Server Requirements]
 * xref:install-create-lb.adoc[Set up a Load Balancer for Anypoint Platform Private Cloud Edition]

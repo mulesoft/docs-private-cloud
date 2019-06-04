@@ -3,7 +3,7 @@
 * xref:supported-cluster-config.adoc[Supported Network Topologies]
 * xref:prereq-workflow.adoc[Workflow: Verify Prerequisites for Install]
  ** xref:prereq-hardware.adoc[Hardware Requirements]
- ** xref:verify-nfs.adoc[Verify NFS Server Communication]
+ ** xref:verify-nfs.adoc[Verify NFS Server Requirements]
   *** xref:troubleshoot-nfs.adoc[Troubleshoot NFS]
  ** xref:prereq-verify-disk.adoc[Verify Disk Requirements]
  ** xref:prereq-verify-device.adoc[Verify Device Requirements]
