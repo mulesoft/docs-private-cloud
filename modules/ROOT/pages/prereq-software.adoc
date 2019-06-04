@@ -63,7 +63,7 @@ root$ sysctl -w net.ipv4.ip_forward=1
 To make the changes permanent for the next reboot, write it to a file under `/etc/sysctl.d`:
 
 ----
-echo net.ipv4.ip_forward=1 >> /etc/sysconf.d/10-ipv4-forwarding.conf
+echo net.ipv4.ip_forward=1 >> /etc/sysctl.d/10-ipv4-forwarding.conf
 ----
 
 Replace the setting above with the setting you are configuring. Ensure there are no processes or files conflicting with those settings.
