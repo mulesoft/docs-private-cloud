@@ -1,0 +1,53 @@
+= Troubleshoot NFS Errors
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+
+== Error: “Server Not Responding”
+
+Use a tool such as ping, traceroute or tracepath to verify that the client and server machines can communicate with each other. If communication fails between the client and server machines, examine the network interface card (NIC) settings using either `ifconfig` or `ethtool` to verify the IP settings.
+
+== Error: “mount clntudp_create: RPC: Port mapper failure – RPC: Unable to receive”
+
+The Linux NFS implementation requires that both the NFS service and the portmapper (RPC) service are running on both the client and the server. Verify that these services are running like this:
+
+```
+23:59:54 root@ip-10-1-1-215:/# rpcinfo -p
+   program vers proto   port  service
+    100000    4   tcp    111  portmapper
+    100000    3   tcp    111  portmapper
+    100000    2   tcp    111  portmapper
+    100000    4   udp    111  portmapper
+    100000    3   udp    111  portmapper
+    100000    2   udp    111  portmapper
+```
+
+== Error: “Access Denied” or "Permission Denied"
+
+Check the export permissions for the NFS file system. You can do this from the client or from the server.
+
+From the client:
+
+`showmount -e server_name`
+
+From the server:
+
+`exportfs -a`
+
+== Error: "rpc mount export: RPC: Timed out"
+
+Error message:
+
+`Unable to access file system at [NFS SERVER]: rpc mount export: RPC: Timed out`
+
+This error is caused by a DNS name resolution issue. NFS (RPC) needs reverse name resolution. If the NFS server or client cannot resolve their name, this error occurs. If you receive this error message, check the DNS configuration and the `/etc/hosts` configuration.
+
+== Mounting the NFS Server Fails
+
+If the mount fails, you are probably missing some NFS-required libraries. If this happens, install them by running: +
+`yum install nfs-utils nfs-utils-lib`
+
+== See Also
+
+* xref:verify-nfs.adoc[Verify NFS Server Communication]
