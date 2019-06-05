@@ -4,7 +4,7 @@
 * xref:prereq-workflow.adoc[Workflow: Verify Prerequisites for Install]
  ** xref:prereq-hardware.adoc[Hardware Requirements]
  ** xref:verify-nfs.adoc[Verify NFS Server Requirements]
-  *** xref:troubleshoot-nfs.adoc[Troubleshoot NFS]
+  *** xref:troubleshoot-nfs.adoc[Troubleshoot NFS Errors]
  ** xref:prereq-verify-disk.adoc[Verify Disk Requirements]
  ** xref:prereq-verify-device.adoc[Verify Device Requirements]
  ** xref:prereq-network.adoc[Network Requirements]

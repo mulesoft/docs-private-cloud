@@ -9,9 +9,9 @@ Private Cloud Edition supports the Network File System (NFSv4) protocol.
 
 The NFS server requires ports 2049 and 111 to be open.
  
-Use the netcat tool to verify the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
+Use the netcat tool to verify that the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
 
-To verify the required ports are open, execute the following commands:
+To verify that the required ports are open, execute the following commands:
 
 - `nc -zvu <host_name> 111`
 - `nc -zv <host_name> 2049`
@@ -45,14 +45,14 @@ Perform careful analysis of your environment, both from the client and server po
 These are the high level steps for validating NFS performance:
 
 . Perform some basic operations to test the performance and latency of your NFS server. Specifically, these operations will: +
-* Transfer data from the client (Anypoint Platform environment) to the NFS server 
-* Measure how long each transfer takes 
+* Transfer data from the client (Anypoint Platform environment) to the NFS server. 
+* Measure how long each transfer takes.
 . To validate how the Anypoint Platform handles NFS files transfers, `read` and `write` operations are tested, with both large (128MB) and small (80KB) files.
 . Use the command `time dd if=/dev/zero of=/mnt/home/<nameOfFile> bs=<blockSize> count=<amountOfBlocks>` to test performance of the NFS server while transferring files with: +
 * Names `<nameOfFile>` 
 * The block size and number of blocks in the transfer are `<blockSize>` and `<amountOfBlocks>`, respectively.
 
-=== Test Writing and Reading Large files on the NFS server
+=== Test Writing and Reading Large Files on the NFS Server
 
 These `write` and `read` tests are performed using large files:
 
@@ -96,7 +96,7 @@ sys 0m0.792s
 +
 The `real` parameter in the test output should be less than 15 seconds. 
 
-==== Validate read Performance
+==== Validate Read Performance
 
 . Umount the NFS server: 
 +
@@ -126,13 +126,13 @@ umount /mnt/home
 
 === Test Writing and Reading Small Files on the NFS server
 
-Perform the same type of testing you ran on large files with smaller files.  In this case, the tests are performed with:
+Test small files as you did large files but with these sizes:
 
  * File size: 80 KB 
  * Block size: 4 KB
  * Number of blocks: 20
  
-Before starting the test, verify the `/mnt/home` directory from the previous test is created.
+Before starting the test, verify that the `/mnt/home` directory from the previous test is created.
 
 . Mount the NFS server: 
 +   
@@ -147,14 +147,14 @@ time for i in {1..30}; do dd if=/dev/zero of=/mnt/home/smallfile$i.test bs=4k co
 +
 The `real` parameter in the test output should be around 2 seconds.
 
-==== Validate read Performance
+==== Validate Read Performance
 
 . Umount the NFS server: 
 +
 ----
 umount <nfs-server>
 ----
-. Mount the NFS server again with: 
+. Mount the NFS server again: 
 +
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
