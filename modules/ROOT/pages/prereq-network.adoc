@@ -25,7 +25,7 @@ The version of Kubernetes supported by Anypoint Platform Private Cloud Edition u
 |TCP | 8080 | Kubernetes API server
 |TCP | 10248, 10249, 10250, 10255 | Kubernetes Kubelet
 |TCP | 5000 | Docker registry
-|TCP | 3008-3010, 3022-3025, 3080, 7496, 7575| Cluster control plane
+|TCP | 3008-3012, 3022-3025, 3080, 7496, 7575| Cluster control plane
 |TCP | 7000, 7011, 7199, 9042, 9160 | Cassandra
 |TCP | 18080, 18443 | Object store cluster
 |TCP | 5431-5435, 5973 | Database cluster
