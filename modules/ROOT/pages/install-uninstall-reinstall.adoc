@@ -7,14 +7,23 @@ If you encounter problems during installation, you can attempt to reinstall. Bef
 
 Uninstall Gravity
 ----
+# The order of the steps matter!
+# Please follow as described.
+
 # remove installed system components
 sudo gravity system uninstall --confirm
+
+# unmount all anypoint mounts
+sudo umount /var/lib/gravity/planet/etcd
+sudo umount /var/lib/gravity
+sudo umount /var/lib/data
 
 # remount and clear platform data
 sudo mount /var/lib/gravity
 sudo rm -rf /var/lib/gravity/*
 
 # remount and clear platform data
+sudo mkdir -p /var/lib/gravity/planet/etcd
 sudo mount /var/lib/gravity/planet/etcd
 sudo rm -rf /var/lib/gravity/planet/etcd/*
 
@@ -25,7 +34,9 @@ sudo rm -rf /var/lib/data/*
 
 Restore Original State of the Docker Volume
 ----
-In order to clean the Docker volumes, you may have to first reboot the server to force clean down any handles to the Docker Device.  This will allow you to perform the proper clean-up.
+# In order to clean the Docker volumes, you may have to first reboot the server 
+# to force clean down any handles to the Docker Device.
+# This will allow you to perform the proper clean-up.
 
 # identify whether the docker logical volume was created
 sudo lvs | grep docker
@@ -41,6 +52,9 @@ sudo vgremove docker
 sudo pvs | grep docker
 # if the volume exists then remove it
 sudo pvremove <PV Name>
+
+# clean the docker device, by replacing "{docker-device}" in the command below
+sudo parted /dev/{docker-device} mklabel gpt -s
 ----
 
 Purge IPTABLES
@@ -48,14 +62,17 @@ Purge IPTABLES
 # List iptables
 sudo iptables -L -n -v
 
-# Delete any entries created by the Anypoint PCE installer
-sudo iptables -X <entry_name>
+# Delete any entries
+sudo iptables -F
+sudo iptables -X
 
 # Flush nat IP table
-sudo iptables -F -t nat
+sudo iptables -t nat -F
+sudo iptables -t nat -X
 
 # Flush filter IP table
-sudo iptables -F -t filter
+sudo iptables -t filter -F
+sudo iptables -t filter -X
 ----
 
 Depending on the state of the full or partial install that you are replacing, these commands may not completely return the system to an installable state. Before beginning reinstall, ensure that your system is still setup correctly and meets the minimum disk and resource requirements.
