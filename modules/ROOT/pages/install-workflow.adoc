@@ -13,6 +13,10 @@ The installer is interactive and walks you through a set of wizard pages that en
 
 The CLI installer does not require human interaction using a web browser and is useful for automation.
 
+NOTE: The installation package includes everything required for Anypoint Private Cloud Edition installation, 
+including specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides updates as 
+needed for the additional software with Anypoint Private Cloud Edition patches.  
+
 == See Also
 
 * xref:install-installer.adoc[To Install using the GUI-based installer]
