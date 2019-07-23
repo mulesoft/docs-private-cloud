@@ -8,12 +8,14 @@ The following sections list the software required to install and run the Anypoin
 == Supported Linux Distributions
 The following Linux distributions are supported:
 
-* Red Hat Enterprise Linux (RHEL), versions 7.4.x, and 7.5.x
+* Red Hat Enterprise Linux (RHEL), versions 7.4.x, 7.5.x, and 7.6
 
-* CentOS, versions 7.4.x, and 7.5.x
+* CentOS, versions 7.4.x, 7.5.x, and 7.6
 
 == SELinux
-Anypoint Platform Private Cloud Edition supports the default SELinux profile running in strict mode. If your environment uses a custom profile, it must provide an unconstrained user context when running the installer. Review any custom profiles with your customer support representative.
+SELinux is not required, but Anypoint Platform Private Cloud Edition supports the default SELinux profile running 
+in strict mode. If your environment uses a custom profile, it must provide an unconstrained user context when 
+running the installer. Review any custom profiles with your customer support representative.
 
 == Kernel Modules
 

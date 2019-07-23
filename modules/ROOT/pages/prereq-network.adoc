@@ -7,11 +7,15 @@ The this topic describes the network requirements for running Anypoint Platform 
 
 == Static IPs
 
-All servers in the cluster should have static private IPv4 assigned to them, these must persist after server restarts. If IP addresses are not persistent between reboots, the cluster may enter a failed state.
+All servers in the cluster should have static private IPv4 assigned to them, these must persist after server 
+restarts. If IP addresses are not persistent between reboots, the cluster may enter a failed state.
 
 == VXLAN
 
-The version of Kubernetes supported by Anypoint Platform Private Cloud Edition uses an overlay VXLAN and UDP transport to encapsulate traffic. There is direct communication between components of the cluster. The table below shows the ports used for inter-host communication. You must ensure that all of these ports are configured correctly.
+The version of Kubernetes supported by Anypoint Platform Private Cloud Edition uses an overlay VXLAN and UDP 
+transport to encapsulate traffic. There is direct communication between components of the cluster. The table 
+below shows the ports used for inter-host communication. You must ensure that all of these ports are 
+configured correctly.
 
 [%header%autowidth.spread]
 |===
@@ -39,11 +43,16 @@ The version of Kubernetes supported by Anypoint Platform Private Cloud Edition u
 
 == NAT Traffic Requirements
 
-In some situation, the Kubernetes overlay network uses NAT. NAT requires that servers be able to send and receive packages with a source and destination that is different from server’s internal IP.
+In some situation, the Kubernetes overlay network uses NAT. NAT requires that servers be able to send and 
+receive packages with a source and destination that is different from the server’s internal IP.
+
+Any software that monitors the network traffic must be tuned to allow this type of network interaction.
 
 == SSL Certificate Requirements
 
-In order to use the Anypoint Platform Private Cloud Edition, you must provide SSL credentials. You can upload a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine that is connected to the platform.
+In order to use the Anypoint Platform Private Cloud Edition, you must provide SSL credentials. You can upload 
+a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine that is 
+connected to the platform.
 
 [WARNING]
 You must register the same SSL certificate on every server containing Mule Runtimes managed by your installation.
@@ -54,7 +63,8 @@ Your network must include an SMTP server to manage e-mail alerts that are trigge
 
 == External Identity Provider and Client Management 
 
-To configure an Exernal Identity Provider for users single sign on (LDAP, OpenID, SAML) or for external client management as OpenID Connect, the cluster must be able to access the External Identity Provider endpoint. 
+To configure an Exernal Identity Provider for users single sign on (LDAP, OpenID, SAML) or for external 
+client management as OpenID Connect, the cluster must be able to access the External Identity Provider endpoint. 
 
 == IP Forwarding and Bridging
 
@@ -62,6 +72,8 @@ To ensure proper cluster load balancing and routing, you must enable and correct
 
 * Kernel IP forwarding: to enable internal Kubernetes load balancing you must enable IPv4 forwarding on all servers.
 * Bridge-netfilter: enables the Linux kernel to translate packets to and from hosted containers.
+
+** IP addresses for bridge-netfiltering are managed by the overlay network created by Kubernetes. The CIDR block used for that network is in the private IP address range.
 
 == See Also
 
