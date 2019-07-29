@@ -32,6 +32,31 @@ Before migrating, ensure that you have performed and met the following prerequis
 
 * Ensure that your environment meets all of the system and network requirements described in xref:prereq-workflow.adoc[Workflow: Install and Verify Prerequisites for Physical Servers]
 
+* Ensure that the following kernel modules are enabled: https://docs.mulesoft.com/private-cloud/2.0/prereq-software#kernel-modules
+
+** `br_netfilter`
+** `ebtable_filter`
+** `ip_tables`
+** `iptable_filter`
+** `iptable_nat`
+
+.. Verify that each module is loaded using the following as an example:
++
+----
+root$ lsmod | grep br_netfilter
+----
+.. Repeat this command for each of the kernel modules above. If this command does not display any output, then the module is not loaded. In this case, load the module using `modprobe`:
++
+----
+root$ modprobe br_netfilter
+----
+.. To ensure the module is loaded after a reboot:
++
+----
+root$ echo 'br_netfilter' > /etc/modules-load.d/br_netfilter.conf
+----
+.. Replace `br_netfilter` with the name of the kernel module you are checking.
+
 * Enable TCP ports `53`, `3011`, `3012` intra-node to allow communication with the database cluster.
 
 * Ensure you have permission to run the `sudo` command on the node where you launch the migration tool.
