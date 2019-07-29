@@ -9,6 +9,7 @@
  ** xref:prereq-verify-device.adoc[Verify Device Requirements]
  ** xref:prereq-network.adoc[Network Requirements]
  ** xref:prereq-software.adoc[About Software Requirements]
+ ** xref:prereq-env.adoc[Environment Limitations]
  ** xref:prereq-verify-software.adoc[Uninstall Unsupported Software]
  ** xref:prereq-gravity-check.adoc[Verify System Requirements for Anypoint Private Cloud on a Physical Server]
 * xref:prereq-aws-terraform.adoc[Create Anypoint Private Cloud Resources on Amazon Web Services (AWS)]
