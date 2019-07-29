@@ -1,0 +1,39 @@
+= Environment Limitations
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Adhere to the follow recommendations and limitations when setting up your environment and deploying apps:
+
+* Environment:
+
+** Production: 6 Nodes of 8 cores and 32GB 
+
+* Sizing
+
+** ARM:
+
+*** Applications per Environment 
+
+**** Less than 200 
+
+***** Maximum: 500 Applications in a single environment 
+**** Number of Clusters/Runtimes
+
+***** Total: 800 runtimes 2 nodes each with 400 Clusters 
+**** Applications per Mule Runtime or Cluster
+
+***** Production: Maximum of 50 apps 
+***** Development: Maximum of 100 apps
+***** Recommended: Less than 25 apps
+** API Platform
+
+*** APIs under management
+
+**** Limit each management plane 2.0.0 cluster to 20000 (6 nodes, 16 cores) APIs under management and 10000 (6 nodes 8 cores), 
+in which:
+
+***** A single API implementation with one policy counts as 0.3.
+***** A single clustered proxy with up to 5 policies counts as 1.
+***** Every runtime is polling every 60 seconds. 
+
