@@ -18,7 +18,7 @@ image::prereqs-priv-cloud-3-node.png[3-node Configuration]
 
 This configuration represents the minimum number of nodes that can enable high-availability and failover. In this configuration, each node hosts the platform applications and services. You must configure a load balancer to use round-robin distribution of traffic among each of the three nodes.
 
-Each node also hosts an instance of the database and file store. Hosting the database and object store enables persistence, but requires larger minimum disk and memory requirements. Although each node contains a database, only one of the database is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
+Each node also hosts an instance of the database and file store. Hosting the database and file store enables persistence, but requires larger minimum disk and memory requirements. Although each node contains a database, only one of the database is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
 
 == 6-node Configuration
 
