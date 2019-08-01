@@ -3,11 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Adhere to the follow recommendations and limitations when setting up your environment and deploying apps:
+Adhere to the following recommendations and limitations when setting up your environment and deploying apps:
 
 * Environment:
 
-** Production: 6 Nodes of 8 cores and 32GB 
+** Production: 6 nodes of 8 cores and 32GB 
 
 * Sizing
 
@@ -15,17 +15,17 @@ Adhere to the follow recommendations and limitations when setting up your enviro
 
 *** Applications per Environment 
 
-**** Less than 200 
+**** Fewer than 200 
 
-***** Maximum: 500 Applications in a single environment 
+***** Maximum: 500 apps in a single environment 
 **** Number of Clusters/Runtimes
 
-***** Total: 800 runtimes 2 nodes each with 400 Clusters 
-**** Applications per Mule Runtime or Cluster
+***** Total: 800 runtimes, two nodes each with 400 Clusters 
+**** Applications per Mule or Cluster
 
 ***** Production: Maximum of 50 apps 
 ***** Development: Maximum of 100 apps
-***** Recommended: Less than 25 apps
+***** Recommended: Fewer than 25 apps
 ** API Platform
 
 *** APIs under management
@@ -35,5 +35,5 @@ in which:
 
 ***** A single API implementation with one policy counts as 0.3.
 ***** A single clustered proxy with up to 5 policies counts as 1.
-***** Every runtime is polling every 60 seconds. 
+***** All runtimes are polling every 60 seconds. 
 
