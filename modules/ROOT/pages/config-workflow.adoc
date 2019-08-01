@@ -18,3 +18,7 @@ endif::[]
     * Register Mule runtimes
 
 After completing the steps in this workflow, you can deploy and manage applications, register APIs and use the API Exchange on an Anypoint Platform environment running on your own local network.
+
+[NOTE]
+PCE containers and processes must run as root for port binding and system and kernel configuration. Containers running as root
+are not exposed outside the cluster. All pods that are exposed outside the cluster run as non root.
