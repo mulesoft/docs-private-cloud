@@ -54,7 +54,7 @@ The `dd` command provides less accurate information than `hdparm`, but is availa
 
 == Testing Disk IOPS
 
-Depending on your hardware or virtualization provider, you may be able to configure disk IOPS (I/O Operations Per Second). Using a tool like `iops`, you can verify available IOPS:
+Depending on your hardware or virtualization provider, you can configure disk IOPS (I/O Operations Per Second). Using the `iops` command, you can verify available IOPS:
 
 ----
 $ sudo ./iops --time 2 /dev/xvdb
