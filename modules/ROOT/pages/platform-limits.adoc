@@ -1,0 +1,27 @@
+= Deployment and Server Scaling
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+To ensure platform stability and performance, Anypoint Platform Private Cloud Edition has the following recommended and 
+hard limits on the number of deployments and servers:
+
+Supported runtimes:
+???
+
+[%header%autowidth.spread]
+|===
+| Component | Recommended Limit
+| Maximum number of deployed apps | 200
+| Maximum deployment size (GB allocated to each app) | ???
+|===
+
+This table lists the hard limits for servers:
+
+[%header%autowidth.spread]
+|===
+| Component | Hard Limit
+| Maximum number of servers | 500
+| Maximum number of servers per server group | 20
+| Maximum servers per cluster | 8
+|===
