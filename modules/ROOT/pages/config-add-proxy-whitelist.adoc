@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to add whitelist addresses for API Platform Proxies in Anypoint Platform Private Cloud Edition. By default, proxy requests are enabled to the domain name where the platform is running.
+This topic lists IPs and hostnames to whitelist and describes how to add whitelist addresses for API Platform Proxies in Anypoint Platform Private Cloud Edition. By default, proxy requests are enabled to the domain name where the platform is running.
 
 To add whitelist addresses:
 
@@ -61,3 +61,76 @@ proxyWhitelist: {
 ----
 kubectl delete pod -l microservice=api-platform-web
 ----
+
+== Ports IPs and hostnames to Whitelist
+
+In your network, you may need to whitelist the hostnames and ports of various parts of the Anypoint Platform to allow the Runtime Manager agent in a customer-hosted Mule runtime engine to communicate with the MuleSoft-managed online Anypoint Platform APIs and services.
+
+These tables show you the ports or IPs/hostnames to add to your whitelists to allow communication between the Runtime Manager agent and the Runtime Manager console:
+
+*Ports*
+
+[%header,cols="3*a"]
+|===
+|Region |Name |Port
+|*US*|*anypoint.mulesoft.com* | 443
+|*US*|*mule-manager.anypoint.mulesoft.com* | 443
+|*US*|*runtime-manager.anypoint.mulesoft.com* | 443
+|*US*|*analytics-ingest.anypoint.mulesoft.com* |  443
+|*US*|*arm-auth-proxy.prod.cloudhub.io* |  443
+|*US*|*data-authenticator.anypoint.mulesoft.com* |  443
+|*US*|*exchange2-asset-manager-kprod.s3.amazonaws.com* |  443
+|*EU*|*eu1.anypoint.mulesoft.com* | 443
+|*EU*|*mule-manager.eu1.anypoint.mulesoft.com* | 443
+|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com* | 443
+|*EU*|*analytics-ingest.eu1.anypoint.mulesoft.com* |  443
+|*EU*|*arm-auth-proxy.prod-eu.msap.io* |  443
+|*EU*|*data-authenticator.eu1.anypoint.mulesoft.com* |  443
+|*EU*|*exchange2-asset-manager-kprod-eu.s3.eu-central-1.amazonaws.com* |  443
+|===
+
+*Static IPs*
+
+There are two static IPs that must be whitelisted to access the mule-manager hosts.
+
+[%header,cols="3*a"]
+|===
+|Region |Name |IP Address
+|*US*|*mule-manager.anypoint.mulesoft.com* |52.201.174.72
+|*US*|*mule-manager.anypoint.mulesoft.com* |52.201.67.218
+|*EU*|*mule-manager.eu1.anypoint.mulesoft.com* |18.195.19.18
+|*EU*|*mule-manager.eu1.anypoint.mulesoft.com* |18.194.245.32
+|===
+
+The following DNS endpoints do not have static IP addresses:
+
+[%header,cols="2*a"]
+|====
+|Region | Name
+|*US*|*runtime-manager.anypoint.mulesoft.com*
+|*EU*|*runtime-manager.eu1.anypoint.mulesoft.com*
+|====
+
+*Dynamic IPs*
+
+Some of the IP addresses used by Anypoint Platform services are assigned automatically by the underlying cloud infrastructure, and hence we can't guarantee that they are not going to change in the future.
+
+For this reason, you should not implement a whitelist based on the specific IP addresses being assigned to Anypoint services.
+
+Nowadays, many firewall devices allow you to define Layer 7 Firewall Rules, where you could be able to filter by destination name or application type.
+
+The hostnames that you should include in your Layer 7 Firewall rules include:
+
+[%header,cols="2*a"]
+|===
+|Region |Hostname
+|*US*|*anypoint.mulesoft.com*
+|*US*|*analytics-ingest.anypoint.mulesoft.com*
+|*US*|*arm-auth-proxy.prod.cloudhub.io*
+|*US*|*data-authenticator.anypoint.mulesoft.com*
+|*EU*|*eu1.anypoint.mulesoft.com*
+|*EU*|*analytics-ingest.eu1.anypoint.mulesoft.com*
+|*EU*|*arm-auth-proxy.prod-eu.msap.io*
+|*EU*|*data-authenticator.eu1.anypoint.mulesoft.com*
+
+|===
