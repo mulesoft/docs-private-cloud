@@ -17,9 +17,8 @@ endif::[]
 	See xref:install-config-ldap-pce.adoc[To Configure LDAP], xref:install-disable-local-user.adoc[To Delete the Local User (optional)]
     * Register Mule runtimes
 
-After completing the steps in this workflow, you can deploy and manage applications, register APIs and use the API Exchange on an Anypoint Platform environment running on your own local network.
+After completing the steps in this workflow, you can deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform environment running on your own local network.
 
 [NOTE]
-At the time of this writing, some Docker containers must run as root. Current work in progress removes the need for 
-these containers to run as root. Processes running as root do not expose functionality outside the cluster. 
-Processes that serve external traffic run as non root to maximize security.
+At the time of this writing, some Docker containers must run as root. Processes running as root do not expose functionality outside the cluster. 
+Processes that serve external traffic do not run as root, to maximize security.
