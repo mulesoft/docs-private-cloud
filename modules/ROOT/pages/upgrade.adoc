@@ -30,7 +30,9 @@ Before migrating, ensure that you have performed and met the following prerequis
 
 * Anypoint Private Cloud, version 2.0 requires that you have an NFS server installed and configured. Ensure that this is installed before beginning the upgrade. See xref:prereq-hardware.adoc[Private Cloud Edition Hardware Requirements]
 
-* Ensure that your environment meets all of the system and network requirements described in xref:prereq-workflow.adoc[Workflow: Install and Verify Prerequisites for Physical Servers]
+* Ensure that your environment meets all of the system and network requirements described in xref:prereq-workflow.adoc[Workflow: Install and Verify Prerequisites for Physical Servers].
+
+* Ensure that the necessary kernel modules are enabled as described in xref:prereq-software.adoc#kernel-modules[Software Requirements for Anypoint Private Cloud]. 
 
 * Enable TCP ports `53`, `3011`, `3012` intra-node to allow communication with the database cluster.
 
