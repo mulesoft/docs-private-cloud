@@ -1,0 +1,701 @@
+= Troubleshooting Anypoint Private Cloud Edition
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Overview
+The objective of this document is to capture a set of commands and tools to do a initial troubleshooting if an issue arises. 
+
+Installation Troubleshooting
+
+Before anything, it's important to be sure that all the prerequisites have been reviewed (https://docs.mulesoft.com/anypoint-platform-on-premises/v/1.5.0/prerequisites-platform-on-premises). In particular, double check the the ports, OS and hardware has been properly provisioned. Most of the problems usually come from this. 
+Uninstall
+
+In case of a failed installation, or if you simply want to uninstall everything, here is the sequence of commands to be executed on each node:
+
+
+sudo gravity system uninstall --confirm
+mount /var/lib/gravity
+mount /var/lib/gravity/planet/etcd
+rm -rf /var/lib/gravity/*
+rm -rf /var/lib/gravity/planet/etcd/*
+     
+mount /var/lib/data
+rm -rf /var/lib/data/*
+
+ip link del docker0
+ip link del flannel.1
+rm -rf /tmp 
+
+If you are uninstalling version 1.6.0 or below please also perform the following steps on each node. If you fail to do so, the next installation might fail to ping nodes during the Verify step:
+sudo iptables-save > old_iptables.txt
+vim old_iptables.txt
+#search for 30443 and remove those lines
+#:wq
+sudo iptables-restore < old_iptables.txt
+Docker Device errors on uninstall
+If the uninstall fails and indicates issues with the Docker Device similar to the below:
+[ERROR]: failed to remove docker device /dev/mapper/docker-thinpool, failed to unmount devicemapper: umount: /dev/mapper/docker-thinpool: not mounted
+device-mapper: remove ioctl on docker-thinpool failed: Device or resource busy
+Command failed
+It will probably mean that the platform Docker Device, is not correctly cleaned which will result in a re-installation failure with the following error until such time that the Docker Devices are manually cleaned up:
+> sudo ./install
+* [0/100] starting installer
+[ERROR]: failed to query devices
+The general reason for this may vary, but it's likely to be that the platform docker containers are somehow holding onto the device preventing it from cleaning up.
+In order to clean the Docker volumes, you ‘may’ have to first reboot the server to force clean down any handles to the Docker Device.  This will allow you to perform the proper clean-up.  Some additional guidance can be found here.
+However, the following commands can then be used to identify and clean the Docker volumes:
+lsblk --output=NAME,TYPE,SIZE,FSTYPE -P -I 8,9,202|grep 'FSTYPE=""'
+Look for the volumes which look similar to the following:
+...
+NAME="sdb" TYPE="disk" SIZE="100G" FSTYPE="LVM2_member"
+NAME="docker-thinpool_tmeta" TYPE="lvm" SIZE="1020M" FSTYPE=""
+NAME="docker-thinpool" TYPE="lvm" SIZE="95G" FSTYPE=""
+NAME="docker-thinpool_tdata" TYPE="lvm" SIZE="95G" FSTYPE=""
+NAME="docker-thinpool" TYPE="lvm" SIZE="95G" FSTYPE=""
+The above 'thinpool’ volumes must be removed with the ‘lvremove’ command.
+Once the ‘lvm’ Logical Volumes are removed - you need to clean the ‘raw’ device (“sdb’ in the above example) to be unformatted (show an FSTYPE=””) in order for the raw Docker Device to be selected as the Docker Device in the installation phase.  In order to clear down/unformat the device, perform the following:
+dd if=/dev/zero of=/dev/<raw_device> bs=1M count=100
+Where ‘raw_device’ should be replaced with ‘sdb’ in the above example.  After this process, you should be able to re-run the ‘lsblk’ command above and you should have:
+NAME="sdb" TYPE="disk" SIZE="100G" FSTYPE=""
+The installation should now show a correctly populated dropdown for the Docker Device during installation.
+Retry a failed installation
+
+To retry an installation that has failed:
+
+If the installation is half through, execute uninstall commands (see uninstall section), if the gravity binary is not on the server, it means that the installer has not run there yet.
+
+After stopping the previous installer (Ctrl-C to terminate it), simply start the installer again with the following command:
+
+`./install` 
+Create Admin Users (1.5.x / 1.6.0 / 1.6.1)
+If the installation completes successfully but if you are unable to access the user configuration screen for any reason (i.e. Browser / Session time out OR Linux Session died) you can create the Admin users following the next steps: 
+Anypoint Platform
+
+$ curl -ik https://HOST/accounts/api/cs/setup -H "Content-Type:application/json" -d '{"organizationName": "MyOrg","username": "username","password":"Password1","confirmPassword": "Password1"}'
+Source: https://mulesoft.slack.com/archives/C27N99AM7/p1495058026617480 
+Ops Center
+
+$ gravity user create --ops-url=https://gravity-site.kube-system.svc.cluster.local:3009 --insecure --email=username@mulesoft.com --password=Password1 --type=admin
+
+Source: https://mulesoft.slack.com/archives/C27N99AM7/p1495058095635226 
+Platform Components
+The Gravity platform is a superset of Kubernetes, extending it with missing functionality of Kubernetes 1.3.x. MuleSoft platform is leveraging Kubernetes as our customer management tool and relies on several pieces shipped as part of the Gravity platform for persistent storage. Some of the components shipped include:
+
+node.js applications (eg:Core Services, API Platform)
+Java (Spring) applications (ARM, Cloudhub UI)
+PostgreSQL databases
+Stolon extends PostgreSQL to provide simple HA capabilities
+Cassandra to store backups and files
+Pithos extends Cassandra to mimic the S3 API
+Heapster, InfluxDB and Grafana for monitoring
+syslogd for centralised logging
+systemd for initialising and running processes
+The Gravity Platform provides a “bubble of consistency” across the solution 
+The list of distributed components and their usage can be found here.
+
+Ops Center
+
+To access information about the status of the cluster via a UI, you can use the Gravity Console, known by our customers as simply the Ops Center (as this is a white-labeled product, users won’t know it’s associated to Gravity). Once deployed, it’s accessible at the following address: https:///<host>:9500/web/login.
+
+
+
+Some key utilities:
+Logs: provides centralized access to the platform logs, and you can filter them. 
+Console: Provides a web-based terminal.
+Kubernetes: Status of Kubernetes pods.
+
+Connecting to the cluster
+
+Once you have connected to the cluster, here is a list with some key useful commands
+
+ 
+
+Throttling requests to internal service
+The configuration for throttling requests is applied on an nginx (sidecar) that runs in the same pod as the service.
+For example, api-platform-api pods have 3 containers:
+api-platform-api
+This is the node application that also runs in the cloud version. The container does not have a port exposed to the outside of the pod. All communication to this container is done inside the pod through localhost.
+Api-platform-api-telegraf (sidecar)
+This container sends the application and nginx metrics to influxdb
+api-platform-api-tls (sidecar)
+This is an nginx container that exposes a port in the pod. All requests to the service running in the pod are proxied by this nginx. The nginx does TLS termination of requests to the service and executed the call inside the pod to the service container using localhost.
+
+All services of the platform have the same pattern of an nginx sidecar to do the TLS termination. The name pattern is {service-name}-tls.
+The {service-name}-tls containers read the configuration from a ConfigMap called {service-name}-tls-nginx-conf. All the ConfigMap for the {service-name}-tls nginx sidecars have 2 files (keys) in it: http.conf and server.conf.
+http.conf is inserted in the inside the http { ... } nginx configuration context.
+server.conf is inserted in the server { … } nginx configuration context. This is the server definition for receiving requests to the pod.
+The nginx throttling configuration is documented at http://nginx.org/en/docs/http/ngx_http_limit_req_module.html. 
+Example: Throttle cs-auth to only allow 5 requests per second to each pod
+This will show how to throttle the requests to each of the cs-auth pods to only allow 5 requests per second. This means that if the cs-auth deployment is scaled to 8, then cs-auth will be able to process:
+  5 reqs/sec * 8 cs-auth pods = 40 reqs/sec in total to cs-auth 
+
+Log in to OpsCenter and click on the Configuration tab.
+Select cs-auth-tls-nginx-conf from the drop down list values of Config maps.
+
+
+If the key http.conf is not there, you will need to create it empty with the following command from the console:
+
+$ kubectl patch configmap cs-auth-tls-nginx-conf -p '{"data":{"http.conf":""}}'
+"cs-auth-tls-nginx-conf" patched
+
+After doing this, refresh the OpsCenter web and select the cs-auth-tls-nginx-conf config map again:
+
+
+In the http.conf, create a limit_req_zone as and click on Apply button on the bottom.
+
+limit_req_zone $host zone=throttle_by_host:10m rate=5r/s;
+
+
+
+Then update the server.conf to configure where the throttling has to be applied to and click on Apply button on the bottom.
+
+listen 3005 ssl;
+server_name cs-auth.default.svc;
+set $internal_service_port 3004;
+
+# For throttling all calls to this pod
+limit_req zone=throttle_by_host;
+
+
+
+Once this second configuration is updated, the cs-auth pods have to be restarted for the new configuration to be loaded:
+
+$ kubectl delete pod -l component=cs-auth
+pod "cs-auth-1033811664-28fjq" deleted                                                                           
+pod "cs-auth-1033811664-5pzpv" deleted                                                                           
+pod "cs-auth-1033811664-8htzx" deleted                                                                           
+pod "cs-auth-1033811664-crhr4" deleted                                                                           
+pod "cs-auth-1033811664-g2f6t" deleted                                                                           
+pod "cs-auth-1033811664-prx9h" deleted                                                                           
+pod "cs-auth-1033811664-skgrx" deleted                                                                           
+pod "cs-auth-1033811664-vcxm9" deleted 
+
+Finally, validate that the configuration was correctly picked by the pods:
+
+$ kubectl get pod -l component=cs-auth
+NAME                       READY     STATUS    RESTARTS   AGE                                                     
+cs-auth-2052175577-14xzf   3/3       Running   0          1m                                                      
+cs-auth-2052175577-5pb11   3/3       Running   0          1m                                                      
+cs-auth-2052175577-7wmzb   3/3       Running   0          1m                                                      
+cs-auth-2052175577-bt5rh   3/3       Running   0          1m                                                      
+cs-auth-2052175577-hr664   3/3       Running   0          1m                                                      
+cs-auth-2052175577-j6800   3/3       Running   0          1m                                                      
+cs-auth-2052175577-qxn1b   3/3       Running   0          1m                                                      
+cs-auth-2052175577-z09vr   3/3       Running   0          1m  
+
+
+Collecting system logs and checking services health
+
+All distributions we support at the moment are using systemd. Here are a couple of systemd commands that will help you to check system status:
+
+Find any failed services
+
+This command will list all failed system services. Execute this command from the host
+
+systemctl --failed
+
+Checking status of teleport and planet
+
+Planet is a “uber container” that has both kubernetes and docker installed in it. If it’s failed, this means that kubernetes is not working on this node. Here’s how to find the service:
+
+Connect to databases
+
+From within a host in the cluster:
+sudo gravity enter
+Get the stolon password: kubectl get secret stolon -o yaml|grep password|awk '{print $2}'|base64 -d
+Find the name of a stolon-keeper pod with kubectl get pods 
+kubectl exec -it stolon-keeper-hash -c keeper -- psql -U stolon -h <service-db> [hybrid|ms_authentication|...]
+
+Note: if using localhost instead the corresponding <service-db>, you don’t need the password, but the access will be read-only. 
+
+From a local psql and with ssh access:
+
+Get the stolon password inside the gravity environment (sudo gravity enter in a node), e.g.
+$ kubectl get secret stolon -o yaml|grep password|awk '{print $2}'|base64 -d
+
+Open an ssh tunnel to a node from the machine where you have a Postgres client installed (e.g. psql), e.g.
+$ ssh -f -L 9696:HOST:31901 -i anypoint.pem centos@HOST -N
+This will tunnel the port 9696 in your local machine to port 31901 in HOST.
+
+Connect using the local port, e.g.
+$ psql -h localhost -p 9696 -U stolon ms_authentication
+Get the queries that are running in postgres
+After ssh to one of the nodes, run the command (without running sudo gravity enter)
+$ sudo gravity enter -- --notty /usr/bin/kubectl -- exec -it $(sudo gravity enter -- --notty /usr/bin/kubectl -- get pods --selector=stolon-keeper=yes --output=custom-columns=NAME:Name | tail -n +2 | awk '{print $1; exit}') -- bash -c "PGPASSWORD=$(sudo gravity enter -- --notty /usr/bin/kubectl -- get secret stolon -o 'go-template={{index .data "password"}}' | base64 --decode) psql -h hybrid-rest-db.default.svc -d postgres -U stolon -c \"SELECT pid, datname, usename, query FROM pg_stat_activity;\" -o queries.txt && cat queries.txt" > queries.txt
+This creates a file called queries.txt in the current path.
+A single file in the secret
+Create a file with the new information under the /var/lib/gravity/planet/share/ folder.
+You can check the secret name you want to update by running
+kubectl get secrets
+
+Delete the old secret by running:
+kubectl delete secret/<secret-name>
+
+Run the following code to create a new secret
+kubectl create secret generic <secret-name> --from-file=<file-name>
+
+Delete the pod. Then, wait for kubernetes to create a new one.
+kubectl delete pod <pod-name>
+
+You can validate the file content by doing a SSH to the pod, like:
+kubectl exec -it <pod-name> bash
+
+Multiple files in the secret
+
+This section assumes that you have already connected to the cluster.
+In the first place, export the content of the secrets to a file: 
+kubectl get secret/hybrid-rest-cloudhub -o yaml > /var/lib/gravity/planet/share/hybrid-rest-cloudhub-backup.yaml
+
+You can check the current content of the value you want to modify (override.properties) by executing: 
+kubectl get secret/hybrid-rest-cloudhub -o yaml | grep override.properties | awk '{print $2}' | base64 -d
+
+Leave the cluster, and from EC2 instance create a file with the new content of the file (new.override.properties). 
+Encode the content of the file into another file. 
+cat new.override.properties | base64 -w0 > new.override.properties.base64
+
+Make a copy of the backup file of your secret. 
+cp /var/lib/gravity/planet/share/hybrid-rest-cloudhub-backup.yaml /var/lib/gravity/planet/share/hybrid-rest-cloudhub.yaml
+
+Replace in your secret file the new value of your secret. (if you don’t want to use vi, you can just scp :) )
+Load your new secret 
+kubectl replace -f /var/lib/gravity/planet/share/hybrid-rest-cloudhub.yaml
+ 
+Replace SMTP credentials in ARM (fixed in 1.5.1)
+WARNING: SMTPS/STARTTLS is not supported. only plain/non-encrypted SMTP communications are allowed, see https://www.mulesoft.org/jira/browse/CHHYBRID-2312.
+
+This document assumes that you have already connected to the cluster in a master node.
+
+Enter one of the nodes on which you installed the Anypoint Platform
+Run the command `sudo gravity enter`
+In the first place, export the content of the secret to a file to have a backup: 
+kubectl get secret/mule-message-processor-mulesoft -o yaml > mule-message-processor-mulesoft.yaml
+
+You can check the current content of the secret by doing
+kubectl get secret/mule-message-processor-mulesoft -o yaml | grep override.properties | awk '{print $2}' | base64 -d
+
+Create a file override.properties inside of /var/lib/gravity/planet/share/, replacing the new smtp properties:
+...
+smtp.host=<new value>
+smtp.port=<new value>
+smtp.user=<new value>
+smtp.password=<new value>
+
+Delete the old secret
+kubectl delete secret/mule-message-processor-mulesoft
+
+Create the new secret
+kubectl create secret generic mule-message-processor-mulesoft --from-file=override.properties
+
+Delete the old pod (you can check the name by looking mule-message-processor’s pod after executing kubectl get pods)
+kubectl delete pod <pod-name>
+
+You can validate the file content by doing a SSH to the pod, like:
+kubectl exec -it <pod-name> bash
+	And checking the content of /opt/mulesoft/override.properties
+Connect as root to a running docker container
+Some docker images are configured to run as non-root user.
+To connect as root to one of these running containers, docker command line has to be used to connect to the container (kubectl does not provide this functionality).
+Get the name of the pod you want to connect to:
+kubectl get pod
+
+See description of that pod:
+kubectl describe pod <pod-name>
+
+Look at the bottom of the description the line that says
+Created container with docker id <docker-id>;
+
+Connect to that docker container as root by running:
+docker exec -it -u 0:0 <docker-id> bash
+
+Certificates Configuration Troubleshooting
+https://docs.google.com/a/mulesoft.com/document/d/1huenqNLW7SKWyMxZkbn2fLZ2tYCYz_NqAKW2CRcyTVo/edit?usp=sharing
+LDAP Configuration Troubleshooting
+https://docs.google.com/document/d/1tI8WHICZKJHKTA_HlxrvCoO1CEHs52z4HPxNloP63cM/edit#heading=h.f4aazwssncbb
+
+Reset Password for Ops Center
+
+
+sudo gravity enter
+gravity site --insecure reset-password
+
+
+Reset Anypoint Admin Password
+
+First, connect to the database ms_authentication. Then, create a recovery code in the database executing this statement:
+
+insert into recover_codes (user_id, recover_code) (select id, '{RECOVERY_CODE}' from users where username='{ADMIN_USERNAME}');
+
+This will allow the user to access this URL and reset the password:
+
+https://{HOST}/login/#/new-password?code={RECOVERY _CODE}
+
+Note: If APCE version is lower than 1.6.0 this will only work before LDAP is set, once LDAP is configured the reset password will not work until the config is deleted: CS-2872 & SE-4766
+
+API Platform Alerts - Using Insecure SMTP Server
+
+The self-signed and insecure option for SMTP Server that can be set in Access Management does not work, see AOP-507. If there is still a reason to use an SMTP Server with a self-signed certificate for demos or POCs (not recommended for production) it’s setting an environment variable in the api-platform-api container, to do so:
+
+Enter the cluster
+Edit the api-platform-api deployment with nano
+$ EDITOR=$(which nano) kubectl edit deployment api-platform-api
+In the env section for the container named api-platform-api, add the following lines that are marked in bold, respecting indentation rules*:
+containers:
+      - env:
+        …
+        - name: NODE_TLS_REJECT_UNAUTHORIZED
+          value: "0"
+
+* kubernetes will reject the change if something is wrong with its format
+
+WARNING: This change implies all communications from api-platform-api service will not check for certificates, treating all hosts as trusted.
+
+
+
+Registering a Runtime
+Use the right version of the agent
+For On-premise 1.5.0 you need the Mule Agent 1.5.2. This version has support for the additional parameter added in the registration URL in on prem 1.5.0, which is the contract caching service URL.  
+  
+http://mule-agent.s3.amazonaws.com/1.5.2/agent-setup-1.5.2.zip
+
+Note: mule 3.8.3 has a bundled agent(1.5.3) that is not compatible with 1.5.0 of onprem. You need to downgrade the  agent by unzipping the files into $HOME/bin, overwriting existing files.  The system will register but other issues show up later in the websockets communication.
+
+For 1.5.1 release, we support Agent 1.5.3, which validates the CN name of the platform. Make sure you configured properly the DNS name when you setup the platform. 
+
+For PCE 1.6.0 we support Mule 3.8.4 and Agent 1.5.3
+For PCE 1.6.1 we support Mule 3.8.5 with OOTB agent 1.7.1 and also 1.6.4
+
+For older Agent versions
+If you have an older version, you will need to remove from the registration link provided by Runtime manager the parameter passed like "-D https://$HOST/apigateway/ccs" . 
+If you are using Mule Runtime 3.8.0+ or API Gateways 2.2.0+, you will need to edit the wrapper.conf in the /conf folder in Mule runtime and set the proper URL with the one provided by your local installation of the Anypoint Platform. 
+
+Certificate issues during registration
+There are some older versions of the Agent that will not properly register due to certificate issues. There are 2 problems that you can face: 
+The certificate in the anypoint platform is self signed. In that case, you can use a tool to ignore that certificate during registration.   Register a runtime using self-signed certificates
+The second problem, is around the certificate ARM generates for the runtimes. Since 1.5.1, we need to have the DNS name of the private cloud edition setup, to generate a certificate for the right CN name, that will be authenticated. This will be using Agent 1.5.3 or newer. 
+.Register a runtime using self-signed certificates
+By default, the platform generates self-signed certificates. It’s expected that a user will provide proper certificates for production, but the default generated certificates are really convenient for development. 
+If self-certificates are used, it’s important to disable ARM TLS certificate validation. This can be achieved in this way: 
+
+
+JAVA_TOOL_OPTIONS="-javaagent:$HOME/bin/lenient-verifier.jar" ./amc_setup -A https://af31e4fb2845a11e69fd506b3c5a27de-1650928758.us-west-2.elb.amazonaws.com/hybrid/api/v1 -W "wss://af31e4fb2845a11e69fd506b3c5a27de-1650928758.us-west-2.elb.amazonaws.com:8889/mule" -F https://af31e4fb2845a11e69fd506b3c5a27de-1650928758.us-west-2.elb.amazonaws.com/apiplatform -C https://af31e4fb2845a11e69fd506b3c5a27de-1650928758.us-west-2.elb.amazonaws.com/accounts -H f665aefc-d7c3-4783-bfac-8bbb44e2ffb1---1 server-tb-1
+
+
+
+Lenient-verifier.jar can be found in slack channel #anypoint-runtime-mgr from a post on Oct 14th 2016  if it is not used and you kept the default certs, you will get an error similar to “javax.net.ssl.SSLHandshakeException: java.security.cert.CertificateException: No subject alternative names present
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:192)
+	…”
+
+Kubernetes troubleshooting
+Kubernetes status
+Execute `kubectl cluster-info` to get information about cluster
+
+kubectl cluster-info
+Kubernetes master is running at http://localhost:8080
+Grafana is running at http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/grafana
+Heapster is running at http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/heapster
+KubeDNS is running at http://localhost:8080/api/v1/proxy/namespaces/kube-system/services/kube-dns
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
+To get a node’s health status, execute `kubectl get nodes`
+
+kubectl get nodes
+NAME                            STATUS    AGE
+ip-172-31-33-124.ec2.internal   Ready     12h
+
+
+To get detailed information, use the `-o yaml` flag:
+
+kubectl get nodes -o yaml
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Node
+  metadata:
+    annotations:
+      volumes.kubernetes.io/controller-managed-attach-detach: "true"
+    creationTimestamp: 2016-11-08T05:12:39Z
+    labels:
+
+Etcd and Networking services status
+Kubernetes depends on etcd, docker and flanneld to operate. Here’s how to check statuses of all services:
+
+systemctl status etcd.service docker.service flanneld.service
+
+Collect logs of these units
+
+journalctl -u etcd.service -u docker.service -u flanneld.service > /ext/share/services.log
+Docker status
+
+sudo gravity enter
+docker info
+
+If the command has failed, collect the logs of the docker:
+
+journalctl -u docker --no-pager > /ext/share/docker.log
+
+You can later collect these from the server (outside of the planet)
+
+/var/lib/gravity/planet/share/docker.log
+Locating System Logs
+Every install has a log collector aggregating logs from all the containers in the cluster. It’s currently working on one of the servers and storing logs in `/var/log/messages`.
+
+
+Run this to obtain log files, you need to locate log collector first:
+
+kubectl get pods --namespace=kube-system -o wide | grep log-collector
+log-collector-swce6   1/1       Running   0          12h       10.244.26.5     ip-172-31-33-124.ec2.internal
+
+In our case, the logs are located on the node ip-172-31-33-124.ec2.internal
+If we log in and run `gravity enter` we will see the log files collected in `/var/log`:
+
+ls -l /var/log/messages
+-rw-r-----. 1 root adm 43056910 Nov  8 17:54 /var/log/messages
+
+Note that logs are rotated and older logs are stored in `/var/log/messages.1.gz` files
+
+
+
+Connecting to Postgres master
+
+PostgreSQL is deployed as a part of stolon cluster. This means that every database process is located in `stolon-keeper` containers and can be a master or a slave based on the settings. Here’s how to locate PostgreSQL Master:
+
+To find the current postgres master, login to one of the nodes, and execute the `sudo gravity enter` command. This will take you inside the container that has Kubernetes running in it.
+
+Then list all the pods:
+
+kubectl get pods | grep stolon-keeper
+stolon-keeper-ifmaf                           1/1       Running   3          23h
+stolon-keeper-x9f35                           1/1       Running   2          23h
+stolon-keeper-y1gg3                           1/1       Running   2          23h
+
+As you can see there, there are 3 keepers, every keeper is associated with running Postgres. This means that we have 1 master and 2 replicas of Postgres.
+
+To find the current master, let’s look at the logs of each keeper
+
+kubectl logs stolon-keeper-ifmaf keeper
+
+2016-10-12 20:04:50.485965 [keeper.go:660] I | keeper: current pg state: master
+2016-10-12 20:04:50.486001 [keeper.go:685] I | keeper: our cluster requested state is master
+2016-10-12 20:04:50.486016 [keeper.go:706] I | keeper: already master
+
+
+This means that this keeper is a master. Let’s find what node this pod runs on:
+
+kubectl get pods stolon-keeper-ifmaf -o wide
+NAME                  READY     STATUS    RESTARTS   AGE       IP            NODE
+stolon-keeper-ifmaf   1/1       Running   3          23h       172.31.24.1   172.31.24.1
+
+Now enter the kubernetes pod:
+
+kubectl exec -ti stolon-keeper-ifmaf -c keeper -- /bin/bash
+
+And then you can enter shell of postgres:
+
+psql -h localhost -p 5432 -U stolon -d postgres
+
+Connecting to Cassandra
+Cassandra is used for object storage, here’s how to discover and check Cassandra health:
+
+sudo gravity enter
+kubectl get pods | grep cassandra
+cassandra-2o6hj                           1/1       Running   0          5h
+cassandra-bsufc                           1/1       Running   0          5h
+cassandra-g3pj6                           1/1       Running   0          5h
+
+Connecting to cassandra shell:
+l
+cqlsh
+
+
+
+To check the status of the cluster from outside cqlsh:
+
+nodetool status
+Datacenter: datacenter1
+=======================
+Status=Up/Down
+|/ State=Normal/Leaving/Joining/Moving
+--  Address       Load       Tokens       Owns (effective)  Host ID                               Rack
+UN  172.31.0.77   160.38 KiB  32           100.0%            32e24323-9b01-48e3-b512-c73b773aec69  rack1
+UN  172.31.0.136  142.8 KiB  32           100.0%            102df461-aaaf-4020-8d4b-eba5281a168d  rack1
+UN  172.31.5.214  162.05 KiB  32           100.0%            5b888031-6c6a-4a9d-9e6f-a38266f1f776  rack1
+
+UN - means that the node is up, the DN means that the node is down.
+ systemctl list-units | grep planet
+  gravity__gravitational.io__planet-master__0.1.32-138.service loaded active running   Auto-generated service for the gravitational.io/planet-master:0.1.32-138 package
+
+
+You can get more detailed information if you query its status:
+
+systemctl status gravity__gravitational.io__planet-master__0.1.32-138.service
+● gravity__gravitational.io__planet-master__0.1.32-138.service - Auto-generated service for the gravitational.io/planet-master:0.1.32-138 package
+   Loaded:kubectl get pods stolon-keeper-ifmaf loaded (/etc/systemd/system/gravity__gravitational.io__planet-master__0.1.32-138.service; enabled; vendor preset: disabled)
+   Active: active (running) since Tue 2016-11-08 05:11:12 UTC; 12h ago
+  Process: 19341 ExecStartPre=/bin/rm /var/run/planet.socket (code=exited, status=1/FAILURE)
+ Main PID: 19343 (planet)
+   CGroup: /system.slice/gravity__gravitational.io__planet-master__0.1.32-138.service
+           ├─19343 rootfs/usr/bin/planet start
+           └─system
+             └─cfd1d6e7-30d6-42f1-afe5-bbadf488d3c5
+               ├─  696 /bin/bash
+               ├─15774 /bin/bash
+               ├─17167 less
+
+
+Note that there’s one ExecStartPre command that is failed, this is not an error, mostly an indication that a process tried to remove a stale file that may have stayed there after a previous run and did not find the file. What’s important is that the status reports the following:
+
+Active: active (running)
+
+You can collect the logs like this:
+
+journalctl -u gravity__gravitational.io__planet-master__0.1.32-138
+
+To dump the logs to a file:
+
+journalctl -u gravity__gravitational.io__planet-master__0.1.32-138 --no-pager  > /tmp/dump
+
+Running the Cassandra Database Clean-up Manually
+The platform uses Cassandra as its distributed & replicated database.  On top of Cassandra is an Amazon S3 layer called Pithos, allowing standard S3 tools to be used to access underlying data.  Under some situations, the underlying replicated Cassandra data-store nodes gets ‘out of synch’ and require to be re-synched/cleaned up to ensure consistent data retrieval.  Within the PCE platform, there is a scheduled job within the ‘cassandra-utils’ pod which runs every morning at 02:15am.  This requests the Cassandra nodes to sync their data.  However, this it is sometimes required to run this process manually if data inconsistencies are detected.  (e.g. if RAML is sometimes loaded, but sometimes fails, or if it sometimes loads with errors, indicates that there is data inconsistencies in the distributed data store).  In order to manually run the data-clean-up scripts, enter:
+
+sudo gravity enter
+
+kubectl exec $(kubectl get pods -l pithos-role=cassandra-utils -o jsonpath="{.items[0].metadata.name}") -- /bin/bash -c 'for pod_ip in $(kubectl get pods -l pithos-role=cassandra -o jsonpath="{.items[*].status.podIP}"); do nodetool -p 7199 -h $pod_ip repair -seq; done'
+
+The Cassandra data should now be consistent and cleaned.
+Troubleshooting Core Services
+By default core services don’t give much info on what is going on. It’s log level is info. When switching it to debug, we do get additional input. To do this we need to edit the pod’s secret like this:
+
+kubectl get secret cs-auth-config -o yaml | grep default.js | awk '{print $2}' | base64 -d | sed "s/\(level:\).*\$/\1 'debug',/" | base64 | tr -d '\n' | { read a; kubectl patch secret cs-auth-config -p '{"data":{"default.js":"'$a'"}}'; }
+
+Then identify the core-services pod and remove it so kubernetes restarts it.
+Patching a single image manually (bypassing the update process)
+
+1. Get the patched image from the MuleSoft docker registry:
+
+If you already have the tarball, go to step 3.
+
+docker pull devdocker.mulesoft.com:18078/arm/hybrid-rest:1.5.0-patch.4-onprem-4-g65ecb67
+
+
+2. Save the image to a tarball for distribution
+
+docker save  devdocker.mulesoft.com:18078/arm/cloudhub-ui:onprem-release-1.1.0-3-g6bca70d > hybrid-rest-1.2.1-onprem-rc12-SE-4933.tar
+
+3. Upload the tarball to the server where the platform is running
+
+scp -i 'anypoint.pem' hybrid-rest-1.5.0-patch.4-onprem-4-g65ecb67.tar ec2-user@52.87.136.245:/var/lib/gravity/planet/share
+
+Note: Replace the private key, user and host for your case. The destination folder is one visible from inside gravity container where the docker registry can be managed.
+
+4. ssh into one of the master host and load the image in the tarball:
+
+ssh  -i 'anypoint.pem' ec2-user@52.87.136.245
+docker load -i /var/lib/gravity/planet/share/hybrid-rest-1.5.0-patch.4-onprem-4-g65ecb67.tar
+
+5. Tag the image to match apiserver:5000 (the local docker registry) and push it
+
+docker tag  devdocker.mulesoft.com:18078/arm/hybrid-rest:1.5.0-patch.4-onprem-4-g65ecb67 apiserver:5000/arm/hybrid-rest:1.5.0-patch.4-onprem-4-g65ecb67
+
+docker push apiserver:5000/arm/hybrid-rest:1.5.0-patch.4-onprem-4-g65ecb67
+
+6. Change the image in the deployment where the image is to point to the new one. 
+You can patch the deployment or edit it.
+
+export EDITOR=/usr/bin/vi
+kubectl edit deployment hybrid-rest
+
+Ensure the image points to the patched image inside the deployment file.
+image: apiserver:5000/arm/hybrid-rest:1.5.0-patch.4-onprem-4-g65ecb67
+
+7. Ensure the pods of the patched image is restarted 
+Once the deployment is changed, kubernets will delete the previous pods and start new ones, ensure new pods were created for the service, simply list the pods.
+
+kubectl get pods
+
+
+
+Applying OS Patches to the Platform
+To apply OS patches to the platform, it can be done one node at a time. After the patches are applied, validate the host and all the components are still working properly. Usually it's common to see that patches turn off IPV4 forwarding flag. 
+
+To apply the patches, you need to go to each node, one at a time and: 
+Identify the planet systemd unit
+You can find it with 
+sudo systemctl list-units --plain | awk '/planet-master/{print $1}'
+Stop that systemd unit with 
+
+systemctl stop $unit_name
+
+Wait that it stops successfully and check that there's no gravity or planet process running
+Update OS or install patches 
+Restart that node...
+rinse and repeat for each node, one at a time, as you correctly suggested
+
+If the node is a Database node (in 6 nodes) or any node in 3 node install, please make sure you restore it as soon as possible. As the other DB nodes will start keeping the logs to sync with the missing one. Once the node is back alive, it will remove the transaction logs on the other nodes. Eventually if you leave it down for too long, it can fill up the disk. There will be some protection we will add in 1.7.0. 
+Alerts
+(PCE 1.7.0+)
+
+Alerts can be received by email which can be configured as explained in https://docs.mulesoft.com/anypoint-private-cloud/v/1.7/config-alerts
+
+Depending on the level of the alert, they can be received by email at the moment they are detected or it can be read from log files if the issue itself blocks the kubernetes infrastructure necessary by Kapacitor to detect and send the alert.
+
+To read the alerts from files:
+
+1. Determine where the kapacitor pod is running:
+ssh -i <IDENTITY_FILE> <USER>@<HOST> kubectl get pod -o wide --namespace kube-system -l component=kapacitor
+ NAME READY STATUS RESTARTS AGE IP NODE
+ kapacitor-2215493968-chwxv 3/3 Running 0 17m 10.244.51.11 172.31.0.21
+2. Read the logs from the /var/lib/data/kapacitor/logs directory of the node where kapacitor is running, e.g. 172.31.0.21
+
+Each alert type is sent to a different file:
+
+ backup_status.log: When backup job fails
+ high_memory.log: When there is a high memory usage
+ ipv4_forwarding.log: When IP Forwarding is disabled
+ etcd_health.log: When etcd is not healthy
+ filesystem.log: When there is low disk space in a partition
+ br_netfilter.log: When br netfilter is not enabled
+ kubernetes_node.log: Kubernetes node is not ready
+
+
+Each line in an alert file is a JSON object with id, message, details and level among other properties.
+
+E.g.
+
+{
+ "id": "percent_used:nodename=172.31.0.10,resource_id=/dev/xvda2",
+ "message": "WARNING / Node 172.31.0.10 has low free space on /dev/xvda2",
+ "details": "\n<b>WARNING / Node 172.31.0.10 has low free space on /dev/xvda2</b>\n<p>Level: WARNING</p>\n<p>Nodename: 172.31.0.10</p>\n<p>Resource: /dev/xvda2</p>\n<p>Usage: 89.77%</p>\n",
+ "time": "2017-12-18T15:13:00Z",
+ "duration": 0,
+ "level": "WARNING",
+ "data":
+
+{ ... }
+
+}
+
+
+When the condition that triggers the alert is healed, the level goes from CRITICAL or WARNING level to OK level.
+
+To complement the alerting system and logs, gravity status (PCE 1.7+) command can show when the cluster is degraded and provide some information about the condition detected.
+IP Forwarding
+IP Forwarding must be enabled 
+Check if it is enabled:
+
+Using sysctl:
+$ sysctl net.ipv4.ip_forward
+net.ipv4.ip_forward = 1
+
+Or  checking out the value in the /proc system
+cat /proc/sys/net/ipv4/ip_forward
+1
+
+Check how to enable it in http://www.ducea.com/2006/08/01/how-to-enable-ip-forwarding-in-linux/
+
+
+Cassandra Issue [BofA]
+
+Delete journal, logs and 
+Check directories inside /var/lib/data
