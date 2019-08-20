@@ -10,6 +10,7 @@ You must also forward any packets being sent from or to the 10.0.0.0/8 subnet.
 == To Determine if You Are Using firewalld
 
 To determine if your system is using firewall run the following command:
+// Is every node checked???
 
 ----
 systemctl status firewalld.service
@@ -30,6 +31,7 @@ If `firewalld is not installed, this command returns an error message.
 == Enabling Forwarding
 
 To enable forwarding on the docker0 device, run the following commands:
+// Didn’t I just uninstall Docker if it was running? Won’t the Docker command return an error since it just got uninstalled???
 
 ----
 firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -o docker0 -j ACCEPT -m comment --comment "docker subnet"
@@ -38,9 +40,12 @@ firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -s 10.0.0.0/8
 ----
 
 To enable forwarding on the 10.0.0.0/8 subnet, run the following commands:
+// How do I verify whether I have 'docker0' device and/or need to enable forwarding on 10.0.0.0/8 subnet???
 
 ----
 firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
 
 firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
 ----
+
+// I got 'command not found' error.???
