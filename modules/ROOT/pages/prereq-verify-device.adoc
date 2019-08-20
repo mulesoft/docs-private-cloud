@@ -4,6 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 For the platform’s configuration you must assign four dedicated devices for use. One as a system state directory, one holds application data, another holds cluster information and the final device is used as a target for Docker devicemapper configuration.
+// Is this run from each node? What is the device name for each? Inconsistent terminology is used for 4 devices - needs to be consistent. Any guidance for size requirements/how much to allocate? System data: e.g. package size * 2? Does sys admin allocate storage for these???
 
 == Anypoint system data device
 
@@ -29,6 +30,7 @@ The main purpose of the etcd device is to provide dedicated storage for a distri
 This device will be formatted either as `xfs` or `ext4` and mounted as `/var/lib/gravity/planet/etcd`. You can use the following shell snippet to guide this process (be sure to specify the correct device name in 2 places).
 
 The following is provided only as an example, and should not be used as-is in production. Formatting and mounting disks is something that should be done by your system administrator. The end result of this is mounting the Etcd device to the path `/var/lib/gravityi/planet/etcd`. This can be achieved using systemd mount files as shown in the example below, or `/etc/fstab`, or some other method. Please consult with your system administrator to determine the best way to meet this requirement.
+// `/gravityi/` - is this a typo???
 
 ----
 sudo mkfs.ext4 /dev/<device name>
@@ -59,6 +61,7 @@ sudo systemctl start var-lib-data.mount
 ----
 
 == Docker device
+// Does sys admin allocate storage? If not, how is this done? (Check install instructions for setting up unformatted device e.g. dev/sdd during install.) Does sys admin set up unformatted device? System directory `/ Device Mapper`? Discovered devices are offered on a drop-down menu for configuration before the install is started - Unformatted vs unmounted? Section uses both terms.  Can we see actual output? How can we check available space on devices???
 
 This device is used by Docker’s Device Mapper storage driver.
 
@@ -85,6 +88,7 @@ Unmounted devices have an empty value in FSTYPE column. Devices with TYPE="part"
 |===
 
 == To Manually Reset Devices and Partitions
+// Is Device Mapper specific to Docker? Any down side to this? Any potential for data loss? What does ‘device’ mean here? Is it an unmounted thing or one of 4 topics described? How do you reset a partition? What does ‘reset’ mean? Says remove. Where is this run from???
 
 Logical Volume Manager allows one to group multiple physical volumes into a single storage volume (Volume Group) and then divide these into Logical
 Volumes. Physical Volumes are either a whole device or a partition.
@@ -102,6 +106,7 @@ To reset a device use the following commands:
 * remove physical volume and reset device with `pvremove /dev/<device name>` (use `pvdisplay` to find the physical volume to remove and the device name it is on)
 
 == Checking Block Devices
+// How does this fit into the big picture??? What if my output doesn't look like the example???
 
 Before installing block devices must be similar in all nodes. The output of running *lsblk* should be as below: 
 
@@ -119,3 +124,4 @@ xvdf 202:64 0 20G 0 disk /tmp
 ----
 
 Also make sure that you have enough space in your home directory to download and unzip the installer file. The installer is a ~10GB file.
+// How do I check the amount of space in the home directory to make sure it’s enough for 10 GB installer file???
