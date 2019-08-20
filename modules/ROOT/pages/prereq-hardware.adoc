@@ -3,14 +3,12 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To ensure the performance and stability of Anypoint Platform Private Cloud Edition, your environment must meet the minimum system requirements described in this topic. Before installing or upgrading, review each of following sections and ensure that your environment meets these requirements.
+To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the system requirements described in this topic. Before installing or upgrading, review each of the following sections and ensure that your environment meets these requirements.
 
-[WARNING]
-If your system does not meet all of the minimum system requirements, you cannot install Anypoint Platform Private Cloud Edition.
-
-Two cluster topologies are supported for Anypoint Platform Private Cloud Edition: 3-nodes and 6-nodes. See xref:supported-cluster-config.adoc[Supported Network Topologies]. The requirements for all nodes are the same.
+You cannot install Anypoint Platform Private Cloud Edition unless all nodes meet all of the minimum system requirements.
 
 == Memory and CPU Requirements
+// How can I verify that I have enough RAM and CPU cores???
 
 [%header%autowidth.spread]
 |===
@@ -20,34 +18,46 @@ Two cluster topologies are supported for Anypoint Platform Private Cloud Edition
 |===
 
 == Disk Size and Performance Requirements
+//Include info from https://pce-runbook.kbuild.msap.io/content/cluster/disk-space.html???
 
 Anypoint Platform Private Cloud Edition has strict minimum size and performance requirements for storage devices used by the platform. All disk drives must meet the following criteria:
 
 * Must have at least 300 MB/sec of throughput.
 * Must have high performance capability, even if they are virtual block devices or network attached storage.
+//How do I verify these and how do I know whether I have virtual block devices or network attached storage or something else???
 
-For production usage, each node in your configuration must have the following devices and they must meet the stated minimum requirements.
+For production environments, each node in your configuration must have the following devices and the devices must meet the stated minimum requirements.
+//How are these set up (who sets them up) and how do I verify this???
+// How do I verify disk size???
 
 [%header%autowidth.spread]
 |===
 | Component |Size|Minimum IOPS|Mount Point
-|HDD 1 (operating system) |50 GB |500|
+|HDD 1 ()perating system) |50 GB |500|
 |HDD 2 (System data) | 100 GB |1500|/var/lib/gravity
 |HDD 3 (Application data)| 250 GB |1500|/var/lib/data
 |HDD 4 (Docker) | 100 GB |3000|Not mounted
 |HDD 5 (Etcd) | 20 GB |3000|/var/lib/gravity/planet/etcd
-|/tmp (installer) | 20 GB |N/A|
+|/tmp (Installer) | 20 GB |N/A|
 |===
+//Feedback received indicated that the gravity check failed when Installer had 20 GB. Is 25 enough? 50?
 
+The devices must be formatted either as *xfs* or *ext4*, and each node must have dedicated devices:
+//How do I check *xfs* or *ext4*?
 
-The devices should be formatted either as *xfs* or *ext4*. It's recommended to have dedicated devices for each component:
-
-* System data: Stores system configuration and metadata, including databases and packages. As package sizes can be arbitrary large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
+* System data: Stores system configuration and metadata, including databases and packages. As package sizes can be large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
+//Guidance for estimating the minimum size requirements???
 * Application data: Stores application configuration and data. The amount of space required should be at least 250 GB, but might vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+//Guidance for estimating the minimum size requirements???
 * Docker: Used by Docker’s Device Mapper storage driver.
-* Etcd: Provides dedicated storage for the distributed database used for cluster coordination. This device must be a dedicated device.
+* Etcd: Provides dedicated storage for the distributed database used for cluster coordination.
 
-See also xref:prereq-verify-disk.adoc[To Verify Disk Requirements] and xref:prereq-verify-device.adoc[To Verify Device Requirements]
+//Verify Disk Device requirements (move https://docs.mulesoft.com/private-cloud/2.0/prereq-verify-disk to here???
+Verify Anypoint Private Cloud Disk Device Requirements - ADD CONTENT HERE
+//Is this done on each node?
+
+
+
 
 ==  Network File System (NFS) Server
 
