@@ -138,6 +138,7 @@ If you are installing Anypoint Private Cloud Edition using the GUI-based install
 == Install Anypoint Platform Private Cloud Edition
 
 After provisioning resources in your AWS environment and uploading the installer to one of the nodes, install Anypoint Platform Private Cloud Edition using one of the installers:
+// How do I upload the installer to one of the nodes? (or did we do this already)? Does it matter which node???
 
 * xref:install-installer.adoc[To Install Anypoint Private Cloud using the GUI Installer]
 * xref:install-auto-install.adoc[To Install Anypoint Private Cloud using the Command Line Installer]
@@ -151,16 +152,18 @@ After installation is finished you can close port 61009 in the cluster security 
 * 403 Forbidden
 
 Check that your keys policies are not denying access to any EC2 or S3 resource. You should be able to run the following basic command using AWS CLI with your keys:
+// What do I do if key policies are denying access to ec2 or S3 resources???
 
 ----
 aws sts get-caller-identity
 ----
 
-* Limit excedded
+* Limit exceeded
 
-The AWS account might have some limits set on the amount of the resources you can create. Delete some unused resources or request a limit increason from AWS.
+The AWS account might have some limits set on the amount of the resources you can create. Delete some unused resources or request a limit increase on from AWS.
 
 * AMI not found
+//How do I safely delete unused resources or request a limit increase on AWS? How do I get the AMI name? When do I need to install Terraform? What do I need to know about Linux Bastion Hosts???
 
 Make sure you are using the AMI name as the value for the environment variable and not the ID.
 
