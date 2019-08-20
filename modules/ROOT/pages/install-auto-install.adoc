@@ -13,6 +13,7 @@ Before running the installer, ensure that your system meets the minimum system r
 == Prerequisites
 
 To run the CLI-based installer, ensure that you have root access on all of the servers in your environment.
+// https://m.wikihow.com/Become-Root-in-Linux???? Include info like this??
 
 Before running the installer, you need the following:
 
@@ -45,9 +46,13 @@ When installing a single-node configuration, the automated installer also instal
 
 == Run the Command Line Installation
 
+// Link to minimum sys requirements???
+
 . Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative.
 . Copy the archive to each server node in your cluster.
+// Inconsistent terminolgy - can we use just 'server' or just 'node'? (This assumes 'server' = 'node'.)???
 . Uncompress the gzip archive:
+//How can I get the name of the cluster? How do I get the Secret token and IP address for each server? How do I get the Docker device on each server????
 +
 ----
 tar xvf anypoint-2.0.0-installer.tar.gz
@@ -73,6 +78,7 @@ Using the following values:
 |===
 
 . If you are performing a multi-node installation, run the following command while the `./gravity install` command is running. If you are performing a single-node installation, skip this step:
+// I've seen feedback that says single node install doesn't work. Should this be removed???
 +
 Use the same values you provided in the previous command.
 +
@@ -99,6 +105,7 @@ sudo gravity enter
 +
 [NOTE]
 Before running this script, replace the `email`, `name`, and `password` parameters with the corresponding values for your environment. These are the credentials that a system administrator uses to manage the system.
+// How do I get the APCE license file? Admin email, name, password, NFS_SERVER_HOST, NFS_SERVER_PATH, PLATFORM_DNS all needed - how do I get these???
 +
 ----
 curl -X POST http://bandwagon-mulesoft.default.svc.cluster.local/api/complete -H "Content-Type:application/json" -d '{"organization": "Test Org", "email": "username@mulesoft.com", "name": "username", "password": "my_password", "support": false, "nfsServer": "NFS_SERVER_HOST", "nfsPath": "NFS_SERVER_PATH", "platformDns": "PLATFORM_DNS"}'
