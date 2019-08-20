@@ -7,6 +7,9 @@ endif::[]
 == Error: “Server Not Responding”
 
 Use a tool such as ping, traceroute or tracepath to verify that the client and server machines can communicate with each other. If communication fails between the client and server machines, examine the network interface card (NIC) settings using either `ifconfig` or `ethtool` to verify the IP settings.
+// Examples needed for ping and traceroute??? Is ifconfig or ethtool run on client or server???
+
+Do we need an example showing a 'Not Responding' result?
 
 == Error: “mount clntudp_create: RPC: Port mapper failure – RPC: Unable to receive”
 
@@ -42,8 +45,10 @@ Error message:
 `Unable to access file system at [NFS SERVER]: rpc mount export: RPC: Timed out`
 
 This error is caused by a DNS name resolution issue. NFS (RPC) needs reverse name resolution. If the NFS server or client cannot resolve their name, this error occurs. If you receive this error message, check the DNS configuration and the `/etc/hosts` configuration.
+// How do you check the DNS config and /etc/hosts config???
 
 == Mounting the NFS Server Fails
+// What is the error message? How is this different from not having the correct permissions as stated in the ‘Verify NFS’ topic???
 
 If the mount fails, you are probably missing some NFS-required libraries. If this happens, install them by running: +
 `yum install nfs-utils nfs-utils-lib`
