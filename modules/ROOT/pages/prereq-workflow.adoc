@@ -4,6 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 Before installing or upgrading Anypoint Platform Private Cloud Edition, you must verify that your environment meets the minimum system requirements.
+// Does node = instance? Terminology is confusing. Needs to be consistent.???
 
 If your system does not meet all of the minimum system requirements, you cannot successfully install Anypoint Platform Private Cloud Edition.
 
@@ -14,14 +15,17 @@ If you are upgrading from an older version that requires multiple intermediate u
 Gather all the information listed in the following steps and install the tools needed for the installation.
 
 . Contact your customer success representative to obtain the product license file for Anypoint Platform Private Cloud Edition.
+// How do I contact my rep???
 
 . Verify AWS account set up with your infrastructure team. Credentials needed include:
+// Is there a possibility that this hasn't been done yet???
 
 ** Admin ID
 ** Admin password
 ** IP addresses for all Anypoint Private CLoud Edition nodes.
 
 . Follow the procedures described in https://docs.mulesoft.com/private-cloud/2.0/prereq-aws-terraform[Create Anypoint Private Cloud Resources on Amazon Web Services (AWS)]. If someone else set up your AWS cluster, verify cluster setup is complete and conforms to <link to architecture topic????>. This includes device set up as described in <Device requirements topic link??????>.??????
+// How can this be checked???
 
 * You must have 3 or 6 instances set up as described in <link>. Which instance type and how do I verify the instance type? T2.medium?
 * Each node must be running on its own server. If you are using a virtual machine to host these nodes, you must ensure that each VM node is running on a separate physical server. How can I verify this?
@@ -44,6 +48,7 @@ Gather all the information listed in the following steps and install the tools n
 . Name and location of the installation package. For example, `/home/ec2-user/anypoint-2.0.3-installer.tar.gz`.
 
 . Obtain the following information about your organization and Anypoint Platform administrator:
+// Is there any chance that Anypoint Platform isn't set up yet???
 
 ** Organization name
 ** Administrator name
@@ -52,6 +57,7 @@ Gather all the information listed in the following steps and install the tools n
 ** Administrator password
 ** Location where Anypoint Platform data is stored.
 ** The Anypoint Private Cloud Edition license file. For example, `license.pem`.
+// Should org name be the same as cluster deployment? How can I find out where Anypoint platform data is stored if it’s not the default? How much is enough disk space???
 
 . Verify the following software-related items:
 
@@ -63,6 +69,7 @@ Ensure you have permission to run the `sudo` command on the node from which you 
 $ sudo gravity enter
 $ kubectl
 ----
+// What do I do if it's not available???
 
 ** Enable TCP ports `53`, `3011`, `3012` intra-node to allow communication with the database cluster.
 
@@ -75,3 +82,4 @@ $ kubectl
 . xref:prereq-software.adoc[Software Requirements]
 . xref:prereq-verify-software.adoc[To Uninstall Unsupported Software]
 . xref:prereq-gravity-check.adoc[Verify System Requirements]
+// This is a confusing title - everything here is basically a 'system' requirement.??? Need a list of what `gravity check` checks and what it doesn't.???
