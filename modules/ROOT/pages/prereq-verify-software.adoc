@@ -8,6 +8,7 @@ The following sections describe software that may cause conflicts with Anypoint 
 == Docker
 
 Docker should be uninstalled from servers running the Anypoint Platform Private Cloud Edition. The Anypoint Platform installation includes a Docker package officially supported by Kubernetes.
+// Removing Docker and DNS servers - can this cause problems? Should I check anything before doing this???
 
 == Local DNS Servers
 
