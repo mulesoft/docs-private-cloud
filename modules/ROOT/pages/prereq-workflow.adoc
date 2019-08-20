@@ -39,6 +39,8 @@ Gather all the information listed in the following steps and install the tools n
 ** Server name and path
 ** PLATFORM_DNS (The DNS must be configured to the NFS server.)
 
+. SMTP server??? What info is needed???
+
 . Name and location of the installation package. For example, `/home/ec2-user/anypoint-2.0.3-installer.tar.gz`.
 
 . Obtain the following information about your organization and Anypoint Platform administrator:
