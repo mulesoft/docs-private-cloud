@@ -7,6 +7,7 @@ The following sections list the software required to install and run the Anypoin
 
 == Supported Linux Distributions
 The following Linux distributions are supported:
+// How can I check which Linux distribution I have???
 
 * Red Hat Enterprise Linux (RHEL), versions 7.4.x, 7.5.x, and 7.6
 
@@ -16,8 +17,10 @@ The following Linux distributions are supported:
 SELinux is not required, but Anypoint Platform Private Cloud Edition supports the default SELinux profile running 
 in strict mode. If your environment uses a custom profile, it must provide an unconstrained user context when 
 running the installer. Review any custom profiles with your customer support representative.
+// SELinux - How do I know if I have a custom profile? How do I contact my customer support rep? What info do I need???
 
 == Kernel Modules
+// Enabled = loaded? I got ‘command not found’ - what do I do???
 
 Ensure that the following kernel modules are enabled:
 
@@ -48,6 +51,7 @@ root$ echo 'br_netfilter' > /etc/modules-load.d/br_netfilter.conf
 Replace `br_netfilter` with the name of the kernel module you are checking.
 
 == Kernel Settings
+// How do I turn on the flags? Use info from https://pce-runbook.kbuild.msap.io/content/cluster/modules-and-settings.html#kernel-settings???
 
 The following flags must be turned on:
 
@@ -57,6 +61,7 @@ The following flags must be turned on:
 * `fs.inotify.max_user_watches=524288`
 
 Ensure that there are no processes on your system that set this flag to false. To set a parameter you can use `sysctl -w`, for example:
+// How do I verify no processes set any flags to ‘false’? What are the values for the flags? Does 1=true? What if some processes are setting flags to ‘false’ - what do I do? Can this cause problems for other stuff if I reset the flags? I got ‘command not found’ on this step.???
 
 ----
 root$ sysctl -w net.ipv4.ip_forward=1
@@ -75,6 +80,7 @@ Replace the setting above with the setting you are configuring. Ensure there are
 xref:prereq-firewalld-forwarding.adoc[To Enable Forwarding When Using firewalld]
 
 == Synchronized clocks
+// How do I synchronize clocks? Use info from https://pce-runbook.kbuild.msap.io/content/cluster/sync-clocks.html? Does server= node???
 
 Ensure that the clocks on all servers are synchronized. Unsynchronized clocks can cause problems with platform communications.
 
