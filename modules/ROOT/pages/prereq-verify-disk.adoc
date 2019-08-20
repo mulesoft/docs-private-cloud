@@ -3,27 +3,19 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic provides information about how to verify that you system meets the minimum prerequisites to install and run the Anypoint Platform Private Cloud Edition.
-
-== Installing Logical Volume Manager 2 (LVM2)
-
-To install and run Anypoint Platform Private Cloud Edition, you must install and use LVM2. LVM2 is a tool that adds a layer of abstraction between your operating system and the disks/partitions it uses. You must have root access to install LVM2.
-
-You can install LVM using Yum. Yum is an open-source command-line package-management utility for Linux operating systems using the RPM Package Manager. Using Yum, you can install LVM through the following command:
-
-----
-sudo yum install lvm2
-----
+// Is this done on each node???
 
 == Verifying Disk Performance
 
 To measure disk throughput, use a tool such as `hdparm`. On CentOS, `hdparm` can be installed by running
-
+// Verifying performance - how do you check what OS is there? What if you don’t have CentOS? Do you still use the command shown???
 ----
 sudo yum install -y hdparm
 ----
 
 == Testing Disk Throughput
+// This section is confusing - what can be done for bare device since hdparm shouldn't be used - it just says to write to a file on that device. How do you know what ‘device’ is???
+// Disk Throughput - done on each node? How do you know the device path???
 
 All disks should have at least 300 MB/sec of throughput. Use the following command to verify the throughput of your disk:
 
@@ -53,6 +45,8 @@ $ sudo dd if=/dev/zero of=/var/lib/gravity/testfile count=1000 bs=1M
 The `dd` command provides less accurate information than `hdparm`, but is available on any operating system and provides the ability to easily verify general disk performance.
 
 == Testing Disk IOPS
+// Testing IOPS - is this done from each node? How do you know what path to use? I got command not found error.???
+// How can the user verify disk size ???
 
 Depending on your hardware or virtualization provider, you can configure disk IOPS (I/O Operations Per Second). Using the `iops` command, you can verify available IOPS:
 
@@ -70,6 +64,18 @@ $ sudo ./iops --time 2 /dev/xvdb
  128 KiB blocks:  327.6 IO/s,  40.9 MiB/s (343.5 Mbit/s)
 ...
 ----
+
+== Installing Logical Volume Manager 2 (LVM2)
+//This is confusing here - section is titled 'Verify' and this is an installation step. Where should this go???
+
+To install and run Anypoint Platform Private Cloud Edition, you must install and use LVM2. LVM2 is a tool that adds a layer of abstraction between your operating system and the disks/partitions it uses. You must have root access to install LVM2.
+
+You can install LVM using Yum. Yum is an open-source command-line package-management utility for Linux operating systems using the RPM Package Manager. Using Yum, you can install LVM through the following command:
+
+----
+sudo yum install lvm2
+----
+// What should I do if this fails???
 
 == See also
 
