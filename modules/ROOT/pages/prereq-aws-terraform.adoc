@@ -4,10 +4,12 @@ include::_attributes.adoc[]
 endif::[]
 
 This topic describes how to create the resources required to install Anypoint Platform Private Cloud Edition on Amazon Web Services (AWS). Anypoint Private Cloud supports 3-node and 6-node configurations in a production environment on AWS.
+// When do these instructions need to be performed - this is out of order.  Not needed if starting from bare metal servers - need to add clarification about this in the topic.???
 
 == Prerequisites
 
 To install Anypoint Platform Private Cloud Edition on AWS, you must have an AWS account with the following:
+// What do I do if I don’t know whether an AWS account exists? How do I check permissions and resources? Are resources listed the ‘default’???
 
 * Your account must have AWS keys with EC2FullAccess and S3FullAccess permissions.
 * When creating your AWS environment, the following resources are created:
@@ -28,6 +30,7 @@ To install Anypoint Platform Private Cloud Edition on AWS, you must have an AWS 
 MuleSoft provides a Docker image that you can use to provision the resources for your AWS account. You can also run custom shell scripts on the provisioned instances (see below).
 
 . Create an initial instance (t2.small) on your AWS account on any VPC with internet access.
+// How do I create an initial t2.small instance?  How do I manually install Docker? How do I run the provisioner remotely???
 +
 This instance is used to run the actual provisioning of the cluster. You must use an AMI that has Docker installed by default or you must manually install Docker after creating the AWS instance.
 +
@@ -44,6 +47,7 @@ Copy the provisioner Docker image to the instance via SCP
 ----
 scp -i <guest>.pem ~/Downloads/pce-2.0-aws-provisioner.gz ec2-user@18.221.155.87:/home/ec2-user
 ----
+// How do I know what <guest>.pem is???
 
 . SSH into the instance
 +
@@ -52,6 +56,7 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 ----
 
 . Create the var file (pce.env) with the environment details using the template below:
+// How do I create the var file pce.env? How do I get environment info to be able to set up pce.env? Need descriptions for all parms???
 
 [%header%autowidth.spread]
 |===
@@ -96,6 +101,7 @@ docker load -i pce2.0-aws-provisioner.gz
 ----
 
 . Record the image ID after running the `docker load` command. This is required in the following step.
+// Can we provide and image ID example? Will ‘docker load’ command be available at this point? What if this fails???
 
 . Perform a dry-run
 +
@@ -105,6 +111,7 @@ docker run --rm --env-file pce.env IMAGE_ID dry-run
 +
 
 .  Run the provisioner
+// What do I do if the provisioner fails? Check this on all nodes???
 +
 ----
 docker run --rm --env-file pce.env IMAGE_ID cluster-provision
@@ -115,6 +122,7 @@ After the provisioner runs successfully, it displays information about your envi
 . Verify that the provisioning script ran successfully by checking the existence of /var/lib/bootstrap_complete on the instances
 
 == Custom provisioning scripts (Optional)
+// How do I know if I have custom shell scripts? Where do I get passwords for the volume mount???
 
 You can have your own shell scripts to run on the provisioned instances before and/or after the PCE provisioner scripts. In order to do so, place your shell scripts with .sh extension inside a folder named `pre-user-data` and/or `post-user-data`. Finally include the following volume mounts on the docker run command:
 
@@ -123,6 +131,7 @@ docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/ext
 ----
 
 == Open Port 61009 Before Installation (Optional)
+// Is this optional. Feedback received says this is needed for the person doing the installation.??? How do I open port 61009???
 
 If you are installing Anypoint Private Cloud Edition using the GUI-based installer, you must enable this port before running the installer. You must open this port to the world in the cluster's security group before running the installer using AWS Web Console.
 
