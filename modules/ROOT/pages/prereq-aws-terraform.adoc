@@ -49,7 +49,7 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 ----
 
 . Create the var file (pce.env) with the environment details using the template below:
-
++
 [%header%autowidth.spread]
 |===
 | Name | Description
@@ -68,9 +68,9 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 | TF_VAR_high_performance_disks | Must be set to `true` for production environments
 | TF_VAR_disable_outbound_traffic | Disables outside internet access using iptables rules. Defaults to `true`.
 |===
-
++
 You can also include the following set of optional environment variables:
-
++
 [%header%autowidth.spread]
 |===
 | Name | Description
