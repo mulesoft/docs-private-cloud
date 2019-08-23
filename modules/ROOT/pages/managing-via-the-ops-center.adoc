@@ -87,7 +87,7 @@ image::ops-center-settings.png[]
 |Key | Description
 |`name` | Specifies the name of the log forwarding rule.
 |`address` | Specifies the endpoint and port to forward the log data
-|`protocol` | Specifies the protocol to send the data to. Supported protocols are TCP or UDP.
+|`protocol` | Specifies the protocol to send the data to. Supported protocols are TCP or UDP. Defaults to `tcp`.
 |===
 + 
 ----
@@ -98,7 +98,7 @@ metadata:
 spec:
    address: 192.168.100.1:514
    protocol: udp
-----
+---- 
 
 Your logs will now be forwarded to your external logging service. Any other steps needed here???
 
