@@ -66,22 +66,30 @@ Deleting a server also removes any applications that are deployed on the server.
 
 == Configuring Log Forwarding
 
-Anypoint Platform Private Cloud Edition enables you to forward server-level log data. Log forwarding is designed to forward your logs to a local 3rd party log solution. Forwarding log data to a cloud-based service, like Splunk Cloud, is not supported.
+Anypoint Platform Private Cloud Edition enables you to forward server-level log data. Log forwarding is designed to forward your logs to a local 3rd party log solution that accepts syslog format log data. Anypoint Platform uses `rsyslog` to handle logging. The built-in `rsyslog` client service enables you to send log data to an rsyslog server over TCP or UDP. Forwarding log data to a cloud-based service, like Splunk Cloud, is not supported.
 
-Anypoint Platform uses `rsyslog` to handle logging. To forward these logs to remote hosts perform following:
+ To forward logs to remote hosts, perform the following steps:
 
-. Login to Ops Center.
+. Log in to Ops Center.
 
-. In the upper right-hand corner, click the admin user name.
+. Select the admin user name.
 +
 image::ops-center-settings.png[]
 
-. Choose *Settings*, then click the Logs tab.
+. Choose *Settings*, then click the *Logs* tab.
 
 . Click *Create* or *New Connector* if you already have a log forwarder configured.
 
-. Configure your log forward as shown in the following example:
-
+. Configure your log forwarding by specifying values for `name`, `address` and `description`, using the following code as a guideline. 
++
+[%header,cols="2*a"]
+|===
+|Key | Description
+|`name` | Specifies the name of the log forwarding rule.
+|`address` | Specifies the endpoint and port to forward the log data
+|`protocol` | Specifies the protocol to send the data to. Supported protocols are TCP or UDP. Defaults to `tcp`. Specify `udp` for the UDP protocol.
+|===
++ 
 ----
 kind: logforwarder
 version: v2
@@ -90,7 +98,13 @@ metadata:
 spec:
    address: 192.168.100.1:514
    protocol: udp
-----
+---- 
+
+Your logs will now be forwarded to your external logging service. Any other steps needed here???
+
+[NOTE]
+* Log information is stored for up to ??? days. Logs older than xx-days are permanently removed (overwritten)???
+// What is true here???
 
 == Monitoring Stability and Performance
 
@@ -243,3 +257,4 @@ password for admin@example.com has been reset to: xxxxxxxxx
 == See Also
 
 * xref:prereq-workflow.adoc#device-requirements[Device Requirements]
+
