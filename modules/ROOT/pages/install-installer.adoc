@@ -34,7 +34,7 @@ tar xvf anypoint-2.0.0-installer.tar.gz
 +
 
 . Select the IP address you want to use and confirm.
-// How do I know what IP addresses to use for {HOSTS} and {TOKENS} ???
+// How do I know what IP addresses to use for {HOSTS} and {TOKENS} ??? From partner: The GUI install script has the request for an Install token yet there is no other reference anywhere else to what that is or where it comes from.  Can you provide additional information?
 
 +
 Based on your selection, the installer displays a message similar to the following:
@@ -51,6 +51,7 @@ After launching the installation wizard, perform the following steps to install 
 // How do I launch the install wizard?
 
 . Enter your Anypoint Platform license key, then click *Continue*.
+// Does PCE use the same license as Mule Runtime? Assumption is yes.
 +
 You must obtain the license key from your MuleSoft account representative. After applying a new license, it may take time for the installer to recognize the license.
 // How can I find out who the MuleSoft account rep is? And do I need to provide any information to the rep???
