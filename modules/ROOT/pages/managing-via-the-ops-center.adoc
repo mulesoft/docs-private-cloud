@@ -87,7 +87,7 @@ image::ops-center-settings.png[]
 |Key | Description
 |`name` | Specifies the name of the log forwarding rule.
 |`address` | Specifies the endpoint and port to forward the log data
-|`protocol` | Specifies the protocol to send the data to. Supported protocols are TCP or UDP. Defaults to `tcp`.
+|`protocol` | Specifies the protocol to send the data to. Supported protocols are TCP or UDP. Defaults to `tcp`. Specify `udp` for the UDP protocol.
 |===
 + 
 ----
