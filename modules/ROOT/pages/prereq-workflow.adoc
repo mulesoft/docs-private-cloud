@@ -15,12 +15,12 @@ If you are upgrading from an older version that requires multiple intermediate u
 Gather all the information listed in the following steps and install the tools needed for the installation.
 
 . Contact your customer success representative to obtain the product license file for Anypoint Platform Private Cloud Edition.
-// How do I contact my rep???
+// How do I contact my rep??? Does PCE use the same license file?
 
 . Verify AWS account set up with your infrastructure team. Credentials needed include:
-// Is there a possibility that this hasn't been done yet???
-
+// Is there a possibility that this hasn't been done yet??? Name = ID???
 ** Admin ID
+** Admin email address
 ** Admin password
 ** IP addresses for all Anypoint Private CLoud Edition nodes.
 
@@ -40,7 +40,7 @@ Gather all the information listed in the following steps and install the tools n
 
 . You must have an NFS server installed and configured before installing or upgrading Anypoint Private Cloud Edition. Ensure that your current environment meets the minimum requirements described in xref:verify-nfs.adoc[Verify NFS Server Requirements, role=external, window=_blank]. Obtain the following NFS server information needed:
 
-** Server name and path
+** Server/host name and path
 ** PLATFORM_DNS (The DNS must be configured to the NFS server.)
 
 . SMTP server??? What info is needed???
