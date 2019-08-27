@@ -16,9 +16,10 @@ Gather all the information listed in the following steps and install the tools n
 
 . Contact your customer success representative to obtain the product license file for Anypoint Platform Private Cloud Edition.
 // How do I contact my rep??? Does PCE use the same license file?
+// Do we need a statement about the knowledge required to perform the install? e.g. Linux admin level of knowledge? Familiarity with Linux commands???
 
 . Verify AWS account set up with your infrastructure team. Credentials needed include:
-// Is there a possibility that this hasn't been done yet??? Name = ID???
+// Name = ID???
 ** Admin ID
 ** Admin email address
 ** Admin password
