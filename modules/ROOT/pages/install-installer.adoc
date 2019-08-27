@@ -54,7 +54,6 @@ After launching the installation wizard, perform the following steps to install 
 // Does PCE use the same license as Mule Runtime? Assumption is yes.
 +
 You must obtain the license key from your MuleSoft account representative. After applying a new license, it may take time for the installer to recognize the license.
-// How can I find out who the MuleSoft account rep is? And do I need to provide any information to the rep???
 
 . Enter a name for your cluster deployment.
 +
@@ -99,7 +98,7 @@ This may take a few minutes to complete. If you system meets all of the requirem
 This IP address is used to communicate within the cluster.
 
 . Choose a Docker device from the drop-down list, or manually specify the path to your own. Ensure that on each of your nodes, both devices are configured with enough space.
-//Choose Docker device - any guidance? I thought Docker was uninstalled, why would there be anything listed here? How do I find the path to my own Docker device? How do I know if there’s enough space???
+//Choose Docker device - any guidance? I thought Docker was uninstalled, why would there be anything listed here? How do I know if there’s enough space???
 +
 This is the device Docker uses for volume management.
 
@@ -124,7 +123,6 @@ The installer passes through several different stages. Wait for this process to 
 Platform users access their accounts based on the organization name that you provide here or a business group within it.
 
 . Enter the following information about your NFS server:
-// How do I get these???
 +
 * NFS Server
 * NFS Path
