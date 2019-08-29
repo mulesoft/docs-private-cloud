@@ -18,7 +18,7 @@ Anypoint Private Cloud, version 2.0 requires that you have an NFS server install
 == Running the Installer
 
 . Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative.
-// Where do I put the gzip archive???
+// Where do I put the gzip archive??? Where does the license file go? The license file is only needed on the installer node.
 
 . Uncompress the gzip archive:
 +
@@ -51,7 +51,7 @@ After launching the installation wizard, perform the following steps to install 
 // How do I launch the install wizard?
 
 . Enter your Anypoint Platform license key, then click *Continue*.
-// Does PCE use the same license as Mule Runtime? Assumption is yes.
+// Does PCE use the same license as Mule Runtime? Assumption is yes. Is the license file the same as the license key?
 +
 You must obtain the license key from your MuleSoft account representative. After applying a new license, it may take time for the installer to recognize the license.
 
