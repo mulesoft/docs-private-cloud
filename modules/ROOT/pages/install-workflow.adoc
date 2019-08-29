@@ -6,6 +6,7 @@ endif::[]
 There are two ways to install Anypoint Private Cloud Edition:
 // The current nav is confusing: GUI installer = Run the installer topic - fix nav to reflect this. CLI installer - automated installer - fix nav to reflect this. Need pros and cons for each installer. How do I get to the AWS Web console to close port 61009 after install???
 // Install troubleshooting info: Info needed from https://pce-runbook.kbuild.msap.io/content/operations/install.html#troubleshooting??? What should be included??? Install info from troubleshooting playbook - this differs from the docs - which is correct???
+//Need to have Linux admin knowledge (minimally a knowledge of commands)
 
 * Using a GUI installer.
 * Using the CLI.
@@ -21,6 +22,7 @@ The CLI installer does not require human interaction using a web browser and is 
 - The installation package includes everything required for Anypoint Private Cloud Edition installation, 
 including specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides updates as 
 needed for the additional software with Anypoint Private Cloud Edition patches. 
+//This is not correct - you need license file, etc.
 - You must run the installer as root to access the necessary privileged ports. 
 ====
 
