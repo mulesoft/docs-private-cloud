@@ -53,18 +53,18 @@ The following table summarizes the new features included in Anypoint Platform Pr
 | API Manager |	Promotion of APIs between different environments.
 | API Manager |	Environment-based granular permissions for API Manager.
 | API Manager |	Resource level policy support, which was formerly restricted to RAML-based APIs, is extended to any HTTP API.
-| API Manager |	Mule 4-related changes to API Manager:|
-a|
+| API Manager	
+a| Mule 4-related changes to API Manager:
 
 * Classloader isolation between the application, the runtime, the connectors, and the policies.
 * Changes to packaging, size, and scope of a policy.
 * All policies are non-blocking.
-* All policies can be ordered except CORS, which is executed first."	Partial
-| API Manager |	Two new platform APIs for managing APIs:|
-a|
+* All policies can be ordered except CORS, which is executed first.
+| API Manager	
+a| Two new platform APIs for managing APIs:
 
 * API Manager API v1.0 to manage API.
-* API Manager proxy API v1.0 to manage the deployment of API proxies through API Manager."	Partial
+* API Manager proxy API v1.0 to manage the deployment of API proxies through API Manager.
 | Runtime Manager |	Improved error description on alert creation.	
 |===
 
