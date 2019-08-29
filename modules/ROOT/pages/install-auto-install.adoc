@@ -51,7 +51,7 @@ When installing a single-node configuration, the automated installer also instal
 
 . Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative.
 . Copy the archive to each server node in your cluster.
-// Inconsistent terminolgy - can we use just 'server' or just 'node'? SHould we include any info on getting SSH credentials on each node? (Copying credentials to SSH file)? Use the scp command to copy the archive. Does it matter where this is copied to?
+// Inconsistent terminolgy - can we use just 'server' or just 'node'? SHould we include any info on getting SSH credentials on each node? (Copying credentials to SSH file)? Use the scp command to copy the archive. Does it matter where this is copied to? License file needed on installer node only. Is license key the same thing as license file? Sys admin will know the IP address needed for the installer_IP - it's the private IP address related to networking interface (so nodes can access each other). 
 . Uncompress the gzip archive: 
 +
 ----
@@ -79,7 +79,7 @@ Using the following values:
 |===
 
 . If you are performing a multi-node installation, run the following command while the `./gravity install` command is running. If you are performing a single-node installation, skip this step:
-// I've seen feedback that says single node install doesn't work. Should this be removed???
+// I've seen feedback that says single node install doesn't work. Should this be removed??? RUn the following command AFTER the installer node indicates that its waiting for other nodes to join. Otherwise an error is returned from the nodes you are joining.
 +
 Use the same values you provided in the previous command.
 +
