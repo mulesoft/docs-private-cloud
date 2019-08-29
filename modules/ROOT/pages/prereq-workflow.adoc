@@ -3,8 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+// Knowledge required to install PCE: OS, File System, SSL certs, How to open ports.
+//Need to document absolute needs: OS, NFS and that environment WILL NOT run without proper versions. Customers might have their own AWS images and their provisioning process uses specific versions of stuff like RHEL that we might not support. Necessary versions of things aren't always there. Is there a way to check this after install?
+//Do we need content on positioning of PCE? e.g. many configuration aspects are performed by MuleSoft. Many things are not exposed to customers. What is the proper communication method for customers and when should they expect to involved the CUstomer Success team? Support? What is scope of Professional Services vs Customer Success vs Support?
+//Release notes process doesn't tie component updates back for customers. Fixes often made in other components - pointing to other release notes might help but this is difficult to manage. Need description of bug fix. How can release notes be linked toghether for fixes?
+
 Before installing or upgrading Anypoint Platform Private Cloud Edition, you must verify that your environment meets the minimum system requirements.
-// Does node = instance? Terminology is confusing. Needs to be consistent.???
+// Does node = instance? Terminology is confusing. Needs to be consistent.??? YES : node = instance = server
 
 If your system does not meet all of the minimum system requirements, you cannot successfully install Anypoint Platform Private Cloud Edition.
 
