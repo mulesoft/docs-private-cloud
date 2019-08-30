@@ -13,61 +13,6 @@ This topic provides information about upgrading Anypoint Platform Private Cloud 
 | 1.5.x | 1.6.1, 1.7.1 | 2.0 | Must upgrade to 1.6.1, then 1.7.1 before upgrading to 2.0.
 |===
 
-The following table summarizes the new features included in Anypoint Platform Private Cloud Edition version 2.0.
-
-[%header%autowidth.spread]
-|===
-| Component | Feature Description
-| Exchange | Store all integration assets in one place in Exchange, such as best practices, integration patterns, API fragments, API specifications, examples, templates, and connectors.
-| Exchange |	Enrich portal content using the Visual editor and Markdown editor.
-| Exchange |	Upload Open API specifications (Swagger) in Exchange, which automatically converts to RAML for use across the Anypoint toolset.
-| Exchange |	Upload WSDLs (SOAP APIs) in Exchange.
-| Exchange |	Consume and reuse from Studio & Design Center.	
-| Exchange |	Share an asset with users from other business groups.
-| Exchange |	Auto-generate a Mule 4.0 Design Center connector (using REST Connect) for any valid API specification for use within Design Center.
-| Exchange |	View a list of dependencies (API Fragments) for any API specification.
-| Exchange |	Version any asset published to Exchange.
-| Exchange |	View Dependency Snippet for connectors for use in Maven, Gradle, SBT, and Ivy.
-| Exchange |	Publish examples and templates using Studio 6.3 and later.
-| Exchange |	API Portals are now part of Exchange.
-| Exchange |	Create public portals for any APIs in Anypoint Exchange.
-| Exchange |	Automatically generate rich documentation for RAML and OAS specifications.
-| Exchange |	Perform interactive API use case validation through API Notebook.
-| Exchange |	Use a new mocking service for testing API calls without API implementation.
-| Exchange |	Register clients and request access for APIs managed by Anypoint Platform.
-| Exchange |	Automatically index API instances and endpoints via Exchange.
-| Exchange |	Share APIs externally using Exchange portal.
-| Exchange |	Customize and brand features of Exchange portal.
-| Exchange |	Leverage HTML support for content inserted in a Markdown editor (limitations apply).
-| Exchange |	Save a search for organizations that provides consistent search navigation to all business group users.
-| Exchange |	Utilize personalized saved searches to save frequently used searches.
-| Exchange |	Copy images into the Exchange visual editor, which eliminates the need to serve images from outside Exchange.
-| Exchange |	Managed categories allow Exchange administrators and Organization owners to create categories and group Exchange assets.
-| Exchange |	Exchange contributors can now organize assets into different groups to improve asset browsing and discovery.
-| Exchange |	Custom fields allow Exchange administrators and contributors to extend existing asset attributes through the API.
-| Exchange |	Reorder pages on asset detail page.
-| API Manager |	Environment support provided on API Manager.
-| API Manager |	Support provided for Mule 4 APIs.
-| API Manager |	Create multiple instances of an API.
-| API Manager |	Integrate with Exchange 2.0.
-| API Manager |	Promote APIs between different environments.
-| API Manager |	Environment-based granular permissions are available for API Manager.
-| API Manager |	Resource level policy support, which was formerly restricted to RAML-based APIs, is extended to any HTTP API.
-| API Manager	
-a| Mule 4-related changes to API Manager:
-
-* Classloader isolation between the application, the runtime, the connectors, and the policies.
-* Changes to packaging, size, and scope of a policy.
-* All policies are non-blocking.
-* All policies can be ordered except CORS, which is executed first.
-| API Manager	
-a| Two new platform APIs for managing APIs:
-
-* API Manager API v1.0 to manage API.
-* API Manager proxy API v1.0 to manage the deployment of API proxies through API Manager.
-| Runtime Manager |	Improved error description on alert creation.	
-|===
-
 See xref:1.6@upgrade.adoc[About Migrating Anypoint Platform Private Cloud Edition] for information on upgrading to version 1.6.1. See xref:1.7@upgrade.adoc[About Migrating Anypoint Platform Private Cloud Edition] for information on upgrading to version 1.7.1.
 
 [WARNING]
