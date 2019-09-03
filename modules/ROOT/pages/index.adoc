@@ -3,8 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition enables you to run and manage Mule applications on your local servers, using your required security policies. When running Anypoint Platform Private Cloud Edition, MuleSoft systems do not interact with your data. You configure and run the software and maintain all storage, processing and transmission of data.
-// What should be pulled in from https://pce-runbook.kbuild.msap.io/introduction.html???
+With Anypoint Platform Private Cloud Edition, you run and manage Mule applications on your local servers, using your required security policies. When running Anypoint Platform Private Cloud Edition, MuleSoft systems do not interact with your data. You configure and run the software, and maintain all data storage, processing, and transmission.
 
 The Anypoint Platform Private Cloud Edition provides the following application components:
 
