@@ -7,9 +7,9 @@ This topic describes the Anypoint Platform Private Cloud Edition. Anypoint Platf
 
 The Anypoint Platform Private Cloud Edition includes the following application components when combined with CloudHub:
 
-* Runtime Manager: enables you to track and manage your deployed Mule applications
-* API Manager: enables you to manage your registered APIs
-* Anypoint Exchange: enables your organization to share various assets that can be reused across integration projects.
+* Runtime Manager, which enables you to track and manage your deployed Mule applications.
+* API Manager, which enables you to manage your registered APIs.
+* Anypoint Exchange, which enables your organization to share various assets that can be reused across integration projects.
 * Access Management
 * Design Center, excluding Flow Designer
 
@@ -51,7 +51,7 @@ The following table summarizes the new features included in Anypoint Platform Pr
 | Exchange |	Customize and brand features of Exchange portal.
 | Exchange |	Leverage HTML support for content inserted in a Markdown editor (limitations apply).
 | Exchange |	Save a search for organizations that provides consistent search navigation to all business group users.
-| Exchange |	Utilize personalized saved searches to save frequently used searches.
+| Exchange |	Use personalized saved searches to save frequently used searches.
 | Exchange |	Copy images into the Exchange visual editor, which eliminates the need to serve images from outside Exchange.
 | Exchange |	Managed categories allow Exchange administrators and Organization owners to create categories and group Exchange assets.
 | Exchange |	Exchange contributors can now organize assets into different groups to improve asset browsing and discovery.
