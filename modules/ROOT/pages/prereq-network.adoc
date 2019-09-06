@@ -3,21 +3,24 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Network requirements for running Anypoint Platform Private Cloud Edition are described in the following sections.
+To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the network requirements described in this topic. 
 
-== Static IPs
+//What examples are needed here????
 
-All servers in the cluster should have static private IPv4 assigned to them, these must persist after server 
-restarts. If IP addresses are not persistent between reboots, the cluster may enter a failed state.
-// How do I check static IPs for IPv4? Do I have to restart nodes to check persistence???
+[IMPORTANT]
+Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated network requirements. If needed, contact your Customer Success Manager for assistance.
 
-== VXLAN
+== Verify Static IPs
+
+All nodes in the cluster must have static private IPv4 assigned to them, and these must persist after  
+restarts. If IP addresses are not persistent between reboots, the cluster can fail.
+
+== Verify VXLAN
 
 The version of Kubernetes supported by Anypoint Platform Private Cloud Edition uses an overlay VXLAN and UDP 
-transport to encapsulate traffic. There is direct communication between components of the cluster. The table 
-below shows the ports used for inter-host communication. You must ensure that all of these ports are 
-configured correctly.
-// How do I check for correct port configuration???
+transport to encapsulate traffic. There is direct communication between components of the cluster. The following table 
+ lists the ports used for inter-host communication. You must ensure that all of the following ports are 
+configured correctly on all nodes.
 
 [%header%autowidth.spread]
 |===
@@ -42,38 +45,35 @@ configured correctly.
 |TCP | 32009 | Ops Center Admin UI
 |===
 
+You can use `netcat` to verify port configuration.
+// add validation section to ensure that ports are open. Show node communication with ports open and example. Validate server to server with netcat, test communication betweeen two nodes.??????
 
-== NAT Traffic Requirements
-// How do I tune software for NAT? E.g. refer to instructions for that software???
+== Verify NAT Traffic Requirements
 
-In some situation, the Kubernetes overlay network uses NAT. NAT requires that servers be able to send and 
-receive packages with a source and destination that is different from the server’s internal IP.
+In some situation, the Kubernetes overlay network uses NAT. NAT requires that nodes be able to send and 
+receive packages with a source and destination that is different from the node’s internal IP.
 
 Any software that monitors the network traffic must be tuned to allow this type of network interaction.
 
-== SSL Certificate Requirements
-// SSL cert. Upload - point to instructions. How do I set up a cert to be trusted by all machines connected to the platform? Register on every node/server? How do I do that? Does upload = register??? Info needed from https://pce-runbook.kbuild.msap.io/content/installation/certificate-configuration.html???
+== Verify SSL Certificate Requirements
 
-In order to use the Anypoint Platform Private Cloud Edition, you must provide SSL credentials. You can upload 
+To use the Anypoint Platform Private Cloud Edition, you must provide SSL credentials. You can upload 
 a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine that is 
 connected to the platform.
 
 [WARNING]
-You must register the same SSL certificate on every server containing Mule Runtimes managed by your installation.
+You must register the same SSL certificate on every node containing Mule Runtimes managed by your installation.
 
-== SMTP Server Requirements
-// SMTP - who sets this up?
+== Verify SMTP Server Requirements
 
 Your network must include an SMTP server to manage e-mail alerts that are triggered by the platform.
 
-== External Identity Provider and Client Management 
-// How do I verify that the cluster can access the external IP endpoint? What info do I need???? (This needs to be added to checklist.)
+== Verify External Identity Provider and Client Management 
 
 To configure an Exernal Identity Provider for users single sign on (LDAP, OpenID, SAML) or for external 
 client management as OpenID Connect, the cluster must be able to access the External Identity Provider endpoint. 
 
-== IP Forwarding and Bridging
-// IP forwarding - does server=node? How do I configure IPv4 forwarding? What needs to happen to bridge-netfilter???
+== Verify IP Forwarding and Bridging
 
 To ensure proper cluster load balancing and routing, you must enable and correctly configure the following:
 
