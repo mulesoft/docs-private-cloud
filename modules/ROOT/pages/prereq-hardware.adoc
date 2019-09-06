@@ -1,14 +1,9 @@
-= Hardware Requirements for Anypoint Private Cloud
+= Disk and Device Requirements for Anypoint Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the system requirements described in this topic. Before installing or upgrading, review each of the following sections and ensure that your environment meets these requirements.
-
-You cannot install Anypoint Platform Private Cloud Edition unless all nodes meet all of the minimum system requirements.
-
-[NOTE]
-Contact your Customer Success Manager for assistance with verification of RAM, disk size, CPU cores, and other system requirements if you are unsure how to do this.
+To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the system requirements described in this topic. Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your Customer Success Manager for assistance.
 
 == Memory and CPU Requirements
 
@@ -19,68 +14,222 @@ Contact your Customer Success Manager for assistance with verification of RAM, d
 |CPU |8 Cores
 |===
 
-== Disk Size and Performance Requirements
+== Disk Requirements
 
 Anypoint Platform Private Cloud Edition has strict minimum size and performance requirements for storage devices used by the platform. All disk drives must meet the following criteria:
 
 * Must have at least 300 MB/sec of throughput.
-* Must have high performance capability, even if they are virtual block devices or network attached storage.
-//How do I verify these and how do I know whether I have virtual block devices or network attached storage or something else???
+* Must have performance capabilities that can accomodate the expected environment traffic, even if they are virtual block devices or network attached storage.
 
-For production environments, each node in your configuration must have the following devices and the devices must meet the stated minimum requirements.
-//How are these set up (who sets them up) and how do I verify this???
+//moved https://docs.mulesoft.com/private-cloud/2.0/prereq-verify-disk to here - ADD page alias???????????
+
+=== Verify Disk Throughput
+// This section is confusing - what can be done for bare device since hdparm shouldn't be used - it just says to write to a file on that device. How do you know what ‘device’ is???
+// Disk Throughput - done on each node? How do you know the device path???
+
+All disks should have at least 300 MB/sec of throughput. Use the following command to verify the throughput of your disk:
+
+----
+sudo hdparm -d <device>
+----
+
+For example:
+
+----
+$ sudo hdparm -t /dev/sdd
+
+/dev/sdd:
+Timing buffered disk reads: 4726 MB in  3.00 seconds = 1574.94 MB/sec
+----
+
+You can also measure throughput using the `dd`  tool. `dd` writes directly to the specified file, even if it is a device. Do not use this tool on a bare devices. Instead, after a device is formatted and mounted, you can write to a file on that device to measure throughput.
+
+----
+$ sudo mount /dev/sdb /var/lib/gravity # must be already formatted!
+$ sudo dd if=/dev/zero of=/var/lib/gravity/testfile count=1000 bs=1M
+1000+0 records in
+1000+0 records out
+1048576000 bytes (1.0 GB, 1000 MiB) copied, 0.382535 s, 2.7 GB/s
+----
+
+The `dd` command provides less accurate information than `hdparm`, but is available on any operating system and provides the ability to easily verify general disk performance.
+
+
+=== Verify Disk Performance
+
+Measure disk throughput on each node by using a tool such as `hdparm`. On CentOS, `hdparm` can be installed by running the following command:
+
+----
+sudo yum install -y hdparm
+----
+
+== Device Requirements
+
+For the platform’s configuration you must assign four dedicated devices for use. One as a system state directory, one holds application data, another holds cluster information and the final device is used as a target for Docker devicemapper configuration.
+// Is this run from each node? What is the device name for each? Inconsistent terminology is used for 4 devices - needs to be consistent. Any guidance for size requirements/how much to allocate? System data: e.g. package size * 2? Does sys admin allocate storage for these???
+
+== Anypoint system data device
+
+The main purpose of the system state directory is to store system configuration and metadata - for example, database and packages among other things. As package sizes can be arbitrary large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+
+This device will be formatted either as `xfs` or `ext4` and mounted as `/var/lib/gravity`. You can use the following shell snippet to guide this process (be sure to specify the correct device name in 2 places).
+
+The following is provided only as an example, and should not be used as-is in production. Formatting and mounting disks is something that should be done by your system administrator. The end result of this is mounting the Anypoint system data device to the path `/var/lib/gravity`. This can be achieved using systemd mount files as shown in the example below, or `/etc/fstab`, or some other method. Please consult with your system administrator to determine the best way to meet this requirement
+
+----
+sudo mkfs.ext4 /dev/<device name>
+sudo mkdir -p /var/lib/gravity
+echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/gravity\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-gravity.mount
+sudo systemctl daemon-reload
+sudo systemctl enable var-lib-gravity.mount
+sudo systemctl start var-lib-gravity.mount
+----
+
+== etcd device
+
+The main purpose of the etcd device is to provide dedicated storage for a distributed database used for cluster coordination. It does not require much space, 20GB should be enough.
+
+This device will be formatted either as `xfs` or `ext4` and mounted as `/var/lib/gravity/planet/etcd`. You can use the following shell snippet to guide this process (be sure to specify the correct device name in 2 places).
+
+The following is provided only as an example, and should not be used as-is in production. Formatting and mounting disks is something that should be done by your system administrator. The end result of this is mounting the Etcd device to the path `/var/lib/gravityi/planet/etcd`. This can be achieved using systemd mount files as shown in the example below, or `/etc/fstab`, or some other method. Please consult with your system administrator to determine the best way to meet this requirement.
+// `/gravityi/` - is this a typo???
+
+----
+sudo mkfs.ext4 /dev/<device name>
+sudo mkdir -p /var/lib/gravity/planet/etcd
+echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/gravity/planet/etcd\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-gravity-planet-etcd.mount
+sudo systemctl daemon-reload
+sudo systemctl enable var-lib-gravity-planet-etcd.mount
+sudo systemctl start var-lib-gravity-planet-etcd.mount
+----
+
+
+== Anypoint application data device
+
+The main purpose of application data directory is storing application configuration and data. The amount of space required should be at minimum 250GB, but might vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+
+This device will be formatted either as `xfs` or `ext4` and mounted as `/var/lib/data`. You can use the following shell snippet to guide this process (be sure to specify the correct device name in 2 places).
+
+The following is provided only as an example, and should not be used as-is in production. Formatting and mounting disks is something that should be done by your system administrator. The end result of this is mounting the Anypoint application data device to the path `/var/lib/data`. This can be achieved using systemd mount files as shown in the example below, or `/etc/fstab`, or some other method. Please consult with your system administrator to determine the best way to meet this requirement.
+
+
+----
+sudo mkfs.ext4 /dev/<device name>
+sudo mkdir -p /var/lib/data
+echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/data\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-data.mount
+sudo systemctl daemon-reload
+sudo systemctl enable var-lib-data.mount
+sudo systemctl start var-lib-data.mount
+----
+
+== Docker device
+// Does sys admin allocate storage? If not, how is this done? (Check install instructions for setting up unformatted device e.g. dev/sdd during install.) Does sys admin set up unformatted device? System directory `/ Device Mapper`? Discovered devices are offered on a drop-down menu for configuration before the install is started - Unformatted vs unmounted? Section uses both terms.  Can we see actual output? How can we check available space on devices???
+
+This device is used by Docker’s Device Mapper storage driver.
+
+[NOTE]
+It is strongly recommended to have at least 100Gb sized device for the Device Mapper directory - with devices 50Gb and less the system performance will degrade dramatically or might not work at all.
+
+
+Unless specified, Docker configuration defaults to the use of Device Mapper in loopback mode (using /dev/loopX devices) which is not recommended for production. To configure Docker to use a dedicated device for Device Mapper storage driver, an unformatted device (or a partition) (i.e. /dev/sdd) can be provided during installation. This directory will be automatically configured and set up for use.
+
+Unformatted devices potentially usable for system directory / Device Mapper are automatically discovered by agents running on each node. Discovered devices are offered on a drop-down menu for configuration before the installation is started.
+
+You can list unmounted devices with the following command:
+----
+lsblk --output=NAME,TYPE,SIZE,FSTYPE -P -I 8,9,202|grep 'FSTYPE=""'
+----
+
+Unmounted devices have an empty value in FSTYPE column. Devices with TYPE="part" are partitions on another device. This command only lists specific device types:
+
+|===
+|Device type|Description
+|8   |SCSI disk devices
+|9   |Metadisk (RAID) devices
+|202 |Xen virtual block devices (Amazon EC2)
+|===
+
+== To Manually Reset Devices and Partitions
+// Is Device Mapper specific to Docker? Any down side to this? Any potential for data loss? What does ‘device’ mean here? Is it an unmounted thing or one of 4 topics described? How do you reset a partition? What does ‘reset’ mean? Says remove. Where is this run from???
+
+Logical Volume Manager allows one to group multiple physical volumes into a single storage volume (Volume Group) and then divide these into Logical
+Volumes. Physical Volumes are either a whole device or a partition.
+
+In some cases when a device is in use by another logical volume or you want to manually reset a device previously configured for Device Mapper the following commands may be useful.
+
+The Logical Volume Manager toolset consists of the following commands:
+  * dmsetup - is a low-level logical volume management
+  * pv/vg/lv-prefixed commands like pvdisplay and pvcreate/pvremove - for working with specific LVM object types (i.e. lv - for logical volumes and vg - for volume groups)
+
+To reset a device use the following commands:
+
+* remove logical volume with `lvremove -f docker/thinpool` (use `lvdisplay` to find the volume to remove)
+* remove volume group with `vgremove docker` (use `vgdisplay` to locate the volume group to remove)
+* remove physical volume and reset device with `pvremove /dev/<device name>` (use `pvdisplay` to find the physical volume to remove and the device name it is on)
+
+== Checking Block Devices
+// How does this fit into the big picture??? What if my output doesn't look like the example???
+
+Before installing block devices must be similar in all nodes. The output of running *lsblk* should be as below: 
+
+----
+[root@ip-0-0-0-0 ~]# lsblk
+NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+xvda 202:0 0 90G 0 disk
+├─xvda1 202:1 0 1M 0 part
+└─xvda2 202:2 0 90G 0 part /
+xvdb 202:16 0 100G 0 disk -- Docker volume (not formatted)
+xvdc 202:32 0 20G 0 disk /var/lib/gravity/planet/etcd
+xvdd 202:48 0 250G 0 disk /var/lib/data
+xvde 202:64 0 100G 0 disk /var/lib/gravity
+xvdf 202:64 0 20G 0 disk /tmp
+----
+
+Also make sure that you have enough space in your home directory to download and unzip the installer file. The installer is a ~10GB file.
+// How do I check the amount of space in the home directory to make sure it’s enough for 10 GB installer file???
+
+For production environments, each node in your configuration must have the following dedicated devices:
 
 [%header%autowidth.spread]
 |===
-| Component |Size|Minimum IOPS|Mount Point
-|HDD 1 ()perating system) |50 GB |500|
-|HDD 2 (System data) | 100 GB |1500|/var/lib/gravity
-|HDD 3 (Application data)| 250 GB |1500|/var/lib/data
-|HDD 4 (Docker) | 100 GB |3000|Not mounted
-|HDD 5 (Etcd) | 20 GB |3000|/var/lib/gravity/planet/etcd
+| Component |Size|Minimum IOPS|Mount Point|Description
+|HDD 1 (Operating system) |50 GB |500| |
+|HDD 2 (System data) | 100 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. As package sizes can be large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
+|HDD 3 (Application data)| 250 GB |1500|/var/lib/data | Stores application configuration and data. The amount of space required should be at least 250 GB, but might vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|HDD 4 (Docker) | 100 GB |3000|Not mounted | Used by Docker’s Device Mapper storage driver.
+|HDD 5 (Etcd) | 20 GB |3000|/var/lib/gravity/planet/etcd | Provides dedicated storage for the distributed database used for cluster coordination.
 |/tmp (Installer) | 20 GB |N/A|
 |===
-//Feedback received indicated that the gravity check failed when Installer had 20 GB. Is 25 enough? 50?
 
-The devices must be formatted either as *xfs* or *ext4*, and each node must have dedicated devices:
-//How do I check *xfs* or *ext4*?
+[NOTE]
+The space requirements listed in the previous table are based on average use. For environments with heavy traffic, validate the amount of space needed with your Customer Success Manager. To verify you have 20 GB available for the Installer device, run the following comand: Get from Fed????????? Include a check for each device????????????
 
-* System data: Stores system configuration and metadata, including databases and packages. As package sizes can be large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
-//Guidance for estimating the minimum size requirements???
-* Application data: Stores application configuration and data. The amount of space required should be at least 250 GB, but might vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
-//Guidance for estimating the minimum size requirements???
-* Docker: Used by Docker’s Device Mapper storage driver.
-* Etcd: Provides dedicated storage for the distributed database used for cluster coordination.
-
-//Verify Disk Device requirements (move https://docs.mulesoft.com/private-cloud/2.0/prereq-verify-disk to here???
-Verify Anypoint Private Cloud Disk Device Requirements - ADD CONTENT HERE
-//Is this done on each node?
+The devices must be formatted either as *xfs* or *ext4*.
 
 
 
+=== Verify Disk IOPS
+// How do you know what path to use? I got command not found error.???
 
-==  Network File System (NFS) Server
+Depending on your hardware or virtualization provider, you can configure disk IOPS (I/O Operations Per Second). Using the `iops` command, verify available IOPS on each node:
 
-// Can this be consolidated with the other NFS info???
-
-To use Anypoint Private Cloud, version 2.0+ you must install and configure an NFS server. Before installing or upgrading, you must have an NFS endpoint available. Your NFS server must meet the following requirements:
-
-* Must be running on a filesystem that has at least 250 GB available.
-* Must be using NFS version 4.0.
-* Can be backed by a network attached storage system (NAS).
-* Enable ports 111 and 2049 for both TCP and UDP.
-* Configure your network so that all of the PCE nodes can access the NFS server. The direct NFS client is Kubernetes 1.9 and requires conformance with NFS version 4.
-
-To secure your NFS server to work with Anypoint Platform contact your customer success representative.
-
-== Load Balancer
-
-A Load Balancer is required to run Anypoint Platform Private Cloud Edition. See xref:supported-cluster-config.adoc[Supported Network Topologies] and xref:install-create-lb.adoc[To Setup a Load Balancer]
+----
+$ sudo ./iops --time 2 /dev/xvdb
+/dev/xvdb, 107.37 GB, 32 threads:
+ 512   B blocks: 1893.0 IO/s, 946.5 KiB/s (  7.8 Mbit/s)
+   1 KiB blocks: 1354.8 IO/s,   1.3 MiB/s ( 11.1 Mbit/s)
+   2 KiB blocks: 1091.8 IO/s,   2.1 MiB/s ( 17.9 Mbit/s)
+   4 KiB blocks:  807.1 IO/s,   3.2 MiB/s ( 26.4 Mbit/s)
+   8 KiB blocks:  803.7 IO/s,   6.3 MiB/s ( 52.7 Mbit/s)
+  16 KiB blocks:  787.4 IO/s,  12.3 MiB/s (103.2 Mbit/s)
+  32 KiB blocks:  700.8 IO/s,  21.9 MiB/s (183.7 Mbit/s)
+  64 KiB blocks:  590.0 IO/s,  36.9 MiB/s (309.3 Mbit/s)
+ 128 KiB blocks:  327.6 IO/s,  40.9 MiB/s (343.5 Mbit/s)
+...
+----
 
 == See Also
 
 * xref:supported-cluster-config.adoc[Supported Network Topologies]
-* xref:prereq-verify-disk.adoc[Verify Disk Requirements]
-* xref:prereq-verify-device.adoc[Verify Device Requirements]
 * xref:verify-nfs.adoc[Verify NFS Server Requirements]
 * xref:install-create-lb.adoc[Set up a Load Balancer for Anypoint Platform Private Cloud Edition]
