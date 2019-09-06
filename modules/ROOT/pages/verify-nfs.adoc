@@ -18,12 +18,15 @@ Anypoint Private Cloud Edition version 2.0+ requires a Network File System (NFS)
 
 The NFS server requires ports 2049 and 111 to be open for TCP and UDP.
  
-On each node, use the netcat tool to verify that the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
+On each node, use the netcat tool, or a similar tool, to verify that the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
+
+[NOTE]
+By default, the netcat tool is not included with Anypoint Platform Private Cloud Edition. 
 // Where is the `nc` command run from- just one node???? What if the ports aren’t open? Do they have to talk to whoever set up NFS???
 
 Need NFS host name and path - how do you get these if you don’t know them?
 
-To verify that the required ports are open, execute the following commands:
+On each node, verify that the required ports are open by running the following commands:
 
 - `nc -zvu <host_name> 111`
 - `nc -zv <host_name> 2049`
@@ -31,7 +34,7 @@ To verify that the required ports are open, execute the following commands:
 If you receive a `command not found` error, you can install the `netcat` tool using the instructions in <???> 
 // Where should we link them to???
 
-When the responses are successful you receive a response similar to the following:
+When the responses are successful, you receive a response similar to the following example:
 
 ----
 [ec2-user@ip-10-1-1-97 ~]$ nc -zv <nfs_host_name> 2049
@@ -39,12 +42,10 @@ Ncat: Version 7.50 ( https://nmap.org/ncat )
 Ncat: Connected to 10.1.0.155:2049.
 Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.
 ----
-// My output didn't look like this???
 
 == Mount the NFS Server
-// Is this done on all nodes???
 
-Mount the NFS server in a temporary directory on the host. 
+On each node, mount the NFS server in a temporary directory. 
 
 . Switch to root by typing: +
 `sudo su`
@@ -54,14 +55,14 @@ Run: +
 and then: +
 `mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/` +
 If the mount fails, you do not have the required permissions. 
-// So what do I do to get the required permissions???
+// So what do I do to get the required permissions??? Put in clhecklist. Send note to infra team.
 
-== Validate NFS Performance
-// Is this done on all nodes???
+== Verify NFS Performance
+// Is this done on all nodes??? YES
 
 Perform careful analysis of your environment, both from the client and server point of view for optimal NFS performance.
 
-These are the high level steps for validating NFS performance:
+The following high level steps can be used to test NFS performance:
 
 . Perform some basic operations to test the performance and latency of your NFS server. Specifically, these operations will: +
 * Transfer data from the client (Anypoint Platform environment) to the NFS server. 
