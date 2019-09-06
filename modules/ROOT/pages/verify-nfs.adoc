@@ -3,12 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Private Cloud Edition supports the Network File System (NFSv4) protocol.
-// Can I assume that my environment is using this version????
+[IMPORTANT]
+Before installing or upgrading, your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your Customer Success Manager for assistance to ensure your NFS server is configured correctly.
 
-==  Network File System (NFS) Server
-
-To use Anypoint Private Cloud, version 2.0+ you must install and configure an NFS server. Before installing or upgrading, you must have an NFS endpoint available. Your NFS server must meet the following requirements:
+Anypoint Private Cloud Edition version 2.0+ requires a Network File System (NFS) server and an available NFS endpoint. Your NFS server must meet the following requirements:
 
 * Must be running on a filesystem that has at least 250 GB available.
 * Must be using NFS version 4.0.
@@ -16,14 +14,11 @@ To use Anypoint Private Cloud, version 2.0+ you must install and configure an NF
 * Enable ports 111 and 2049 for both TCP and UDP.
 * Configure your network so that all of the PCE nodes can access the NFS server. The direct NFS client is Kubernetes 1.9 and requires conformance with NFS version 4.
 
-To secure your NFS server to work with Anypoint Platform contact your customer success representative.
-
-
 == Verify the Required Ports are Open
 
 The NFS server requires ports 2049 and 111 to be open for TCP and UDP.
  
-Use the netcat tool to verify that the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
+On each node, use the netcat tool to verify that the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
 // Where is the `nc` command run from- just one node???? What if the ports aren’t open? Do they have to talk to whoever set up NFS???
 
 Need NFS host name and path - how do you get these if you don’t know them?
