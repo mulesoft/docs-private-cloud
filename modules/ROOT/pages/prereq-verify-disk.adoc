@@ -5,65 +5,7 @@ endif::[]
 
 // Is this done on each node???
 
-== Verifying Disk Performance
 
-To measure disk throughput, use a tool such as `hdparm`. On CentOS, `hdparm` can be installed by running
-// Verifying performance - how do you check what OS is there? What if you don’t have CentOS? Do you still use the command shown???
-----
-sudo yum install -y hdparm
-----
-
-== Testing Disk Throughput
-// This section is confusing - what can be done for bare device since hdparm shouldn't be used - it just says to write to a file on that device. How do you know what ‘device’ is???
-// Disk Throughput - done on each node? How do you know the device path???
-
-All disks should have at least 300 MB/sec of throughput. Use the following command to verify the throughput of your disk:
-
-----
-sudo hdparm -d <device>
-----
-
-For example:
-
-----
-$ sudo hdparm -t /dev/sdd
-
-/dev/sdd:
-Timing buffered disk reads: 4726 MB in  3.00 seconds = 1574.94 MB/sec
-----
-
-You can also measure throughput using the `dd`  tool. `dd` writes directly to the specified file, even if it is a device. Do not use this tool on a bare devices. Instead, after a device is formatted and mounted, you can write to a file on that device to measure throughput.
-
-----
-$ sudo mount /dev/sdb /var/lib/gravity # must be already formatted!
-$ sudo dd if=/dev/zero of=/var/lib/gravity/testfile count=1000 bs=1M
-1000+0 records in
-1000+0 records out
-1048576000 bytes (1.0 GB, 1000 MiB) copied, 0.382535 s, 2.7 GB/s
-----
-
-The `dd` command provides less accurate information than `hdparm`, but is available on any operating system and provides the ability to easily verify general disk performance.
-
-== Testing Disk IOPS
-// Testing IOPS - is this done from each node? How do you know what path to use? I got command not found error.???
-// How can the user verify disk size ???
-
-Depending on your hardware or virtualization provider, you can configure disk IOPS (I/O Operations Per Second). Using the `iops` command, you can verify available IOPS:
-
-----
-$ sudo ./iops --time 2 /dev/xvdb
-/dev/xvdb, 107.37 GB, 32 threads:
- 512   B blocks: 1893.0 IO/s, 946.5 KiB/s (  7.8 Mbit/s)
-   1 KiB blocks: 1354.8 IO/s,   1.3 MiB/s ( 11.1 Mbit/s)
-   2 KiB blocks: 1091.8 IO/s,   2.1 MiB/s ( 17.9 Mbit/s)
-   4 KiB blocks:  807.1 IO/s,   3.2 MiB/s ( 26.4 Mbit/s)
-   8 KiB blocks:  803.7 IO/s,   6.3 MiB/s ( 52.7 Mbit/s)
-  16 KiB blocks:  787.4 IO/s,  12.3 MiB/s (103.2 Mbit/s)
-  32 KiB blocks:  700.8 IO/s,  21.9 MiB/s (183.7 Mbit/s)
-  64 KiB blocks:  590.0 IO/s,  36.9 MiB/s (309.3 Mbit/s)
- 128 KiB blocks:  327.6 IO/s,  40.9 MiB/s (343.5 Mbit/s)
-...
-----
 
 == Installing Logical Volume Manager 2 (LVM2)
 //This is confusing here - section is titled 'Verify' and this is an installation step. Where should this go???
