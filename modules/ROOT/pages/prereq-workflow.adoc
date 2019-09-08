@@ -1,98 +1,79 @@
-= Preinstallation Checklist
+= Installation Prerequisites
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-// Knowledge required to install PCE: OS, File System, SSL certs, How to open ports.
-//Need to document absolute needs: OS, NFS and that environment WILL NOT run without proper versions. Customers might have their own AWS images and their provisioning process uses specific versions of stuff like RHEL that we might not support. Necessary versions of things aren't always there. Is there a way to check this after install?
-//Do we need content on positioning of PCE? e.g. many configuration aspects are performed by MuleSoft. Many things are not exposed to customers. What is the proper communication method for customers and when should they expect to involved the CUstomer Success team? Support? What is scope of Professional Services vs Customer Success vs Support?
-//Release notes process doesn't tie component updates back for customers. Fixes often made in other components - pointing to other release notes might help but this is difficult to manage. Need description of bug fix. How can release notes be linked toghether for fixes?
+== Infrastructure Requirements
+Installing or upgrading Anypoint Platform Private Cloud Edition requires existing infrastructure and specific versions of different software. Without specific versions of operating systems, NFS, and other software, Anypoint Platform Private Cloud Edition cannot run.
 
-Installing Anypoint Platform Private Cloud Edition requires existing infrastructure with specific capabilities. Before beginning the installation, make sure that you contact your infrastructure team to verify that the minimum system requirements that are described in this topic are met. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not properly set up prior to Anypoint Platform Private Cloud Edition installation.
+Problems occur with the following situations:
 
-Your infrastructure team must verify that the following work is complete. Contact MuleSoft support <link???> if additional assistance is required.
+* Using your own AWS images
+* Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform Private CLoud Edition does not support.
 
-- 
+Before beginning an installation or upgrade, make sure that you contact your infrastructure team to verify that the minimum  requirements that are described are met. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not properly set up prior to Anypoint Platform Private Cloud Edition installation or upgrade.
 
+[IMPORTANT]
+Your infrastructure team must verify that the following work is complete. If needed, contact your Customer Success Manager for assistance. If your system does not meet all of the minimum system requirements, you cannot successfully install Anypoint Platform Private Cloud Edition.
 
+ * xref:prereq-aws-terraform.adoc[Create Anypoint Private Cloud Resources on Amazon Web Services (AWS)]
+ 
+ ** Cluster set up must be complete and conform to xref:verify cluster setup is complete and conforms to xref:supported-cluster-config.adoc[Supported Network Topologies for Anypoint Private Cloud Edition].
+ * xref:prereq-hardware.adoc[Verify Hardware Requirements]
+ * xref:prereq-software.adoc[Verify Software Requirements]
+ * xref:prereq-network.adoc[Verify Network Requirements]
+ * xref:verify-nfs.adoc[Verify NFS Requirements]
+ 
+ 
+ ???
+ * Each node must be running on its own server. If you are using a virtual machine to host these nodes, you must ensure that each VM node is running on a separate physical server. How can I verify this?
+* Each of your nodes is configured with database and object store as described in <link to Supported Network Topologies> topic.
+* All nodes have access to NFS server.
+ 
+ ???
+ 
+ 
 
+== Access and Permissions
 
-To run the CLI-based installer, ensure that you have root access on all of the servers in your environment.
+* Before installing Anypoint Platform Private Cloud Edition, you must have root access (permission to run the `sudo` command) on all servers in your environment. This applies to both the CLI and GUI installers and for upgrades.
 
-Before running the installer, you need the following:
+== Information Needed for Installation
 
-* The IP address of each server in your installation.
-* The Docker device on each server
-* Your Anypoint Platform Private Cloud Edition license file
-* Anypoint Private Cloud requires that you have an NFS server installed and configured. Ensure that this is installed before beginning. See xref:prereq-workflow.adoc[Private Cloud Edition Verify Prerequisites].
+* Contact your customer success representative to obtain your Anypoint Platform Private Cloud Edition product license file. For example, `license.pem`.
+* Name and location of the installation package. For example, `/home/ec2-user/anypoint-2.0.3-installer.tar.gz`.
+* AWS credentials
 
-
-
-
-Before installing or upgrading Anypoint Platform Private Cloud Edition, you must verify that your environment meets the minimum system requirements. 
-// Does node = instance? Terminology is confusing. Needs to be consistent.??? YES : node = instance = server
-
-If your system does not meet all of the minimum system requirements, you cannot successfully install Anypoint Platform Private Cloud Edition.
-
-If you are upgrading, perform a backup of your system as described in xref:backup-and-disaster-recovery.adoc[About Backup and Recovery, role=external, window=_blank]. 
-
-If you are upgrading from an older version that requires multiple intermediate upgrades you must back up each intermediate version before proceeding to the next version.
-
-Gather all the information listed in the following steps and install the tools needed for the installation.
-
-. Contact your customer success representative to obtain the product license file for Anypoint Platform Private Cloud Edition.
-// How do I contact my rep??? Does PCE use the same license file?
-// Do we need a statement about the knowledge required to perform the install? e.g. Linux admin level of knowledge? Familiarity with Linux commands???
-
-. Verify AWS account set up with your infrastructure team. Credentials needed include:
-// Name = ID???
 ** Admin ID
 ** Admin email address
 ** Admin password
-** IP addresses for all Anypoint Private CLoud Edition nodes.
-
-. Follow the procedures described in https://docs.mulesoft.com/private-cloud/2.0/prereq-aws-terraform[Create Anypoint Private Cloud Resources on Amazon Web Services (AWS)]. If someone else set up your AWS cluster, verify cluster setup is complete and conforms to <link to architecture topic????>. This includes device set up as described in <Device requirements topic link??????>.??????
-// How can this be checked???
-
-* You must have 3 or 6 instances set up as described in <link>. Which instance type and how do I verify the instance type? T2.medium?
-* Each node must be running on its own server. If you are using a virtual machine to host these nodes, you must ensure that each VM node is running on a separate physical server. How can I verify this?
-* Each of your nodes is configured with database and object store as described in <link to Supported Network Topologies> topic.
-* Each node must have HDD1, 2, 3, 4, 5, 1 tmp.
-* All nodes have access to NFS server.
-* Name of the cluster
+* Cluster name
 * Secret token for the cluster 
 * IP address for each server in the cluster
-* Docker device name on each server
-* Must configure a load balancer with round robin distribution among 3 nodes. What about 6 nodes?
+* Device names
 
-. You must have an NFS server installed and configured before installing or upgrading Anypoint Private Cloud Edition. Ensure that your current environment meets the minimum requirements described in xref:verify-nfs.adoc[Verify NFS Server Requirements, role=external, window=_blank]. Obtain the following NFS server information needed:
+** Docker
+** Location where Anypoint Platform data is stored.
 
-** NFS Server/host name and path
+* NFS server information
+
+** NFS server name and path
 ** PLATFORM_DNS (The DNS must be configured to the NFS server.)
-// How do you check the DNS config and `/etc/hosts` config??? THIS GOES IN CHECKLIST> Fed wants to remove this from here. Put note about checking with infra team in this topic.
 
-You need to verify that your infrastructure team has given you the required permissions for mounting the NFS server if it has not been performed???
+* SMTP server??? What info is needed???
 
-. SMTP server??? What info is needed???
-
-. Name and location of the installation package. For example, `/home/ec2-user/anypoint-2.0.3-installer.tar.gz`.
-
-. Obtain the following information about your organization and Anypoint Platform administrator:
-// Is there any chance that Anypoint Platform isn't set up yet???
+* Anypoint Platform organization and administrator:
 
 ** Organization name
 ** Administrator name
 ** Administrator email
 ** Administrator username
 ** Administrator password
-** Location where Anypoint Platform data is stored.
-** The Anypoint Private Cloud Edition license file. For example, `license.pem`.
-// Should org name be the same as cluster deployment? How can I find out where Anypoint platform data is stored if it’s not the default? How much is enough disk space???
 
-. Verify the following software-related items:
+== Tools
 
-** Netcat commands must be run to verify ports are open on NFS server. If you don’t have the netcat tool, install it from here: http://netcat.sourceforge.net/download.php -  which download is appropriate??? Additional reference info: https://linoxide.com/linux-how-to/install-use-netcat-command-linux/
-Ensure you have permission to run the `sudo` command on the node from which you plan to launch the installation or migration.
+* Netcat commands must be run to verify ports are open on NFS server. If you don’t have the netcat tool, install it from here: http://netcat.sourceforge.net/download.php -  which download is appropriate??? Additional reference info: https://linoxide.com/linux-how-to/install-use-netcat-command-linux/
+
 ** Ensure the `kubectl` command is available on the node where you are performing the installation or migration. To verify that `kubectl` is installed, run the following:
 +
 ----
@@ -103,24 +84,16 @@ $ kubectl
 
 ** Enable TCP ports `53`, `3011`, `3012` intra-node to allow communication with the database cluster.
 
-. xref:prereq-hardware.adoc[Hardware and Device Requirements]
 
-** xref:prereq-verify-disk.adoc[Verify Disk Requirements]
-** xref:prereq-verify-device.adoc[Verify Device Requirements]
+* Must configure a load balancer with round robin distribution among 3 nodes. What about 6 nodes?
 
-. xref:prereq-network.adoc[Network Requirements]
-. xref:prereq-software.adoc[Software Requirements]
-. xref:prereq-verify-software.adoc[To Uninstall Unsupported Software]
-. xref:prereq-gravity-check.adoc[Verify System Requirements]
-// This is a confusing title - everything here is basically a 'system' requirement.??? Need a list of what `gravity check` checks and what it doesn't.???
+// Knowledge required to install PCE: OS, File System, SSL certs, How to open ports.
+// Linux admin level of knowledge? Familiarity with Linux commands???
 
 
 == Load Balancer
 
 A Load Balancer is required to run Anypoint Platform Private Cloud Edition. See xref:supported-cluster-config.adoc[Supported Network Topologies] and xref:install-create-lb.adoc[To Setup a Load Balancer]
-
-
-
 
 
 == To Manually Reset Devices and Partitions
@@ -142,7 +115,7 @@ To reset a device use the following commands:
 * remove physical volume and reset device with `pvremove /dev/<device name>` (use `pvdisplay` to find the physical volume to remove and the device name it is on)
 
 == Checking Block Devices
-// How does this fit into the big picture??? THIS IS A SUMMARY OF VALIDATING YOUR CONFIG IS OK. PUT IN VALIDATE SECTION. This is what it looks like after checking, What if my output doesn't look like the example???
+// THIS IS A SUMMARY OF VALIDATING YOUR CONFIG IS OK. PUT IN VALIDATE SECTION. This is what it looks like after checking, What if my output doesn't look like the example???
 
 Before installing block devices must be similar in all nodes. The output of running *lsblk* should be as below: 
 
@@ -169,8 +142,6 @@ Also make sure that you have enough space in your home directory to download and
 After provisioning resources in your AWS environment and uploading the installer to one of the nodes, install Anypoint Platform Private Cloud Edition using one of the installers:
 // How do I upload the installer to one of the nodes? (or did we do this already)? Does it matter which node???
 
-* xref:install-installer.adoc[To Install Anypoint Private Cloud using the GUI Installer]
-* xref:install-auto-install.adoc[To Install Anypoint Private Cloud using the Command Line Installer]
 
 == Disabling Port 61009 After Installation
 
@@ -179,4 +150,11 @@ After installation is finished you can close port 61009 in the cluster security 
 
 
 
+If you are upgrading, perform a backup of your system as described in xref:backup-and-disaster-recovery.adoc[About Backup and Recovery, role=external, window=_blank]. 
 
+If you are upgrading from an older version that requires multiple intermediate upgrades you must back up each intermediate version before proceeding to the next version.
+Make sure your environment meets all requirements <link????)
+
+See also
+Install
+Upgrade - links?????
