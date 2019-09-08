@@ -18,7 +18,7 @@ Anypoint Private Cloud Edition version 2.0+ requires a Network File System (NFS)
 
 The NFS server requires ports 2049 and 111 to be open for TCP and UDP.
  
-On each node, use the netcat tool, or a similar tool, to verify that the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
+On each node, use netcat or a similar tool to verify that the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
 
 On each node, run the following commands:
 
@@ -26,8 +26,7 @@ On each node, run the following commands:
 - `nc -zv <host_name> 2049`
 
 [NOTE]
-By default, the netcat tool is not included with Anypoint Platform Private Cloud Edition. If you receive a `command not found` error, you can install the `netcat` tool using the instructions in <???> 
-// Where should we link them to???
+By default, the netcat tool is not included with Anypoint Platform Private Cloud Edition. If you receive a `command not found` error, you can download and install `netcat` or a similar tool.
 
 When the responses from netcat are successful, you receive a response similar to the following example:
 
