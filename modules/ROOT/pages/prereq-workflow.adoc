@@ -17,12 +17,14 @@ Your infrastructure team must verify that the following work is complete. Contac
 
 
 
+To run the CLI-based installer, ensure that you have root access on all of the servers in your environment.
 
+Before running the installer, you need the following:
 
-
-
-
-
+* The IP address of each server in your installation.
+* The Docker device on each server
+* Your Anypoint Platform Private Cloud Edition license file
+* Anypoint Private Cloud requires that you have an NFS server installed and configured. Ensure that this is installed before beginning. See xref:prereq-workflow.adoc[Private Cloud Edition Verify Prerequisites].
 
 
 
@@ -65,8 +67,11 @@ Gather all the information listed in the following steps and install the tools n
 
 . You must have an NFS server installed and configured before installing or upgrading Anypoint Private Cloud Edition. Ensure that your current environment meets the minimum requirements described in xref:verify-nfs.adoc[Verify NFS Server Requirements, role=external, window=_blank]. Obtain the following NFS server information needed:
 
-** Server/host name and path
+** NFS Server/host name and path
 ** PLATFORM_DNS (The DNS must be configured to the NFS server.)
+// How do you check the DNS config and `/etc/hosts` config??? THIS GOES IN CHECKLIST> Fed wants to remove this from here. Put note about checking with infra team in this topic.
+
+You need to verify that your infrastructure team has given you the required permissions for mounting the NFS server if it has not been performed???
 
 . SMTP server??? What info is needed???
 
@@ -113,3 +118,65 @@ $ kubectl
 == Load Balancer
 
 A Load Balancer is required to run Anypoint Platform Private Cloud Edition. See xref:supported-cluster-config.adoc[Supported Network Topologies] and xref:install-create-lb.adoc[To Setup a Load Balancer]
+
+
+
+
+
+== To Manually Reset Devices and Partitions
+// THIS IS A DUP FROM UNINSTALL INSTRUCITONS. POSSIBLY MOVE TO MANUAL RESET SECTION. How do you reset a partition? What does ‘reset’ mean? Says remove. Where is this run from???
+
+Logical Volume Manager allows one to group multiple physical volumes into a single storage volume (Volume Group) and then divide these into Logical
+Volumes. Physical Volumes are either a whole device or a partition.
+
+In some cases when a device is in use by another logical volume or you want to manually reset a device previously configured for Device Mapper the following commands may be useful.
+
+The Logical Volume Manager toolset consists of the following commands:
+  * dmsetup - is a low-level logical volume management
+  * pv/vg/lv-prefixed commands like pvdisplay and pvcreate/pvremove - for working with specific LVM object types (i.e. lv - for logical volumes and vg - for volume groups)
+
+To reset a device use the following commands:
+
+* remove logical volume with `lvremove -f docker/thinpool` (use `lvdisplay` to find the volume to remove)
+* remove volume group with `vgremove docker` (use `vgdisplay` to locate the volume group to remove)
+* remove physical volume and reset device with `pvremove /dev/<device name>` (use `pvdisplay` to find the physical volume to remove and the device name it is on)
+
+== Checking Block Devices
+// How does this fit into the big picture??? THIS IS A SUMMARY OF VALIDATING YOUR CONFIG IS OK. PUT IN VALIDATE SECTION. This is what it looks like after checking, What if my output doesn't look like the example???
+
+Before installing block devices must be similar in all nodes. The output of running *lsblk* should be as below: 
+
+----
+[root@ip-0-0-0-0 ~]# lsblk
+NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+xvda 202:0 0 90G 0 disk
+├─xvda1 202:1 0 1M 0 part
+└─xvda2 202:2 0 90G 0 part /
+xvdb 202:16 0 100G 0 disk -- Docker volume (not formatted)
+xvdc 202:32 0 20G 0 disk /var/lib/gravity/planet/etcd
+xvdd 202:48 0 250G 0 disk /var/lib/data
+xvde 202:64 0 100G 0 disk /var/lib/gravity
+xvdf 202:64 0 20G 0 disk /tmp
+----
+
+Also make sure that you have enough space in your home directory to download and unzip the installer file. The installer is a ~10GB file.
+// How do I check the amount of space in the home directory to make sure it’s enough for 10 GB installer file??? Get command from Fed???????? THIS INFO SHOULD BE IN MAIN CHECKLIST.
+
+
+
+== Install Anypoint Platform Private Cloud Edition
+
+After provisioning resources in your AWS environment and uploading the installer to one of the nodes, install Anypoint Platform Private Cloud Edition using one of the installers:
+// How do I upload the installer to one of the nodes? (or did we do this already)? Does it matter which node???
+
+* xref:install-installer.adoc[To Install Anypoint Private Cloud using the GUI Installer]
+* xref:install-auto-install.adoc[To Install Anypoint Private Cloud using the Command Line Installer]
+
+== Disabling Port 61009 After Installation
+
+After installation is finished you can close port 61009 in the cluster security group using the AWS Web console.
+
+
+
+
+
