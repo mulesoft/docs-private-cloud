@@ -7,7 +7,7 @@ This topic describes how to run the GUI-based installer for Anypoint Platform Pr
 
 == Prerequisites
 
-Before running the installer, ensure that your system meets the minimum system requirements and that you have all information listed in the installation checklist.
+Before running the installer, ensure that your system meets the minimum system requirements and that you have gathered all information listed in the installation checklist.
 
 The GUI installer automatically validates requirements for disk space, disk speed, network speed and operating system version. You must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall.adoc[Uninstall and Reinstall Anypoint Private Cloud].
 
@@ -87,15 +87,13 @@ This may take a few minutes to complete. If you system meets all of the requirem
 +
 This IP address is used to communicate within the cluster.
 
-. Choose a Docker device from the drop-down list, or manually specify the path to your own. Ensure that on each of your nodes, both devices are configured with enough space.
-//Choose Docker device - any guidance? I thought Docker was uninstalled, why would there be anything listed here? How do I know if there’s enough space???
+. Choose your Docker device from the drop-down list, or manually specify the path. 
 +
 This is the device Docker uses for volume management.
 
-. Enter the location where Anypoint Platform data is stored.
-// How can I find out where Anypoint platform data is stored if it’s not the default? How much is enough disk space???
+. Enter the location of the Application Data device.
 +
-This is the location of the databases and object stores. By default, this location is `/var/lib/data`. You must ensure that the location you specify has enough disk space.
+This is the location of the databases and object stores. By default, this location is `/var/lib/data`.
 
 . After all nodes are visible and configured, click *Start Installation*.
 +
@@ -108,7 +106,6 @@ The installer passes through several different stages. Wait for this process to 
 * Administrator username
 * Administrator password
 +
-//Should org name be the same as cluster deployment???
 
 Platform users access their accounts based on the organization name that you provide here or a business group within it.
 
