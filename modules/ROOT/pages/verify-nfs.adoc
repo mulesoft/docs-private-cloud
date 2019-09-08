@@ -20,21 +20,16 @@ The NFS server requires ports 2049 and 111 to be open for TCP and UDP.
  
 On each node, use the netcat tool, or a similar tool, to verify that the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
 
-[NOTE]
-By default, the netcat tool is not included with Anypoint Platform Private Cloud Edition. 
-// Where is the `nc` command run from- just one node???? What if the ports aren’t open? Do they have to talk to whoever set up NFS???
-
-Need NFS host name and path - how do you get these if you don’t know them?
-
-On each node, verify that the required ports are open by running the following commands:
+On each node, run the following commands:
 
 - `nc -zvu <host_name> 111`
 - `nc -zv <host_name> 2049`
 
-If you receive a `command not found` error, you can install the `netcat` tool using the instructions in <???> 
+[NOTE]
+By default, the netcat tool is not included with Anypoint Platform Private Cloud Edition. If you receive a `command not found` error, you can install the `netcat` tool using the instructions in <???> 
 // Where should we link them to???
 
-When the responses are successful, you receive a response similar to the following example:
+When the responses from netcat are successful, you receive a response similar to the following example:
 
 ----
 [ec2-user@ip-10-1-1-97 ~]$ nc -zv <nfs_host_name> 2049
@@ -54,15 +49,13 @@ Run: +
 `mkdir -p /mnt/home` +
 and then: +
 `mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/` +
-If the mount fails, you do not have the required permissions. 
-// So what do I do to get the required permissions??? Put in clhecklist. Send note to infra team.
+If the mount fails, you do not have the required permissions.
 
 == Verify NFS Performance
-// Is this done on all nodes??? YES
 
 Perform careful analysis of your environment, both from the client and server point of view for optimal NFS performance.
 
-The following high level steps can be used to test NFS performance:
+On each node, the following high level steps can be used to test NFS performance:
 
 . Perform some basic operations to test the performance and latency of your NFS server. Specifically, these operations will: +
 * Transfer data from the client (Anypoint Platform environment) to the NFS server. 
