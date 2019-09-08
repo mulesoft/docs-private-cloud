@@ -3,21 +3,6 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-// Is this done on each node???
-
-
-
-== Installing Logical Volume Manager 2 (LVM2)
-//This is confusing here - section is titled 'Verify' and this is an installation step. Where should this go???
-
-To install and run Anypoint Platform Private Cloud Edition, you must install and use LVM2. LVM2 is a tool that adds a layer of abstraction between your operating system and the disks/partitions it uses. You must have root access to install LVM2.
-
-You can install LVM using Yum. Yum is an open-source command-line package-management utility for Linux operating systems using the RPM Package Manager. Using Yum, you can install LVM through the following command:
-
-----
-sudo yum install lvm2
-----
-// What should I do if this fails???
 
 == See also
 
