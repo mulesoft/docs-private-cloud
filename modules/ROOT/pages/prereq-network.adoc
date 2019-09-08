@@ -5,8 +5,6 @@ endif::[]
 
 To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the network requirements described in this topic. 
 
-//What examples are needed here????
-
 [IMPORTANT]
 Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated network requirements. If needed, contact your Customer Success Manager for assistance.
 
@@ -19,7 +17,7 @@ restarts. If IP addresses are not persistent between reboots, the cluster can fa
 
 The version of Kubernetes supported by Anypoint Platform Private Cloud Edition uses an overlay VXLAN and UDP 
 transport to encapsulate traffic. There is direct communication between components of the cluster. The following table 
- lists the ports used for inter-host communication. You must ensure that all of the following ports are 
+lists the ports used for inter-host communication. You must ensure that all of the following ports are 
 configured correctly on all nodes.
 
 [%header%autowidth.spread]
@@ -45,8 +43,7 @@ configured correctly on all nodes.
 |TCP | 32009 | Ops Center Admin UI
 |===
 
-You can use `netcat` to verify port configuration.
-// add validation section to ensure that ports are open. Show node communication with ports open and example. Validate server to server with netcat, test communication betweeen two nodes.??????
+You can use `netcat` or similar tool to verify port configuration.
 
 == Verify NAT Traffic Requirements
 
@@ -75,7 +72,7 @@ client management as OpenID Connect, the cluster must be able to access the Exte
 
 == Verify IP Forwarding and Bridging
 
-To ensure proper cluster load balancing and routing, you must enable and correctly configure the following:
+To ensure proper cluster load balancing and routing, you must enable and correctly configure the following items:
 
 * Kernel IP forwarding: to enable internal Kubernetes load balancing you must enable IPv4 forwarding on all servers.
 * Bridge-netfilter: enables the Linux kernel to translate packets to and from hosted containers.
