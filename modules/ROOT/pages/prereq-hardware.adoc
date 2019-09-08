@@ -2,6 +2,9 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: prereq-verify-disk.adoc, prereq-verify-device.adoc
+// Moved https://docs.mulesoft.com/private-cloud/2.0/prereq-verify-disk information here.
+// Moved https://docs.mulesoft.com/private-cloud/2.0/prereq-verify-device information here.
 
 To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the requirements described in this topic. 
 
@@ -23,9 +26,6 @@ Anypoint Platform Private Cloud Edition has strict minimum size and performance 
 
 * Must have at least 300 MB/sec of throughput.
 * Must have performance capabilities that can accomodate the expected environment traffic, even if they are virtual block devices or network attached storage.
-
-//moved https://docs.mulesoft.com/private-cloud/2.0/prereq-verify-disk to here - ADD page alias???????????
-// https://docs.mulesoft.com/private-cloud/2.0/prereq-verify-device - ADD page alias???????????
 
 === Verify Disk Throughput
 
@@ -177,13 +177,6 @@ $ sudo ./iops --time 2 /dev/xvdb
  128 KiB blocks:  327.6 IO/s,  40.9 MiB/s (343.5 Mbit/s)
 ...
 ----
-
-
-
-
-
-
-
 
 == To Manually Reset Devices and Partitions
 // Is Device Mapper specific to Docker? NO . THIS IS A DUP FROM UNINSTALL INSTRUCITONS. POSSIBLY MOVE TO MANUAL RESET SECTION. What does ‘device’ mean here? Is it an unmounted thing or one of 4 topics described? How do you reset a partition? What does ‘reset’ mean? Says remove. Where is this run from???
