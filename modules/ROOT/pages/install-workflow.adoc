@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+After your infrastructure team verifies that the required infrastructure has been correctly installed and configured, and you have obtained the necessary information described in xref:prereq-workflow.adoc[Installation Prerequisites], upload the installation package to all nodes in your environment and select one node from which to run the installation. You can then install Anypoint Platform Private Cloud Edition using one of the following installers. 
+
 There are two ways to install Anypoint Private Cloud Edition:
 
 * Using the GUI installer.
