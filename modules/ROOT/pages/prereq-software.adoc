@@ -2,6 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: prereq-verify-software.adoc
 
 To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the software requirements described in this topic. 
 
@@ -77,9 +78,22 @@ Replace the setting above with the setting you are configuring. Ensure there are
 
 xref:prereq-firewalld-forwarding.adoc[To Enable Forwarding When Using firewalld]
 
-== Synchronized clocks
+== Synchronize clocks
 
 Ensure that the clocks on all servers are synchronized. Unsynchronized clocks can cause problems with platform communications.
+
+== Uninstall Unsupported Software
+
+The following sections describe software that can cause conflicts with Anypoint Platform Private Cloud Edition. You must uninstall these components before performing Anypoint Platform Private Cloud Edition installation.
+
+=== Docker
+
+Docker should be uninstalled from servers running the Anypoint Platform Private Cloud Edition. The Anypoint Platform installation includes a Docker package officially supported by Kubernetes.
+
+=== Local DNS Servers
+
+Local caching DNS servers listening on port 53 should be removed, e.g. named, dnsmasq, bind or others.
+
 
 == See Also
 
