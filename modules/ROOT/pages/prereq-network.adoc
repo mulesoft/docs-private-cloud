@@ -1,4 +1,4 @@
-= Private Cloud Edition Network Requirements
+= Verify Network Requirements
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
