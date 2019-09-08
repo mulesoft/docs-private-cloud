@@ -143,7 +143,7 @@ aws sts get-caller-identity
 
 * Limit exceeded
 
-The AWS account might have some limits set on the amount of the resources you can create. Delete some unused resources or request a limit increase on from AWS.
+The AWS account might have some limits set on the amount of the resources you can create. Delete some unused resources or request a limit increase on AWS.
 
 * AMI not found
 
