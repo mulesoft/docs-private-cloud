@@ -4,10 +4,9 @@ include::_attributes.adoc[]
 endif::[]
 
 After setting up your environment, you can run the `gravity check` script to verify that your system meets the minimum requirements for Anypoint Private Cloud.
-// This is out of order - this needs to be first.??? How do I know where the gravity binary and app.yaml manifest are? Where do I copy these to on each node? I got command not found. Anything different for 3 node vs 6 node environment???
+How do I know where the gravity binary and app.yaml manifest are? Where do I copy these to on each node? I got command not found. Anything different for 3 node vs 6 node environment???
 
 . Copy the following from the node where you ran the installer to each node of your cluster:
-// This is located before the installation topic, so we haven't installed yet.???
 +
 * The `gravity` binary.
 * The `app.yaml` manifest used by the `gravity` binary.
