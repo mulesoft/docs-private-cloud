@@ -74,6 +74,16 @@ echo net.ipv4.ip_forward=1 >> /etc/sysctl.d/10-ipv4-forwarding.conf
 
 Replace the setting above with the setting you are configuring. Ensure there are no processes or files conflicting with those settings.
 
+== Install Logical Volume Manager 2 (LVM2)
+
+To install and run Anypoint Platform Private Cloud Edition, you must install and use LVM2. LVM2 is a tool that adds a layer of abstraction between your operating system and the disks/partitions it uses. You must have root access to install LVM2.
+
+You can install LVM using Yum. Yum is an open-source command-line package-management utility for Linux operating systems using the RPM Package Manager. Using Yum, you can install LVM through the following command:
+
+----
+sudo yum install lvm2
+----
+
 == Enable Forwarding When Using firewalld
 
 xref:prereq-firewalld-forwarding.adoc[To Enable Forwarding When Using firewalld]
