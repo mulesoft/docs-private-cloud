@@ -3,43 +3,19 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to install Anypoint Platform Private Cloud Edition using a CLI-based installer. This installer enables you to specify all required parameters from the command line.
+Use the Anypoint Platform Private Cloud Edition CLI-based installer when you want to specify all required parameters from the command line.
 
 [WARNING]
 ====
-Before running the installer, ensure that your system meets all installation prerequisites.
+Before running the installer, ensure that your system meets the minimum system requirements and that you have gathered all information listed in the installation checklist.
 ====
-
-== Prerequisites
-
-To run the CLI-based installer, ensure that you have root access on all of the servers in your environment.
-
-Before running the installer, you need the following:
-
-* The IP address of each server in your installation.
-* The Docker device on each server
-* Your Anypoint Platform Private Cloud Edition license file
-* Anypoint Private Cloud requires that you have an NFS server installed and configured. Ensure that this is installed before beginning. See xref:prereq-workflow.adoc[Private Cloud Edition Verify Prerequisites].
 
 == About the Installation Scripts
 
 The CLI installation uses two scripts:
 
-* `gravity install`: begins the installation and handles intra-server communication during the install. This script also installs the platform on the server.
-* `gravity join`: installs the platform on each additional server.
-
-Run the script on each node of your installation. The value of the `role` parameter depends on the type of installation you are performing:
-
-[%header,cols="4*a"]
-|===
-|If you are installing a ... |Run ... |Value of the `flavor` parameter |Value of the `role` parameter
-|1-node configuration |`gravity install` on 1 node |`flavor=one` |`role=demo_node`
-|3-node configuration |`gravity install` on 1 node |`flavor=three` |`role=general_node`
-| |`gravity join` on the 2 remaining nodes |N/A |`role=general_node`
-|6-node configuration |`gravity install` on 1 node |`flavor=six` |`role=app_node`
-| |`gravity join` on 2 nodes |N/A |`role=app_node`
-| |`gravity join` on the 3 remaining nodes |N/A |`role=data_node`
-|===
+* `gravity install`: begins the installation and handles intra-server communication during the install. This script also installs the platform on the server. This script is only run on one node.
+* `gravity join`: installs the platform on each additional server. This script is run on all nodes except for the node running the `gravity install` script.
 
 When installing a single-node configuration, the automated installer also installs and configures the demo LDAP server.
 
@@ -69,7 +45,12 @@ Using the following values:
 |cluster_name | Defines the name of your cluster. This can be anything that you choose. Just make a note of the value so that you can provide this value on the commands used on the other nodes in the cluster.
 |flavor | Specifies the number of nodes in your cluster. Valid values are: `one`, `three`, and `six`.
 |device | Specifies the the path to the Docker device on each server. Use `lsblk` to list the available devices.
-|role | Specifies the role of the server where you are running the command. Valid values are: `general_node`, `data_node` and `app_node`.
+|role | Specifies the role of the server where you are running the command. Valid values are:
+
+* `demo-node` for a 1-node configuration
+* `general_node` for all nodes in a 3-node configuration
+* `app_node` for the installation node and 2 other nodes in a 6-node configuration
+* `data_node` for the remaining 3 nodes in a 6-node configuration
 |===
 
 . If you are performing a multi-node installation, run the following command while the `./gravity install` command is running. Make sure that you run the following command after the installer node indicates that it is waiting for other nodes to join. Otherwise, an error is displayed by the nodes trying to join. If you are performing a single-node installation, skip this step:
@@ -99,7 +80,6 @@ sudo gravity enter
 +
 [NOTE]
 Before running this script, replace the `email`, `name`, and `password` parameters with the corresponding values for your environment. These are the credentials that a system administrator uses to manage the system.
-// Does name = ID??? Difference between name and username???
 +
 ----
 curl -X POST http://bandwagon-mulesoft.default.svc.cluster.local/api/complete -H "Content-Type:application/json" -d '{"organization": "Test Org", "email": "username@mulesoft.com", "name": "username", "password": "my_password", "support": false, "nfsServer": "NFS_SERVER_HOST", "nfsPath": "NFS_SERVER_PATH", "platformDns": "PLATFORM_DNS"}'
