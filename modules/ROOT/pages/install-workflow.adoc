@@ -8,7 +8,15 @@ Before starting an Anypoint Platform Private Cloud Edition installation or upgra
 
 In addition, you must make sure that the other requirements listed in xref:prereq-other.adoc[Other Installation Prerequisites] are met.
 
-You must have the required infrastructure in place, as well as other work items and information to be able to install or upgrade Anypoint Platform Private Cloud Edition successfully.
+After your infrastructure team verifies that the required infrastructure has been correctly installed and configured, and you have obtained the necessary information and performed the tasks described in xref:prereq-other.adoc[Other Installation Prerequisites], upload the installation package to all nodes in your environment and select one node from which to run the installation. You can then install Anypoint Platform Private Cloud Edition using one of the following installers. 
+
+* GUI installer.
+* CLI installer.
+
+The GUI installer requires you to open extra ports and a web browser to access the pages.
+The GUI installer is interactive and walks you through a set of wizard pages that enable you to specify configuration options.
+
+The CLI installer does not require human interaction using a web browser and is useful for automation.
 
 == See Also
 
