@@ -3,20 +3,32 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Private Cloud Edition supports the Network File System (NFSv4) protocol.
+[IMPORTANT]
+Before installing or upgrading, your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your Customer Success Manager for assistance to ensure your NFS server is configured correctly.
+
+Anypoint Private Cloud Edition version 2.0+ requires a Network File System (NFS) server and an available NFS endpoint. Your NFS server must meet the following requirements:
+
+* Must be running on a filesystem that has at least 250 GB available.
+* Must be using NFS version 4.0.
+* Can be backed by a network attached storage system (NAS).
+* Enable ports 111 and 2049 for both TCP and UDP.
+* Configure your network so that all of the PCE nodes can access the NFS server. The direct NFS client is Kubernetes 1.9 and requires conformance with NFS version 4.
 
 == Verify the Required Ports are Open
 
-The NFS server requires ports 2049 and 111 to be open.
+The NFS server requires ports 2049 and 111 to be open for TCP and UDP.
  
-Use the netcat tool to verify that the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
+On each node, use netcat or a similar tool to verify that the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
 
-To verify that the required ports are open, execute the following commands:
+On each node, run the following commands:
 
 - `nc -zvu <host_name> 111`
 - `nc -zv <host_name> 2049`
 
-When the responses are successful you receive a response similar to the following:
+[NOTE]
+By default, the netcat tool is not included with Anypoint Platform Private Cloud Edition. If you receive a `command not found` error, you can download and install `netcat` or a similar tool.
+
+When the responses from netcat are successful, you receive a response similar to the following example:
 
 ----
 [ec2-user@ip-10-1-1-97 ~]$ nc -zv <nfs_host_name> 2049
@@ -27,7 +39,7 @@ Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.
 
 == Mount the NFS Server
 
-Mount the NFS server in a temporary directory on the host. 
+On each node, mount the NFS server in a temporary directory. 
 
 . Switch to root by typing: +
 `sudo su`
@@ -36,13 +48,13 @@ Run: +
 `mkdir -p /mnt/home` +
 and then: +
 `mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/` +
-If the mount fails, you do not have the required permissions. 
+If the mount fails, you do not have the required permissions.
 
-== Validate NFS Performance
+== Verify NFS Performance
 
 Perform careful analysis of your environment, both from the client and server point of view for optimal NFS performance.
 
-These are the high level steps for validating NFS performance:
+On each node, the following high level steps can be used to test NFS performance:
 
 . Perform some basic operations to test the performance and latency of your NFS server. Specifically, these operations will: +
 * Transfer data from the client (Anypoint Platform environment) to the NFS server. 
