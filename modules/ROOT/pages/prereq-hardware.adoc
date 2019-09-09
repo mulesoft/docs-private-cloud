@@ -1,4 +1,4 @@
-= Disk and Device Requirements for Anypoint Private Cloud
+= Hardware Requirements for Anypoint Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,7 +9,7 @@ endif::[]
 To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the requirements described in this topic. 
 
 [IMPORTANT]
-Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your Customer Success Manager for assistance.
+Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated disk and device requirements. If needed, contact your Customer Success Manager for assistance.
 
 == Memory and CPU Requirements
 
