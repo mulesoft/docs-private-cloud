@@ -81,5 +81,6 @@ is still set up correctly and meets the minimum disk and resource requirements.
 
 == See Also
 
-* xref:prereq-workflow.adoc[Workflow: Install and Verify Prerequisites for Physical Servers]
-* xref:install-auto-install.adoc[To Install Anypoint Platform Private Cloud Using Automated Installer]
+* xref:install-workflow.adoc[Anypoint Platform Private Cloud Edition Installation Requirements]
+* xref:install-installer.adoc[Install Anypoint Platform Private Cloud Using GUI Installer]
+* xref:install-auto-install.adoc[Install Anypoint Platform Private Cloud Using CLI Installer]
