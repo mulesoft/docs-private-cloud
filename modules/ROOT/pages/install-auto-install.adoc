@@ -15,11 +15,6 @@ Use the Anypoint Platform Private Cloud Edition CLI-based installer when you wan
 [IMPORTANT]
 Most problems occur from not following the minimum system requirements. Make sure that your system meets the minimum system requirements and that you have gathered all information listed in the installation checklist.
 
-== See Also
-
-* xref:install-installer.adoc[To Install using the GUI-based installer]
-* xref:install-auto-install.adoc[To Install using the CLI-based installer]
-
 [WARNING]
 ====
 Before running the installer, ensure that your system meets the minimum system requirements and that you have gathered all information listed in the installation checklist.
@@ -102,6 +97,5 @@ curl -X POST http://bandwagon-mulesoft.default.svc.cluster.local/api/complete -H
 
 == See Also
 
-* xref:prereq-workflow.adoc[Workflow: Verify Prerequisites]
+* xref:install-workflow.adoc[Anypoint Platform Private Cloud Edition Installation Requirements]
 * xref:install-installer.adoc[To Install using the GUI-based installer]
-* xref:demo-ldap-server.adoc[About the Demo LDAP Server]
