@@ -201,6 +201,6 @@ $ sudo ./iops --time 2 /dev/xvdb
 
 == See Also
 
-* xref:supported-cluster-config.adoc[Supported Network Topologies]
-* xref:verify-nfs.adoc[Verify NFS Server Requirements]
-* xref:install-create-lb.adoc[Set up a Load Balancer for Anypoint Platform Private Cloud Edition]
+* xref:prereq-software.adoc[Software Requirements for Anypoint Private Cloud]
+* xref:prereq-network.adoc[Network Requirements for Anypoint Private Cloud]
+* xref:verify-nfs.adoc[NFS Server Requirements for Anypoint Private Cloud]
