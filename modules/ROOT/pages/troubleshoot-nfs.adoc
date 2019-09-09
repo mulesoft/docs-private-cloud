@@ -3,6 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+[IMPORTANT]
+Setting up and configuring an NFS server should be performed by your infrastructure team. If you experience problems with any of the following instructions, contact your infrastructure team for assistance.
+
+You must have a connection from each node to NFS.
 
 == Error: “Server Not Responding”
 
