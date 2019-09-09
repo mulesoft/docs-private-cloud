@@ -5,18 +5,6 @@ endif::[]
 
 This topic describes how to run the GUI-based installer for Anypoint Platform Private Cloud Edition. The GUI installer provides a wizard that walks you through the installation process.
 
-After your infrastructure team verifies that the required infrastructure has been correctly installed and configured, and you have obtained the necessary information described in xref:prereq-workflow.adoc[Installation Prerequisites], upload the installation package to all nodes in your environment and select one node from which to run the installation. You can then install Anypoint Platform Private Cloud Edition using one of the following installers. 
-
-There are two ways to install Anypoint Private Cloud Edition:
-
-* Using the GUI installer.
-* Using the CLI installer.
-
-The GUI based installer requires you to open extra ports and a web browser to access the pages.
-The GUI installer is interactive and walks you through a set of wizard pages that enable you to specify configuration options.
-
-The CLI installer does not require human interaction using a web browser and is useful for automation.
-
 [NOTE]
 ====
 
