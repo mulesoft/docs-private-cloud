@@ -1,0 +1,83 @@
+= Other Installation Prerequisites
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+[IMPORTANT]
+To successfully install or upgrade Anypoint Platform Private Cloud Edition, you must read and perform the work 
+described in this topic. 
+
+== Background Knowledge Requirements
+
+To install Anypoint Platform Private Cloud Edition, you should have knowledge in the following areas:
+
+* Linux commands
+* File system concepts
+* SSL certs
+* How to open ports
+
+== Configuration Information Requirements
+
+Gather the following information:
+
+* Contact your MuleSoft Customer Success Representative to obtain your Anypoint Platform Private Cloud Edition product license file. For example, `license.pem`.
+* Name and location of the installation package. For example, `/home/ec2-user/anypoint-2.0.3-installer.tar.gz`.
+* AWS credentials
+
+** Admin ID
+** Admin email address
+** Admin password
+* Cluster name
+* Secret token for the cluster 
+* IP address for each server in the cluster
+* Device names
+
+** System state directory
+** Application data
+** etcd
+** Docker
+
+* NFS server information
+
+** NFS server name and path
+** PLATFORM_DNS (The DNS must be configured to the NFS server.)
+
+* Anypoint Platform organization and administrator:
+
+** Organization name
+** Administrator name
+** Administrator email
+** Administrator username
+** Administrator password
+
+== Access and Permissions Requirements
+
+* Before installing or upgrading Anypoint Platform Private Cloud Edition, you must have root access (permission to run the `sudo` command) on all servers in your environment.
+
+== Home Directory Space Requirements 
+
+Make sure that you have enough space in your home directory to download and unzip the installer file. The installer is a ~10GB file.
+
+== Tool Requirements
+
+* Netcat
+
+** Netcat can be used to verify ports are open on NFS server. If you don’t have `netcat`, you can install it from  http://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
+
+* Kubectl
+
+** Ensure the `kubectl` command is available on the node where you are performing the installation or migration. To verify that `kubectl` is installed, run the following:
++
+----
+$ sudo gravity enter
+$ kubectl
+----
+
+== Port Requirements 
+
+* You must enable TCP ports `53`, `3011`, `3012` on all nodes to allow communication with the database cluster.
+
+== See Also
+
+* xref:install-workflow.adoc[Anypoint Private Cloud Installers]
+* xref:upgrade.adoc[Upgrade to Anypoint Platform Private Cloud, Version 2.0]
