@@ -1,21 +1,25 @@
-= Private Cloud Edition Network Requirements
+= Verify Network Requirements
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: prereq-firewalld-forwarding.adoc
 
-The this topic describes the network requirements for running Anypoint Platform Private Cloud Edition.
+To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the network requirements described in this topic. 
 
-== Static IPs
+[IMPORTANT]
+Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated network requirements. If needed, contact your Customer Success Manager for assistance.
 
-All servers in the cluster should have static private IPv4 assigned to them, these must persist after server 
-restarts. If IP addresses are not persistent between reboots, the cluster may enter a failed state.
+== Verify Static IPs
 
-== VXLAN
+All nodes in the cluster must have static private IPv4 assigned to them, and these must persist after  
+restarts. If IP addresses are not persistent between reboots, the cluster can fail.
+
+== Verify VXLAN
 
 The version of Kubernetes supported by Anypoint Platform Private Cloud Edition uses an overlay VXLAN and UDP 
-transport to encapsulate traffic. There is direct communication between components of the cluster. The table 
-below shows the ports used for inter-host communication. You must ensure that all of these ports are 
-configured correctly.
+transport to encapsulate traffic. There is direct communication between components of the cluster. The following table 
+lists the ports used for inter-host communication. You must ensure that all of the following ports are 
+configured correctly on all nodes.
 
 [%header%autowidth.spread]
 |===
@@ -40,40 +44,85 @@ configured correctly.
 |TCP | 32009 | Ops Center Admin UI
 |===
 
+You can use `netcat` or similar tool to verify port configuration.
 
-== NAT Traffic Requirements
+== Verify NAT Traffic Requirements
 
-In some situation, the Kubernetes overlay network uses NAT. NAT requires that servers be able to send and 
-receive packages with a source and destination that is different from the server’s internal IP.
+In some situation, the Kubernetes overlay network uses NAT. NAT requires that nodes be able to send and 
+receive packages with a source and destination that is different from the node’s internal IP.
 
 Any software that monitors the network traffic must be tuned to allow this type of network interaction.
 
-== SSL Certificate Requirements
+== Verify SSL Certificate Requirements
 
-In order to use the Anypoint Platform Private Cloud Edition, you must provide SSL credentials. You can upload 
+To use the Anypoint Platform Private Cloud Edition, you must provide SSL credentials. You can upload 
 a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine that is 
 connected to the platform.
 
 [WARNING]
-You must register the same SSL certificate on every server containing Mule Runtimes managed by your installation.
+You must register the same SSL certificate on every node containing Mule Runtimes managed by your installation.
 
-== SMTP Server Requirements
+== Verify SMTP Server Requirements
 
 Your network must include an SMTP server to manage e-mail alerts that are triggered by the platform.
 
-== External Identity Provider and Client Management 
+== Verify External Identity Provider and Client Management 
 
 To configure an Exernal Identity Provider for users single sign on (LDAP, OpenID, SAML) or for external 
 client management as OpenID Connect, the cluster must be able to access the External Identity Provider endpoint. 
 
-== IP Forwarding and Bridging
+== Verify IP Forwarding and Bridging
 
-To ensure proper cluster load balancing and routing, you must enable and correctly configure the following:
+To ensure proper cluster load balancing and routing, you must enable and correctly configure the following items:
 
 * Kernel IP forwarding: to enable internal Kubernetes load balancing you must enable IPv4 forwarding on all servers.
 * Bridge-netfilter: enables the Linux kernel to translate packets to and from hosted containers.
 
 ** IP addresses for bridge-netfiltering are managed by the overlay network created by Kubernetes. The CIDR block used for that network is in the private IP address range.
+
+== Enable Forwarding When Using Firewalld
+
+`firewalld` is an iptables controller that defines rules for persistent network traffic.
+If you are using `firewalld` with a Red Hat Enterprise Linux (RHEL) 7.3 operating system, you must enable forwarding on the docker0 device.
+You must also forward any packets being sent from or to the 10.0.0.0/8 subnet.
+
+=== To Determine if You Are Using firewalld
+
+To determine if your system is using firewalld, run the following command on every node:
+
+----
+systemctl status firewalld.service
+----
+
+If firewalld is installed, this command returns the following:
+
+----
+$ sudo systemctl status firewalld.service
+* firewalld.service - firewalld - dynamic firewall daemon
+Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+Active: inactive (dead)
+Docs: man:firewalld(1)
+----
+
+If `firewalld is not installed, this command returns an error message.
+
+=== Enabling Forwarding
+
+To enable forwarding on the docker0 device, run the following commands:
+
+----
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -o docker0 -j ACCEPT -m comment --comment "docker subnet"
+
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+----
+
+To enable forwarding on the 10.0.0.0/8 subnet, run the following commands:
+
+----
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+----
 
 == See Also
 
