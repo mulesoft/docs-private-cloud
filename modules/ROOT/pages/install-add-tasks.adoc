@@ -169,6 +169,33 @@ Verify your policy was uploaded by visiting https://${ANYPOINT_DNS}/exchange/?ty
 
 For an API managed by Mule 4 or above, the policy appears in the *Apply Policy* dialog.
 
+== Verify Anypoint Private Cloud Environment
+
+After setting up your environment, you can run the `gravity check` script to verify that your system meets the minimum requirements for Anypoint Private Cloud.
+How do I know where the gravity binary and app.yaml manifest are? Where do I copy these to on each node? I got command not found. Anything different for 3 node vs 6 node environment???
+
+. Copy the following from the node where you ran the installer to each node of your cluster:
++
+* The `gravity` binary.
+* The `app.yaml` manifest used by the `gravity` binary.
++
+These files are located in the folder of the installer.
+
+. Run the following command from each node of your cluster:
++
+----
+sudo ./gravity check --profile=app_node app.yaml
+----
++
+Valid values of the `--profile` option are:
++
+* app_node
+* data_node
+* general_node (for 3 node installations)
+* demo_node (for 1 node installations)
+
+If the command returns no output, this indicates that your environment is setup correctly with the required resources. If your environment does not meet the requirements, the command returns a message describing the problem.
+
 == See Also
 
 * xref:backup-and-disaster-recovery.adoc[Backup and Recovery]
