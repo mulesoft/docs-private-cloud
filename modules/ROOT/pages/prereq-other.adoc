@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 
 [IMPORTANT]
-To successfully install or upgrade Anypoint Platform Private Cloud Edition, you must read and perform the work 
+To successfully install or upgrade Anypoint Platform Private Cloud Edition, you must read and perform the tasks 
 described in this topic. 
 
-== Background Knowledge Requirements
+== Background Knowledge
 
 To install Anypoint Platform Private Cloud Edition, you should have knowledge in the following areas:
 
@@ -16,9 +16,9 @@ To install Anypoint Platform Private Cloud Edition, you should have knowledge in
 * SSL certs
 * How to open ports
 
-== Configuration Information Requirements
+== Gather Configuration Information
 
-Gather the following information:
+You will be asked to provide the following information:
 
 * Contact your MuleSoft Customer Success Representative to obtain your Anypoint Platform Private Cloud Edition product license file. For example, `license.pem`.
 * Name and location of the installation package. For example, `/home/ec2-user/anypoint-2.0.3-installer.tar.gz`.
@@ -50,15 +50,15 @@ Gather the following information:
 ** Administrator username
 ** Administrator password
 
-== Access and Permissions Requirements
+== Verify Access and Permissions
 
 * Before installing or upgrading Anypoint Platform Private Cloud Edition, you must have root access (permission to run the `sudo` command) on all servers in your environment.
 
-== Home Directory Space Requirements 
+== Verify Space in Home Directory 
 
 Make sure that you have enough space in your home directory to download and unzip the installer file. The installer is a ~10GB file.
 
-== Tool Requirements
+== Download and Install Tools
 
 * Netcat
 
@@ -73,7 +73,7 @@ $ sudo gravity enter
 $ kubectl
 ----
 
-== Port Requirements 
+== Enable Required Ports 
 
 * You must enable TCP ports `53`, `3011`, `3012` on all nodes to allow communication with the database cluster.
 
