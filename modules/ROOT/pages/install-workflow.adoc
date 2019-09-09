@@ -1,31 +1,98 @@
-= Anypoint Private Cloud Installers
+= Anypoint Platform Private Cloud Edition Installation
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-After your infrastructure team verifies that the required infrastructure has been correctly installed and configured, and you have obtained the necessary information described in xref:prereq-workflow.adoc[Installation Prerequisites], upload the installation package to all nodes in your environment and select one node from which to run the installation. You can then install Anypoint Platform Private Cloud Edition using one of the following installers. 
+== Infrastructure Requirements
+Installing or upgrading Anypoint Platform Private Cloud Edition requires existing infrastructure and specific versions of different software. Without specific versions of operating systems, NFS, and other software, Anypoint Platform Private Cloud Edition cannot run.
 
-There are two ways to install Anypoint Private Cloud Edition:
+Problems occur with the following situations:
 
-* Using the GUI installer.
-* Using the CLI installer.
-
-The GUI based installer requires you to open extra ports and a web browser to access the pages.
-The GUI installer is interactive and walks you through a set of wizard pages that enable you to specify configuration options.
-
-The CLI installer does not require human interaction using a web browser and is useful for automation.
-
-[NOTE]
-====
-
-- The Anypoint Private Cloud Edition installation package includes specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides patch updates as needed for this additional software. 
-- You must run the installer as root to access the necessary privileged ports. 
-====
+* Using your own AWS images
+* Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform Private CLoud Edition does not support.
 
 [IMPORTANT]
-Most problems occur from not following the minimum system requirements. Make sure that your system meets the minimum system requirements and that you have gathered all information listed in the installation checklist.
+Before beginning an installation or upgrade, make sure that you contact your infrastructure team to verify that the following work is performed. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not set up. If your system does not meet all of the minimum system requirements, you cannot successfully install or run Anypoint Platform Private Cloud Edition.
+
+Your infrastructure team must verify that the following work is complete. If needed, contact your Customer Success Manager for assistance. 
+
+. xref:prereq-aws-terraform.adoc[Create Anypoint Private Cloud Resources on Amazon Web Services (AWS)]
+. Cluster set up must be complete and conform to xref:supported-cluster-config.adoc[Supported Network Topologies for Anypoint Private Cloud Edition].
+. xref:prereq-hardware.adoc[Verify Hardware Requirements]
+. xref:prereq-software.adoc[Verify Software Requirements]
+. xref:prereq-network.adoc[Verify Network Requirements]
+. xref:verify-nfs.adoc[Verify NFS Requirements]
+. A Load Balancer is required to run Anypoint Platform Private Cloud Edition. See xref:supported-cluster-config.adoc[Supported Network Topologies] and xref:install-create-lb.adoc[Setup a Load Balancer].
+
+== Knowledge Requirements
+
+To install Anypoint Platform Private Cloud Edition, it is assumed that you have knowledge in the following areas:
+
+* Linux commands
+* File system concepts
+* SSL certs
+* How to open ports
+
+== Access and Permissions
+
+* Before installing or upgrading Anypoint Platform Private Cloud Edition, you must have root access (permission to run the `sudo` command) on all servers in your environment.
+
+== Information Needed for Installation
+
+* Contact your MuleSoft Customer Success Representative to obtain your Anypoint Platform Private Cloud Edition product license file. For example, `license.pem`.
+* Name and location of the installation package. For example, `/home/ec2-user/anypoint-2.0.3-installer.tar.gz`.
+* AWS credentials
+
+** Admin ID
+** Admin email address
+** Admin password
+* Cluster name
+* Secret token for the cluster 
+* IP address for each server in the cluster
+* Device names
+
+** System state directory
+** Application data
+** etcd
+** Docker
+
+* NFS server information
+
+** NFS server name and path
+** PLATFORM_DNS (The DNS must be configured to the NFS server.)
+
+* Anypoint Platform organization and administrator:
+
+** Organization name
+** Administrator name
+** Administrator email
+** Administrator username
+** Administrator password
+
+== Home Directory Space Requirements
+
+Make sure that you have enough space in your home directory to download and unzip the installer file. The installer is a ~10GB file.
+
+== Tools Needed for Installation
+
+* Netcat
+
+** Netcat can be used to verify ports are open on NFS server. If you don’t have `netcat`, you can install it from  http://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
+
+* Kubectl
+
+** Ensure the `kubectl` command is available on the node where you are performing the installation or migration. To verify that `kubectl` is installed, run the following:
++
+----
+$ sudo gravity enter
+$ kubectl
+----
+
+== Port Requirements
+
+* You must enable TCP ports `53`, `3011`, `3012` on all nodes to allow communication with the database cluster.
 
 == See Also
 
-* xref:install-installer.adoc[To Install using the GUI-based installer]
-* xref:install-auto-install.adoc[To Install using the CLI-based installer]
+* xref:install-workflow.adoc[Anypoint Private Cloud Installers]
+* xref:upgrade.adoc[Upgrade to Anypoint Platform Private Cloud, Version 2.0]
