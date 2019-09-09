@@ -126,5 +126,6 @@ firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -
 
 == See Also
 
-* xref:prereq-software.adoc[About Software Requirements]
-* xref:supported-cluster-config.adoc[Supported Network Topologies]
+* xref:prereq-software.adoc[Software Requirements for Anypoint Private Cloud]]
+* xref:prereq-hardware.adoc[Hardware Requirements for Anypoint Private Cloud]
+* xref:verify-nfs.adoc[NFS Server Requirements for Anypoint Private Cloud]
