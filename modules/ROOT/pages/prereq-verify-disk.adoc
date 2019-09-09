@@ -1,9 +1,0 @@
-= Verify Anypoint Private Cloud Disk Device Requirements
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
-
-
-== See also
-
-* xref:prereq-verify-device.adoc[To Verify Device Requirements]
