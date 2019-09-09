@@ -13,6 +13,10 @@ In order for Mule to communicate with your instance of Anypoint Platform, you mu
 
 To use Anypoint Platform, you must provide TLS credentials. You can upload a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine connected to the platform, including Mule runtime engines. See xref:access-management-security.adoc[Set Certificates] for more information.
 
+== Disable Port 61009 After Installation
+
+After installation is complete, close port 61009 in the cluster security group using the AWS Web console.
+
 == Configure Log Forwarding
 
 [NOTE]
