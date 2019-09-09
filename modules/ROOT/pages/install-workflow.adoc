@@ -2,6 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: prereq-workflow.adoc
 
 == Infrastructure Requirements
 Installing or upgrading Anypoint Platform Private Cloud Edition requires existing infrastructure and specific versions of different software. Without specific versions of operating systems, NFS, and other software, Anypoint Platform Private Cloud Edition cannot run.
