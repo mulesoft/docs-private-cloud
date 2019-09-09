@@ -2,8 +2,12 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: prereq-verify-software.adoc
 
-The following sections list the software required to install and run the Anypoint Platform Private Cloud Edition.
+To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the software requirements described in this topic. 
+
+[IMPORTANT]
+Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your Customer Success Manager for assistance.
 
 == Supported Linux Distributions
 The following Linux distributions are supported:
@@ -19,7 +23,7 @@ running the installer. Review any custom profiles with your customer support rep
 
 == Kernel Modules
 
-Ensure that the following kernel modules are enabled:
+On each node, ensure that the following kernel modules are enabled:
 
 * `br_netfilter`
 * `ebtable_filter`
@@ -27,7 +31,7 @@ Ensure that the following kernel modules are enabled:
 * `iptable_filter`
 * `iptable_nat`
 
-Verify that each module is loaded using the following as an example:
+Verify that each module is loaded using the following command as an example:
 
 ----
 root$ lsmod | grep br_netfilter
@@ -70,13 +74,36 @@ echo net.ipv4.ip_forward=1 >> /etc/sysctl.d/10-ipv4-forwarding.conf
 
 Replace the setting above with the setting you are configuring. Ensure there are no processes or files conflicting with those settings.
 
+== Install Logical Volume Manager 2 (LVM2)
+
+To install and run Anypoint Platform Private Cloud Edition, you must install and use LVM2. LVM2 is a tool that adds a layer of abstraction between your operating system and the disks/partitions it uses. You must have root access to install LVM2.
+
+You can install LVM using Yum. Yum is an open-source command-line package-management utility for Linux operating systems using the RPM Package Manager. Using Yum, you can install LVM through the following command:
+
+----
+sudo yum install lvm2
+----
+
 == Enable Forwarding When Using firewalld
 
 xref:prereq-firewalld-forwarding.adoc[To Enable Forwarding When Using firewalld]
 
-== Synchronized clocks
+== Synchronize clocks
 
 Ensure that the clocks on all servers are synchronized. Unsynchronized clocks can cause problems with platform communications.
+
+== Uninstall Unsupported Software
+
+The following sections describe software that can cause conflicts with Anypoint Platform Private Cloud Edition. You must uninstall these components before performing Anypoint Platform Private Cloud Edition installation.
+
+=== Docker
+
+Docker should be uninstalled from servers running the Anypoint Platform Private Cloud Edition. The Anypoint Platform installation includes a Docker package officially supported by Kubernetes.
+
+=== Local DNS Servers
+
+Local caching DNS servers listening on port 53 should be removed, e.g. named, dnsmasq, bind or others.
+
 
 == See Also
 
