@@ -2,6 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: prereq-gravity-check.adoc 
 
 There are some additional installation steps that you may need to perform after installing Anypoint Platform Private Cloud Edition.
 
