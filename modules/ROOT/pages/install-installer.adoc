@@ -3,28 +3,20 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to run the GUI-based installer for Anypoint Platform Private Cloud Edition. The GUI installer provides a wizard that walks you through the installation process.
-
-[NOTE]
-====
+The GUI installer provides a wizard that walks you through the Anypoint Platform Private Cloud Edition installation process.
 
 - The Anypoint Private Cloud Edition installation package includes specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides patch updates as needed for this additional software. 
 - You must run the installer as root to access the necessary privileged ports. 
-====
+- The GUI installer automatically validates requirements for disk space, disk speed, network speed and operating system version. 
+- You must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall.adoc[Uninstall and Reinstall Anypoint Private Cloud].
 
 [IMPORTANT]
-Most problems occur from not following the minimum system requirements. Make sure that your system meets the minimum system requirements and that you have gathered all information listed in the installation checklist.
-
-== Prerequisites
-
-Before running the installer, ensure that your system meets the minimum system requirements and that you have gathered all information listed in the installation checklist.
-
-The GUI installer automatically validates requirements for disk space, disk speed, network speed and operating system version. You must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall.adoc[Uninstall and Reinstall Anypoint Private Cloud].
+====
+Most problems occur from not following the minimum system requirements. Before running the installer, ensure that your system meets the minimum system requirements and that you have gathered all information listed in the installation checklist.
 
 == Running the Installer
 
 . Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative. Copy the license file to the installer node.
-
 . Uncompress the gzip archive:
 +
 ----
@@ -127,4 +119,4 @@ Platform users access their accounts based on the organization name that you pro
 == See Also
 
 * xref:install-workflow.adoc[Anypoint Platform Private Cloud Edition Installation Requirements]
-* xref:install-auto-install.adoc[Install using CLI-Based installer]
+* xref:install-auto-install.adoc[Install using the CLI-Based installer]
