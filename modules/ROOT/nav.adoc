@@ -13,6 +13,7 @@
  ** xref:install-installer.adoc[Run the GUI Installer]
  ** xref:install-auto-install.adoc[Run the CLI Installer]
  ** xref:install-uninstall-reinstall.adoc[Uninstall and Reinstall Anypoint Private Cloud]
+* xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]
 * xref:config-workflow.adoc[Deploy Anypoint Private Cloud]
  ** xref:install-add-tasks.adoc[Perform Post-installation Tasks]
  ** xref:install-create-lb.adoc[Set up a Load Balancer]
@@ -30,4 +31,3 @@
  ** xref:config-add-proxy-whitelist.adoc[Add Whitelist Addresses for API Platform Proxies]
  ** xref:demo-ldap-server.adoc[Configure the Demo LDAP Server]
  ** xref:ext-analytics-elk.adoc[Analyze Business and API Data using ELK]
-* xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]
