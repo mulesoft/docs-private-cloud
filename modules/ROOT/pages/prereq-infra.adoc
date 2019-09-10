@@ -1,4 +1,4 @@
-= Installation Infrastructure Prerequisites
+= Infrastructure Prerequisites
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -11,9 +11,11 @@ Problems occur with the following situations:
 * Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform Private CLoud Edition does not support.
 
 [IMPORTANT]
+====
 Before beginning an installation or upgrade, make sure your infrastructure team verifies that the following work is complete. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not set up. If your system does not meet all of the minimum system requirements, you cannot successfully install or run Anypoint Platform Private Cloud Edition.
 
-Your infrastructure team must verify that the following work is complete. If needed, contact your Customer Success Manager for assistance. 
+If needed, contact your Customer Success Manager for assistance. 
+====
 
 . xref:prereq-aws-terraform.adoc[Create Anypoint Private Cloud Resources on Amazon Web Services (AWS)]. Cluster set up must be complete and conform to xref:supported-cluster-config.adoc[Supported Network Topologies for Anypoint Private Cloud Edition].
 . xref:prereq-hardware.adoc[Verify Hardware Requirements]
