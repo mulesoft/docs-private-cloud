@@ -26,7 +26,7 @@ When installing a single-node configuration, the automated installer also instal
 == Run the Command Line Installation
 
 . Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative.
-. Copy the archive to each server node in your cluster. 
+. Copy the archive to each server node in your cluster. Copy the license file to the installer node.
 . Uncompress the gzip archive: 
 +
 ----
