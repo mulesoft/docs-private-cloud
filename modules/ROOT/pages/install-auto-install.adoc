@@ -20,6 +20,8 @@ Most problems occur from not following the minimum system requirements. Make sur
 Before running the installer, ensure that your system meets the minimum system requirements and that you have gathered all information listed in the installation checklist.
 ====
 
+You must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall.adoc[Uninstall and Reinstall Anypoint Private Cloud].
+
 == About the Installation Scripts
 
 The CLI installation uses two scripts:
