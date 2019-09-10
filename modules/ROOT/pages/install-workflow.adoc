@@ -13,14 +13,13 @@ After your infrastructure team verifies that the required infrastructure has bee
 * GUI installer.
 * CLI installer.
 
-The GUI installer requires you to open extra ports and a web browser to access the pages.
-The GUI installer is interactive and walks you through a set of wizard pages that enable you to specify configuration options.
+The GUI installer is interactive and walks you through a set of wizard pages that enable you to specify configuration options, but it also requires you to open extra ports and a web browser to access the pages.
 
 The CLI installer does not require human interaction using a web browser and is useful for automation.
 
 == See Also
 
-* xref:prereq-infra.adoc[Installation Infrastructure Prerequisites]
+* xref:prereq-infra.adoc[Infrastructure Prerequisites]
 * xref:prereq-other.adoc[Other Installation Prerequisites]
-* xref:install-installer.adoc[Install using the GUI-based installer]
-* xref:install-auto-install.adoc[Install using the CLI-based installer]
+* xref:install-installer.adoc[Run the GUI-based installer]
+* xref:install-auto-install.adoc[Run the CLI-based installer]
