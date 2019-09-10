@@ -50,6 +50,13 @@ You will be asked to provide the following information:
 ** Administrator username
 ** Administrator password
 
+* SMTP server credentials
+
+** Host name
+** Port used to communicate to your SMTP server
+** User name to authenticate to your SMTP server
+** SMTP password
+
 == Verify Access and Permissions
 
 * Before installing or upgrading Anypoint Platform Private Cloud Edition, you must have root access (permission to run the `sudo` command) on all servers in your environment.
