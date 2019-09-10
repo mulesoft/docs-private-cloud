@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-gravity-check.adoc, install-diable-local-user.adoc 
 
-There are some additional installation steps that you may need to perform after installing Anypoint Platform Private Cloud Edition.
+There are some additional installation steps that you need to perform after the initial Anypoint Platform Private Cloud Edition installation.
 
 == Provide Platform IP or Domain
 
@@ -25,15 +25,12 @@ After installation is complete, close port 61009 in the cluster security group u
 This information is specific to forwarding log data from Anypoint Platform itself. For instructions on how to forward log data from the Mule servers and applications that run on Anypoint Platform, see xref:runtime-manager::sending-data-from-arm-to-external-analytics-software.adoc[Sending Data from Runtime Manager to External Analytics Software].
 ====
 
-
 Anypoint Platform uses `rsyslog` to handle logging. To forward these logs to remote hosts, you must configure log forwarding in the Ops Center.
 
-See xref:managing-via-the-ops-center.adoc#configure-log-forwarding[Configure Log Forwarding] for detailed steps on how to do this on the Ops Center.
-
+See xref:managing-via-the-ops-center.adoc#configure-log-forwarding[Configure Log Forwarding] for detailed steps on how to do this from the Ops Center.
 
 [NOTE]
 You must forward logs to a 3rd-party log solution like Splunk. Sending data to cloud-based log solutions such as Splunk Cloud is not supported.
-
 
 == Set up SMTP
 
@@ -65,7 +62,7 @@ Mule app developers in your organization who create Mule apps through the xref:s
 See xref:managing-via-the-ops-center.adoc[Manage Anypoint Platform Private Cloud Edition Using Ops Center] to add or remove servers from the Anypoint Platform cluster as well as other changes you want to make after installation.
 
 [[registering_servers]]
-== Registering Servers
+== Register Servers
 
 Before registering a server, you must configure Mule to trust the TLS certificates you configured:
 
@@ -83,7 +80,7 @@ In this example, $ANYPOINT_DNS should be set to your DNS for Anypoint Platform P
 Replace the location and password for your JVM's trustore for your environment.
 
 
-== Uploading Custom Policies and Publishing Assets to Exchange Using the Maven Client
+== Upload Custom Policies and Publish Assets to Exchange Using the Maven Client
 
 There are differences differences between Anypoint Private Cloud Edition and the cloud version of Anypoint Platform you need to consider when uploading custom policies and publishing assets to Exchange using the Maven Client.
 See the corresponding documentation for the cloud version of Anypoint Platform for details. 
