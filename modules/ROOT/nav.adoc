@@ -30,4 +30,4 @@
  ** xref:config-add-proxy-whitelist.adoc[Add Whitelist Addresses for API Platform Proxies]
  ** xref:demo-ldap-server.adoc[Configure the Demo LDAP Server]
  ** xref:ext-analytics-elk.adoc[Analyze Business and API Data using ELK]
-* xref:upgrade.adoc[Migrating Anypoint Platform Private Cloud]
+* xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]
