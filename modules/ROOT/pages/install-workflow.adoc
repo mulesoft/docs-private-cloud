@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-workflow.adoc
 
-Before starting an Anypoint Platform Private Cloud Edition installation or upgrade, your infrastructure team must verify that the required hardware, software, and network requirements are met as described in xref:prereq-infra.adoc[Installation Infrastructure Prerequisites].
+Before starting an Anypoint Platform Private Cloud Edition installation or upgrade, your infrastructure team must verify that the required hardware, software, and network requirements are met as described in xref:prereq-infra.adoc[Infrastructure Prerequisites].
 
 In addition, you must make sure that the other requirements listed in xref:prereq-other.adoc[Other Installation Prerequisites] are met.
 
