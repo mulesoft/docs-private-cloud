@@ -16,7 +16,8 @@ Most problems occur from not following the minimum system requirements. Before r
 
 == Running the Installer
 
-. Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative. Copy the license file to the installer node.
+. Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative.
+. Copy the archive to each server node in your cluster. Copy the license file to the installer node.
 . Uncompress the gzip archive:
 +
 ----
