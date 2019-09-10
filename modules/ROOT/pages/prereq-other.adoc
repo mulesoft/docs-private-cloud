@@ -11,10 +11,8 @@ described in this topic.
 
 To install Anypoint Platform Private Cloud Edition, you should have knowledge in the following areas:
 
-* Linux commands
-* File system concepts
-* SSL certs
-* How to open ports
+* Basic knowledge Linux system commands.
+* Basic understanding of remote connection mechanisms, such as SSL and SSH.
 
 == Gather Configuration Information
 
