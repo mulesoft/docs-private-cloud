@@ -92,6 +92,66 @@ xref:prereq-network#enable-forwarding-when-using-firewalld[To Enable Forwarding 
 
 Ensure that the clocks on all servers are synchronized. Unsynchronized clocks can cause problems with platform communications.
 
+== Verify IP Forwarding and Bridging
+
+To ensure proper cluster load balancing and routing, you must enable and correctly configure the following items:
+
+* Kernel IP forwarding: to enable internal Kubernetes load balancing you must enable IPv4 forwarding on all servers.
+* Bridge-netfilter: enables the Linux kernel to translate packets to and from hosted containers.
+
+** IP addresses for bridge-netfiltering are managed by the overlay network created by Kubernetes. The CIDR block used for that network is in the private IP address range.
+
+== Enable Forwarding When Using Firewalld
+
+`firewalld` is an iptables controller that defines rules for persistent network traffic.
+If you are using `firewalld` with a Red Hat Enterprise Linux (RHEL) 7.3 operating system, you must enable forwarding on the docker0 device.
+You must also forward any packets being sent from or to the 10.0.0.0/8 subnet.
+
+=== To Determine if You Are Using firewalld
+
+To determine if your system is using firewalld, run the following command on every node:
+
+----
+systemctl status firewalld.service
+----
+
+If firewalld is installed, this command returns the following:
+
+----
+$ sudo systemctl status firewalld.service
+* firewalld.service - firewalld - dynamic firewall daemon
+Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+Active: inactive (dead)
+Docs: man:firewalld(1)
+----
+
+If `firewalld is not installed, this command returns an error message.
+
+=== Enabling Forwarding
+
+To enable forwarding on the docker0 device, run the following commands:
+
+----
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -o docker0 -j ACCEPT -m comment --comment "docker subnet"
+
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+----
+
+To enable forwarding on the 10.0.0.0/8 subnet, run the following commands:
+
+----
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+----
+
+
+
+
+
+
+
+
 == Uninstall Unsupported Software
 
 The following sections describe software that can cause conflicts with Anypoint Platform Private Cloud Edition. You must uninstall these components before performing Anypoint Platform Private Cloud Edition installation.
