@@ -1,4 +1,4 @@
-= About Anypoint Platform Private Cloud Edition
+= Anypoint Platform Private Cloud Edition Overview
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
