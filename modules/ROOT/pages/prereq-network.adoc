@@ -63,13 +63,12 @@ connected to the platform.
 You must register the same SSL certificate on every node containing Mule Runtimes managed by your installation.
 
 == Verify SMTP Server Requirements
+Your network must include an SMTP server to manage e-mail alerts that are triggered by the platform. Anypoint Platform Private Cloud Edition must be connected to this SMTP server. For additional information, refer to the instructions in xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud].
 
-Your network must include an SMTP server to manage e-mail alerts that are triggered by the platform.
-
-== Verify External Identity Provider and Client Management 
-
-To configure an Exernal Identity Provider for users single sign on (LDAP, OpenID, SAML) or for external 
-client management as OpenID Connect, the cluster must be able to access the External Identity Provider endpoint. 
+== Verify External Identity Provider Configuration and Client Management 
+Your network must include an External Identity Provider that is compatible with LDAP, OpenIDConnect, or SAML. 
+To configure an External Identity Provider for users single sign on (LDAP, OpenIDConnect, SAML) or for external 
+client management as OpenID Connect, the cluster must be able to access the External Identity Provider endpoint. For additional information, refer to the instructions in xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Private Cloud].
 
 == Verify IP Forwarding and Bridging
 
