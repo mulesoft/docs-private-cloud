@@ -7,7 +7,7 @@ endif::[]
 To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the software requirements described in this topic. 
 
 [IMPORTANT]
-Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated software requirements. If needed, contact your Customer Success Manager for assistance.
+Before installing or upgrading, your infrastructure team must review each of the following sections and verify that your environment meets the stated software requirements. If needed, contact your Customer Success Manager for assistance.
 
 == Supported Linux Distributions
 The following Linux distributions are supported:
