@@ -14,6 +14,7 @@ It enables you to specify configuration options, but it also requires you to ope
 [IMPORTANT]
 ====
 Most problems occur from not following the minimum system requirements. Before running the installer, ensure that your system meets the minimum system requirements and that you have gathered all information listed in the installation checklist.
+====
 
 == Running the Installer
 
