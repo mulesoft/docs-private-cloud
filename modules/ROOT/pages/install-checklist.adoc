@@ -11,7 +11,7 @@ to ensure that your environment is configured correctly.
 [WARNING]
 To successfully install or upgrade Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the topology, hardware, software, network, and NFS requirements and verify successful completion of all tasks. This ensures your infrastructure meets the minimum hardware, operating system, and networking requirements for Anypoint Platform Private Cloud Edition.
 
-== Topology Requirements
+== Topology Prerequisites
 
 [%header,cols="3*a"]
 |===
@@ -21,7 +21,7 @@ To successfully install or upgrade Anypoint Platform Private Cloud Edition, your
 | Set up Bare Metal Servers (if using bare metal)|  |
 |===
 
-== Hardware Requirements
+== Hardware Prerequisites
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By 
@@ -31,7 +31,7 @@ To successfully install or upgrade Anypoint Platform Private Cloud Edition, your
 | xref:prereq-hardware#verify-disk-iops[Verify Disk IOPS] | xref:prereq-hardware#device-requirements[Device Requirements] |
 |===
 
-== Software Requirements
+== Software Prerequisites
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
@@ -47,7 +47,7 @@ To successfully install or upgrade Anypoint Platform Private Cloud Edition, your
 | xref:prereq-software#remove-local-dns-servers[Remove Local DNS Servers] | |
 |===
 
-== Network Requirements
+== Network Prerequisites
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
@@ -60,7 +60,7 @@ To successfully install or upgrade Anypoint Platform Private Cloud Edition, your
 | xref:prereq-network#verify-ip-forwarding-and-bridging[Verify IP Forwarding and Bridging] | |
 |===
 
-== NFS Requirements
+== NFS Prerequisites
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
@@ -70,7 +70,7 @@ To successfully install or upgrade Anypoint Platform Private Cloud Edition, your
 | xref:verify-nfs#verify-nfs-performance[Verify NFS Performance] | |
 |===
 
-== Additional Requirements
+== Other Installation Prerequisites
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
