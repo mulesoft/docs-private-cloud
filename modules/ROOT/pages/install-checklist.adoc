@@ -9,9 +9,15 @@ Use the following checklist when installing or upgrading Anypoint Platform Priva
 to ensure that your environment is configured correctly.
 
 [WARNING]
-To successfully install or upgrade Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the topology, hardware, software, network, and NFS requirements and verify successful completion of all tasks. This ensures your infrastructure meets the minimum hardware, operating system, and networking requirements for Anypoint Platform Private Cloud Edition.
+====
+To successfully install or upgrade Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the infrastructure prerequisites, including topology, hardware, software, network, and NFS, and verify successful completion of all tasks. This ensures your infrastructure meets the prerequisites for Anypoint Platform Private Cloud Edition. 
 
-== Topology Prerequisites
+In addition, you must review and perform the additional tasks listed in the Other Installation Prerequisities section.
+====
+
+== Infrastructure Prerequisites
+
+=== Topology Prerequisites
 
 [%header,cols="3*a"]
 |===
@@ -21,7 +27,7 @@ To successfully install or upgrade Anypoint Platform Private Cloud Edition, your
 | Set up Bare Metal Servers (if using bare metal)|  |
 |===
 
-== Hardware Prerequisites
+=== Hardware Prerequisites
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By 
@@ -31,7 +37,7 @@ To successfully install or upgrade Anypoint Platform Private Cloud Edition, your
 | xref:prereq-hardware#verify-disk-iops[Verify Disk IOPS] | xref:prereq-hardware#device-requirements[Device Requirements] |
 |===
 
-== Software Prerequisites
+=== Software Prerequisites
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
@@ -47,7 +53,7 @@ To successfully install or upgrade Anypoint Platform Private Cloud Edition, your
 | xref:prereq-software#remove-local-dns-servers[Remove Local DNS Servers] | |
 |===
 
-== Network Prerequisites
+=== Network Prerequisites
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
@@ -60,7 +66,7 @@ To successfully install or upgrade Anypoint Platform Private Cloud Edition, your
 | xref:prereq-network#verify-ip-forwarding-and-bridging[Verify IP Forwarding and Bridging] | |
 |===
 
-== NFS Prerequisites
+=== NFS Prerequisites
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
