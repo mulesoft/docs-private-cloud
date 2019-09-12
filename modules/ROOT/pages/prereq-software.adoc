@@ -97,7 +97,7 @@ To ensure proper cluster load balancing and routing, you must enable and correct
 
 ** IP addresses for bridge-netfiltering are managed by the overlay network created by Kubernetes. The CIDR block used for that network is in the private IP address range.
 
-== Enable Forwarding When Using Firewalld
+== Firewall Considerations When Firewalld is Enabled
 
 `firewalld` is an iptables controller that defines rules for persistent network traffic.
 If you are using `firewalld` with a Red Hat Enterprise Linux (RHEL) 7.3 operating system, you must enable forwarding on the docker0 device.
