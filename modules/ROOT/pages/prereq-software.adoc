@@ -84,10 +84,6 @@ You can install LVM using Yum. Yum is an open-source command-line package-manage
 sudo yum install lvm2
 ----
 
-== Enable Forwarding When Using firewalld
-
-xref:prereq-network#enable-forwarding-when-using-firewalld[To Enable Forwarding When Using firewalld]
-
 == Synchronize clocks
 
 Ensure that the clocks on all servers are synchronized. Unsynchronized clocks can cause problems with platform communications.
@@ -107,7 +103,7 @@ To ensure proper cluster load balancing and routing, you must enable and correct
 If you are using `firewalld` with a Red Hat Enterprise Linux (RHEL) 7.3 operating system, you must enable forwarding on the docker0 device.
 You must also forward any packets being sent from or to the 10.0.0.0/8 subnet.
 
-=== To Determine if You Are Using firewalld
+=== Determine if You Are Using firewalld
 
 To determine if your system is using firewalld, run the following command on every node:
 
@@ -144,13 +140,6 @@ firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -
 
 firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
 ----
-
-
-
-
-
-
-
 
 == Uninstall Unsupported Software
 
