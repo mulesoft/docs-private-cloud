@@ -10,7 +10,7 @@ to ensure that your environment is configured correctly.
 
 [WARNING]
 ====
-To successfully install or upgrade Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the infrastructure prerequisites, including topology, hardware, software, network, and NFS, and verify successful completion of all tasks. This ensures your infrastructure meets the prerequisites for Anypoint Platform Private Cloud Edition. 
+To successfully install or upgrade Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of all tasks. This ensures your infrastructure meets the prerequisites for Anypoint Platform Private Cloud Edition. 
 
 In addition, you must review and perform the additional tasks listed in the Other Installation Prerequisities section.
 ====
@@ -23,7 +23,7 @@ In addition, you must review and perform the additional tasks listed in the Othe
 |===
 |Task Description |For More Information |Completed By 
 | Review Network Topology | xref:supported-cluster-config.adoc[Supported Network Topologies for Anypoint Private Cloud Edition] |
-| Set up AWS (if using AWS) | xref:prereq-aws-terraform.adoc[Amazon Web Services (AWS) Requirements]|
+| Set up AWS (if using AWS) | xref:prereq-aws-terraform.adoc[C Requirements]|
 |===
 
 [NOTE]
