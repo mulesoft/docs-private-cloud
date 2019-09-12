@@ -9,126 +9,73 @@ endif::[]
 * [x] Milk  // Checked with x
 * [ ] Sugar  // Unchecked
 * [*] Chocolate  // Checked with *
+Table with Task Description, For More Information  Record Your Information/Completed By???
 ------------------------------------------
 
 Use the following checklist when installing or upgrading Anypoint Platform Private Cloud Edition 
 to ensure that your environment is configured correctly.
 
-[IMPORTANT]
-To successfully install or upgrade Anypoint Platform Private Cloud Edition, you must read and perform the tasks 
-described in this topic. 
+[WARNING]
+To successfully install or upgrade Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review these requirements and verify successful completion of all tasks. This ensures your infrastructure meets the minimum hardware, operating system, and networking requirements for Anypoint Platform Private Cloud Edition.
 
-Set up your topology in accordance with <link to architecture>???
-
-Install on each node in your cluster.
-Perform post-installation configuration tasks.
-
-
-== Set up your topology in accordance with <link to architecture>???
+== Verify Topology Requirements
 If you are using AWS:
-Topology planning and building tasks
-Table with Task Description, For More Information  Record Your Information/Completed By
-If you are using bare metal servers: do ?????
+* [ ] Topology is set up in accordance with <link to architecture>???/private-cloud/2.0/supported-cluster-config.html
 
+[%header,cols="3*a"]
+|===
+|Task Description |For More Information |Completed By
+| Verify Topology | xref:private-cloud::supported-cluster-config.adoc[Supported Network Topologies for Anypoint Private Cloud Edition] |
+|===
 
-== Prepare to install the software
-To prepare your computers to install the product software, complete the steps in the following task list.
-table - Software planning tasks
+== Verify Hardware Requirements
+[%header,cols="3*a"]
+|===
+|Task Description |For More Information |Completed By
+| Verify memory and CPU | xref:prereq-hardware#memory-and-cpu-requirements[Memory and CPU requirements] |
+| xref:prereq-hardware#verify-disk-throughput[Verify Disk Throughput] | xref:prereq-hardware#disk-requirements[Disk Requirements] |
+| xref:prereq-hardware#verify-devices[Verify Devices] | xref:prereq-hardware#device-requirements[Device Requirements] |
+| xref:prereq-hardware#verify-disk-iops[Verify Disk IOPS] | xref:prereq-hardware#device-requirements[Device Requirements] |
+|===
 
-== Install and configure each node
+== Verify Software Requirements
+[%header,cols="3*a"]
+|===
+|Task Description |For More Information |Completed By
+| xref:prereq-software#verify-linux-distribution[Verify Linux Distribution] |  |
+| xref:prereq-software#selinux[Check for SELinux Custom Profiles] |  |
+| xref:prereq-software#enable-and-load-kernel-modules[Enable and Load Kernel Modules] |  |
+| xref:prereq-software#verify-kernel-settings[Verify Kernel Settings] |  |
+| xref:prereq-software#install-logical-volume-manager-2-lvm2[Install Logical Volume Manager 2 (LVM2)] |  |
+| xref:prereq-software#synchronize-clocks[Synchronize Clocks] | |
+| xref:prereq-software#verify-ip-forwarding-and-bridging[Verify IP Forwarding and Bridging] | |
+| If using firewalld, xref:prereq-software#enable-forwarding-on-docker-device[Enable Forwarding on Docker device] | xref:#determine-if-you-are-using-firewalld[Determine if You Are Using firewalld] |
+| xref:prereq-software#uninstall-docker[Uninstall Docker] |  |
+| xref:prereq-software#remove-local-dns-servers[Remove Local DNS Servers] | |
+|===
 
-==Test the installation
-After you install the software, complete the following tasks to test and validate your installation.
+== Verify Network Requirements
+[%header,cols="3*a"]
+|===
+|Task Description |For More Information |Completed By
+| xref:prereq-network#verify-static-ips[Verify Static IPs] |  |
+| xref:prereq-network#verify-vxlan[Verify VXLAN] |  |
+| xref:prereq-network#verify-nat-traffic-requirements[Verify NAT Traffic Requirements] |  |
+| xref:prereq-network#verify-smtp-server-requirements[Verify SMTP Server Requirements] |  |
+| xref:prereq-network#verify-external-identity-provider-configuration-and-client-management[Verify External Identity Provider Configuration and Client Management] |  |
+| xref:prereq-network#synchronize-clocks[Synchronize Clocks] | |
+| xref:prereq-network#verify-ip-forwarding-and-bridging[Verify IP Forwarding and Bridging] | |
+|===
 
-Table 7. Testing the installation tasks
-
-==Perform post-installation configuration tasks
-After you run the installation program on each node, perform these tasks:
-
-Table 8. Post-installation configuration tasks (all nodes)
-
-
-
-
-
-
-
-H/W
-
-Verify Memory and CPU requirements file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-hardware.html#memory-and-cpu-requirements
-
-
-Verify Disk 
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-hardware.html#disk-requirements
-
-Verify Device Requirements
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-hardware.html#device-requirements
-
-
-S/W
-Verify Linux Distribution file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#supported-linux-distributions
-
-SELinux profile if running SELinux
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#selinux
-
-Vierfy kernal modules enabled
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#kernel-modules
-
-Verify kernel settings
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#kernel-settings
-
-Install Logical Volume Manager 2
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#install-logical-volume-manager-2-lvm2
-
-Enable forwarding for firewalld
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#enable-forwarding-when-using-firewalld
-xref:prereq-network#enable-forwarding-when-using-firewalld[To Enable Forwarding When Using firewalld]
-
-Synchronize chlocks
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#synchronize-clocks
-
-Uninstall unsupported software
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#uninstall-unsupported-software
-
-Uninstall Docker
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#docker
-
-Remove local DNS servers listening on port 53
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#local-dns-servers
-
-
-Network
-Statis IPs
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-static-ips
-
-VXLAN
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-vxlan
-
-NAT traffic req’s
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-nat-traffic-requirements
-
-SSL certificate reqs
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-ssl-certificate-requirements
-
-SMTP server
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-smtp-server-requirements
-
-External IDP
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-external-identity-provider-configuration-and-client-management
-
-
-
-NFS
-
-Required ports are open
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/verify-nfs.html#verify-the-required-ports-are-open
-
-Mount NFS server
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/verify-nfs.html#mount-the-nfs-server
-
-NFS performance
-file:///Users/phargrave/antora/build/site/private-cloud/2.0/verify-nfs.html#verify-nfs-performance
-
+== Verify NFS Requirements
+[%header,cols="3*a"]
+|===
+|Task Description |For More Information |Completed By
+| xref:verify-nfs#verify-nfs-server-setup[Verify NFS Server Setup] |  |
+| xref:verify-nfs#verify-required-ports-are-open[Verify Required Ports are Open] |  |
+| xref:verify-nfs#verify-nfs-server-is-mounted[Verify NFS Server is Mounted] |  |
+| xref:verify-nfs#verify-nfs-performance[Verify NFS Performance] |  |
+|===
 
 Other
 Background knowledge
@@ -156,9 +103,23 @@ file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-other.html#en
 
 
 
+If you are using bare metal servers: do ?????
+
 Verify ANypoint Platform software requiremetns???? Where does this go? If infra running on AWS
 Verify external software requirements: - separate topic?
 NFS
 Identity Provider
 SMTP server
+
+== Install and configure each node
+
+==Test the installation
+After you install the software, complete the following tasks to test and validate your installation.
+
+Table 7. Testing the installation tasks
+
+==Perform post-installation configuration tasks
+After you run the installation program on each node, perform these tasks:
+
+Table 8. Post-installation configuration tasks (all nodes)
 
