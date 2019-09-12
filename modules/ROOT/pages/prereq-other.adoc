@@ -57,7 +57,7 @@ You will be asked to provide the following information:
 
 == Verify Access and Permissions
 
-* Before installing or upgrading Anypoint Platform Private Cloud Edition, you must have root access (permission to run the `sudo` command) on all servers in your environment.
+* Before installing or upgrading Anypoint Platform Private Cloud Edition, you must have root access (permission to run the `sudo` command) on all servers in your environment and run the installer as root to access the necessary, privileged ports.
 
 == Verify Space in Home Directory 
 
