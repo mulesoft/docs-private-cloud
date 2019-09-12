@@ -1,4 +1,4 @@
-= Anypoint Platform Private Cloud Edition Installation
+= Install Anypoint Platform Private Cloud Edition
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
