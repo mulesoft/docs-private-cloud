@@ -92,4 +92,4 @@ If you are using bare-metal servers, refer to . ???
 
 == See Also
 
-* xref:install-workflow.adoc[Anypoint Platform Private Cloud Edition Installation Requirements]
+* xref:install-workflow.adoc[Anypoint Platform Private Cloud Edition Installation]
