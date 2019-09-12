@@ -81,3 +81,7 @@ To successfully install or upgrade Anypoint Platform Private Cloud Edition, your
 | xref:prereq-other#download-and-install-tools[Download and Install Tools] | |
 | xref:prereq-other#gather-configuration-information[Gather Configuration Information] | |
 |===
+
+== See Also
+
+* xref:install-workflow.adoc[Anypoint Platform Private Cloud Edition Installation Requirements]
