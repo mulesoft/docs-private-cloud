@@ -1,4 +1,4 @@
-= Verify NFS Server Requirements
+= NFS Server Requirements
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
