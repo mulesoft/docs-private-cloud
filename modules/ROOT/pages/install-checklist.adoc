@@ -17,15 +17,17 @@ In addition, you must review and perform the additional tasks listed in the Othe
 
 == Infrastructure Prerequisites
 
-=== Topology Prerequisites
+=== Amazon Web Services (AWS) Prerequisites
 
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By 
 | Review Network Topology | xref:supported-cluster-config.adoc[Supported Network Topologies for Anypoint Private Cloud Edition] |
 | Set up AWS (if using AWS) | xref:prereq-aws-terraform.adoc[Amazon Web Services (AWS) Requirements]|
-| Set up Bare Metal Servers (if using bare metal)|  |
 |===
+
+[NOTE]
+If you are using bare-metal servers, refer to . ???
 
 === Hardware Prerequisites
 [%header,cols="3*a"]
