@@ -9,19 +9,19 @@ To ensure the performance and stability of Anypoint Platform Private Cloud Editi
 [IMPORTANT]
 Before installing or upgrading, your infrastructure team must review each of the following sections and verify that your environment meets the stated software requirements. If needed, contact your Customer Success Manager for assistance.
 
-== Supported Linux Distributions
+== Verify Linux Distribution
 The following Linux distributions are supported:
 
 * Red Hat Enterprise Linux (RHEL), versions 7.4.x, 7.5.x, and 7.6
 
 * CentOS, versions 7.4.x, 7.5.x, and 7.6
 
-== SELinux
+=== Check for SELinux Custom Profiles
 SELinux is not required, but Anypoint Platform Private Cloud Edition supports the default SELinux profile running 
 in strict mode. If your environment uses a custom profile, it must provide an unconstrained user context when 
 running the installer. Review any custom profiles with your customer support representative.
 
-== Kernel Modules
+== Enable and Load Kernel Modules
 
 On each node, ensure that the following kernel modules are enabled:
 
@@ -51,7 +51,7 @@ root$ echo 'br_netfilter' > /etc/modules-load.d/br_netfilter.conf
 
 Replace `br_netfilter` with the name of the kernel module you are checking.
 
-== Kernel Settings
+== Verify Kernel Settings
 
 The following flags must be turned on:
 
@@ -123,7 +123,7 @@ Docs: man:firewalld(1)
 
 If `firewalld is not installed, this command returns an error message.
 
-=== Enabling Forwarding
+=== Enable Forwarding on Docker Device
 
 To enable forwarding on the docker0 device, run the following commands:
 
@@ -143,15 +143,15 @@ firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -
 
 == Uninstall Unsupported Software
 
-The following sections describe software that can cause conflicts with Anypoint Platform Private Cloud Edition. You must uninstall these components before performing Anypoint Platform Private Cloud Edition installation.
+The following software causes conflicts with Anypoint Platform Private Cloud Edition. You must uninstall these components before performing Anypoint Platform Private Cloud Edition installation.
 
-=== Docker
+=== Uninstall Docker
 
-Docker should be uninstalled from servers running the Anypoint Platform Private Cloud Edition. The Anypoint Platform installation includes a Docker package officially supported by Kubernetes.
+Docker must be uninstalled from all servers running the Anypoint Platform Private Cloud Edition. The Anypoint Platform installation includes a Docker package officially supported by Kubernetes.
 
-=== Local DNS Servers
+=== Remove Local DNS Servers
 
-Local caching DNS servers listening on port 53 should be removed, e.g. named, dnsmasq, bind or others.
+Local caching DNS servers listening on port 53 must be removed, for example, `named`, `dnsmasq`, and `bind`.
 
 
 == See Also
