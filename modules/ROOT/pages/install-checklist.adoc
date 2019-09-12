@@ -35,49 +35,49 @@ To successfully install or upgrade Anypoint Platform Private Cloud Edition, your
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
-| xref:prereq-software#verify-linux-distribution[Verify Linux Distribution] |
-| xref:prereq-software#selinux[Check for SELinux Custom Profiles] |
-| xref:prereq-software#enable-and-load-kernel-modules[Enable and Load Kernel Modules] |
-| xref:prereq-software#verify-kernel-settings[Verify Kernel Settings] |
-| xref:prereq-software#install-logical-volume-manager-2-lvm2[Install Logical Volume Manager 2 (LVM2)] |
-| xref:prereq-software#synchronize-clocks[Synchronize Clocks] |
-| xref:prereq-software#verify-ip-forwarding-and-bridging[Verify IP Forwarding and Bridging] |
+| xref:prereq-software#verify-linux-distribution[Verify Linux Distribution] | |
+| xref:prereq-software#selinux[Check for SELinux Custom Profiles] | |
+| xref:prereq-software#enable-and-load-kernel-modules[Enable and Load Kernel Modules] | |
+| xref:prereq-software#verify-kernel-settings[Verify Kernel Settings] | |
+| xref:prereq-software#install-logical-volume-manager-2-lvm2[Install Logical Volume Manager 2 (LVM2)] | |
+| xref:prereq-software#synchronize-clocks[Synchronize Clocks] | |
+| xref:prereq-software#verify-ip-forwarding-and-bridging[Verify IP Forwarding and Bridging] | |
 | If using firewalld, xref:prereq-software#enable-forwarding-on-docker-device[Enable Forwarding on Docker device] | xref:prereq-software#determine-if-you-are-using-firewalld[Determine if You Are Using firewalld] |
-| xref:prereq-software#uninstall-docker[Uninstall Docker] |
-| xref:prereq-software#remove-local-dns-servers[Remove Local DNS Servers] |
+| xref:prereq-software#uninstall-docker[Uninstall Docker] | |
+| xref:prereq-software#remove-local-dns-servers[Remove Local DNS Servers] | |
 |===
 
 == Network Requirements
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
-| xref:prereq-network#verify-static-ips[Verify Static IPs] |
-| xref:prereq-network#verify-vxlan[Verify VXLAN] |
-| xref:prereq-network#verify-nat-traffic-requirements[Verify NAT Traffic Requirements] |
-| xref:prereq-network#verify-smtp-server-requirements[Verify SMTP Server Requirements] |
-| xref:prereq-network#verify-external-identity-provider-configuration-and-client-management[Verify External Identity Provider Configuration and Client Management] |
-| xref:prereq-network#synchronize-clocks[Synchronize Clocks] |
-| xref:prereq-network#verify-ip-forwarding-and-bridging[Verify IP Forwarding and Bridging] |
+| xref:prereq-network#verify-static-ips[Verify Static IPs] | |
+| xref:prereq-network#verify-vxlan[Verify VXLAN] | |
+| xref:prereq-network#verify-nat-traffic-requirements[Verify NAT Traffic Requirements] | |
+| xref:prereq-network#verify-smtp-server-requirements[Verify SMTP Server Requirements] | |
+| xref:prereq-network#verify-external-identity-provider-configuration-and-client-management[Verify External Identity Provider Configuration and Client Management] | |
+| xref:prereq-network#synchronize-clocks[Synchronize Clocks] | |
+| xref:prereq-network#verify-ip-forwarding-and-bridging[Verify IP Forwarding and Bridging] | |
 |===
 
 == NFS Requirements
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
-| xref:verify-nfs#verify-nfs-server-setup[Verify NFS Server Setup] |
-| xref:verify-nfs#verify-required-ports-are-open[Verify Required Ports are Open] |
-| xref:verify-nfs#verify-nfs-server-is-mounted[Verify NFS Server is Mounted] |
-| xref:verify-nfs#verify-nfs-performance[Verify NFS Performance] |
+| xref:verify-nfs#verify-nfs-server-setup[Verify NFS Server Setup] | |
+| xref:verify-nfs#verify-required-ports-are-open[Verify Required Ports are Open] | |
+| xref:verify-nfs#verify-nfs-server-is-mounted[Verify NFS Server is Mounted] | |
+| xref:verify-nfs#verify-nfs-performance[Verify NFS Performance] | |
 |===
 
 == Additional Requirements
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
-| xref:prereq-other##background-knowledge[Expertise Required????] |
-| xref:prereq-other##verify-access-and-permissions[Verify Access and Permissions] |
-| xref:prereq-other#verify-space-in-home-directory[Verify Space in Home Directory] |
-| xref:prereq-other#enable-required-ports[Enable Required Ports] |
-| xref:prereq-other#download-and-install-tools[Download and Install Tools] |
-| xref:prereq-other#gather-configuration-information[Gather Configuration Information] |
+| xref:prereq-other##background-knowledge[Expertise Required????] | |
+| xref:prereq-other##verify-access-and-permissions[Verify Access and Permissions] | |
+| xref:prereq-other#verify-space-in-home-directory[Verify Space in Home Directory] | |
+| xref:prereq-other#enable-required-ports[Enable Required Ports] | |
+| xref:prereq-other#download-and-install-tools[Download and Install Tools] | |
+| xref:prereq-other#gather-configuration-information[Gather Configuration Information] | |
 |===
