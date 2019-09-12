@@ -1,12 +1,20 @@
-= Configure LDAP in Anypoint Private Cloud
+= Configure External Identity Provider in Anypoint Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to configure user management in Anypoint Platform Private Cloud Edition using LDAP version 3.
+Anypoint Platform Private Cloud Edition requires an External Identity Provider that is compliant with one of the following standards:
 
-. From Anypoint Platform, click Access Management > External Identity.
-. Click LDAP
+* LDAP
+* OpenID Connect
+* SAML 2.0
+
+The following sections describe how to configure user management in Anypoint Platform Private Cloud Edition using each of these standards.
+
+== LDAP Version 3
+
+. From Anypoint Platform, select *Access Management* > *External Identity* > *Identity Management*.
+. Select LDAP.
 . Enter the connection settings for your LDAP service:
 +
 [%header%autowidth.spread]
@@ -67,3 +75,23 @@ This topic describes how to configure user management in Anypoint Platform Priva
 If Access Management returns `OK` for each item, your LDAP server is configured correctly.
 
 . Save the configuration.
+
+== OpenID Connect
+Refer to xref:access-management/conf-openid-connect-task.adoc[To Configure OpenID Connect] for detailed configuration information.
+
+Troubleshooting information can be found at https://help.mulesoft.com/s/article/Anypoint-Platform-Single-Sign-On-SSO-using-OpenID-Connect-OIDC-Troubleshooting-Guide[Anypoint Platform Single Sign-On (SSO) using OpenID Connect (OIDC) Troubleshooting Guide].
+
+== SAML 2.0
+
+. From Anypoint Platform, select *Access Management* > *External Identity* > *Identity Management*.
+. Select SAML 2.0.
++
+* *Sign On URL*
+* *Sign Off URL*
+* *Issuer*
+* *Public Key*
+* *Audience*
++
+. Select Save.
+
+// Do we need to discuss automatic Group assignment - e.g. https://saml-doc.okta.com/SAML_Docs/How-to-Configure-SAML-2.0-for-MuleSoft.html?
