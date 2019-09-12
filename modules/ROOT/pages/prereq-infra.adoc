@@ -26,5 +26,5 @@ If needed, contact your Customer Success Manager for assistance.
 
 == See Also
 
-* xref:install-workflow.adoc[Anypoint Private Cloud Installers]
+* xref:install-workflow.adoc[Install Anypoint Private Cloud]
 * xref:upgrade.adoc[Upgrade to Anypoint Platform Private Cloud, Version 2.0]
