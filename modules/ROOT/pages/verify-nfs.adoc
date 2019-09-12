@@ -6,6 +6,7 @@ endif::[]
 [IMPORTANT]
 Before installing or upgrading, your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your Customer Success Manager for assistance to ensure your NFS server is configured correctly.
 
+== Verify NFS Server Setup
 Anypoint Private Cloud Edition version 2.0+ requires a Network File System (NFS) server and an available NFS endpoint. Your NFS server must meet the following requirements:
 
 * Must be running on a filesystem that has at least 250 GB available.
@@ -14,7 +15,7 @@ Anypoint Private Cloud Edition version 2.0+ requires a Network File System (NFS)
 * Enable ports 111 and 2049 for both TCP and UDP.
 * Configure your network so that all of the PCE nodes can access the NFS server. The direct NFS client is Kubernetes 1.9 and requires conformance with NFS version 4.
 
-== Verify the Required Ports are Open
+== Verify Required Ports are Open
 
 The NFS server requires ports 2049 and 111 to be open for TCP and UDP.
  
@@ -37,7 +38,7 @@ Ncat: Connected to 10.1.0.155:2049.
 Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.
 ----
 
-== Mount the NFS Server
+== Verify NFS Server is Mounted
 
 On each node, mount the NFS server in a temporary directory. 
 
