@@ -1,0 +1,164 @@
+= Installation and Upgrade Checklist
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== Checklist
+ 
+.Shopping cart - example checkbox
+* [x] Milk  // Checked with x
+* [ ] Sugar  // Unchecked
+* [*] Chocolate  // Checked with *
+------------------------------------------
+
+Use the following checklist when installing or upgrading Anypoint Platform Private Cloud Edition 
+to ensure that your environment is configured correctly.
+
+[IMPORTANT]
+To successfully install or upgrade Anypoint Platform Private Cloud Edition, you must read and perform the tasks 
+described in this topic. 
+
+Set up your topology in accordance with <link to architecture>???
+
+Install on each node in your cluster.
+Perform post-installation configuration tasks.
+
+
+== Set up your topology in accordance with <link to architecture>???
+If you are using AWS:
+Topology planning and building tasks
+Table with Task Description, For More Information  Record Your Information/Completed By
+If you are using bare metal servers: do ?????
+
+
+== Prepare to install the software
+To prepare your computers to install the product software, complete the steps in the following task list.
+table - Software planning tasks
+
+== Install and configure each node
+
+==Test the installation
+After you install the software, complete the following tasks to test and validate your installation.
+
+Table 7. Testing the installation tasks
+
+==Perform post-installation configuration tasks
+After you run the installation program on each node, perform these tasks:
+
+Table 8. Post-installation configuration tasks (all nodes)
+
+
+
+
+
+
+
+H/W
+
+Verify Memory and CPU requirements file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-hardware.html#memory-and-cpu-requirements
+
+
+Verify Disk 
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-hardware.html#disk-requirements
+
+Verify Device Requirements
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-hardware.html#device-requirements
+
+
+S/W
+Verify Linux Distribution file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#supported-linux-distributions
+
+SELinux profile if running SELinux
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#selinux
+
+Vierfy kernal modules enabled
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#kernel-modules
+
+Verify kernel settings
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#kernel-settings
+
+Install Logical Volume Manager 2
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#install-logical-volume-manager-2-lvm2
+
+Enable forwarding for firewalld
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#enable-forwarding-when-using-firewalld
+xref:prereq-network#enable-forwarding-when-using-firewalld[To Enable Forwarding When Using firewalld]
+
+Synchronize chlocks
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#synchronize-clocks
+
+Uninstall unsupported software
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#uninstall-unsupported-software
+
+Uninstall Docker
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#docker
+
+Remove local DNS servers listening on port 53
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-software.html#local-dns-servers
+
+
+Network
+Statis IPs
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-static-ips
+
+VXLAN
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-vxlan
+
+NAT traffic req’s
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-nat-traffic-requirements
+
+SSL certificate reqs
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-ssl-certificate-requirements
+
+SMTP server
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-smtp-server-requirements
+
+External IDP
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-network.html#verify-external-identity-provider-configuration-and-client-management
+
+
+
+NFS
+
+Required ports are open
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/verify-nfs.html#verify-the-required-ports-are-open
+
+Mount NFS server
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/verify-nfs.html#mount-the-nfs-server
+
+NFS performance
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/verify-nfs.html#verify-nfs-performance
+
+
+Other
+Background knowledge
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-other.html#background-knowledge
+
+
+Gather environment config info
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-other.html#gather-configuration-information
+
+
+Verify access and permissions
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-other.html#verify-access-and-permissions
+Add root access here and delete from topics
+You must run the installer as root to access the necessary privileged ports.
+
+Verify space in home directory
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-other.html#verify-space-in-home-directory
+
+Download and install tools
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-other.html#download-and-install-tools
+
+Enable required ports
+file:///Users/phargrave/antora/build/site/private-cloud/2.0/prereq-other.html#enable-required-ports
+
+
+
+
+Verify ANypoint Platform software requiremetns???? Where does this go? If infra running on AWS
+Verify external software requirements: - separate topic?
+NFS
+Identity Provider
+SMTP server
+
