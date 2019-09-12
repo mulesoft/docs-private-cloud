@@ -1,4 +1,4 @@
-= Create Anypoint Private Cloud Resources on Amazon Web Services (AWS)
+= Amazon Web Services (AWS) Requirements
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
