@@ -7,6 +7,109 @@ endif::[]
 
 After installation and configuration is complete, close port 61009 in the cluster security group using the AWS Web console.
 
+
+== Configure Log Forwarding
+
+[NOTE]
+====
+This information is specific to forwarding log data from Anypoint Platform itself. For instructions on how to forward log data from the Mule servers and applications that run on Anypoint Platform, see xref:runtime-manager::sending-data-from-arm-to-external-analytics-software.adoc[Sending Data from Runtime Manager to External Analytics Software].
+====
+
+Anypoint Platform uses `rsyslog` to handle logging. To forward these logs to remote hosts, you must configure log forwarding in the Ops Center.
+
+See xref:managing-via-the-ops-center.adoc#configure-log-forwarding[Configure Log Forwarding] for detailed steps on how to do this from the Ops Center.
+
+[NOTE]
+You must forward logs to a 3rd-party log solution like Splunk. Sending data to cloud-based log solutions such as Splunk Cloud is not supported.
+
+== Add a Custom Disclaimer Message
+
+You can add a custom message to your login page, which all users in your organization will see every time they log in.
+
+== Verify Anypoint Private Cloud Environment
+
+After setting up your environment, you can run the `gravity check` script to verify that your system meets the minimum requirements for Anypoint Private Cloud.
+How do I know where the gravity binary and app.yaml manifest are? Where do I copy these to on each node? I got command not found. Anything different for 3 node vs 6 node environment???
+
+. Copy the following from the node where you ran the installer to each node of your cluster:
++
+* The `gravity` binary.
+* The `app.yaml` manifest used by the `gravity` binary.
++
+These files are located in the folder of the installer.
+
+. Run the following command from each node of your cluster:
++
+----
+sudo ./gravity check --profile=app_node app.yaml
+----
++
+Valid values of the `--profile` option are:
++
+* app_node
+* data_node
+* general_node (for 3 node installations)
+* demo_node (for 1 node installations)
+
+If the command returns no output, this indicates that your environment is setup correctly with the required resources. If your environment does not meet the requirements, the command returns a message describing the problem.
+
+== Delete the Local User after Installing Private Cloud Edition
+
+During installation, Anypoint Private Cloud Edition creates a local Anypoint Platform user that enables you to configure platform components during installation. The credentials for this user are stored locally in Anypoint Platform. However, after configuring an external authentication provider such as LDAP, you should delete this user to improve security.
+
+. Before deleting the local user, perform the following:
+
+** Install and configure your external identity provider.
+** Ensure that `SystemAdmin` user is not the owner of any other organizations.
+
+. Select the new user you want to assign administrator privileges. This user must be defined in your external identity provider.
+
+. Determine the internal user ID for this user.
+.. From Anypoint Platform, select Access Management.
+.. Click the Users tab, then click the name of the user.
+.. Record the internal user ID. This ID appears in the URL as:
++
+image::access-management-user-id.png[User ID]
+
+. Enter the gravity shell.
++
+----
+gravity enter
+----
+
+. Identify one of the `cs-auth` containers using the following command:
++
+----
+kubectl get pods -l microservice=cs-auth
+----
+
+. Change the owner using the following command, providing the internal the `cs-auth` container and user ID obtained above:
++
+----
+kubectl exec -it <cs-auth-container> – node bin/change_owner.js --new-owner-id <user_id>
+----
++
+This command changes the owner from the default system user to a new user managed by the external authentication provider. The command you use should be similar to the following example:
++
+----
+kubectl exec -it cs-auth-1572348378-0kb57 – node bin/change_owner.js --new-owner-id a363279f-982f-493c-b08f-9feb91be90d4
+----
+
+. Disable and delete the `System Admin` user.
+.. Login as the user you just added as the organization owner. as owner.
+.. From Anypoint Platform, select Access Management.
+.. Click the Users tab, then click `username` in the same row as `SystemAdmin`.
+.. Click Disable, then click Delete.
++
+This removes the default user from the platform.
+
+
+
+
+
+
+
+
 Now that your installation is complete, your instance of Anypoint Platform is ready to use. Users registered in your external identity service should have access to your Anypoint platform xref:access-management::organization.adoc[organization]. As an admin, you can add xref:access-management::roles.adoc[roles] to these users. 
 
 You can also xref:runtime-manager::managing-servers.adoc[register servers] so that you can then xref:runtime-manager::deploying-to-your-own-servers.adoc[deploy to them], and so on.
