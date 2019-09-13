@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to use the Ops Center to manage and monitor the Anypoint Platform Private Cloud Edition. The Ops Center is a web-base management tool that enables you to perform the following types of tasks:
+The Ops Center is a web-base management tool that enables you to manage and monitor Anypoint Platform Private Cloud Edition and perform the following types of tasks:
 
 * Add and remove servers
 * View logs and configure log forwarding
