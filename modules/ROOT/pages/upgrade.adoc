@@ -1,4 +1,4 @@
-= Upgrade to Anypoint Platform Private Cloud, Version 2.0
+= Upgrade Anypoint Platform Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
