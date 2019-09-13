@@ -3,24 +3,21 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+The following topics describe how to manage Anypoint Private Cloud after installation and configuration is complete:
+
+* xref:prereq-env.adoc[Environment Limitations]
+* xref:managing-via-the-ops-center.adoc[Manage Anypoint Platform Private Cloud Edition Using Ops Center]
+* xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
+* xref:config-alerts.adoc[Setup Alerts for CPU and Memory Usage]
+* xref:config-add-proxy-whitelist.adoc[Add Whitelist Addresses for API Platform Proxies]
+* xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Private Cloud]
+* xref:demo-ldap-server.adoc[Configure the Demo LDAP Server]
+* xref:ext-analytics-elk.adoc[Analyze Business and API Data using ELK]
+
 == Disable Port 61009 After Installation and Configuration
 
 After installation and configuration is complete, close port 61009 in the cluster security group using the AWS Web console.
 
-
-== Configure Log Forwarding
-
-[NOTE]
-====
-This information is specific to forwarding log data from Anypoint Platform itself. For instructions on how to forward log data from the Mule servers and applications that run on Anypoint Platform, see xref:runtime-manager::sending-data-from-arm-to-external-analytics-software.adoc[Sending Data from Runtime Manager to External Analytics Software].
-====
-
-Anypoint Platform uses `rsyslog` to handle logging. To forward these logs to remote hosts, you must configure log forwarding in the Ops Center.
-
-See xref:managing-via-the-ops-center.adoc#configure-log-forwarding[Configure Log Forwarding] for detailed steps on how to do this from the Ops Center.
-
-[NOTE]
-You must forward logs to a 3rd-party log solution like Splunk. Sending data to cloud-based log solutions such as Splunk Cloud is not supported.
 
 == Add a Custom Disclaimer Message
 
@@ -223,15 +220,3 @@ In this example, $ANYPOINT_DNS is set to your DNS for Anypoint Platform Private 
 Verify your policy was uploaded by visiting https://${ANYPOINT_DNS}/exchange/?type=policy or https://${ANYPOINT_DNS}/exchange/${orgID}/${artifactId}/ directly.
 
 For an API managed by Mule 4 or above, the policy appears in the *Apply Policy* dialog.
-
-
-The following topics describe how to manage Anypoint Private Cloud after installation and configuration:
-
-*** xref:managing-via-the-ops-center.adoc[To Manage Anypoint Platform Private Cloud Edition Using Ops Center]
-*** xref:backup-and-disaster-recovery.adoc[To Configure Backup and Restore]
-*** xref:ops-center-update-lic.adoc[To Add a Product License Using Ops Center]
-*** xref:config-alerts.adoc[To Setup Alerts for CPU and Memory Usage]
-*** xref:config-add-proxy-whitelist.adoc[To Add Whitelist Addresses for API Platform Proxies]
-*** xref:demo-ldap-server.adoc[To Configure the Demo LDAP Server]
-*** xref:ext-analytics-elk.adoc[To Analyze Business and API Data using ELK]
-*** xref:restarting-a-node.adoc[Stop, Restart, or Update an Anypoint Platform Private Cloud Edition Node]
