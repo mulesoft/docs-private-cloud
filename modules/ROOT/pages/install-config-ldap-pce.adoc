@@ -1,15 +1,17 @@
-= Configure External Identity Provider in Anypoint Private Cloud
+= Configure External Identity Provider in Anypoint Private Cloud - WIP
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition requires an External Identity Provider that is compliant with one of the following standards:
+Anypoint Platform Private Cloud Edition requires an External Identity Provider. To configure third-party access for each of the available options, the following providers are supported:
 
 * LDAP
+* xref:access-management::conf-client-mgmt-pf-task.adoc[Configure Ping Federate]???
+* xref:access-management::managing-users.adoc[Configure SAML]
+* xref:access-management::conf-client-mgmt-openam-task.adoc[OpenAM]???
 * OpenID Connect
-* SAML 2.0
 
-The following sections describe how to configure user management in Anypoint Platform Private Cloud Edition using each of these standards.
+In the current version of Private Cloud Edition, all users must be registered via external identity, except the admin you register in the installation wizard.
 
 == LDAP Version 3
 
