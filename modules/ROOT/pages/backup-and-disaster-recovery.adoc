@@ -1,4 +1,4 @@
-= Backup and Restore Anypoint Private Cloud
+= Configure Backup and Restore for Anypoint Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -54,5 +54,5 @@ This takes a few minutes. You can pass the following optional parameters:
 
 == See Also
 
-* xref:install-workflow.adoc[Workflow: Install Anypoint Platform Private Cloud Edition]
-* xref:upgrade.adoc[To Migrate to Anypoint Platform Private Cloud Edition, Version 2.0.0]
+* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud Edition]
+* xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud Edition]
