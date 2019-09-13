@@ -4,16 +4,4 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-gravity-check.adoc, install-diable-local-user.adoc 
 
-If not completed prior to Anypoint Platform Private Cloud Edition installation, the following steps must be performed:
 
-* xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
-* xref:access-management-security.adoc[Configure Security on Anypoint Private Cloud]
-* xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
-* xref:install-config-ldap-pce.adoc[Configure External Identity Provider in Anypoint Private Cloud]
-
-== See Also
-
-* xref:backup-and-disaster-recovery.adoc[Backup and Recovery]
-* xref:runtime-manager::managing-servers.adoc[About Servers, Server Groups, and Clusters]
-* xref:api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies]
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/exchange-maven-facade-api-http/[Maven facade API]
