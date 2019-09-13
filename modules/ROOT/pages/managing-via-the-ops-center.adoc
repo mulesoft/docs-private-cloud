@@ -242,4 +242,5 @@ password for admin@example.com has been reset to: xxxxxxxxx
 
 == See Also
 
-* xref:prereq-workflow.adoc#device-requirements[Device Requirements]
+* xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
+* xref:config-alerts.adoc[Set up Alerts for CPU and Memory Usage]
