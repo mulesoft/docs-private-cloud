@@ -14,4 +14,4 @@ Add your Anypoint Platform Private Cloud Edition license in Ops Center.
 
 == See Also
 
-* xref:managing-via-the-ops-center.adoc[To Manage Anypoint Platform Private Cloud Edition Using Ops Center]
+* xref:managing-via-the-ops-center.adoc[Manage Anypoint Platform Private Cloud Edition Using Ops Center]
