@@ -90,5 +90,5 @@ curl -X POST http://bandwagon-mulesoft.default.svc.cluster.local/api/complete -H
 
 == See Also
 
-* xref:install-workflow.adoc[Anypoint Platform Private Cloud Edition Installation Requirements]
-* xref:install-installer.adoc[Install using the GUI-based installer]
+* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud Edition]
+* xref:install-installer.adoc[Run the GUI installer]
