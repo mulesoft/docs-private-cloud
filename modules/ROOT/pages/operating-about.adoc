@@ -18,11 +18,6 @@ The following topics describe how to manage Anypoint Private Cloud after install
 
 After installation and configuration is complete, close port 61009 in the cluster security group using the AWS Web console.
 
-
-== Add a Custom Disclaimer Message
-
-You can add a custom message to your login page, which all users in your organization will see every time they log in.
-
 == Verify Anypoint Private Cloud Environment
 
 After setting up your environment, you can run the `gravity check` script to verify that your system meets the minimum requirements for Anypoint Private Cloud.
