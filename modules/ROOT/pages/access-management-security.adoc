@@ -3,7 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Using Access Management, you can configure Anypoint Platform to use a certificate to ensure secure communication within the platform. You can also provide a custom cipher and DH groups for the key exchange method, if required.
+To use Anypoint Platform, you must provide TLS credentials. You can upload a certificate through the Anypoint Platform UI  
+using Access Management, and configure Anypoint Platform to use this certificate to ensure secure communication within the platform. This certificate must be trusted by every machine connected to the platform, including Mule Runtime engines. You can also provide a custom cipher and DH groups for the key exchange method, if required.
 
 When you replace or change the certificate, Anypoint Platform restarts the nginx server.
 
