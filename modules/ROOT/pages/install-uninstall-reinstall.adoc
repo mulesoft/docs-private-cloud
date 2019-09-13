@@ -81,6 +81,6 @@ is still set up correctly and meets the minimum disk and resource requirements.
 
 == See Also
 
-* xref:install-workflow.adoc[Anypoint Platform Private Cloud Edition Installation Requirements]
-* xref:install-installer.adoc[Install Anypoint Platform Private Cloud Using GUI Installer]
-* xref:install-auto-install.adoc[Install Anypoint Platform Private Cloud Using CLI Installer]
+* xref:install-workflow.adoc[ Install Anypoint Platform Private Cloud Edition]
+* xref:install-installer.adoc[Run the GUI Installer]
+* xref:install-auto-install.adoc[Run the CLI Installer]
