@@ -1,4 +1,4 @@
-= To Install Anypoint Private Cloud using the GUI Installer
+= Install Anypoint Private Cloud using the GUI Installer
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
