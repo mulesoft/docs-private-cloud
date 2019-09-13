@@ -3,6 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+== Disable Port 61009 After Installation and Configuration
+
+After installation and configuration is complete, close port 61009 in the cluster security group using the AWS Web console.
+
 Now that your installation is complete, your instance of Anypoint Platform is ready to use. Users registered in your external identity service should have access to your Anypoint platform xref:access-management::organization.adoc[organization]. As an admin, you can add xref:access-management::roles.adoc[roles] to these users. 
 
 You can also xref:runtime-manager::managing-servers.adoc[register servers] so that you can then xref:runtime-manager::deploying-to-your-own-servers.adoc[deploy to them], and so on.
