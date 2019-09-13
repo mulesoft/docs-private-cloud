@@ -28,22 +28,7 @@ Before migrating, ensure that you have performed and met the following prerequis
 
 * Perform a backup of your system as described in xref:backup-and-disaster-recovery.adoc[About Backup and Recovery]. If you are upgrading from an older version that requires multiple intermediate upgrades you must backup each intermediate version before proceding to the next.
 
-* Anypoint Private Cloud, version 2.0 requires that you have an NFS server installed and configured. Ensure that this is installed before beginning the upgrade. See xref:prereq-hardware.adoc[Private Cloud Edition Hardware Requirements]
-
-* Ensure that your environment meets all of the system and network requirements described in xref:prereq-workflow.adoc[Workflow: Install and Verify Prerequisites for Physical Servers].
-
-* Ensure that the necessary kernel modules are enabled as described in xref:prereq-software.adoc#kernel-modules[Software Requirements for Anypoint Private Cloud]. 
-
-* Enable TCP ports `53`, `3011`, `3012` intra-node to allow communication with the database cluster.
-
-* Ensure you have permission to run the `sudo` command on the node where you launch the migration tool.
-
-* Ensure the `kubectl` command is available in the node where you are performing the migration. To verify that `kubectl` is installed, run the following:
-+
-----
-$ sudo gravity enter
-$ kubectl
-----
+* Your environment meets all of the requirements described in xref:install-checklist[Installation and Upgrade Checklist].
 
 == Procedure
 
@@ -115,7 +100,7 @@ Before accessing Anypoint Platform, ensure that you configure your NSF server s 
 
 . Configure Anypoint Private Cloud to use your NFS server.
 +
-After upgrading Anypoing Private Cloud, you configure it to use the required NFS server.
+After upgrading Anypoing Private Cloud, configure it to use the required NFS server.
 +
 .. From Anypoint Platform, select *Access Management*.
 .. Click *NFS Settings*.
