@@ -68,7 +68,12 @@ Deleting a server also removes any applications that are deployed on the server.
 
 Anypoint Platform Private Cloud Edition enables you to forward server-level log data. Log forwarding is designed to forward your logs to a local 3rd party log solution. Forwarding log data to a cloud-based service, like Splunk Cloud, is not supported.
 
-Anypoint Platform uses `rsyslog` to handle logging. To forward these logs to remote hosts perform following:
+[NOTE]
+====
+This information is specific to forwarding log data from Anypoint Platform itself. For instructions on how to forward log data from the Mule servers and applications that run on Anypoint Platform, see xref:runtime-manager::sending-data-from-arm-to-external-analytics-software.adoc[Sending Data from Runtime Manager to External Analytics Software].
+====
+
+Anypoint Platform uses `rsyslog` to handle logging. To forward these logs to remote hosts, perform the following steps:
 
 . Login to Ops Center.
 
