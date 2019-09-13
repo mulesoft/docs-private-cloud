@@ -32,4 +32,4 @@ You must configure a load balancer to use round-robin distribution of traffic am
 
 == See Also
 
-* xref:install-workflow.adoc[Anypoint Platform Private Cloud Edition Installation]
+* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud Edition]
