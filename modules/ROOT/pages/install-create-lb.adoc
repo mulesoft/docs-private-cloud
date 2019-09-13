@@ -1,4 +1,4 @@
-= Setup a Load Balancer for Anypoint Platform Private Cloud Edition
+= Set up a Load Balancer for Anypoint Platform Private Cloud Edition
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -6,7 +6,7 @@ endif::[]
 Anypoint Platform Private Cloud Edition must run in a production environment with multiple servers. To distribute traffic among servers and to restrict access to specific ports, you must install and configure a load balancer. Also, in a single server development environment, MuleSoft recommends using a load balancer.
 
 [NOTE]
-If using the xref:prereq-aws-terraform.adoc[AWS Provisioner for Anypoint Private Cloud Edition] skip this section. An Amazon ELB is created during installation with the required configuration.
+If using the xref:prereq-aws-terraform.adoc[AWS Provisioner for Anypoint Private Cloud Edition], skip this section. An Amazon ELB is created during installation with the required configuration.
 
 
 You can configure your load balancer to use any method for distributing client requests, but in most contexts a round robin strategy is ideal. The load balancer should be accessible through an IP address that is available to all machines in your network.
@@ -89,6 +89,4 @@ service nginx restart
 ----
 
 == See Also
-* xref:install-add-tasks.adoc[To Perform Additional Installation Tasks]
-* xref:prereq-aws-terraform.adoc[AWS Provisioner for Anypoint Private Cloud Edition]
 * https://www.nginx.com/[Nginx]
