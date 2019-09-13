@@ -14,7 +14,7 @@ It enables you to specify configuration options, but it also requires you to ope
 Most problems occur from not following the minimum system requirements. Before running the installer, ensure that your system meets the minimum system requirements and that you have gathered all information listed in the installation checklist.
 ====
 
-== Running the Installer
+== Run the GUI Installation
 You must run the installer as root to access the necessary privileged ports, and you must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall.adoc[Uninstall and Reinstall Anypoint Private Cloud].
 
 . Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative.
@@ -120,5 +120,5 @@ Platform users access their accounts based on the organization name that you pro
 
 == See Also
 
-* xref:install-workflow.adoc[Anypoint Platform Private Cloud Edition Installation Requirements]
-* xref:install-auto-install.adoc[Install using the CLI-Based installer]
+* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud Edition]
+* xref:install-auto-install.adoc[Run the CLI installer]
