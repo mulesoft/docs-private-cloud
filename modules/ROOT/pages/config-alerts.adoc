@@ -1,4 +1,4 @@
-= Setup Alerts for CPU and Memory Usage
+= Set up Alerts for CPU and Memory Usage
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
