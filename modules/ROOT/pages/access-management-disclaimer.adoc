@@ -3,9 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Click the *Disclaimer* section to set up a disclaimer message that your users see when they access the Anypoint Platform's sign-in page.
+You can add a custom message to your login page, which all users in your organization see every time they log in.
+
+From Anypoint Platform, select *Access Management* > *Disclaimer*.
 
 image::on-prem-features-d22af.png[]
-
 
 You can set up a custom HTML message as well.
