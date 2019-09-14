@@ -1,0 +1,34 @@
+= Verify Environment After Installation
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== Verify Anypoint Private Cloud Nodes
+
+After you install Anypoint Private Cloud on all nodes, run the `gravity check` script to verify that 
+each node meets the minimum requirements for Anypoint Private Cloud, including
+CPU, RAM, and volume storage.
+
+. Copy the following from the node where you ran the installer to each node of your cluster:
++
+* The `gravity` binary.
+* The `app.yaml` manifest used by the `gravity` binary.
++
+These files are located in the folder of the installer.
+
+. Run the following command from each node of your cluster:
++
+----
+sudo ./gravity check --profile=app_node app.yaml
+----
++
+Valid values of the `--profile` option are:
++
+* app_node
+* data_node
+* general_node (for 3 node installations)
+* demo_node (for 1 node installations)
+
+If the command returns no output, this indicates that your environment is setup correctly with the required resources. 
+If any node fails to satisfy the minimum requirements, the command returns a list of failed checks and exits 
+with a non-0 return code.
