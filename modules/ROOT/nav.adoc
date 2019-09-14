@@ -16,7 +16,7 @@
  ** xref:prereq-gravity-check.adoc[Verify Environment After Installation]
  ** xref:install-uninstall-reinstall.adoc[Uninstall and Reinstall Anypoint Private Cloud]
 * xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]
-* xref:config-workflow.adoc[Deploy Anypoint Private Cloud]
+* xref:config-workflow.adoc[Configure Anypoint Private Cloud]
  ** xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
  ** xref:access-management-security.adoc[Configure Security for Anypoint Private Cloud]
  ** xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
