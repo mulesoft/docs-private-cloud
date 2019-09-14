@@ -25,7 +25,7 @@
  ** xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore] 
 * xref:operating-about.adoc[Manage Anypoint Private Cloud]
  ** xref:prereq-env.adoc[Environment Limitations]
- ** xref:managing-via-the-ops-center.adoc[Manage Anypoint Platform Private Cloud Edition Using Ops Center]
+ ** xref:managing-via-the-ops-center.adoc[Ops Center]
   *** xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
   *** xref:config-alerts.adoc[Set up Alerts for CPU and Memory Usage]
   *** xref:config-add-proxy-whitelist.adoc[Add Whitelist Addresses for API Platform Proxies]
