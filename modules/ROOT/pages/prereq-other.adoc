@@ -4,14 +4,20 @@ include::_attributes.adoc[]
 endif::[]
 
 [IMPORTANT]
-To successfully install or upgrade Anypoint Platform Private Cloud Edition, you must read and perform the tasks 
-described in this topic. 
+Before beginning an installation or upgrade, make sure you perform the following tasks. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not set up prior to installating or upgrading.
 
-== Background Knowledge
+* Verify Level of Expertise Required
+* Gather Configuration Information
+* Verify Access and Permissions
+* Verify Space in Home Directory
+* Download and Install Required Tools
+* Enable Required Ports
 
-To install Anypoint Platform Private Cloud Edition, you should have knowledge in the following areas:
+== Verify Level of Expertise Required
 
-* Basic knowledge Linux system commands.
+To install Anypoint Platform Private Cloud Edition, knowledge in the following areas is required:
+
+* Basic knowledge of Linux system commands.
 * Basic understanding of remote connection mechanisms, such as SSL and SSH.
 
 == Gather Configuration Information
@@ -63,7 +69,7 @@ You will be asked to provide the following information:
 
 Make sure that you have enough space in your home directory to download and unzip the installer file. The installer is a ~10GB file.
 
-== Download and Install Tools
+== Download and Install Required Tools
 
 * Netcat
 
