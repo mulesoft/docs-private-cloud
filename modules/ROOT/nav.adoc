@@ -32,6 +32,7 @@
   *** xref:config-alerts.adoc[Set up Alerts for CPU and Memory Usage]
   *** xref:config-add-proxy-whitelist.adoc[Add Whitelist Addresses for API Platform Proxies]
  ** xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Private Cloud]
+ ** xref:custom-policies[Upload Custom Policies and Publish Assets to Exchange Using the Maven Client]
  ** xref:register-server[Register a Server]
  ** xref:demo-ldap-server.adoc[Configure the Demo LDAP Server]
  ** xref:ext-analytics-elk.adoc[Analyze Business and API Data using ELK]
