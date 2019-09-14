@@ -1,79 +1,7 @@
-= Managing Anypoint Private Cloud - WIP
+= Managing Anypoint Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-
-The following topics describe how to manage Anypoint Private Cloud after installation and configuration is complete:
-
-* xref:prereq-env.adoc[Environment Limitations]
-* xref:managing-via-the-ops-center.adoc[Manage Anypoint Platform Private Cloud Edition Using Ops Center]
-* xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
-* xref:config-alerts.adoc[Setup Alerts for CPU and Memory Usage]
-* xref:config-add-proxy-whitelist.adoc[Add Whitelist Addresses for API Platform Proxies]
-* xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Private Cloud]
-* xref:demo-ldap-server.adoc[Configure the Demo LDAP Server]
-* xref:ext-analytics-elk.adoc[Analyze Business and API Data using ELK]
-
-== Disable Port 61009 After Installation and Configuration
-
-After installation and configuration is complete, close port 61009 in the cluster security group using the AWS Web console.
-
-== Delete the Local User after Installing Private Cloud Edition
-
-During installation, Anypoint Private Cloud Edition creates a local Anypoint Platform user that enables you to configure platform components during installation. The credentials for this user are stored locally in Anypoint Platform. However, after configuring an external authentication provider such as LDAP, you should delete this user to improve security.
-
-. Before deleting the local user, perform the following:
-
-** Install and configure your external identity provider.
-** Ensure that `SystemAdmin` user is not the owner of any other organizations.
-
-. Select the new user you want to assign administrator privileges. This user must be defined in your external identity provider.
-
-. Determine the internal user ID for this user.
-.. From Anypoint Platform, select Access Management.
-.. Click the Users tab, then click the name of the user.
-.. Record the internal user ID. This ID appears in the URL as:
-+
-image::access-management-user-id.png[User ID]
-
-. Enter the gravity shell.
-+
-----
-gravity enter
-----
-
-. Identify one of the `cs-auth` containers using the following command:
-+
-----
-kubectl get pods -l microservice=cs-auth
-----
-
-. Change the owner using the following command, providing the internal the `cs-auth` container and user ID obtained above:
-+
-----
-kubectl exec -it <cs-auth-container> – node bin/change_owner.js --new-owner-id <user_id>
-----
-+
-This command changes the owner from the default system user to a new user managed by the external authentication provider. The command you use should be similar to the following example:
-+
-----
-kubectl exec -it cs-auth-1572348378-0kb57 – node bin/change_owner.js --new-owner-id a363279f-982f-493c-b08f-9feb91be90d4
-----
-
-. Disable and delete the `System Admin` user.
-.. Login as the user you just added as the organization owner. as owner.
-.. From Anypoint Platform, select Access Management.
-.. Click the Users tab, then click `username` in the same row as `SystemAdmin`.
-.. Click Disable, then click Delete.
-+
-This removes the default user from the platform.
-
-
-
-
-
-
-
 
 Now that your installation is complete, your instance of Anypoint Platform is ready to use. Users registered in your external identity service should have access to your Anypoint platform xref:access-management::organization.adoc[organization]. As an admin, you can add xref:access-management::roles.adoc[roles] to these users. 
 
@@ -83,108 +11,16 @@ Mule app developers in your organization who create Mule apps through the xref:s
 
 See xref:managing-via-the-ops-center.adoc[Manage Anypoint Platform Private Cloud Edition Using Ops Center] to add or remove servers from the Anypoint Platform cluster as well as other changes you want to make after installation.
 
-[[registering_servers]]
-== Register Servers
+The following topics describe how to manage Anypoint Private Cloud after installation and configuration is complete:
 
-Before registering a server, you must configure Mule to trust the TLS certificates you configured:
-
-1. Get the public certificate for you server.
-2. Add the certificate to the trustore of the JVM you are using for the Mule runtime.
-
-Example:
-
-----
-$ keytool -printcert -sslserver $ANYPOINT_DNS:443 -rfc > /tmp/anypoint.crt
-$ keytool -importcert -alias anypoint.my-company -keystore /etc/ssl/certs/java/cacerts -storepass changeit -file /tmp/anypoint.crt
-----
-
-In this example, $ANYPOINT_DNS should be set to your DNS for Anypoint Platform Private Cloud Edition.
-Replace the location and password for your JVM's trustore for your environment.
-
-
-== Upload Custom Policies and Publish Assets to Exchange Using the Maven Client
-
-There are differences differences between Anypoint Private Cloud Edition and the cloud version of Anypoint Platform you need to consider when uploading custom policies and publishing assets to Exchange using the Maven Client.
-See the corresponding documentation for the cloud version of Anypoint Platform for details. 
-
-* xref:api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development],
-* xref:api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies]
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/exchange-maven-facade-api-http/[Maven facade API].
-
-1. Add the server and repository sections in the `settings.xml` file to set up the archetype for your project: 
-+
-This snippet shows the relevant sections:
-[source,xml,linenums]
-+
-----
-    ...
-    <server>
-       <id>apce-repository</id>
-       <username>myusername</username>
-       <password>mypassword</password>
-    </server>
-    ...
-    <repository>
-       <id>apce-repository</id>
-       <name>Anypoint PCE Repository</name>
-       <url>https://${ANYPOINT_DNS}/exchange/maven</url>
-    </repository>
-    ...
-----
-+
-In the examples below, ${ANYPOINT_DNS} is set to your DNS for Anypoint Platform Private Cloud Edition. The `username` and `password` must correspond with your installation.
-
-2. Generate the archetype:
-+
-Follow the standard process: xref:api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development].
-For example:
-+
-----
-mvn -Parchetype-repository archetype:generate \
--DarchetypeGroupId=org.mule.tools \
--DarchetypeArtifactId=api-gateway-custom-policy-archetype \
--DarchetypeVersion=1.0.0 \
--DgroupId=${orgId} \
--DartifactId=${policyName} \
--Dversion=1.0.0-SNAPSHOT \
--Dpackage=mule-policy
-----
-
-3. Replace the `exchange.url` in the `pom.xml` file.
-By default, `exchange.url` points to the cloud version of Anypoint Platform. `maven.anypoint.mulesoft.com` must point to PCE endpoint:
-+
-----
-<exchange.url>https://${ANYPOINT_DNS}/exchange/maven/api/v1/organizations/${orgId}/maven</exchange.url>
-----
-+
-The `repositoryId` must match the one you configured for Maven in the `settings.xml` file.
-
-4. Package the custom policy.
-+
-Follow the same process as documented for the cloud version of Anypoint Platform in xref:api-manager::custom-policy-packaging-policy.adoc[Packaging a Custom Policy].
-
-5. Upload the custom policy.
-+
-Follow the same process as documented for the cloud version of Anypoint Platform in xref:api-manager::custom-policy-uploading-to-exchange.adoc[Uploading a Custom Policy to Exchange].
-+
-If you receive an error similar to:
-+
-----
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy (default-deploy) on project ${policyName}:
-Failed to retrieve remote metadata ${groupId}:${policyName}:1.0.0-SNAPSHOT/maven-metadata.xml: Could not transfer metadata ${orgId}:${policyName}:1.0.0-SNAPSHOT/maven-metadata.xml from/to exchange-server (https://${ANYPOINT_DNS}/exchange/maven/api/v1/organizations/${orgId}/maven): PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target -> [Help 1]
-----
-+
-It means the certificate of the platform is not trusted by the local Maven. As in <<registering_servers,Registering Servers>> the solution is to
-trust the certificate in the environment where Maven is running.
-Example:
-+
-----
-keytool -printcert -sslserver ${ANYPOINT_DNS}:443 -rfc > /tmp/anypoint.crt
-keytool -importcert -alias my-company.com -keystore /etc/ssl/certs/java/cacerts -storepass changeit -file /tmp/anypoint.crt
-----
-+
-In this example, $ANYPOINT_DNS is set to your DNS for Anypoint Platform Private Cloud Edition. Replace the location and password for your JVM’s trustore for your environment.
-
-Verify your policy was uploaded by visiting https://${ANYPOINT_DNS}/exchange/?type=policy or https://${ANYPOINT_DNS}/exchange/${orgID}/${artifactId}/ directly.
-
-For an API managed by Mule 4 or above, the policy appears in the *Apply Policy* dialog.
+* xref:post-install-config.adoc[Post-Installation and Configuration Tasks]
+* xref:prereq-env.adoc[Environment Limitations]
+* xref:managing-via-the-ops-center.adoc[Ops Center]
+* xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
+* xref:config-alerts.adoc[Setup Alerts for CPU and Memory Usage]
+* xref:config-add-proxy-whitelist.adoc[Add Whitelist Addresses for API Platform Proxies]
+* xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Private Cloud]
+* xref:custom-policies.adoc[Upload Custom Policies and Publish Assets to Exchange Using the Maven Client]
+* xref:register-server.adoc[Register a Server]
+* xref:demo-ldap-server.adoc[Configure the Demo LDAP Server]
+* xref:ext-analytics-elk.adoc[Analyze Business and API Data using ELK]
