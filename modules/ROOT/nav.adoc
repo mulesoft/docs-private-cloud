@@ -25,6 +25,7 @@
  ** xref:install-create-lb.adoc[Set up a Load Balancer]
  ** xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore] 
 * xref:operating-about.adoc[Manage Anypoint Private Cloud]
+ ** xref:post-install-config.adoc[Post-installation and Configuration Tasks]
  ** xref:prereq-env.adoc[Environment Limitations]
  ** xref:managing-via-the-ops-center.adoc[Ops Center]
   *** xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
