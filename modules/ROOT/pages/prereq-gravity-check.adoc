@@ -1,4 +1,4 @@
-= Verify Environment After Installation
+= Verify Environment After Installation or Upgrade
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
