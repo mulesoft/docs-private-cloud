@@ -1,4 +1,4 @@
-= Manage Anypoint Platform Private Cloud Edition Using Ops Center
+= Ops Center
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
