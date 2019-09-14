@@ -5,7 +5,7 @@ endif::[]
 
 == Verify Anypoint Private Cloud Nodes
 
-After you install Anypoint Private Cloud on all nodes, run the `gravity check` script to verify that 
+After you install or upgrade Anypoint Private Cloud on all nodes, run the `gravity check` script to verify that 
 each node meets the minimum requirements for Anypoint Private Cloud, including
 CPU, RAM, and volume storage.
 
