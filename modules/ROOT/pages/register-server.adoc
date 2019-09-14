@@ -1,0 +1,22 @@
+= Register a Server
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+[[registering_servers]]
+
+Before registering a server, you must configure Mule to trust the TLS certificates you configured:
+
+1. Get the public certificate for you server.
+2. Add the certificate to the trustore of the JVM you are using for the Mule runtime.
+
+Example:
+
+----
+$ keytool -printcert -sslserver $ANYPOINT_DNS:443 -rfc > /tmp/anypoint.crt
+$ keytool -importcert -alias anypoint.my-company -keystore /etc/ssl/certs/java/cacerts -storepass changeit -file /tmp/anypoint.crt
+----
+
+In this example, $ANYPOINT_DNS should be set to your DNS for Anypoint Platform Private Cloud Edition.
+Replace the location and password for your JVM's trustore for your environment.
+
