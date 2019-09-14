@@ -3,8 +3,6 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== Checklist
-
 Use the following checklist when installing or upgrading Anypoint Platform Private Cloud Edition 
 to ensure that your environment is configured correctly.
 
@@ -19,15 +17,14 @@ In addition, you must review and perform the additional tasks listed in the Othe
 
 === Amazon Web Services (AWS) Prerequisites
 
+If you are using AWS, perform the following tasks:
+
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By 
 | Review Network Topology | xref:supported-cluster-config.adoc[Supported Network Topologies for Anypoint Private Cloud Edition] |
 | Set up AWS (if using AWS) | xref:prereq-aws-terraform.adoc[C Requirements]|
 |===
-
-[NOTE]
-If you are using bare-metal servers, refer to . ???
 
 === Hardware Prerequisites
 [%header,cols="3*a"]
@@ -82,14 +79,15 @@ If you are using bare-metal servers, refer to . ???
 [%header,cols="3*a"]
 |===
 |Task Description |For More Information |Completed By
-| xref:prereq-other##background-knowledge[Expertise Required????] | |
+| xref:prereq-other##background-knowledge[Verify Level of Expertise Required] | |
+| xref:prereq-other##gather-configuration-information[Gather Configuration Information] | |
 | xref:prereq-other##verify-access-and-permissions[Verify Access and Permissions] | |
 | xref:prereq-other#verify-space-in-home-directory[Verify Space in Home Directory] | |
+| xref:prereq-other#download-and-install-required-tools[Download and Install Required Tools] | |
 | xref:prereq-other#enable-required-ports[Enable Required Ports] | |
-| xref:prereq-other#download-and-install-tools[Download and Install Tools] | |
-| xref:prereq-other#gather-configuration-information[Gather Configuration Information] | |
 |===
 
 == See Also
 
 * xref:install-workflow.adoc[Install Anypoint Platform Private Cloud Edition]
+* xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]
