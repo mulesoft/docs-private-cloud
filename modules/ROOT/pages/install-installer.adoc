@@ -10,11 +10,12 @@ After your infrastructure team verifies that the required infrastructure has bee
 Most problems occur from not meeting the minimum system requirements. Before running the installer, ensure that your environment meets the minimum system requirements listed in the xref:install-checklist[Installation and Upgrade Checklist].
 ====
 
-The GUI installer provides a wizard that walks you through the Anypoint Platform Private Cloud Edition installation process.
-It enables you to specify configuration options, but it also requires you to open extra ports and a web browser to access the pages.
+The Anypoint Private Cloud Edition installation package includes specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides patch updates as needed for this additional software.
 
-- The Anypoint Private Cloud Edition installation package includes specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides patch updates as needed for this additional software.  
-- The GUI installer automatically validates requirements for disk space, disk speed, network speed and operating system version. 
+== About the GUI Installer
+
+* The GUI installer provides a wizard that walks you through the Anypoint Platform Private Cloud Edition installation process. It enables you to specify configuration options, but it also requires you to open extra ports and a web browser to access the pages.
+* The GUI installer automatically validates requirements for disk space, disk speed, network speed and operating system version. 
 
 == Run the GUI Installation
 You must run the installer as root to access the necessary privileged ports, and you must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall.adoc[Uninstall and Reinstall Anypoint Private Cloud].
