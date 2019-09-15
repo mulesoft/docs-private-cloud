@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If not completed prior to Anypoint Platform Private Cloud Edition installation, the following steps must be performed before you can deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform environment running on your own local network:
+The following tasks are required for Anypoint Platform Private Cloud Edition. Otherwise, you cannot deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform environment running on your own local network. Refer to xref:install-checklist.adoc[Installation and Upgrade Checklist] for more information.
 
 * xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
 * xref:access-management-security.adoc[Configure Security on Anypoint Private Cloud]
