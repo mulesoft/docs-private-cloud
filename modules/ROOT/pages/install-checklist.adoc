@@ -8,9 +8,16 @@ to ensure that your environment is configured correctly.
 
 [WARNING]
 ====
-To successfully install or upgrade Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of all tasks. This ensures your infrastructure meets the prerequisites for Anypoint Platform Private Cloud Edition. 
+To successfully install or upgrade Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the listed infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of the infrastructure-related tasks described in this topic.
 
-In addition, you must review and perform the additional tasks listed in the Other Installation Prerequisities section.
+Installing and upgrading Anypoint Platform Private Cloud Edition requires specific versions of operating systems, NFS, and other software. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not set up. For example, the following situations cause known problems:
+
+* Using your own AWS images when using AWS.
+* Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform Private CLoud Edition does not support.
+
+If needed, contact your Customer Success Manager for assistance.
+
+After infrastructure prerequisites are verified, you must review and perform the additional tasks listed in the Other Installation Prerequisities section.
 ====
 
 == Infrastructure Prerequisites
@@ -95,5 +102,6 @@ If you are using AWS, perform the following tasks:
 
 == See Also
 
-* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud Edition]
+* xref:install-workflow.adoc[Install Anypoint Private Cloud]
 * xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]
+
