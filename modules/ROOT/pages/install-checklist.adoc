@@ -20,14 +20,6 @@ If needed, contact your Customer Success Manager for assistance.
 After infrastructure prerequisites are verified, you must review and perform the additional tasks listed in the Other Installation Prerequisities section.
 ====
 
-== Infrastructure Prerequisites
-
-* Amazon Web Services (AWS) Prerequisites
-* Hardware Prerequisites
-* Software Prerequisites
-* Network Prerequisites
-* NFS Prerequisites
-
 === Amazon Web Services (AWS) Prerequisites
 
 If you are using AWS, perform the following tasks:
