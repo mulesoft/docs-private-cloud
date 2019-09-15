@@ -15,10 +15,20 @@ In addition, you must review and perform the additional tasks listed in the Othe
 
 == Infrastructure Prerequisites
 
+* Amazon Web Services (AWS) Prerequisites
 * Hardware Prerequisites
 * Software Prerequisites
 * Network Prerequisites
 * NFS Prerequisites
+
+== Other Installation Prerequisities
+
+* Verify Level of Expertise Required
+* Gather Configuration Information
+* Verify Access and Permissions
+* Verify Space in Home Directory
+* Download and Install Required Tools
+* Enable Required Ports
 
 === Amazon Web Services (AWS) Prerequisites
 
@@ -28,7 +38,7 @@ If you are using AWS, perform the following tasks:
 |===
 |Task Description |For More Information |Completed By 
 | Review Network Topology | xref:supported-cluster-config.adoc[Supported Network Topologies for Anypoint Private Cloud Edition] |
-| Set up AWS (if using AWS) | xref:prereq-aws-terraform.adoc[C Requirements]|
+| Set up AWS (if using AWS) | xref:prereq-aws-terraform.adoc[Amazon Web Services (AWS) Prerequisites]|
 |===
 
 === Hardware Prerequisites
