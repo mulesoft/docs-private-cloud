@@ -4,21 +4,11 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-workflow.adoc
 
-Before starting an Anypoint Platform Private Cloud Edition installation or upgrade, your infrastructure team must verify that the required hardware, software, and network requirements are met as described in xref:prereq-infra.adoc[Infrastructure Prerequisites].
+After your infrastructure team verifies that the required infrastructure has been correctly installed and configured as described in xref:install-checklist[Installation and Upgrade Checklist], and all requirements listed in xref:prereq-other.adoc[Other Installation Prerequisites] are met, upload the installation package to all nodes in your environment and select one node from which to run the installation. You can then install Anypoint Platform Private Cloud Edition using one of the following installers: 
 
-In addition, you must make sure that the other requirements listed in xref:prereq-other.adoc[Other Installation Prerequisites] are met.
-
-After your infrastructure team verifies that the required infrastructure has been correctly installed and configured, and you have obtained the necessary information and completed the additional installation-related tasks, upload the installation package to all nodes in your environment and select one node from which to run the installation. You can then install Anypoint Platform Private Cloud Edition using one of the following installers. 
-
-* GUI installer.
-* CLI installer.
+* xref:install-installer.adoc[Run the GUI-based installer]
+* xref:install-auto-install.adoc[Run the CLI-based installer]
 
 The GUI installer is interactive and walks you through a set of wizard pages that enable you to specify configuration options, but it also requires you to open extra ports and a web browser to access the pages.
 
 The CLI installer does not require human interaction using a web browser and is useful for automation.
-
-== See Also
-
-* xref:install-checklist[Installation and Upgrade Checklist]
-* xref:install-installer.adoc[Run the GUI-based installer]
-* xref:install-auto-install.adoc[Run the CLI-based installer]
