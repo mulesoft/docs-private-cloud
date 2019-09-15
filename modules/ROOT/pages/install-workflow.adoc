@@ -19,7 +19,6 @@ The CLI installer does not require human interaction using a web browser and is 
 
 == See Also
 
-* xref:prereq-infra.adoc[Infrastructure Prerequisites]
-* xref:prereq-other.adoc[Other Installation Prerequisites]
+* xref:install-checklist[Installation and Upgrade Checklist]
 * xref:install-installer.adoc[Run the GUI-based installer]
 * xref:install-auto-install.adoc[Run the CLI-based installer]
