@@ -2,18 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-
-[IMPORTANT]
-====
-Before beginning an installation or upgrade, make sure your infrastructure team verifies that the following work is complete. Installing and upgrading Anypoint Platform Private Cloud Edition requires existing infrastructure and specific versions of operating systems, NFS, and other software. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not set up.
-====
-
-Problems also occur with the following situations:
-
-* Using your own AWS images when using AWS.
-* Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform Private CLoud Edition does not support.
-
-If needed, contact your Customer Success Manager for assistance. 
+ 
 
 . xref:prereq-aws-terraform.adoc[Create Anypoint Private Cloud Resources on Amazon Web Services (AWS)]. Cluster set up must be complete and conform to xref:supported-cluster-config.adoc[Supported Network Topologies for Anypoint Private Cloud Edition].
 . xref:prereq-hardware.adoc[Hardware Prerequisites]
@@ -24,5 +13,3 @@ If needed, contact your Customer Success Manager for assistance.
 == See Also
 
 * xref:prereq-other.adoc[Other Installation Prerequisites]
-* xref:install-workflow.adoc[Install Anypoint Private Cloud]
-* xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]
