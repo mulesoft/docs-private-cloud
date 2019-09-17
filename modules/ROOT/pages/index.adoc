@@ -5,7 +5,7 @@ endif::[]
 
 With Anypoint Platform Private Cloud Edition, you run and manage Mule applications on your local servers, using your required security policies. When running Anypoint Platform Private Cloud Edition, MuleSoft systems do not interact with your data. You configure and run the software, and maintain all data storage, processing, and transmission.
 
-The Anypoint Platform Private Cloud Edition includes the following application components when combined with CloudHub functionality:
+The Anypoint Platform Private Cloud Edition includes the following application components when compared with what CloudHub has to offer:
 
 * Runtime Manager, which enables you to track and manage your deployed Mule applications.
 * API Manager, which enables you to manage your registered APIs.
@@ -13,7 +13,7 @@ The Anypoint Platform Private Cloud Edition includes the following application c
 * Access Management
 * Design Center, excluding Flow Designer
 
-The following application components are not included when combined with CloudHub functionality:
+The following application components are not included when compared with CloudHub functionality:
 
 * Analytics - Insights
 * Analytics - Visualizer
