@@ -31,8 +31,6 @@ You will be asked to provide the following information:
 ** Admin ID
 ** Admin email address
 ** Admin password
-* Cluster name
-* Secret token for the cluster 
 * IP address for each server in the cluster
 * Device names
 
