@@ -2,6 +2,6 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:page-aliases: install-diable-local-user.adoc 
+:page-aliases: install-disable-local-user.adoc 
 
 
