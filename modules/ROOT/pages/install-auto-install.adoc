@@ -20,7 +20,6 @@ The Anypoint Private Cloud Edition installation package includes specific versio
 ** `gravity install`: begins the installation and handles intra-server communication during the install. This script also installs the platform on the server. This script is only run on one node.
 ** `gravity join`: installs the platform on each additional server. This script is run on all nodes except for the node running the `gravity install` script.
 * You must run the installation scripts as root to access the necessary privileged ports, and you must run the installation scripts in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall.adoc[Uninstall and Reinstall Anypoint Private Cloud].
-* When installing a single-node configuration, the automated installer also installs and configures the demo LDAP server.
 
 == Run the Command Line Installation
 
@@ -50,13 +49,12 @@ Using the following values:
 |device | Specifies the the path to the Docker device on each server. Use `lsblk` to list the available devices.
 |role | Specifies the role of the server where you are running the command. Valid values are:
 
-* `demo-node` for a 1-node configuration
 * `general_node` for all nodes in a 3-node configuration
 * `app_node` for the installation node and 2 other nodes in a 6-node configuration
 * `data_node` for the remaining 3 nodes in a 6-node configuration
 |===
 
-. If you are performing a multi-node installation, run the following command on all remaining nodes while the `./gravity install` command is running. Make sure that you run the following command after the installer node indicates that it is waiting for the other nodes to join. Otherwise, an error is displayed by the nodes trying to join. If you are performing a single-node installation, skip this step.
+. Run the following command on all remaining nodes while the `./gravity install` command is running. Make sure that you run the following command after the installer node indicates that it is waiting for the other nodes to join. Otherwise, an error is displayed by the nodes trying to join.
 +
 Use the same secret token and docker device values that you provided in the previous command.
 +
