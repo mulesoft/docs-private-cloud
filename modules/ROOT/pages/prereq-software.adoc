@@ -153,6 +153,20 @@ Docker must be uninstalled from all servers running the Anypoint Platform Privat
 
 Local caching DNS servers listening on port 53 must be removed, for example, `named`, `dnsmasq`, and `bind`.
 
+=== Download and Install Required Tools
+
+* Software to Verify NFS Server Ports are Open
+
+** Netcat is recommended, but you can use your tool of choice to verify the correct ports are open on the NFS server. If you don’t have `netcat`, you can install it from  http://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
+
+* Software to Verify Kubectl Command is Available
+
+** Gravity is recommended, but you can use your tool of choice to ensure the `kubectl` command is available on the node where you are performing the installation or migration. To verify that `kubectl` is installed using Gravity, run the following command:
++
+----
+$ sudo gravity enter
+$ kubectl
+----
 
 == See Also
 
