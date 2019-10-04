@@ -3,7 +3,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To successfully install Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the listed infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of the infrastructure-related tasks described in this topic. 
+To successfully install Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the listed infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of all prerequisites described in this topic.
+
+If needed, contact your Customer Success Manager for assistance.
 
 All hardware, software, network, NFS, and tasks listed in Other Installation Prerequisites apply to all environments:
 
@@ -13,15 +15,10 @@ All hardware, software, network, NFS, and tasks listed in Other Installation Pre
 
 [WARNING]
 ==== 
-
 Installing Anypoint Platform Private Cloud Edition requires specific versions of operating systems, NFS, and other software. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not set up. For example, the following situations cause known problems:
 
 * Using your own AWS images when using AWS.
 * Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform Private CLoud Edition does not support.
-
-If needed, contact your Customer Success Manager for assistance.
-
-After infrastructure prerequisites are verified, you must review and perform the additional tasks listed in the Other Installation Prerequisities section.
 ====
 
 === Amazon Web Services (AWS) Prerequisites
