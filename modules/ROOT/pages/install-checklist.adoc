@@ -1,16 +1,16 @@
-= Installation and Upgrade Checklist
+= Pre-Installation Checklist
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Use the following checklist when installing or upgrading Anypoint Platform Private Cloud Edition 
+Use the following checklist when installing Anypoint Platform Private Cloud Edition 
 to ensure that your environment is configured correctly.
 
 [WARNING]
 ====
-To successfully install or upgrade Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the listed infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of the infrastructure-related tasks described in this topic.
+To successfully install Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the listed infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of the infrastructure-related tasks described in this topic.
 
-Installing and upgrading Anypoint Platform Private Cloud Edition requires specific versions of operating systems, NFS, and other software. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not set up. For example, the following situations cause known problems:
+Installing Anypoint Platform Private Cloud Edition requires specific versions of operating systems, NFS, and other software. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not set up. For example, the following situations cause known problems:
 
 * Using your own AWS images when using AWS.
 * Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform Private CLoud Edition does not support.
@@ -95,5 +95,3 @@ If you are using AWS, perform the following tasks:
 == See Also
 
 * xref:install-workflow.adoc[Install Anypoint Private Cloud]
-* xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]
-
