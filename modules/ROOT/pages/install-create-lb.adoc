@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition must run in a production environment with multiple servers. To distribute traffic among servers and to restrict access to specific ports, you must install and configure a load balancer. Also, in a single server development environment, MuleSoft recommends using a load balancer.
+Anypoint Platform Private Cloud Edition must run in a production environment with multiple servers. To distribute traffic among servers and to restrict access to specific ports, you must install and configure a load balancer.
 
 [NOTE]
 If using the xref:prereq-aws-terraform.adoc[AWS Provisioner for Anypoint Private Cloud Edition], skip this section. An Amazon ELB is created during installation with the required configuration.
