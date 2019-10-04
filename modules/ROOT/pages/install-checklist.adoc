@@ -60,6 +60,7 @@ Refer to xref:prereq-software.adoc[Software Prerequisites] for additional detail
 | xref:prereq-software#verify-ip-forwarding-and-bridging[Verify IP Forwarding and Bridging]
 | xref:prereq-software#enable-forwarding-on-docker-device[Enable Forwarding on Docker device] xref:prereq-software#determine-if-you-are-using-firewalld[Determine if You Are Using firewalld]
 | xref:prereq-software#uninstall-docker[Uninstall Docker]
+| xref:prereq-software#download-and-install-required-tools[Download and Install Required Tools] 
 | xref:prereq-software#remove-local-dns-servers[Remove Local DNS Servers]
 |===
 
@@ -70,6 +71,7 @@ Refer to xref:prereq-network.adoc[Network Prerequisites] for additional details 
 |Task Description
 | xref:prereq-network#verify-static-ips[Verify Static IPs]
 | xref:prereq-network#verify-vxlan[Verify VXLAN]
+| xref:prereq-network#enable-required-ports[Enable Required Ports]
 | xref:prereq-network#verify-nat-traffic-requirements[Verify NAT Traffic Requirements]
 | xref:prereq-network#verify-smtp-server-requirements[Verify SMTP Server Requirements]
 | xref:prereq-network#verify-external-identity-provider-configuration-and-client-management[Verify External Identity Provider Configuration and Client Management]
@@ -97,8 +99,6 @@ Refer to xref:prereq-other.adoc[Other Installation Prerequisites] for additional
 | xref:prereq-other##gather-configuration-information[Gather Configuration Information]
 | xref:prereq-other##verify-access-and-permissions[Verify Access and Permissions]
 | xref:prereq-other#verify-space-in-home-directory[Verify Space in Home Directory]
-| xref:prereq-other#download-and-install-required-tools[Download and Install Required Tools] 
-| xref:prereq-other#enable-required-ports[Enable Required Ports]
 |===
 
 == See Also
