@@ -27,7 +27,6 @@ Valid values of the `--profile` option are:
 * app_node
 * data_node
 * general_node (for 3 node installations)
-* demo_node (for 1 node installations)
 
 If the command returns no output, this indicates that your environment is setup correctly with the required resources. 
 If any node fails to satisfy the minimum requirements, the command returns a list of failed checks and exits 
