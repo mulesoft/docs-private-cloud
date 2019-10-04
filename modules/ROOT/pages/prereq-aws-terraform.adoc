@@ -30,7 +30,7 @@ To install Anypoint Platform Private Cloud Edition on AWS:
 
 == Run the AWS Provisioner
 
-MuleSoft provides a Docker image that you can use to provision the resources for your AWS account. You can also run custom shell scripts on the provisioned instances (see below).
+MuleSoft provides a Docker image that you can use to provision the resources for your AWS account. You can also run additional custom shell scripts on the provisioned instances as shown in the Custom provisioning scripts section.
 
 . Create an initial instance (t2.small) on your AWS account on any VPC with internet access.
 +
