@@ -5,25 +5,46 @@ endif::[]
 
 With Anypoint Platform Private Cloud Edition, you run and manage Mule applications on your local servers, using your required security policies. When running Anypoint Platform Private Cloud Edition, MuleSoft systems do not interact with your data. You configure and run the software, and maintain all data storage, processing, and transmission.
 
-The Anypoint Platform Private Cloud Edition includes the following application components when compared with what CloudHub has to offer:
+Anypoint Platform Private Cloud Edition uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
 
-* Runtime Manager, which enables you to track and manage your deployed Mule applications.
-* API Manager, which enables you to manage your registered APIs.
-* Anypoint Exchange, which enables your organization to share various assets for reuse across integration projects.
-* Access Management
-* Design Center, excluding Flow Designer
+== Supported Environments
+Only VMWare bare metal virtualization environments, physical servers, and AWS are supported.
+[%header%autowidth.spread]
+|===
+| Platform | Description
+| VMWare | ???
+| Bare Metal |	???
+| AWS	| ???
+|===
 
-The following application components are not included when compared with CloudHub functionality:
+???Can i deploy PCE on some local hosted VMs?
+. If using AWS, what kind of sevice from AWS will i need ?
+. What are the types of environments required to run PCE?bare metal, public cloud, private cloud...
+???
 
-* Analytics - Insights
-* Analytics - Visualizer
-* Analytics - API
-* Anypoint Monitoring
-* Object Store
-* Anypoint MQ
-* API Testing
+== Anypoint Platform Private Cloud Edition Versus CloudHub
+The following table provides component information for Anypoint Platform Private Cloud Edition:
+[%header%autowidth.spread]
+|===
+| Component | Included | Not Included | Description
+| Runtime Manager | X | | Enables you to track and manage your deployed Mule applications
+| API Manager | X	| | Enables you to manage your registered APIs.
+| Anypoint Exchange	| X | | enables your organization to share various assets for reuse across integration projects.
+| Access Management	| X | |
+| Design Center, excluding Flow Designer	| X | |
+| Analytics - Insights	|   | X |
+| Analytics - Visualizer	|   | X |
+| Analytics - API	|   | X || 	|   | X |
+| Anypoint Monitoring	|   | X |
+| Object Store	|   | X |
+| Anypoint MQ	|   | X |
+| API Testing	|   | X |
+|===
 
-The following table summarizes the new features included in Anypoint Platform Private Cloud Edition version 2.0.
+
+== New features included in Anypoint Platform Private Cloud Edition version 2.0
+
+Refer to xref:release-notes/pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Edition Release Notes] for detailed release information.
 
 [%header%autowidth.spread]
 |===
@@ -78,7 +99,6 @@ a| Two new platform APIs for managing APIs:
 | Runtime Manager |	Improved error description on alert creation.	
 |===
 
-The Anypoint Platform Private Cloud Edition uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
 
 == See Also
 
