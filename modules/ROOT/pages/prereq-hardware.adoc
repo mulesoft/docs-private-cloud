@@ -20,6 +20,9 @@ Before installing or upgrading,  your infrastructure team must review each of th
 |CPU |8 Cores
 |===
 
+[IMPORTANT]
+If the stated requirements for Memory and CPU are not met, Anypoint Platform Private Cloud Edition installation will fail. 
+
 == Disk Requirements
 
 Anypoint Platform Private Cloud Edition has strict minimum size and performance requirements for storage devices used by the platform. All disk drives must meet the following criteria:
