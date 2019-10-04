@@ -64,7 +64,6 @@ This name should be unique to your company. For example: `anypoint.yourcompany`.
 +
 The following configurations are supported:
 +
-	* 1-node configuration: installs all platform components run on a single node. This configuration is intended for demo purposes only and has lower hardware requirements. It is not supported for development or production environments. The demo installation includes its own LDAP server to use for testing.
 	* 3-node configuration: installs and registers all servers as *General Purpose Nodes*.
 	* 6-node configuration: installs and registers three nodes as *App-only* and three nodes as *Data Store*.
 +
