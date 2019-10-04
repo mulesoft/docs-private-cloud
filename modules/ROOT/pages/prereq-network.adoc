@@ -46,6 +46,10 @@ configured correctly on all nodes.
 
 You can use `netcat` or similar tool to verify port configuration.
 
+== Enable Required Ports 
+
+* You must enable TCP ports `53`, `3011`, `3012` on all nodes to allow communication with the database cluster.
+
 == Verify NAT Traffic Requirements
 
 In some situation, the Kubernetes overlay network uses NAT. NAT requires that nodes be able to send and 
