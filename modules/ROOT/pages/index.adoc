@@ -1,4 +1,4 @@
-= Anypoint Platform Private Cloud Edition Overview
+= Anypoint Platform Private Cloud Edition Overview - WIP
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -8,19 +8,16 @@ With Anypoint Platform Private Cloud Edition, you run and manage Mule applicatio
 Anypoint Platform Private Cloud Edition uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
 
 == Supported Environments
-Only VMWare bare metal virtualization environments, physical servers, and AWS are supported.
+The following environments are supported:
+What are the types of environments required to run PCE?bare metal, public cloud, private cloud???
+
 [%header%autowidth.spread]
 |===
 | Platform | Description
-| VMWare | ???
+| VMWare | Local hosted VMs???
 | Bare Metal |	???
-| AWS	| ???
+| AWS	| If using AWS, what kind of sevice from AWS will I need ???
 |===
-
-???Can i deploy PCE on some local hosted VMs?
-. If using AWS, what kind of sevice from AWS will i need ?
-. What are the types of environments required to run PCE?bare metal, public cloud, private cloud...
-???
 
 == Anypoint Platform Private Cloud Edition Versus CloudHub
 The following table provides component information for Anypoint Platform Private Cloud Edition:
@@ -40,7 +37,6 @@ The following table provides component information for Anypoint Platform Private
 | Anypoint MQ	|   | X |
 | API Testing	|   | X |
 |===
-
 
 == New features included in Anypoint Platform Private Cloud Edition version 2.0
 
@@ -99,10 +95,10 @@ a| Two new platform APIs for managing APIs:
 | Runtime Manager |	Improved error description on alert creation.	
 |===
 
-
 == See Also
 
 * xref:supported-cluster-config.adoc[Supported Network Topologies]
+* xref:prereq-env.adoc[Environment Limitations]
 * xref:install-workflow.adoc[Install Anypoint Platform Private Cloud Edition]
 * xref:runtime-manager::index.adoc[Runtime Manager]
 * xref:exchange::index.adoc[Anypoint Exchange]
