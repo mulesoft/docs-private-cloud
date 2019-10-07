@@ -19,7 +19,7 @@ The Anypoint Private Cloud Edition installation package includes specific versio
 
 ** `gravity install`: begins the installation and handles intra-server communication during the install. This script also installs the platform on the server. This script is only run on one node.
 ** `gravity join`: installs the platform on each additional server. This script is run on all nodes except for the node running the `gravity install` script.
-* You must run the installation scripts as root to access the necessary privileged ports, and you must run the installation scripts in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall#uninstall-and-reinstall-anypoint-private-cloud[Uninstall and Reinstall Anypoint Private Cloud].
+* You must run the installation scripts as root to access the necessary privileged ports, and you must run the installation scripts in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall#uninstall-and-reinstall-anypoint-private-cloud[Troubleshoot Anypoint Private Cloud Installation].
 
 == Run the Command Line Installation
 
