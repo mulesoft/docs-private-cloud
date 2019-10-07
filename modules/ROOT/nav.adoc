@@ -17,7 +17,7 @@
 * xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]
 * xref:prereq-gravity-check.adoc[Verify Environment After Installation or Upgrade]
 * xref:config-workflow.adoc[Post-installation Checklist]
- ** xref:post-install-config.adoc[Post-installation Tasks]
+ ** xref:post-install-config.adoc[Delete the Local User after Installing Private Cloud Edition]
  ** xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
  ** xref:access-management-security.adoc[Configure Security for Anypoint Private Cloud]
  ** xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
