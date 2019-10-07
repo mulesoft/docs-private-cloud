@@ -213,5 +213,5 @@ Refer to xref:install-create-lb.adoc[Set up a Load Balancer] for detailed inform
 * xref:prereq-software.adoc[Software Prerequisites]
 * xref:prereq-network.adoc[Network Prerequisites]
 * xref:verify-nfs.adoc[NFS Server Prerequisites]
-* xref:prereq-other.adoc[Other Installation Prerequisites]
+* xref:prereq-other.adoc[Gather Environment Information]
 
