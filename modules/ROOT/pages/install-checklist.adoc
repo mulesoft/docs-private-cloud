@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Before you install Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the listed infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of all prerequisites listed in this topic.
+Before you install Anypoint Platform Private Cloud Edition, your organization’s operations, networking, and security teams must review the listed infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of all prerequisites listed in this topic. If needed, contact your Customer Success Manager for assistance.
 
 All prerequisites apply to all environments:
 
@@ -11,9 +11,7 @@ All prerequisites apply to all environments:
 * Physical servers
 * Amazon Web Services (AWS)
 
-If needed, contact your Customer Success Manager for assistance.
-
-In addition, anyone that plans to install Anypoint Platform Private Cloud Edition must possess knowledge in the following areas:
+In addition, to install Anypoint Platform Private Cloud Edition, you must possess knowledge in the following areas:
 
 * Linux system commands. 
 * Working in Linux with root access. You must have root access (permission to run the `sudo` command) on all servers in your environment and run the installer or upgrade tool as root to access specific privileged ports.
