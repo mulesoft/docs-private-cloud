@@ -13,8 +13,6 @@ See xref:managing-via-the-ops-center.adoc[Manage Anypoint Platform Private Cloud
 
 The following topics describe how to manage Anypoint Private Cloud after installation and configuration is complete:
 
-* xref:post-install-config.adoc[Post-Installation and Configuration Tasks]
-* xref:prereq-env.adoc[Environment Limitations]
 * xref:managing-via-the-ops-center.adoc[Ops Center]
 * xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
 * xref:config-alerts.adoc[Setup Alerts for CPU and Memory Usage]
@@ -22,5 +20,4 @@ The following topics describe how to manage Anypoint Private Cloud after install
 * xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Private Cloud]
 * xref:custom-policies.adoc[Upload Custom Policies and Publish Assets to Exchange Using the Maven Client]
 * xref:register-server.adoc[Register a Server]
-* xref:demo-ldap-server.adoc[Configure the Demo LDAP Server]
 * xref:ext-analytics-elk.adoc[Analyze Business and API Data using ELK]
