@@ -134,6 +134,10 @@ $ kubectl
 
 == MuleSoft Software Prerequisites
 
+=== Obtain Install Archive and License Key
+ 
+Obtain the `anypoint-2.0.0-installer.tar.gz` archive  and license key from your MuleSoft account representative.
+
 === Verify IP Forwarding and Bridging
 
 To ensure proper cluster load balancing and routing, you must enable and correctly configure the following items:
