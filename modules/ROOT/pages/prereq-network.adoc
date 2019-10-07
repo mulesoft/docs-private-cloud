@@ -58,15 +58,6 @@ receive packages with a source and destination that is different from the nodeâ€
 
 Any software that monitors the network traffic must be tuned to allow this type of network interaction.
 
-== Verify SSL Certificate Requirements
-
-To use the Anypoint Platform Private Cloud Edition, you must provide SSL credentials. You can upload 
-a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine that is 
-connected to the platform.
-
-[WARNING]
-You must register the same SSL certificate on every node containing Mule Runtimes managed by your installation.
-
 == Verify SMTP Server Requirements
 Your network must include an SMTP server to manage e-mail alerts that are triggered by the platform. Anypoint Platform Private Cloud Edition must be connected to this SMTP server. For additional information, refer to the instructions in xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud].
 
