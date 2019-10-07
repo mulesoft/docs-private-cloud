@@ -61,10 +61,6 @@ You will be asked to provide the following information:
 
 * Before installing or upgrading Anypoint Platform Private Cloud Edition, you must have root access (permission to run the `sudo` command) on all servers in your environment and run the installer or upgrade tool as root to access the necessary, privileged ports.
 
-== Verify Space in Home Directory 
-
-Make sure that you have enough space in your home directory to download and unzip the installer file. The installer is a ~10GB file.
-
 == See Also
 
 * xref:prereq-hardware.adoc[Hardware Prerequisites]
