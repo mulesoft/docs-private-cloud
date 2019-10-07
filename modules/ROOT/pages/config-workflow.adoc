@@ -3,8 +3,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The following tasks are required after you complete Anypoint Platform Private Cloud Edition installation. Otherwise, you cannot deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform environment running on your own local network. Refer to the xref:install-checklist.adoc[Pre-installation Checklist] for more information.
+The following tasks are required after you complete Anypoint Platform Private Cloud Edition installation. Otherwise, you cannot deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform environment running on your own local network.
 
+* If you used the GUI installer, close port 61009 in the cluster security group. If you are using AWS, you can use the AWS Web console to do this.
 * xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
 * xref:access-management-security.adoc[Configure Security on Anypoint Private Cloud]
 * xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
