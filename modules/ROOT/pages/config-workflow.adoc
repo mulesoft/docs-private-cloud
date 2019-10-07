@@ -12,7 +12,7 @@ The following tasks are required after you complete Anypoint Platform Private Cl
 * xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
 * xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Private Cloud]
 * xref:install-create-lb.adoc[Set up a Load Balancer for Anypoint Platform Private Cloud]
-* xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore] 
+* xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore]
 
 [NOTE]
 At the time of this writing, some Docker containers must run as root. Processes running as root do not expose functionality outside the cluster. 
