@@ -36,20 +36,20 @@ On each node, the following kernel modules must be enabled:
 * `iptable_filter`
 * `iptable_nat`
 
-. For each kernel module, run a command similar to the following example to verify that each module is loaded. Replace `br_netfilter` with the name of the kernel module you are checking.
-+
+For each kernel module, run a command similar to the following example to verify that each module is loaded. Replace `br_netfilter` with the name of the kernel module you are checking.
+
 ----
 root$ lsmod | grep br_netfilter
 ----
 
-.. If this command does not display any output, then the module is not loaded. In this case, load the module using `modprobe`:
+* If this command does not display any output, then the module is not loaded. In this case, load the module using `modprobe`:
 +
 ----
 root$ modprobe br_netfilter
 ----
 
-. To ensure a module is loaded after a reboot:
-+
+To ensure a module is loaded after a reboot:
+
 ----
 root$ echo 'br_netfilter' > /etc/modules-load.d/br_netfilter.conf
 ----
@@ -63,18 +63,17 @@ The following flags must be turned on:
 * `fs.may_detach_mounts=1`
 * `fs.inotify.max_user_watches=524288`
 
-. Ensure that there are no processes on your system that set this flag to `false`. To set a parameter, you can use `sysctl -w`, as shown in the following example:
-+
+Ensure that there are no processes on your system that set this flag to `false`. To set a parameter, you can use `sysctl -w`, as shown in the following example:
+
 ----
 root$ sysctl -w net.ipv4.ip_forward=1
 ----
 
-. To make the changes permanent for the next reboot, write it to a file under `/etc/sysctl.d`. Replace the setting in the following example with the setting you are configuring. Ensure there are no processes or files conflicting with those settings.
-+
+To make the changes permanent for the next reboot, write it to a file under `/etc/sysctl.d`. Replace the setting in the following example with the setting you are configuring. Ensure there are no processes or files conflicting with those settings.
+
 ----
 echo net.ipv4.ip_forward=1 >> /etc/sysctl.d/10-ipv4-forwarding.conf
 ----
-+
 
 == Third Party Software Prerequisites
 
@@ -82,19 +81,19 @@ echo net.ipv4.ip_forward=1 >> /etc/sysctl.d/10-ipv4-forwarding.conf
 
 To install and run Anypoint Platform Private Cloud Edition, you must install and use LVM2. LVM2 is a tool that adds a layer of abstraction between your operating system and the disks/partitions it uses. You must have root access to install LVM2.
 
-You can install LVM using Yum. Yum is an open-source command-line package-management utility for Linux operating systems using the RPM Package Manager. Using Yum, you can install LVM using the following command:
+You can install LVM2 using Yum. Yum is an open-source command-line package-management utility for Linux operating systems using the RPM Package Manager. Using Yum, you can install LVM2 using the following command:
 
 ----
 sudo yum install lvm2
 ----
 
-=== Firewall Considerations When firewalld is Enabled
+=== Firewall Considerations When Firewalld is Enabled
 
 Firewalld is an iptables controller that defines rules for persistent network traffic.
 If you are using firewalld with a Red Hat Enterprise Linux (RHEL) 7.3 operating system, you must enable forwarding on the `docker0` device.
 You must also forward any packets being sent from or to the 10.0.0.0/8 subnet.
 
-==== Determine if You Are Using firewalld
+==== Determine if You Are Using Firewalld
 
 To determine if your system is using firewalld, run the following command on every node:
 
@@ -112,19 +111,19 @@ Active: inactive (dead)
 Docs: man:firewalld(1)
 ----
 
-If `firewalld is not installed, this command returns an error message.
+If `firewalld is not installed, an error message is displayed.
 
-==== Remove Local DNS Servers
+=== Remove Local DNS Servers
 
-Local caching DNS servers listening on port 53 must be removed, for example, `named`, `dnsmasq`, and `bind`.
+Remove local caching DNS servers listening on port 53, for example, `named`, `dnsmasq`, and `bind`.
 
-=== Download and Install Required Tools
+=== Install Required Tools
 
-* Software to Verify NFS Server Ports are Open
+* Tool to Verify NFS Server Ports are Open
 
 ** Netcat is recommended, but you can use your tool of choice to verify the correct ports are open on the NFS server. If you don’t have `netcat`, you can install it from  http://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
 
-* Software to Verify Kubectl Command is Available
+* Tool to Verify Kubectl Command is Available
 
 ** Gravity is recommended, but you can use your tool of choice to ensure the `kubectl` command is available on the node where you are performing the installation or migration. To verify that `kubectl` is installed using Gravity, run the following command:
 +
@@ -148,7 +147,7 @@ To ensure proper cluster load balancing and routing, you must enable and correct
 
 ** IP addresses for bridge-netfiltering are managed by the overlay network created by Kubernetes. The CIDR block used for that network is in the private IP address range.
 
-==== Enable Forwarding on Docker Device
+=== Enable Forwarding on Docker Device
 
 To enable forwarding on the docker0 device, run the following commands:
 
@@ -170,9 +169,9 @@ firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -
 
 The following software causes conflicts with Anypoint Platform Private Cloud Edition. You must uninstall these components before performing Anypoint Platform Private Cloud Edition installation.
 
-==== Uninstall Docker
+==== Docker
 
-Docker must be uninstalled from all servers running the Anypoint Platform Private Cloud Edition. The Anypoint Platform installation includes a Docker package officially supported by Kubernetes.
+Uninstall Docker from all servers running the Anypoint Platform Private Cloud Edition. The Anypoint Platform installation includes a Docker package officially supported by Kubernetes.
 
 == See Also
 
