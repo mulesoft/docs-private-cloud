@@ -1,13 +1,7 @@
-= Post-Installation Tasks
+= Delete the Local User after Installing Private Cloud Edition
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-
-== Disable Port 61009 After Installation and Configuration
-
-If you used the GUI installer, close port 61009 in the cluster security group. If you are using AWS, you can use the AWS Web console to do this.
-
-== Delete the Local User after Installing Private Cloud Edition
 
 During installation, Anypoint Private Cloud Edition creates a local Anypoint Platform user that enables you to configure platform components during installation. The credentials for this user are stored locally in Anypoint Platform. However, after configuring an external authentication provider such as LDAP, you should delete this user to improve security.
 
