@@ -84,4 +84,4 @@ Ensure that the clocks on all servers are synchronized. Unsynchronized clocks ca
 * xref:prereq-hardware.adoc[Hardware Prerequisites]
 * xref:prereq-software.adoc[Software Prerequisites]
 * xref:verify-nfs.adoc[NFS Server Prerequisites]
-* xref:prereq-other.adoc[Other Installation Prerequisites]
+* xref:prereq-other.adoc[Gather Environment Information]
