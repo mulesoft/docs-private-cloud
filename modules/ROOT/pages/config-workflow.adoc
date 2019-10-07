@@ -3,12 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The following tasks are required after you complete Anypoint Platform Private Cloud Edition installation. Otherwise, you cannot deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform environment running on your own local network. Refer to xref:install-checklist.adoc[Installation Checklist] for more information.
+The following tasks are required after you complete Anypoint Platform Private Cloud Edition installation. Otherwise, you cannot deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform environment running on your own local network. Refer to the xref:install-checklist.adoc[Pre-installation Checklist] for more information.
 
 * xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
 * xref:access-management-security.adoc[Configure Security on Anypoint Private Cloud]
 * xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
 * xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Private Cloud]
+* xref:install-create-lb.adoc[Set up a Load Balancer for Anypoint Platform Private Cloud]
 * xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore] 
 
 [NOTE]
