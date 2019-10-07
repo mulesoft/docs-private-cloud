@@ -4,10 +4,10 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-workflow.adoc
 
-After your infrastructure team verifies that the required infrastructure has been correctly installed and configured as described in xref:install-checklist[Installation and Upgrade Checklist], and all requirements listed in xref:prereq-other.adoc[Other Installation Prerequisites] are met, upload the installation package to all nodes in your environment and select one node from which to run the installation. You can then install Anypoint Platform Private Cloud Edition using one of the following installers: 
+After your infrastructure team verifies that the required infrastructure has been correctly installed and configured as described in xref:install-checklist[Pre-installation Checklist], and all information listed in xref:prereq-other.adoc[Gather Environment Information] is obtained, upload the installation package to all nodes in your environment and select one node from which to run the installation. You can then install Anypoint Platform Private Cloud Edition using one of the following installers: 
 
-* xref:install-installer.adoc[Run the GUI-based installer]
-* xref:install-auto-install.adoc[Run the CLI-based installer]
+* xref:install-installer.adoc[Run the GUI installer]
+* xref:install-auto-install.adoc[Run the CLI installer]
 
 The GUI installer is interactive and walks you through a set of wizard pages that enable you to specify configuration options, but it also requires you to open extra ports and a web browser to access the pages.
 
