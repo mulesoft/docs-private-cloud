@@ -165,6 +165,15 @@ firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -
 firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
 ----
 
+== Verify SSL Certificate Requirements
+
+To use the Anypoint Platform Private Cloud Edition, you must provide SSL credentials. You can upload 
+a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine that is 
+connected to the platform.
+
+[WARNING]
+You must register the same SSL certificate on every node containing Mule Runtimes managed by your installation.
+
 === Uninstall Unsupported Software
 
 The following software causes conflicts with Anypoint Platform Private Cloud Edition. You must uninstall these components before performing Anypoint Platform Private Cloud Edition installation.
