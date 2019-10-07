@@ -13,14 +13,15 @@ All prerequisites apply to all environments:
 
 If needed, contact your Customer Success Manager for assistance.
 
-In addition, anyone that plans to install Anypoint Platform Private Cloud Edition must have basic knowledge in the following areas:
+In addition, anyone that plans to install Anypoint Platform Private Cloud Edition must possess knowledge in the following areas:
 
-* Linux system commands.
+* Linux system commands. 
+* Working in Linux with root access. You must have root access (permission to run the `sudo` command) on all servers in your environment and run the installer or upgrade tool as root to access specific privileged ports.
 * Remote connection mechanisms, such as SSL and SSH.
 
 [WARNING]
 ==== 
-Installing Anypoint Platform Private Cloud Edition requires specific versions of operating systems, NFS, and other software. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not set up. For example, the following situations cause known problems:
+Installing Anypoint Platform Private Cloud Edition requires specific versions of operating systems, NFS, and other software. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not set up rior to installating or upgrading. For example, the following situations cause known problems:
 
 * Using your own AWS images when using AWS.
 * Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform Private CLoud Edition does not support.
@@ -101,13 +102,11 @@ Refer to xref:verify-nfs.adoc[NFS Server Prerequisites] for additional details a
 | xref:verify-nfs#verify-nfs-performance[Verify NFS Performance]
 |===
 
-== Other Installation Prerequisites
-Refer to xref:prereq-other.adoc[Other Installation Prerequisites] for additional details and instructions for the following tasks:
+== Gather Environment Information
 [%header,cols="1*a"]
 |===
 |Task Description
-| xref:prereq-other##gather-configuration-information[Gather Configuration Information]
-| xref:prereq-other##verify-access-and-permissions[Verify Access and Permissions]
+| xref:prereq-other[Gather Environment Information]
 |===
 
 == See Also
