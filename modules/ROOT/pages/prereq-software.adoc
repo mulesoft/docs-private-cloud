@@ -4,16 +4,21 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-verify-software.adoc
 
-To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the software requirements described in this topic. 
+To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the software prerequisites described in this topic:
+
+* Operating system (OS) prerequisites
+* Third party software prerequisites
+* MuleSoft software preqrequisites
 
 [IMPORTANT]
 Before installing or upgrading, your infrastructure team must review each of the following sections and verify that your environment meets the stated software requirements. If needed, contact your Customer Success Manager for assistance.
 
-== Verify Linux Distribution
+== Operating System Preqrequisites
+
+=== Verify Linux Distribution
 The following Linux distributions are supported:
 
 * Red Hat Enterprise Linux (RHEL), versions 7.4.x, 7.5.x, and 7.6
-
 * CentOS, versions 7.4.x, 7.5.x, and 7.6
 
 === Check for SELinux Custom Profiles
@@ -21,9 +26,9 @@ SELinux is not required, but Anypoint Platform Private Cloud Edition supports th
 in strict mode. If your environment uses a custom profile, it must provide an unconstrained user context when 
 running the installer. Review any custom profiles with your customer support representative.
 
-== Enable and Load Kernel Modules
+=== Enable and Load Kernel Modules
 
-On each node, ensure that the following kernel modules are enabled:
+On each node, the following kernel modules must be enabled:
 
 * `br_netfilter`
 * `ebtable_filter`
@@ -31,27 +36,25 @@ On each node, ensure that the following kernel modules are enabled:
 * `iptable_filter`
 * `iptable_nat`
 
-Verify that each module is loaded using the following command as an example:
-
+. For each kernel module, run a command similar to the following example to verify that each module is loaded. Replace `br_netfilter` with the name of the kernel module you are checking.
++
 ----
 root$ lsmod | grep br_netfilter
 ----
 
-Repeat this command for each of the kernel modules above. If this command does not display any output, then the module is not loaded. In this case, load the module using `modprobe`:
-
+.. If this command does not display any output, then the module is not loaded. In this case, load the module using `modprobe`:
++
 ----
 root$ modprobe br_netfilter
 ----
 
-To ensure the module is loaded after a reboot:
-
+. To ensure a module is loaded after a reboot:
++
 ----
 root$ echo 'br_netfilter' > /etc/modules-load.d/br_netfilter.conf
 ----
 
-Replace `br_netfilter` with the name of the kernel module you are checking.
-
-== Verify Kernel Settings
+=== Verify Kernel Settings
 
 The following flags must be turned on:
 
@@ -60,50 +63,38 @@ The following flags must be turned on:
 * `fs.may_detach_mounts=1`
 * `fs.inotify.max_user_watches=524288`
 
-Ensure that there are no processes on your system that set this flag to false. To set a parameter you can use `sysctl -w`, for example:
-
+. Ensure that there are no processes on your system that set this flag to `false`. To set a parameter, you can use `sysctl -w`, as shown in the following example:
++
 ----
 root$ sysctl -w net.ipv4.ip_forward=1
 ----
 
-To make the changes permanent for the next reboot, write it to a file under `/etc/sysctl.d`:
-
+. To make the changes permanent for the next reboot, write it to a file under `/etc/sysctl.d`. Replace the setting in the following example with the setting you are configuring. Ensure there are no processes or files conflicting with those settings.
++
 ----
 echo net.ipv4.ip_forward=1 >> /etc/sysctl.d/10-ipv4-forwarding.conf
 ----
++
 
-Replace the setting above with the setting you are configuring. Ensure there are no processes or files conflicting with those settings.
+== Third Party Software Prerequisites
 
-== Install Logical Volume Manager 2 (LVM2)
+=== Install Logical Volume Manager 2 (LVM2)
 
 To install and run Anypoint Platform Private Cloud Edition, you must install and use LVM2. LVM2 is a tool that adds a layer of abstraction between your operating system and the disks/partitions it uses. You must have root access to install LVM2.
 
-You can install LVM using Yum. Yum is an open-source command-line package-management utility for Linux operating systems using the RPM Package Manager. Using Yum, you can install LVM through the following command:
+You can install LVM using Yum. Yum is an open-source command-line package-management utility for Linux operating systems using the RPM Package Manager. Using Yum, you can install LVM using the following command:
 
 ----
 sudo yum install lvm2
 ----
 
-== Synchronize clocks
+=== Firewall Considerations When firewalld is Enabled
 
-Ensure that the clocks on all servers are synchronized. Unsynchronized clocks can cause problems with platform communications.
-
-== Verify IP Forwarding and Bridging
-
-To ensure proper cluster load balancing and routing, you must enable and correctly configure the following items:
-
-* Kernel IP forwarding: to enable internal Kubernetes load balancing you must enable IPv4 forwarding on all servers.
-* Bridge-netfilter: enables the Linux kernel to translate packets to and from hosted containers.
-
-** IP addresses for bridge-netfiltering are managed by the overlay network created by Kubernetes. The CIDR block used for that network is in the private IP address range.
-
-== Firewall Considerations When Firewalld is Enabled
-
-`firewalld` is an iptables controller that defines rules for persistent network traffic.
-If you are using `firewalld` with a Red Hat Enterprise Linux (RHEL) 7.3 operating system, you must enable forwarding on the docker0 device.
+Firewalld is an iptables controller that defines rules for persistent network traffic.
+If you are using firewalld with a Red Hat Enterprise Linux (RHEL) 7.3 operating system, you must enable forwarding on the `docker0` device.
 You must also forward any packets being sent from or to the 10.0.0.0/8 subnet.
 
-=== Determine if You Are Using firewalld
+==== Determine if You Are Using firewalld
 
 To determine if your system is using firewalld, run the following command on every node:
 
@@ -123,33 +114,7 @@ Docs: man:firewalld(1)
 
 If `firewalld is not installed, this command returns an error message.
 
-=== Enable Forwarding on Docker Device
-
-To enable forwarding on the docker0 device, run the following commands:
-
-----
-firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -o docker0 -j ACCEPT -m comment --comment "docker subnet"
-
-firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
-----
-
-To enable forwarding on the 10.0.0.0/8 subnet, run the following commands:
-
-----
-firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
-
-firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
-----
-
-== Uninstall Unsupported Software
-
-The following software causes conflicts with Anypoint Platform Private Cloud Edition. You must uninstall these components before performing Anypoint Platform Private Cloud Edition installation.
-
-=== Uninstall Docker
-
-Docker must be uninstalled from all servers running the Anypoint Platform Private Cloud Edition. The Anypoint Platform installation includes a Docker package officially supported by Kubernetes.
-
-=== Remove Local DNS Servers
+==== Remove Local DNS Servers
 
 Local caching DNS servers listening on port 53 must be removed, for example, `named`, `dnsmasq`, and `bind`.
 
@@ -167,6 +132,47 @@ Local caching DNS servers listening on port 53 must be removed, for example, `na
 $ sudo gravity enter
 $ kubectl
 ----
+
+== MuleSoft Software Prerequisites
+
+=== Synchronize Clocks
+
+Ensure that the clocks on all servers are synchronized. Unsynchronized clocks can cause problems with platform communications.
+
+=== Verify IP Forwarding and Bridging
+
+To ensure proper cluster load balancing and routing, you must enable and correctly configure the following items:
+
+* Kernel IP forwarding: to enable internal Kubernetes load balancing you must enable IPv4 forwarding on all servers.
+* Bridge-netfilter: enables the Linux kernel to translate packets to and from hosted containers.
+
+** IP addresses for bridge-netfiltering are managed by the overlay network created by Kubernetes. The CIDR block used for that network is in the private IP address range.
+
+==== Enable Forwarding on Docker Device
+
+To enable forwarding on the docker0 device, run the following commands:
+
+----
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -o docker0 -j ACCEPT -m comment --comment "docker subnet"
+
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+----
+
+To enable forwarding on the 10.0.0.0/8 subnet, run the following commands:
+
+----
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+----
+
+=== Uninstall Unsupported Software
+
+The following software causes conflicts with Anypoint Platform Private Cloud Edition. You must uninstall these components before performing Anypoint Platform Private Cloud Edition installation.
+
+==== Uninstall Docker
+
+Docker must be uninstalled from all servers running the Anypoint Platform Private Cloud Edition. The Anypoint Platform installation includes a Docker package officially supported by Kubernetes.
 
 == See Also
 
