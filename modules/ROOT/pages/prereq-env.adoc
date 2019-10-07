@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Adhere to the following recommendations and limitations when setting up your environment and deploying apps:
+Adhere to the following recommendations and limitations when installing Anypoint Platform Private Cloud Edition and deploying apps:
 
 * Environment:
 
