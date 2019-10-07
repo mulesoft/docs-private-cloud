@@ -11,6 +11,9 @@ To ensure the performance and stability of Anypoint Platform Private Cloud Editi
 [IMPORTANT]
 Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated disk and device requirements. If needed, contact your Customer Success Manager for assistance.
 
+== Installation Package Requirements
+Make sure that you have at least 10GB in your home directory to download and unzip the installer file.
+
 == Memory and CPU Requirements
 
 [%header%autowidth.spread]
