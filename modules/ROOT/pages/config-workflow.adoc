@@ -9,7 +9,6 @@ The following tasks are required after you complete Anypoint Platform Private Cl
 * xref:access-management-security.adoc[Configure Security on Anypoint Private Cloud]
 * xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
 * xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Private Cloud]
-* xref:install-create-lb.adoc[Set up a Load Balancer]
 * xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore] 
 
 [NOTE]
