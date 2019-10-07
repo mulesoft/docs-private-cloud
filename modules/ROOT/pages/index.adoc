@@ -38,7 +38,7 @@ The following table provides component information for Anypoint Platform Private
 | API Testing	|   | X |
 |===
 
-== New features included in Anypoint Platform Private Cloud Edition version 2.0
+== New Features in Anypoint Platform Private Cloud Edition Version 2.0
 
 Refer to xref:release-notes/pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Edition Release Notes] for detailed release information.
 
