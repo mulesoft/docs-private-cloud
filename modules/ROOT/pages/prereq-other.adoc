@@ -6,17 +6,8 @@ endif::[]
 [IMPORTANT]
 Before beginning an installation or upgrade, make sure you perform the following tasks. Most problems experienced with Anypoint Platform Private Cloud Edition occur because the required environment was not set up prior to installating or upgrading.
 
-* Verify Level of Expertise Required
 * Gather Configuration Information
 * Verify Access and Permissions
-* Verify Space in Home Directory
-
-== Verify Level of Expertise Required
-
-To install Anypoint Platform Private Cloud Edition, knowledge in the following areas is required:
-
-* Basic knowledge of Linux system commands.
-* Basic understanding of remote connection mechanisms, such as SSL and SSH.
 
 == Gather Configuration Information
 
