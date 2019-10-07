@@ -12,7 +12,7 @@
 * xref:install-workflow.adoc[Install Anypoint Private Cloud]
  ** xref:install-installer.adoc[Run the GUI Installer]
  ** xref:install-auto-install.adoc[Run the CLI Installer]
- ** xref:install-uninstall-reinstall.adoc[Uninstall and Reinstall Anypoint Private Cloud]
+ ** xref:install-uninstall-reinstall.adoc[Troubleshoot Anypoint Private Cloud Installation]
 * xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]
 * xref:prereq-gravity-check.adoc[Verify Environment After Installation or Upgrade]
 * xref:config-workflow.adoc[Configure Anypoint Private Cloud]
