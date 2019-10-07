@@ -19,7 +19,7 @@ What are the types of environments required to run PCE?bare metal, public cloud,
 | AWS	| If using AWS, what kind of sevice from AWS will I need ???
 |===
 
-== Anypoint Platform Private Cloud Edition Versus CloudHub
+== Anypoint Platform Private Cloud Edition Components
 The following table provides component information for Anypoint Platform Private Cloud Edition:
 [%header%autowidth.spread]
 |===
