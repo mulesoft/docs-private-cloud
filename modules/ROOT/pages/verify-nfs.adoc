@@ -201,4 +201,4 @@ umount /mnt/home
 * xref:prereq-hardware.adoc[Hardware Prerequisites]
 * xref:prereq-software.adoc[Software Prerequisites]
 * xref:prereq-network.adoc[Network Prerequisites]
-* xref:prereq-other.adoc[Other Installation Prerequisites]
+* xref:prereq-other.adoc[Gather Environment Information]
