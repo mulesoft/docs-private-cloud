@@ -41,6 +41,7 @@ Refer to xref:prereq-hardware.adoc[Hardware Prerequisites] for additional detail
 | xref:prereq-hardware#disk-requirements[Verify Disk Throughput]
 | xref:prereq-hardware#device-requirements[Verify Device Requirements]
 | xref:prereq-hardware#device-requirements[Verify Disk IOPS]
+| xref:install-create-lb.adoc[Set up a Load Balancer]
 |===
 
 === Software Prerequisites
