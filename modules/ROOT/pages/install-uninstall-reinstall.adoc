@@ -1,11 +1,14 @@
-= Uninstall and Reinstall Anypoint Private Cloud
+= Troubleshoot Anypoint Private Cloud Installation
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+== Uninstall and Reinstall Anypoint Private Cloud
+
 If you encounter problems during installation, you can attempt to reinstall. Before beginning a new installation, ensure that your environment meets all system requirements listed in the xref:install-checklist[Installation and Upgrade Checklist], and that all remnants of the original installation have been removed by performing the following commands on all nodes:
 
-Uninstall Gravity
+. Uninstall Gravity
++
 ----
 # The order of the following steps is important!
 # Perform each step in order as described.
@@ -32,7 +35,8 @@ sudo mount /var/lib/data
 sudo rm -rf /var/lib/data/*
 ----
 
-Restore Original State of the Docker Volume
+. Restore Original State of the Docker Volume
++
 ----
 # In order to clean the Docker volumes, you might need to first reboot the server 
 # to force clean down any handles to the Docker Device.
@@ -57,7 +61,8 @@ sudo pvremove <PV Name>
 sudo parted /dev/{docker-device} mklabel gpt -s
 ----
 
-Purge IPTABLES
+. Purge IPTABLES
++
 ----
 # List iptables.
 sudo iptables -L -n -v
@@ -75,7 +80,7 @@ sudo iptables -t filter -F
 sudo iptables -t filter -X
 ----
 
-Depending on the state of the full or partial install that you are replacing, the previous commands might not 
+. Depending on the state of the full or partial install that you are replacing, the previous commands might not 
 completely return the system to an installable state. Before beginning reinstallation, ensure that your system 
 is still set up correctly and meets the minimum disk and resource requirements.
 
