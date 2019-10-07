@@ -49,6 +49,7 @@ You can use `netcat` or similar tool to verify port configuration.
 == Enable Required Ports 
 
 * You must enable TCP ports `53`, `3011`, `3012` on all nodes to allow communication with the database cluster.
+* If you plan to use the GUI installer to install Anypoint Platform Private Cloud Edition, you must enable port 61009.
 
 == Verify NAT Traffic Requirements
 
