@@ -1,4 +1,4 @@
-= Pre-Installation Checklist
+= Pre-installation Checklist
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
