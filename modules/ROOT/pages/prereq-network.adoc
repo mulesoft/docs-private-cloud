@@ -74,6 +74,10 @@ Your network must include an External Identity Provider that is compatible with 
 To configure an External Identity Provider for users single sign on (LDAP, OpenIDConnect, SAML) or for external 
 client management as OpenID Connect, the cluster must be able to access the External Identity Provider endpoint. For additional information, refer to the instructions in xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Private Cloud].
 
+== Synchronize Clocks
+
+Ensure that the clocks on all servers are synchronized. Unsynchronized clocks can cause problems with platform communications.
+
 == See Also
 
 * xref:prereq-hardware.adoc[Hardware Prerequisites]
