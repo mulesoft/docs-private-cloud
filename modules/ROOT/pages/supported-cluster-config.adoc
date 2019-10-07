@@ -25,5 +25,4 @@ You must configure a load balancer to use round-robin distribution of traffic am
 
 == See Also
 
-* xref:install-checklist.adoc[Installation and Upgrade Checklist]
 * xref:install-workflow.adoc[Install Anypoint Platform Private Cloud Edition]
