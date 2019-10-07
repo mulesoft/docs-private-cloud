@@ -19,7 +19,7 @@ See xref:1.6@upgrade.adoc[About Migrating Anypoint Platform Private Cloud Editio
 ====
 Before upgrading:
 
-* Ensure your environment meets all requirements listed in the xref:install-checklist[Installation Checklist].
+* Ensure your environment meets all requirements listed in the xref:install-checklist[Pre-installation Checklist].
 * Perform a backup of your system as described in xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore]. If you are upgrading from an older version that requires multiple intermediate upgrades you must backup each intermediate version before proceeding to the next.
 
 During the upgrade process, there will be some downtime as each node is updated. 
