@@ -134,10 +134,6 @@ $ kubectl
 
 == MuleSoft Software Prerequisites
 
-=== Synchronize Clocks
-
-Ensure that the clocks on all servers are synchronized. Unsynchronized clocks can cause problems with platform communications.
-
 === Verify IP Forwarding and Bridging
 
 To ensure proper cluster load balancing and routing, you must enable and correctly configure the following items:
