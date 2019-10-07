@@ -14,7 +14,7 @@ The Anypoint Private Cloud Edition installation package includes specific versio
 
 == About the GUI Installer
 
-* The GUI installer provides a wizard that walks you through the Anypoint Platform Private Cloud Edition installation process. It enables you to specify configuration options, but it also requires you to open extra ports and a web browser to access the pages.
+* The GUI installer provides a wizard that walks you through the Anypoint Platform Private Cloud Edition installation process. It enables you to specify configuration options, but it also requires you to open port 61009 and a web browser to access the pages.
 * The GUI installer automatically validates requirements for disk space, disk speed, network speed and operating system version. 
 
 == Run the GUI Installation
@@ -35,6 +35,7 @@ tar xvf anypoint-2.0.0-installer.tar.gz
 ----
 +
 
+. Enable port 61009.
 . Select the IP address you want to use and confirm.
 . When requested, provide an install token. The value of the token can be any numeric value. Just make a note of the value used so that you can provide this value on the commands used on the other nodes in the cluster.
 +
@@ -87,7 +88,7 @@ After running the `curl` command on a node, the node appears in the installer UI
 
 . Click Verify, to ensure that each of your servers meets the minimum disk and system requirements.
 +
-This may take a few minutes to complete. If you system meets all of the requirements, the installer displays a green check mark.
+This may take a few minutes to complete. If your system meets all requirements, the installer displays a green check mark. If your system does not meet all requirements, an error message that describes the problem is displayed and the installation is paused. This allows you to fix the problem and then continue the installation.
 
 . Select an IP address from the drop-down list.
 +
