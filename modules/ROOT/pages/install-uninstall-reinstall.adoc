@@ -78,11 +78,22 @@ sudo iptables -t nat -X
 # Flush filter IP table.
 sudo iptables -t filter -F
 sudo iptables -t filter -X
+
+# Verify that iptables are clean
+iptables-save
+
+# Persist current iptables state for a server restart
+iptables-save > /etc/sysconfig/iptables
+----
+. Restart the server
++
+----
+reboot
 ----
 
 . Depending on the state of the full or partial install that you are replacing, the previous commands might not 
 completely return the system to an installable state. Before beginning reinstallation, ensure that your system 
-is still set up correctly and meets the minimum disk and resource requirements.
+still meets all prerequisites listed in the xref:install-checklist[Pre-installation Checklist] are met.
 
 == See Also
 
