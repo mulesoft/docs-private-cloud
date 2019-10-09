@@ -1,9 +1,9 @@
-= Environment Limitations
+= Environment Limitations for Anypoint Platform Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Adhere to the following recommendations and limitations when installing Anypoint Platform Private Cloud Edition and deploying apps:
+Adhere to the following recommendations and limitations when installing Anypoint Platform Private Cloud and deploying apps:
 
 * Environment:
 
