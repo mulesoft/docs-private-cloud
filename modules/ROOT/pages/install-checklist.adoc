@@ -100,6 +100,13 @@ Refer to xref:verify-nfs.adoc[NFS Server Prerequisites] for additional details a
 | xref:verify-nfs#verify-nfs-performance[Verify NFS Performance]
 |===
 
+== Verify Environment
+[%header,cols="1*a"]
+|===
+|Task Description
+| xref:prereq-gravity-check[Verify Environment]
+|===
+
 == Gather Environment Information
 [%header,cols="1*a"]
 |===
