@@ -6,8 +6,6 @@ endif::[]
 Review the following tasks after you complete Anypoint Platform Private Cloud Edition installation. Many of these are required before you can successfully deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform environment running on your own local network.
 
 * If you used the GUI installer, close port 61009 in the cluster security group. If you are using AWS, you can use the AWS Web console to do this.
-* xref:prereq-gravity-check.adoc[Verify Environment After Installation or Upgrade]
-
 * xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
 * xref:access-management-security.adoc[Configure Security on Anypoint Private Cloud]
 * xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
