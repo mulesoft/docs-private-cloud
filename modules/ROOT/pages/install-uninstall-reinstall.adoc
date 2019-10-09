@@ -1,9 +1,9 @@
-= Uninstall and Reinstall Anypoint Private Cloud
+= Uninstall Anypoint Platform Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If you encounter problems during installation, you can attempt to reinstall. Before beginning a new installation, ensure that your environment meets all system requirements listed in the xref:install-checklist[Pre-installation Checklist], and that all remnants of the original installation have been removed by performing the following commands on all nodes:
+If you encounter problems during installation, you can uninstall. Before beginning a new installation, ensure that your environment meets all system requirements listed in the xref:install-checklist[Pre-installation Checklist], and that all remnants of the original installation have been removed by performing the following commands on all nodes:
 
 . Uninstall Gravity
 +
