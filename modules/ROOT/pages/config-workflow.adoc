@@ -1,19 +1,19 @@
-= Post-installation Checklist
+= Post-installation Tasks
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The following tasks are required after you complete Anypoint Platform Private Cloud Edition installation. Otherwise, you cannot deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform environment running on your own local network.
+Review the following tasks after you complete Anypoint Platform Private Cloud Edition installation. Many of these are required before you can successfully deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform environment running on your own local network.
 
 * If you used the GUI installer, close port 61009 in the cluster security group. If you are using AWS, you can use the AWS Web console to do this.
 * xref:prereq-gravity-check.adoc[Verify Environment After Installation or Upgrade]
-* xref:post-install-config.adoc[Delete the Local User after Installing Private Cloud]
+
 * xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
 * xref:access-management-security.adoc[Configure Security on Anypoint Private Cloud]
 * xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
 * xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Private Cloud]
-* xref:install-create-lb.adoc[Set up a Load Balancer for Anypoint Platform Private Cloud]
 * xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore]
+* Optional: xref:post-install-config.adoc[Delete the Local User after Installing Private Cloud]
 
 [NOTE]
 At the time of this writing, some Docker containers must run as root. Processes running as root do not expose functionality outside the cluster. 
