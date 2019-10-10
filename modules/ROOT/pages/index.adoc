@@ -3,9 +3,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-With Anypoint Platform Private Cloud Edition, you run and manage Mule applications on your local servers, using your required security policies. When running Anypoint Platform Private Cloud Edition, MuleSoft systems do not interact with your data. You configure and run the software, and maintain all data storage, processing, and transmission.
+With Anypoint Platform Private Cloud, you run and manage Mule applications on your local servers, using your required security policies. When running Anypoint Platform Private Cloud, MuleSoft systems do not interact with your data. You configure and run the software, and maintain all data storage, processing, and transmission.
 
-Anypoint Platform Private Cloud Edition uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
+Anypoint Platform Private Cloud uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
 
 == Supported Environments
 The following environments are supported:
@@ -19,8 +19,8 @@ What are the types of environments required to run PCE?bare metal, public cloud,
 | AWS	| If using AWS, what kind of sevice from AWS will I need ???
 |===
 
-== Anypoint Platform Private Cloud Edition Components
-The following table provides component information for Anypoint Platform Private Cloud Edition:
+== Anypoint Platform Private Cloud Components
+The following table provides component information for Anypoint Platform Private Cloud:
 [%header%autowidth.spread]
 |===
 | Component | Included | Not Included | Description
@@ -38,9 +38,9 @@ The following table provides component information for Anypoint Platform Private
 | API Testing	|   | X |
 |===
 
-== New Features in Anypoint Platform Private Cloud Edition Version 2.0
+== New Features in Anypoint Platform Private Cloud Version 2.0
 
-Refer to xref:release-notes/pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Edition Release Notes] for detailed release information.
+Refer to xref:release-notes/pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
 
 [%header%autowidth.spread]
 |===
