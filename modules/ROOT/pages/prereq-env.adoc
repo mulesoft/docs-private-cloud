@@ -5,12 +5,12 @@ endif::[]
 
 Adhere to the following recommendations and limitations when installing Anypoint Platform Private Cloud and deploying apps:
 
-* Environment:
+== Environment
 
 ** Production: 6 nodes of 8 cores and 32GB RAM
 
 
-* Sizing
+== Sizing
 
 ** Runtime Management:
 
