@@ -89,7 +89,7 @@ You can also include the following set of optional environment variables:
 . Load the provisioner Docker image into the local Docker registry:
 +
 ----
-docker load -i pce2.0-aws-provisioner.gz
+docker load -i pcp-1.0.tar.gz
 ----
 
 . Record the image ID after running the `docker load` command. This is required in the following step.
