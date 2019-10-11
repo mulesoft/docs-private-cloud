@@ -8,7 +8,7 @@ This topic describes how to create the resources required to install Anypoint Pl
 These steps are not needed if you are starting from bare metal servers.
 
 [IMPORTANT]
-Your infrastructure team, or someone with AWS administrator level knowledge, must perform the following steps. If needed, contact your Customer Success Manager for assistance.
+Your infrastructure team, or someone with AWS administrator level knowledge, must perform the following steps. If needed, contact your MuleSoft representative for assistance.
 
 == AWS Account Permissions and Resources
 
