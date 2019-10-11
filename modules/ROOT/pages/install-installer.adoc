@@ -114,7 +114,7 @@ Platform users access their accounts based on the organization name that you pro
 * Administrator email
 * Administrator username
 * Administrator password
-* NFS server name
+* DNS for NFS server
 * NFS server path
 
 == See Also
