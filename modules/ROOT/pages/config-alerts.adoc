@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition sends alert emails when CPU and memory usage reach a certain threshold:
+Anypoint Platform Private Cloud sends alert emails when CPU and memory usage reach a certain threshold:
 
 * A warning email is sent when CPU and memory usage reach 70% of capacity.
 * A critical email is sent when CPU and memory usage reach 80% of capacity.
@@ -39,4 +39,4 @@ Connection closed.
 
 == See Also
 
-* xref:managing-via-the-ops-center.adoc[Manage Anypoint Platform Private Cloud Edition Using Ops Center]
+* xref:managing-via-the-ops-center.adoc[Ops Center]
