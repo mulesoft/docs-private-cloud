@@ -23,7 +23,7 @@ The Anypoint Private Cloud installation package includes specific versions of ad
 You must run the installer as root to access the necessary privileged ports, and you must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstallxref:install-uninstall-reinstall#uninstall-and-reinstall-anypoint-private-cloud[Troubleshoot Anypoint Private Cloud Installation].
 
 . Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative.
-. Copy the archive to each server node in your cluster. Copy the license file to the installer node.
+. Copy the archive and the license file to the installer node.
 . Uncompress the gzip archive:
 +
 ----
@@ -37,7 +37,6 @@ tar xvf anypoint-2.0.0-installer.tar.gz
 ----
 +
 
-. Enable port 61009.
 . Select the IP address you want to use and confirm.
 . When requested, provide an install token. The value of the token can be any numeric value. Just make a note of the value used so that you can provide this value on the commands used on the other nodes in the cluster.
 +
@@ -46,10 +45,9 @@ Based on your selection, the installer displays a message similar to the followi
 ----
 OPEN THIS IN BROWSER: https://{HOST}:61009/web/installer/new/gravitational.io/anypoint/{VERSION}?install_token={TOKEN}
 ----
-
-. Open this URL in a browser.
 +
-The installer runs on an internal IP that you can use to access from within your network. To access the URL from outside the network you must replace the hostname in the URL with a public IP address.
+The installer runs on an internal IP that you can use to access from within your network. To access the URL from outside the network you must replace the `HOST` hostname in the previous URL with a public IP address.
+. Open this URL in a browser.
 +
 After launching the installation wizard, perform the following steps to install Anypoint Platform Private Cloud.
 
@@ -72,9 +70,13 @@ The following configurations are supported:
 +
 Depending on the number of nodes you select, the installer displays one or more `curl` commands.
 
-. Run the `curl command from the command line of each node in your installation.
+. Run the `curl` command from the command line of each node in your installation.
 +
-If you are running a 3-node configuration, you must Run the same command on each server in your environment. If you are running a 6-node configuration, you must run different `curl` commands on the app and data nodes.
+[WARNING]
+If you run the commands from an SSH session, ensure the session does not time out during installation or the installer will fail. Using `nohup` and `&` at the end, e.g. `sudo nohup bash &` will make the process to start in the background and will keep running if your ssh session expires.
+Using `screen` or `tmux` is another alternative that keeps you process running if your ssh-session ends.
++
+If you are running a 3-node configuration, you must run the same command on each server in your environment. If you are running a 6-node configuration, you must run different `curl` commands on the app and data nodes.
 +
 You must have administrator privileges to run this command. The command should have the following structure, but varies depending on the selected installation flavor you select and the type of the node:
 +
@@ -82,15 +84,7 @@ You must have administrator privileges to run this command. The command should h
 curl -s --tlsv1.2 --insecure "https://{HOST}:443/t/{TOKEN}/node" | sudo bash
 ----
 +
-[WARNING]
-If you are running the command above from an SSH session, ensure the session does not time out during installation or the installer will fail. Using `nohup` and `&` at the end, e.g. `sudo nohup bash &` will make the process to start in the background and will keep running if your ssh session expires.
-Using `screen` or `tmux` is another alternative that keeps you process running if your ssh-session ends.
-+
 After running the `curl` command on a node, the node appears in the installer UI.
-
-. Click Verify, to ensure that each of your servers meets the minimum disk and system requirements.
-+
-This may take a few minutes to complete. If your system meets all requirements, the installer displays a green check mark. If your system does not meet all requirements, an error message that describes the problem is displayed and the installation is paused. This allows you to fix the problem and then continue the installation.
 
 . Select an IP address from the drop-down list.
 +
@@ -104,24 +98,24 @@ This is the device Docker uses for volume management.
 +
 This is the location of the databases and object stores. By default, this location is `/var/lib/data`.
 
+. Click Verify, to ensure that each of your servers meets the minimum disk and system requirements.
++
+This takes a few minutes to complete. If your system meets all requirements, the installer displays a green check mark. If your system does not meet all requirements, an error message that describes the problem is displayed and the installation is paused. This allows you to fix the problem and then continue the installation.
+
 . After all nodes are visible and configured, click *Start Installation*.
 +
 The installer passes through several different stages. Wait for this process to finish.
 
-. Enter the following information about your organization and Anypoint Platform administrator:
+. Enter the following information about your organization, Anypoint Platform administrator, and NFS server:
 +
 * Organization name
++
+Platform users access their accounts based on the organization name that you provide here or a business group within it.
 * Administrator email
 * Administrator username
 * Administrator password
-+
-
-Platform users access their accounts based on the organization name that you provide here or a business group within it.
-
-. Enter the following information about your NFS server:
-+
-* NFS Server
-* NFS Path
+* NFS server name
+* NFS server path
 
 == See Also
 
