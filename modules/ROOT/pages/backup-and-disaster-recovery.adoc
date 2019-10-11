@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to configure backups for Anypoint Private Cloud Edition. It also describes how to perform a system restore from a backup.
+This topic describes how to configure backups for Anypoint Private Cloud. It also describes how to perform a system restore from a backup.
 
 == Prerequisites
 
@@ -30,7 +30,7 @@ This command creates an archive of the current system state in: `/var/lib/gravit
 To restore a system from your backup, use the existing cluster or create a new cluster containing the same number of servers as the cluster being restored.
 
 [WARNING]
-You can not perform a backup between different versions of Anypoint Platform Private Cloud Edition. The new installation you create must be using the same version of Anypoint Platform Private Cloud Edition as your backup.
+You can not perform a backup between different versions of Anypoint Platform Private Cloud. The new installation you create must be using the same version of Anypoint Platform Private Cloud as your backup.
 
 . Log in to one of the nodes in your cluster.
 
@@ -54,5 +54,5 @@ This takes a few minutes. You can pass the following optional parameters:
 
 == See Also
 
-* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud Edition]
-* xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud Edition]
+* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud]
+* xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]
