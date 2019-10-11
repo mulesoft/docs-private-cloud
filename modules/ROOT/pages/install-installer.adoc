@@ -3,20 +3,20 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-After your infrastructure team verifies that the required infrastructure has been correctly installed and configured as described in xref:install-checklist[Installation and Upgrade Checklist], and all requirements listed in xref:prereq-other.adoc[Other Installation Prerequisites] are met, upload the installation package to all nodes in your environment and select one node from which to run the installation.
+After your infrastructure team verifies that the required infrastructure has been correctly installed and configured as described in xref:install-checklist[Product Prerequisites], upload the installation package to all nodes in your environment and select one node from which to run the installation.
 
 [IMPORTANT]
 ====
-Most problems occur from not meeting the minimum system requirements. Before running the installer, ensure that your environment meets the minimum system requirements listed in the xref:install-checklist[Installation and Upgrade Checklist].
+Most problems occur from not meeting the minimum system requirements. Before running the installer, ensure that your environment meets the minimum system requirements listed in the xref:install-checklist[Product Prerequisites].
 
 You must have root access (permission to run the `sudo` command) on all servers in your environment and run the installer or upgrade tool as root to access specific privileged ports.
 ====
 
-The Anypoint Private Cloud Edition installation package includes specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides patch updates as needed for this additional software.
+The Anypoint Private Cloud installation package includes specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides patch updates as needed for this additional software.
 
 == About the GUI Installer
 
-* The GUI installer provides a wizard that walks you through the Anypoint Platform Private Cloud Edition installation process. It enables you to specify configuration options, but it also requires you to open port 61009 and a web browser to access the pages.
+* The GUI installer provides a wizard that walks you through the Anypoint Platform Private Cloud installation process. It enables you to specify configuration options, but it also requires you to open port 61009 and a web browser to access the pages.
 * The GUI installer automatically validates requirements for disk space, disk speed, network speed and operating system version. 
 
 == Run the GUI Installation
@@ -51,7 +51,7 @@ OPEN THIS IN BROWSER: https://{HOST}:61009/web/installer/new/gravitational.io/an
 +
 The installer runs on an internal IP that you can use to access from within your network. To access the URL from outside the network you must replace the hostname in the URL with a public IP address.
 +
-After launching the installation wizard, perform the following steps to install Anypoint Platform Private Cloud Edition.
+After launching the installation wizard, perform the following steps to install Anypoint Platform Private Cloud.
 
 . Enter your Anypoint Platform license key, then click *Continue*.
 +
@@ -125,5 +125,4 @@ Platform users access their accounts based on the organization name that you pro
 
 == See Also
 
-* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud]
-* xref:prereq-gravity-check.adoc[Verify Environment After Installation or Upgrade]
+* xref:config-workflow.adoc[Post-installation Tasks]
