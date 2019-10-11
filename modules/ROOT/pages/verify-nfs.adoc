@@ -7,7 +7,7 @@ endif::[]
 Before installing or upgrading, your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your Customer Success Manager for assistance to ensure your NFS server is configured correctly.
 
 == Verify NFS Server Setup
-Anypoint Private Cloud Edition version 2.0+ requires a Network File System (NFS) server and an available NFS endpoint. Your NFS server must meet the following requirements:
+Anypoint Private Cloud version 2.0+ requires a Network File System (NFS) server and an available NFS endpoint. Your NFS server must meet the following requirements:
 
 * Must be running on a filesystem that has at least 250 GB available.
 * Must be using NFS version 4.0.
@@ -27,7 +27,7 @@ On each node, run the following commands:
 - `nc -zv <host_name> 2049`
 
 [NOTE]
-By default, the netcat tool is not included with Anypoint Platform Private Cloud Edition. If you receive a `command not found` error, you can download and install `netcat` or a similar tool.
+By default, the netcat tool is not included with Anypoint Platform Private Cloud. If you receive a `command not found` error, you can download and install `netcat` or a similar tool.
 
 When the responses from netcat are successful, you receive a response similar to the following example:
 
