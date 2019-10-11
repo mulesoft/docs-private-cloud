@@ -7,7 +7,7 @@ endif::[]
 To ensure the performance and stability of Anypoint Platform Private Cloud, every node in your Anypoint Platform Private Cloud environment must meet the network requirements described in this topic. 
 
 [IMPORTANT]
-Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated network requirements. If needed, contact your Customer Success Manager for assistance.
+Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated network requirements. If needed, contact your MuleSoft representative for assistance.
 
 == Verify Static IPs
 
