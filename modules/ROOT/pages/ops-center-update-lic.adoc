@@ -5,7 +5,7 @@ endif::[]
 
 When your product license expires, Ops Center displays a message stating that the system is under maintenance. It continues to display this message until you add a valid license.
 
-Add your Anypoint Platform Private Cloud Edition license in Ops Center. 
+Add your Anypoint Platform Private Cloud license in Ops Center. 
 
 . Sign into Ops Center.
 . Click the *Admin* tab.
@@ -14,4 +14,4 @@ Add your Anypoint Platform Private Cloud Edition license in Ops Center.
 
 == See Also
 
-* xref:managing-via-the-ops-center.adoc[Manage Anypoint Platform Private Cloud Edition Using Ops Center]
+* xref:managing-via-the-ops-center.adoc[Ops Center]
