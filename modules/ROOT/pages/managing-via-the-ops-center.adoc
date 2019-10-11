@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The Ops Center is a web-base management tool that enables you to manage and monitor Anypoint Platform Private Cloud Edition and perform the following types of tasks:
+The Ops Center is a web-base management tool that enables you to manage and monitor Anypoint Platform Private Cloud and perform the following types of tasks:
 
 * Add and remove servers
 * View logs and configure log forwarding
@@ -66,7 +66,7 @@ Deleting a server also removes any applications that are deployed on the server.
 
 == Configure Log Forwarding
 
-Anypoint Platform Private Cloud Edition enables you to forward server-level log data. Log forwarding is designed to forward your logs to a local 3rd party log solution. Forwarding log data to a cloud-based service, like Splunk Cloud, is not supported.
+Anypoint Platform Private Cloud enables you to forward server-level log data. Log forwarding is designed to forward your logs to a local 3rd party log solution. Forwarding log data to a cloud-based service, like Splunk Cloud, is not supported.
 
 [NOTE]
 ====
