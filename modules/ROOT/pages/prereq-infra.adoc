@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
  
 
-. xref:prereq-aws-terraform.adoc[Create Anypoint Private Cloud Resources on Amazon Web Services (AWS)]. Cluster set up must be complete and conform to xref:supported-cluster-config.adoc[Supported Network Topologies for Anypoint Private Cloud Edition].
+. xref:prereq-aws-terraform.adoc[Create Anypoint Private Cloud Resources on Amazon Web Services (AWS)]. Cluster set up must be complete and conform to xref:supported-cluster-config.adoc[Supported Network Topologies for Anypoint Private Cloud].
 . xref:prereq-hardware.adoc[Hardware Prerequisites]
 . xref:prereq-software.adoc[Software Prerequisites]
 . xref:prereq-network.adoc[Network Prerequisites]
