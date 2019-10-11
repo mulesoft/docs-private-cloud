@@ -22,15 +22,14 @@ During installation, you will be asked to provide the following information:
 
 * NFS server information
 
-** NFS server name and path
+** DNS for NFS server
+** NFS server path
 ** PLATFORM_DNS (The DNS must be configured to the NFS server.)
 
 * Anypoint Platform organization and administrator:
 
-** Organization name
-** Administrator name
-** Administrator email
 ** Administrator username
+** Administrator email
 ** Administrator password
 
 * SMTP server credentials
