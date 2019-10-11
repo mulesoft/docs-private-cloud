@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition requires an External Identity Provider. All users must be registered via external identity except the admin you register in the installation wizard. The following External Identity Providers are supported:
+Anypoint Platform Private Cloud requires an External Identity Provider. All users must be registered via external identity except the admin you register in the installation wizard. The following External Identity Providers are supported:
 
 * xref:access-management::conf-ldap-private-cloud-task[To Configure LDAP in Anypoint Platform Private Cloud]
 * xref:access-management::conf-client-mgmt-pf-task.adoc[Configure Ping Federate]
