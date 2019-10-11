@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-There are differences differences between Anypoint Private Cloud Edition and the cloud version of Anypoint Platform you need to consider when uploading custom policies and publishing assets to Exchange using the Maven Client.
+There are differences differences between Anypoint Private Cloud and the cloud version of Anypoint Platform you need to consider when uploading custom policies and publishing assets to Exchange using the Maven Client.
 See the corresponding documentation for the cloud version of Anypoint Platform for details. 
 
 * xref:api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development],
@@ -31,7 +31,7 @@ This snippet shows the relevant sections:
     ...
 ----
 +
-In the examples below, ${ANYPOINT_DNS} is set to your DNS for Anypoint Platform Private Cloud Edition. The `username` and `password` must correspond with your installation.
+In the examples below, ${ANYPOINT_DNS} is set to your DNS for Anypoint Platform Private Cloud. The `username` and `password` must correspond with your installation.
 
 2. Generate the archetype:
 +
@@ -82,7 +82,7 @@ keytool -printcert -sslserver ${ANYPOINT_DNS}:443 -rfc > /tmp/anypoint.crt
 keytool -importcert -alias my-company.com -keystore /etc/ssl/certs/java/cacerts -storepass changeit -file /tmp/anypoint.crt
 ----
 +
-In this example, $ANYPOINT_DNS is set to your DNS for Anypoint Platform Private Cloud Edition. Replace the location and password for your JVM’s trustore for your environment.
+In this example, $ANYPOINT_DNS is set to your DNS for Anypoint Platform Private Cloud. Replace the location and password for your JVM’s trustore for your environment.
 
 Verify your policy was uploaded by visiting https://${ANYPOINT_DNS}/exchange/?type=policy or https://${ANYPOINT_DNS}/exchange/${orgID}/${artifactId}/ directly.
 
