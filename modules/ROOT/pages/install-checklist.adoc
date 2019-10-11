@@ -5,7 +5,7 @@ endif::[]
 
 Before you install Anypoint Platform Private Cloud:
 
-* Your organization’s operations, networking, and security teams must review the listed infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of all prerequisites listed in this topic. If needed, contact your Customer Success Manager for assistance.
+* Your organization’s operations, networking, and security teams must review the listed infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of all prerequisites listed in this topic. If needed, contact your MuleSoft representative for assistance.
 +
 All prerequisites apply to all environments:
 
