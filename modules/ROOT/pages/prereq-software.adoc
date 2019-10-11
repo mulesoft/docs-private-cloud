@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-verify-software.adoc
 
-To ensure the performance and stability of Anypoint Platform Private Cloud Edition, every node in your Anypoint Platform Private Cloud Edition environment must meet the software prerequisites described in this topic:
+To ensure the performance and stability of Anypoint Platform Private Cloud, every node in your Anypoint Platform Private Cloud environment must meet the software prerequisites described in this topic:
 
 * Operating system (OS) prerequisites
 * Third party software prerequisites
@@ -22,7 +22,7 @@ The following Linux distributions are supported:
 * CentOS, versions 7.4.x, 7.5.x, and 7.6
 
 === Check for SELinux Custom Profiles
-SELinux is not required, but Anypoint Platform Private Cloud Edition supports the default SELinux profile running 
+SELinux is not required, but Anypoint Platform Private Cloud supports the default SELinux profile running 
 in strict mode. If your environment uses a custom profile, it must provide an unconstrained user context when 
 running the installer. Review any custom profiles with your customer support representative.
 
@@ -79,7 +79,7 @@ echo net.ipv4.ip_forward=1 >> /etc/sysctl.d/10-ipv4-forwarding.conf
 
 === Install Logical Volume Manager 2 (LVM2)
 
-To install and run Anypoint Platform Private Cloud Edition, you must install and use LVM2. LVM2 is a tool that adds a layer of abstraction between your operating system and the disks/partitions it uses. You must have root access to install LVM2.
+To install and run Anypoint Platform Private Cloud, you must install and use LVM2. LVM2 is a tool that adds a layer of abstraction between your operating system and the disks/partitions it uses. You must have root access to install LVM2.
 
 You can install LVM2 using Yum. Yum is an open-source command-line package-management utility for Linux operating systems using the RPM Package Manager. Using Yum, you can install LVM2 using the following command:
 
@@ -167,7 +167,7 @@ firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -
 
 == Verify SSL Certificate Requirements
 
-To use the Anypoint Platform Private Cloud Edition, you must provide SSL credentials. You can upload 
+To use the Anypoint Platform Private Cloud, you must provide SSL credentials. You can upload 
 a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine that is 
 connected to the platform.
 
@@ -176,11 +176,11 @@ You must register the same SSL certificate on every node containing Mule Runtime
 
 === Uninstall Unsupported Software
 
-The following software causes conflicts with Anypoint Platform Private Cloud Edition. You must uninstall these components before performing Anypoint Platform Private Cloud Edition installation.
+The following software causes conflicts with Anypoint Platform Private Cloud. You must uninstall these components before performing Anypoint Platform Private Cloud installation.
 
 ==== Docker
 
-Uninstall Docker from all servers running the Anypoint Platform Private Cloud Edition. The Anypoint Platform installation includes a Docker package officially supported by Kubernetes.
+Uninstall Docker from all servers running the Anypoint Platform Private Cloud. The Anypoint Platform installation includes a Docker package officially supported by Kubernetes.
 
 == See Also
 
