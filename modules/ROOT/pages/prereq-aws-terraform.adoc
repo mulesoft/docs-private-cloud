@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to create the resources required to install Anypoint Platform Private Cloud Edition on Amazon Web Services (AWS). Anypoint Private Cloud supports 3-node and 6-node configurations in a production environment on AWS.
+This topic describes how to create the resources required to install Anypoint Platform Private Cloud on Amazon Web Services (AWS). Anypoint Private Cloud supports 3-node and 6-node configurations in a production environment on AWS.
 
 These steps are not needed if you are starting from bare metal servers.
 
@@ -12,7 +12,7 @@ Your infrastructure team, or someone with AWS administrator level knowledge, mus
 
 == AWS Account Permissions and Resources
 
-To install Anypoint Platform Private Cloud Edition on AWS:
+To install Anypoint Platform Private Cloud on AWS:
 
 * Your AWS account must have AWS keys with `EC2FullAccess` and `S3FullAccess` permissions.
 * When creating your AWS environment, the following resources are created:
@@ -125,7 +125,7 @@ docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/ext
 
 == Open Port 61009 Before Installation (Optional)
 
-If you are installing Anypoint Private Cloud Edition using the GUI-based installer, you must enable this port before running the installer. You must open this port to the world in the cluster's security group before running the installer using AWS Web Console.
+If you are installing Anypoint Private Cloud using the GUI-based installer, you must enable this port before running the installer. You must open this port to the world in the cluster's security group before running the installer using AWS Web Console.
 
 == Troubleshooting
 
