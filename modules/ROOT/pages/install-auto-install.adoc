@@ -3,20 +3,20 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-After your infrastructure team verifies that the required infrastructure has been correctly installed and configured as described in xref:install-checklist[Installation and Upgrade Checklist], and all requirements listed in xref:prereq-other.adoc[Other Installation Prerequisites] are met, upload the installation package to all nodes in your environment and select one node from which to run the installation.
+After your infrastructure team verifies that the required infrastructure has been correctly installed and configured as described in xref:install-checklist[Product Prerequisites], upload the installation package to all nodes in your environment and select one node from which to run the installation.
 
 [IMPORTANT]
 ====
-Most problems occur from not meeting the minimum system requirements. Before running the installer, ensure that your environment meets the minimum system requirements listed in the xref:install-checklist[Pre-installation Checklist].
+Most problems occur from not meeting the minimum system requirements. Before running the installer, ensure that your environment meets the minimum system requirements listed in the xref:install-checklist[Product Prerequisites].
 
 You must have root access (permission to run the `sudo` command) on all servers in your environment and run the installer or upgrade tool as root to access specific privileged ports.
 ====
 
-The Anypoint Private Cloud Edition installation package includes specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides patch updates as needed for this additional software.  
+The Anypoint Private Cloud installation package includes specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides patch updates as needed for this additional software.  
 
 == About the Installation Scripts
 
-* Use the Anypoint Platform Private Cloud Edition CLI-based installer when you want to specify all required parameters from the command line.
+* Use the Anypoint Platform Private Cloud CLI-based installer when you want to specify all required parameters from the command line.
 * The CLI installation uses two scripts:
 
 ** `gravity install`: begins the installation and handles intra-server communication during the install. This script also installs the platform on the server. This script is only run on one node.
@@ -90,5 +90,4 @@ curl -X POST http://bandwagon-mulesoft.default.svc.cluster.local/api/complete -H
 
 == See Also
 
-* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud]
-* xref:prereq-gravity-check.adoc[Verify Environment After Installation or Upgrade]
+* xref:config-workflow.adoc[Post-installation Tasks]
