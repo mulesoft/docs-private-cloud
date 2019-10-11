@@ -18,6 +18,6 @@ $ keytool -printcert -sslserver $ANYPOINT_DNS:443 -rfc > /tmp/anypoint.crt
 $ keytool -importcert -alias anypoint.my-company -keystore /etc/ssl/certs/java/cacerts -storepass changeit -file /tmp/anypoint.crt
 ----
 +
-In the previous example, $ANYPOINT_DNS should be set to your DNS for Anypoint Platform Private Cloud Edition.
+In the previous example, $ANYPOINT_DNS should be set to your DNS for Anypoint Platform Private Cloud.
 Replace the location and password for your JVM's truststore for your environment.
 
