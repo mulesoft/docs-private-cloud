@@ -72,6 +72,7 @@ Ensure that the clocks on all servers are synchronized. Unsynchronized clocks ca
 
 == See Also
 
+* xref:prereq-platform.adoc[Environment Prerequisites]
 * xref:prereq-hardware.adoc[Hardware Prerequisites]
 * xref:prereq-software.adoc[Software Prerequisites]
 * xref:verify-nfs.adoc[NFS Server Prerequisites]
