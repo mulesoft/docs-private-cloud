@@ -1,4 +1,4 @@
-= Anypoint Platform Private Cloud Overview - WIP
+= Anypoint Platform Private Cloud Overview
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -6,18 +6,6 @@ endif::[]
 With Anypoint Platform Private Cloud, you run and manage Mule applications on your local servers, using your required security policies. When running Anypoint Platform Private Cloud, MuleSoft systems do not interact with your data. You configure and run the software, and maintain all data storage, processing, and transmission.
 
 Anypoint Platform Private Cloud uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
-
-== Supported Environments
-The following environments are supported:
-What are the types of environments required to run PCE?bare metal, public cloud, private cloud???
-
-[%header%autowidth.spread]
-|===
-| Platform | Description
-| VMWare | Local hosted VMs???
-| Bare Metal |	???
-| AWS	| If using AWS, what kind of sevice from AWS will I need ???
-|===
 
 == Anypoint Platform Private Cloud Components
 The following table provides component information for Anypoint Platform Private Cloud:
