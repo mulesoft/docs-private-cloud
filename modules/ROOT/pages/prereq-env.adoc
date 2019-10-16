@@ -5,18 +5,17 @@ endif::[]
 
 Adhere to the following recommendations and limitations when installing Anypoint Platform Private Cloud and deploying apps:
 
-== Environment
+== Production Environment
 
-** Production: 6 nodes of 8 cores and 32GB RAM
+** 6 nodes of 8 cores and 32GB RAM
 
+=== Sizing
 
-== Sizing
+*** Runtime Management:
 
-** Runtime Management:
-
-*** Maximum number of servers: 500
-*** Maximum number of servers per server group: 20
-*** Maximum servers per cluster: 8
+**** Maximum number of servers: 500
+**** Maximum number of servers per server group: 20
+**** Maximum servers per cluster: 8
 
 *** Applications per Environment 
 
@@ -32,15 +31,37 @@ Adhere to the following recommendations and limitations when installing Anypoint
 ***** Development: Maximum of 100 apps
 ***** Recommended: Fewer than 25 apps
   
-** API Platform
+*** API Platform
 
-** API Management
-*** APIs under management
+*** API Management
+**** APIs under management
 
-**** Limit each management plane 2.0.0 cluster to 20000 (6 nodes, 16 cores) APIs under management and 10000 (6 nodes 8 cores), 
+***** Limit each management plane 2.0.0 cluster to 20000 (6 nodes, 16 cores) APIs under management and 10000 (6 nodes 8 cores), 
 in which:
 
-***** A single API implementation with one policy counts as 0.3.
-***** A single clustered proxy with up to 5 policies counts as 1.
-***** All runtimes are polling every 60 seconds. 
+****** A single API implementation with one policy counts as 0.3.
+****** A single clustered proxy with up to 5 policies counts as 1.
+****** All runtimes are polling every 60 seconds. 
 
+== Development Environment
+
+** 3 nodes of 8 cores and 32GB RAM
++
+All production environment recommendations and limitations apply to development environments except for the 
+following items:
+
+*** Runtime Management:
+
+**** Maximum number of servers: 250
+
+**** Mule Runtime Engines under management:
+***** Maximum: 400 single Mule Runtime Engines (or 200 Mule Runtime clusters, consisting of 2 Mule Runtime Engines per cluster)
+
+**** APIs under management
+
+***** Limit each management plane 2.0.0 cluster to 5000 (3 nodes, 8 cores) APIs under management and 10000 (6 nodes 8 cores), 
+in which:
+
+****** A single API implementation with one policy counts as 0.3.
+****** A single clustered proxy with up to 5 policies counts as 1.
+****** All runtimes are polling every 60 seconds.
