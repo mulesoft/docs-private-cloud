@@ -1,9 +1,9 @@
-= Supported Network Topologies for Anypoint Private Cloud
+= Supported Configurations for Anypoint Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To ensure platform performance, stability, and high-availability, Anypoint Platform Private Cloud supports two network topologies, 3-node and 6-node, which are outlined in the following sections.
+To ensure platform performance, stability, and high-availability, Anypoint Platform Private Cloud supports two network configurations, 3-node and 6-node, which are outlined in the following sections.
 
 To ensure high availability and performance, each node must run on its own server in both configurations. If you are using a virtual machine to host the nodes, you must ensure that each VM node is running on a separate physical server.
 
