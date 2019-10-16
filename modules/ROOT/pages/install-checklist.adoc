@@ -28,6 +28,13 @@ Installing Anypoint Platform Private Cloud requires specific versions of operati
 * Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform Private CLoud does not support.
 ====
 
+=== Environment Prerequisites
+[%header,cols="1*a"]
+|===
+|Task Description
+| xref:prereq-platform.adoc[Environment Prerequisites]
+|===
+
 === Amazon Web Services (AWS) Prerequisites
 
 If you are using AWS, perform the following tasks:
@@ -35,7 +42,7 @@ If you are using AWS, perform the following tasks:
 [%header,cols="1*a"]
 |===
 |Task Description
-| xref:supported-cluster-config.adoc[Review Supported Network Topologies for Anypoint Private Cloud]
+| xref:supported-cluster-config.adoc[Review Supported Configurations for Anypoint Private Cloud]
 | xref:prereq-aws-terraform.adoc[Provision Amazon Web Services (AWS) Prerequisites]
 |===
 
