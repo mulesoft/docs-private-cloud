@@ -1,6 +1,6 @@
 .xref:index.adoc[About Anypoint Platform Private Cloud]
 * xref:index.adoc[Overview]
-* xref:supported-cluster-config.adoc[Supported Network Topologies]
+* xref:supported-cluster-config.adoc[Supported Configurations]
 * xref:prereq-env.adoc[Environment Limitations]
 * xref:install-checklist.adoc[Product Prerequisites]
  ** xref:prereq-platform.adoc[Environment Prerequisites]
