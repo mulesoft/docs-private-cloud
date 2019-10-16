@@ -1,0 +1,11 @@
+= Environment Prerequisites
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== Supported Environments
+The following environments are the only environments supported by Anypoint Platform Private Cloud:
+
+* VMWare 
+* Bare Metal 
+* AWS	
