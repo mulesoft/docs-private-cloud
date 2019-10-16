@@ -1,4 +1,4 @@
-= Register Mule Runtime Engine
+= Troubleshoot Mule Runtime Engine Registration
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
