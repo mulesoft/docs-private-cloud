@@ -293,6 +293,7 @@ service nginx restart
 
 == See Also
 
+* xref:prereq-platform.adoc[Environment Prerequisites]
 * xref:prereq-software.adoc[Software Prerequisites]
 * xref:prereq-network.adoc[Network Prerequisites]
 * xref:verify-nfs.adoc[NFS Server Prerequisites]
