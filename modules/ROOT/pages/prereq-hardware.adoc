@@ -186,7 +186,7 @@ In each case, your load balancer must listen on the Load Balancer Port and redir
 Your load balancer should poll the address `HTTP:10248/healthz` to run a health check on your platform servers and confirm that they are accessible.
 
 [NOTE]
-Do not configure SSL certificates in your load balancer. TLS termination is handled by the platform with the certificates configured using Access Management. See xref:install-add-tasks.adoc[To Perform Additional Installation Tasks].
+Do not configure SSL certificates in your load balancer. TLS termination is handled by the platform with the certificates configured using Access Management. See xref:config-workflow.adoc[Post-installation Tasks].
 
 === Implement a Load Balancer using Nginx
 
