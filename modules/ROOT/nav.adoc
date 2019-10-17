@@ -10,7 +10,7 @@
  ** xref:prereq-network.adoc[Network Prerequisites]
  ** xref:verify-nfs.adoc[NFS Prerequisites]
   *** xref:troubleshoot-nfs.adoc[Troubleshoot NFS Errors]
- ** xref:prereq-other.adoc[Gather Environment Information]
+ ** xref:prereq-gravity-check.adoc[Pre-installation Verification]
 * xref:install-workflow.adoc[Install Anypoint Private Cloud]
  ** xref:install-installer.adoc[Run the GUI Installer]
  ** xref:install-auto-install.adoc[Run the CLI Installer]
