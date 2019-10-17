@@ -1,7 +1,0 @@
-= Perform Post-installation Tasks
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
-:page-aliases: install-disable-local-user.adoc 
-
-
