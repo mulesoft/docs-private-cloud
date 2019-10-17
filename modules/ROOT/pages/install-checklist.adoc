@@ -35,8 +35,6 @@ Installing Anypoint Platform Private Cloud requires specific versions of operati
 | xref:prereq-platform.adoc[Environment Prerequisites]
 |===
 
-=== Amazon Web Services (AWS) Prerequisites
-
 If you are using AWS, perform the following tasks:
 
 [%header,cols="1*a"]
@@ -51,12 +49,10 @@ Refer to xref:prereq-hardware.adoc[Hardware Prerequisites] for additional detail
 [%header,cols="1*a"]
 |===
 |Task Description
-| xref:prereq-other#verify-space-in-home-directory[Installation Package Requirements]
 | xref:prereq-hardware#memory-and-cpu-requirements[ Verify Memory and CPU Requirements]
-| xref:prereq-hardware#disk-requirements[Verify Disk Throughput]
 | xref:prereq-hardware#device-requirements[Verify Device Requirements]
 | xref:prereq-hardware#device-requirements[Verify Disk IOPS]
-| xref:install-create-lb.adoc[Set up a Load Balancer]
+| xref:install-create-lb.adoc[Load Balancer Configuration]
 |===
 
 === Software Prerequisites
