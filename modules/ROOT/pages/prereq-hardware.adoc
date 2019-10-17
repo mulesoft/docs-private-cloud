@@ -11,9 +11,6 @@ To ensure the performance and stability of Anypoint Platform Private Cloud, ever
 [IMPORTANT]
 Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated disk and device requirements. If needed, contact your MuleSoft representative for assistance.
 
-== Installation Package Requirements
-Make sure that you have at least 10GB in your home directory to download and unzip the installer file.
-
 == Memory and CPU Requirements
 
 [%header%autowidth.spread]
@@ -26,64 +23,23 @@ Make sure that you have at least 10GB in your home directory to download and unz
 [IMPORTANT]
 If the stated requirements for Memory and CPU are not met, Anypoint Platform Private Cloud installation will fail. 
 
-== Disk Requirements
-
-Anypoint Platform Private Cloud has strict minimum size and performance requirements for storage devices used by the platform. All disk drives must meet the following criteria:
-
-* Must have at least 300 MB/sec of throughput.
-* Must have performance capabilities that can accomodate the expected environment traffic, even if they are virtual block devices or network attached storage.
-
-=== Verify Disk Throughput
-
-On each node, measure disk throughput using a tool such as `hdparm`. On CentOS, `hdparm` can be installed by running the following command:
-
-----
-sudo yum install -y hdparm
-----
-
-Run the following command to verify disk throughput:
-
-----
-sudo hdparm -d <device>
-----
-
-For example:
-
-----
-$ sudo hdparm -t /dev/sdd
-
-/dev/sdd:
-Timing buffered disk reads: 4726 MB in  3.00 seconds = 1574.94 MB/sec
-----
-
-You can also measure throughput using the `dd`  tool if your devices are not bare devices. Do not use the `dd` tool on bare devices. The `dd` command provides less accurate information than `hdparm`, but is available on any operating system and provides the ability to easily verify general disk performance. `dd` writes directly to a specified file, even if it is a device. For bare devices, after the device is formatted and mounted, you can write to a file on that device to measure throughput, as shown in the following example:
-
-----
-$ sudo mount /dev/sdb /var/lib/gravity # must be already formatted!
-$ sudo dd if=/dev/zero of=/var/lib/gravity/testfile count=1000 bs=1M
-1000+0 records in
-1000+0 records out
-1048576000 bytes (1.0 GB, 1000 MiB) copied, 0.382535 s, 2.7 GB/s
-----
-
-== Device Requirements
-For production environments, each node in your configuration must have the following dedicated devices. All devices must be formatted either as *xfs* or *ext4*.
+For production environments, each node in your configuration must have the following dedicated devices. Except for the Docker device, all devices must be formatted either as *xfs* or *ext4*.
 
 [%header%autowidth.spread]
 |===
 | Component |Size|Minimum IOPS|Mount Point|Description
-|HDD 1 (Operating system) |50 GB |500| |
 |HDD 2 (System state directory) | 100 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. As package sizes can be large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
 |HDD 3 (Application data)| 250 GB |1500|/var/lib/data | Stores application configuration and data. The amount of space required should be at least 250 GB, but might vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 |HDD 5 (Etcd) | 20 GB |3000|/var/lib/gravity/planet/etcd | Provides dedicated storage for the distributed database used for cluster coordination.
 |HDD 4 (Docker) | 100 GB |3000|Not mounted | Used by Docker’s Device Mapper storage driver. A minimum of 100Gb is required for the Device Mapper directory. Devices with 50Gb or less will experience degraded system performance or might not work at all.
 |/tmp (Installer) | 20 GB |N/A| |
+|/ (root) | 10 GB | N/A |Make sure that you have at least 10GB in your home directory to download and unzip the installer file.|
 |===
 
 [NOTE]
 The space requirements listed in the previous table are based on average use. For environments with heavy traffic, validate the amount of space needed with your Customer Success Manager.
 
-=== System State Directory Device
+== System State Directory Device
 
 The main purpose of the system state directory device is to store system configuration and metadata - for example, database and packages. As package sizes can be arbitrary large, it is important to estimate the minimum size requirements and allocate enough space for the dedicated device.
 
@@ -100,7 +56,7 @@ sudo systemctl enable var-lib-gravity.mount
 sudo systemctl start var-lib-gravity.mount
 ----
 
-=== Application Data Device
+== Application Data Device
 
 The main purpose of application data directory device is to store application configuration and data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
 
@@ -117,7 +73,7 @@ sudo systemctl enable var-lib-data.mount
 sudo systemctl start var-lib-data.mount
 ----
 
-=== Etcd Device
+== Etcd Device
 
 The main purpose of the etcd device is to provide dedicated storage for a distributed database used for cluster coordination. It does not require much space, 20GB is adequate.
 
@@ -134,7 +90,7 @@ sudo systemctl enable var-lib-gravity-planet-etcd.mount
 sudo systemctl start var-lib-gravity-planet-etcd.mount
 ----
 
-=== Docker Device
+== Docker Device
 
 Unless specified, Docker configuration defaults to the use of Device Mapper in loopback mode (using `/dev/loopX` devices), which is not recommended for production. To configure Docker to use a dedicated device for Device Mapper storage driver, an unformatted device (or a partition) (i.e. /dev/sdd) can be provided during installation. This directory is automatically configured and set up for use.
 
@@ -154,7 +110,7 @@ Unmounted devices have an empty value in FSTYPE column. Devices with TYPE="part"
 |202 |Xen virtual block devices (Amazon EC2)
 |===
 
-==== Manually Reset Docker Device and Partitions
+=== Reset Docker Device
 
 Using Logical Volume Manager, you can group multiple physical volumes into a single storage volume (Volume Group) and then divide these into Logical Volumes. Physical Volumes are either a whole device or a partition.
 
@@ -205,15 +161,15 @@ $ sudo ./iops --time 2 /dev/xvdb
 ...
 ----
 
-== Set up a Load Balancer
-Refer to xref:install-create-lb.adoc[Set up a Load Balancer] for detailed information.
-Anypoint Platform Private Cloud must run in a production environment with multiple servers. To distribute traffic among servers and to restrict access to specific ports, you must install and configure a load balancer. 
+== Load Balancer Requirements
+Anypoint Platform Private Cloud must run in a production environment with multiple servers. To distribute traffic among servers and to restrict access to specific ports, you must provide and configure a load balancer.
 
 You can use any load balancer, including NGINX, but NGINX is not required.
 
 [NOTE]
 If using the xref:prereq-aws-terraform.adoc[AWS Provisioner for Anypoint Private Cloud], skip this section. An Amazon ELB is created during installation with the required configuration.
 
+=== Load Balancer Configuration
 You can configure your load balancer to use any method for distributing client requests, but in most contexts a round robin strategy is ideal. The load balancer should be accessible through an IP address that is available to all machines in your network.
 
 Your load balancer must route the following TCP ports:
