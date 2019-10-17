@@ -20,7 +20,7 @@ The Anypoint Private Cloud installation package includes specific versions of ad
 * The GUI installer automatically validates requirements for disk space, disk speed, network speed and operating system version. 
 
 == Run the GUI Installation
-You must run the installer as root to access the necessary privileged ports, and you must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstallxref:install-uninstall-reinstall#uninstall-and-reinstall-anypoint-private-cloud[Troubleshoot Anypoint Private Cloud Installation].
+You must run the installer as root to access the necessary privileged ports, and you must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall#uninstall-and-reinstall-anypoint-private-cloud[Troubleshoot Anypoint Private Cloud Installation].
 
 . Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative.
 . Copy the archive and the license file to the installer node.
