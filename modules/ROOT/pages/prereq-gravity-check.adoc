@@ -3,6 +3,15 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+[IMPORTANT]
+Before installing or upgrading,  your infrastructure team must review all prerequisite information in the following list and verify that your environment meets the stated requirements. If needed, contact your MuleSoft representative for assistance.
+
+* xref:prereq-platform.adoc[Environment Prerequisites]
+* xref:prereq-hardware.adoc[Hardware Prerequisites]
+* xref:prereq-software.adoc[Software Prerequisites]
+* xref:prereq-network.adoc[Network Prerequisites]
+* xref:verify-nfs.adoc[NFS Server Prerequisites]
+
 == Verify Anypoint Private Cloud Nodes
 
 Before you install Anypoint Private Cloud on all nodes, run the `gravity check` script to verify that 
