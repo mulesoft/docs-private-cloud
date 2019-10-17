@@ -123,15 +123,6 @@ Remove local caching DNS servers listening on port 53, for example, `named`, `dn
 
 ** Netcat is recommended, but you can use your tool of choice to verify the correct ports are open on the NFS server. If you don’t have `netcat`, you can install it from  http://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
 
-* Tool to Verify Kubectl Command is Available
-
-** Gravity is recommended, but you can use your tool of choice to ensure the `kubectl` command is available on the node where you are performing the installation or migration. To verify that `kubectl` is installed using Gravity, run the following command:
-+
-----
-$ sudo gravity enter
-$ kubectl
-----
-
 == MuleSoft Software Prerequisites
 
 === Obtain Install Archive and License Key
@@ -167,7 +158,7 @@ firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -
 
 == Verify SSL Certificate Requirements
 
-To use the Anypoint Platform Private Cloud, you must provide SSL credentials. You can upload 
+To use the Anypoint Platform Private Cloud, you must provide SSL certificates. You can upload 
 a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine that is 
 connected to the platform.
 
