@@ -18,61 +18,127 @@ Before any maintenance or restart of a node can be performed, it must be removed
 
 . Check if the firewalld service is running and enabled:
 +
-----
+```
 service firewalld status
-----
+```
 . If firewalld is running, stop, disable, and mask it:
 +
-----
+```
 sudo systemctl stop firewalld
 sudo systemctl disable firewalld
 sudo systemctl mask firewalld
-----
+```
 . Retrieve the *name* of target node:
 +
-----
+```
 kubectl get nodes
-----
+```
 . Drain the node:
 +
-----
+```
 kubectl drain --delete-local-data --ignore-daemonsets <node_name>
-----
+```
 . Stop Gravity
 +
-----
+```
 systemctl list-units | grep "planet-master"
   # note the full name of the Gravity "planet-master" unit
 systemctl stop <garvity_unit_name>
-----
+```
 
 == Apply Node Maintenance
 
-Once the node has been drained and cordoned, any desired maintenance or a system reboot may be performed.  Caution must be used, however, to avoid any updates to the system that violate the requirements of Anypoint Platform PCE.
+=== Cluster and Application health checks
+
+In order to install OS updates, we recommend following the procedure below which helps minimize, where not completely eliminate, the chance of redundant components to break during the process.
+
+Always ensure that the cluster is completely healthy, before starting the process, otherwise many of the assumptions made in the process may be false.
+
+This approach assume that there's multiple masters running and that the updates are installed on one node at a time.
+
+Please ensure to check the health status of all cluster components and applications before proceeding to updated the next node.
+
+In particular remember to check the following output for a quick checkup:
+
+```
+gravity status
+etcdctl cluster-health
+gravity get pod -o wide--all-namespaces | grep -vi Running
+gravity get deployment --all-namespaces
+gravity get daemonset --all-namespaces
+```
+
+And then dig in any log entry or status message that seems suspect.
+
+Also check that replication works and is healthy in any replicated software (like Stolon and Cassandra).
+
+=== Draining the node, stopping Gravity and installing updates
+
+After thoroughly verifying that the cluster is in perfect shape, the process can continue by draining the node.
+
+Please follow procedure the section of the manual dedicated to draining nodes.
+
+Once the node is completely drained, to identify the Gravity name unit name, please use:
+
+```
+sudo systemctl list-units --plain | awk '/planet-master/{print $1}'
+```
+
+And then stop it by using:
+
+```
+systemctl stop $unit_name
+systemctl status $unit_name
+```
+
+Once the `status` subcommand shows the unit as stopped, please proceed to install the OS updates or the needed changes and reboot the server.
+
+### Reboot and post-update check
+
+When coming back up after the reboot, please verify that all systems restarted correctly by using:
+```
+systemctl status --failed
+```
+then focus on the Gravity systemd units by running:
+```
+systemctl list-units '*gravitational*'
+```
+and then checking the logs using `journalctl`.
+
+If everything came up correctly proceed to `gravity enter` and check everything is in good shape in there too.
+
+Please check the cluster status again using:
+```
+gravity status
+etcdctl cluster-health
+gravity get pod -o wide--all-namespaces | grep -vi Running
+gravity get deployment --all-namespaces
+gravity get daemonset --all-namespaces
+```
 
 == Rejoin the Node
 
 . Check Gravity Planet Master and Teleport status:
 +
-----
-systemctl list-units | grep gravity__gravitational
-----
+```
+systemctl list-units '*gravity__gravitational*'
+```
 . If either Gravity service is not “loaded active running”, then enable it:
 +
-----
-systemctl enable <name_of_the_gravity_unit>
-----
+```
+systemctl enable --now <name_of_the_gravity_unit>
+```
 . Uncordon the node:
 +
-----
+```
 kubectl uncordon <node_name>
-----
+```
 . Verify cluster status:
 +
-----
+```
 gravity status
-----
-+
+```
+
 ****
 This command should show all nodes of the cluster with "healthy" status.  Only after verifying that the node has rejoined the cluster and is in healthy status can the process be repeated for other nodes in the cluster.
 ****
