@@ -1,4 +1,4 @@
-= Verify Environment
+= Pre-installation Verification
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
