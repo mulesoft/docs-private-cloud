@@ -3,8 +3,6 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-verify-disk.adoc, prereq-verify-device.adoc
-// Moved https://docs.mulesoft.com/private-cloud/2.0/prereq-verify-disk information here.
-// Moved https://docs.mulesoft.com/private-cloud/2.0/prereq-verify-device information here.
 
 To ensure the performance and stability of Anypoint Platform Private Cloud, every node in your Anypoint Platform Private Cloud environment must meet the requirements described in this topic. 
 
