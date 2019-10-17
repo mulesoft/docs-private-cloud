@@ -34,5 +34,4 @@ with a non-0 return code.
 
 == See Also
 
-* xref:config-workflow.adoc[Post-installation Tasks]
-* xref:install-uninstall-reinstall.adoc[Uninstall Anypoint Platform Private Cloud]
+* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud]
