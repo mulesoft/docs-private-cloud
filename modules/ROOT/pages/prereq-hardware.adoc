@@ -30,10 +30,10 @@ For production environments, each node in your configuration must have the follo
 | Component |Size|Minimum IOPS|Mount Point|Description
 |HDD 2 (System state directory) | 100 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. As package sizes can be large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
 |HDD 3 (Application data)| 250 GB |1500|/var/lib/data | Stores application configuration and data. The amount of space required should be at least 250 GB, but might vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
-|HDD 5 (Etcd) | 20 GB |3000|/var/lib/gravity/planet/etcd | Provides dedicated storage for the distributed database used for cluster coordination.
 |HDD 4 (Docker) | 100 GB |3000|Not mounted | Used by Docker’s Device Mapper storage driver. A minimum of 100Gb is required for the Device Mapper directory. Devices with 50Gb or less will experience degraded system performance or might not work at all.
+|HDD 5 (Etcd) | 20 GB |3000|/var/lib/gravity/planet/etcd | Provides dedicated storage for the distributed database used for cluster coordination.
 |/tmp (Installer) | 20 GB |N/A| |
-|/ (root) | 10 GB | N/A |Make sure that you have at least 10GB in your home directory to download and unzip the installer file.|
+|/ (root) | 10 GB | N/A | | You must have at least 10GB in your home directory to download and unzip the installer file.|
 |===
 
 [NOTE]
