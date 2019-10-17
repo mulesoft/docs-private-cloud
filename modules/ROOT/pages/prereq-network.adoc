@@ -2,7 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:page-aliases: prereq-firewalld-forwarding.adoc
+:page-aliases: prereq-firewalld-forwarding.adoc, install-create-lb.adoc
 
 To ensure the performance and stability of Anypoint Platform Private Cloud, every node in your Anypoint Platform Private Cloud environment must meet the network requirements described in this topic. 
 
