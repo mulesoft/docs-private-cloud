@@ -179,3 +179,4 @@ Uninstall Docker from all servers running the Anypoint Platform Private Cloud. T
 * xref:prereq-hardware.adoc[Hardware Prerequisites]
 * xref:prereq-network.adoc[Network Prerequisites]
 * xref:verify-nfs.adoc[NFS Server Prerequisites]
+* xref:prereq-gravity-check.adoc[Pre-installation Verification]
