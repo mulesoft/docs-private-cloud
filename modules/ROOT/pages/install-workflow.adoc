@@ -2,7 +2,6 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:page-aliases: prereq-workflow.adoc
 
 After your infrastructure team verifies that the required infrastructure has been correctly installed and configured as described in xref:install-checklist[Product Prerequisites], upload the installation package to all nodes in your environment and select one node from which to run the installation. You can then install Anypoint Platform Private Cloud using one of the following installers: 
 
