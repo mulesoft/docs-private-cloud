@@ -3,52 +3,17 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes the processes for removing an Anypoint Platform PCE node from active service, and returning it to service when ready.
-
 == Notes
 
 [NOTE]
-To preserve your data in case of system failure, ensure that your system is backed up before attempting node maintenance.
+All clusters should have backup setup and tested as the very first thing after installation.
+The installation phase should not be considered done until backups are completely setup and tested.
 [NOTE]
-The steps below must be performed on a single Anypoint Platform PCE node at a time.  If maintenance is required on more than one node, the entire process must be completed on a single node before the next node is addressed.
+To preserve your data in case of system failure, ensure that your system is backed up right before attempting node maintenance.
+[NOTE]
+The steps below must be performed on Anypoint Platform PCE on a single node at a time.  If maintenance is required on more than one node, the entire process must be completed on a single node before the next node is addressed.
 
-== Drain the Node
-
-Before any maintenance or restart of a node can be performed, it must be removed from the cluster and its workload reassigned to the other nodes in the cluster.
-
-. Check if the firewalld service is running and enabled:
-+
-```
-service firewalld status
-```
-. If firewalld is running, stop, disable, and mask it:
-+
-```
-sudo systemctl stop firewalld
-sudo systemctl disable firewalld
-sudo systemctl mask firewalld
-```
-. Retrieve the *name* of target node:
-+
-```
-kubectl get nodes
-```
-. Drain the node:
-+
-```
-kubectl drain --delete-local-data --ignore-daemonsets <node_name>
-```
-. Stop Gravity
-+
-```
-systemctl list-units | grep "planet-master"
-  # note the full name of the Gravity "planet-master" unit
-systemctl stop <garvity_unit_name>
-```
-
-== Apply Node Maintenance
-
-=== Cluster and Application health checks
+== Cluster and Application health checks
 
 In order to install OS updates, we recommend following the procedure below which helps minimize, where not completely eliminate, the chance of redundant components to break during the process.
 
@@ -72,11 +37,20 @@ And then dig in any log entry or status message that seems suspect.
 
 Also check that replication works and is healthy in any replicated software (like Stolon and Cassandra).
 
-=== Draining the node, stopping Gravity and installing updates
+== Draining the node, stopping Gravity and installing updates
 
 After thoroughly verifying that the cluster is in perfect shape, the process can continue by draining the node.
 
-Please follow procedure the section of the manual dedicated to draining nodes.
+. Retrieve the *name* of target node:
++
+```
+kubectl get nodes
+```
+. Drain the node:
++
+```
+kubectl drain --delete-local-data --ignore-daemonsets <node_name>
+```
 
 Once the node is completely drained, to identify the Gravity name unit name, please use:
 
@@ -93,7 +67,7 @@ systemctl status $unit_name
 
 Once the `status` subcommand shows the unit as stopped, please proceed to install the OS updates or the needed changes and reboot the server.
 
-### Reboot and post-update check
+## Reboot and post-update check
 
 When coming back up after the reboot, please verify that all systems restarted correctly by using:
 ```
