@@ -41,13 +41,13 @@ Also check that replication works and is healthy in any replicated software (lik
 
 After thoroughly verifying that the cluster is in perfect shape, the process can continue by draining the node.
 
-. Retrieve the *name* of target node:
-+
+Retrieve the *name* of target node:
+
 ```
 kubectl get nodes
 ```
-. Drain the node:
-+
+Drain the node:
+
 ```
 kubectl drain --delete-local-data --ignore-daemonsets <node_name>
 ```
@@ -92,23 +92,22 @@ gravity get daemonset --all-namespaces
 
 == Rejoin the Node
 
-. Check Gravity Planet Master and Teleport status:
-+
+Check Gravity Planet Master and Teleport status:
 ```
 systemctl list-units '*gravity__gravitational*'
 ```
-. If either Gravity service is not “loaded active running”, then enable it:
-+
+
+If either Gravity service is not “loaded active running”, then enable it:
 ```
 systemctl enable --now <name_of_the_gravity_unit>
 ```
-. Uncordon the node:
-+
+
+Uncordon the node:
 ```
 kubectl uncordon <node_name>
 ```
-. Verify cluster status:
-+
+
+Verify cluster status:
 ```
 gravity status
 ```
