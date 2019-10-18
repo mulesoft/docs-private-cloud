@@ -114,13 +114,6 @@ Refer to xref:verify-nfs.adoc[NFS Server Prerequisites] for additional details a
 | xref:prereq-gravity-check.adoc[Verify Environment]
 |===
 
-== Gather Environment Information
-[%header,cols="1*a"]
-|===
-|Task Description
-| xref:prereq-other.adoc[Gather Environment Information]
-|===
-
 == See Also
 
 * xref:install-workflow.adoc[Install Anypoint Private Cloud]
