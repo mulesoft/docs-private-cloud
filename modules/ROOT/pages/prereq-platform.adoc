@@ -16,4 +16,4 @@ The following environments are the only environments supported by Anypoint Platf
 * xref:prereq-software.adoc[Software Prerequisites]
 * xref:prereq-network.adoc[Network Prerequisites]
 * xref:verify-nfs.adoc[NFS Server Prerequisites]
-* xref:prereq-other.adoc[Gather Environment Information]
+* xref:prereq-gravity-check.adoc[Pre-installation Verification]
