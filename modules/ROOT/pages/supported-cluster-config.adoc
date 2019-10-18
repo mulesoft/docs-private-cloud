@@ -2,6 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: prereq-env.adoc
 
 To ensure platform performance, stability, and high-availability, Anypoint Platform Private Cloud supports two network configurations, 3-node and 6-node, which are outlined in the following sections.
 
