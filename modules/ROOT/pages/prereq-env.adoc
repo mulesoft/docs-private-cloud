@@ -5,7 +5,7 @@ endif::[]
 
 Adhere to the following recommendations and limitations when installing Anypoint Platform Private Cloud and deploying apps:
 
-== Production Environment
+== Six-node Environment
 
 ** 6 nodes of 8 cores and 32GB RAM
 
@@ -43,11 +43,11 @@ in which:
 ****** A single clustered proxy with up to 5 policies counts as 1.
 ****** All runtimes are polling every 60 seconds. 
 
-== Development Environment
+== Three-node Environment
 
 ** 3 nodes of 8 cores and 32GB RAM
 +
-All production environment recommendations and limitations apply to development environments except for the 
+All 6-node environment recommendations and limitations apply to 3-node environments except for the 
 following items:
 
 *** Runtime Management:
