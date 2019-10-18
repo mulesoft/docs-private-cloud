@@ -151,6 +151,6 @@ Make sure you are using the AMI name as the value for the environment variable a
 * xref:prereq-software.adoc[Software Prerequisites]
 * xref:prereq-network.adoc[Network Prerequisites]
 * xref:verify-nfs.adoc[NFS Server Prerequisites]
-* xref:prereq-other.adoc[Gather Environment Information]
+* xref:prereq-gravity-check.adoc[Pre-installation Verification]
 * https://www.terraform.io/intro/getting-started/install.html[Install Terraform]
 * https://docs.aws.amazon.com/quickstart/latest/linux-bastion/welcome.html[Linux Bastion Hosts on the AWS Cloud: Quick Start Reference Deployment]
