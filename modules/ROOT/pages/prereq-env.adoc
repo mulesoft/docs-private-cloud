@@ -27,8 +27,8 @@ Adhere to the following recommendations and limitations when installing Anypoint
 ***** Maximum: 800 single Mule Runtime Engines (or 400 Mule Runtime clusters, consisting of 2 Mule Runtime Engines per cluster)
 
 **** Mule applications per Mule Runtime Engine:
-***** Production: Maximum of 50 apps 
-***** Development: Maximum of 100 apps
+***** 6-node environment: Maximum of 50 apps 
+***** 3-node environment: Maximum of 100 apps
 ***** Recommended: Fewer than 25 apps
   
 *** API Platform
