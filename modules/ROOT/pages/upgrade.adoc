@@ -3,15 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic provides information about upgrading Anypoint Platform Private Cloud to the most recent version with the following migration paths:
-
-[%header%autowidth.spread]
-|===
-| Base Version | Intermediate Versions | Target Version | Comments
-| 1.7.x | N/A | 2.0 | Direct upgrade is supported
-| 1.6.x | 1.7.1 | 2.0 | Must upgrade to version 1.7.1
-| 1.5.x | 1.6.1, 1.7.1 | 2.0 | Must upgrade to 1.6.1, then 1.7.1 before upgrading to 2.0.
-|===
+Refer to the xref:release-notes/pce/anypoint-private-cloud-2.0.3-release-notes#upgrade-paths[Upgrade Paths) section in the Anypoint Platform Private Cloud release notes for information about upgrading Anypoint Platform Private Cloud to the most recent version.
 
 See xref:1.6@upgrade.adoc[About Migrating Anypoint Platform Private Cloud] for information on upgrading to version 1.6.1. See xref:1.7@upgrade.adoc[About Migrating Anypoint Platform Private Cloud] for information on upgrading to version 1.7.1.
 
