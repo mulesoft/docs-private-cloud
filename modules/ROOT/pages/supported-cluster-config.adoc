@@ -23,6 +23,84 @@ image::prereqs-priv-cloud-6-node.png[6-node Configuration]
 
 You must configure a load balancer to use round-robin distribution of traffic among all of the nodes in your cluster.
 
+== Environment Limitations
+
+Adhere to the following recommendations and limitations when installing Anypoint Platform Private Cloud and deploying apps:
+
+== Six-node Environment
+
+** 6 nodes of 8 cores and 32GB RAM
+
+=== Sizing
+
+*** Runtime Management:
+
+**** Maximum number of servers: 500
+**** Maximum number of servers per server group: 20
+**** Maximum servers per cluster: 8
+
+*** Applications per Environment 
+
+**** Mule applications under management:
+***** Recommended: around 200
+***** Maximum: 500
+
+**** Mule Runtime Engines under management:
+***** Maximum: 800 single Mule Runtime Engines (or 400 Mule Runtime clusters, consisting of 2 Mule Runtime Engines per cluster)
+
+**** Mule applications per Mule Runtime Engine:
+***** Maximum of 50 apps 
+***** Recommended: Fewer than 25 apps
+  
+*** API Platform
+
+*** API Management
+**** APIs under management
+
+***** Limit each management plane 2.0.0 cluster to 20000 (6 nodes, 16 cores) APIs under management and 10000 (6 nodes 8 cores), 
+in which:
+
+****** A single API implementation with one policy counts as 0.3.
+****** A single clustered proxy with up to 5 policies counts as 1.
+****** All runtimes are polling every 60 seconds. 
+
+== Three-node Environment
+
+** 3 nodes of 8 cores and 32GB RAM
+
+=== Sizing
+
+*** Runtime Management:
+
+**** Maximum number of servers: 250
+**** Maximum number of servers per server group: 20
+**** Maximum servers per cluster: 8
+
+*** Applications per Environment 
+
+**** Mule applications under management:
+***** Recommended: around 200
+***** Maximum: 500
+
+**** Mule Runtime Engines under management:
+***** Maximum: 400 single Mule Runtime Engines (or 200 Mule Runtime clusters, consisting of 2 Mule Runtime Engines per cluster)
+
+**** Mule applications per Mule Runtime Engine: 
+***** Maximum of 100 apps
+***** Recommended: Fewer than 25 apps
+  
+*** API Platform
+
+*** API Management
+**** APIs under management
+
+***** Limit each management plane 2.0.0 cluster to 5000 (3 nodes, 8 cores) APIs under management and 10000 (6 nodes 8 cores), 
+in which:
+
+****** A single API implementation with one policy counts as 0.3.
+****** A single clustered proxy with up to 5 policies counts as 1.
+****** All runtimes are polling every 60 seconds.
+
 == See Also
 
 * xref:install-workflow.adoc[Install Anypoint Platform Private Cloud]
