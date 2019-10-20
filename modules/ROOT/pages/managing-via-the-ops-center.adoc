@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-The Ops Center is a web-base management tool that enables you to manage and monitor Anypoint Platform Private Cloud and perform the following types of tasks:
+The Ops Center is a web-based management tool that enables you to manage and monitor Anypoint Platform Private Cloud and perform the following types of tasks:
 
 * Add and remove servers
 * View logs and configure log forwarding
@@ -17,7 +17,7 @@ The Ops Center is a web-base management tool that enables you to manage and moni
 https://{platform-host}:9500
 ----
 
-. Enter email and password of the admin user that you created during installation.
+. Enter the admin user email address and password that you created during installation.
 
 
 == Add Additional Servers
@@ -205,7 +205,7 @@ The *PostgreSQL* dashboard displays data for the PostgreSQL server included in t
 * Active Connections
 * Buffers
 * Conflicts/Deadlocks
-* PostrgreSQL Containers CPU Usage per Pod
+* PostgreSQL Containers CPU Usage per Pod
 
 Activity per type displays different curves for rows fetched, returned, inserted, updated and deleted, at the level of time granularity that you choose.
 
