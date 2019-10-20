@@ -3,28 +3,23 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== Notes
+== Before You Begin
 
-[NOTE]
-All clusters should have backup setup and tested as the very first thing after installation.
-The installation phase should not be considered done until backups are completely setup and tested.
-[NOTE]
-To preserve your data in case of system failure, ensure that your system is backed up right before attempting node maintenance.
-[NOTE]
-The steps below must be performed on Anypoint Platform PCE on a single node at a time.  If maintenance is required on more than one node, the entire process must be completed on a single node before the next node is addressed.
+* Set up and test the backup procedure on all clusters after you complete installation.
+* Perform a backup before attempting node maintenance to preserve data in the event of a failure.
 
-== Cluster and Application health checks
+== Cluster and Application Updates
 
-In order to install OS updates, we recommend following the procedure below which helps minimize, where not completely eliminate, the chance of redundant components to break during the process.
+The following steps must be performed on one Anypoint Platform Private Cloud Edition node at a time to minimize or eliminate component breakage during the update process. The entire process must be completed on each node before the next node is addressed. Verify the health status of all cluster components and applications after each node update before proceeding with the next node.
 
-Always ensure that the cluster is completely healthy, before starting the process, otherwise many of the assumptions made in the process may be false.
+This approach assumes that multiple masters are running.
 
-This approach assume that there's multiple masters running and that the updates are installed on one node at a time.
+=== Verify Cluster Status
 
-Please ensure to check the health status of all cluster components and applications before proceeding to updated the next node.
+Verify that the cluster is healthy before starting the process. Otherwise, many of the assumptions made in this process are not valid.
 
-In particular remember to check the following output for a quick checkup:
-
+. Verify the output from the following commands:
++
 ```
 gravity status
 etcdctl cluster-health
@@ -32,56 +27,55 @@ gravity get pod -o wide--all-namespaces | grep -vi Running
 gravity get deployment --all-namespaces
 gravity get daemonset --all-namespaces
 ```
+. Review log entries or status message that indicate the possibility of an unhealthy node.
 
-And then dig in any log entry or status message that seems suspect.
+. Verify that replication works and is healthy in any replicated software (like Stolon and Cassandra).
 
-Also check that replication works and is healthy in any replicated software (like Stolon and Cassandra).
+=== Install Updates
 
-== Draining the node, stopping Gravity and installing updates
+After verifying that the cluster is healthy, drain a node.
 
-After thoroughly verifying that the cluster is in perfect shape, the process can continue by draining the node.
-
-Retrieve the *name* of target node:
-
+. Retrieve the *name* of the target node:
++
 ```
 kubectl get nodes
 ```
-Drain the node:
-
+. Drain the node:
++
 ```
 kubectl drain --delete-local-data --ignore-daemonsets <node_name>
 ```
-
-Once the node is completely drained, to identify the Gravity name unit name, please use:
-
+. After the node is drained, identify the gravity unit name:
++
 ```
 sudo systemctl list-units --plain | awk '/planet-master/{print $1}'
 ```
-
-And then stop it by using:
-
+. Stop the unit:
++
 ```
 systemctl stop $unit_name
 systemctl status $unit_name
 ```
+. After the `status` subcommand indicates the unit is stopped, install the needed updates and reboot the server.
 
-Once the `status` subcommand shows the unit as stopped, please proceed to install the OS updates or the needed changes and reboot the server.
+=== Perform Post-update Check
 
-## Reboot and post-update check
-
-When coming back up after the reboot, please verify that all systems restarted correctly by using:
+. Verify that all systems correctly restarted:
++
 ```
 systemctl status --failed
 ```
-then focus on the Gravity systemd units by running:
+. Check the gravity `systemd` units:
++
 ```
 systemctl list-units '*gravitational*'
 ```
-and then checking the logs using `journalctl`.
+. Check for errors in the logs by running `journalctl`.
 
-If everything came up correctly proceed to `gravity enter` and check everything is in good shape in there too.
+. If everything started correctly, run `gravity enter` and verify the results.
 
-Please check the cluster status again using:
+. Check the cluster status again:
++
 ```
 gravity status
 etcdctl cluster-health
@@ -90,28 +84,31 @@ gravity get deployment --all-namespaces
 gravity get daemonset --all-namespaces
 ```
 
-== Rejoin the Node
+=== Rejoin the Node
 
-Check Gravity Planet Master and Teleport status:
+. Check the gravity Planet master and teleport status:
++
 ```
 systemctl list-units '*gravity__gravitational*'
 ```
 
-If either Gravity service is not “loaded active running”, then enable it:
+. If the status of the gravity service is not `loaded`, `active`, or `running`, then you must enable it:
++
 ```
 systemctl enable --now <name_of_the_gravity_unit>
 ```
 
-Uncordon the node:
+. Uncordon the node:
++
 ```
 kubectl uncordon <node_name>
 ```
 
-Verify cluster status:
+. Verify cluster status:
++
 ```
 gravity status
 ```
-
-****
-This command should show all nodes of the cluster with "healthy" status.  Only after verifying that the node has rejoined the cluster and is in healthy status can the process be repeated for other nodes in the cluster.
++
+This command should display a `healthy` status for all nodes of the cluster. After you verify that the node has rejoined the cluster and is in healthy status, repeat the process for the next node in the cluster.
 ****
