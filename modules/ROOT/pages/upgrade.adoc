@@ -89,9 +89,9 @@ https://{platform-host}:9500
 [WARNING]
 Before accessing Anypoint Platform, ensure that you configure your NSF servers described in the following step. Failure to configure NFS before accessing the platform may result in data loss.
 
-. Configure Anypoint Private Cloud to use your NFS server.
+. Configure Anypoint Platform Private Cloud to use your NFS server.
 +
-After upgrading Anypoing Private Cloud, configure it to use the required NFS server.
+After upgrading Anypoint Platform Private Cloud, configure it to use the required NFS server.
 +
 .. From Anypoint Platform, select *Access Management*.
 .. Click *NFS Settings*.
