@@ -6,7 +6,7 @@ endif::[]
 Anypoint Platform Private Cloud sends alert emails when CPU and memory usage reach a certain threshold:
 
 * A warning email is sent when CPU and memory usage reach 70% of capacity.
-* A critical email is sent when CPU and memory usage reach 80% of capacity.
+* An email that is labelled as critical is sent when CPU and memory usage reach 80% of capacity.
 
 == Prerequisites
 
