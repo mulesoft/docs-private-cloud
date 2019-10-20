@@ -7,7 +7,7 @@ endif::[]
 To ensure the performance and stability of Anypoint Platform Private Cloud, every node in your Anypoint Platform Private Cloud environment must meet the network requirements described in this topic. 
 
 [IMPORTANT]
-Before installing or upgrading,  your infrastructure team must review each of the following sections and verify that your environment meets the stated network requirements. If needed, contact your MuleSoft representative for assistance.
+Before you install Anypoint Platform Private Cloud, your infrastructure team must review each of the following sections and verify that your environment meets the stated network requirements. If needed, contact your MuleSoft representative for assistance.
 
 == Verify Static IPs
 
@@ -53,13 +53,13 @@ You can use `netcat` or similar tool to verify port configuration.
 
 == Verify NAT Traffic Requirements
 
-In some situation, the Kubernetes overlay network uses NAT. NAT requires that nodes be able to send and 
+In some situations, the Kubernetes overlay network uses NAT. NAT requires that nodes be able to send and 
 receive packages with a source and destination that is different from the node’s internal IP.
 
 Any software that monitors the network traffic must be tuned to allow this type of network interaction.
 
 == Verify SMTP Server Requirements
-Your network must include an SMTP server to manage e-mail alerts that are triggered by the platform. Anypoint Platform Private Cloud must be connected to this SMTP server. For additional information, refer to the instructions in xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud].
+Your network must include an SMTP server to manage email alerts that are triggered by the platform. Anypoint Platform Private Cloud must be connected to this SMTP server. For additional information, refer to the instructions in xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud].
 
 == Verify External Identity Provider Configuration and Client Management 
 Your network must include an External Identity Provider that is compatible with LDAP, OpenIDConnect, or SAML. 
