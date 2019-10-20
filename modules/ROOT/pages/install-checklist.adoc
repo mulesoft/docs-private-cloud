@@ -23,7 +23,7 @@ All prerequisites apply to all environments:
 
 [WARNING]
 ==== 
-Installing Anypoint Platform Private Cloud requires specific versions of operating systems, NFS, and other software. Most problems experienced with Anypoint Platform Private Cloud occur because the required environment was not set up prior to installating or upgrading. For example, the following situations cause known problems:
+Installing Anypoint Platform Private Cloud requires specific versions of operating systems, NFS, and other software. Most problems experienced with Anypoint Platform Private Cloud occur because the required environment was not set up prior to installing or upgrading. For example, the following situations cause known problems:
 
 * Using your own AWS images when using AWS.
 * Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform Private CLoud does not support.
