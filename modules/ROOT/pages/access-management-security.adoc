@@ -15,10 +15,9 @@ image::on-prem-features-5f98d.png[]
 You can use a tool like OpenSSL to create your certificate. To work with Anypoint Platform, your certificate must be in an `nginx` compatible format. The certificate must contain the domain name of your installation as the CN (Common Name) and as the SAN (Subject Alternative Name).
 
 . From Anypoint Platform, select Access Management.
-. In the left navigation bar, click Security.
-. In the Certificate field, click Browse to select the certificate on your local system.
-. In the Key field, click Browse button to select the private key for your certificate.
-. Click the Save.
+. In the left navigation bar, select Security.
+. In the Certificate field, select Browse to select the certificate on your local system.
+. In the Key field, select Browse to select the private key for your certificate.
 . Optionally, you can upload your own cipher and Diffie-Hellman group file.
 +
 This provides additional security for Anypoint Platform. However, this step is optional. In most environments you do not need to use this setting.
