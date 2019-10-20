@@ -8,10 +8,10 @@ To ensure the performance and stability of Anypoint Platform Private Cloud, ever
 
 * Operating system (OS) prerequisites
 * Third party software prerequisites
-* MuleSoft software preqrequisites
+* MuleSoft software prerequisites
 
 [IMPORTANT]
-Before installing or upgrading, your infrastructure team must review each of the following sections and verify that your environment meets the stated software requirements. If needed, contact your MuleSoft representative for assistance.
+Before you install Anypoint Platform Private Cloud, your infrastructure team must review each of the following sections and verify that your environment meets the stated software requirements. If needed, contact your MuleSoft representative for assistance.
 
 == Operating System Prerequisites
 
