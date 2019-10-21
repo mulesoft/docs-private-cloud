@@ -20,3 +20,4 @@ The following topics describe how to manage Anypoint Private Cloud after install
 * xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Private Cloud]
 * xref:custom-policies.adoc[Upload Custom Policies and Publish Assets to Exchange Using the Maven Client]
 * xref:ext-analytics-elk.adoc[Analyze Business and API Data using ELK]
+* xref:register-server.adoc[Troubleshoot Mule Runtime Engine Registration]
