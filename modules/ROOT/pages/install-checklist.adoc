@@ -30,19 +30,12 @@ Installing Anypoint Platform Private Cloud requires specific versions of operati
 ====
 
 === Environment Prerequisites
-[%header,cols="1*a"]
-|===
-|Task Description
-| xref:prereq-platform.adoc[Environment Prerequisites]
-|===
-
-If you are using AWS, perform the following tasks:
 
 [%header,cols="1*a"]
 |===
 |Task Description
-| xref:supported-cluster-config.adoc[Review Supported Configurations for Anypoint Private Cloud]
-| xref:prereq-aws-terraform.adoc[Provision Amazon Web Services (AWS) Prerequisites]
+| xref:prereq-platform.adoc[Verify Your Environment Is Supported]
+| If you are using AWS, xref:prereq-aws-terraform.adoc[Provision Amazon Web Services (AWS) Prerequisites]
 |===
 
 === Hardware Prerequisites
