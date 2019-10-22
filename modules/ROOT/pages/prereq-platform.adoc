@@ -10,6 +10,8 @@ The following environments are the only environments supported by Anypoint Platf
 * Bare Metal 
 * AWS	
 
+If you are using AWS, perform the steps provided in xref:prereq-aws-terraform.adoc[Provision Amazon Web Services (AWS) Prerequisites].
+
 == See Also
 
 * xref:prereq-hardware.adoc[Hardware Prerequisites]
