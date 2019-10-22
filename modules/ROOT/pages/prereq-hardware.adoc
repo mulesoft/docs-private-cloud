@@ -129,15 +129,15 @@ To verify that all devices are set up the same way on all nodes, run the `lsblk`
 
 ----
 [root@ip-0-0-0-0 ~]# lsblk
-NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
-xvda 202:0 0 90G 0 disk
-├─xvda1 202:1 0 1M 0 part
-└─xvda2 202:2 0 90G 0 part /
-xvdb 202:16 0 100G 0 disk -- Docker volume (not formatted)
-xvdc 202:32 0 20G 0 disk /var/lib/gravity/planet/etcd
-xvdd 202:48 0 250G 0 disk /var/lib/data
-xvde 202:64 0 100G 0 disk /var/lib/gravity
-xvdf 202:64 0 20G 0 disk /tmp
+NAME    MAJ:MIN RM  SIZE  RO TYPE MOUNTPOINT
+xvda    202:0    0   90G   0 disk
+├─xvda1 202:1    0    1M   0 part
+└─xvda2 202:2    0   90G   0 part /
+xvdb    202:16   0  100G   0 disk {Docker volume (not formatted)}
+xvdc    202:32   0   20G   0 disk /var/lib/gravity/planet/etcd
+xvdd    202:48   0  250G   0 disk /var/lib/data
+xvde    202:64   0  100G   0 disk /var/lib/gravity
+xvdf    202:64   0   20G   0 disk /tmp
 ----
 
 == Verify Disk IOPS
