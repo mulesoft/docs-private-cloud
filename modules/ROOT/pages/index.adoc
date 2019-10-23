@@ -19,7 +19,7 @@ The following table provides component information for Anypoint Platform Private
 | Design Center, excluding Flow Designer	| X | |
 | Analytics - Insights	|   | X |
 | Analytics - Visualizer	|   | X |
-| Analytics - API	|   | X || 	|   | X |
+| Analytics - API	|   | X |
 | Anypoint Monitoring	|   | X |
 | Object Store	|   | X |
 | Anypoint MQ	|   | X |
