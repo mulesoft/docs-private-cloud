@@ -123,6 +123,11 @@ Remove local caching DNS servers listening on port 53, for example, `named`, `dn
 
 ** Netcat is recommended, but you can use your tool of choice to verify the correct ports are open on the NFS server. If you don’t have `netcat`, you can install it from  http://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
 
+=== Remove Server Configuration Management Software
+
+Any Server Configuration Management software, such as Puppet, Chef, Ansible, and SaltStack, must be removed.
+This software usually changes kernel modules and settings that are required, and can also restart servers without following the correct shut down procedure, causing the system to enter a failed state.
+
 == MuleSoft Software Prerequisites
 
 === Obtain Install Archive and License Key
