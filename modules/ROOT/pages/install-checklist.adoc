@@ -65,7 +65,8 @@ a|
 * xref:prereq-software#install-logical-volume-manager-2-lvm2[Install Logical Volume Manager 2 (LVM2)]
 * xref:prereq-software#determine-if-you-are-using-firewalld[Determine if You Are Using firewalld]
 * xref:prereq-software#remove-local-dns-servers[Remove Local DNS Servers]
-* xref:prereq-software#download-and-install-required-tools[Install Required Tools] 
+* xref:prereq-software#download-and-install-required-tools[Install Required Tools]
+* xref:prereq-software#remove-server-configuration-management-software[Remove Server Configuration Management Software]
 | MuleSoft software prerequisites
 a|
 * xref:prereq-software#obtain-install-archive-and-license-key[Obtain Install Archive and License Key]
