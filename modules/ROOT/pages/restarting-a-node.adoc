@@ -22,17 +22,22 @@ Verify that the cluster is healthy before starting the process. Otherwise, many 
 ```
 gravity status
 etcdctl cluster-health
-gravity get pod -o wide--all-namespaces | grep -vi Running
-gravity get deployment --all-namespaces
-gravity get daemonset --all-namespaces
 ```
-. Review log entries or status message that indicate the possibility of an unhealthy node.
+
+If the output from any of the two commands above mentions `degraded` state or `errors` please be sure to fix the mentioned issue, before proceeding.
+
+Please also verify that all Pods are running by running the commands below:
+```
+gravity get pod -o wide--all-namespaces | grep -vi Running
+```
+And if the command above lists any Pod, which will not be in "Running" state, then it means that it's probably having some issues and needs to be fixed.
 
 . Verify that replication works and is healthy in any replicated software (like Stolon and Cassandra).
+-- TODO link to Stolon and Cassandra troubleshooting here
 
 === Install Updates
 
-After verifying that the cluster is healthy, drain a node.
+After verifying that the cluster is healthy, proceed with the process by draining the first node.
 
 . Retrieve the *name* of the target node:
 +
@@ -49,6 +54,7 @@ kubectl drain --delete-local-data --ignore-daemonsets <node_name>
 ```
 sudo systemctl list-units --plain | awk '/planet-master/{print $1}'
 ```
+The command above will output a systemd unit name, copy it as you will need to use it in the following commands instead of `$unit_name`.
 . Stop the unit:
 +
 ```
@@ -64,10 +70,11 @@ systemctl status $unit_name
 ```
 systemctl status --failed
 ```
+This command should return zero units which means that your system boot phase went correctly and no unit failed to start. if there's any unit which had issues, please inspect the problem and fix it before proceeding.
 . Check the gravity `systemd` units:
 +
 ```
-systemctl list-units '*gravitational*'
+systemctl list-units '*gravity__gravitational*'
 ```
 . Check for errors in the logs by running `journalctl`.
 
@@ -79,8 +86,6 @@ systemctl list-units '*gravitational*'
 gravity status
 etcdctl cluster-health
 gravity get pod -o wide--all-namespaces | grep -vi Running
-gravity get deployment --all-namespaces
-gravity get daemonset --all-namespaces
 ```
 
 === Rejoin the Node
@@ -102,6 +107,7 @@ systemctl enable --now <name_of_the_gravity_unit>
 ```
 kubectl uncordon <node_name>
 ```
+This operation will set the target node to schedule Pods again. It may take a few minutes to complete.
 
 . Verify cluster status:
 +
