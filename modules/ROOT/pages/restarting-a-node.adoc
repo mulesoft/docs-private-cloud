@@ -13,8 +13,6 @@ endif::[]
 [IMPORTANT]
 The following steps must be performed on one Anypoint Platform Private Cloud Edition node at a time to minimize or eliminate component breakage during the update process. The entire process must be completed on each node before the next node is addressed. Verify the health status of all cluster components and applications after each node update before proceeding with the next node.
 
-This approach assumes that multiple masters are running.
-
 === Verify Cluster Status
 
 Verify that the cluster is healthy before starting the process. Otherwise, many of the assumptions made in this process are not valid.
