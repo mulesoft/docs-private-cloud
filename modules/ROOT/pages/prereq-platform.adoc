@@ -6,9 +6,9 @@ endif::[]
 == Supported Environments
 The following environments are the only environments supported by Anypoint Platform Private Cloud:
 
-* VMWare 
-* Bare Metal 
-* AWS	
+* VMWare bare metal virtualization
+* Physical servers
+* Amazon Web Services (AWS)
 
 If you are using AWS, perform the steps provided in xref:prereq-aws-terraform.adoc[Provision Amazon Web Services (AWS) Prerequisites].
 
