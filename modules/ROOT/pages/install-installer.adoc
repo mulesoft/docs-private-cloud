@@ -1,26 +1,25 @@
-= Install Anypoint Private Cloud using the GUI Installer
+= Install Anypoint Platform PCE Using the GUI Installer
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-After your infrastructure team verifies that the required infrastructure has been correctly installed and configured as described in xref:install-checklist[Product Prerequisites], upload the installation package to all nodes in your environment and select one node from which to run the installation.
+After your infrastructure team verifies that the required infrastructure has been correctly installed and configured as described in xref:install-checklist[Product Prerequisites], select one node from which to run the installation.
+
+The Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) installation package includes specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides patch updates as needed for this additional software.
 
 [IMPORTANT]
 ====
 Most problems occur from not meeting the minimum system requirements. Before running the installer, ensure that your environment meets the minimum system requirements listed in the xref:install-checklist[Product Prerequisites].
 
-You must have root access (permission to run the `sudo` command) on all servers in your environment and run the installer or upgrade tool as root to access specific privileged ports.
 ====
-
-The Anypoint Private Cloud installation package includes specific versions of additional software, such as Docker and Kubernetes. MuleSoft provides patch updates as needed for this additional software.
 
 == About the GUI Installer
 
-* The GUI installer provides a wizard that walks you through the Anypoint Platform Private Cloud installation process. It enables you to specify configuration options, but it also requires you to open port 61009 and a web browser to access the pages.
+* The GUI installer provides a wizard that walks you through the Anypoint Platform PCE installation process. It enables you to specify configuration options, but it also requires you to open port 61009 and a web browser to access the pages.
 * The GUI installer automatically validates requirements for disk space, disk speed, network speed and operating system version. 
 
 == Run the GUI Installation
-You must run the installer as root to access the necessary privileged ports, and you must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall#uninstall-and-reinstall-anypoint-private-cloud[Troubleshoot Anypoint Private Cloud Installation].
+You must run the installer as root to access the necessary privileged ports, and you must run the installer in a single session without interruption. Restarting the installer may cause problems with the installation, which requires you to xref:install-uninstall-reinstall#uninstall-and-reinstall-anypoint-private-cloud[Troubleshoot Anypoint Platform PCE Installation].
 
 . Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative.
 . Copy the archive and the license file to the installer node.
@@ -38,7 +37,7 @@ tar xvf anypoint-2.0.0-installer.tar.gz
 +
 
 . Select the IP address you want to use and confirm.
-. When requested, provide an install token. The value of the token can be any numeric value. Just make a note of the value used so that you can provide this value on the commands used on the other nodes in the cluster.
+. When requested, provide an install token and make note of its value for later use. The value of the token can be any numeric value.
 +
 Based on your selection, the installer displays a message similar to the following:
 +
@@ -47,11 +46,8 @@ OPEN THIS IN BROWSER: https://{HOST}:61009/web/installer/new/gravitational.io/an
 ----
 +
 The installer runs on an internal IP that you can use to access from within your network. To access the URL from outside the network you must replace the `HOST` hostname in the previous URL with a public IP address.
-. Open this URL in a browser.
-+
-After launching the installation wizard, perform the following steps to install Anypoint Platform Private Cloud.
-
-. Enter your Anypoint Platform license key, then click *Continue*.
+. Open the URL in a browser.
+. After the installation wizard launches, enter your Anypoint Platform PCE license key, then click *Continue*.
 +
 You must obtain the license key from your MuleSoft account representative. After applying a new license, it may take time for the installer to recognize the license.
 
@@ -59,7 +55,7 @@ You must obtain the license key from your MuleSoft account representative. After
 +
 This name should be unique to your company. For example: `anypoint.yourcompany`. The name you provide here does not change the network address or organization name in Anypoint Platform.
 
-. Choose a provider, then click Continue.
+. Choose a provider, then select Continue.
 
 . Using the slider, select the number of server nodes you want to create.
 +
@@ -84,23 +80,23 @@ You must have administrator privileges to run this command. The command should h
 curl -s --tlsv1.2 --insecure "https://{HOST}:443/t/{TOKEN}/node" | sudo bash
 ----
 +
-After running the `curl` command on a node, the node appears in the installer UI.
+After running the `curl` command on a node, the node is displayed in the installer UI.
 
 . Select an IP address from the drop-down list.
 +
 This IP address is used to communicate within the cluster.
 
-. Choose your Docker device from the drop-down list, or manually specify the path. 
+. Choose your Docker device from the drop-down list or manually specify the path. 
 +
 This is the device Docker uses for volume management.
 
-. Enter the location of the Application Data device.
+. Enter the location of the Application Data device or accept the default location `/var/lib/data`.
 +
-This is the location of the databases and object stores. By default, this location is `/var/lib/data`.
+This is the location of the databases and object stores.
 
-. Click Verify, to ensure that each of your servers meets the minimum disk and system requirements.
+. Select Verify to ensure that each of your servers meets the minimum disk and system requirements.
 +
-This takes a few minutes to complete. If your system meets all requirements, the installer displays a green check mark. If your system does not meet all requirements, an error message that describes the problem is displayed and the installation is paused. This allows you to fix the problem and then continue the installation.
+This takes a few minutes to complete. If your system meets all requirements, the installer displays a green check mark. If your system does not meet all requirements, an error message that describes the problem is displayed and the installation is paused, enabling you to fix the problem and then continue the installation.
 
 . After all nodes are visible and configured, click *Start Installation*.
 +
