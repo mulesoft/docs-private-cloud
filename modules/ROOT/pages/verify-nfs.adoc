@@ -4,22 +4,22 @@ include::_attributes.adoc[]
 endif::[]
 
 [IMPORTANT]
-Before you install Anypoint Platform Private Cloud, your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your MuleSoft representative for assistance to ensure your NFS server is configured correctly.
+Before you install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your MuleSoft representative for assistance to ensure your NFS server is configured correctly.
 
 == Verify NFS Server Setup
-Anypoint Private Cloud version 2.0+ requires a Network File System (NFS) server and an available NFS endpoint. Your NFS server must meet the following requirements:
+Anypoint Platform PCE version 2.0 and later requires a Network File System (NFS) server and an available NFS endpoint. Your NFS server must meet the following requirements:
 
 * Must be running on a filesystem that has at least 250 GB available.
-* Must be using NFS version 4.0.
-* Can be backed by a network attached storage system (NAS).
-* Enable ports 111 and 2049 for both TCP and UDP.
+* Must be using NFS 4.0.
+* Can be backed by a network-attached storage (NAS) system.
+* Must have ports 111 and 2049 enabled for both TCP and UDP.
 * Configure your network so that all of the PCE nodes can access the NFS server. The direct NFS client is Kubernetes 1.9 and requires conformance with NFS version 4.
 
-== Verify Required Ports are Open
+== Verify Required Ports Are Open
 
 The NFS server requires ports 2049 and 111 to be open for TCP and UDP.
  
-On each node, use netcat or a similar tool to verify that the required ports are open. The netcat tool is a computer networking utility used to read and write to network connections using TCP or UDP. 
+On each node, use netcat or a similar utility to verify that the required ports are open. Netcat is a computer networking utility used to read and write to network connections using TCP or UDP. 
 
 On each node, run the following commands:
 
@@ -27,7 +27,7 @@ On each node, run the following commands:
 - `nc -zv <host_name> 2049`
 
 [NOTE]
-By default, the netcat tool is not included with Anypoint Platform Private Cloud. If you receive a `command not found` error, you can download and install `netcat` or a similar tool.
+By default, the netcat tool is not included with Anypoint Platform PCE. If you receive a `command not found` error, you can download and install netcat or a similar utility.
 
 When the responses from netcat are successful, you receive a response similar to the following example:
 
@@ -38,44 +38,40 @@ Ncat: Connected to 10.1.0.155:2049.
 Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.
 ----
 
-== Verify NFS Server is Mounted
+== Verify NFS Server Is Mounted
 
 On each node, mount the NFS server in a temporary directory. 
 
-. Switch to root by typing: +
+. Switch to root: +
 `sudo su`
-. To mount the NFS in a temporary directory, run the following commands and replace both the `<nfs-server>` and the `<nfs-path>` with your own values. +
-Run: +
+. To mount the NFS in a temporary directory, run the following commands and replace both the `<nfs-server>` and the `<nfs-path>` with your own values: +
 `mkdir -p /mnt/home` +
-and then: +
 `mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/` +
 If the mount fails, you do not have the required permissions.
 
 == Verify NFS Performance
 
-Perform careful analysis of your environment, both from the client and server point of view for optimal NFS performance.
+Perform careful analysis of your environment, both from the client and server point of view for optimal NFS performance. This involves:
 
-On each node, the following high level steps can be used to test NFS performance:
+* Testing the performance and latency of your NFS server. Specifically, these operations will transfer data from the client (Anypoint Platform PCE environment) to the NFS server and measure how long each transfer takes.
+* Using the command `time dd if=/dev/zero of=/mnt/home/<nameOfFile> bs=<blockSize> count=<amountOfBlocks>` to test NFS server performance while transferring files and specifying the following parameters: +
+** Names `<nameOfFile>` 
+** Block size and number of blocks in the transfer: `<blockSize>` and `<amountOfBlocks>`, respectively.
+* Validating how Anypoint Platform PCE handles NFS file transfers. Perform read and write operations with both large (128MB) and small (80KB) files.
 
-. Perform some basic operations to test the performance and latency of your NFS server. Specifically, these operations will: +
-* Transfer data from the client (Anypoint Platform environment) to the NFS server. 
-* Measure how long each transfer takes.
-. To validate how the Anypoint Platform handles NFS files transfers, `read` and `write` operations are tested, with both large (128MB) and small (80KB) files.
-. Use the command `time dd if=/dev/zero of=/mnt/home/<nameOfFile> bs=<blockSize> count=<amountOfBlocks>` to test NFS server performance while transferring files with: +
-* Names `<nameOfFile>` 
-* The block size and number of blocks in the transfer are `<blockSize>` and `<amountOfBlocks>`, respectively.
+Perform all tests on each node.
 
 === Test Writing and Reading Large Files on the NFS Server
 
-These `write` and `read` tests are performed using large files:
+Perform the following read and write tests using large files:
 
 * File size: 128 MB
 * Block size: 4 KB
 * Number of blocks: 32768  
 
-During the time the tests are running, different files are generated (one file per test).
+While the tests are running, different files are generated (one file per test).
 
-. To start with the testing, create a directory in which to mount the NFS server: 
+. Create a directory in which to mount the NFS server: 
 +
 ----
 sudo su
@@ -86,7 +82,7 @@ mkdir -p /mnt/home
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-. Perform writes (five files of 128 MB each) on the NFS server by running the following command: 
+. Perform writes (five files of 128 MB each) on the NFS server: 
 +
 ----
 time for i in {1..5}; do dd if=/dev/zero of=/mnt/home/greatfile$i.test bs=4k count=32768; done
@@ -116,7 +112,7 @@ The `real` parameter in the test output should be less than 15 seconds.
 ----
 umount /mnt/home
 ----
-. Mount the NFS server again by running: 
+. Remount the NFS server: 
 +
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
@@ -137,7 +133,7 @@ Unmount the NFS server to clear out any caches:
 umount /mnt/home
 ----
 
-=== Test Writing and Reading Small Files on the NFS server
+=== Test Writing and Reading Small Files on the NFS Server
 
 Test small files as you did large files but with these sizes:
 
@@ -152,7 +148,7 @@ Before starting the test, verify that the `/mnt/home` directory from the previou
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-. Run the following command to perform writes (five files of 80 KB each) on the NFS server: 
+. Perform writes (five files of 80 KB each) on the NFS server: 
 +
 ----
 time for i in {1..30}; do dd if=/dev/zero of=/mnt/home/smallfile$i.test bs=4k count=20; done
@@ -167,12 +163,12 @@ The `real` parameter in the test output should be around 2 seconds.
 ----
 umount <nfs-server>
 ----
-. Mount the NFS server again: 
+. Remount the NFS server: 
 +
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-. Run the following command to perform reads from the NFS server: 
+. Perform reads from the NFS server: 
 +
 ----
 time for i in {1..30}; do dd if=/mnt/home/smallfile$i.test of=/dev/null bs=4k; done
@@ -189,7 +185,7 @@ When you finish the performance testing, delete the test files.
 ----
 rm -f /mnt/home/*.test
 ----
-. Finally, unmount the NFS server: 
+. Unmount the NFS server: 
 +
 ----
 umount /mnt/home
