@@ -32,9 +32,6 @@ gravity get pod -o wide--all-namespaces | grep -vi Running
 ```
 And if the command above lists any Pod, which will not be in "Running" state, then it means that it's probably having some issues and needs to be fixed.
 
-. Verify that replication works and is healthy in any replicated software (like Stolon and Cassandra).
--- TODO link to Stolon and Cassandra troubleshooting here
-
 === Install Updates
 
 After verifying that the cluster is healthy, proceed with the process by draining the first node.
