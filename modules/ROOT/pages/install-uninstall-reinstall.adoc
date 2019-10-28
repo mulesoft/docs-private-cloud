@@ -14,7 +14,7 @@ If you encounter problems during installation, you can uninstall. Before beginni
 # Remove installed system components.
 sudo gravity system uninstall --confirm
 
-# Unmount all anypoint mounts.
+# Unmount all Anypoint mounts.
 sudo umount /var/lib/gravity/planet/etcd
 sudo umount /var/lib/gravity
 sudo umount /var/lib/data
