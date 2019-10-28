@@ -3,15 +3,13 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Now that your installation is complete, your instance of Anypoint Platform is ready to use. Users registered in your external identity service should have access to your Anypoint platform xref:access-management::organization.adoc[organization]. As an admin, you can add xref:access-management::roles.adoc[roles] to these users. 
+After your installation is complete, your instance of Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) is ready to use. Users registered in your external identity service should have access to your Anypoint platform xref:access-management::organization.adoc[organization]. As an admin, you can add xref:access-management::roles.adoc[roles] to these users. 
 
 You can also xref:runtime-manager::managing-servers.adoc[register servers] so that you can then xref:runtime-manager::deploying-to-your-own-servers.adoc[deploy to them], and so on.
 
-Mule app developers in your organization who create Mule apps through the xref:studio::index.adoc[Anypoint Studio] IDE must set up their editors so the Mule apps interface with your locally installed Anypoint Platform (instead of the default cloud Anypoint Platform). 
+Mule app developers in your organization who create Mule apps through the xref:studio::index.adoc[Anypoint Studio] IDE must set up their editors so the Mule apps interface with your locally installed Anypoint Platform rather than the default cloud Anypoint Platform. 
 
-See xref:managing-via-the-ops-center.adoc[Ops Center] to add or remove servers from the Anypoint Platform cluster as well as other changes you want to make after installation.
-
-The following topics describe how to manage Anypoint Private Cloud after installation and configuration is complete:
+The following topics describe how to manage Anypoint Platform PCE after installation and configuration is complete:
 
 * xref:managing-via-the-ops-center.adoc[Ops Center]
 * xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
