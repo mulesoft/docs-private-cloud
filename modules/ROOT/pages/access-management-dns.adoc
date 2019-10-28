@@ -3,11 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If this step was not performed prior to installation, you must provide the DNS or IP address where your Anypoint Platform installation is exposed to the local network. This is required for Mule to communicate with Anypoint Platform.
+If this step was not performed prior to installation, you must provide the DNS or IP address where your Anypoint Platform Private Cloud Edition installation is exposed to the local network. This is required for Mule to communicate with Anypoint Platform.
 
 . From Anypoint Platform, click Access Management.
 . Click the *DNS/IP* tab.
-. Enter in the *Platform DNS/IP* field with the address where you are hosting the platform
+. In the *Platform DNS/IP* field, enter the address where you are hosting the platform.
 . Click *Save*.
 
 
