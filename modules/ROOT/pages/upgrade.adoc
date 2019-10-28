@@ -3,7 +3,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Refer to the xref:release-notes/pce/anypoint-private-cloud-2.0.3-release-notes#upgrade-paths[Upgrade Paths) section in the Anypoint Platform Private Cloud release notes for information about upgrading Anypoint Platform Private Cloud to the most recent version.
+== Before You Begin
+
+Refer to the xref:release-notes/pce/anypoint-private-cloud-2.0.3-release-notes#upgrade-paths[Upgrade Paths) section in the Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) release notes for information about upgrading Anypoint Platform PCE to the most recent version.
 
 See xref:1.6@upgrade.adoc[About Migrating Anypoint Platform Private Cloud] for information on upgrading to version 1.6.1. See xref:1.7@upgrade.adoc[About Migrating Anypoint Platform Private Cloud] for information on upgrading to version 1.7.1.
 
@@ -17,15 +19,13 @@ Before upgrading:
 During the upgrade process, there will be some downtime as each node is updated. 
 ====
 
-== Application Upgrades
-
-The procedures in this topic describe how to migrate Anypoint Platform and the Anypoint Private Cloud infrastructure. You must also upgrade your applications to work with the new version of Anypoint Platform. Contact your customer success representative for more information.
+The following steps describe how to migrate Anypoint Platform PCE and the Anypoint Platform PCE infrastructure. You must also upgrade your applications to work with the new version of Anypoint Platform PCE. Contact your MuleSoft customer success representative for more information.
 
 == Procedure
 
 . Obtain a link to the installer from your customer success representative.
 
-. Use `ssh` to login to the master node of your cluster.
+. Use `ssh` to log in to the master node of your cluster.
 +
 In a 3-node environment, all nodes are master nodes. To find the master nodes in a 6-node environment, run the following command:
 +
@@ -35,26 +35,20 @@ kubectl get node --show-labels | grep gravitational.io/k8s-role=master
 +
 By performing these procedures from the master node, the upgrade scripts are able to update the entire platform.
 
-. Uncompress the application archive.
+. Uncompress the application archive:
 +
 ----
 tar -xvf anypoint-2.0.0-installer.tar.gz
 ----
 
-. Navigate to the `anypoint-2.0.0` directory, then run the upload script.
+. Navigate to the `anypoint-2.0.0` directory and run the upload script:
 +
 ----
 cd anypoint-2.0.0
 sudo ./upgrade
 ----
 +
-This command updates the platform to the current version and restarts each pod in the cluster.
-+
-----
-$ sudo ./upgrade
-----
-+
-This command produces output similar to the following:
+The `sudo ./upgrade` command updates the platform to the current version and restarts each pod in the cluster. Depending on your network configuration, this command may take a while to complete, and produces output similar to the following example:
 +
 ----
 -> initializing upload
@@ -68,10 +62,8 @@ updating anypoint from 1.7.1 to 2.0.0-xxxxxxxxxxxx
 update operation (d077277f-3c69-4336-82bf-bd8b428ae202) has been started
 the cluster is updating in background
 ----
-+
-Depending on your network configuration, this command may take a while to complete. Wait until the command finishes before proceeding to the next step.
 
-. Verify that the migration was successful by performing one of the following:
+. When the upgrade finishes, verify that the migration was successful by performing one of the following options:
 +
 * Run the following command from the node where you performed the upgrade:
 +
@@ -87,18 +79,16 @@ https://{platform-host}:9500
 ----
 +
 [WARNING]
-Before accessing Anypoint Platform, ensure that you configure your NSF servers described in the following step. Failure to configure NFS before accessing the platform may result in data loss.
+Before accessing Anypoint Platform PCE, ensure that you configure your NSF servers described in the following step. Failure to configure NFS before accessing the platform can result in data loss.
 
-. Configure Anypoint Platform Private Cloud to use your NFS server.
-+
-After upgrading Anypoint Platform Private Cloud, configure it to use the required NFS server.
+. After upgrading Anypoint Platform PCE, configure it to use the required NFS server.
 +
 .. From Anypoint Platform, select *Access Management*.
-.. Click *NFS Settings*.
+.. Select *NFS Settings*.
 .. Enter the domain name of your NFS server.
 .. Enter the path to your NFS server.
-.. Click *Save*.
-.. Click *Test NFS Server* to test that your NFS server is configured correctly.
+.. Select *Save*.
+.. Select *Test NFS Server* to test that your NFS server is configured correctly.
 
 == See Also
 
