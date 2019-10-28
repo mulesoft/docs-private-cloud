@@ -1,25 +1,25 @@
-= Amazon Web Services (AWS) Prerequisites
+= AWS Prerequisites
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to create the resources required to install Anypoint Platform Private Cloud on Amazon Web Services (AWS). Anypoint Private Cloud supports 3-node and 6-node configurations in a production environment on AWS.
+If you are using Amazon Web Services (AWS), you must create the resources required to install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)on AWS. Anypoint Platform PCE supports 3-node and 6-node configurations in a production environment on AWS.
 
-These steps are not needed if you are starting from bare metal servers.
+You do not need this information if you are starting from bare metal servers.
 
 [IMPORTANT]
-Your infrastructure team, or someone with AWS administrator level knowledge, must perform the following steps. If needed, contact your MuleSoft representative for assistance.
+Your infrastructure team, or someone with AWS administrator level knowledge, must perform the following tasks. If needed, contact your MuleSoft representative for assistance.
 
 == AWS Account Permissions and Resources
 
-To install Anypoint Platform Private Cloud on AWS:
+To install Anypoint Platform PCE on AWS:
 
 * Your AWS account must have AWS keys with `EC2FullAccess` and `S3FullAccess` permissions.
-* When creating your AWS environment, the following resources are created:
+* When you create your AWS environment, the following resources are created:
 +
 [%header%autowidth.spread]
 |===
-| AWS Resource | Number required (3-node) | Number required (6-node)
+| AWS Resource | Number Required (3-node) | Number Required (6-node)
 | m5.2xlarge | 3 | 6
 | root disk @ 500 iops | 3 | 6
 | EBS volumes @ 1500 iops | 6 | 12
@@ -34,26 +34,26 @@ MuleSoft provides a Docker image that you can use to provision the resources for
 
 . Create an initial instance (t2.small) on your AWS account on any VPC with internet access.
 +
-This instance is used to run the actual provisioning of the cluster. You must use an AMI that has Docker installed by default or you must manually install Docker after creating the AWS instance.
+This instance runs the actual provisioning of the cluster. You must use an AMI that has Docker installed by default or you must manually install Docker after creating the AWS instance.
 +
 You can also run provisioner remotely from any other machine with Docker and internet access.
 
 . Download the Private Cloud Provisioner (PCP) Docker image from
 +	https://anypoint-anywhere.s3.amazonaws.com/pcp/pcp-1.0.tar.gz?AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Expires=1712193983&Signature=noiRGBIBJtwsMLQxTux%2FiM%2F5SP0%3D.
 
-. Copy the provisioner Docker image to the instance via SCP.
+. Copy the provisioner Docker image to the instance via SCP:
 +
 ----
 scp -i <guest>.pem ~/Downloads/pcp-1.0.tar.gz ec2-user@18.221.155.87:/home/ec2-user
 ----
 
-. SSH into the instance
+. SSH into the instance:
 +
 ----
 ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 ----
 
-. Create the var file (pce.env) with the environment details using the template below:
+. Create the variable file (pce.env) with the environment details using the following values:
 +
 [%header%autowidth.spread]
 |===
@@ -61,13 +61,13 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 | AWS_ACCESS_KEY_ID | Specifies the AWS access ID Terraform uses to connect to your AWS account.
 | AWS_SECRET_ACCESS_KEY | Specifies the AWS access key Terraform uses to connect to your AWS account.
 | AWS_KEY_NAME | Specifies the AWS SSH key. Do not include the `.pem` extension.
-| AWS_REGION | Specifies the AWS region where Terraform creates the cluster. For example: `us-east-2`. Must have the same value as AWS_DEFAULT_REGION.
-| AWS_DEFAULT_REGION | Same as above. Must have the same value as AWS_REGION.
-| TF_VAR_ssh_user=<SSH_USER> | Specifies the ssh user. For example: `ec2-user`, `centos`, etc.
+| AWS_REGION | Specifies the AWS region where Terraform creates the cluster, for example, `us-east-2`. This value must have the same value as AWS_DEFAULT_REGION.
+| AWS_DEFAULT_REGION | Must be the same value as AWS_REGION.
+| TF_VAR_ssh_user=<SSH_USER> | Specifies the ssh user, for example, `ec2-user`, `centos`, etc.
 | CLOUD_PROVIDER | Must be `aws`.
 | CLUSTER_TYPE | Must be `pce`.
 | TELEKUBE_CLUSTER_NAME | Specifies the name of the cluster and the corresponding AWS resources.
-| TELEKUBE_NODE_PROFILE_COUNT_node | Specifies the number of nodes in your cluster. Possible values are `3`, and `6`.
+| TELEKUBE_NODE_PROFILE_COUNT_node | Specifies the number of nodes in your cluster. Possible values are `3` and `6`.
 | TELEKUBE_NODE_PROFILE_INSTANCE_TYPE_node | Must be `m5.2xlarge`.
 | TELEKUBE_NODE_PROFILES | Must be set to `node`.
 | TF_VAR_high_performance_disks | Must be set to `true` for production environments.
@@ -79,15 +79,15 @@ You can also include the following set of optional environment variables:
 [%header%autowidth.spread]
 |===
 | Name | Description
-| TF_VAR_ami_name | Specifies the AMI name to be used for the instances. Use the AMI name and NOT the AMI ID. If you do not set this variable, the provisioner uses the following AMI by default: `RHEL-7.4_HVM_GA-20170808-x86_64-2-Hourly2-GP2`
+| TF_VAR_ami_name | Specifies the AMI name to be used for the instances. Use the AMI name, *NOT* the AMI ID. If you do not set this variable, the provisioner uses the following AMI by default: `RHEL-7.4_HVM_GA-20170808-x86_64-2-Hourly2-GP2`
 | TF_VAR_monitoring=<true or false> | If true, creates basic instance alarms in Cloudwatch.
 | TF_VAR_use_bastion=<true or false> | If true, creates a small instance (using an ASG) in a public subnet as a jumpbox and associates a public IP address, and launches the cluster instances in the private subnets.
 | TF_VAR_internal=<true or false> | If true, the cluster instances are launched in private subnets and do not have public IPs associated with them. Also, the provisioned load balancer is internal only.
 | AWS_VPC_ID=<VPC_ID> | Specifies an existing VPC that should already have an internet gateway attached to it. Subnets are still provisioned within the existing VPC.
 | AWS_VPC_CIDR=<VPC_CIDR> | Enables you to pass a preferred CIDR for the new VPC to be provisioned. (Requires you to not  pass a AWS_VPC_ID).
-| TF_VAR_aws_selected_subnets_ids=<SUBNETS_IDS> | Enables you to pass a list of subnets IDs on which the instances are launched. If you reuse your own subnets, you need to set up Route Tables, NAT Gateways, and an Internet Gateway. For example: `["subnet-0a17317984065f98f", "subnet-0600b4befb27c7949", "subnet-02103e0c935eff75a"]`
-| TF_VAR_subnets=<PRIVATE_SUBNETS_CIDRs> | Enables you to optionally pass the preferred CIDRs blocks for the NEW subnets to be provisioned. You must pass the exact minimum number between the number of AZs of the region and the number of nodes you selected for your cluster. For example: `'["10.1.0.0/24", "10.1.1.0/24", "10.1.2.0/24"]'`
-| TF_VAR_public_subnets=<PUBLIC_SUBNETS_CIDRs> | Enables you to optionally pass the preferred CIDRs blocks for the NEW subnets to be provisioned. You must pass the exact minimum number between the number of AZs of the region and the number of nodes you selected for your cluster. For example: `'["10.1.3.0/24", "10.1.4.0/24", "10.1.5.0/24"]'`
+| TF_VAR_aws_selected_subnets_ids=<SUBNETS_IDS> | Enables you to pass a list of subnets IDs on which the instances are launched. If you reuse your own subnets, you need to set up Route Tables, NAT Gateways, and an Internet Gateway, for example, `["subnet-0a17317984065f98f", "subnet-0600b4befb27c7949", "subnet-02103e0c935eff75a"]`.
+| TF_VAR_subnets=<PRIVATE_SUBNETS_CIDRs> | Enables you to optionally pass the preferred CIDRs blocks for the NEW subnets to be provisioned. You must pass the exact minimum number between the number of AZs of the region and the number of nodes you selected for your cluster, for example, `'["10.1.0.0/24", "10.1.1.0/24", "10.1.2.0/24"]'`.
+| TF_VAR_public_subnets=<PUBLIC_SUBNETS_CIDRs> | Enables you to optionally pass the preferred CIDRs blocks for the NEW subnets to be provisioned. You must pass the exact minimum number between the number of AZs of the region and the number of nodes you selected for your cluster, for example, `'["10.1.3.0/24", "10.1.4.0/24", "10.1.5.0/24"]'`.
 | TF_VAR_role_tag_value=<AWS_TAG_VALUE_FOR_ROLE_LABEL> | Enables you to specify a ROLE tag value to be applied to all AWS resources.
 |===
 
@@ -99,26 +99,26 @@ docker load -i pce2.0-aws-provisioner.gz
 
 . Record the image ID after running the `docker load` command. This is required in the following step.
 
-. Perform a dry-run
+. Perform a dry-run test:
 +
 ----
 docker run --rm --env-file pce.env IMAGE_ID dry-run
 ----
 +
 
-.  Run the provisioner
+.  Run the provisioner:
 +
 ----
 docker run --rm --env-file pce.env IMAGE_ID cluster-provision
 ----
 +
-After the provisioner runs successfully, it displays information about your environment including IP addresses, DNS name of the load balancer, etc.
+After the provisioner runs successfully, it displays information about your environment including IP addresses and DNS name of the load balancer.
 
 . Verify that the provisioning script ran successfully by checking the existence of /var/lib/bootstrap_complete on the instances
 
-== Custom provisioning scripts (Optional)
+== Custom Provisioning Scripts (Optional)
 
-You can have your own shell scripts to run on the provisioned instances before and/or after the PCE provisioner scripts. In order to do so, place your shell scripts with .sh extension inside a folder named `pre-user-data` and/or `post-user-data`. Finally include the following volume mounts on the docker run command:
+You can have your own shell scripts to run on the provisioned instances before and/or after the PCE provisioner scripts. To do so, place your shell scripts with .sh extension inside a folder named `pre-user-data` and/or `post-user-data`. Include the following volume mounts on the docker run command:
 
 ----
 docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/external/pre-user-data -v $(pwd)/post-user-data:/usr/local/bin/provisioner/terraform/external/post-user-data --env-file pce.env IMAGE_ID cluster-provision
@@ -126,9 +126,11 @@ docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/ext
 
 == Open Port 61009 Before Installation (Optional)
 
-If you are installing Anypoint Private Cloud using the GUI-based installer, you must enable this port before running the installer. You must open this port to the world in the cluster's security group before running the installer using AWS Web Console.
+If you are installing Anypoint Private Cloud using the GUI-based installer, you must enable this port before running the installer. You must open this port in the cluster's security group before running the installer using AWS Web Console.
 
 == Troubleshooting
+
+Review the following information in the event you experience problems when creating AWS resources.
 
 * 403 Forbidden
 
@@ -140,7 +142,7 @@ aws sts get-caller-identity
 
 * Limit exceeded
 
-The AWS account might have some limits set on the amount of the resources you can create. Delete some unused resources or request a limit increase on AWS.
+The AWS account might have some limits set on the amount of resources you can create. Delete some unused resources or request a limit increase on AWS.
 
 * AMI not found
 
