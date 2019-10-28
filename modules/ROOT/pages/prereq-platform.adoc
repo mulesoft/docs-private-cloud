@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 == Supported Environments
-The following environments are the only environments supported by Anypoint Platform Private Cloud:
+The following environments are the only environments supported by Anypoint Platform Private Cloud Edition (Anypoint Platform PCE):
 
 * VMWare bare metal virtualization
 * Physical servers
