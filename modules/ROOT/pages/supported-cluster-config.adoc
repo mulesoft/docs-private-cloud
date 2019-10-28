@@ -1,62 +1,57 @@
-= Supported Configurations for Anypoint Private Cloud
+= Supported Configurations for Anypoint Plarform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-env.adoc
 
-To ensure platform performance, stability, and high-availability, Anypoint Platform Private Cloud supports two network configurations, 3-node and 6-node, which are outlined in the following sections.
+To ensure platform performance, stability, and high availability, Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) supports two network configurations: 3-node and 6-node.
 
 To ensure high availability and performance, each node must run on its own server in both configurations. If you are using a virtual machine to host the nodes, you must ensure that each VM node is running on a separate physical server.
 
-== 3-node Configuration
+== 3-Node Configuration
 
 Three is the minimum number of nodes that can enable high-availability and failover. In this configuration, each node hosts the platform applications and services. You must configure a load balancer to use round-robin distribution of traffic among each of the three nodes.
 
 image::prereqs-priv-cloud-3-node.png[3-node Configuration]
 
-Each node also hosts an instance of the database and object store. Hosting the database and object store enables persistence, but requires larger minimum disk and memory requirements. Although each node contains a database, only one  database is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
+Each node also hosts an instance of the database and object store. Hosting the database and object store enables persistence but requires larger minimum disk and memory requirements. Although each node contains a database, only one  database is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
 
 === Environment Limitations
 
-Adhere to the following recommendations and limitations when installing Anypoint Platform Private Cloud and deploying apps.
+You must understand and adhere to the following recommendations and limitations when installing Anypoint Platform PCE and deploying apps.
 
 These limitations are based on a 3-node environment consisting of 3 nodes of 8 cores and 32GB RAM.
 
-==== Sizing
-
-**** Runtime Management:
+**** Runtime management
 
 ***** Maximum number of servers: 250
 ***** Maximum number of servers per server group: 20
 ***** Maximum servers per cluster: 8
 
-**** Applications per Environment 
+**** Applications per environment 
 
 ***** Mule applications under management:
 ****** Recommended: around 200
 ****** Maximum: 500
 
-***** Mule Runtime Engines under management:
-****** Maximum: 400 single Mule Runtime Engines (or 200 Mule Runtime clusters, consisting of 2 Mule Runtime Engines per cluster)
+***** Mule runtime engines under management
+****** Maximum: 400 single Mule runtime engines (or 200 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
 
-***** Mule applications per Mule Runtime Engine: 
-****** Maximum of 100 apps
-****** Recommended: Fewer than 25 apps
-  
-**** API Platform
+***** Mule applications per Mule runtime engine 
+****** Maximum number of apps: 100
+****** Recommended number of apps: fewer than 25
 
-**** API Management
-***** APIs under management
+**** API management
 
-****** Limit each management plane 2.0.0 cluster to 5000 (3 nodes, 8 cores) APIs under management and 10000 (6 nodes 8 cores), 
+***** Limit each 2.0.0 cluster management plane to 5000 (3 nodes, 8 cores) APIs under management and 10000 (6 nodes 8 cores), 
 in which:
 
-******* A single API implementation with one policy counts as 0.3.
-******* A single clustered proxy with up to 5 policies counts as 1.
-******* All runtimes are polling every 60 seconds.
+****** A single API implementation with one policy counts as 0.3.
+****** A single clustered proxy with up to 5 policies counts as 1.
+****** All runtimes are polling every 60 seconds.
 
 
-== 6-node Configuration
+== 6-Node Configuration
 
 In the 6-node configuration, three nodes are dedicated to hosting platform applications and services. The other three nodes host the database and object store instances. Although each node contains a database, only one of the database nodes is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
 
@@ -66,42 +61,37 @@ You must configure a load balancer to use round-robin distribution of traffic am
 
 === Environment Limitations
 
-Adhere to the following recommendations and limitations when installing Anypoint Platform Private Cloud and deploying apps.
+You must understand and adhere to the following recommendations and limitations when installing Anypoint Platform PCE and deploying apps.
 
 These limitations are based on a 6-node environment consisting of 6 nodes of 8 cores and 32GB RAM.
 
-==== Sizing
-
-**** Runtime Management:
+**** Runtime management
 
 ***** Maximum number of servers: 500
 ***** Maximum number of servers per server group: 20
 ***** Maximum servers per cluster: 8
 
-**** Applications per Environment 
+**** Applications per environment 
 
 ***** Mule applications under management:
 ****** Recommended: around 200
 ****** Maximum: 500
 
-***** Mule Runtime Engines under management:
-****** Maximum: 800 single Mule Runtime Engines (or 400 Mule Runtime clusters, consisting of 2 Mule Runtime Engines per cluster)
+***** Mule runtime engines under management
+****** Maximum: 800 single Mule runtime engines (or 400 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
 
-***** Mule applications per Mule Runtime Engine:
-****** Maximum of 50 apps 
-****** Recommended: Fewer than 25 apps
-  
-**** API Platform
+***** Mule applications per Mule runtime engine
+****** Maximum number of apps: 50 
+****** Recommended number of apps: fewer than 25
 
-**** API Management
-***** APIs under management
+**** API management
 
-****** Limit each management plane 2.0.0 cluster to 20000 (6 nodes, 16 cores) APIs under management and 10000 (6 nodes 8 cores), 
+***** Limit each 2.0.0 cluster management plane to 20000 (6 nodes, 16 cores) APIs under management and 10000 (6 nodes 8 cores), 
 in which:
 
-******* A single API implementation with one policy counts as 0.3.
-******* A single clustered proxy with up to 5 policies counts as 1.
-******* All runtimes are polling every 60 seconds. 
+****** A single API implementation with one policy counts as 0.3.
+****** A single clustered proxy with up to 5 policies counts as 1.
+****** All runtimes are polling every 60 seconds. 
 
 == See Also
 
