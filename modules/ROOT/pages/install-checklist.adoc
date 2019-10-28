@@ -1,10 +1,10 @@
-= Anypoint Platform Private Cloud Prerequisites
+= Anypoint Platform PCE Prerequisites
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-workflow.adoc
 
-Before you install Anypoint Platform Private Cloud:
+Before you install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE):
 
 * Your organization’s operations, networking, and security teams must review the listed infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of all prerequisites listed in this topic. If needed, contact your MuleSoft representative for assistance.
 +
@@ -19,10 +19,10 @@ All prerequisites apply to all xref:prereq-platform#supported-environments[Suppo
 
 [WARNING]
 ==== 
-Installing Anypoint Platform Private Cloud requires specific versions of operating systems, NFS, and other software. Most problems experienced with Anypoint Platform Private Cloud occur because the required environment was not set up prior to installing or upgrading. For example, the following situations cause known problems:
+Installing Anypoint Platform PCE requires specific versions of operating systems, NFS, and other software. Most issues experienced with Anypoint Platform PCE occur because the required environment was not set up prior to installing or upgrading. For example, the following situations cause known problems:
 
 * Using your own AWS images when using AWS.
-* Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform Private CLoud does not support.
+* Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform PCE does not support.
 ====
 
 === Environment Prerequisites
@@ -106,4 +106,4 @@ Refer to xref:verify-nfs.adoc[NFS Server Prerequisites] for additional details a
 
 == See Also
 
-* xref:install-workflow.adoc[Install Anypoint Private Cloud]
+* xref:install-workflow.adoc[Install Anypoint Platform PCE]
