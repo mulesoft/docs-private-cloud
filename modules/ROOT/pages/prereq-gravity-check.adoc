@@ -1,4 +1,4 @@
-= Pre-installation Verification
+= Preinstallation Verification
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -12,13 +12,13 @@ Before installing or upgrading,  your infrastructure team must review all prereq
 * xref:prereq-network.adoc[Network Prerequisites]
 * xref:verify-nfs.adoc[NFS Server Prerequisites]
 
-== Verify Anypoint Private Cloud Nodes
+== Verify Anypoint Platform Private Cloud Edition Nodes
 
-Before you install Anypoint Private Cloud on all nodes, run the `gravity check` script to verify that 
-each node meets the minimum requirements for Anypoint Private Cloud, including
+Before you install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) on all nodes, run the `gravity check` script to verify that 
+each node meets the minimum requirements for Anypoint Platform PCE, including
 CPU, RAM, and volume storage.
 
-. Copy the following from the node where you ran the installer to each node of your cluster:
+. Copy the following information from the node where you will run the installer to each node of your cluster:
 +
 * The `gravity` binary.
 * The `app.yaml` manifest used by the `gravity` binary.
@@ -31,16 +31,16 @@ These files are located in the folder of the installer.
 sudo ./gravity check --profile=app_node app.yaml
 ----
 +
-Valid values of the `--profile` option are:
+Valid values for `--profile` are:
 +
 * app_node
 * data_node
 * general_node (for 3 node installations)
 
-If the command returns no output, this indicates that your environment is setup correctly with the required resources. 
+If the command returns no output, your environment is set up correctly. 
 If any node fails to satisfy the minimum requirements, the command returns a list of failed checks and exits 
 with a non-0 return code.
 
 == See Also
 
-* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud]
+* xref:install-workflow.adoc[Install Anypoint Platform PCE]
