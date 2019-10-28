@@ -1,37 +1,37 @@
-= Delete the Local User after Installing Private Cloud
+= Delete the Local User After Installing Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-During installation, Anypoint Private Cloud creates a local Anypoint Platform user that enables you to configure platform components during installation. The credentials for this user are stored locally in Anypoint Platform. However, after configuring an external authentication provider such as LDAP, you should delete this user to improve security.
+During installation, Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) creates a local Anypoint Platform user that enables you to configure platform components during installation. The credentials for this user are stored locally in Anypoint Platform. However, after configuring an external authentication provider such as LDAP, you should delete this user to improve security.
 
 . Before deleting the local user, perform the following:
 
 ** Install and configure your external identity provider.
 ** Ensure that `SystemAdmin` user is not the owner of any other organizations.
 
-. Select the new user you want to assign administrator privileges. This user must be defined in your external identity provider.
+. Select the new user to whom you want to assign administrator privileges. This user must be defined in your external identity provider.
 
 . Determine the internal user ID for this user.
 .. From Anypoint Platform, select Access Management.
-.. Click the Users tab, then click the name of the user.
+.. Select Users and then select the name of the user.
 .. Record the internal user ID. This ID appears in the URL as:
 +
 image::access-management-user-id.png[User ID]
 
-. Enter the gravity shell.
+. Enter the gravity shell:
 +
 ----
 gravity enter
 ----
 
-. Identify one of the `cs-auth` containers using the following command:
+. Identify one of the `cs-auth` containers:
 +
 ----
 kubectl get pods -l microservice=cs-auth
 ----
 
-. Change the owner using the following command, providing the internal the `cs-auth` container and user ID obtained above:
+. Change the owner, providing the internal the `cs-auth` container and user ID obtained earlier:
 +
 ----
 kubectl exec -it <cs-auth-container> – node bin/change_owner.js --new-owner-id <user_id>
@@ -44,9 +44,9 @@ kubectl exec -it cs-auth-1572348378-0kb57 – node bin/change_owner.js --new-own
 ----
 
 . Disable and delete the `System Admin` user.
-.. Login as the user you just added as the organization owner. as owner.
+.. Log in as the user you just added as the organization owner.
 .. From Anypoint Platform, select Access Management.
-.. Click the Users tab, then click `username` in the same row as `SystemAdmin`.
-.. Click Disable, then click Delete.
+.. Select Users and then select `username` in the same row as `SystemAdmin`.
+.. Select Disable and then select Delete.
 +
 This removes the default user from the platform.
