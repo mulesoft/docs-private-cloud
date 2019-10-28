@@ -95,4 +95,4 @@ in which:
 
 == See Also
 
-* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud]
+* xref:install-workflow.adoc[Install Anypoint Platform PCE]
