@@ -2,7 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:page-aliases: install-add-tasks.adoc
+:page-aliases: install-add-tasks.adoc, prereq-other.adoc
 
 After you complete Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) installation, review the following tasks, many of which are required before you can successfully deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform PCE environment running on your own local network.
 
