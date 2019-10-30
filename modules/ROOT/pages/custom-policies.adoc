@@ -4,11 +4,11 @@ include::_attributes.adoc[]
 endif::[]
 
 There are differences between Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) and the cloud version of Anypoint Platform that you must consider when uploading custom policies and publishing assets to Anypoint Exchange using the Maven client.
-See the following corresponding documentation for the cloud version of Anypoint Platform for details: 
+See the following documentation for the cloud version of Anypoint Platform for details: 
 
-* xref:api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development],
+* xref:api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development]
 * xref:api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies]
-* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/exchange-maven-facade-api-http/[Maven facade API].
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/exchange-maven-facade-api-http/[Maven facade API]
 
 Perform the following steps for Anypoint Platform PCE:
 
