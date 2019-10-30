@@ -1,4 +1,4 @@
-= Install Using the Command Line Installer
+= Install Anypoint Platform PCE Using the Command Line Installer
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
