@@ -84,7 +84,7 @@ keytool -printcert -sslserver ${ANYPOINT_DNS}:443 -rfc > /tmp/anypoint.crt
 keytool -importcert -alias my-company.com -keystore /etc/ssl/certs/java/cacerts -storepass changeit -file /tmp/anypoint.crt
 ----
 +
-In the previous example, $ANYPOINT_DNS is set to the DNS for Anypoint Platform PCE. Replace the location and password with your JVM’s truststore for your environment.
+In the previous example, $ANYPOINT_DNS is set to the DNS for Anypoint Platform PCE. Replace the location and password for your JVM’s truststore.
 
 . Verify your policy was uploaded by directly visiting https://${ANYPOINT_DNS}/exchange/?type=policy or https://${ANYPOINT_DNS}/exchange/${orgID}/${artifactId}/.
 +
