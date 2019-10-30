@@ -4,6 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 There are differences between Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) and the cloud version of Anypoint Platform that you must consider when uploading custom policies and publishing assets to Anypoint Exchange using the Maven client.
+
 See the following documentation for the cloud version of Anypoint Platform for details: 
 
 * xref:api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development]
