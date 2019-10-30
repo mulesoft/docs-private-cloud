@@ -86,7 +86,7 @@ a| Two new platform APIs for managing APIs:
 == See Also
 
 * xref:supported-cluster-config.adoc[Supported Configurations]
-* xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites]
+* xref:install-checklist.adoc[Product Prerequisites]
 * xref:install-workflow.adoc[Install Anypoint Platform PCE]
 * xref:runtime-manager::index.adoc[Runtime Manager]
 * xref:exchange::index.adoc[Anypoint Exchange]
