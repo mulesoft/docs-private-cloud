@@ -39,10 +39,10 @@ Refer to xref:prereq-hardware.adoc[Hardware Prerequisites] for additional detail
 [%header,cols="1*a"]
 |===
 |Task Description
-| xref:prereq-hardware#memory-and-cpu-requirements[ Verify Memory and CPU Requirements]
+| xref:prereq-hardware#memory-and-cpu-requirements[Verify Memory and CPU Requirements]
 | xref:prereq-hardware#device-requirements[Verify Device Requirements]
 | xref:prereq-hardware#device-requirements[Verify Disk IOPS]
-| xref:prereq-hardware#load-balancer-requirements[Load Balancer Configuration]
+| xref:prereq-hardware#load-balancer-requirements[Configure Load Balancer]
 |===
 
 === Software Prerequisites
