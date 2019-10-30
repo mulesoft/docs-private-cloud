@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud sends alert emails when CPU and memory usage reach a certain threshold:
+Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) sends alert emails when CPU and memory usage reach a certain threshold:
 
 * A warning email is sent when CPU and memory usage reach 70% of capacity.
 * An email that is labelled as critical is sent when CPU and memory usage reach 80% of capacity.
@@ -12,8 +12,8 @@ Anypoint Platform Private Cloud sends alert emails when CPU and memory usage rea
 
 To ensure that alerts work correctly:
 
-* Verify that your SMTP server can send and receive emails using the addresses you configure as the From and To addresses below.
-* Verify that your cluster nodes are able to communicate with your SMTP server. For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
+* Verify that your SMTP server can send and receive emails using the addresses you configure as the From and To addresses in the following section.
+* Verify that your cluster nodes can communicate with your SMTP server. For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
 +
 ----
 telnet my.smtp.server.com 587
@@ -29,7 +29,7 @@ Connection closed.
 == Configuring Alerts
 
 . Configure the FROM and TO email addresses:
-.. Login to the Ops Center console, then click Configuration.
+.. Log in to the Ops Center console, then select Configuration.
 .. From the Namespace drop-down, select `kube-system`.
 .. From the Config maps drop-down, select `alerting-addresses`.
 .. Select the From tab, then enter the FROM email address used for the alert.
