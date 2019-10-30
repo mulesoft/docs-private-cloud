@@ -3,11 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-By default, proxy requests are enabled to the domain name where the platform is running.
+By default, proxy requests are enabled for the domain name where the platform is running.
 
 To add whitelist addresses:
 
-. Login to Ops Center, the click then select Configuration.
+. Log in to Ops Center and select Configuration.
 . Select the `api-platform-web-config` config map from the drop-down list.
 . Locate the `features` object in the local.js tab:
 +
@@ -42,7 +42,7 @@ The `proxyWhitelist` object contains the following properties:
 | rules | Defines an array containing regular expressions to create matching rules.
 |===
 
-. Update the `rules` array as necessary. The following example shows how to define regular expressions to allow requests to be made to the `*.somewhere.com/*` and `*.somewhereelse.com/*` domains, where * can be any part of a DNS name or URL:
+. Update the `rules` array as necessary. The following example shows how to define regular expressions to allow requests to be made to the `*.somewhere.com/*` and `*.somewhereelse.com/*` domains, where * is any part of a DNS name or URL:
 +
 ----
 proxyWhitelist: {
@@ -55,7 +55,7 @@ proxyWhitelist: {
   }
 ----
 
-. Click Apply to save changes to the `api-platform-web-config` config map.
+. Select Apply to save changes to the `api-platform-web-config` config map.
 . Recreate the pod to ensure each node in the cluster uses the most current configuration:
 +
 ----
