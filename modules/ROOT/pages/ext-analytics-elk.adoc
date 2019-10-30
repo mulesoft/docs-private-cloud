@@ -9,17 +9,17 @@ The following image shows an example of how API data appears in Kibana:
 
 image::kibana-example.png[]
 
-== Required Software
-
-To export external analytics data to ELK, you must have the following software:
-
-* Mule Runtime, version 3.8.4 or greater
-* Mule Runtime Manager Agent, version 1.7.0 or greater
-* Elasticsearch, version 5.6.2
-* Filebeat, version 5.6.2
-* Kibana, version 5.6.2
-
 == Prerequisites
+
+* Required software
++
+To export external analytics data to ELK, you must have the following software:
++
+** Mule Runtime, version 3.8.4 or greater
+** Mule Runtime Manager Agent, version 1.7.0 or greater
+** Elasticsearch, version 5.6.2
+** Filebeat, version 5.6.2
+** Kibana, version 5.6.2
 
 * Ensure that you have installed and configured your Mule runtime engine instances.
 * Ensure that you have registered these instances with Runtime Manager.
@@ -131,7 +131,7 @@ output.elasticsearch:
  setup_mule_module.sh
 ----
 +
-* If you installed Filebeat using another method, you must:
+* If you installed Filebeat using another method:
 ** copy `filebeat.template.mule.json` and `filebeat.yml` to the root installation folder of Filebeat
 ** copy the `mule` module folder to the `module` folder of your Filebeat installation.
 == Run Filebeat
