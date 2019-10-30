@@ -2,7 +2,6 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:page-aliases: demo-ldap-server.adoc
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires an external identity provider. All users must be registered via external identity except the admin you register in the installation wizard. The following external identity providers are supported:
 
