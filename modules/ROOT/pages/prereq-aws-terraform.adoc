@@ -124,7 +124,7 @@ You can have your own shell scripts to run on the provisioned instances before a
 docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/external/pre-user-data -v $(pwd)/post-user-data:/usr/local/bin/provisioner/terraform/external/post-user-data --env-file pce.env IMAGE_ID cluster-provision
 ----
 
-== Open Port 61009 Before Installation (Optional)
+== Open Port 61009 Before Installation
 
 If you are installing Anypoint Private Cloud using the GUI-based installer, you must enable this port before running the installer. You must open this port in the cluster's security group before running the installer using AWS Web Console.
 
