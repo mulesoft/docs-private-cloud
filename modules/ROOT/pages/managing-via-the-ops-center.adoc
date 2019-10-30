@@ -119,19 +119,19 @@ High-resolution metrics are stored for a default period of 30 days. Other metric
 +
 By default, Ops Center displays the Cluster dashboard.
 
-When viewing dashboards, you can navigate by selecting from a series of drop-down menus. The options that are available depend on the selected dashboard. For example, in the *Pods* dashboard, you can select a `namespace` and a `podname`.
+When viewing dashboards, navigate by selecting from a series of drop-down menus. The options that are available depend on the selected dashboard. For example, in the *Pods* dashboard, you can select a `namespace` and a `podname`.
 
 === Change the Time Scale Displayed in the Charts
 
 To change the time scale displayed in the charts:
 
-. Select the currently selected time scale on the top-right.
+. Select the currently selected time scale.
 +
-. Select a quick option or provide start and end dates.
+. Select an option or provide start and end dates.
 
 === Anypoint Services Dashboard
 
-The *Anypoint Services* dashboard displays metrics for the different sub-components of the platform, including exchange, API notebooks, or the home page. You can filter data by a specific microservice.
+The *Anypoint Services* dashboard displays metrics for the different platform sub-components, including Anypoint Exchange, API notebooks, or the Home page. You can filter data by a specific microservice.
 
 This dashboard displays the following metrics:
 
@@ -144,9 +144,7 @@ Each of these metrics is displayed by service.
 
 === Cluster Information Dashboard
 
-This dashboard displays metrics for the various nodes that make up your platform cluster. You can filter data by `nodename`.
-
-This dashboard displays the following metrics:
+The *Cluster Information* dashboard displays the following metrics for the various nodes that make up your platform cluster. You can filter data by `nodename`.
 
 * Overall CPU Usage
 * CPU Usage by Node
@@ -164,7 +162,7 @@ These metrics have different scopes, depending on the context:
 
 * Overall metrics show an aggregate number for the entire set of nodes.
 * Metrics that are _by node_ display each node as a separate curve on the same chart.
-* Individual node metrics only display it for the node that you selected in the *nodename* dropdown at the top of the section.
+* Individual node metrics are only displayed for the node that you selected in the *nodename* drop-down at the top of the section.
 
 
 === Object Store Dashboard
@@ -182,21 +180,21 @@ Metrics that deal with Read/Write values display read and write values as separa
 
 === Pod Dashboard
 
-The *Pod* dashboard displays data for the individual docker containers running different services of the platform. You can filter data by `namespace` or `podname`.
+The *Pod* dashboard displays data for the individual Docker containers running different platform services. You can filter data by `namespace` or `podname`.
 
-This dashboard displays the following metrics:
+The following metrics are displayed:
 
 * Individual CPU Usage
 * Individual Memory Usage
 * Individual Network Usage
 * File system Usage
 
-All these metrics are displayed for the selected `namespace` and `podname`.
+These metrics are displayed for the selected `namespace` and `podname`.
 
 
 === PostgreSQL Dashboard
 
-The *PostgreSQL* dashboard displays data for the PostgreSQL server included in the platform. It displays the following metrics:
+The *PostgreSQL* dashboard displays data for the PostgreSQL server included in the platform. The following metrics are displayed:
 
 * Activity per type
 * Cache Hit Ratio
@@ -205,14 +203,14 @@ The *PostgreSQL* dashboard displays data for the PostgreSQL server included in t
 * Conflicts/Deadlocks
 * PostgreSQL Containers CPU Usage per Pod
 
-Activity per type displays different curves for rows fetched, returned, inserted, updated and deleted, at the level of time granularity that you choose.
+`Activity per type` displays different curves for rows fetched, returned, inserted, updated, and deleted, at the level of time granularity that you choose.
 
 == Download Data
 
 To download the data displayed in this section as a JSON:
 
 . Select the gear icon at the top of the Ops Center.
-. Select *Export*
+. Select *Export*.
 
 image::managing-via-the-ops-center-f3b1c.png[]
 
