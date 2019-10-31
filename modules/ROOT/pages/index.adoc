@@ -83,6 +83,8 @@ a| Two new platform APIs for managing APIs:
 | Runtime Manager |	Improved error description on alert creation.	
 |===
 
+The Anypoint Platform Private Cloud Edition uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
+
 == See Also
 
 * xref:supported-cluster-config.adoc[Supported Configurations]
