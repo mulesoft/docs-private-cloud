@@ -1,11 +1,24 @@
-= Verify System Requirements for Anypoint Private Cloud on a Physical Server
+= Preinstallation Verification
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-After setting up your environment, you can run the `gravity check` script to verify that your system meets the minimum requirements for Anypoint Private Cloud.
+[IMPORTANT]
+Before installing or upgrading,  your infrastructure team must review all prerequisite information in the following list and verify that your environment meets the stated requirements. If needed, contact your MuleSoft representative for assistance.
 
-. Copy the following from the node where you ran the installer to each node of your cluster:
+* xref:prereq-platform.adoc[Environment Prerequisites]
+* xref:prereq-hardware.adoc[Hardware Prerequisites]
+* xref:prereq-software.adoc[Software Prerequisites]
+* xref:prereq-network.adoc[Network Prerequisites]
+* xref:verify-nfs.adoc[NFS Server Prerequisites]
+
+== Verify Anypoint Platform Private Cloud Edition Nodes
+
+Before you install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) on all nodes, run the `gravity check` script to verify that 
+each node meets the minimum requirements for Anypoint Platform PCE, including
+CPU, RAM, and volume storage.
+
+. Copy the following information from the node where you will run the installer to each node of your cluster:
 +
 * The `gravity` binary.
 * The `app.yaml` manifest used by the `gravity` binary.
@@ -18,11 +31,16 @@ These files are located in the folder of the installer.
 sudo ./gravity check --profile=app_node app.yaml
 ----
 +
-Valid values of the `--profile` option are:
+Valid values for `--profile` are:
 +
 * app_node
 * data_node
 * general_node (for 3 node installations)
-* demo_node (for 1 node installations)
 
-If the command returns no output, this indicates that your environment is setup correctly with the required resources. If your environment does not meet the requirements, the command returns a message describing the problem.
+If the command returns no output, your environment is set up correctly. 
+If any node fails to satisfy the minimum requirements, the command returns a list of failed checks and exits 
+with a non-0 return code.
+
+== See Also
+
+* xref:install-workflow.adoc[Install Anypoint Platform PCE]

@@ -1,0 +1,21 @@
+= Environment Prerequisites
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== Supported Environments
+The following environments are the only environments supported by Anypoint Platform Private Cloud Edition (Anypoint Platform PCE):
+
+* VMWare bare metal virtualization
+* Physical servers
+* Amazon Web Services (AWS)
+
+If you are using AWS, perform the steps provided in xref:prereq-aws-terraform.adoc[Provision AWS Prerequisites].
+
+== See Also
+
+* xref:prereq-hardware.adoc[Hardware Prerequisites]
+* xref:prereq-software.adoc[Software Prerequisites]
+* xref:prereq-network.adoc[Network Prerequisites]
+* xref:verify-nfs.adoc[NFS Server Prerequisites]
+* xref:prereq-gravity-check.adoc[Preinstallation Verification]

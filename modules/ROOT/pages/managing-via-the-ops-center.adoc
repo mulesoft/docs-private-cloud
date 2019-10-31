@@ -1,15 +1,15 @@
-= Manage Anypoint Platform Private Cloud Edition Using Ops Center
+= Ops Center
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to use the Ops Center to manage and monitor the Anypoint Platform Private Cloud Edition. The Ops Center is a web-base management tool that enables you to perform the following types of tasks:
+The Ops Center is a web-based management tool that enables you to manage and monitor Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) and perform the following types of tasks:
 
 * Add and remove servers
 * View logs and configure log forwarding
 * Monitor system stability and performance
 
-== Accessing Ops Center
+== Access the Ops Center
 
 . Go to the following URL:
 +
@@ -17,22 +17,22 @@ This topic describes how to use the Ops Center to manage and monitor the Anypoin
 https://{platform-host}:9500
 ----
 
-. Enter email and password of the admin user that you created during installation.
+. Enter the admin user email address and password that you created during installation.
 
 
-== Adding Additional Servers
+== Add Additional Servers
 
 Adding servers enables you to scale up your cluster, even after the installation is complete.
 
-. Login to Ops Center.
+. Log in to Ops Center.
 
-. Click the Servers tab, then click the Add Existing button.
+. Select Servers and then select Add Existing.
 
 . Select the type of node you want to add.
 +
 The nodes available depend on the number of nodes in your installation.
 
-. Click Continue.
+. Select Continue.
 +
 Ops Center displays a command similar to the following:
 +
@@ -41,7 +41,7 @@ curl -s --tlsv1.2 --insecure "https://172.31.48.9:3009/t/8402020736a8a04dda29bc8
 ----
 +
 
-. Run this command on the machine where you are installing the new server.
+. Run the command that is displayed on the machine where you are installing the new server.
 +
 	* You must run this command from an account that has root access.
 	* You can only perform this installation on one server at a time.
@@ -50,37 +50,42 @@ After performing this command, the server is displayed in a list in Ops Center.
 
 . If necessary, specify the IP address and devices.
 
-. Select the server, then click Start Installation to begin installation of the new server.
+. Select the server and then select Start Installation to begin installation of the new server.
 
-== Removing a Server
+== Remove a Server
 
 You can remove individual servers from the cluster where the platform is installed.
 
 [WARNING]
 Deleting a server also removes any applications that are deployed on the server.
 
-. Login to Ops Center.
-. Click the Servers tab
-. Click the IP address of the server you want to delete, then select Delete.
+. Log in to Ops Center.
+. Select Servers.
+. Select the IP address of the server you want to delete and then select Delete.
 . Confirm that you want to delete the server.
 
-== Configuring Log Forwarding
+== Configure Log Forwarding
 
-Anypoint Platform Private Cloud Edition enables you to forward server-level log data. Log forwarding is designed to forward your logs to a local 3rd party log solution. Forwarding log data to a cloud-based service, like Splunk Cloud, is not supported.
+Anypoint Platform PCE enables you to forward server-level log data. Log forwarding is designed to forward your logs to a local third-party log solution. Forwarding log data to a cloud-based service like Splunk Cloud is not supported.
 
-Anypoint Platform uses `rsyslog` to handle logging. To forward these logs to remote hosts perform following:
+[NOTE]
+====
+This information is specific to forwarding log data from Anypoint Platform itself. For instructions on how to forward log data from the Mule servers and applications that run on Anypoint Platform, see xref:runtime-manager::sending-data-from-arm-to-external-analytics-software.adoc[Sending Data from Runtime Manager to External Analytics Software].
+====
 
-. Login to Ops Center.
+Anypoint Platform uses `rsyslog` to handle logging. To forward logs to remote hosts, perform the following steps:
 
-. In the upper right-hand corner, click the admin user name.
+. Log in to Ops Center.
+
+. In the upper right-hand corner, select the admin user name.
 +
 image::ops-center-settings.png[]
 
-. Choose *Settings*, then click the Logs tab.
+. Select *Settings* and then select Logs.
 
-. Click *Create* or *New Connector* if you already have a log forwarder configured.
+. Select *Create* or *New Connector* if you already have a log forwarder configured.
 
-. Configure your log forward as shown in the following example:
+. Configure your log forwarding as shown in the following example:
 
 ----
 kind: logforwarder
@@ -92,11 +97,11 @@ spec:
    protocol: udp
 ----
 
-== Monitoring Stability and Performance
+== Monitor Stability and Performance
 
-The Ops Center enables you to view data about the stability and performance of the platform.
+Ops Center enables you to view data about the stability and performance of the platform.
 
-Metrics dashboards are available for the these application components:
+Metrics dashboards are available for the following application components:
 
 * Anypoint Services
 * Cluster
@@ -107,28 +112,26 @@ Metrics dashboards are available for the these application components:
 
 High-resolution metrics are stored for a default period of 30 days. Other metrics are retained from a period of 6 months up to 5 years.
 
-=== Viewing Metrics
+=== View Metrics
 
-. Login to Ops Center.
-. Click the Monitoring tab.
+. Log in to Ops Center.
+. Select the Monitoring tab.
 +
 By default, Ops Center displays the Cluster dashboard.
 
-When viewing a dashboards, you can navigate through it by selecting from a series of dropdown menus at the top of the section. The options available depend on the selected dashboard. For example, in the *Pods* dashboard you can select a `namespace` and a `podname`.
+When viewing dashboards, navigate by selecting from a series of drop-down menus. The options that are available depend on the selected dashboard. For example, in the *Pods* dashboard, you can select a `namespace` and a `podname`.
 
-
-=== Changing the time scale displayed in the charts
+=== Change the Time Scale Displayed in the Charts
 
 To change the time scale displayed in the charts:
 
-. Click the currently selected time scale on the top-right.
+. Select the currently selected time scale.
 +
-. Select a quick option or provide start and end dates.
-
+. Select an option or provide start and end dates.
 
 === Anypoint Services Dashboard
 
-The *Anypoint Services* dashboard displays metrics for the different sub-components of the platform, including exchange, API notebooks, or the home page. You can filter data by a specific microservice.
+The *Anypoint Services* dashboard displays metrics for the different platform sub-components, including Anypoint Exchange, API notebooks, or the Home page. You can filter data by a specific microservice.
 
 This dashboard displays the following metrics:
 
@@ -137,13 +140,11 @@ This dashboard displays the following metrics:
 * Network
 * Filesystem
 
-Each of these metrics are displayed by service.
+Each of these metrics is displayed by service.
 
 === Cluster Information Dashboard
 
-This dashboard shows metrics for the various nodes that make up your platform cluster. You can filter data by `nodename`.
-
-This dashboard displays the following metrics:
+The *Cluster Information* dashboard displays the following metrics for the various nodes that make up your platform cluster. You can filter data by `nodename`.
 
 * Overall CPU Usage
 * CPU Usage by Node
@@ -161,7 +162,7 @@ These metrics have different scopes, depending on the context:
 
 * Overall metrics show an aggregate number for the entire set of nodes.
 * Metrics that are _by node_ display each node as a separate curve on the same chart.
-* Individual node metrics only display it for the node that you selected in the *nodename* dropdown at the top of the section.
+* Individual node metrics are only displayed for the node that you selected in the *nodename* drop-down at the top of the section.
 
 
 === Object Store Dashboard
@@ -179,44 +180,43 @@ Metrics that deal with Read/Write values display read and write values as separa
 
 === Pod Dashboard
 
-The *Pod* dashboard displays data for the individual docker containers running different services of the platform. You can filter data by `namespace` or `podname`.
+The *Pod* dashboard displays data for the individual Docker containers running different platform services. You can filter data by `namespace` or `podname`.
 
-This dashboard displays the following metrics:
+The following metrics are displayed:
 
 * Individual CPU Usage
 * Individual Memory Usage
 * Individual Network Usage
 * File system Usage
 
-All these metrics are displayed for the selected `namespace` and `podname`.
+These metrics are displayed for the selected `namespace` and `podname`.
 
 
 === PostgreSQL Dashboard
 
-The *PostgreSQL* dashboard displays data for the PostgreSQL server included in the platform. It displays the following metrics:
+The *PostgreSQL* dashboard displays data for the PostgreSQL server included in the platform. The following metrics are displayed:
 
 * Activity per type
 * Cache Hit Ratio
 * Active Connections
 * Buffers
 * Conflicts/Deadlocks
-* PostrgreSQL Containers CPU Usage per Pod
+* PostgreSQL Containers CPU Usage per Pod
 
-Activity per type displays different curves for rows fetched, returned, inserted, updated and deleted, at the level of time granularity that you choose.
+`Activity per type` displays different curves for rows fetched, returned, inserted, updated, and deleted, at the level of time granularity that you choose.
 
-
-== Downloading Data
+== Download Data
 
 To download the data displayed in this section as a JSON:
 
-. Click the gear icon at the top of the Ops Center.
-. Click *Export*
+. Select the gear icon at the top of the Ops Center.
+. Select *Export*.
 
 image::managing-via-the-ops-center-f3b1c.png[]
 
-Alternatively, you can select *Save as...* to download this file with a custom name. You can also pick the *View JSON* option to view this data without downloading it.
+Alternatively, you can select *Save as...* to download this file with a custom name. You can also select the *View JSON* option to view this data without downloading it.
 
-== Resetting Your Password
+== Reset Your Password
 
 To change the password required to log into the Ops Center:
 
@@ -242,4 +242,5 @@ password for admin@example.com has been reset to: xxxxxxxxx
 
 == See Also
 
-* xref:prereq-workflow.adoc#device-requirements[Device Requirements]
+* xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
+* xref:config-alerts.adoc[Set up Alerts for CPU and Memory Usage]

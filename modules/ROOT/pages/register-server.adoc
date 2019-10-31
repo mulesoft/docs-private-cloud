@@ -1,0 +1,23 @@
+= Troubleshoot Mule Runtime Engine Registration
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+[[registering_servers]]
+If you encounter an error when performing the steps in xref:runtime-manager/servers-create[Create a Server in Runtime Manager]:
+
+Before registering Mule runtime engine, you must configure Mule to trust the TLS certificates you configured:
+
+.. Get the public certificate for Mule runtime engine.
+.. Add the certificate to the truststore of the JVM you are using for the Mule runtime engine.
++
+For example:
++
+----
+$ keytool -printcert -sslserver $ANYPOINT_DNS:443 -rfc > /tmp/anypoint.crt
+$ keytool -importcert -alias anypoint.my-company -keystore /etc/ssl/certs/java/cacerts -storepass changeit -file /tmp/anypoint.crt
+----
++
+In the previous example, $ANYPOINT_DNS should be set to your DNS for Anypoint Platform Private Cloud Edition.
+Replace the location and password for your JVM's truststore.
+

@@ -1,24 +1,25 @@
-= Workflow: Configure Anypoint Private Cloud
+= Post-installation Tasks
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: install-add-tasks.adoc
 
-. Setup a balancer as described in xref:install-create-lb.adoc[To Setup a Load Balancer].
+After you complete Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) installation, review the following tasks, many of which are required before you can successfully deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform PCE environment running on your own local network.
 
-. Ensure that you have configured your system to perform regular backups. See xref:backup-and-disaster-recovery.adoc[About Backup and Recovery]
-
-. Perform additional installation tasks as described in xref:install-add-tasks.adoc[To Perform Additional Installation Tasks].
-    * xref:access-management-dns.adoc[Configure DNS]
-    * xref:access-management-security.adoc[Set Certificates]
-    * Log Forwarding
-    * xref:access-management-SMTP.adoc[Configure SMTP]
-    * Third Party Authentication
-    +
-	See xref:install-config-ldap-pce.adoc[To Configure LDAP], xref:install-disable-local-user.adoc[To Delete the Local User (optional)]
-    * Register Mule runtimes
-
-After completing the steps in this workflow, you can deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform environment running on your own local network.
+* If you used the GUI installer, close port 61009 in the cluster security group. If you are using AWS, you can use the AWS Web console to do this.
+* xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
+* xref:access-management-security.adoc[Configure Security on Anypoint Private Cloud]
+* xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
+* xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Private Cloud]
+* xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore]
+* Optional: xref:install-disable-local-user.adoc[Delete the Local User after Installing Private Cloud]
 
 [NOTE]
 At the time of this writing, some Docker containers must run as root. Processes running as root do not expose functionality outside the cluster. 
 Processes that serve external traffic do not run as root, to maximize security.
+
+== See Also
+
+* xref:runtime-manager::managing-servers.adoc[About Servers, Server Groups, and Clusters]
+* xref:api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies]
+* https://anypoint.mulesoft.com/exchange/portals/anypoint-platform/f1e97bc6-315a-4490-82a7-23abe036327a.anypoint-platform/exchange-maven-facade-api-http/[Maven facade API]

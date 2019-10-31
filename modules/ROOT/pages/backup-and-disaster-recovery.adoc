@@ -1,19 +1,15 @@
-= Backup and Restore Anypoint Private Cloud
+= Configure Backup and Restore for Anypoint Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes how to configure backups for Anypoint Private Cloud Edition. It also describes how to perform a system restore from a backup.
+To preserve your data in case of system failure, ensure that your system is automatically backed up. Configure your backup to run at least once per day; hourly is recommended. Store your backup archive on external storage outside the Anypoint cluster.
 
-== Prerequisites
-
-To preserve your data in case of system failure, ensure that your system is automatically backed up. Configure your backup to run at least once per day, although we recommend that you back up your system hourly. Your backup archive must be stored on external storage outside the Anypoint cluster.
-
-Anypoint Private Cloud requires you to install, configure, and manage an NFS server. Ensure that you configure and perform frequent backups of this server.
+Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires you to install, configure, and manage an NFS server. Ensure that you configure and perform frequent backups of this server.
 
 == Create a Backup
 
-To create a backup, run the following command on any node in the cluster. You can run this command from any node in your cluster.
+To create a backup, run the following command on any node in the cluster:
 
 ----
 gravity backup /var/lib/gravity/planet/share/backup.tar.gz
@@ -21,20 +17,26 @@ gravity backup /var/lib/gravity/planet/share/backup.tar.gz
 
 This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. You can pass the following optional parameters to the gravity backup command:
 
-* `--follow`: outputs the backup job logs to stdout
-* `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
-* `--log-file`: outputs logs to a file
+* `--follow`
++
+Outputs the backup job logs to stdout.
+* `--timeout`
++
+Specifies the deadline for the backup job, for example, 30s or 5m. Default is 20m.
+* `--log-file`
++
+Outputs logs to a file.
 
 == Perform a System Restore
 
 To restore a system from your backup, use the existing cluster or create a new cluster containing the same number of servers as the cluster being restored.
 
 [WARNING]
-You can not perform a backup between different versions of Anypoint Platform Private Cloud Edition. The new installation you create must be using the same version of Anypoint Platform Private Cloud Edition as your backup.
+You cannot perform a backup between different versions of Anypoint Platform PCE. The new installation you create must use the same version of Anypoint Platform PCE as your backup.
 
 . Log in to one of the nodes in your cluster.
 
-. Move the compressed backup archive file to a folder in any of the nodes of the to-restore environment. You can transfer this file securely via the following command:
+. Move the compressed backup archive file to a folder on any node in the environment to be restored. You can transfer this file securely via the following command:
 +
 ----
 scp /backup-path/to-restore.tar.gz your_username@remotehost.edu:/var/lib/gravity/planet/share
@@ -46,13 +48,15 @@ scp /backup-path/to-restore.tar.gz your_username@remotehost.edu:/var/lib/gravity
 sudo gravity restore /var/lib/gravity/planet/share/to-restore.tar.gz
 ----
 
-This takes a few minutes. You can pass the following optional parameters:
+You can pass the following optional parameters:
 
 * `--follow`: outputs the backup job logs to stdout
 * `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
 * `--log-file`: outputs logs to a file
 
+Note that this operation takes a few minutes. 
+
 == See Also
 
-* xref:install-workflow.adoc[Workflow: Install Anypoint Platform Private Cloud Edition]
-* xref:upgrade.adoc[To Migrate to Anypoint Platform Private Cloud Edition, Version 2.0.0]
+* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud]
+* xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]

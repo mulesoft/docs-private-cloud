@@ -1,21 +1,25 @@
-= Private Cloud Edition Network Requirements
+= Network Prerequisites
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: prereq-firewalld-forwarding.adoc, install-create-lb.adoc
 
-The this topic describes the network requirements for running Anypoint Platform Private Cloud Edition.
+To ensure the performance and stability of Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), every node in your Anypoint Platform PCE environment must meet the network requirements described in this topic. 
 
-== Static IPs
+[IMPORTANT]
+Before you install Anypoint Platform PCE, your infrastructure team must review each of the following sections and verify that your environment meets the stated network requirements. If needed, contact your MuleSoft representative for assistance.
 
-All servers in the cluster should have static private IPv4 assigned to them, these must persist after server 
-restarts. If IP addresses are not persistent between reboots, the cluster may enter a failed state.
+== Verify Static IPs
 
-== VXLAN
+All nodes in the cluster must have static private IPv4 assigned to them, and these must persist after  
+restarts. If IP addresses are not persistent between reboots, the cluster can fail.
 
-The version of Kubernetes supported by Anypoint Platform Private Cloud Edition uses an overlay VXLAN and UDP 
-transport to encapsulate traffic. There is direct communication between components of the cluster. The table 
-below shows the ports used for inter-host communication. You must ensure that all of these ports are 
-configured correctly.
+== Verify VXLAN
+
+The version of Kubernetes supported by Anypoint Platform PCE uses an overlay VXLAN and UDP 
+transport to encapsulate traffic. There is direct communication between components of the cluster. The following table 
+lists the ports used for inter-host communication. You must ensure that all of the following ports are 
+configured correctly on all nodes.
 
 [%header%autowidth.spread]
 |===
@@ -40,42 +44,40 @@ configured correctly.
 |TCP | 32009 | Ops Center Admin UI
 |===
 
+You can use netcat or a similar utility to verify port configuration.
 
-== NAT Traffic Requirements
+== Enable Required Ports 
 
-In some situation, the Kubernetes overlay network uses NAT. NAT requires that servers be able to send and 
-receive packages with a source and destination that is different from the server’s internal IP.
+* You must enable TCP ports 53, 3011, and 3012 on all nodes to allow communication with the database cluster.
+* If you plan to use the GUI installer to install Anypoint Platform PCE, you must enable port 61009.
+
+== Verify NAT Traffic Requirements
+
+In some situations, the Kubernetes overlay network uses NAT. NAT requires that nodes be able to send and 
+receive packages with a source and destination different from the node’s internal IP.
 
 Any software that monitors the network traffic must be tuned to allow this type of network interaction.
 
-== SSL Certificate Requirements
+== Verify SMTP Server Requirements
+Your network must include an SMTP server to manage email alerts that are triggered by the platform. Anypoint Platform PCE must be connected to this SMTP server. 
 
-In order to use the Anypoint Platform Private Cloud Edition, you must provide SSL credentials. You can upload 
-a certificate through the Anypoint Platform UI. This certificate must be trusted by every machine that is 
-connected to the platform.
+For additional information, refer to the instructions in xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud].
 
-[WARNING]
-You must register the same SSL certificate on every server containing Mule Runtimes managed by your installation.
+== Verify External Identity Provider Configuration and Client Management 
+Your network must include an external identity provider that is compatible with LDAP, OpenIDConnect, or SAML. 
+To configure an External Identity Provider for user SSO (LDAP, OpenIDConnect, and SAML) or for external 
+client management as OpenID Connect, the cluster must be able to access the external identity provider endpoint. 
 
-== SMTP Server Requirements
+For additional information, refer to the instructions in xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Private Cloud].
 
-Your network must include an SMTP server to manage e-mail alerts that are triggered by the platform.
+== Synchronize Clocks
 
-== External Identity Provider and Client Management 
-
-To configure an Exernal Identity Provider for users single sign on (LDAP, OpenID, SAML) or for external 
-client management as OpenID Connect, the cluster must be able to access the External Identity Provider endpoint. 
-
-== IP Forwarding and Bridging
-
-To ensure proper cluster load balancing and routing, you must enable and correctly configure the following:
-
-* Kernel IP forwarding: to enable internal Kubernetes load balancing you must enable IPv4 forwarding on all servers.
-* Bridge-netfilter: enables the Linux kernel to translate packets to and from hosted containers.
-
-** IP addresses for bridge-netfiltering are managed by the overlay network created by Kubernetes. The CIDR block used for that network is in the private IP address range.
+Ensure that the clocks on all servers are synchronized. Unsynchronized clocks can cause problems with platform communications.
 
 == See Also
 
-* xref:prereq-software.adoc[About Software Requirements]
-* xref:supported-cluster-config.adoc[Supported Network Topologies]
+* xref:prereq-platform.adoc[Environment Prerequisites]
+* xref:prereq-hardware.adoc[Hardware Prerequisites]
+* xref:prereq-software.adoc[Software Prerequisites]
+* xref:verify-nfs.adoc[NFS Server Prerequisites]
+* xref:prereq-gravity-check.adoc[Preinstallation Verification]

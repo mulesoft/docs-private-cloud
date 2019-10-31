@@ -1,69 +1,15 @@
-= Configure LDAP in Anypoint Private Cloud
+= Configure an External Identity Provider in Anypoint Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: demo-ldap-server.adoc
 
-This topic describes how to configure user management in Anypoint Platform Private Cloud Edition using LDAP version 3.
+Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires an external identity provider. All users must be registered via external identity except the admin you register in the installation wizard. The following external identity providers are supported:
 
-. From Anypoint Platform, click Access Management > External Identity.
-. Click LDAP
-. Enter the connection settings for your LDAP service:
+* xref:access-management::conf-ldap-private-cloud-task[To Configure LDAP in Anypoint Platform Private Cloud]
+* xref:access-management::conf-client-mgmt-pf-task.adoc[Configure Ping Federate]
+* xref:access-management::managing-users.adoc[Configure SAML]
+* xref:access-management::conf-openid-connect-task.adoc[To Configure OpenID Connect]
 +
-[%header%autowidth.spread]
-|===
-| Property | Description
-| Host | The host name of your LDAP server. If you are using TLS in your ldap server, use `ldaps://mulesoft.com`. If you are not using TLS, use this host name: `ldap://mulesoft.com`
-| Port | The port used to communicate with your LDAP server. The default ldap port is `389`. The default ldaps port is `636`.
-| Validate server certificate | Uncheck this option if you are using a self-signed certificate.
-| Bind DN | The distinguished names for the user making the LDAP queries. For example, `uid=admin,ou=people,dc=mulesoft,dc=com`.
-| Password | The password for the LDAP server. For example,`examplepassphrase`.
-| Connection Timeout | The timeout frame (in seconds) for a connection. For example, `10`.
-| Operation Timeout | The timeout frame (in milliseconds) for an operation. For example, `30000`.
-|===
-
-. Define the search bases:
+Troubleshooting information can be found at https://help.mulesoft.com/s/article/Anypoint-Platform-Single-Sign-On-SSO-using-OpenID-Connect-OIDC-Troubleshooting-Guide[Anypoint Platform Single Sign-On (SSO) using OpenID Connect (OIDC) Troubleshooting Guide].
 +
-[%header%autowidth.spread]
-|===
-| Property | Description
-| User | The base level for your user search base object. For example, `uid=admin,dc=mulesoft,dc=com`.
-| Group | The base level for your groups search base object. For example, `ou=groups,dc=mulesoft,dc=com`.
-|===
-
-. Specify the search filters
-+
-[%header%autowidth.spread]
-|===
-| Property | Description
-| Find User by Username | The search filter to find users by user name. For example, `(&(objectClass=inetOrgPerson)(uid={{username}}))`.
-| Find User's Groups by Username | The search filter to find user groups by user name. For example, `(&(objectClass=GroupOfNames)(member=uid={{username}},ou=people,dc=mulesoft,dc=com))`.
-|===
-
-. Specify the user field mappings
-+
-[%header%autowidth.spread]
-|===
-| Property | Description
-| Username | Field that represents the user name. For example, `uid`.
-| Email | Field that represents the email. For example, `mail`.
-| First Name | Field that represents the first name. For example, `givenName`.
-| Last Name | Field that represents the last name. For example, `sn`.
-| ID | Id for your user. For example, `uid`.
-|===
-
-. Map the group field mappings
-+
-[%header%autowidth.spread]
-|===
-| Property | Description
-| Group Name | Field that represents your Group name. This value is used for Role Group Mapping. For example,`cn`.
-| ID | Field that represents your groups Id. For example, `dn`.
-|===
-
-. Click Test Connection
-. Enter the user name and password of a user that exists in your LDAP server.
-. Click Test
-+
-If Access Management returns `OK` for each item, your LDAP server is configured correctly.
-
-. Save the configuration.

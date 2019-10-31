@@ -1,11 +1,12 @@
-= To Uninstall and Reinstall Anypoint Private Cloud
+= Uninstall Anypoint Platform Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If you encounter problems during installation, you can attempt to reinstall. Before beginning a new install, ensure that all remnants of the original installation have been removed by performing the following commands on all nodes:
+If you encounter problems during installation, you can uninstall. Before beginning a new installation, ensure that your environment meets all system requirements listed in the xref:install-checklist[Product Prerequisites], and that all remnants of the original installation have been removed by performing the following commands on all nodes:
 
-Uninstall Gravity
+. Uninstall Gravity
++
 ----
 # The order of the following steps is important!
 # Perform each step in order as described.
@@ -13,7 +14,7 @@ Uninstall Gravity
 # Remove installed system components.
 sudo gravity system uninstall --confirm
 
-# Unmount all anypoint mounts.
+# Unmount all Anypoint mounts.
 sudo umount /var/lib/gravity/planet/etcd
 sudo umount /var/lib/gravity
 sudo umount /var/lib/data
@@ -32,7 +33,8 @@ sudo mount /var/lib/data
 sudo rm -rf /var/lib/data/*
 ----
 
-Restore Original State of the Docker Volume
+. Restore Original State of the Docker Volume
++
 ----
 # In order to clean the Docker volumes, you might need to first reboot the server 
 # to force clean down any handles to the Docker Device.
@@ -57,7 +59,8 @@ sudo pvremove <PV Name>
 sudo parted /dev/{docker-device} mklabel gpt -s
 ----
 
-Purge IPTABLES
+. Purge IPTABLES
++
 ----
 # List iptables.
 sudo iptables -L -n -v
@@ -81,18 +84,19 @@ iptables-save
 iptables-save > /etc/sysconfig/iptables
 ----
 
-Restart the server
+. Restart the server
++
 ----
 reboot
 ----
 
-Verify the requirements are met after the server restart.
-
-Depending on the state of the full or partial install that you are replacing, the previous commands might not 
+. Verify the requirements are met after the server restart.
+. Depending on the state of the full or partial install that you are replacing, the previous commands might not 
 completely return the system to an installable state. Before beginning reinstallation, ensure that your system 
-is still set up correctly and meets the minimum disk and resource requirements.
+still meets all prerequisites listed in the xref:install-checklist[Product Prerequisites] are met.
 
 == See Also
 
-* xref:prereq-workflow.adoc[Workflow: Install and Verify Prerequisites for Physical Servers]
-* xref:install-auto-install.adoc[To Install Anypoint Platform Private Cloud Using Automated Installer]
+* xref:install-workflow.adoc[Install Anypoint Platform Private Cloud]
+* xref:install-installer.adoc[Run the GUI Installer]
+* xref:install-auto-install.adoc[Run the CLI Installer]

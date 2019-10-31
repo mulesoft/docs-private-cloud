@@ -3,12 +3,16 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+[IMPORTANT]
+Setting up and configuring an NFS server should be performed by your infrastructure team. If you experience problems with any of the following instructions, contact your infrastructure team for assistance.
 
-== Error: “Server Not Responding”
+You must have a connection from each node to NFS.
 
-Use a tool such as ping, traceroute or tracepath to verify that the client and server machines can communicate with each other. If communication fails between the client and server machines, examine the network interface card (NIC) settings using either `ifconfig` or `ethtool` to verify the IP settings.
+== “Server Not Responding”
 
-== Error: “mount clntudp_create: RPC: Port mapper failure – RPC: Unable to receive”
+Use a tool such as ping, traceroute, or tracepath to verify that the client and server machines can communicate with each other. If communication fails between the client and server machines, examine the network interface card (NIC) settings using either `ifconfig` or `ethtool` to verify the IP settings.
+
+== “mount clntudp_create: RPC: Port mapper failure – RPC: Unable to receive”
 
 The Linux NFS implementation requires that both the NFS service and the portmapper (RPC) service are running on both the client and the server. Verify that these services are running like this:
 
@@ -23,7 +27,7 @@ The Linux NFS implementation requires that both the NFS service and the portmapp
     100000    2   udp    111  portmapper
 ```
 
-== Error: “Access Denied” or "Permission Denied"
+== “Access Denied” or "Permission Denied"
 
 Check the export permissions for the NFS file system. You can do this from the client or from the server.
 
@@ -35,13 +39,9 @@ From the server:
 
 `exportfs -a`
 
-== Error: "rpc mount export: RPC: Timed out"
+== "rpc mount export: RPC: Timed out"
 
-Error message:
-
-`Unable to access file system at [NFS SERVER]: rpc mount export: RPC: Timed out`
-
-This error is caused by a DNS name resolution issue. NFS (RPC) needs reverse name resolution. If the NFS server or client cannot resolve their name, this error occurs. If you receive this error message, check the DNS configuration and the `/etc/hosts` configuration.
+The error message `Unable to access file system at [NFS SERVER]: rpc mount export: RPC: Timed out` is caused by a DNS name resolution issue. NFS (RPC) needs reverse name resolution. If the NFS server or client cannot resolve their name, this error occurs. Check the DNS configuration and the `/etc/hosts` configuration.
 
 == Mounting the NFS Server Fails
 
