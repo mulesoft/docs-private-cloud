@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To preserve your data in case of system failure, ensure that your system is automatically backed up. Configure your backup to run at least once per day; hourly is recommended. Store your backup archive on external storage outside the Anypoint cluster.
+To preserve your data in case of system failure or problems with other operations, such as patching or performing upgrades, ensure that your system is automatically backed up. Regular backups are extremely important for disaster recovery procedures. Configure your backup to run at least once per day; hourly is recommended. Store your backup archive on external storage outside the Anypoint cluster.
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires you to install, configure, and manage an NFS server. Ensure that you configure and perform frequent backups of this server.
 
@@ -27,6 +27,22 @@ Specifies the deadline for the backup job, for example, 30s or 5m. Default is 20
 +
 Outputs logs to a file.
 
+Backup contents:
+
+[%header%autowidth.spread]
+|===
+| Information | Included in PCE Backup 
+| Databases | Y
+| Configurations | Y
+| Secrets | Y
+| Object Store | Y
+| Drives | N
+| NFS Server Configuration | N
+| Runtimes* | N
+|===
+ 
+*PCE only has INFORMATION about runtimes, such as their names and status.
+
 == Perform a System Restore
 
 To restore a system from your backup, use the existing cluster or create a new cluster containing the same number of servers as the cluster being restored.
@@ -47,14 +63,21 @@ scp /backup-path/to-restore.tar.gz your_username@remotehost.edu:/var/lib/gravity
 ----
 sudo gravity restore /var/lib/gravity/planet/share/to-restore.tar.gz
 ----
-
++
 You can pass the following optional parameters:
-
++
+====
 * `--follow`: outputs the backup job logs to stdout
 * `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
 * `--log-file`: outputs logs to a file
+====
++
+Wait until the operation completes. This operation takes a few minutes. 
 
-Note that this operation takes a few minutes. 
+. Manually restore the following information: 
++
+* Runtimes
+* NFS server configuration
 
 == See Also
 
