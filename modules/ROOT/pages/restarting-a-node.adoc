@@ -1,11 +1,11 @@
-= Stop, Restart, or Update an Anypoint Private Cloud Edition Node
+= Update Nodes
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 == Before You Begin
 
-* Set up and test the backup procedure on all clusters after you complete installation.
+* Set up and test the backup procedure on all clusters.
 * Perform a backup before attempting node maintenance to preserve data in the event of a failure.
 
 == Cluster and Application Updates
@@ -13,7 +13,7 @@ endif::[]
 [IMPORTANT]
 The following steps must be performed on one Anypoint Platform Private Cloud Edition node at a time to minimize or eliminate component breakage during the update process. The entire process must be completed on each node before the next node is addressed. Verify the health status of all cluster components and applications after each node update before proceeding with the next node.
 
-=== Verify Cluster Status
+=== Verify Cluster Health Status
 
 Verify that the cluster is healthy before starting the process. Otherwise, many of the assumptions made in this process are not valid.
 
@@ -23,18 +23,20 @@ Verify that the cluster is healthy before starting the process. Otherwise, many 
 gravity status
 etcdctl cluster-health
 ```
++
+If the output from the previous commands mentions a `degraded` state or `errors`, fix all issues before proceeding.
 
-If the output from any of the two commands above mentions `degraded` state or `errors` please be sure to fix the mentioned issue, before proceeding.
-
-Please also verify that all Pods are running by running the commands below:
+. Verify that all pods are running:
++
 ```
 gravity get pod -o wide--all-namespaces | grep -vi Running
 ```
-And if the command above lists any Pod, which will not be in "Running" state, then it means that it's probably having some issues and needs to be fixed.
++
+If the output from the previous command lists any pod not in "Running" state, then fix all issues before proceeding.
 
 === Install Updates
 
-After verifying that the cluster is healthy, proceed with the process by draining the first node.
+After verifying that the cluster is healthy, select a node on which to perform the following steps:
 
 . Retrieve the *name* of the target node:
 +
@@ -51,14 +53,14 @@ kubectl drain --delete-local-data --ignore-daemonsets <node_name>
 ```
 sudo systemctl list-units --plain | awk '/planet-master/{print $1}'
 ```
-The command above will output a systemd unit name, copy it as you will need to use it in the following commands instead of `$unit_name`.
-. Stop the unit:
+The previous command outputs a `systemd` unit name, which is used as the `$unit_name` value in the next step.
+. Stop the gravity unit:
 +
 ```
 systemctl stop $unit_name
 systemctl status $unit_name
 ```
-. After the `status` subcommand indicates the unit is stopped, install the needed updates and reboot the server.
+. After the `status` subcommand indicates the gravity unit is stopped, install the needed updates and reboot the server.
 
 === Perform Post-update Check
 
@@ -67,7 +69,7 @@ systemctl status $unit_name
 ```
 systemctl status --failed
 ```
-This command should return zero units which means that your system boot phase went correctly and no unit failed to start. if there's any unit which had issues, please inspect the problem and fix it before proceeding.
+The previous command should return zero units, which means that your system boot phase was successful and all units started. If any units failed to start, fix all issues before proceeding.
 . Check the gravity `systemd` units:
 +
 ```
@@ -104,7 +106,7 @@ systemctl enable --now <name_of_the_gravity_unit>
 ```
 kubectl uncordon <node_name>
 ```
-This operation will set the target node to schedule Pods again. It may take a few minutes to complete.
+The target node is set to again schedule pods. This can take a few minutes to complete.
 
 . Verify cluster status:
 +
@@ -112,5 +114,5 @@ This operation will set the target node to schedule Pods again. It may take a fe
 gravity status
 ```
 +
-This command should display a `healthy` status for all nodes of the cluster. After you verify that the node has rejoined the cluster and is in healthy status, repeat the process for the next node in the cluster.
+This command should display a `healthy` status for all nodes of the cluster. After you verify that the node has rejoined the cluster and is in healthy status, repeat the process for the next node in the cluster until all nodes are updated.
 ****
