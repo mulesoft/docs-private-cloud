@@ -37,7 +37,7 @@ Backup contents:
 | Secrets | Y
 | Object Store | Y
 | Drives | N
-| NFS Server Configuration | N
+| NFS files | N
 | Runtimes* | N
 |===
  
@@ -76,8 +76,7 @@ Wait until the operation completes. This operation takes a few minutes.
 
 . Manually restore the following information: 
 +
-* Runtimes
-* NFS server configuration
+* NFS files
 
 == See Also
 
