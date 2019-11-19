@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To preserve your data in case of system failure or problems with other operations, such as patching or performing upgrades, ensure that your system is automatically backed up. Regular backups are extremely important for disaster recovery procedures. Configure your backup to run at least once per day; hourly is recommended. Store your backup archive on external storage outside the Anypoint cluster.
+To preserve your data in case of system failure or problems with other operations, such as patching or performing upgrades, ensure that your system is automatically backed up. Regular backups are extremely important for disaster recovery procedures. Configure your backup to run at least once per day; hourly is recommended. Store your backup archive on external storage outside the Anypoint Platform cluster.
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires you to install, configure, and manage an NFS server. Ensure that you configure and perform frequent backups of this server.
 
@@ -67,16 +67,20 @@ sudo gravity restore /var/lib/gravity/planet/share/to-restore.tar.gz
 You can pass the following optional parameters:
 +
 ====
-* `--follow`: outputs the backup job logs to stdout
-* `--timeout`: specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
-* `--log-file`: outputs logs to a file
+* `--follow`
++
+Outputs the backup job logs to stdout.
+* `--timeout`
++
+Specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
+* `--log-file`
++
+Outputs logs to a file.
 ====
-+
-Wait until the operation completes. This operation takes a few minutes. 
 
-. Manually restore the following information: 
-+
-* NFS files
+. Wait a few minutes for the operation to complete. 
+
+. Manually restore the NFS files. 
 
 == See Also
 
