@@ -85,7 +85,7 @@ https://{platform-host}:9500
 [WARNING]
 If you are upgrading from Anypoint Platform PCE 1.7.x to 2.0.x, ensure that you configure your NSF servers described in the following step before accessing Anypoint Platform PCE. In this case, failure to configure NFS before accessing the platform can result in data loss.
 
-. If you are upgrading from from Anypoint Platform PCE 1.7.x to 2.0.x, configure the required NFS server.
+. When upgrading from from Anypoint Platform PCE 1.7.x to 2.0.x, configure the required NFS server.
 +
 .. From Anypoint Platform, select *Access Management*.
 .. Select *NFS Settings*.
