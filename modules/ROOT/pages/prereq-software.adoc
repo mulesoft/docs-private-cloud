@@ -24,7 +24,7 @@ The following Linux distributions are supported:
 === Check for SELinux Custom Profiles
 Although SELinux is not required, Anypoint Platform PCE supports the default SELinux profile running 
 in strict mode. If your environment uses a custom profile, it must provide an unconstrained user context when 
-running the installer. Review any custom profiles with your customer support representative.
+running the installer. Review any custom profiles with your MuleSoft representative.
 
 === Enable and Load Kernel Modules
 
