@@ -11,11 +11,11 @@ endif::[]
 == Cluster and Application Updates
 
 [IMPORTANT]
-The following steps must be performed on one Anypoint Platform Private Cloud Edition node at a time to minimize or eliminate component breakage during the update process. The entire process must be completed on each node before the next node is addressed. Verify the health status of all cluster components and applications after each node update before proceeding with the next node.
+You must perform the following steps on one Anypoint Platform Private Cloud Edition node at a time to minimize or eliminate component breakage during the update process. You must complete the entire process on each node before the next node is addressed. After each node is updated, verify the health status of all cluster components and applications before proceeding with the next node.
 
 === Verify Cluster Health Status
 
-Verify that the cluster is healthy before starting the process. Otherwise, many of the assumptions made in this process are not valid.
+Verify that the cluster is healthy before starting the update process. Otherwise, many of the assumptions made in this process are not valid.
 
 . Verify the output from the following commands:
 +
@@ -36,9 +36,9 @@ If the output from the previous command lists any pod not in "Running" state, th
 
 === Install Updates
 
-After verifying that the cluster is healthy, select a node on which to perform the following steps:
+Select a node on which to perform the following steps:
 
-. Retrieve the *name* of the target node:
+. Retrieve the name of the target node:
 +
 ```
 kubectl get nodes
@@ -53,23 +53,23 @@ kubectl drain --delete-local-data --ignore-daemonsets <node_name>
 ```
 sudo systemctl list-units --plain | awk '/planet-master/{print $1}'
 ```
-The previous command outputs a `systemd` unit name, which is used as the `$unit_name` value in the next step.
+The previous command outputs a `systemd` unit name, which is used as the `$unit_name` value in the following step.
 . Stop the gravity unit:
 +
 ```
 systemctl stop $unit_name
 systemctl status $unit_name
 ```
-. After the `status` subcommand indicates the gravity unit is stopped, install the needed updates and reboot the server.
+. After the `status` subcommand indicates that the gravity unit is stopped, install the updates and reboot the server.
 
-=== Perform Post-update Check
+=== Perform Post-update Verification
 
 . Verify that all systems correctly restarted:
 +
 ```
 systemctl status --failed
 ```
-The previous command should return zero units, which means that your system boot phase was successful and all units started. If any units failed to start, fix all issues before proceeding.
+The previous command should return zero units, which means that your system restart was successful and all units started. If any units failed to start, fix all issues before proceeding.
 . Check the gravity `systemd` units:
 +
 ```
@@ -101,12 +101,11 @@ systemctl list-units '*gravity__gravitational*'
 systemctl enable --now <name_of_the_gravity_unit>
 ```
 
-. Uncordon the node:
+. Uncordon the node to set the target node to again schedule pods. This can take a few minutes to complete.
 +
 ```
 kubectl uncordon <node_name>
 ```
-The target node is set to again schedule pods. This can take a few minutes to complete.
 
 . Verify cluster status:
 +
