@@ -1,78 +1,117 @@
-= Stop, Restart, or Update an Anypoint Private Cloud Edition Node
+= Update Nodes
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-This topic describes the processes for removing an Anypoint Platform PCE node from active service, and returning it to service when ready.
+== Before You Begin
 
-== Notes
+* Set up and test the backup procedure on all clusters.
+* Perform a backup before attempting node maintenance to preserve data in the event of a failure.
 
-[NOTE]
-To preserve your data in case of system failure, ensure that your system is backed up before attempting node maintenance.
-[NOTE]
-The steps below must be performed on a single Anypoint Platform PCE node at a time.  If maintenance is required on more than one node, the entire process must be completed on a single node before the next node is addressed.
+== Cluster and Application Updates
 
-== Drain the Node
+[IMPORTANT]
+You must perform the following steps on one Anypoint Platform Private Cloud Edition node at a time to minimize or eliminate component breakage during the update process. You must complete the entire process on each node before the next node is addressed. After each node is updated, verify the health status of all cluster components and applications before proceeding with the next node.
 
-Before any maintenance or restart of a node can be performed, it must be removed from the cluster and its workload reassigned to the other nodes in the cluster.
+=== Verify Cluster Health Status
 
-. Check if the firewalld service is running and enabled:
+Verify that the cluster is healthy before starting the update process. Otherwise, many of the assumptions made in this process are not valid.
+
+. Verify the output from the following commands:
 +
-----
-service firewalld status
-----
-. If firewalld is running, stop, disable, and mask it:
+```
+gravity status
+etcdctl cluster-health
+```
 +
-----
-sudo systemctl stop firewalld
-sudo systemctl disable firewalld
-sudo systemctl mask firewalld
-----
-. Retrieve the *name* of target node:
+If the output from the previous commands mentions a `degraded` state or `errors`, fix all issues before proceeding.
+
+. Verify that all pods are running:
 +
-----
+```
+gravity get pod -o wide--all-namespaces | grep -vi Running
+```
++
+If the output from the previous command lists any pod not in "Running" state, then fix all issues before proceeding.
+
+=== Install Updates
+
+Select a node on which to perform the following steps:
+
+. Retrieve the name of the target node:
++
+```
 kubectl get nodes
-----
+```
 . Drain the node:
 +
-----
+```
 kubectl drain --delete-local-data --ignore-daemonsets <node_name>
-----
-. Stop Gravity
+```
+. After the node is drained, identify the gravity unit name:
 +
-----
-systemctl list-units | grep "planet-master"
-  # note the full name of the Gravity "planet-master" unit
-systemctl stop <garvity_unit_name>
-----
-
-== Apply Node Maintenance
-
-Once the node has been drained and cordoned, any desired maintenance or a system reboot may be performed.  Caution must be used, however, to avoid any updates to the system that violate the requirements of Anypoint Platform PCE.
-
-== Rejoin the Node
-
-. Check Gravity Planet Master and Teleport status:
+```
+sudo systemctl list-units --plain | awk '/planet-master/{print $1}'
+```
+The previous command outputs a `systemd` unit name, which is used as the `$unit_name` value in the following step.
+. Stop the gravity unit:
 +
-----
-systemctl list-units | grep gravity__gravitational
-----
-. If either Gravity service is not “loaded active running”, then enable it:
+```
+systemctl stop $unit_name
+systemctl status $unit_name
+```
+. After the `status` subcommand indicates that the gravity unit is stopped, install the updates and reboot the server.
+
+=== Perform Post-update Verification
+
+. Verify that all systems correctly restarted:
 +
-----
-systemctl enable <name_of_the_gravity_unit>
-----
-. Uncordon the node:
+```
+systemctl status --failed
+```
+The previous command should return zero units, which means that your system restart was successful and all units started. If any units failed to start, fix all issues before proceeding.
+. Check the gravity `systemd` units:
 +
-----
+```
+systemctl list-units '*gravity__gravitational*'
+```
+. Check for errors in the logs by running `journalctl`.
+
+. If everything started correctly, run `gravity enter` and verify the results.
+
+. Check the cluster status again:
++
+```
+gravity status
+etcdctl cluster-health
+gravity get pod -o wide--all-namespaces | grep -vi Running
+```
+
+=== Rejoin the Node
+
+. Check the gravity Planet master and teleport status:
++
+```
+systemctl list-units '*gravity__gravitational*'
+```
+
+. If the status of the gravity service is not `loaded`, `active`, or `running`, then you must enable it:
++
+```
+systemctl enable --now <name_of_the_gravity_unit>
+```
+
+. Uncordon the node to set the target node to again schedule pods. This can take a few minutes to complete.
++
+```
 kubectl uncordon <node_name>
-----
+```
+
 . Verify cluster status:
 +
-----
+```
 gravity status
-----
+```
 +
-****
-This command should show all nodes of the cluster with "healthy" status.  Only after verifying that the node has rejoined the cluster and is in healthy status can the process be repeated for other nodes in the cluster.
+This command should display a `healthy` status for all nodes of the cluster. After you verify that the node has rejoined the cluster and is in healthy status, repeat the process for the next node in the cluster until all nodes are updated.
 ****
