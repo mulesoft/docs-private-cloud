@@ -30,5 +30,6 @@
  ** xref:config-add-proxy-whitelist.adoc[Add Whitelist Addresses for API Platform Proxies]
  ** xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Private Cloud]
  ** xref:custom-policies.adoc[Upload Custom Policies and Publish Assets to Exchange Using the Maven Client]
+ ** xref:restarting-a-node.adoc[Update Nodes]
  ** xref:ext-analytics-elk.adoc[Analyze Business and API Data using ELK]
  ** xref:register-server.adoc[Troubleshoot Mule Runtime Engine Registration]
