@@ -6,7 +6,7 @@ endif::[]
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires an external identity provider. All users must be registered via external identity except the admin you register in the installation wizard. The following external identity providers are supported:
 
-* xref:access-management::conf-ldap-private-cloud-task[To Configure LDAP in Anypoint Platform Private Cloud]
+* xref:access-management::conf-ldap-private-cloud-task.adoc[To Configure LDAP in Anypoint Platform Private Cloud]
 * xref:access-management::conf-client-mgmt-pf-task.adoc[Configure Ping Federate]
 * xref:access-management::managing-users.adoc[Configure SAML]
 * xref:access-management::conf-openid-connect-task.adoc[To Configure OpenID Connect]
