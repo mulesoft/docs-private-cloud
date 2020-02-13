@@ -95,6 +95,7 @@ Firewalld is an iptables controller that defines rules for persistent network tr
 If you are using firewalld with a Red Hat Enterprise Linux (RHEL) 7.3 operating system, you must enable forwarding on the `docker0` device.
 You must also forward any packets being sent from or to the 10.0.0.0/8 subnet.
 
+
 ==== Determine If You Are Using Firewalld
 
 To determine if your system is using firewalld, run the following command on every node:
@@ -114,6 +115,24 @@ Docs: man:firewalld(1)
 ----
 
 If firewalld is not installed, an error message is displayed.
+
+==== Enable Forwarding on Docker Device
+
+To enable forwarding on the docker0 device, run the following commands:
+
+----
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -o docker0 -j ACCEPT -m comment --comment "docker subnet"
+
+firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+----
+
+To enable forwarding on the 10.0.0.0/8 subnet, run the following commands:
+
+----
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
+----
 
 === Remove Local DNS Servers
 
@@ -148,24 +167,6 @@ To enable internal Kubernetes load balancing, you must enable IPv4 forwarding on
 Enable the Linux kernel to translate packets to and from hosted containers.
 
 ** IP addresses for bridge-netfiltering are managed by the overlay network created by Kubernetes. Verify that the CIDR block used for that network is in the private IP address range.
-
-=== Enable Forwarding on Docker Device
-
-To enable forwarding on the docker0 device, run the following commands:
-
-----
-firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -o docker0 -j ACCEPT -m comment --comment "docker subnet"
-
-firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
-----
-
-To enable forwarding on the 10.0.0.0/8 subnet, run the following commands:
-
-----
-firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
-
-firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
-----
 
 == Verify SSL Certificate Requirements
 
