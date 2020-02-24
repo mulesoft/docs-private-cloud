@@ -123,6 +123,14 @@ docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/ext
 
 If you are installing Anypoint Private Cloud using the GUI-based installer, you must enable this port before running the installer. You must open this port in the cluster's security group before running the installer using AWS Web Console.
 
+== Destroying resources
+
+You can destroy all the resources that were created using the provisioner by running `cluster-deprovision`. Make sure the `TELEKUBE_CLUSTER_NAME` env variable in your environment file has the right value for the target cluster you want to destroy:
+
+----
+docker run --rm --env-file pce.env IMAGE_ID cluster-deprovision
+----
+
 == Troubleshooting
 
 Review the following information in the event you experience problems when creating AWS resources.
