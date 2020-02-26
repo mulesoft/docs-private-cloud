@@ -17,10 +17,10 @@ All prerequisites apply to all xref:prereq-platform#supported-environments[Suppo
 ** Working with Terraform. This is only required if your environment includes AWS.
 ** Remote connection mechanisms, such as SSL and SSH.
 
-* Contact MuleSoft professional services prior to installation for assistance.
-
 [WARNING]
 ==== 
+You must contact MuleSoft professional services prior to installation. MuleSoft professional services must be involved with your installation.
+
 Installing Anypoint Platform PCE requires specific versions of operating systems, NFS, and other software. Most issues experienced with Anypoint Platform PCE occur because the required environment was not set up prior to installing or upgrading. For example, the following situations cause known problems:
 
 * Using your own AWS images when using AWS.
