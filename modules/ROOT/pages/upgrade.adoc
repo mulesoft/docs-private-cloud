@@ -13,7 +13,8 @@ Refer to the xref:release-notes::pce/anypoint-private-cloud-2.0.3-release-notes#
 
 See xref:1.6@upgrade.adoc[About Migrating Anypoint Platform Private Cloud] for information on upgrading to version 1.6.1. See xref:1.7@upgrade.adoc[About Migrating Anypoint Platform Private Cloud] for information on upgrading to version 1.7.1.
 
-Contact MuleSoft professional services prior to upgrading for assistance.
+[WARNING]
+You must contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved with your upgrade procedure.
 
 == Procedure
 
