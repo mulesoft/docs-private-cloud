@@ -41,7 +41,7 @@ The space requirements listed in the previous table are based on average use. Fo
 
 The main purpose of the system state directory device is to store system configuration and metadata, for example, database and packages. As package sizes can be arbitrarily large, it is important to estimate the minimum size requirements and allocate enough space for the dedicated device.
 
-Format this device either as `xfs` or `ext4` and mount it as `/var/lib/gravity`.  
+Format this device as `xfs` or `ext4` and mount it as `/var/lib/gravity`.  
 
 The following shell snippet is provided as an example for mounting the system state directory device using systemd mount files and cannot be used as-is in production. You can also mount the system state directory device by using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example to guide this process, make sure to specify the correct device name in two places.
 
@@ -58,7 +58,7 @@ sudo systemctl start var-lib-gravity.mount
 
 The main purpose of the application data directory device is to store application configuration and data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
 
-Format this device either as `xfs` or `ext4` and mount it as `/var/lib/data`. 
+Format this device as `xfs` or `ext4` and mount it as `/var/lib/data`. 
 
 The following shell snippet is provided as an example for mounting the application data device using systemd mount files, and cannot be used as-is in production. You can also mount the application data device using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example to guide this process, make sure to specify the correct device name in two places.
 
