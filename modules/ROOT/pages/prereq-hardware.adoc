@@ -88,11 +88,14 @@ sudo systemctl enable var-lib-gravity-planet-etcd.mount
 sudo systemctl start var-lib-gravity-planet-etcd.mount
 ----
 
+[NOTE]
+Make sure this device is mounted AFTER mounting the System State device under `/var/lib/gravity/planet`. If you are usi system.d units to mount the volumes you can declare mount dependencies using `After=<device-name>.<mount>`
+
 == Docker Device
 
 Unless specified, Docker configuration defaults to the use of Overlay driver, which is recommended for production.
 
-Format this device either as `xfs` or `ext4` and mounted as `/var/lib/gravity/planet/etcd`.
+Format this device either as `xfs` or `ext4` and mounted as `/var/lib/gravity/planet/docker`.
 
 The following shell snippet is provided as an example for mounting the Docker device using systemd mount files, and cannot be used as-is in production. The end result of this step mounts the Docker device to the path `/var/lib/gravity/planet/docker`. You can also mount the Docker device using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example to guide this process, make sure to specify the correct device name in two places.
 
@@ -104,6 +107,9 @@ sudo systemctl daemon-reload
 sudo systemctl enable var-lib-gravity-planet-docker.mount
 sudo systemctl start var-lib-gravity-planet-docker.mount
 ----
+
+[NOTE]
+Make sure this device is mounted AFTER mounting the System State device under `/var/lib/gravity/planet`. If you are usi system.d units to mount the volumes you can declare mount dependencies using `After=<device-name>.<mount>`
 
 == Verify Devices
 
