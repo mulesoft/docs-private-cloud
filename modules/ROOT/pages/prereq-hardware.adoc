@@ -96,7 +96,7 @@ sudo systemctl start var-lib-gravity-planet-etcd.mount
 
 == Docker Device
 
-Unless specified, Docker configuration defaults to the use of the overlay driver, which is recommended for production.
+If not specified, Docker configuration defaults to the use of the overlay driver, which is recommended for production.
 
 Format this device as `xfs` or `ext4` and mount it as `/var/lib/gravity/planet/docker`.
 
