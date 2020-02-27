@@ -192,6 +192,7 @@ Your load balancer must route the following TCP ports:
 |Load Balancer Port |Instance Port | Internal Usage
 |`80` | `30080`  | HTTP redirects to HTTPs.
 |`443` | `30443` | HTTPS port
+|`8083` | `30883` | WebSocket port for Runtimes to authenticate
 |`8889` | `30889` | WebSocket port for Runtimes to connect
 |`9500` | `32009` | Ops Center access port
 |===
@@ -231,6 +232,11 @@ server {
 }
 
 server {
+   listen 8083;
+   proxy_pass 0.0.0.0:30883;
+}
+
+server {
    listen 8889;
    proxy_pass 0.0.0.0:30889;
 }
@@ -249,6 +255,7 @@ server {
 . Enable the default ports on SELinux before starting the NGINX. Run the following commands one by one:
 +
 ----
+semanage port -a -t http_port_t  -p tcp 8083
 semanage port -a -t http_port_t  -p tcp 8889
 semanage port -a -t http_port_t  -p tcp 9500
 semanage port -a -t http_port_t  -p tcp 9501
