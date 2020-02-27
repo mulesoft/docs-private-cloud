@@ -89,7 +89,7 @@ sudo systemctl start var-lib-gravity-planet-etcd.mount
 ----
 
 [NOTE]
-Make sure this device is mounted AFTER mounting the System State device under `/var/lib/gravity/planet`. If you are usi system.d units to mount the volumes you can declare mount dependencies using `After=<device-name>.<mount>`
+Make sure this device is mounted AFTER mounting the System State device under `/var/lib/gravity/planet`. If you are using system.d units to mount the volumes you can declare mount dependencies using `After=<device-name>.<mount>`
 
 == Docker Device
 
@@ -109,7 +109,7 @@ sudo systemctl start var-lib-gravity-planet-docker.mount
 ----
 
 [NOTE]
-Make sure this device is mounted AFTER mounting the System State device under `/var/lib/gravity/planet`. If you are usi system.d units to mount the volumes you can declare mount dependencies using `After=<device-name>.<mount>`
+Make sure this device is mounted AFTER mounting the System State device under `/var/lib/gravity/planet`. If you are using system.d units to mount the volumes you can declare mount dependencies using `After=<device-name>.<mount>`
 
 == Verify Devices
 
