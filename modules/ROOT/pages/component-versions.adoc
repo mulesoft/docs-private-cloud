@@ -1,0 +1,72 @@
+= Component Versions
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== Components and Features in Anypoint Platform PCE Version 2.1
+
+Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] 
+for detailed release information.
+
+[%header%autowidth.spread]
+|===
+| Component | Feature Description | Feature Version
+| Exchange | API Metadata Service | v0.7.387
+| Exchange | Asset Manager Service | v0.8.2109
+| Exchange | Asset Portal Service | v0.6.782
+| Exchange | Assets Reviews Service | v0.6.547
+| Exchange | Custom Assets Facade Service | v0.8.690
+| Exchange | Customization Service | v0.5.518
+| Exchange | Dependency Resolver Service | v0.6.305
+| Exchange | File Service | v0.8.106
+| Exchange | File Upload Service | v0.5.245
+| Exchange | Graph Node Service | v0.1.195
+| Exchange | Graph Service | v0.8.481
+| Exchange | Maven Facade Service | v0.7.520
+| Exchange | Search Service | v0.8.125
+| Exchange | Exchange UI | v0.8.2496
+| Exchange | XAPI Service | v0.8.1315
+| Connectivity | Rest Connect Service | v0.4.528
+| API Platform | API Platform API | 2.6.1
+| API Platform | API Platform Web | 1.15.90
+| API Platform | API Manager Web | 1.5.195
+| API Platform | Contract Caching Service | 1.1.9 
+| API Platform | API Proxy Builder Service | 1.2.38
+| API Platform | Raml Parser Service | 0.3.76 
+| API Platform | Proxies XAPI Service | 1.2.62
+| API Designer | API Designer XAPI | v3.11.3
+| API Platform | API Designer UI | v2.12.3
+| Mocking Service | Mocking Service | v2.9.4
+| Mozart | Mozart UI |
+| Mozart | Mozart XAPI |
+| Mozart | Mozart Project Manager Service |
+| Runtime Manager | Cloudhub MCM | 
+| Runtime Manager | Cloudhub UI | 
+| Runtime Manager | AMC UI Rest Facade | 
+| Runtime Manager | Hybrid Rest | 
+| Runtime Manager | Metadata Manager| 
+| Runtime Manager | Platform Alerts | 
+| Runtime Manager | Mule Message Processor | 
+| Runtime Manager | Platform Messages | 
+| CS | Authentication Server | v0.71.0
+| CS | Core Services UI | v0.71.0
+| CS | Anypoint Signin | v2.16.2
+| CS | Landing Page UI | v2.11.1
+| CS | Navbar | v1.54.2
+| CS | Audit Log | v2.6.1
+| RAML Tooling | API Notebook | v1.1.70
+| RAML Tooling | RAML Mocking Service Site | v1.2.469
+| RAML Tooling | Raml Mocking Service Proxy | v0.4.211
+| AMF | AMF Service | v1.0.83-4.amf-40x
+| VCS | VCS  | v0.3.1216
+| Studio | Studio | 7.4.3.
+|===
+
+== See Also
+
+* xref:supported-cluster-config.adoc[Supported Configurations]
+* xref:install-checklist.adoc[Product Prerequisites]
+* xref:install-workflow.adoc[Install Anypoint Platform PCE]
+* xref:runtime-manager::index.adoc[Runtime Manager]
+* xref:exchange::index.adoc[Anypoint Exchange]
+* xref:2.x@api-manager::index.adoc[API Manager]
