@@ -8,12 +8,12 @@ By default, proxy requests are enabled for the domain name where the platform is
 To add whitelist addresses:
 
 . Log in to Ops Center and select Configuration.
-. Select the `api-manager` namespace on the right dropdown and then select`api-platform-web-env` config map on the left dropdown.
-. Locate the `APW_FEATURES_PROXYWHITELIST`, click it and ensure that is set to `true`. If not, set it to `true` and click the `Apply` button on the bottom.
+. Select the `api-manager` namespace from the right drop-down menu and then select`api-platform-web-env` config map from the left drop-down menu.
+. Select `APW_FEATURES_PROXYWHITELIST` and ensure that is set to `true`. If not, set it to `true` and then select `Apply`.
 +
-. Locate the `APW_PROXYWHITELIST_RULES` tab and click it:
+. Select `APW_PROXYWHITELIST_RULES`.
 +
-. Write your rules separated by commas. The following example shows how to define regular expressions to allow requests to be made to the `*.somewhere.com/*` and `*.somewhereelse.com/*` domains, where * is any part of a DNS name or URL:
+. Write your rules separated by commas. The following example defines regular expressions that allow requests to be made to the `*.somewhere.com/*` and `*.somewhereelse.com/*` domains, where * is any part of a DNS name or URL:
 +
 ----
 .*\\.somewhere\\.com,.*\\.somewhereelse\\.com 
