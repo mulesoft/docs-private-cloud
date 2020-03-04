@@ -16,7 +16,7 @@ To add whitelist addresses:
 . Write your rules separated by commas. The following example defines regular expressions that allow requests to be made to the `*.somewhere.com/*` and `*.somewhereelse.com/*` domains, where * is any part of a DNS name or URL:
 +
 ----
-.*\\.somewhere\\.com,.*\\.somewhereelse\\.com 
+.*\.somewhere\.com,.*\.somewhereelse\.com 
 ----
 
 . Select Apply to save changes to the `api-platform-web-env` config map.
