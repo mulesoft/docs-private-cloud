@@ -25,7 +25,7 @@ image::access-management-user-id.png[User ID]
 gravity enter
 ----
 
-. Identify one of the `cs-auth` containers:
+. Identify one of the `authentication-server` containers:
 +
 ----
 kubectl get pods -n access-management -l component=authentication-server
