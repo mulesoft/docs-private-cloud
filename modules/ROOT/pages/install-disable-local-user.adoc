@@ -25,22 +25,22 @@ image::access-management-user-id.png[User ID]
 gravity enter
 ----
 
-. Identify one of the `cs-auth` containers:
+. Identify one of the `authentication-server` containers:
 +
 ----
-kubectl get pods -l microservice=cs-auth
+kubectl get pods -n access-management -l component=authentication-server
 ----
 
-. Change the owner, providing the internal the `cs-auth` container and user ID obtained earlier:
+. Change the owner, providing the internal the `authentication-server` container and user ID obtained earlier:
 +
 ----
-kubectl exec -it <cs-auth-container> – node bin/change_owner.js --new-owner-id <user_id>
+kubectl exec -it -n access-management <authentication-server-pod> -c application – node bin/change_owner.js --new-owner-id <user_id>
 ----
 +
 This command changes the owner from the default system user to a new user managed by the external authentication provider. The command you use should be similar to the following example:
 +
 ----
-kubectl exec -it cs-auth-1572348378-0kb57 – node bin/change_owner.js --new-owner-id a363279f-982f-493c-b08f-9feb91be90d4
+kubectl exec -it -n access-management <authentication-server-pod> -c application – node bin/change_owner.js --new-owner-id a363279f-982f-493c-b08f-9feb91be90d4
 ----
 
 . Disable and delete the `System Admin` user.
