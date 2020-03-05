@@ -50,7 +50,7 @@ Backup contents:
 
 == Perform a System Restore
 
-To restore a system from your backup, use the existing cluster or create a new cluster containing the same number of servers as the cluster being restored.
+To restore a system from your backup use the same existing cluster or create a new cluster.
 
 [WARNING]
 Some settings like NFS, Certificate and DNS are not backed up and they should be setup on the environment where there restore is going to be performed *before* running the restore.
@@ -77,10 +77,10 @@ You can pass the following optional parameters:
 ====
 * `--follow`
 +
-Outputs the backup job logs to stdout.
+Outputs the restore job logs to stdout.
 * `--timeout`
 +
-Specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
+Specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 80m.
 * `--log-file`
 +
 Outputs logs to a file.
