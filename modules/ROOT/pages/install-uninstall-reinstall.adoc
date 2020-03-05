@@ -16,7 +16,6 @@ sudo gravity system uninstall --confirm
 
 # Unmount all Anypoint mounts.
 sudo umount /var/lib/gravity/planet/etcd
-sudo umount /var/lib/gravity/planet/docker
 sudo umount /var/lib/gravity
 sudo umount /var/lib/data
 
@@ -29,14 +28,35 @@ sudo mkdir -p /var/lib/gravity/planet/etcd
 sudo mount /var/lib/gravity/planet/etcd
 sudo rm -rf /var/lib/gravity/planet/etcd/*
 
-# Remount and clear docker data.
-sudo mkdir -p /var/lib/gravity/planet/docker
-sudo mount /var/lib/gravity/planet/docker
-sudo rm -rf /var/lib/gravity/planet/docker/*
-
 # Remount and clear application data.
 sudo mount /var/lib/data
 sudo rm -rf /var/lib/data/*
+----
+
+. Restore Original State of the Docker Volume
++
+----
+# In order to clean the Docker volumes, you might need to first reboot the server 
+# to force clean down any handles to the Docker Device.
+# This allows you to perform the proper clean-up.
+
+# Identify whether the docker logical volume was created.
+sudo lvs | grep docker
+# If the volume exists, remove it.
+sudo lvremove docker
+
+# Identify whether the docker volume group was created.
+sudo vgs | grep docker
+# If the volume exists, remove it.
+sudo vgremove docker
+
+# Identify whether the docker physical volume was created.
+sudo pvs | grep docker
+# If the volume exists, remove it.
+sudo pvremove <PV Name>
+
+# Clean the docker device by replacing "{docker-device}" in the following command:
+sudo parted /dev/{docker-device} mklabel gpt -s
 ----
 
 . Purge IPTABLES
