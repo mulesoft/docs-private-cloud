@@ -54,7 +54,7 @@ To restore a system from your backup archive, you can use the original cluster o
 
 [WARNING]
 ====
-Some settings, including NFS, Certificates, and DNS, are not backed up and must be configured for the environment in which the restore will be performed *before* running the restore.
+Some settings, including NFS, certificates, and DNS, are not backed up and must be configured for the environment in which the restore will be performed *before* running the restore.
 
 You cannot perform a backup between different versions of Anypoint Platform PCE. The new installation you create must use the same version of Anypoint Platform PCE as your backup.
 ====
