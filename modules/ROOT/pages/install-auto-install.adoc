@@ -23,12 +23,12 @@ The Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) installation
 
 == Run the Command Line Installation
 
-. Obtain the `anypoint-2.0.0-installer.tar.gz` archive from your customer success representative.
+. Obtain the `anypoint-2.1.0-installer.tar.gz` archive from your customer success representative.
 . Copy the archive to each server node in your cluster. Copy the license file to the installer node.
 . Uncompress the gzip archive: 
 +
 ----
-tar xvf anypoint-2.0.0-installer.tar.gz
+tar xvf anypoint-2.1.0-installer.tar.gz
 ----
 
 . Run the following command on one of the nodes in your cluster:
