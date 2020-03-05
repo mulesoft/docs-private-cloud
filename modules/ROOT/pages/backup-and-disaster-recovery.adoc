@@ -36,13 +36,8 @@ Backup contents:
 | Configurations | Y
 | Secrets | Y
 | Object Store | Y
-| Disclaimer settings | Y
-| SMTP settings | Y
-| DNS settings | N
-| Platform Certificate | N
-| NFS settings | N
-| NFS files | N
 | Drives | N
+| NFS files | N
 | Runtimes* | N
 |===
  
@@ -50,14 +45,10 @@ Backup contents:
 
 == Perform a System Restore
 
-To restore a system from your backup archive, you can use the original cluster or create a new cluster.
+To restore a system from your backup, use the existing cluster or create a new cluster containing the same number of servers as the cluster being restored.
 
 [WARNING]
-====
-Some settings, including NFS, certificates, and DNS, are not backed up and must be configured for the environment in which the restore will be performed *before* running the restore.
-
 You cannot perform a backup between different versions of Anypoint Platform PCE. The new installation you create must use the same version of Anypoint Platform PCE as your backup.
-====
 
 . Log in to one of the nodes in your cluster.
 
@@ -78,10 +69,10 @@ You can pass the following optional parameters:
 ====
 * `--follow`
 +
-Outputs the restore job logs to stdout.
+Outputs the backup job logs to stdout.
 * `--timeout`
 +
-Specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 80m.
+Specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 20m.
 * `--log-file`
 +
 Outputs logs to a file.
