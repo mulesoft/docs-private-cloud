@@ -61,16 +61,12 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 | AWS_SECRET_ACCESS_KEY | Specifies the AWS access key Terraform uses to connect to your AWS account.
 | AWS_KEY_NAME | Specifies the AWS SSH key. Do not include the `.pem` extension.
 | AWS_REGION | Specifies the AWS region where Terraform creates the cluster, for example, `us-east-2`. This value must have the same value as AWS_DEFAULT_REGION.
-| AWS_DEFAULT_REGION | Must be the same value as AWS_REGION.
 | TF_VAR_ssh_user=<SSH_USER> | Specifies the ssh user, for example, `ec2-user`, `centos`, etc.
-| CLOUD_PROVIDER | Must be `aws`.
-| CLUSTER_TYPE | Must be `pce`.
 | TELEKUBE_CLUSTER_NAME | Specifies the name of the cluster and the corresponding AWS resources.
 | TELEKUBE_NODE_PROFILE_COUNT_node | Specifies the number of nodes in your cluster. Possible values are `3` and `6`.
 | TELEKUBE_NODE_PROFILE_INSTANCE_TYPE_node | Must be `m5.2xlarge`.
 | TELEKUBE_NODE_PROFILES | Must be set to `node`.
 | TF_VAR_high_performance_disks | Must be set to `true` for production environments.
-| TF_VAR_disable_outbound_traffic | Disables outside internet access using iptables rules. Defaults to `true`.
 |===
 +
 You can also include the following set of optional environment variables:
@@ -93,7 +89,7 @@ You can also include the following set of optional environment variables:
 . Load the provisioner Docker image into the local Docker registry:
 +
 ----
-docker load -i pcp-1.0.tar.gz
+docker load -i pce2.0-aws-provisioner.gz
 ----
 
 . Record the image ID after running the `docker load` command. This is required in the following step.
@@ -126,6 +122,14 @@ docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/ext
 == Open Port 61009 Before Installation
 
 If you are installing Anypoint Private Cloud using the GUI-based installer, you must enable this port before running the installer. You must open this port in the cluster's security group before running the installer using AWS Web Console.
+
+== Destroy Resources
+
+You can destroy all resources that were created using the provisioner by running the `cluster-deprovision` command, as shown in the following example. Make sure the `TELEKUBE_CLUSTER_NAME` environment variable in your environment file has the correct value for the target cluster you want to destroy:
+
+----
+docker run --rm --env-file pce.env IMAGE_ID cluster-deprovision
+----
 
 == Troubleshooting
 
