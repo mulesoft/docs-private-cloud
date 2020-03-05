@@ -9,7 +9,7 @@ Because Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) upgrades
 [NOTE]
 If you are upgrading from Anypoint Platform PCE1.7.x to 2.0.x, an NFS server is required. Refer to xref:verify-nfs.adoc[NFS Server Prerequisites].
 
-Refer to the xref:release-notes::pce/anypoint-private-cloud-2.0.4-release-notes.adoc#upgrade-paths[Upgrade Paths] section in the Anypoint Platform PCE release notes for additional information about upgrading Anypoint Platform PCE to the most recent version.
+Refer to the xref:release-notes::pce/anypoint-private-cloud-2.0.4-release-notes#upgrade-paths[Upgrade Paths] section in the Anypoint Platform PCE release notes for additional information about upgrading Anypoint Platform PCE to the most recent version.
 
 See xref:1.6@upgrade.adoc[About Migrating Anypoint Platform Private Cloud] for information on upgrading to version 1.6.1. See xref:1.7@upgrade.adoc[About Migrating Anypoint Platform Private Cloud] for information on upgrading to version 1.7.1.
 
