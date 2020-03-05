@@ -84,15 +84,15 @@ You can pass the following optional parameters:
 Outputs the restore job logs to stdout.
 * `--timeout`
 +
-Specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is `80m`. If you have a very large number of applications and files use `160m` as the timeout at least.
+Specifies the maximum time allowed for the backup operation, for example, 30s, 5m, and so on. The default value is `80m`. If you have a very large number of applications and files, use a minimum of `160m` as the `--timeout` value.
 * `--log-file`
 +
 Outputs logs to a file.
 ====
 
-. Wait for the operation to complete (~40-60 minutes).
+. Wait for the operation to complete, which is typically forty to sixty minutes.
 
-. Manually restore the NFS files if you are not reusing the NFS and you are using a different one.
+. Manually restore the NFS files if you are not reusing the original NFS.
 
 == See Also
 
