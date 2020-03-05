@@ -55,13 +55,16 @@ To restore a system from your backup archive, use the original cluster or create
 [WARNING]
 ====
 Some settings, including NFS, certificates, and DNS, are not backed up and must be configured for the environment in which the restore will be performed *before* running the restore.
+====
 
+[WARNING]
+====
 You cannot perform a backup between different versions of Anypoint Platform PCE. The new installation you create must use the same version of Anypoint Platform PCE as your backup.
 ====
 
 . Log in to one of the nodes in your cluster.
 
-. Move the compressed backup archive file to a folder on any node in the environment to be restored. You can transfer this file securely via the following command:
+. Move the compressed backup archive file to a folder on any master node in the environment to be restored. You can transfer this file securely via the following command:
 +
 ----
 scp /backup-path/to-restore.tar.gz your_username@remotehost.edu:/var/lib/gravity/planet/share
@@ -81,15 +84,15 @@ You can pass the following optional parameters:
 Outputs the restore job logs to stdout.
 * `--timeout`
 +
-Specifies the deadline for the backup job (e.g.: 30s, 5m, etc). Default is 80m.
+Specifies the maximum time allowed for the restore operation, for example, 30s, 5m, and so on. The default value is `80m`. If you have a very large number of applications and files, use a minimum of `160m` as the `--timeout` value.
 * `--log-file`
 +
 Outputs logs to a file.
 ====
 
-. Wait a few minutes for the operation to complete. 
+. Wait for the operation to complete, which is typically forty to sixty minutes.
 
-. Manually restore the NFS files. 
+. Manually restore the NFS files if you are not reusing the original NFS.
 
 == See Also
 
