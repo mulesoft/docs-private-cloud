@@ -18,8 +18,8 @@ Before you install Anypoint Platform PCE, your infrastructure team must review e
 === Verify Linux Distribution
 The following Linux distributions are supported:
 
-* Red Hat Enterprise Linux (RHEL) 7.5.x, 7.6, 7.7 and 7.8
-* CentOS 7.5.x, 7.6, 7.7 and 7.8
+* Red Hat Enterprise Linux (RHEL) 7.4.x, 7.5.x, 7.6, and 7.7
+* CentOS 7.4.x, 7.5.x, 7.6, and 7.7
 
 === Check for SELinux Custom Profiles
 Although SELinux is not required, Anypoint Platform PCE supports the default SELinux profile running 
