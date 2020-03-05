@@ -34,7 +34,7 @@ tar xvf anypoint-2.0.0-installer.tar.gz
 . Run the following command on one of the nodes in your cluster:
 +
 ----
-sudo ./gravity install --advertise-addr=<installer_IP> --token=<secret token> --cluster=<cluster name> --cloud-provider=generic --flavor=<flavor name> --license="$(cat license.pem)" --docker-device=<device> --role=<role>
+sudo ./gravity install --advertise-addr=<installer_IP> --token=<secret token> --cluster=<cluster name> --cloud-provider=generic --flavor=<flavor name> --license="$(cat license.pem)" --role=<role>
 ----
 +
 Use the following values:
@@ -56,10 +56,10 @@ Use the following values:
 
 . Run the following command on all remaining nodes after the installer node indicates that it is waiting for the other nodes to join. Otherwise, an error is displayed by the nodes trying to join.
 +
-Use the same secret token and docker device values that you provided in the previous command.
+Use the same secret token value that you provided in the previous command.
 +
 ----
-sudo ./gravity join <installer_IP> --advertise-addr=<node_IP> --token=<secret_token> --docker-device=<device> --role=<role> --cloud-provider=generic
+sudo ./gravity join <installer_IP> --advertise-addr=<node_IP> --token=<secret_token> --role=<role> --cloud-provider=generic
 ----
 +
 Each of the nodes joins the cluster created by the `./gravity install` command.
