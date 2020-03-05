@@ -35,16 +35,18 @@ kubectl get node --show-labels | grep gravitational.io/k8s-role=master
 +
 By performing these procedures from the master node, the upgrade scripts are able to update the entire platform.
 
-. Uncompress the application archive:
+. Check there's enough space under the path where you will download the new installer file
+
+. Create a new folder and untar the new installer:
 +
 ----
-tar -xvf anypoint-2.1.0-installer.tar.gz
+mkdir anypoint-2.1.0-installer && tar -xvf anypoint-2.1.0-installer.tar.gz -C anypoint-2.1.0-installer
 ----
 
-. Navigate to the `anypoint-2.1.0` directory and run the upload script:
+. Navigate to the `anypoint-2.1.0-installer` directory and run the upload script:
 +
 ----
-cd anypoint-2.1.0
+cd anypoint-2.1.0-installer
 sudo ./upgrade
 ----
 +
@@ -63,22 +65,16 @@ update operation (d077277f-3c69-4336-82bf-bd8b428ae202) has been started
 the cluster is updating in background
 ----
 
-. When the upgrade finishes, verify that the migration was successful by performing one of the following options:
-+
-* Run the following command from the node where you performed the upgrade:
+. When the upgrade finishes, verify the migration was successful by checking that all pods are running:
 +
 ----
 $ sudo gravity enter
-$ kubectl get pods
+$ kubectl get pods --all-namespaces
 ----
 
-. Log in to the Ops Center at the following URL:
-+
-----
-https://{platform-host}:9500
-----
+. Open the new `8083` port on your Load Balancer and map it to the `30883` port on your servers. Refer to the 2.1 xref:prereq-hardware.adoc[Hardware Prerequisities] section for more information. 
 
-. Make sure the following items are configured correctly:
+. Finally, make sure the following items are still correctly configured after the update:
 
 ** xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
 ** xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
