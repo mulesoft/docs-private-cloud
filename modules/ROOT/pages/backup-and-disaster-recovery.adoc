@@ -84,7 +84,7 @@ You can pass the following optional parameters:
 Outputs the restore job logs to stdout.
 * `--timeout`
 +
-Specifies the maximum time allowed for the backup operation, for example, 30s, 5m, and so on. The default value is `80m`. If you have a very large number of applications and files, use a minimum of `160m` as the `--timeout` value.
+Specifies the maximum time allowed for the restore operation, for example, 30s, 5m, and so on. The default value is `80m`. If you have a very large number of applications and files, use a minimum of `160m` as the `--timeout` value.
 * `--log-file`
 +
 Outputs logs to a file.
