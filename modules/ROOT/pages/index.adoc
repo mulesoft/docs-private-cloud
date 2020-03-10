@@ -26,6 +26,24 @@ The following table provides component information for Anypoint Platform PCE:
 | API Testing	|   | X |
 |===
 
+== New Features in Anypoint Platform PCE Version 2.1
+
+Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
+
+[%header%autowidth.spread]
+|===
+| Component | Feature Description
+| Exchange | 
+| Exchange |	
+| Exchange |	
+| API Manager |	
+| API Manager	 |
+| Mule 4-related changes to API Manager: |
+| API Manager	|
+| Runtime Manager |		
+|===
+
+
 == New Features in Anypoint Platform PCE Version 2.0
 
 Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
