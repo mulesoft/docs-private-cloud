@@ -46,7 +46,7 @@ Backup contents:
 | Runtimes* | N	
 |===
  
-*PCE only has INFORMATION about runtimes, such as their names and status.
+*Anypoint Platform PCE only has INFORMATION about runtimes, such as their names and status.
 
 == Perform a System Restore
 
