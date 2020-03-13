@@ -72,7 +72,7 @@ $ sudo gravity enter
 $ kubectl get pods --all-namespaces
 ----
 
-. Open the new `8083` port on your Load Balancer and map it to the `30883` port on your servers. Refer to the 2.1 xref:prereq-hardware.adoc[Hardware Prerequisities] section for more information. 
+. Open the new `8083` port on your load balancer and map it to the `30883` port on your servers. Refer to the 2.1 xref:prereq-hardware.adoc[Hardware Prerequisities] section for more information. 
 
 . Finally, make sure the following items are still correctly configured after the update:
 
