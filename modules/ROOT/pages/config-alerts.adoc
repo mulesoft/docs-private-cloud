@@ -1,60 +1,68 @@
 
-= PCE Alerts Configuration
+= Configure Alerts for Anypoint Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-There is a set of out of the box alerts for PCE triggered when a condition defined in each alert definition is detected.
+Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) provides built-in alerts that are triggered when a condition defined in any alert definition is detected.
 
-Measures are stored in [Influxdb](https://www.influxdata.com/products/influxdb-overview) while [Kapacitor](https://www.influxdata.com/time-series-platform/kapacitor) reads the values and send emails when a defined alert is triggered.
+Measurements are stored in https://www.influxdata.com/products/influxdb-overview[Influxdb]. https://www.influxdata.com/time-series-platform/kapacitor[Kapacitor] reads the measurements and sends emails when an alert is triggered.
 
-== Alerts Included:
+== Alert Definitions
 
-* *High CPU*: Measures the total CPU usage on any of the cluster nodes. Threshold: Warning 75%, Critical 90%
+* High CPU: Measures the total CPU usage on all cluster nodes. Threshold: Warning 75%, Critical 90%
 
-* *High Memory*: Measures the memory consumption on any of the cluster nodes. Threshold: Warning 75%, Critical 90%
+* High Memory: Measures the memory consumption on all cluster nodes. Threshold: Warning 75%, Critical 90%
 
-* *Filesystem Usage*: Measures the file system usage. Threshold: Warning 80%, Critical 90%.
+* Filesystem Usage: Measures the file system usage. Threshold: Warning 80%, Critical 90%
 
-* *Kubernetes Node Status*: Check the kubernetes status for the nodes. Threshold: When kubernetes report a node is _NotReady_.
+* Kubernetes Node Status: Checks Kubernetes status for all nodes. Threshold: When Kubernetes reports a `NotReady` node status
 
-* *Etcd Latency*: Measures the latency between nodes. Latency might affect `etcd` performance (`etcd` is a database storing the kubernetes state). Threshold: Warning 521, Critical 1024.
+* Etcd Latency: Measures the latency between nodes. Latency can affect `etcd` (the database that stores the Kubernetes state) performance. Threshold: Warning 521, Critical 1024
 
-* *Systemd health*: Checks if the `systemd` slice (where gravity is running) is not healthy. Threshold: When gravity or the child systems are down (`docker`, `etcd`, `kube-proxy`, `kube-kubelet`, `planet-agent`, `dnsmasq`, `flanneld`, etc.)
+* Systemd health: Checks if the `systemd` slice (where gravity is running) is not healthy. Threshold: When gravity or child systems, such as `docker`, `etcd`, `kube-proxy`, `kube-kubelet`, `planet-agent`, `dnsmasq`, and `flanneld`, are down
 
-* *Influxdb Healthcheck Status*: Checks the health of `Influxdb` (where the metrics for monitoring are stored). Threshold: When there is no connection to Influxdb.
+* Influxdb Healthcheck Status: Checks the health of `Influxdb` (where the metrics for monitoring are stored). Threshold: No connection to `Influxdb`
 
-* *Networking Configuration*: Check OS networking flags status. Threshold: When `ip_forward` or `br_netfilter` flags are disabled.
+* Networking Configuration: Checks networking operating system flag status. Threshold: When `ip_forward` or `br_netfilter` flags are disabled
 
-* *Node Uptime*: Checks if the node is online. Threshold: When the node is down for more than 5 minutes.
+* Node Uptime: Checks if nodes are online. Threshold: When a node is down for more than 5 minutes.
 
-* *Etcd Health*: Check the status of `etcd`. Threshold: When `etcd` is down or not healthy.
+* Etcd Health: Checks the status of `etcd`. Threshold: When `etcd` is down or not healthy.
 
-* *Docker Status*: Check docker service is running in each node. Threshold: When docker service is not running.
+* Docker Status: Verifies the docker service is running on each node. Threshold: When docker service is not running on a node.
 
-* *Backup Failing*: Check the result of a backup operation. Threshold: When the backup operation fails.
+* Backup Failing: Checks the result of a backup operation. Threshold: When a backup operation fails.
 
-* *Stolon Replication Lag*: Check if a `Postgres` replica is out of synch. Threshold: When a replica is more than 1800 seconds behind.
+* Stolen Replication Lag: Checks if a `Postgres` replica is out of sync. Threshold: When a replica is lagging by 1800 or more seconds.
 
-== Accessing Alert Definitions
+[NOTE]
+The backup alert is defined in the *backup-status-alert* configmap.
+The *Cassandra Load* alert is defined in _cassandra-load_ configmap.
 
-Alerts are defined in 
+== Configure Alert Definitions 
 
-. From OpsCenter, go to the _Configuration_ panel.
-. Select the _monitoring_ namespace.
-. Select the _kapacitor-alerts_ configmap.
+. From OpsCenter, navigate to *Configuration*.
+. Select the *monitoring* namespace.
+. Select a configmap and apply your changes.
 
-| There are two alerts that are not defined in this configmap. The backup alert is defined in _backup-status-alert_ and the Cassandra Load alert is defined in _cassandra-load_ configmap. |
-| --- |
+If you apply changes to the `kapacitor-alerts` configmap, you must restart Kapacitor. Follow the instructions in the Restart Kapacitor section in this topic.
 
-If you decide to modify an alert, after applying the change in the confimap, you need to restart `Kapacitor`.
+== Configure Alerts
 
-== Configuring SMTP to send Alerts
+. Configure the `FROM` and `TO` email addresses:
+.. Log in to the Ops Center console and then select *Configuration*.
+.. From the *Namespace* drop-down, select *monitoring*.
+.. From the *Config maps* drop-down, select *alerting-addresses*.
+.. Select *From* and then enter the `FROM` email address used for the alert.
+.. Select *To* and then enter the `TO` email address used for the alert.
 
+. Configure your SMTP email server to send alerts. Configuring the SMTP server in Anypoint Access Management restarts the Anypoint Platform service responsible for initiating alerts.
++
 To ensure that alerts work correctly:
-
-* Verify that your SMTP server can send and receive emails using the addresses you configure as the From and To addresses in the following section.
-* Verify that your cluster nodes can communicate with your SMTP server. For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
++
+** Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses in the following section.
+** Verify that your cluster nodes can communicate with your SMTP server. For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
 +
 ----
 telnet my.smtp.server.com 587
@@ -69,31 +77,29 @@ Connection closed.
 
 == Troubleshooting
 
-If the connection is working, you can check the logs of `kapacitor` to see if there is any other error when seding alerts by email, On Ops Center, you can get the logs in the console ouput by executing: 
+If the connection is working, you can check Kapacitor logs for other errors when sending email alerts. 
+On Ops Center, you can retrieve log information in the console ouput by running the following command: 
 +
 ----
 kubectl logs -n monitoring -l component=kapacitor -c kapacitor
 ----
 
-== Configuring Alerts
+== Restart Kapacitor
+When you change the SMTP settings from Access Management, Kapacitor is automatically restarted to include the updated settings. 
 
-. Configure the FROM and TO email addresses:
-.. Log in to the Ops Center console, then select Configuration.
-.. From the Namespace drop-down, select `monitoring`.
-.. From the Config maps drop-down, select `alerting-addresses`.
-.. Select the From tab, then enter the FROM email address used for the alert.
-.. Select the To tab, then enter the TO email address used for the alert.
+If you change an alert definition or the `alerting-addresses` configmap without changing the SMTP settings from Access Management, Kapacitor must be manually restarted:
 
-. Configure your SMTP email server. Configuring the SMTP server in Access Manager restarts the Anypoint Platform service responsible for initiating the alerts.
-
-== Restarting Kapacitor
-
-[NOTE]
-When you change the SMTP settings from Access Management, `kapacitor` is restarted to pick up the settings automatically. If you change an alert definition, or the `alerting-addresses` configmap without changing the SMTP settings from Access Management, `kapacitor` should be restarted manually.
-
-. Open a terminal to one of the master servers
-. Execute: `kubectl delete pod -n monitoring -l component=kapacitor`
-. Wait for a `kapacitor` pod to be running, you can check executing `kubectl get pod -n monitoring -l component=kapacitor` 
+. Open a terminal to one of the master servers.
+. Run the following command:
++
+```
+`kubectl delete pod -n monitoring -l component=kapacitor`
+```
+. Wait for a `kapacitor` pod to run. Run the following command for verification:
++
+```
+kubectl get pod -n monitoring -l component=kapacitor` 
+```
 
 == See Also
 
