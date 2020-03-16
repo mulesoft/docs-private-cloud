@@ -1,41 +1,92 @@
-= Set up Alerts for CPU and Memory Usage
+
+= Configure Alerts for Anypoint Private Cloud
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) sends alert emails when CPU and memory usage reach a certain threshold:
+Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) provides built-in alerts that are triggered when a condition specified in any alert definition is detected.
 
-* A warning email is sent when CPU and memory usage reach 70% of capacity.
-* An email that is labelled as critical is sent when CPU and memory usage reach 80% of capacity.
+Measurements are stored in https://www.influxdata.com/products/influxdb-overview[Influxdb] and read by https://www.influxdata.com/time-series-platform/kapacitor[Kapacitor]. Kapacitor sends emails when an alert is triggered.
 
-== Prerequisites
+== Alert Definitions
 
-To ensure that alerts work correctly:
+[%header%autowidth.spread]
+|===
+| Name | Description | Threshold | Configmap
+| High CPU | Measures the total CPU usage on all cluster nodes | Warning 75%, Critical 90% | kapacitor-alerts 
+| High Memory | Measures the memory consumption on all cluster nodes | Warning 75%, Critical 90% | kapacitor-alerts 
+| Filesystem Usage	| Measures the file system usage | Warning 80%, Critical 90% | kapacitor-alerts 
+| Kubernetes Node Status | Checks Kubernetes status for all nodes| When Kubernetes reports a `NotReady` node status | kapacitor-alerts 
+| Etcd Latency | Measures the latency between nodes. Latency can affect `etcd` performance | Warning 521 seconds, Critical 1024 seconds | kapacitor-alerts 
+| Systemd health | Checks if the `systemd` slice (where gravity is running) is healthy | When gravity or child systems, such as `docker`, `etcd`, `kube-proxy`, `kube-kubelet`, `planet-agent`, `dnsmasq`, and `flanneld`, are down | kapacitor-alerts 
+| Influxdb Healthcheck Status | Checks the health of `Influxdb` (where the metrics for monitoring are stored) | No connection to `Influxdb` | kapacitor-alerts 
+| Networking Configuration | Checks networking operating system flag status | When `ip_forward` or `br_netfilter` flags are disabled | kapacitor-alerts 
+| Node Uptime | Checks if nodes are online | When a node is down for more than 5 minutes | kapacitor-alerts 
+| Etcd Health | Check the status of `etcd` | When `etcd` is down or not healthy | kapacitor-alerts 
+| Docker Status	| Verifies the docker service is running on each node | When docker service is not running on a node | kapacitor-alerts 
+| Backup Failing | Check the result of a backup operation | When a backup operation fails | backup-status-alert
+| Stolon Replication Lag | Check `Postgres` replicas are in synch | When a replica is lagging by 1800 or more seconds | kapacitor-alerts 
+| Cassandra Load | Verifies Cassandra nodes are in sync | Warning 10% difference, Critical 20% difference | cassandra-load
+|===
 
-* Verify that your SMTP server can send and receive emails using the addresses you configure as the From and To addresses in the following section.
-* Verify that your cluster nodes can communicate with your SMTP server. For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
+== Configure Alert Definitions 
+
+. From OpsCenter, navigate to *Configuration*.
+. Select the *monitoring* namespace.
+. Select a configmap and apply your changes.
+
+If you apply changes to the `kapacitor-alerts` configmap, you must restart Kapacitor. Follow the instructions in the Restart Kapacitor section in this topic.
+
+== Configure Alerts
+
+. Configure the `FROM` and `TO` email addresses:
+.. Log in to the Ops Center console and then select *Configuration*.
+.. From the *Namespace* drop-down, select *monitoring*.
+.. From the *Config maps* drop-down, select *alerting-addresses*.
+.. Select *From* and then enter the `FROM` email address used for the alert.
+.. Select *To* and then enter the `TO` email address used for the alert.
+
+. Configure your SMTP email server to send alerts. Configuring the SMTP server in Anypoint Access Management restarts the Anypoint Platform service responsible for initiating alerts.
+. Verify alerts configuration:
++
+** Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses in the following section.
+** Verify that your cluster nodes can communicate with your SMTP server. For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
 +
 ----
 telnet my.smtp.server.com 587
 Trying XXX.XXX.XXX.XXX...
 Connected to my.smtp.server.com.
 Escape character is '^]'.
-220 smtp.mandrillapp.com ESMTP
+220 my.smtp.server.com ESMTP
 ^[^]
 telnet> quit
 Connection closed.
 ----
 
-== Configuring Alerts
+== Troubleshooting
 
-. Configure the FROM and TO email addresses:
-.. Log in to the Ops Center console, then select Configuration.
-.. From the Namespace drop-down, select `kube-system`.
-.. From the Config maps drop-down, select `alerting-addresses`.
-.. Select the From tab, then enter the FROM email address used for the alert.
-.. Select the To tab, then enter the TO email address used for the alert.
+If the connection is working, you can check Kapacitor logs for other errors when sending email alerts. 
+On Ops Center, you can retrieve log information in the console ouput by running the following command: 
+----
+kubectl logs -n monitoring -l component=kapacitor -c kapacitor
+----
 
-. Configure your SMTP email server. Configuring the SMTP server in Access Manager restarts the Anypoint Platform service responsible for initiating the alerts.
+== Restart Kapacitor
+When you change the SMTP settings from Access Management, Kapacitor is automatically restarted to include the updated settings. 
+
+If you change an alert definition or the `alerting-addresses` configmap without changing the SMTP settings from Access Management, Kapacitor must be manually restarted:
+
+. Open a terminal to one of the master servers.
+. Run the following command:
++
+```
+`kubectl delete pod -n monitoring -l component=kapacitor`
+```
+. Wait for a `kapacitor` pod to run. Run the following command for verification:
++
+```
+kubectl get pod -n monitoring -l component=kapacitor` 
+```
 
 == See Also
 
