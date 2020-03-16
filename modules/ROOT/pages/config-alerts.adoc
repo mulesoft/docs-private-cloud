@@ -10,31 +10,24 @@ Measurements are stored in https://www.influxdata.com/products/influxdb-overview
 
 == Alert Definitions
 
-* High CPU: Measures the total CPU usage on all cluster nodes. Threshold: Warning 75%, Critical 90%
-
-* High Memory: Measures the memory consumption on all cluster nodes. Threshold: Warning 75%, Critical 90%
-
-* Filesystem Usage: Measures the file system usage. Threshold: Warning 80%, Critical 90%
-
-* Kubernetes Node Status: Checks Kubernetes status for all nodes. Threshold: When Kubernetes reports a `NotReady` node status
-
-* Etcd Latency: Measures the latency between nodes. Latency can affect `etcd` (the database that stores the Kubernetes state) performance. Threshold: Warning 521, Critical 1024
-
-* Systemd health: Checks if the `systemd` slice (where gravity is running) is not healthy. Threshold: When gravity or child systems, such as `docker`, `etcd`, `kube-proxy`, `kube-kubelet`, `planet-agent`, `dnsmasq`, and `flanneld`, are down
-
-* Influxdb Healthcheck Status: Checks the health of `Influxdb` (where the metrics for monitoring are stored). Threshold: No connection to `Influxdb`
-
-* Networking Configuration: Checks networking operating system flag status. Threshold: When `ip_forward` or `br_netfilter` flags are disabled
-
-* Node Uptime: Checks if nodes are online. Threshold: When a node is down for more than 5 minutes.
-
-* Etcd Health: Checks the status of `etcd`. Threshold: When `etcd` is down or not healthy.
-
-* Docker Status: Verifies the docker service is running on each node. Threshold: When docker service is not running on a node.
-
-* Backup Failing: Checks the result of a backup operation. Threshold: When a backup operation fails.
-
-* Stolen Replication Lag: Checks if a `Postgres` replica is out of sync. Threshold: When a replica is lagging by 1800 or more seconds.
+[%header%autowidth.spread]
+|===
+| Name | Description | Threshold | Configmap
+| High CPU | Measures the total CPU usage on all cluster nodes | Warning 75%, Critical 90% | kapacitor-alerts 
+| High Memory | Measures the memory consumption on all cluster nodes | Warning 75%, Critical 90% | kapacitor-alerts 
+| Filesystem Usage	| Measures the file system usage | Warning 80%, Critical 90% | kapacitor-alerts 
+| Kubernetes Node Status | Checks Kubernetes status for all nodes| When Kubernetes reports a `NotReady` node status | kapacitor-alerts 
+| Etcd Latency | Measures the latency between nodes. Latency can affect `etcd` performance | Warning 521 seconds, Critical 1024 seconds | kapacitor-alerts 
+| Systemd health | Checks if the `systemd` slice (where gravity is running) is healthy | When gravity or child systems, such as `docker`, `etcd`, `kube-proxy`, `kube-kubelet`, `planet-agent`, `dnsmasq`, and `flanneld`, are down | kapacitor-alerts 
+| Influxdb Healthcheck Status | Checks the health of `Influxdb` (where the metrics for monitoring are stored) | No connection to `Influxdb` | kapacitor-alerts 
+| Networking Configuration | Checks networking operating system flag status | When `ip_forward` or `br_netfilter` flags are disabled | kapacitor-alerts 
+| Node Uptime | Checks if nodes are online | When a node is down for more than 5 minutes | kapacitor-alerts 
+| Etcd Health | Check the status of `etcd` | When `etcd` is down or not healthy | kapacitor-alerts 
+| Docker Status	| Verifies the docker service is running on each node | When docker service is not running on a node | kapacitor-alerts 
+| Backup Failing | Check the result of a backup operation | When a backup operation fails | backup-status-alert
+| Stolon Replication Lag | Check `Postgres` replicas are in synch | When a replica is lagging by 1800 or more seconds | kapacitor-alerts 
+| Cassandra Load | Check Cassandra nodes are in sycn | Warning 10% difference, Critical 20% difference | cassandra-load
+|===
 
 [NOTE]
 The backup alert is defined in the *backup-status-alert* configmap.
