@@ -4,9 +4,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) provides built-in alerts that are triggered when a condition defined in any alert definition is detected.
+Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) provides built-in alerts that are triggered when a condition specified in any alert definition is detected.
 
-Measurements are stored in https://www.influxdata.com/products/influxdb-overview[Influxdb]. https://www.influxdata.com/time-series-platform/kapacitor[Kapacitor] reads the measurements and sends emails when an alert is triggered.
+Measurements are stored in https://www.influxdata.com/products/influxdb-overview[Influxdb] and read by https://www.influxdata.com/time-series-platform/kapacitor[Kapacitor]. Kapacitor sends emails when an alert is triggered.
 
 == Alert Definitions
 
@@ -26,12 +26,8 @@ Measurements are stored in https://www.influxdata.com/products/influxdb-overview
 | Docker Status	| Verifies the docker service is running on each node | When docker service is not running on a node | kapacitor-alerts 
 | Backup Failing | Check the result of a backup operation | When a backup operation fails | backup-status-alert
 | Stolon Replication Lag | Check `Postgres` replicas are in synch | When a replica is lagging by 1800 or more seconds | kapacitor-alerts 
-| Cassandra Load | Check Cassandra nodes are in sycn | Warning 10% difference, Critical 20% difference | cassandra-load
+| Cassandra Load | Verifies Cassandra nodes are in sync | Warning 10% difference, Critical 20% difference | cassandra-load
 |===
-
-[NOTE]
-The backup alert is defined in the *backup-status-alert* configmap.
-The *Cassandra Load* alert is defined in _cassandra-load_ configmap.
 
 == Configure Alert Definitions 
 
@@ -51,8 +47,7 @@ If you apply changes to the `kapacitor-alerts` configmap, you must restart Kapac
 .. Select *To* and then enter the `TO` email address used for the alert.
 
 . Configure your SMTP email server to send alerts. Configuring the SMTP server in Anypoint Access Management restarts the Anypoint Platform service responsible for initiating alerts.
-+
-To ensure that alerts work correctly:
+. Verify alerts configuration:
 +
 ** Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses in the following section.
 ** Verify that your cluster nodes can communicate with your SMTP server. For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
@@ -72,7 +67,6 @@ Connection closed.
 
 If the connection is working, you can check Kapacitor logs for other errors when sending email alerts. 
 On Ops Center, you can retrieve log information in the console ouput by running the following command: 
-+
 ----
 kubectl logs -n monitoring -l component=kapacitor -c kapacitor
 ----
