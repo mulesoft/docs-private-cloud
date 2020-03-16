@@ -21,7 +21,7 @@ Before you install Anypoint Platform PCE, your infrastructure team must review e
 [IMPORTANT]
 If the stated requirements for Memory and CPU are not met, Anypoint Platform PCE installation will fail. 
 
-For production environments, each node in your configuration must have the following dedicated devices. All devices must be formatted either as `xfs` or `ext4`.
+For production environments, each node in your configuration must have the following dedicated devices. Except for the Docker device, all devices must be formatted either as *xfs* or *ext4*.
 
 [%header%autowidth.spread]
 |===
@@ -41,7 +41,7 @@ The space requirements listed in the previous table are based on average use. Fo
 
 The main purpose of the system state directory device is to store system configuration and metadata, for example, database and packages. As package sizes can be arbitrarily large, it is important to estimate the minimum size requirements and allocate enough space for the dedicated device.
 
-Format this device as `xfs` or `ext4` and mount it as `/var/lib/gravity`.  
+Format this device either as `xfs` or `ext4` and mounted as `/var/lib/gravity`.  
 
 The following shell snippet is provided as an example for mounting the system state directory device using systemd mount files and cannot be used as-is in production. You can also mount the system state directory device by using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example to guide this process, make sure to specify the correct device name in two places.
 
@@ -58,7 +58,7 @@ sudo systemctl start var-lib-gravity.mount
 
 The main purpose of the application data directory device is to store application configuration and data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
 
-Format this device as `xfs` or `ext4` and mount it as `/var/lib/data`. 
+Format this device either as `xfs` or `ext4` and mounted as `/var/lib/data`. 
 
 The following shell snippet is provided as an example for mounting the application data device using systemd mount files, and cannot be used as-is in production. You can also mount the application data device using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example to guide this process, make sure to specify the correct device name in two places.
 
@@ -77,13 +77,7 @@ The main purpose of the etcd device is to provide dedicated storage for a distri
 
 Format this device either as `xfs` or `ext4` and mounted as `/var/lib/gravity/planet/etcd`. 
 
-The following shell snippet mounts the etcd device using systemd mount files to the path `/var/lib/gravity/planet/etcd`. 
-You can also mount the etcd device using `/etc/fstab` or another method. Consult with your system administrator to 
-determine the best way to meet this requirement. If you use the following example as a guide for this process, 
-specify the correct device name in two places.
-
-[NOTE]
-Mount this device AFTER you mount the System State device under `/var/lib/gravity/planet`. If you are using system.d units to mount the volumes, declare mount dependencies using `After=<device-name>.<mount>`.
+The following shell snippet is provided as an example for mounting the etcd device using systemd mount files, and cannot be used as-is in production. The end result of this step mounts the Etcd device to the path `/var/lib/gravity/planet/etcd`. You can also mount the etcd device using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example to guide this process, make sure to specify the correct device name in two places.
 
 ----
 sudo mkfs.ext4 /dev/<device name>
@@ -96,25 +90,52 @@ sudo systemctl start var-lib-gravity-planet-etcd.mount
 
 == Docker Device
 
-If not specified, Docker configuration defaults to the use of the overlay driver, which is recommended for production.
+Unless specified, Docker configuration defaults to the use of Device Mapper in loopback mode (using `/dev/loopX` devices), which is not recommended for production. To configure Docker to use a dedicated device for Device Mapper storage driver, an unformatted device or a partition (/dev/sdd) can be provided during installation. This directory is automatically configured and set up for use.
 
-Format this device as `xfs` or `ext4` and mount it as `/var/lib/gravity/planet/docker`.
+Unformatted devices potentially usable for system directory / Device Mapper are automatically discovered by agents running on each node. Discovered devices are offered on a drop-down menu for configuration before the installation is started.
 
-The following example shell snippet mounts the Docker device using systemd mount files to the path
-`/var/lib/gravity/planet/docker`. You can also mount the Docker device using `/etc/fstab` or another method. 
-Consult with your system administrator to determine the best way to meet this requirement. 
-If you use the following example as a guide for this process, specify the correct device name in two places.
+You can list unmounted devices with the following command:
+----
+lsblk --output=NAME,TYPE,SIZE,FSTYPE -P -I 8,9,202|grep 'FSTYPE=""'
+----
 
-[NOTE]
-Mount this device AFTER you mount the System State device under `/var/lib/gravity/planet`. If you are using system.d units to mount the volumes, declare mount dependencies using `After=<device-name>.<mount>`
+Unmounted devices have an empty value in FSTYPE column. Devices with TYPE="part" are partitions on another device. The following command lists only specific device types:
+
+|===
+|Device type|Description
+|8   |SCSI disk devices
+|9   |Metadisk (RAID) devices
+|202 |Xen virtual block devices (Amazon EC2)
+|===
+
+=== Reset Docker Device
+
+Using Logical Volume Manager, you can group multiple physical volumes into a single storage volume (volume group) and then divide these into logical volumes. Physical volumes are either a whole device or a partition.
+
+When a Docker device is in use by another logical volume or you want to manually reset a Docker device previously configured for Device Mapper, perform the following commands to reset the Docker device:
 
 ----
-sudo mkfs.ext4 /dev/<device name>
-sudo mkdir -p /var/lib/gravity/planet/docker
-echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/gravity/planet/docker\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-gravity-planet-docker.mount
-sudo systemctl daemon-reload
-sudo systemctl enable var-lib-gravity-planet-docker.mount
-sudo systemctl start var-lib-gravity-planet-docker.mount
+# In order to clean the Docker volumes, you might need to first reboot the server 
+# to force clean down any handles to the Docker Device.
+# This allows you to perform the proper clean-up.
+
+# Identify whether the docker logical volume was created.
+sudo lvs | grep docker
+# If the volume exists, remove it.
+sudo lvremove docker
+
+# Identify whether the docker volume group was created.
+sudo vgs | grep docker
+# If the volume exists, remove it.
+sudo vgremove docker
+
+# Identify whether the docker physical volume was created.
+sudo pvs | grep docker
+# If the volume exists, remove it.
+sudo pvremove <PV Name>
+
+# Clean the docker device by replacing "{docker-device}" in the following command:
+sudo parted /dev/{docker-device} mklabel gpt -s
 ----
 
 == Verify Devices
@@ -127,7 +148,7 @@ NAME    MAJ:MIN RM  SIZE  RO TYPE MOUNTPOINT
 xvda    202:0    0   90G   0 disk
 ├─xvda1 202:1    0    1M   0 part
 └─xvda2 202:2    0   90G   0 part /
-xvdb    202:16   0  100G   0 disk /var/lib/gravity/planet/docker
+xvdb    202:16   0  100G   0 disk {Docker volume (not formatted)}
 xvdc    202:32   0   20G   0 disk /var/lib/gravity/planet/etcd
 xvdd    202:48   0  250G   0 disk /var/lib/data
 xvde    202:64   0  100G   0 disk /var/lib/gravity
@@ -171,7 +192,6 @@ Your load balancer must route the following TCP ports:
 |Load Balancer Port |Instance Port | Internal Usage
 |`80` | `30080`  | HTTP redirects to HTTPs.
 |`443` | `30443` | HTTPS port
-|`8083` | `30883` | WebSocket port for Runtimes to authenticate
 |`8889` | `30889` | WebSocket port for Runtimes to connect
 |`9500` | `32009` | Ops Center access port
 |===
@@ -211,11 +231,6 @@ server {
 }
 
 server {
-   listen 8083;
-   proxy_pass 0.0.0.0:30883;
-}
-
-server {
    listen 8889;
    proxy_pass 0.0.0.0:30889;
 }
@@ -234,7 +249,6 @@ server {
 . Enable the default ports on SELinux before starting the NGINX. Run the following commands one by one:
 +
 ----
-semanage port -a -t http_port_t  -p tcp 8083
 semanage port -a -t http_port_t  -p tcp 8889
 semanage port -a -t http_port_t  -p tcp 9500
 semanage port -a -t http_port_t  -p tcp 9501
