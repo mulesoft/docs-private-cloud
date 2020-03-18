@@ -78,7 +78,7 @@ sudo gravity enter
 . Create the Ops Center and the Anypoint Platform users by running the following command in the gravity shell.
 +
 [NOTE]
-Replace the `email`, `name`, and `password` parameters with the corresponding values for your environment. These are the credentials that a system administrator uses to manage the system.
+Replace the `email`, `name`, and `password` parameter values with the corresponding values for your environment. These will be the credentials a system administrator uses to manage the system. You can also provide values for the `nfsServer`, `nfsPath` and `platformDns` parameters at this time.
 +
 ----
 curl -X POST http://bandwagon-mulesoft.default.svc.cluster.local/api/complete -H "Content-Type:application/json" -d '{"organization": "Test Org", "email": "username@mulesoft.com", "name": "username", "password": "my_password", "support": false, "nfsServer": "NFS_SERVER_HOST", "nfsPath": "NFS_SERVER_PATH", "platformDns": "PLATFORM_DNS"}'
