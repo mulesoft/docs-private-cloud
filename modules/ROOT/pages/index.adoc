@@ -103,7 +103,7 @@ a|
 | Anypoint Platform PCE | Anypoint Platform PCE packaging | v2.1
 | API Modeling Framework (AMF) | AMF Service | v1.0.107
 | VCS | VCS  | v0.3.1216
-| Anypoint Studio | Studio | v7.4.3
+| Anypoint Studio | Studio | v7.5.0
 |===
 
 
