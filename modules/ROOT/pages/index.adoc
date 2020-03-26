@@ -75,7 +75,7 @@ a|
 | API Platform | API Manager Web | v1.5.195
 | API Platform | Contract Caching Service | v1.1.9 
 | API Platform | API Proxy Builder Service | v1.2.38
-| API Platform | Raml Parser Service | v0.3.76 
+| API Platform | RAML Parser Service | v0.3.76 
 | API Platform | Proxies XAPI Service | v1.2.62
 | API Designer | API Designer XAPI | v3.11.3
 | API Designer | API Designer UI | v2.12.3
