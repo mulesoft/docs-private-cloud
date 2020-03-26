@@ -93,7 +93,9 @@ You can also include the following set of optional environment variables:
 docker load -i pce2.0-aws-provisioner.gz
 ----
 
-. Record the image ID that is displayed by the `docker load` command. This is required in the following step.
+. Record the image ID that is displayed by the `docker load` command.
++
+This ID is required in the following step.
 
 . Perform a dry-run test:
 +
@@ -126,7 +128,7 @@ If you are installing Anypoint Private Cloud using the GUI-based installer, you 
 
 == Destroy Resources
 
-You can destroy all resources that were created using the provisioner by running the `cluster-deprovision` command, as shown in the following example. Make sure the `TELEKUBE_CLUSTER_NAME` environment variable in your environment file has the correct value for the target cluster you want to destroy:
+You can destroy all resources that were created using the provisioner by running the `cluster-deprovision` command, as shown in the following example. Ensure the `TELEKUBE_CLUSTER_NAME` environment variable in your environment file has the correct value for the target cluster you want to destroy:
 
 ----
 docker run --rm --env-file pce.env IMAGE_ID cluster-deprovision
