@@ -35,7 +35,7 @@ kubectl get node --show-labels | grep gravitational.io/k8s-role=master
 +
 By performing these procedures from the master node, the upgrade scripts are able to update the entire platform.
 
-. Verify there is adequate space available in the path where you plan to download the new installer file.
+. Verify that there is adequate space available in the path where you plan to download the new installer file.
 
 . Create a new folder and untar the new installer:
 +
@@ -65,7 +65,7 @@ update operation (d077277f-3c69-4336-82bf-bd8b428ae202) has been started
 the cluster is updating in background
 ----
 
-. When the upgrade finishes, verify the migration was successful by checking that all pods are running:
+. When the upgrade finishes, verify that the migration was successful by checking that all pods are running:
 +
 ----
 $ sudo gravity enter
@@ -74,7 +74,7 @@ $ kubectl get pods --all-namespaces
 
 . Open the new `8083` port on your load balancer and map it to the `30883` port on your servers. Refer to the 2.1 xref:prereq-hardware.adoc[Hardware Prerequisities] section for more information. 
 
-. Finally, make sure the following items are still correctly configured after the update:
+. Finally, ensure that the following items are still correctly configured after the update:
 
 ** xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
 ** xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
