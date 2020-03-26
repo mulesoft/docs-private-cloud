@@ -24,18 +24,18 @@ These limitations are based on a 3-node environment consisting of 3 nodes of 8 c
 
 **** Runtime management
 
-***** Maximum number of servers: 250
+***** Maximum number of servers: 400
 ***** Maximum number of servers per server group: 20
 ***** Maximum servers per cluster: 8
 
 **** Applications per environment 
 
-***** Mule applications under management:
-****** Recommended: around 200
+***** Mule applications under management per environment:
+****** Recommended: Under 200
 ****** Maximum: 500
 
 ***** Mule runtime engines under management
-****** Maximum: 400 single Mule runtime engines (or 200 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
+****** Maximum: 500 single Mule runtime engines (or 250 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
 
 ***** Mule applications per Mule runtime engine 
 ****** Maximum number of apps: 100
@@ -43,13 +43,19 @@ These limitations are based on a 3-node environment consisting of 3 nodes of 8 c
 
 **** API management
 
-***** Limit each 2.0.0 cluster management plane to 5000 (3 nodes, 8 cores) APIs under management and 10000 (6 nodes 8 cores), 
-in which:
+***** Limit each 2.1.0 cluster (3 nodes, 8 cores) management plane to 5000 APIs under management in which:
 
-****** A single API implementation with one policy counts as 0.3.
+****** A single API implementation with one policy counts as 0.5.
 ****** A single clustered proxy with up to 5 policies counts as 1.
 ****** All runtimes are polling every 60 seconds.
 
+**** Access Manager
+
+***** Limit to 50 Business Groups
+
+**** Exchange
+
+***** Maximum 30,000 Exchange Assets
 
 == 6-Node Configuration
 
@@ -67,7 +73,7 @@ These limitations are based on a 6-node environment consisting of 6 nodes of 8 c
 
 **** Runtime management
 
-***** Maximum number of servers: 500
+***** Maximum number of servers: 1500
 ***** Maximum number of servers per server group: 20
 ***** Maximum servers per cluster: 8
 
@@ -78,7 +84,7 @@ These limitations are based on a 6-node environment consisting of 6 nodes of 8 c
 ****** Maximum: 500
 
 ***** Mule runtime engines under management
-****** Maximum: 800 single Mule runtime engines (or 400 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
+****** Maximum: 1500 single Mule runtime engines (or 750 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
 
 ***** Mule applications per Mule runtime engine
 ****** Maximum number of apps: 50 
@@ -86,12 +92,20 @@ These limitations are based on a 6-node environment consisting of 6 nodes of 8 c
 
 **** API management
 
-***** Limit each 2.0.0 cluster management plane to 20000 (6 nodes, 16 cores) APIs under management and 10000 (6 nodes 8 cores), 
+***** Limit each 2.1.0 cluster management plane to 20000 (6 nodes, 16 cores) APIs under management and 10000 (6 nodes 8 cores), 
 in which:
 
-****** A single API implementation with one policy counts as 0.3.
+****** A single API implementation with one policy counts as 0.5.
 ****** A single clustered proxy with up to 5 policies counts as 1.
 ****** All runtimes are polling every 60 seconds. 
+
+**** Access Manager
+
+***** Limit to 100 Business Groups
+
+**** Exchange
+
+***** Maximum 60,000 Exchange Assets
 
 == See Also
 
