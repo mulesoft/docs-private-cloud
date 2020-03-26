@@ -51,11 +51,11 @@ These limitations are based on a 3-node environment consisting of 3 nodes of 8 c
 
 **** Access Manager
 
-***** Limit to 50 Business Groups
+***** Maximum of 50 business groups
 
 **** Exchange
 
-***** Maximum 30,000 Exchange Assets
+***** Maximum of 30,000 Exchange assets
 
 == 6-Node Configuration
 
