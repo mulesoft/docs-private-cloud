@@ -13,7 +13,9 @@ You must contact MuleSoft professional services prior to upgrading. MuleSoft pro
 
 == Procedure
 
-The following steps describe how to upgrade Anypoint Platform PCE and the Anypoint Platform PCE infrastructure. 
+The following steps describe how to upgrade Anypoint Platform PCE and the Anypoint Platform PCE infrastructure from v2.0.x to v2.1.0. 
+
+If you are upgrading from a prior version of Anypoint Platform PCE, you must first upgrade to v2.0.4 and then upgrade to v2.1.0. 
 
 [NOTE]
 ====
