@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-After your infrastructure team verifies that the required infrastructure has been correctly installed and configured as described in xref:install-checklist.adoc[Product Prerequisites], you can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) using one of the following installers: 
+After your infrastructure team verifies that the required infrastructure is correctly installed and configured as described in xref:install-checklist.adoc[Product Prerequisites], you can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) using one of the following installers: 
 
 * xref:install-installer.adoc[Run the GUI installer]
 * xref:install-auto-install.adoc[Run the CLI installer]
