@@ -8,18 +8,14 @@ Because Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) upgrades
 
 Refer to the xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Edition Release Notes] for additional information about upgrading Anypoint Platform PCE to the most recent version.
 
-[NOTE]
-====
-* This is the process to upgrade from PCE 2.0.x to PCE 2.1.0. 
-* If you are upgrading from previous versions of PCE, you need to upgrade to PCE 2.0.4 first and then upgrade to PCE 2.1.0 from it. 
-====
-
 [WARNING]
 You must contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved with your upgrade procedure.
 
 == Procedure
 
-The following steps describe how to upgrade Anypoint Platform PCE and the Anypoint Platform PCE infrastructure. 
+The following steps describe how to upgrade Anypoint Platform PCE and the Anypoint Platform PCE infrastructure from v2.0.x to v2.1.0. 
+
+If you are upgrading from a prior version of Anypoint Platform PCE, you must first upgrade to v2.0.4 and then upgrade to v2.1.0. 
 
 [NOTE]
 ====
