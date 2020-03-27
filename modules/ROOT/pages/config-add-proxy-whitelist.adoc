@@ -7,57 +7,23 @@ By default, proxy requests are enabled for the domain name where the platform is
 
 To add whitelist addresses:
 
-. Log in to Ops Center and select Configuration.
-. Select the `api-platform-web-config` config map from the drop-down list.
-. Locate the `features` object in the local.js tab:
+. Log in to Ops Center and select *Configuration*.
+. Select the `api-manager` namespace from the right drop-down menu and then select the `api-platform-web-env` config map from the left drop-down menu.
+. Select *APW_FEATURES_PROXYWHITELIST* and ensure that value is set to `true`. 
 +
+If not, set it to `true` and then select `Apply`.
+. Select *APW_PROXYWHITELIST_RULES*.
+. Write your rules separated by commas.
++
+The following example defines regular expressions that allow requests to be made to the `*.somewhere.com/*` and `*.somewhereelse.com/*` domains, where `*` is any part of a DNS name or URL:
+
 ----
-features: {
-    alerts:             false,
-    analytics:          false,
-    cloudHubDeployment: false,
-    hybridDeployment:   true,
-    segmentio:          false,
-    proxyWhitelist:     true
-  }
+.*\.somewhere\.com,.*\.somewhereelse\.com 
 ----
 
-. Ensure that the `proxyWhitelist` property is set to `true`.
-. Locate the `proxyWhitelist` object in the same tab.
+. Select *Apply* to save changes to the `api-platform-web-env` config map.
+. Re-create the pods to ensure that each node in the cluster uses the most recent configuration:
 +
 ----
-proxyWhitelist: {
-    allowLocalhost: false,
-    allowPlatformHost: true,
-    rules: []
-  }
-----
-+
-The `proxyWhitelist` object contains the following properties:
-+
-[cols="2*a"]
-|===
-| allowLocalhost | Enables proxy requests to be made to the `localhost` address.
-| allowPlatformHost | Enables proxy requests to be made to the same domain where the platform is hosted.
-| rules | Defines an array containing regular expressions to create matching rules.
-|===
-
-. Update the `rules` array as necessary. The following example shows how to define regular expressions to allow requests to be made to the `*.somewhere.com/*` and `*.somewhereelse.com/*` domains, where * is any part of a DNS name or URL:
-+
-----
-proxyWhitelist: {
-    allowLocalhost: false,
-    allowPlatformHost: true,
-    rules: [
-        /.*\.somewhere\.com/,
-        /.*\.somewhereelse\.com/
-    ]
-  }
-----
-
-. Select Apply to save changes to the `api-platform-web-config` config map.
-. Recreate the pod to ensure each node in the cluster uses the most current configuration:
-+
-----
-kubectl delete pod -l microservice=api-platform-web
+kubectl delete pod -n api-manager -l component=api-platform-web
 ----

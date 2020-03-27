@@ -86,10 +86,6 @@ After running the `curl` command on a node, the node is displayed in the install
 +
 This IP address is used to communicate within the cluster.
 
-. Choose your Docker device from the drop-down list or manually specify the path. 
-+
-This is the device Docker uses for volume management.
-
 . Enter the location of the Application Data device or accept the default location `/var/lib/data`.
 +
 This is the location of the databases and object stores.
