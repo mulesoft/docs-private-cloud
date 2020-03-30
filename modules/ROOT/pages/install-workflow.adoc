@@ -9,7 +9,7 @@ After your infrastructure team verifies that the required infrastructure is corr
 * xref:install-auto-install.adoc[Run the CLI installer]
 
 [WARNING]
-You must contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved with your upgrade procedure.
+You must contact MuleSoft Professional Services prior to upgrading. MuleSoft professional services must be involved with your upgrade procedure.
 
 The GUI installer is interactive and walks you through a set of wizard pages that enable you to specify configuration options, but it also requires you to open extra ports and a web browser to access the pages.
 
