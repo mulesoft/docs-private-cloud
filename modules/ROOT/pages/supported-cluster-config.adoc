@@ -24,7 +24,7 @@ These limitations are based on a 3-node environment consisting of 3 nodes of 8 c
 
 **** Runtime management
 
-***** Maximum number of servers: 400
+***** Maximum number of servers: 500
 ***** Maximum number of servers per server group: 20
 ***** Maximum servers per cluster: 8
 
@@ -73,7 +73,7 @@ These limitations are based on a 6-node environment consisting of 6 nodes of 8 c
 
 **** Runtime management
 
-***** Maximum number of servers: 1500
+***** Maximum number of servers: 1000
 ***** Maximum number of servers per server group: 20
 ***** Maximum servers per cluster: 8
 
@@ -84,7 +84,7 @@ These limitations are based on a 6-node environment consisting of 6 nodes of 8 c
 ****** Maximum: 500
 
 ***** Mule runtime engines under management
-****** Maximum: 1500 single Mule runtime engines (or 750 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
+****** Maximum: 1000 single Mule runtime engines (or 500 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
 
 ***** Mule applications per Mule runtime engine
 ****** Maximum number of apps: 50 
