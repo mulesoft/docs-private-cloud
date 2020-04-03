@@ -93,7 +93,7 @@ reboot
 . Verify the requirements are met after the server restart.
 . Depending on the state of the full or partial install that you are replacing, the previous commands might not 
 completely return the system to an installable state. Before beginning reinstallation, ensure that your system 
-still meets all prerequisites listed in the xref:install-checklist[Product Prerequisites] are met.
+still meets all prerequisites listed in the xref:install-checklist.adoc[Product Prerequisites] are met.
 
 == See Also
 
