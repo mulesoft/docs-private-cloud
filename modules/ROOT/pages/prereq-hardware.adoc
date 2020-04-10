@@ -84,7 +84,7 @@ determine the best way to meet this requirement. If you use the following exampl
 specify the correct device name in two places.	
 
 [NOTE]	
-Mount this device AFTER you mount the System State device under `/var/lib/gravity/planet`. If you are using system.d units to mount the volumes, declare mount dependencies using `After=<device-name>.<mount>`.
+Mount this device AFTER you mount the System State device under `/var/lib/gravity/planet`. If you are using systemd units to mount the volumes, declare mount dependencies using `After=<device-name>.<mount>`.
 
 ----
 sudo mkfs.ext4 /dev/<device name>
