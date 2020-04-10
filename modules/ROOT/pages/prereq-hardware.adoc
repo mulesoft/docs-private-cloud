@@ -79,7 +79,9 @@ Format this device either as `xfs` or `ext4` and mounted as `/var/lib/gravity/pl
 
 The following shell snippet mounts the etcd device using systemd mount files to the path `/var/lib/gravity/planet/etcd`.
 
-You can also mount the etcd device using `/etc/fstab` or another method. Consult with your system administrator to 	determine the best way to meet this requirement. If you use the following example as a guide for this process, specify the correct device name in two places.	
+You can also mount the etcd device using `/etc/fstab` or another method. Consult with your system administrator to 
+determine the best way to meet this requirement. If you use the following example as a guide for this process, 
+specify the correct device name in two places.	
 
 [NOTE]	
 Mount this device AFTER you mount the System State device under `/var/lib/gravity/planet`. If you are using system.d units to mount the volumes, declare mount dependencies using `After=<device-name>.<mount>`.
@@ -95,7 +97,7 @@ sudo systemctl start var-lib-gravity-planet-etcd.mount
 
 == Docker Device
 
-Unless specified, Docker configuration defaults to the use of the overlay driver, which is not recommended for production.
+Unless specified, Docker configuration defaults to the use of the overlay driver, which is recommended for production.
 
 Format this device as `xfs` or `ext4` and mounted as `/var/lib/gravity/planet/docker`.
 
@@ -125,8 +127,7 @@ NAME    MAJ:MIN RM  SIZE  RO TYPE MOUNTPOINT
 xvda    202:0    0   90G   0 disk
 ├─xvda1 202:1    0    1M   0 part
 └─xvda2 202:2    0   90G   0 part /
-xvdb    202:16   0  100G   0 disk 
-/var/lib/gravity/planet/docker
+xvdb    202:16   0  100G   0 disk /var/lib/gravity/planet/docker
 xvdc    202:32   0   20G   0 disk /var/lib/gravity/planet/etcd
 xvdd    202:48   0  250G   0 disk /var/lib/data
 xvde    202:64   0  100G   0 disk /var/lib/gravity
