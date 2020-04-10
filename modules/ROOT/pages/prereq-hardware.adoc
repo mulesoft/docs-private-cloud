@@ -109,6 +109,7 @@ If you use the following example as a guide for this process, specify the correc
 [NOTE]
 Mount this device AFTER you mount the System State device under `/var/lib/gravity/planet`. If you are using system.d units to mount the volumes, declare mount dependencies using `After=<device-name>.<mount>`
 
+----
 sudo mkfs.ext4 /dev/<device name>
 sudo mkdir -p /var/lib/gravity/planet/docker
 echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/gravity/planet/docker\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-gravity-planet-docker.mount
