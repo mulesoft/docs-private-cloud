@@ -61,7 +61,7 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 | AWS_SECRET_ACCESS_KEY | Specifies the AWS access key Terraform uses to connect to your AWS account.
 | AWS_SESSION_TOKEN | Specifies the AWS temporary session token, if one exists.
 | AWS_KEY_NAME | Specifies the AWS SSH key. Do not include the `.pem` extension.
-| AWS_REGION | Specifies the AWS region where Terraform creates the cluster, for example, `us-east-2`. This value must have the same value as AWS_DEFAULT_REGION.
+| AWS_REGION | Specifies the AWS region where Terraform creates the cluster, for example, `us-east-2`.
 | TF_VAR_ssh_user=<SSH_USER> | Specifies the ssh user, for example, `ec2-user`, `centos`, etc.
 | TELEKUBE_CLUSTER_NAME | Specifies the name of the cluster and the corresponding AWS resources.
 | TELEKUBE_NODE_PROFILE_COUNT_node | Specifies the number of nodes in your cluster. Possible values are `3` and `6`.
