@@ -35,6 +35,7 @@ You must enable the following kernel modules on each node:
 * `ip_tables`
 * `iptable_filter`
 * `iptable_nat`
+* `overlay`
 
 For each kernel module, run a command similar to the following example to verify that each module is loaded. Replace `br_netfilter` with the name of the kernel module you are checking:
 
