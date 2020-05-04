@@ -154,7 +154,7 @@ This software usually changes kernel modules and settings that are required, and
 
 === Obtain Install Archive and License Key
  
-Obtain the `anypoint-2.0.0-installer.tar.gz` archive  and license key from your MuleSoft account representative.
+Obtain the anypoint installer archive (`anypoint-2.1.x-installer.tar.gz`) and license key from your MuleSoft account representative.
 
 === Verify IP Forwarding and Bridging
 
