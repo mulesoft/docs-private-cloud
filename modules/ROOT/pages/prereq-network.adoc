@@ -29,7 +29,7 @@ configured correctly on all nodes.
 |TCP | 4242 | Installer
 |TCP | 6060 | Health check
 |TCP | 6443 | Kubernetes API server
-|TCP | 7496, 7373 | Serf RPC agent
+|TCP/UDP | 7496, 7373 | Serf RPC agent
 |TCP | 8080 | Kubernetes API server
 |TCP | 10248, 10249, 10250, 10255 | Kubernetes Kubelet
 |TCP | 5000 | Docker registry
