@@ -83,6 +83,11 @@ $ kubectl get pods --all-namespaces
 ** xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Private Cloud]
 ** xref:verify-nfs.adoc[NFS Server Prerequisites]
 
+[NOTE]
+When upgrading from a previous Anypoint Platform PCE version, all policies available in the previous version remain. Policies are not replaced, but additional policies might be included with the upgrade.
+
+Refer to xref:index.adoc[About Anypoint Platform PCE] for additional information about policies included with Anypoint Platform PCE.
+
 == See Also
 
 * xref:config-workflow.adoc[Post-installation Tasks]
