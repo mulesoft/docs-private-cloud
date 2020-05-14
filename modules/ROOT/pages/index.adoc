@@ -48,7 +48,7 @@ For Anypoint Platform PCE Version 2.1, the following policies are included with 
 * Tokenization
 * XML threat protection
 
-For additional information, refer to xref:api-manager::policies-landing-page[Policies].
+For additional information, refer to xref:api-manager::policies-landing-page.adoc[Policies].
 
 == Features Shipped with Anypoint Platform PCE Version 2.1
 
