@@ -23,9 +23,9 @@ The following table
 lists the ports used for inter-host communication with the following source and destination descriptions:
 
 all:: Any node that is a member of the cluster.
-external:: Any source outside the cluster
-localhost:: The port is used only within the host where the request started.
-controllers:: Nodes that are designated with the controller or master role
+external:: Any source that is outside the cluster.
+localhost:: The port that is used only within the host where the request started.
+controllers:: Nodes that are designated with the controller or master role.
 data nodes:: In a 3-node Anypoint Platform PCE installation, every node is a data node. In a 6-node Anypoint Platform PCE installation, there are dedicated application nodes and data nodes.
 
 You must ensure that all of the following ports are 
