@@ -37,11 +37,10 @@ configured correctly on all nodes.
 |TCP/UDP | 53 | Internal cluster DNS | localhost | localhost
 |TCP | 2379, 2380, 4001, 7001 | etcd distributed database | all | controllers
 |TCP | 4242 | Installer | all | all
-|TCP | 6060 | Health check | all | all
 |TCP | 6443 | Kubernetes API server | all | controllers
 |TCP/UDP | 7496 | Serf RPC agent | all | all
-|TCP/UDP | 7373 | Serf RPC agent | localhost | localhost
 |TCP | 10248, 10249, 10250, 10255 | Kubernetes Kubelet | all | all
+|TCP | 10251, 10252 | Kubernetes controller-manager and scheduler | all | all
 |TCP | 5000 | Docker registry | all | controllers
 |TCP | 3009-3011 | Cluster control plane | all | controllers
 |TCP | 3012 | Cluster control plane | all | all
@@ -50,9 +49,7 @@ configured correctly on all nodes.
 |TCP | 3080 | Cluster control plane | external | controllers
 |TCP | 7575 | Cluster control plane | all | all
 |TCP | 7001 | Cassandra | data nodes | data nodes
-|TCP | 7199 | Cassandra | localhost | localhost
 |TCP | 9042 | Cassandra | all | all
-|TCP | 18080 | Object store cluster | localhost | localhost
 |TCP | 18443 | Object store cluster | all | all
 |TCP | 5432 | Database cluster | all | all
 |TCP | 5434 | Database cluster | data nodes | data nodes
