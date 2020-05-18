@@ -42,8 +42,7 @@ configured correctly on all nodes.
 |TCP | 10248, 10249, 10250, 10255 | Kubernetes Kubelet | all | all
 |TCP | 10251, 10252 | Kubernetes controller-manager and scheduler | all | all
 |TCP | 5000 | Docker registry | all | controllers
-|TCP | 3009-3011 | Cluster control plane | all | controllers
-|TCP | 3012 | Cluster control plane | all | all
+|TCP | 3009-3012 | Cluster control plane | all | controllers
 |TCP | 3022 | Cluster control plane | all | all
 |TCP | 3023-3026 | Cluster control plane | all | controllers
 |TCP | 3080 | Cluster control plane | external | controllers
