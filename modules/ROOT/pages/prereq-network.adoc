@@ -17,7 +17,7 @@ restarts. If IP addresses are not persistent between reboots, the cluster can fa
 == Verify VXLAN
 
 The version of Kubernetes supported by Anypoint Platform PCE uses an overlay VXLAN and UDP 
-transport to encapsulate traffic. There is direct communication between components of the cluster. 
+transport to encapsulate traffic. There is direct communication between cluster components. 
 
 The following table 
 lists the ports used for inter-host communication with the following source and destination descriptions:
