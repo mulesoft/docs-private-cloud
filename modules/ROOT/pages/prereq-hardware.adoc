@@ -170,9 +170,9 @@ Your load balancer must route the following TCP ports:
 [%header%autowidth.spread]
 |===
 |Load Balancer Port |Instance Port | Internal Usage
-|`80` | `30080`  | HTTP redirects to HTTPs.
+|`80` | `30080`  | HTTP redirects to HTTPs
 |`443` | `30443` | HTTPS port
-|`8083` | `30883` | WebSocket port for Mule runtimes to authenticate
+|`8083` | `30883` | HTTPS port for Mule runtimes to authenticate and renew certificates
 |`8889` | `30889` | WebSocket port for Mule runtimes to connect
 |`9500` | `32009` | Ops Center access port
 |===
