@@ -57,6 +57,10 @@ configured correctly on all nodes.
 |UDP | 8472 | Overlay VXLAN network | all | all 
 |TCP | 32009 | Ops Center Admin UI | external | controllers 
 |TCP | 32009 | Gravity internal API | controllers | all 
+|TCP | 30080 | HTTP public access | Load Balancer | PCE nodes 
+|TCP | 30443 | HTTPS public access | Load Balancer | PCE nodes 
+|TCP | 30889 | Mule Runtime Websocket | Load Balancer | PCE nodes 
+|TCP | 30883 | Mule Runtime Websocket (auth) | Load Balancer | PCE nodes 
 |===
 
 You can use netcat or a similar utility to verify port configuration.
