@@ -33,30 +33,30 @@ configured correctly on all nodes.
 [%header%autowidth.spread]
 |===
 |Protocol |Port/Range |Purpose |Source |Destination
-|TCP/UDP | 53 | Internal cluster DNS | localhost | localhost
-|TCP | 2379, 2380, 4001, 7001 | etcd distributed database | all | controllers
-|TCP | 4242 | Installer | all | all
-|TCP | 6443 | Kubernetes API server | all | controllers
-|TCP/UDP | 7496 | Serf RPC agent | all | all
-|TCP | 10248, 10249, 10250, 10255 | Kubernetes Kubelet | all | all
-|TCP | 10251, 10252 | Kubernetes controller-manager and scheduler | all | all
-|TCP | 5000 | Docker registry | all | controllers
-|TCP | 3009-3012 | Cluster control plane | all | controllers
-|TCP | 3022 | Cluster control plane | all | all
-|TCP | 3023-3026 | Cluster control plane | all | controllers
-|TCP | 3080 | Cluster control plane | all | controllers
-|TCP | 7575 | Cluster control plane | all | all
-|TCP | 7001 | Cassandra | data nodes | data nodes
-|TCP | 9042 | Cassandra | all | all
-|TCP | 18443 | Object store cluster | all | all
-|TCP | 5432 | Database cluster | all | all
-|TCP | 5434 | Database cluster | data nodes | data nodes
-|TCP | 30000-32767 | Internal services port range | all | all
-|TCP | 61009-61010 | Installer port ranges (only used during install) | all | installer node
-|TCP | 61022-61024 | Installer port ranges (only used during install) | all | installer node
-|UDP | 8472 | Overlay VXLAN network | all | all
-|TCP | 32009 | Ops Center Admin UI | external | controllers
-|TCP | 32009 | Gravity internal API | controllers | all
+|TCP/UDP | 53 | Internal cluster DNS | localhost | localhost 
+|TCP | 2379, 2380, 4001, 7001 | etcd distributed database | all | controllers 
+|TCP | 4242 | Installer | all | all 
+|TCP | 6443 | Kubernetes API server | all | controllers 
+|TCP/UDP | 7496 | Serf RPC agent | all | all 
+|TCP | 10248, 10249, 10250, 10255 | Kubernetes Kubelet | all | all 
+|TCP | 10251, 10252 | Kubernetes controller-manager and scheduler | all | all 
+|TCP | 5000 | Docker registry | all | controllers 
+|TCP | 3009-3012 | Cluster control plane | all | controllers 
+|TCP | 3022 | Cluster control plane | all | all 
+|TCP | 3023-3026 | Cluster control plane | all | controllers 
+|TCP | 3080 | Cluster control plane | all | controllers 
+|TCP | 7575 | Cluster control plane | all | all 
+|TCP | 7001 | Cassandra | data nodes | data nodes 
+|TCP | 9042 | Cassandra | all | all 
+|TCP | 18443 | Object store cluster | all | all 
+|TCP | 5432 | Database cluster | all | all 
+|TCP | 5434 | Database cluster | data nodes | data nodes 
+|TCP | 30000-32767 | Internal services port range | all | all 
+|TCP | 61009-61010 | Installer port ranges (only used during install) | all | installer node 
+|TCP | 61022-61024 | Installer port ranges (only used during install) | all | installer node 
+|UDP | 8472 | Overlay VXLAN network | all | all 
+|TCP | 32009 | Ops Center Admin UI | external | controllers 
+|TCP | 32009 | Gravity internal API | controllers | all 
 |===
 
 You can use netcat or a similar utility to verify port configuration.
