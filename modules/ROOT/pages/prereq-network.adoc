@@ -44,7 +44,7 @@ configured correctly on all nodes.
 |TCP | 3009-3012 | Cluster control plane | all | controllers
 |TCP | 3022 | Cluster control plane | all | all
 |TCP | 3023-3026 | Cluster control plane | all | controllers
-|TCP | 3080 | Cluster control plane | external | controllers
+|TCP | 3080 | Cluster control plane | all | controllers
 |TCP | 7575 | Cluster control plane | all | all
 |TCP | 7001 | Cassandra | data nodes | data nodes
 |TCP | 9042 | Cassandra | all | all
