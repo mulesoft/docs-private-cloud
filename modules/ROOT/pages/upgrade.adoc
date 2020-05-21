@@ -78,7 +78,7 @@ $ kubectl get pods --all-namespaces
 
 . Configure DNS again to trigger the creation of certificates for the new Runtime Manager services. Refer to the xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud] section.
 
-WARNING: If Access Management or the platform is not accessible follow the https://pce-runbook.kbuild.msap.io/content/2.1.x/installation/setting-user-dns-nfs.html#wrong-setup-of-the-platform-dns[Wrong setup of the platform DNS] runbook entry to configure DNS via the command line.
+WARNING: If you cannot access Anypoint Access Management or the platform, follow the https://pce-runbook.kbuild.msap.io/content/2.1.x/installation/setting-user-dns-nfs.html#wrong-setup-of-the-platform-dns[Wrong setup of the platform DNS] runbook entry to configure DNS via the command line.
 
 . Finally, ensure that the following items are still correctly configured after the update:
 
