@@ -74,11 +74,14 @@ $ sudo gravity enter
 $ kubectl get pods --all-namespaces
 ----
 
-. Open the new `8083` port on your load balancer and map it to the `30883` port on your servers. Refer to the 2.1 xref:prereq-hardware.adoc[Hardware Prerequisities] section for more information. 
+. Open the new `8083` port on your load balancer and map it to the `30883` port on your servers. Refer to the 2.1 xref:prereq-hardware.adoc[Hardware Prerequisities] section for more information.
+
+. Reconfigure DNS to trigger the creation of certificates for the new Runtime Manager services. If the DNS setting already has the desired value, copy and paste it again in the DNS setting field to trigger a form change so that you can select *Save*. Refer to the xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud] section.
++
+WARNING: If you cannot access Anypoint Access Management or the platform, refer to https://pce-runbook.kbuild.msap.io/content/2.1.x/installation/setting-user-dns-nfs.html#wrong-setup-of-the-platform-dns[Wrong setup of the platform DNS] to configure DNS via the command line.
 
 . Finally, ensure that the following items are still correctly configured after the update:
 
-** xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
 ** xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
 ** xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Private Cloud]
 ** xref:verify-nfs.adoc[NFS Server Prerequisites]
