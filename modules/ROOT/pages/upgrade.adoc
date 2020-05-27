@@ -11,6 +11,21 @@ Refer to the xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[A
 [WARNING]
 You must contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved with your upgrade procedure.
 
+=== Check available disk space
+Before running the upgrade check you have enougth space, ensure you have at least half the ref:prereq-hardware.adoc[space required].
+e.g. for /var/lib/gravity, the recommended space is 100Gb, ensure you have 50Gb of available space:
+----
+sudo df -h /var/lib/gravity/
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p2  200G   66G  135G  33% /
+----
+If you don't have enough free space, you can try by running
+----
+sudo ./gravity gc
+----
+Pointing to the `gravity` binary from the new installer. 
+If running the garbage collection didn't freed up enough space, you would need to extend the disks before running the upgrade. 
+
 == Procedure
 
 The following steps describe how to upgrade Anypoint Platform PCE and the Anypoint Platform PCE infrastructure from v2.0.x to v2.1.0. 
