@@ -9,22 +9,7 @@ Because Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) upgrades
 Refer to the xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Edition Release Notes] for additional information about upgrading Anypoint Platform PCE to the most recent version.
 
 [WARNING]
-You must contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved with your upgrade procedure.
-
-=== Check available disk space
-Before running the upgrade check you have enougth space, ensure you have at least half the ref:prereq-hardware.adoc[space required].
-e.g. for /var/lib/gravity, the recommended space is 100Gb, ensure you have 50Gb of available space:
-----
-sudo df -h /var/lib/gravity/
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/nvme0n1p2  200G   66G  135G  33% /
-----
-If you don't have enough free space, you can try by running
-----
-sudo ./gravity gc
-----
-Pointing to the `gravity` binary from the new installer. 
-If running the garbage collection didn't freed up enough space, you would need to extend the disks before running the upgrade. 
+You must contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved with your upgrade procedure. 
 
 == Procedure
 
@@ -39,6 +24,22 @@ If you are upgrading from a prior version of Anypoint Platform PCE, you must fir
 ====
 
 . Perform a backup of your system as described in xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore]. If you are upgrading from an older version that requires multiple intermediate upgrades, you must backup each intermediate version before proceeding to the next.
+
+. Verify that there is adequate disk space available for the upgrade, which is at least half the amount specified in xref:prereq-hardware.adoc[Hardware Prerequisites]. For example, for `/var/lib/gravity`, the recommended amount of disk space is 100Gb, so ensure that you have 50Gb of available space. Run the following command to check the amount of available space:
++
+----
+sudo df -h /var/lib/gravity/
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p2  200G   66G  135G  33% /
+----
++
+If you do not have enough available space, run the garbage collection command, pointing to the `gravity` binary from the new installer:
++
+----
+sudo ./gravity gc
+----
++ 
+If running the garbage collection does not free up enough space, you must extend the disks before performing the upgrade.
 
 . Obtain a link to the installer from your customer success representative.
 
