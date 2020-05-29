@@ -58,7 +58,7 @@ configured correctly on all nodes.
 |TCP | 30080 | HTTP public access | Load Balancer | Anypoint Platform PCE nodes
 |TCP | 30443 | HTTPS public access | Load Balancer | Anypoint Platform PCE nodes
 |TCP | 30889 | Mule Runtime Websocket | Load Balancer | Anypoint Platform PCE nodes
-|TCP | 30883 | Mule Runtime Authentication Service | Load Balancer | Anypoint Platform PCE nodes
+|TCP | 30883 | Mule Runtime Authentication Service (for certificate renewals) | Load Balancer | Anypoint Platform PCE nodes
 |===
 
 You can use netcat or a similar utility to verify port configuration.
