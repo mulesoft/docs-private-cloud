@@ -21,11 +21,10 @@ transport to encapsulate traffic. There is direct communication between cluster 
 
 The following table lists the ports used for inter-host communication and uses the following source and destination descriptions:
 
-all:: Any node that is a member of the cluster.
-external:: Any source that is outside the cluster.
+Anypoint Platform PCE nodes:: Nodes that are members of the cluster.
+installer node:: Node on which the installation was started.
+load Balancer:: Any source that is outside the cluster.
 localhost:: The port that is used only within the host where the request started.
-controllers:: Nodes that are designated with the controller or master role.
-data nodes:: In a 3-node Anypoint Platform PCE installation, every node is a data node. In a 6-node Anypoint Platform PCE installation, there are dedicated application nodes and data nodes.
 
 You must ensure that all of the following ports are 
 configured correctly on all nodes.
@@ -34,32 +33,32 @@ configured correctly on all nodes.
 |===
 |Protocol |Port/Range |Purpose |Source |Destination
 |TCP/UDP | 53 | Internal cluster DNS | localhost | localhost
-|TCP | 2379, 2380, 4001, 7001 | etcd distributed database | all | all
-|TCP | 4242 | Installer | all | all
-|TCP | 6443 | Kubernetes API server | all | Anypoint Platform PCE nodes
-|TCP/UDP | 7496 | Serf RPC agent | all | all
+|TCP | 2379, 2380, 4001, 7001 | etcd distributed database | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 4242 | Installer | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 6443 | Kubernetes API server | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP/UDP | 7496 | Serf RPC agent | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 7373 | Serf RPC agent | localhost | localhost
-|TCP | 10248, 10250 | Kubernetes Kubelet | all | all
+|TCP | 10248, 10250 | Kubernetes Kubelet | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 10249 | Kubernetes kube-proxy | localhost | localhost
-|TCP | 10251, 10252 | Kubernetes controller-manager and scheduler | all | Anypoint Platform PCE nodes
-|TCP | 5000 | Docker registry | all | Anypoint Platform PCE nodes
-|TCP | 3009-3012 | Cluster control plane | all | Anypoint Platform PCE nodes
-|TCP | 3022 | Cluster control plane | all | all
-|TCP | 3023-3026 | Cluster control plane | all | Anypoint Platform PCE nodes
-|TCP | 7575 | Cluster control plane | all | all
+|TCP | 10251, 10252 | Kubernetes controller-manager and scheduler | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 5000 | Docker registry | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 3009-3012 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 3022 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 3023-3026 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 7575 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 7580 | Cluster control plane monitoring endpoint| localhost | localhost
 |TCP | 6060 | Cluster control plane profiling endpoint| localhost | localhost
-|TCP | 30000-32767 | Internal services port range | all | all
-|TCP | 61009-61010 | Installer port ranges (only used during install) | all | installer node
-|TCP | 61022-61024 | Installer port ranges (only used during install) | all | installer node
+|TCP | 30000-32767 | Internal services port range | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 61009-61010 | Installer port ranges (only used during install) | Anypoint Platform PCE nodes | installer node
+|TCP | 61022-61024 | Installer port ranges (only used during install) | Anypoint Platform PCE nodes | installer node
 |TCP | 61025 | Installer port ranges (only used during install) | localhost | installer node
-|UDP | 8472 | Overlay VXLAN network | all | all
+|UDP | 8472 | Overlay VXLAN network | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 32009 | Ops Center Admin UI | Load Balancer | Anypoint Platform PCE nodes
-|TCP | 32009 | Gravity internal API | controllers | all
+|TCP | 32009 | Gravity internal API | controllers | Anypoint Platform PCE nodes
 |TCP | 30080 | HTTP public access | Load Balancer | Anypoint Platform PCE nodes
 |TCP | 30443 | HTTPS public access | Load Balancer | Anypoint Platform PCE nodes
 |TCP | 30889 | Mule Runtime Websocket | Load Balancer | Anypoint Platform PCE nodes
-|TCP | 30883 | Mule Runtime Websocket (auth) | Load Balancer | Anypoint Platform PCE nodes
+|TCP | 30883 | Mule Runtime Authentication Service (for certificate renewals) | Load Balancer | Anypoint Platform PCE nodes
 |===
 
 You can use netcat or a similar utility to verify port configuration.
