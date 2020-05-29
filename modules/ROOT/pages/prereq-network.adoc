@@ -22,7 +22,7 @@ transport to encapsulate traffic. There is direct communication between cluster 
 The following table lists the ports used for inter-host communication and uses the following source and destination descriptions:
 
 Anypoint Platform PCE nodes:: Nodes that are members of the cluster.
-installer node:: 
+installer node:: Node on which the installation was started.
 load Balancer:: Any source that is outside the cluster.
 localhost:: The port that is used only within the host where the request started.
 
