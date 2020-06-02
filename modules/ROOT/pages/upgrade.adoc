@@ -28,7 +28,7 @@ If you are upgrading from a prior version of Anypoint Platform PCE, you must fir
 . Verify that there is adequate disk space available for the upgrade, which is at least half the amount specified in xref:prereq-hardware.adoc[Hardware Prerequisites]. For example, for `/var/lib/gravity`, the recommended amount of disk space is 100Gb, so ensure that you have 50Gb of available space. Run the following command to check the amount of available space:
 +
 ----
-sudo df -h /var/lib/gravity/
+df -h /var/lib/gravity/
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/nvme0n1p2  200G   66G  135G  33% /
 ----
