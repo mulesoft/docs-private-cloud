@@ -17,9 +17,9 @@ To export external analytics data to ELK, you must have the following software:
 +
 ** Mule Runtime, version 3.8.4 or greater
 ** Mule Runtime Manager Agent, version 1.7.0 or greater
-** Elasticsearch, version 5.6.2
-** Filebeat, version 5.6.2
-** Kibana, version 5.6.2
+** Elasticsearch, version 7.6.2
+** Filebeat, version 7.6.2
+** Kibana, version 7.6.2
 
 * Ensure that you have installed and configured your Mule runtime engine instances.
 * Ensure that you have registered these instances with Runtime Manager.
@@ -86,78 +86,73 @@ You must install the Filebeat module on each server where you have Mule runtime 
 . Download and expand the Filebeat Module archive from the following URL:
 +
 ----
-https://s3.us-east-2.amazonaws.com/elk-integration/elk-integration-09-29-17/elk-integration.tar.gz
+https://s3.us-east-2.amazonaws.com/elk-integration/elk-integration-06-08-20/elk-integration.tar.gz
 ----
 
-. Add the absolute paths of each log file to the `filebeat.yml` file:
+. Add the absolute paths of each log file to the `manifest.yml` files:
 +
-* Add the event log paths to the `var.paths` variable of `business_events` as shown in the following example:
-+
-----
-business_events:
-    enabled: true
-    ...
-    var.paths:
-      - /var/mule/logs/instance1_events.log
-      - /var/mule/logs/instance2_events.log
-    ...
-----
-+
-* Add the API analytics log paths to the `var.paths` variable of `api_analytics` as shown in the following example:
+* Inside the `businessevents` folder, set the event log paths to the `var` variable of your OS, as shown in the following example:
 +
 ----
-api_analytics:
-  enabled: true
-  	...
-    var.paths:
-      -  /var/mule/logs/instance1_api-analytics-elk.log
-      -  /var/mule/logs/instance2_api-analytics-elk.log
+var:
+  - name: paths
+    default:
+      - /var/mule/logs/events.log
+    os.darwin:
+      - /var/mule/logs/events.log
+    os.windows:
+      - /var/mule/logs/events.log
+----
++
+* Inside the `apianalytics` folder, set the API analytics log paths to the `var` variable of your OS, as shown in the following example:
++
+----
+var:
+  - name: paths
+    default:
+      - /var/mule/logs/api-analytics-elk.log*
+    os.darwin:
+      - /var/mule/logs/api-analytics-elk.log*
+    os.windows:
+      - c:/programdata/mule/logs/api-analytics-elk.log*
 ----
 
-. Add your Elasticsearch host to the `hosts` property:
+. Copy the `mule` module folder to the `module` folder of your Filebeat installation and the `mule.yml` file to the `modules.d` folder of your Filebeat installation.
+
+. Start Elasticsearch and then Kibana.
+
+. Setup Filebeat and provision dashboards to Kibana.
++
+Inside your Filebeat installation folder, run:
++
+---
+./filebeat setup -e \
+  -E output.elasticsearch.hosts="['localhost:9200']" \
+  -E output.elasticsearch.index="mule-%{+yyyy.MM.dd}" \
+  -E setup.dashboards.enabled=true \
+  -E setup.ilm.enabled=false	\
+  -E setup.template.name="mule" \
+  -E setup.template.pattern="mule-*" \
+  -E setup.template.overwrite=true
+---
+
+. Start Filebeat.
++
+Inside your Filebeat installation folder, execute the following command. First, replace the `${filebeat-installation-folder}` by the path to your Filebeat installation root folder, and change the Elasticsearch host if needed.
 +
 ----
-output.elasticsearch:
-	...
-	hosts: ["http://your_elastic_installation:9200"]
-	...
+./filebeat -e \
+  -E output.elasticsearch.hosts="['localhost:9200']" \
+  -E output.elasticsearch.index="mule-%{+yyyy.MM.dd}" \
+  -E setup.dashboards.enabled=true \
+  -E setup.dashboards.directory=${filebeat-installation-folder}/module/mule/_meta/kibana \
+  -E setup.ilm.enabled=false	\
+  -E setup.template.name="mule" \
+  -E setup.template.pattern="mule-*" \
+  -E setup.template.overwrite=true
 ----
 
-. Update the Filebeat configuration
-+
-* If you installed Filebeat using a Linux package manager, run the following script included in the Filebeat module download:
-+
-----
- setup_mule_module.sh
-----
-+
-* If you installed Filebeat using another method:
-** copy `filebeat.template.mule.json` and `filebeat.yml` to the root installation folder of Filebeat
-** copy the `mule` module folder to the `module` folder of your Filebeat installation.
-== Run Filebeat
-
-. Start Filebeat as a service on your system.
-+
-For example, if you are using an RPM package manager:
-+
-----
-sudo /etc/init.d/filebeat start
-----
-
-. Configure Filebeat to start automatically during boot:
-+
-----
-sudo chkconfig --add filebeat
-----
-
-== Install the Elasticsearch Geoip and Agent Modules
-
-You must install the following Elasticsearch plugins:
-
-* *Geoip*: determines the geographical location of IP addresses stored in your logs.
-* *User Agent*: determines information about a browser or operating system based on HTTP requests.
-
-== Configure Kibana and Import the MuleSoft Kibana Dashboards
+== Configure Kibana to load the Index
 
 After installing Filebeat and Elasticsearch, you must configure Kibana to be able to consume data from Anypoint Platform.
 
@@ -173,39 +168,8 @@ This is required for the index to be created so that Kibana can recognize this. 
 
 .. In the Kibana management console, create an index pattern with `mule-*` as the value.
 
-. Obtain the Index Pattern ID
-+
-After creating the index pattern, you must obtain the index ID. This pattern is visible in the URL when viewing the `mule-*` index pattern. For example, the following image contains an index pattern ID of `AV7OmqBs1r9syiCBxyee`.
-+
-image::kibana-index-pattern-id.png[]
+.. In the following section, chose `@timestamp` in the `Time Filter field name` combo box, and in the `Show advanced options` set `mule-index` as the value in the `Custom index pattern ID` field.
 
-. Download the Mule Kibana configuration files from the following URL:
+.. Proceed to create the index.
 +
-----
-https://s3.us-east-2.amazonaws.com/elk-integration/elk-integration-09-29-17/dashboards.tar.gz
-----
-+
-This file contains default, search, and visualization dashboards that you can use to analyze Anypoint Platform data.
-
-. Add the Index Pattern ID to the `searchSourceJSON` Property of `searches.json`.
-+
-Modify `searches.json` to include the index pattern ID retrieved in a previous step. You must modify every occurence of `searchSourceJSON` in this file.
-+
-----
-"kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"index\":\"AV7OmqBs1r9syiCBxyee\", .......
- }
-----
-
-. Import each of the dashboards into your Kibana installation.
-+
-You must import the dashboards in the following order:
-+
-.. dashboards.json
-.. searches.json
-.. visualizations.json
-
-== See Also
-
-* https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-geoip.html[Ingest Geoip Processor Plugin]
-* https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-user-agent.html[Ingest User Agent Processor Plugin]
+You will be able to access all the Mule dashboards in the Dashboard tab.
