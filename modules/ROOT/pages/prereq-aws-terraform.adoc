@@ -115,7 +115,7 @@ After the provisioner runs successfully, it displays information about your envi
 You can have your own shell scripts to run on the provisioned instances before and/or after the PCE provisioner scripts. To do so, place your shell scripts with .sh extension inside a folder named `pre-user-data` and/or `post-user-data`. Include the following volume mounts on the docker run command:
 
 ----
-docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/external/pre-user-data -v $(pwd)/post-user-data:/usr/local/bin/provisioner/terraform/external/post-user-data --env-file pce.env IMAGE_ID cluster-provision
+docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/external/pre-user-data -v $(pwd)/post-user-data:/usr/local/bin/provisioner/terraform/external/post-user-data --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v2.1.0 cluster-provision
 ----
 
 == Open Port 61009 Before Installation
@@ -127,7 +127,7 @@ If you are installing Anypoint Private Cloud using the GUI-based installer, you 
 You can destroy all resources that were created using the provisioner by running the `cluster-deprovision` command, as shown in the following example. Ensure the `TELEKUBE_CLUSTER_NAME` environment variable in your environment file has the correct value for the target cluster you want to destroy:
 
 ----
-docker run --rm --env-file pce.env IMAGE_ID cluster-deprovision
+docker run --rm --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v2.1.0 cluster-deprovision
 ----
 
 == Troubleshooting
