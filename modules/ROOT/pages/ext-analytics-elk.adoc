@@ -15,8 +15,8 @@ image::kibana-example.png[]
 +
 To export external analytics data to ELK, you must have the following software:
 +
-** Mule Runtime, version 3.8.4 or greater
-** Mule Runtime Manager Agent, version 1.7.0 or greater
+** Mule Runtime, version 3.8.4 or later
+** Mule Runtime Manager Agent, version 1.7.0 or later
 ** Elasticsearch, version 7.6.2
 ** Filebeat, version 7.6.2
 ** Kibana, version 7.6.2
@@ -26,7 +26,7 @@ To export external analytics data to ELK, you must have the following software:
 
 == Edit the wrapper.conf Properties File
 
-In your Mule runtime installation, edit the following the `conf/wrapper.conf` file.
+In your Mule runtime installation, edit the following properties in the `conf/wrapper.conf` file:
 
 . Set the `analytics_enabled` property to `true`.
 +
@@ -50,40 +50,36 @@ wrapper.java.additional.<n>=-Danypoint.platform.on_prem=true
 
 To export business and event tracking data, you must enable event tracking in Runtime Manager:
 
-. From Anypoint Platform, select Runtime Manager.
-. Select Servers.
+. From Anypoint Platform, select *Runtime Manager*.
+. Select *Servers*.
 . Select the row containing the server on which you want to configure ELK.
-. Select Manager Server, then select the Plugins tab.
-. In Event Tracking, select Business Events from the Levels drop-down.
-. Select the switch to Enable event tracking on ELK.
+. Select *Manager Server* and then select the Plugins tab.
+. In Event Tracking, select *Business Events* from the *Levels* drop-down menu.
+. Select the switch to enable event tracking on ELK.
 +
 Runtime Manager displays the ELK Integration dialog.
 
 . Configure the log files as necessary.
-. Select Apply.
+. Select *Apply*.
 
 == Enable API Analytics
 
 To export API analytics, you must enable API analytics in Runtime Manager.
 
-. From Anypoint Platform, select Runtime Manager.
-. Select Servers.
+. From Anypoint Platform, select *Runtime Manager*.
+. Select *Servers*.
 . Select the row containing the server on which you want to configure ELK.
-. Select the switch to enable API analytics, the select the switch next to ELK.
+. Select the switch to enable API analytics and then select the switch next to ELK.
 . Configure the log files as necessary.
-. Select Apply
+. Select *Apply*.
 
 == Install and Configure the Filebeat Agent
 
-You must install the Filebeat agent on each server where you have Mule runtime instances.
-
-. Download and install Filebeat for your operating system.
+On each server with Mule runtime instances, download and install Filebeat for your operating system.
 
 == Configure the Mule Filebeat Module
 
-You must install the Filebeat module on each server where you have Mule runtime instances.
-
-. Download and expand the Filebeat Module archive from the following URL:
+On each server with Mule runtime instances, download and expand the Filebeat Module archive from the following URL:
 +
 ----
 https://s3.us-east-2.amazonaws.com/elk-integration/elk-integration-06-08-20/elk-integration.tar.gz
@@ -91,7 +87,7 @@ https://s3.us-east-2.amazonaws.com/elk-integration/elk-integration-06-08-20/elk-
 
 . Add the absolute paths of each log file to the `manifest.yml` files:
 +
-* Inside the `businessevents` folder, set the event log paths to the `var` variable of your OS, as shown in the following example:
+* Inside the `businessevents` folder, set the event log paths to the `var` variable of your operating system (OS), as shown in the following example:
 +
 ----
 var:
@@ -117,11 +113,12 @@ var:
       - c:/programdata/mule/logs/api-analytics-elk.log*
 ----
 
-. Copy the `mule` module folder to the `module` folder of your Filebeat installation and the `mule.yml` file to the `modules.d` folder of your Filebeat installation.
+. Copy the `mule` module folder to the `module` folder of your Filebeat installation.
+. Copy the `mule.yml` file to the `modules.d` folder of your Filebeat installation.
 
 . Start Elasticsearch and then Kibana.
 
-. Setup Filebeat and provision dashboards to Kibana.
+. Set up Filebeat and provision dashboards to Kibana.
 +
 Inside your Filebeat installation folder, run:
 +
@@ -138,7 +135,7 @@ Inside your Filebeat installation folder, run:
 
 . Start Filebeat.
 +
-Inside your Filebeat installation folder, execute the following command. First, replace the `${filebeat-installation-folder}` by the path to your Filebeat installation root folder, and change the Elasticsearch host if needed.
+Inside your Filebeat installation folder, execute the following command. Replace the `${filebeat-installation-folder}` with the path to your Filebeat installation root folder, and change the Elasticsearch host if needed.
 +
 ----
 ./filebeat -e \
@@ -152,24 +149,25 @@ Inside your Filebeat installation folder, execute the following command. First, 
   -E setup.template.overwrite=true
 ----
 
-== Configure Kibana to load the Index
+== Configure Kibana to Load an Index
 
-After installing Filebeat and Elasticsearch, you must configure Kibana to be able to consume data from Anypoint Platform.
+After installing Filebeat and Elasticsearch, you must configure Kibana to consume data from Anypoint Platform.
 
-MuleSoft provides a set of default Kibana configuration that you can use to analyze business and API data. These include dashboards, searches, and visualizations.
+MuleSoft provides a default Kibana configuration that you can use to analyze business and API data. This configuration includes dashboards, searches, and visualizations.
 
 . Configure an Index Pattern
 +
-You must create an Elasticsearch index for the Anypoint Platform data.
+You must create an Elasticsearch index for Anypoint Platform data.
 
-.. Generate initial set of data.
+.. Generate an initial set of data.
 +
-This is required for the index to be created so that Kibana can recognize this. For example, you can send a request to a test API to generate an initial set of data:
+This is required for Kibana to be able to recognize the index to be created. To send a request to a test API to generate an initial set of data:
 
-.. In the Kibana management console, create an index pattern with `mule-*` as the value.
+... In the Kibana management console, create an index pattern with `mule-*` as the value.
 
-.. In the following section, chose `@timestamp` in the `Time Filter field name` combo box, and in the `Show advanced options` set `mule-index` as the value in the `Custom index pattern ID` field.
+... Select *@timestamp* in *Time Filter field name*.
+... In *Show advanced options*, set *mule-index* as the value in the *Custom index pattern ID* field.
 
-.. Proceed to create the index.
+.. Create the index.
 +
-You will be able to access all the Mule dashboards in the Dashboard tab.
+You can now access all the Mule dashboards in the *Dashboard* tab.
