@@ -120,13 +120,14 @@ var:
 
 . Set up Filebeat and provision dashboards to Kibana.
 +
-Inside your Filebeat installation folder, run:
+Inside your Filebeat installation folder, execute the following command. Replace the `${filebeat-installation-folder}` with the path to your Filebeat installation root folder, and change the Elasticsearch host if needed.
 +
 ---
 ./filebeat setup -e \
   -E output.elasticsearch.hosts="['localhost:9200']" \
   -E output.elasticsearch.index="mule-%{+yyyy.MM.dd}" \
   -E setup.dashboards.enabled=true \
+  -E setup.dashboards.directory=${filebeat-installation-folder}/module/mule/_meta/kibana \
   -E setup.ilm.enabled=false	\
   -E setup.template.name="mule" \
   -E setup.template.pattern="mule-*" \
