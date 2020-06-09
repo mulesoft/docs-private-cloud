@@ -80,7 +80,7 @@ On each server with Mule runtime instances, download and install Filebeat for yo
 == Configure the Mule Filebeat Module
 
 On each server with Mule runtime instances, download and expand the Filebeat Module archive from the following URL:
-+
+
 ----
 https://s3.us-east-2.amazonaws.com/elk-integration/elk-integration-06-08-20/elk-integration.tar.gz
 ----
