@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 == MuleSoft Professional Services Required
-Contact MuleSoft professional services prior to uninstalling. MuleSoft professional services must be involved throughout the upgrade process. 
+Contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved throughout the upgrade process. 
 
 Before an Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) upgrade is performed, you must verify that your working installation meets any additional requirements of the new Anypoint Platform PCE version, such as opening additional ports or adding a new port for the load balancer.
 
