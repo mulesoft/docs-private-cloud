@@ -3,7 +3,5 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If you encounter problems during installation, you can uninstall. Before beginning a new installation, ensure that your environment meets all system requirements listed in the xref:install-checklist.adoc[Product Prerequisites].
-
-[IMPORTANT]
-Contact MuleSoft professional services prior to uninstalling. MuleSoft professional services must be involved with your uninstall procedure.
+== MuleSoft Professional Services Required
+Contact MuleSoft professional services prior to uninstalling. MuleSoft professional services must be involved throughout the uninstallation process.
