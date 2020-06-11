@@ -15,6 +15,5 @@ The following topics describe how to manage Anypoint Platform PCE after installa
 * xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
 * xref:config-alerts.adoc[Setup Alerts for CPU and Memory Usage]
 * xref:config-add-proxy-whitelist.adoc[Add Whitelist Addresses for API Platform Proxies]
-* xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Private Cloud]
 * xref:custom-policies.adoc[Upload Custom Policies and Publish Assets to Exchange Using the Maven Client]
 * xref:register-server.adoc[Troubleshoot Mule Runtime Engine Registration]
