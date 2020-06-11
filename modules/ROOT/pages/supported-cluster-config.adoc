@@ -92,7 +92,3 @@ in which:
 ****** A single API implementation with one policy counts as 0.3.
 ****** A single clustered proxy with up to 5 policies counts as 1.
 ****** All runtimes are polling every 60 seconds. 
-
-== See Also
-
-* xref:install-workflow.adoc[Install Anypoint Platform PCE]
