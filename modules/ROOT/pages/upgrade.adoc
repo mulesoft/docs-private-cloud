@@ -8,4 +8,4 @@ MuleSoft professional services must be involved throughout the upgrade process.
 
 Because Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) upgrades require a working installation, all environment prerequisites should already be met. As long as you (or your infrastructure team) successfully performed all prerequisite tasks listed in xref:prereq-hardware.adoc[Hardware Prerequisites], xref:prereq-software.adoc[Software Prerequisites], and xref:prereq-network.adoc[Network Prerequisites] prior to the installation of Anypoint Platform PCE, your environment can be upgraded successfully.
 
-Refer to the xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Edition Release Notes] for additional information about upgrading Anypoint Platform PCE to the most recent version.
+Refer to the xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Edition Release Notes] for additional information about the most recent Anypoint Platform PCE version.
