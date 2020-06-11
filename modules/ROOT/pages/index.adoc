@@ -89,7 +89,6 @@ The Anypoint Platform Private Cloud Edition uses Docker and Kubernetes to provid
 
 * xref:supported-cluster-config.adoc[Supported Configurations]
 * xref:install-checklist.adoc[Product Prerequisites]
-* xref:install-workflow.adoc[Install Anypoint Platform PCE]
 * xref:runtime-manager::index.adoc[Runtime Manager]
 * xref:exchange::index.adoc[Anypoint Exchange]
 * xref:2.x@api-manager::index.adoc[API Manager]
