@@ -18,8 +18,6 @@
   *** xref:troubleshoot-nfs.adoc[Troubleshoot NFS Errors]
  ** xref:access-management-security.adoc[Configure Security for Anypoint Platform PCE]
  ** xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Platform PCE]
-* xref:upgrade.adoc[Upgrade Anypoint Platform PCE]
-* xref:install-uninstall-reinstall.adoc[Uninstall Anypoint Platform PCE]
 * xref:operating-about.adoc[Manage Anypoint Platform PCE]
  ** xref:config-workflow.adoc[Close port 61009]
  ** xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore in Anypoint Platform PCE]
@@ -31,4 +29,6 @@
  ** xref:restarting-a-node.adoc[Update Nodes]
  ** xref:ext-analytics-elk.adoc[Analyze Business and API Data using ELK]
  ** xref:register-server.adoc[Troubleshoot Mule Runtime Engine Registration]
+* xref:upgrade.adoc[Upgrade Anypoint Platform PCE]
+* xref:install-uninstall-reinstall.adoc[Uninstall Anypoint Platform PCE]
  
