@@ -3,7 +3,5 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Have your infrastructure team verify that the required infrastructure is correctly installed and configured as described in xref:install-checklist.adoc[Product Prerequisites]. 
-
-[IMPORTANT]
-Contact MuleSoft Professional Services prior to installation. MuleSoft professional services must be involved with your installation procedure.
+== MuleSoft Professional Services Required
+MuleSoft professional services must be involved throughout the installation process. Prior to installation, have your infrastructure team verify that the required infrastructure is correctly installed and configured as described in xref:install-checklist.adoc[Product Prerequisites]. 
