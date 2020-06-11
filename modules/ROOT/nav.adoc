@@ -30,4 +30,3 @@
  ** xref:ext-analytics-elk.adoc[Analyze Business and API Data Using ELK]
  ** xref:register-server.adoc[Troubleshoot Mule Runtime Engine Registration]
 * xref:upgrade.adoc[Upgrade Anypoint Platform PCE]
-* xref:install-uninstall-reinstall.adoc[Uninstall Anypoint Platform PCE]
