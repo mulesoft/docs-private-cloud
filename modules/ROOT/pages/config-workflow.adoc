@@ -1,4 +1,4 @@
-= Post-installation Tasks
+= Configure Anypoint Platform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -6,13 +6,16 @@ endif::[]
 
 After you complete Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) installation, review the following tasks, many of which are required before you can successfully deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform PCE environment running on your own local network.
 
-* If you used the GUI installer, close port 61009 in the cluster security group. If you are using AWS, you can use the AWS Web console to do this.
-* xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
+* Close port 61009 in the cluster security group. If you are using AWS, you can use the AWS Web console to do this.
+* Optional: xref:install-disable-local-user.adoc[Delete the Local User after Installing Anypoint Platform PCE]
+* xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Platform PCE]
+* xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Platform PCE]
+* xref:access-management-dns.adoc[Configure DNS on Anypoint Platform PCE]
+* xref:verify-nfs.adoc[Configure NFS on Anypoint Platform PCE]
+
+** xref:troubleshoot-nfs.adoc[Troubleshoot NFS Errors]
 * xref:access-management-security.adoc[Configure Security on Anypoint Private Cloud]
-* xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
-* xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Private Cloud]
-* xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore]
-* Optional: xref:install-disable-local-user.adoc[Delete the Local User after Installing Private Cloud]
+* xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Platform PCE]
 
 [NOTE]
 At the time of this writing, some Docker containers must run as root. Processes running as root do not expose functionality outside the cluster. 
