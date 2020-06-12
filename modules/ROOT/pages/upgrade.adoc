@@ -1,4 +1,4 @@
-= Upgrade Anypoint Platform Private Cloud
+= Upgrade Workflow
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
