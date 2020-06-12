@@ -1,4 +1,4 @@
-= Install Anypoint Platform PCE
+= Installation Workflow
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
