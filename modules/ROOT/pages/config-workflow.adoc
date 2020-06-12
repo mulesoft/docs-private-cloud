@@ -10,9 +10,6 @@ After you complete Anypoint Platform Private Cloud Edition (Anypoint Platform PC
 * xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Platform PCE]
 * xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Platform PCE]
 * xref:access-management-dns.adoc[Configure DNS on Anypoint Platform PCE]
-* xref:verify-nfs.adoc[Configure NFS on Anypoint Platform PCE]
-
-** xref:troubleshoot-nfs.adoc[Troubleshoot NFS Errors]
 * xref:access-management-security.adoc[Configure Security on Anypoint Private Cloud]
 * xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Platform PCE]
 
