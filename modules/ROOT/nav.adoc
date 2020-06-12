@@ -29,5 +29,5 @@
  ** xref:restarting-a-node.adoc[Update Nodes]
  ** xref:ext-analytics-elk.adoc[Analyze Business and API Data using ELK]
  ** xref:register-server.adoc[Troubleshoot Mule Runtime Engine Registration]
-* xref:upgrade.adoc[Upgrade Anypoint Platform PCE]
+* xref:upgrade.adoc[Upgrade Workflow]
  
