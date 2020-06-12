@@ -10,7 +10,7 @@
  ** xref:verify-nfs.adoc[NFS Prerequisites]
   *** xref:troubleshoot-nfs.adoc[Troubleshoot NFS Errors]
  ** xref:prereq-gravity-check.adoc[Preinstallation Verification]
-* xref:install-workflow.adoc[Install Anypoint Platform PCE]
+* xref:install-workflow.adoc[Installation Workflow]
 * xref:config-workflow.adoc[Configure Anypoint Platform PCE]
  ** xref:install-disable-local-user.adoc[Delete the Local User after Installing Anypoint Platform PCE]
  ** xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Platform PCE]
