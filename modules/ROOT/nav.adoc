@@ -7,7 +7,7 @@
  ** xref:prereq-hardware.adoc[Hardware Prerequisites]
  ** xref:prereq-software.adoc[Software Prerequisites]
  ** xref:prereq-network.adoc[Network Prerequisites]
- ** xref:verify-nfs.adoc[Configure NFS on Anypoint Platform PCE]
+ ** xref:verify-nfs.adoc[NFS Prerequisites]
   *** xref:troubleshoot-nfs.adoc[Troubleshoot NFS Errors]
  ** xref:prereq-gravity-check.adoc[Preinstallation Verification]
 * xref:install-workflow.adoc[Install Anypoint Platform PCE]
