@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If you encounter an error when performing the steps in xref:runtime-manager/servers-create.adoc[Create a Server in Runtime Manager]:
+If you encounter an error when performing the steps in xref:runtime-manager::servers-create.adoc[Create a Server in Runtime Manager]:
 
 Before registering Mule runtime engine, you must configure Mule to trust the TLS certificates you configured:
 
