@@ -26,6 +26,37 @@ The following table provides component information for Anypoint Platform PCE:
 | API Testing	|   | X |
 |===
 
+For Anypoint Platform PCE Version 2.1, the following policies are included with API Manager:
+[%header%autowidth.spread]
+|===
+| Policy | Version
+| Basic authentication: Simple | 1.2.1
+| Basic Authentication - LDAP | 1.3.0
+| Client ID Enforcement | 1.2.1
+| Cross-Origin Resource Sharing | 1.1.3
+| Detokenization | 1.1.0
+| Header Injection | 1.2.0
+| Header Removal | 1.0.2
+| HTTP Caching | 1.0.2
+| IP Blacklist | 1.2.1
+| IP Whitelist | 1.2.1
+| JSON Threat Protection | 1.1.3
+| JWT Validation | 1.1.2
+| LDAP Security Manager | 1.3.0
+| Message Logging | 1.0.0
+| Mule OAuth 2.0 Access Token | 1.3.1
+| OpenAM OAuth 2.0 Token Enforcement | 1.3.1
+| OpenID Connect OAuth 2.0 Token Enforcement | 1.3.1
+| PingFederate Access Token Enforcement | 1.3.1
+| Rate Limiting | 1.3.3
+| Rate limiting - SLA based | 1.2.5
+| Spike Control | 1.1.3
+| Tokenization | 1.1.0
+| XML Threat Protection | 1.1.3
+|===
+
+For additional information about policies, refer to xref:api-manager::policies-landing-page.adoc[Policies].
+
 == Features Shipped with Anypoint Platform PCE Version 2.1
 
 Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.

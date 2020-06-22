@@ -8,4 +8,9 @@ Contact MuleSoft professional services prior to upgrading. MuleSoft professional
 
 Before an Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) upgrade is performed, you must verify that your working installation meets any additional requirements of the new Anypoint Platform PCE version, such as opening additional ports or adding a new port for the load balancer.
 
+[NOTE]
+When upgrading from a previous Anypoint Platform PCE version, all policies available in the previous version remain. Policies are not replaced, but additional policies might be included with the upgrade.
+
+Refer to xref:index.adoc[About Anypoint Platform PCE] for additional information about policies included with Anypoint Platform PCE.
+
 Refer to the xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Edition Release Notes] for additional information about the most recent Anypoint Platform PCE version.
