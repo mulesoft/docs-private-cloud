@@ -55,7 +55,7 @@ For Anypoint Platform PCE Version 2.1, the following policies are included with 
 | XML Threat Protection | 1.1.3
 |===
 
-For additional information, refer to xref:api-manager::policies-landing-page.adoc[Policies].
+For additional information about policies, refer to xref:api-manager::policies-landing-page.adoc[Policies].
 
 == Features Shipped with Anypoint Platform PCE Version 2.1
 
