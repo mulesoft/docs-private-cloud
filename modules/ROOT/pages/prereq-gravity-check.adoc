@@ -40,7 +40,3 @@ Valid values for `--profile` are:
 If the command returns no output, your environment is set up correctly. 
 If any node fails to satisfy the minimum requirements, the command returns a list of failed checks and exits 
 with a non-0 return code.
-
-== See Also
-
-* xref:install-workflow.adoc[Install Anypoint Platform PCE]

@@ -76,8 +76,7 @@ If you receive an error similar to:
 Failed to retrieve remote metadata ${groupId}:${policyName}:1.0.0-SNAPSHOT/maven-metadata.xml: Could not transfer metadata ${orgId}:${policyName}:1.0.0-SNAPSHOT/maven-metadata.xml from/to exchange-server (https://${ANYPOINT_DNS}/exchange/maven/api/v1/organizations/${orgId}/maven): PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target -> [Help 1]
 ----
 +
-This means the certificate of the platform is not trusted by the local Maven. Similar to <<registering_servers,Registering Servers>>, the solution is to trust the certificate in the environment where Maven is running.
-For example:
+This means the certificate of the platform is not trusted by the local Maven. The solution is to trust the certificate in the environment where Maven is running, as shown in the following example:
 +
 ----
 keytool -printcert -sslserver ${ANYPOINT_DNS}:443 -rfc > /tmp/anypoint.crt

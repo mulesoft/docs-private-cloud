@@ -1,93 +1,11 @@
-= Upgrade Anypoint Platform Private Cloud
+= Upgrade Workflow
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== Before You Begin
-Because Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) upgrades require a working installation, all environment prerequisites should already be met. As long as you (or your infrastructure team) successfully performed all prerequisite tasks listed in xref:prereq-hardware.adoc[Hardware Prerequisites], xref:prereq-software.adoc[Software Prerequisites], and xref:prereq-network.adoc[Network Prerequisites] prior to the installation of Anypoint Platform PCE, your environment can be upgraded successfully.
+== MuleSoft Professional Services Required
+Contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved throughout the upgrade process. 
 
-Refer to the xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Edition Release Notes] for additional information about upgrading Anypoint Platform PCE to the most recent version.
+Before an Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) upgrade is performed, you must verify that your working installation meets any additional requirements of the new Anypoint Platform PCE version, such as opening additional ports or adding a new port for the load balancer.
 
-[WARNING]
-You must contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved with your upgrade procedure.
-
-== Procedure
-
-The following steps describe how to upgrade Anypoint Platform PCE and the Anypoint Platform PCE infrastructure from v2.0.x to v2.1.0. 
-
-If you are upgrading from a prior version of Anypoint Platform PCE, you must first upgrade to v2.0.4 and then upgrade to v2.1.0. 
-
-[NOTE]
-====
-* During an upgrade, all Anypoint Platform PCE components are updated.
-* The upgrade process causes downtime for each node as it is updated.
-====
-
-. Perform a backup of your system as described in xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore]. If you are upgrading from an older version that requires multiple intermediate upgrades, you must backup each intermediate version before proceeding to the next.
-
-. Obtain a link to the installer from your customer success representative.
-
-. Use `ssh` to log in to the master node of your cluster.
-+
-In a 3-node environment, all nodes are master nodes. To find the master nodes in a 6-node environment, run the following command:
-+
-----
-kubectl get node --show-labels | grep gravitational.io/k8s-role=master
-----
-+
-By performing these procedures from the master node, the upgrade scripts are able to update the entire platform.
-
-. Verify that there is adequate space available in the path where you plan to download the new installer file.
-
-. Create a new folder and untar the new installer:
-+
-----
-mkdir anypoint-2.1.0-installer && tar -xvf anypoint-2.1.0-installer.tar.gz -C anypoint-2.1.0-installer
-----
-
-. Navigate to the `anypoint-2.1.0-installer` directory and run the upload script:
-+
-----
-cd anypoint-2.1.0-installer
-sudo ./upgrade
-----
-+
-The `sudo ./upgrade` command updates the platform to the current version and restarts each pod in the cluster. Depending on your network configuration, this command may take a while to complete, and produces output similar to the following example:
-+
-----
--> initializing upload
--> uploading update package
-importing anypoint:2.1.0
-Thu Aug 23 09:36:30 UTC	Synchronizing application with Docker registry x.x.x.xxx:5000
-Thu Aug 23 09:44:27 UTC	Synchronizing application with Docker registry x.x.x.xxx:5000
-Thu Aug 23 09:51:29 UTC	Synchronizing application with Docker registry x.x.x.xxx:5000
-Thu Aug 23 09:58:23 UTC	Application has been uploaded
-updating anypoint from 2.0.4 to 2.1.0-xxxxxxxxxxxx
-update operation (d077277f-3c69-4336-82bf-bd8b428ae202) has been started
-the cluster is updating in background
-----
-
-. When the upgrade finishes, verify that the migration was successful by checking that all pods are running:
-+
-----
-$ sudo gravity enter
-$ kubectl get pods --all-namespaces
-----
-
-. Open the new `8083` port on your load balancer and map it to the `30883` port on your servers. Refer to the 2.1 xref:prereq-hardware.adoc[Hardware Prerequisities] section for more information. 
-
-. Finally, ensure that the following items are still correctly configured after the update:
-
-** xref:access-management-dns.adoc[Configure DNS on Anypoint Private Cloud]
-** xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud]
-** xref:access-management-disclaimer.adoc[Configure a Disclaimer for Anypoint Private Cloud]
-** xref:verify-nfs.adoc[NFS Server Prerequisites]
-
-[NOTE]
-When you upgrade from a previous Anypoint Platform PCE version, all policies available in the previous version remain. Although policies are not replaced, additional policies might be included with the upgrade.
-
-Refer to xref:index.adoc[About Anypoint Platform PCE] for additional information about policies included with Anypoint Platform PCE.
-
-== See Also
-
-* xref:config-workflow.adoc[Post-installation Tasks]
+Refer to the xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Edition Release Notes] for additional information about the most recent Anypoint Platform PCE version.
