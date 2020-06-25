@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-With Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), you run and manage Mule applications on your local servers, using your required security policies. When running Anypoint Platform PCE, MuleSoft systems do not interact with your data. You configure and run the software, and you maintain all data storage, processing, and transmission.
+With Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), you run and manage Mule applications on your local servers, using your required security policies. When running Anypoint Platform PCE, there is no external interaction with your data. i.e MuleSoft control planes do not interact with the runtimes over an internet connection, the control plane functionality are locally available (table below details which functionality are available). You configure and run the software, and you maintain all data storage, processing, and transmission.
 
 Anypoint Platform PCE uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
 
