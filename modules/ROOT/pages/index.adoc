@@ -38,7 +38,7 @@ For Anypoint Platform PCE Version 2.1, the following policies are included with 
 | Header Injection | 1.2.0
 | Header Removal | 1.0.2
 | HTTP Caching | 1.0.2
-| IP Blacklist | 1.2.1
+| IP Blocklist | 1.2.1
 | IP Allowlist | 1.2.1
 | JSON Threat Protection | 1.1.3
 | JWT Validation | 1.1.2
