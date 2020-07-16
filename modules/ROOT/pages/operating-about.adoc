@@ -16,7 +16,7 @@ The following topics describe how to manage Anypoint Platform PCE after installa
 * xref:managing-via-the-ops-center.adoc[Ops Center]
 * xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
 * xref:config-alerts.adoc[Setup Alerts for CPU and Memory Usage]
-* xref:config-add-proxy-whitelist.adoc[Add Whitelist Addresses for API Platform Proxies]
+* xref:config-add-proxy-whitelist.adoc[Add Allowlist Addresses for API Platform Proxies]
 * xref:custom-policies.adoc[Upload Custom Policies and Publish Assets to Exchange Using the Maven Client]
 * xref:restarting-a-node.adoc[Update Nodes]
 * xref:ext-analytics-elk.adoc[Analyze Business and API Data Using ELK]
