@@ -12,8 +12,10 @@ The following table provides component information for Anypoint Platform PCE:
 [%header%autowidth.spread]
 |===
 | Component | Included | Not Included | Description
-| Anypoint Runtime Manager | X | | Enables you to track and manage your deployed Mule applications
+| Anypoint Runtime Manager | X |  | Enables you to track and manage your deployed Mule applications.
+| Runtime Fabric Management (including Security Edge and Tokenization) |  | X | Automates the deployment and orchestration of customer-hosted Mule applications and API gateways.
 | Anypoint API Manager | X	| | Enables you to manage your registered APIs.
+| Secrets Manager |  | X | Stores and manages secrets for supported Anypoint Platform services.
 | Anypoint Exchange	| X | | Enables your organization to share various assets for reuse across integration projects.
 | Access Management	| X | |
 | Anypoint Design Center, excluding Flow Designer	| X | |
