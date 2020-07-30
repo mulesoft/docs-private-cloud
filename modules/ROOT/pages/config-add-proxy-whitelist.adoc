@@ -1,11 +1,11 @@
-= Add Whitelist Addresses for API Platform Proxies
+= Add Allowlist Addresses for API Platform Proxies
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 By default, proxy requests are enabled for the domain name where the platform is running.
 
-To add whitelist addresses:
+To add allowlist addresses:
 
 . Log in to Ops Center and select Configuration.
 . Select the `api-platform-web-config` config map from the drop-down list.
