@@ -10,7 +10,7 @@ Anypoint Platform PCE uses Docker and Kubernetes to provide built-in high availa
 == Anypoint Platform PCE Components
 The following table provides component information for Anypoint Platform PCE:
 [%header%autowidth.spread]
-.Anypoint Platform PCE Component Information
+.Component Information
 |===
 | Component | Included | Not Included | Description
 | Anypoint Runtime Manager | X |  | Enables you to track and manage your deployed Mule applications.
