@@ -30,6 +30,7 @@ Outputs logs to a file.
 Backup contents:
 
 [%header%autowidth.spread]
+.Backup Contents
 |===
 | Information | Included in PCE Backup 
 | Databases | Y

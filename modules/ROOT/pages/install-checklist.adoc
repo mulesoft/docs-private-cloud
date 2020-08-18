@@ -30,6 +30,7 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
 === Environment Prerequisites
 
 [%header,cols="1*a"]
+.Prerequisite Environment-Related Tasks
 |===
 |Task Description
 | xref:prereq-platform.adoc[Verify Your Environment Is Supported]
@@ -39,6 +40,7 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
 === Hardware Prerequisites
 Refer to xref:prereq-hardware.adoc[Hardware Prerequisites] for additional details and instructions for the following tasks:
 [%header,cols="1*a"]
+.Prerequisite Hardware-Related Tasks
 |===
 |Task Description
 | xref:prereq-hardware#memory-and-cpu-requirements[Verify Memory and CPU Requirements]
@@ -50,6 +52,7 @@ Refer to xref:prereq-hardware.adoc[Hardware Prerequisites] for additional detail
 === Software Prerequisites
 Refer to xref:prereq-software.adoc[Software Prerequisites] for additional details and instructions for the following tasks:
 [%header,cols="1*a"]
+.Prerequisite Software-Related Tasks
 |===
 |Task Description
 | Operating system prerequisites
@@ -77,6 +80,7 @@ a|
 === Network Prerequisites
 Refer to xref:prereq-network.adoc[Network Prerequisites] for additional details and instructions for the following tasks:
 [%header,cols="1*a"]
+.Prerequisite Network-Related Tasks
 |===
 |Task Description
 | xref:prereq-network#verify-static-ips[Verify Static IPs]
@@ -91,6 +95,7 @@ Refer to xref:prereq-network.adoc[Network Prerequisites] for additional details 
 === NFS Prerequisites
 Refer to xref:verify-nfs.adoc[NFS Server Prerequisites] for additional details and instructions for the following tasks:
 [%header,cols="1*a"]
+.Prerequisite NFS-Related Tasks
 |===
 |Task Description
 | xref:verify-nfs#verify-nfs-server-setup[Verify NFS Server Setup]
@@ -100,8 +105,5 @@ Refer to xref:verify-nfs.adoc[NFS Server Prerequisites] for additional details a
 |===
 
 == Verify Environment
-[%header,cols="1*a"]
-|===
-|Task Description
-| xref:prereq-gravity-check.adoc[Verify Environment]
-|===
+
+Perform the steps in xref:prereq-gravity-check.adoc[Verify Environment] to ensure that your infrastructure meets Anypoint Platform PCE requirements.

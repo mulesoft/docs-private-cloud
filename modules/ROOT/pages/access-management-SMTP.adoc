@@ -20,6 +20,7 @@ SMTPS is not supported.
 image::on-premises-features-2c60a.png[]
 +
 [%header,cols="20a,50a,30a"]
+.SMTP Server Parameters
 |===
 |Field | Description | Example
 |Host | The host name of your SMTP server | `smtp.gmail.com`

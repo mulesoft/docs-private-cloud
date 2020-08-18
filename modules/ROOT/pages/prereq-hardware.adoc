@@ -12,6 +12,7 @@ Before you install Anypoint Platform PCE, your infrastructure team must review e
 == Memory and CPU Requirements
 
 [%header%autowidth.spread]
+.Memory and CPU Requirements
 |===
 | Component |Requirement
 |RAM |32 GB
@@ -24,6 +25,7 @@ If the stated requirements for Memory and CPU are not met, Anypoint Platform PCE
 For production environments, each node in your configuration must have the following dedicated devices. All devices must be formatted either as *xfs* or *ext4*.
 
 [%header%autowidth.spread]
+.Dedicated Device Requirements
 |===
 | Component |Size|Minimum IOPS|Mount Point|Description
 |HDD 2 xref:prereq-hardware#system-state-directory-device[System State Directory Device] | 100 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. Because package sizes can be large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
@@ -168,6 +170,7 @@ You can configure your load balancer to use any method for distributing client r
 Your load balancer must route the following TCP ports:
 
 [%header%autowidth.spread]
+.TCP Port Routing Requirements
 |===
 |Load Balancer Port |Instance Port | Internal Usage
 |`80` | `30080`  | HTTP redirects to HTTPs

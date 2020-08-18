@@ -30,6 +30,7 @@ You must ensure that all of the following ports are
 configured correctly on all nodes.
 
 [%header%autowidth.spread]
+.Port Configuration Requirements
 |===
 |Protocol |Port/Range |Purpose |Source |Destination
 |TCP/UDP | 53 | Internal cluster DNS | localhost | localhost
