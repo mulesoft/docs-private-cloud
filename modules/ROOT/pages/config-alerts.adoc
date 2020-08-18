@@ -11,6 +11,7 @@ Measurements are stored in https://www.influxdata.com/products/influxdb-overview
 == Alert Definitions
 
 [%header%autowidth.spread]
+.Alert Definitions
 |===
 | Name | Description | Threshold | Config map
 | High CPU | Measures the total CPU usage on all cluster nodes | Warning 75%, Critical 90% | kapacitor-alerts 
