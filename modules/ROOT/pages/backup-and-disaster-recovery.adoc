@@ -30,6 +30,7 @@ Outputs logs to a file.
 Backup contents:
 
 [%header%autowidth.spread]
+.Anypoint Platform PCE Backup Contents
 |===
 | Information | Included in PCE Backup 
 | Databases | Y
