@@ -72,7 +72,7 @@ gravity package labels <package_name> --remove <label>
 ----
 
 +
-Example removing and then adding the `installed:installed` label from `gravitational.io/planet:5.5.35-11312`
+Example removing from and then adding to `gravitational.io/planet:5.5.35-11312` the `installed:installed` label:
 
 +
 ----
