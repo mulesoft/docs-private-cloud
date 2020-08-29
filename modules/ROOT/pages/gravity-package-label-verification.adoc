@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Verifying PCE Clusters have correct gravity package labels is important to a ensuring a smooth upgrade. 
+Verifying PCE Clusters have correct gravity package labels is important to a ensuring a successful upgrade. 
 Incorrect labels can derail the Gravity upgrade process and potentially cause failure at various stages in the upgrade plan.  
 In a typical cluster Gravity packages should be correct however if a cluster has undergone manual modification of the Gravity subcomponents it is very likely that the appropriate labeling may not have been applied.
 Gravity packages are hosted locally on each node and therefore all nodes should be checked for consistency.
