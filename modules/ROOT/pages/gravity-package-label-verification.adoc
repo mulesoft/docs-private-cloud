@@ -20,6 +20,7 @@ gravity package list
 
 . Compare the output to a known good reference of same version and cluster size.
 
++
 Example output from a new 3-node PCE 2.1.0 install (labels have been bolded):
 
 [subs=+quotes]
