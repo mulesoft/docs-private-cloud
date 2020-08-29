@@ -23,6 +23,7 @@ gravity package list
 +
 Example output from a new 3-node PCE 2.1.0 install (labels have been bolded):
 
++
 [subs=+quotes]
 ....
 
@@ -61,16 +62,19 @@ Example output from a new 3-node PCE 2.1.0 install (labels have been bolded):
 ....
 
 
-
++
 Should a discrepancy be found labels can be added or removed to a package using the following command formats:
 
++
 ----
 gravity package labels <package_name> --add <label:label>
 gravity package labels <package_name> --remove <label>
 ----
 
++
 Example removing and then adding the `installed:installed` label from `gravitational.io/planet:5.5.35-11312`
 
++
 ----
 gravity package labels gravitational.io/planet:5.5.35-11312 --remove installed
 gravity package labels gravitational.io/planet:5.5.35-11312 --add installed:installed
