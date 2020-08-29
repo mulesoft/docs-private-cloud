@@ -13,6 +13,7 @@ To verify labels:
 . SSH to the node.
 . List the available Gravity packages by entering:
 
++
 ----
 gravity package list
 ----
