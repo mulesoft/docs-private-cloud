@@ -1,0 +1,76 @@
+= Verifying Gravity Package Labels
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Verifying PCE Clusters have correct gravity package labels is important to a ensuring a smooth upgrade. 
+Incorrect labels can derail the Gravity upgrade process and potentially cause failure at various stages in the upgrade plan.  
+In a typical cluster Gravity packages should be correct however if a cluster has undergone manual modification of the Gravity subcomponents it is very likely that the appropriate labeling may not have been applied.
+Gravity packages are hosted locally on each node and therefore all nodes should be checked for consistency.
+
+To verify labels:
+
+. SSH to the node.
+. List the available Gravity packages by entering:
+
+----
+gravity package list
+----
+
+Compare the output to a known good reference of same version and cluster size.
+
+Example output from a new 3-node PCE 2.1.0 install (labels have been bolded):
+
+[subs=+quotes]
+....
+
+[gravitational.io]
+------------------
+
+* gravitational.io/anypoint:2.1.0 7.8GB
+* gravitational.io/bandwagon:5.3.0 68MB
+* gravitational.io/bandwagon-mulesoft:2.1.0-5.5.38 99MB
+* gravitational.io/cluster-ssl-app:0.8.2-5.5.38 96MB
+* gravitational.io/dns-app:0.3.0 69MB
+* gravitational.io/gravity:5.5.38 100MB *installed:installed*
+* gravitational.io/kubernetes:5.5.38 5.3MB
+* gravitational.io/logging-app:5.0.2 151MB *intermediate-upgrade:5.2.15*
+* gravitational.io/monitoring-app:5.5.11 258MB
+* gravitational.io/pithos-app:1.12.5-5.5.38 596MB
+* gravitational.io/planet:5.5.35-11312 475MB *installed:installed,purpose:runtime*
+* gravitational.io/rbac-app:5.5.38 5.3MB
+* gravitational.io/site:5.5.38 91MB
+* gravitational.io/stolon-app:1.12.7-5.5.38 309MB
+* gravitational.io/teleport:3.0.5 32MB *installed:installed*
+* gravitational.io/tiller-app:5.5.2 31MB
+* gravitational.io/web-assets:5.5.38 1.2MB
+
+[<Cluster_Name>]
+----------------
+
+* <Cluster_Name>/cert-authority:0.0.1 12kB *operation-id:<operation_id>,purpose:ca*
+* <Cluster_Name>/license:0.0.1 3.9kB *operation-id:<operation_id>,purpose:license*
+* <Cluster_Name>/planet-10.1.0.30-secrets:5.5.35-11312 52kB *operation-id:<operation_id>,purpose:planet-secrets,advertise-ip:<node_id>,installed:installed*
+* <Cluster_Name>/planet-config-101030<Cluster Name>:5.5.35-11312 4.6kB *advertise-ip:<node_ip>,config-package-for:gravitational.io/planet:0.0.0,installed:installed,operation-id:<operation_id>,purpose:planet-config*
+* <Cluster_Name>/site-export:0.0.1 524kB *operation-id:<operation_id>,purpose:export*
+* <Cluster_Name>/teleport-master-config-101030<Cluster Name>:3.0.5 4.1kB *advertise-ip:<node_ip>,operation-id:<operation_id>,purpose:teleport-master-config*
+* <Cluster_Name>/teleport-node-config-101030<Cluster Name>:3.0.5 4.1kB *advertise-ip:<node_ip>,config-package-for:gravitational.io/teleport:0.0.0,installed:installed,operation-id:<operation_id>,purpose:teleport-node-config*
+
+....
+
+
+
+Should a discrepancy be found labels can be added or removed to a package using the following command formats:
+
+----
+gravity package labels <package_name> --add <label:label>
+gravity package labels <package_name> --remove <label>
+----
+
+Example removing and then adding the `installed:installed` label from `gravitational.io/planet:5.5.35-11312`
+
+----
+gravity package labels gravitational.io/planet:5.5.35-11312 --remove installed
+gravity package labels gravitational.io/planet:5.5.35-11312 --add installed:installed
+----
+
