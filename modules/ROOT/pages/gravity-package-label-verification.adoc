@@ -8,7 +8,7 @@ Incorrect labels can derail the Gravity upgrade process and potentially cause fa
 In a typical cluster Gravity packages should be correct however if a cluster has undergone manual modification of the Gravity subcomponents it is very likely that the appropriate labeling may not have been applied.
 Gravity packages are hosted locally on each node and therefore all nodes should be checked for consistency.
 
-To verify labels:
+== Verify labels:
 
 . SSH to the node.
 . List the available Gravity packages by entering:
