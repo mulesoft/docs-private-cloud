@@ -40,7 +40,8 @@ This instance runs the actual provisioning of the cluster. You must use an AMI t
 You can also run provisioner remotely from any other machine with Docker and internet access.
 
 . Download the Private Cloud Provisioner (PCP) Docker image from
-+	https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-2.1.11.tar.gz?Signature=%2BoEHrGHnaF%2BRT%2FVHpnh2UnMMbj0%3D&AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Expires=1756608559
++	
+https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-2.1.11.tar.gz?Signature=%2BoEHrGHnaF%2BRT%2FVHpnh2UnMMbj0%3D&AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Expires=1756608559
 
 . Copy the provisioner Docker image to the instance via SCP:
 +
