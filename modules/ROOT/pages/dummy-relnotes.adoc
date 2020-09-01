@@ -1,0 +1,5 @@
+= Placeholder for Release Notes info - WILL BE MOVED LATER
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
