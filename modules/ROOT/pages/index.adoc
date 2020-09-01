@@ -20,13 +20,124 @@ The following table provides component information for Anypoint Platform PCE:
 | Access Management	| X | |
 | Anypoint Design Center, excluding Flow Designer	| X | |
 | Anypoint Analytics - Insights	|   | X |
-| Anypoint Analytics - Anypoint Visualizer	|   | X |
+| Anypoint Analytics - Anypoint Visualizer	| X  |  |
 | Anypoint Analytics - API	|   | X |
-| Anypoint Monitoring	|   | X |
+| Anypoint Monitoring	| X  |  |
 | Object Store	|   | X |
 | Anypoint MQ	|   | X |
 | API Testing	|   | X |
 |===
+
+VERIFY: 
+For Anypoint Platform PCE Version 3.0, the following policies are included with API Manager:
+[%header%autowidth.spread]
+|===
+| Policy | Version
+| Basic authentication: Simple | 1.2.1
+| Basic Authentication - LDAP | 1.3.0
+| Client ID Enforcement | 1.2.1
+| Cross-Origin Resource Sharing | 1.1.3
+| Detokenization | 1.1.0
+| Header Injection | 1.2.0
+| Header Removal | 1.0.2
+| HTTP Caching | 1.0.2
+| IP Blacklist | 1.2.1
+| IP Whitelist | 1.2.1
+| JSON Threat Protection | 1.1.3
+| JWT Validation | 1.1.2
+| LDAP Security Manager | 1.3.0
+| Message Logging | 1.0.0
+| Mule OAuth 2.0 Access Token | 1.3.1
+| OpenAM OAuth 2.0 Token Enforcement | 1.3.1
+| OpenID Connect OAuth 2.0 Token Enforcement | 1.3.1
+| PingFederate Access Token Enforcement | 1.3.1
+| Rate Limiting | 1.3.3
+| Rate limiting - SLA based | 1.2.5
+| Spike Control | 1.1.3
+| Tokenization | 1.1.0
+| XML Threat Protection | 1.1.3
+|===
+
+For additional information about policies, refer to xref:api-manager::policies-landing-page.adoc[Policies].
+
+== Features Shipped with Anypoint Platform PCE Version 3.0
+
+Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
+
+[%header%autowidth.spread]
+|===
+| Component | Feature Description | Feature Version
+| Exchange
+a|
+
+* API Metadata Service
+* Asset Manager Service
+* Asset Portal Service
+* Assets Reviews Service
+* Custom Assets Facade Service
+* Customization Service
+* Dependency Resolver Service
+* File Service
+* File Upload Service
+* Graph Node Service
+* Graph Service
+* Maven Facade Service
+* Search Service
+* Exchange UI
+* XAPI Service
+
+a|
+
+* 0.7.513
+* 1.0.23
+* 0.6.957
+* 0.7.60
+* 0.9.27
+* 0.6.46
+* 0.6.347-pce-X
+* 0.9.27
+* 0.6.3
+* 0.2.25
+* 0.8.520
+* 0.7.576-pce-X
+* 0.8.171-pce-X
+* 0.8.3309
+* 0.8.1655
+
+| Connectivity | Rest Connect Service | v0.4.528
+| API Platform | API Platform API | v2.7.0
+| API Platform | API Platform Web | v1.15.104
+| API Platform | API Manager Web | v1.5.365
+| API Platform | Contract Caching Service | v1.1.28
+| API Platform | API Proxy Builder Service | v1.2.52
+| API Platform | RAML Parser Service | v0.3.76-3.v0375
+| API Platform | Proxies XAPI Service | v1.2.75
+| API Designer | API Designer XAPI | v3.17.0
+| API Designer | API Designer UI | v2.18.2
+| Mocking Service | Mocking Service | v2.15.1
+| Mozart | Design Center UI | v2.0.69
+| Mozart | Mozart XAPI | v2.0.216
+| Mozart | Mozart Project Manager Service | v3.0.20
+| Runtime Manager | Cloudhub MCM | v2.17.5
+| Runtime Manager | Cloudhub UI | v8.0.6
+| Runtime Manager | AMC UI Rest Facade | v2.12.4
+| Runtime Manager | Hybrid Rest | v2.31.0
+| Runtime Manager | Platform Alerts | v1.9.11
+| Runtime Manager | Mule Message Processor | v1.6.8
+| Runtime Manager | Platform Messages | v1.7.13
+| Access Management | Authentication Server | v0.81.x
+| Access Management | Core Services UI | v0.81.x
+| Access Management | Anypoint Signin | v0.81.x
+| Access Management | Landing Page UI | v0.81.x
+| Access Management | Navbar | v0.81.x
+| Access Management | Audit Log | v0.81.x
+| Anypoint Platform PCE | Anypoint Platform PCE packaging | v3.0
+| API Modeling Framework (AMF) | AMF Service | v1.0.152
+| VCS | VCS  | v0.3.1420
+| VCS | VCS Git Proxy | v0.2.85
+| Anypoint Studio | Studio | v7.7.0
+|===
+
 
 For Anypoint Platform PCE Version 2.1, the following policies are included with API Manager:
 [%header%autowidth.spread]
