@@ -18,6 +18,7 @@ To install Anypoint Platform PCE on AWS:
 * When you create your AWS environment, the following resources are created:
 +
 [%header%autowidth.spread]
+.AWS-Created Resources
 |===
 | AWS Resource | Number Required (3-node) | Number Required (6-node)
 | m5.2xlarge | 3 | 6
@@ -56,6 +57,7 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 . Create the variable file (pce.env) with the environment details using the following values:
 +
 [%header%autowidth.spread]
+.Required Environment Variables
 |===
 | Name | Description
 | AWS_ACCESS_KEY_ID | Specifies the AWS access ID Terraform uses to connect to your AWS account.
@@ -74,6 +76,7 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 You can also include the following set of optional environment variables:
 +
 [%header%autowidth.spread]
+.Optional Environment Variables
 |===
 | Name | Description
 | TF_VAR_ami_name | Specifies the AMI name to be used for the instances. Use the AMI name, *NOT* the AMI ID. *Ensure that the AMI does not provision any additional volumes*. If you do not set this variable, the provisioner uses the following AMI by default: `RHEL-7.6_HVM_GA-20181017-x86_64-0-Hourly2-GP2`
