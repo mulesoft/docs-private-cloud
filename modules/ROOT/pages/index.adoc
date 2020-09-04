@@ -10,6 +10,7 @@ Anypoint Platform PCE uses Docker and Kubernetes to provide built-in high availa
 == Anypoint Platform PCE Components
 The following table provides component information for Anypoint Platform PCE:
 [%header%autowidth.spread]
+.Component Information
 |===
 | Component | Included | Not Included | Description
 | Anypoint Runtime Manager | X |  | Enables you to track and manage your deployed Mule applications.
@@ -31,6 +32,7 @@ The following table provides component information for Anypoint Platform PCE:
 VERIFY: 
 For Anypoint Platform PCE Version 3.0, the following policies are included with API Manager:
 [%header%autowidth.spread]
+.API Manager Policies for Anypoint Platform PCE Version 3.0
 |===
 | Policy | Version
 | Basic authentication: Simple | 1.2.1
@@ -65,6 +67,7 @@ For additional information about policies, refer to xref:api-manager::policies-l
 Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
 
 [%header%autowidth.spread]
+.Features Shipped with Anypoint Platform PCE Version 3.0
 |===
 | Component | Feature Description | Feature Version
 | Exchange
@@ -141,6 +144,7 @@ a|
 
 For Anypoint Platform PCE Version 2.1, the following policies are included with API Manager:
 [%header%autowidth.spread]
+.API Manager Policies for Anypoint Platform PCE Version 2.1
 |===
 | Policy | Version
 | Basic authentication: Simple | 1.2.1
@@ -175,6 +179,7 @@ For additional information about policies, refer to xref:api-manager::policies-l
 Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
 
 [%header%autowidth.spread]
+.Features Shipped with Anypoint Platform PCE Version 2.1
 |===
 | Component | Feature Description | Feature Version
 | Exchange
@@ -252,6 +257,7 @@ a|
 Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
 
 [%header%autowidth.spread]
+.Features Shipped with Anypoint Platform PCE Version 2.0
 |===
 | Component | Feature Description
 | Exchange | Store all integration assets in one place in Anypoint Exchange, such as best practices, integration patterns, API fragments, API specifications, examples, templates, and connectors.
