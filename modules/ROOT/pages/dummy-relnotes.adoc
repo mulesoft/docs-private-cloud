@@ -13,14 +13,27 @@ This version of Anypoint Platform Private Cloud Edition (Anypoint Platform for P
 
 ** TBD
 
-* XX features
+* Features
 
-** TBD
+** Anypoint Monitoring
 
-* OAS 
+*** Aggregate and map metrics.
+*** Configure dashboards and alerts.
+*** View application network graph with Anypoint Visualizer.
+ 
+** Multiple IdP Support
+
+*** Use native client provider (default) or configure an external client provider.
+*** Assign IdPs by business groups, environment, and API visibility.
+
+** API Groups
+
+*** Support for API Groups across API Manager and Exchange.
+*** Cohesively package API instances for API consumers.
+
+* OAS 3.0 Support 
 +
-OAS3 is supported for API Designer, Anypoint Exchange, and Anypoint API Community Manager. Refer to xref:release-notes/platform/oas3.adoc[OpenAPI Specification 3.0 Support Release Notes] for additional information.
-
+OAS3 is supported for API Designer, Anypoint Exchange, and Anypoint API Community Manager for creating, editing, and cataloging API specifications in OAS 3.0. Refer to xref:release-notes/platform/oas3.adoc[OpenAPI Specification 3.0 Support Release Notes] for additional information.
 
 == Deprecations
 
