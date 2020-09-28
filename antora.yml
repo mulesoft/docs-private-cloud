@@ -1,5 +1,5 @@
 name: private-cloud
 title: Anypoint Platform Private Cloud
-version: '2.1'
+version: '3.0'
 nav:
 - modules/ROOT/nav.adoc
