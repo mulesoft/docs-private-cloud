@@ -41,7 +41,7 @@ You can also run provisioner remotely from any other machine with Docker and int
 
 . Download the Private Cloud Provisioner (PCP) Docker image from:
 +
-https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-2.1.11.tar.gz?Signature=%2BoEHrGHnaF%2BRT%2FVHpnh2UnMMbj0%3D&AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Expires=1756608559
+https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-3.0.6.tar.gz?AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Signature=%2BGGknEu%2FGfxCDNPpKMbpEJdOqjY%3D&Expires=1759202748
 . Copy the provisioner Docker image to the instance via SCP:
 +
 ----
@@ -67,9 +67,11 @@ ssh -i 'anypoint.pem' ec2-user@18.221.155.87
 | AWS_REGION | Specifies the AWS region where Terraform creates the cluster, for example, `us-east-2`.
 | TF_VAR_ssh_user=<SSH_USER> | Specifies the ssh user, for example, `ec2-user`, `centos`, etc.
 | TELEKUBE_CLUSTER_NAME | Specifies the name of the cluster and the corresponding AWS resources.
+| TELEKUBE_NODE_PROFILES | Must be set to `node`.
 | TELEKUBE_NODE_PROFILE_COUNT_node | Specifies the number of nodes in your cluster. Possible values are `3` and `6`.
 | TELEKUBE_NODE_PROFILE_INSTANCE_TYPE_node | Must be `m5.2xlarge`.
-| TELEKUBE_NODE_PROFILES | Must be set to `node`.
+| TELEKUBE_NODE_PROFILE_COUNT_node_amv | Specifies the number of nodes for the AMV addon in your cluster. Must be `3` if planning to install the AMV addon. Omit otherwise.
+| TELEKUBE_NODE_PROFILE_INSTANCE_TYPE_node_amv | Must be `m5.4xlarge` if planning to install the AMV addon. Omit otherwise.
 | TF_VAR_high_performance_disks | Must be set to `true` for production environments.
 |===
 +
