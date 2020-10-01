@@ -17,6 +17,9 @@ There are 2 components of PCE:
 - Monitoring Center Add-On
 
 == Anypoint Platform Core
+
+Prerequisites for 4-nodes or 7-nodes to run the Anypoint Platform Core.
+
 === Memory and CPU Requirements
 
 [%header%autowidth.spread]
@@ -130,6 +133,9 @@ sudo systemctl start var-lib-gravity-planet-docker.mount
 
 
 == Monitoring Center Add-On
+
+Prerequisites the extra 3-nodes for the Monitoring Center Add-On.
+
 === Memory and CPU Requirements
 
 (TDB: At the moment, the only difference between the Monitoring Center and the Platform Core nodes are Memory and CPU.  
