@@ -8,8 +8,6 @@ To ensure platform performance, stability, and high availability, Anypoint Platf
 
 To ensure high availability and performance, each node must run on its own server in both configurations. If you are using a virtual machine to host the nodes, you must ensure that each VM node is running on a separate physical server.
 
-(TBD: Reword properly, or update the whole content to better include Mon Center)
-
 There are 2 components of PCE:
 
 - Anypoint Platform Core
@@ -22,11 +20,11 @@ There are 2 components of PCE:
 
 Three is the minimum number of nodes that can enable high-availability and failover. In this configuration, each node hosts the platform applications and services. You must configure a load balancer to use round-robin distribution of traffic among each of the four nodes.
 
-(TBD: Below diagram is outdated. It should include another node that doesn't run Database and Object Store, just services.)
+(TO-DO: Below diagram will be updated before PCE 3.0 release to include another node that doesn't run Database and Object Store, just services.)
 
 image::prereqs-priv-cloud-3-node.png[3-node Configuration]
 
-Three of the nodes host an instance of the database and object store. Hosting the database and object store enables persistence but requires larger minimum disk and memory requirements. Although three of the nodes contain a database, only one  database is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
+Three of the nodes host an instance of the database and object store. Hosting the database and object store enables persistence but requires larger minimum disk and memory requirements. Although three of the nodes contain a database, only one database is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
 
 ==== Environment Limitations
 
@@ -34,7 +32,7 @@ You must understand and adhere to the following recommendations and limitations 
 
 These limitations are based on a 4-node environment consisting of 4 nodes of 8 cores and 32GB RAM.
 
-(TBD: Below limits will be updated as a result of performance testing)
+(TO-DO: Below limits will be updated before PCE 3.0 release to reflect performance testing.)
 
 **** Runtime management
 
@@ -75,7 +73,7 @@ These limitations are based on a 4-node environment consisting of 4 nodes of 8 c
 
 In the 7-node configuration, four nodes are dedicated to hosting platform applications and services. The other three nodes host the database and object store instances. Although each node contains a database, only one of the database nodes is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
 
-(TBD: Below diagram is outdated. It should include another node that runs just services.)
+(TO-DO: Below diagram will be updated before PCE 3.0 release to include another node that runs just services.)
 
 image::prereqs-priv-cloud-6-node.png[6-node Configuration]
 
@@ -87,7 +85,7 @@ You must understand and adhere to the following recommendations and limitations 
 
 These limitations are based on a 7-node environment consisting of 7 nodes of 8 cores and 32GB RAM.
 
-(TBD: Below limits will be updated as a result of performance testing)
+(TO-DO: Below limits will be updated before PCE 3.0 release to reflect performance testing.)
 
 **** Runtime management
 
@@ -130,7 +128,8 @@ in which:
 
 === 3-Node Configuration
 
-(TBD, but first try...)
-Monitoring Center can be enabled as an additional add-on.  
-Monitoring Center runs on 3 nodes that are different from the ones to run the Anypoint Platform Core.
+Monitoring Center can be enabled as an additional add-on.
+
+Monitoring Center runs on 3 nodes separate from the nodes that run the Anypoint Platform Core.
+
 These nodes host the stateful and stateless services that compose Monitoring Center.
