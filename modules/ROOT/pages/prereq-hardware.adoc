@@ -9,8 +9,10 @@ To ensure the performance and stability of Anypoint Platform Private Cloud Editi
 [IMPORTANT]
 Before you install Anypoint Platform PCE, your infrastructure team must review each of the following sections and verify that your environment meets the stated disk and device requirements. If needed, contact your MuleSoft representative for assistance.
 
-(TBD: Reword properly, or update the whole content to better include Mon Center)
-There are 2 components of PCE:
+(TBD: Reword properly, or update the whole content to better include Mon Center)  
+
+There are 2 components of PCE:  
+
 - Anypoint Platform Core
 - Monitoring Center Add-On
 
@@ -130,10 +132,8 @@ sudo systemctl start var-lib-gravity-planet-docker.mount
 == Monitoring Center Add-On
 === Memory and CPU Requirements
 
-(
-TDB: At the moment, the only difference between the Monitoring Center and the Platform Core nodes are Memory and CPU.
-The disks most probably need to be different but needs to be confirmed.
-)
+(TDB: At the moment, the only difference between the Monitoring Center and the Platform Core nodes are Memory and CPU.  
+The disks most probably need to be different but needs to be confirmed.)
 
 [%header%autowidth.spread]
 .Memory and CPU Requirements
@@ -243,11 +243,6 @@ sudo systemctl daemon-reload
 sudo systemctl enable var-lib-gravity-planet-docker.mount
 sudo systemctl start var-lib-gravity-planet-docker.mount
 ----
-
-
-
-
-
 
 == Verify Devices
 
