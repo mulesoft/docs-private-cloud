@@ -105,7 +105,7 @@ Contact MuleSoft professional services prior to upgrading. MuleSoft professional
 | Mule runtime engine | 3.7.x , 3.8.x, 3.9.x, 4.0.x, 4.1.x, 4.2.x, 4.3.0
 | API Gateway Runtime | 2.1.x - 2.2.x
 | Anypoint Runtime Manager Agent | 1.7 - 1.9.x, 2.1.x
-| Anypoint Studio | 6, 7.4
+| Anypoint Studio | 6, 7.4, 7.7
 | Infrastructure providers |
 * VMWare
 * Bare metal
@@ -115,7 +115,6 @@ Contact MuleSoft professional services prior to upgrading. MuleSoft professional
 == Upgrade Paths
 Upgrades from the following PCE versions are supported:
 
-* PCE 2.0.x
 * PCE 2.1.x
 
 == Fixed Issues

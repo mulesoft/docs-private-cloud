@@ -9,7 +9,16 @@ To ensure the performance and stability of Anypoint Platform Private Cloud Editi
 [IMPORTANT]
 Before you install Anypoint Platform PCE, your infrastructure team must review each of the following sections and verify that your environment meets the stated disk and device requirements. If needed, contact your MuleSoft representative for assistance.
 
-== Memory and CPU Requirements
+There are 2 components of PCE:  
+
+- Anypoint Platform Core
+- Monitoring Center Add-On
+
+== Anypoint Platform Core
+
+Prerequisites for 4-nodes or 7-nodes to run the Anypoint Platform Core.
+
+=== Memory and CPU Requirements
 
 [%header%autowidth.spread]
 .Memory and CPU Requirements
@@ -28,7 +37,7 @@ For production environments, each node in your configuration must have the follo
 .Dedicated Device Requirements
 |===
 | Component |Size|Minimum IOPS|Mount Point|Description
-|HDD 2 xref:prereq-hardware#system-state-directory-device[System State Directory Device] | 100 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. Because package sizes can be large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
+|HDD 2 xref:prereq-hardware#system-state-directory-device[System State Directory Device] | 200 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. Because package sizes can be large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
 |HDD 3 xref:prereq-hardware#application-data-device[Application Data Device]| 250 GB |1500|/var/lib/data | Stores application configuration and data. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 |HDD 4 xref:prereq-hardware#docker-device[Docker Device] | 100 GB |3000|/var/lib/gravity/planet/docker | Used by Docker’s overlay storage driver. A minimum of 100GB is required for the overlay directory. Devices with 50GB or less will experience degraded system performance or might not work at all.
 |HDD 5 xref:prereq-hardware#etcd-device[Etcd Device] | 20 GB |3000|/var/lib/gravity/planet/etcd | Provides dedicated storage for the distributed database used for cluster coordination.
@@ -39,7 +48,7 @@ For production environments, each node in your configuration must have the follo
 [NOTE]
 The space requirements listed in the previous table are based on average use. For environments with heavy traffic, validate the amount of space needed with your Customer Success Manager.
 
-== System State Directory Device
+=== System State Directory Device
 
 The main purpose of the system state directory device is to store system configuration and metadata, for example, database and packages. As package sizes can be arbitrarily large, it is important to estimate the minimum size requirements and allocate enough space for the dedicated device.
 
@@ -56,7 +65,7 @@ sudo systemctl enable var-lib-gravity.mount
 sudo systemctl start var-lib-gravity.mount
 ----
 
-== Application Data Device
+=== Application Data Device
 
 The main purpose of the application data directory device is to store application configuration and data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
 
@@ -73,7 +82,7 @@ sudo systemctl enable var-lib-data.mount
 sudo systemctl start var-lib-data.mount
 ----
 
-== Etcd Device
+=== Etcd Device
 
 The main purpose of the etcd device is to provide dedicated storage for a distributed database used for cluster coordination. It does not require much space, 20GB is adequate.
 
@@ -97,16 +106,115 @@ sudo systemctl enable var-lib-gravity-planet-etcd.mount
 sudo systemctl start var-lib-gravity-planet-etcd.mount
 ----
 
-== Docker Device
+=== Docker Device
 
 Unless specified, Docker configuration defaults to the use of the overlay driver, which is recommended for production.
 
-Format this device as `xfs` or `ext4` and mounted as `/var/lib/gravity/planet/docker`.
+Format this device as `xfs` or `ext4` and mount as `/var/lib/gravity/planet/docker`.
 
-The following example shell snippet mounts the Docker device using systemd mount files to the path:
+The following example shell snippet mounts the Docker device using `systemd` mount files to the path
 `/var/lib/gravity/planet/docker`. You can also mount the Docker device using `/etc/fstab` or another method.
 Consult with your system administrator to determine the best way to meet this requirement.
-If you use the following example as a guide for this process, specify the correct device name in two places.
+If you use the following example as a guide for this process, replace `<device name>` with the correct device name in two places.
+
+[NOTE]
+Mount this device AFTER you mount the System State device under `/var/lib/gravity/planet`. If you are using system.d units to mount the volumes, declare mount dependencies using `After=<device-name>.<mount>`
+
+----
+sudo mkfs.ext4 /dev/<device name>
+sudo mkdir -p /var/lib/gravity/planet/docker
+echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/gravity/planet/docker\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-gravity-planet-docker.mount
+sudo systemctl daemon-reload	
+sudo systemctl enable var-lib-gravity-planet-docker.mount
+sudo systemctl start var-lib-gravity-planet-docker.mount
+----
+
+
+== Monitoring Center Add-On
+
+Prerequisites: The extra 3 nodes for the Monitoring Center Add-On.
+
+=== Memory and CPU Requirements
+
+(TO-DO: As of 2020 Oct 1, the only differences between the Monitoring Center and the Platform Core nodes are:  
+
+- Memory
+- CPU
+- No etcd disk
+
+The disks probably need to be different but this still needs to be confirmed before the PCE 3.0 release.)
+
+[%header%autowidth.spread]
+.Memory and CPU Requirements
+|===
+| Component |Requirement
+|RAM |64 GB
+|CPU |16 Cores
+|===
+
+[IMPORTANT]
+If the stated requirements for Memory and CPU are not met, Anypoint Platform PCE installation will fail. 
+
+For production environments, each node in your configuration must have the following dedicated devices. All devices must be formatted either as *xfs* or *ext4*.
+
+[%header%autowidth.spread]
+.Dedicated Device Requirements
+|===
+| Component |Size|Minimum IOPS|Mount Point|Description
+|HDD 2 xref:prereq-hardware#system-state-directory-device[System State Directory Device] | 200 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. Package sizes can be large, so it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
+|HDD 3 xref:prereq-hardware#application-data-device[Application Data Device]| 250 GB |1500|/var/lib/data | Stores application configuration and data. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|HDD 4 xref:prereq-hardware#docker-device[Docker Device] | 100 GB |3000|/var/lib/gravity/planet/docker | Used by Docker's overlay storage driver. A minimum of 100GB is required for the overlay directory. Devices with 50GB or less will experience degraded system performance or might not work at all.
+|/tmp (Installer) | 20 GB |N/A| |
+|/ (root) | 10 GB | N/A | | You must have at least 10GB in your home directory to download and unzip the installer file.|
+|===
+
+[NOTE]
+The space requirements listed in the previous table are based on average use. For environments with heavy traffic, validate the amount of space needed with your Customer Success Manager.
+
+=== System State Directory Device
+
+The main purpose of the system state directory device is to store system configuration and metadata, for example, database and packages. As package sizes can be arbitrarily large, it is important to estimate the minimum size requirements and allocate enough space for the dedicated device.
+
+Format this device either as `xfs` or `ext4` and mount as `/var/lib/gravity`.  
+
+The following shell snippet is provided as an example for mounting the system state directory device using `systemd` mount files and cannot be used as-is in production. You can also mount the system state directory device by using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example as a guide for this process, replace `<device name>` with the correct device name in two places.
+
+----
+sudo mkfs.ext4 /dev/<device name>
+sudo mkdir -p /var/lib/gravity
+echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/gravity\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-gravity.mount
+sudo systemctl daemon-reload
+sudo systemctl enable var-lib-gravity.mount
+sudo systemctl start var-lib-gravity.mount
+----
+
+=== Application Data Device
+
+The main purpose of the application data directory device is to store application configuration and data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
+
+Format this device either as `xfs` or `ext4` and mount as `/var/lib/data`. 
+
+The following shell snippet is provided as an example for mounting the application data device using `systemd` mount files, and cannot be used as-is in production. You can also mount the application data device using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example as a guide for this process, replace `<device name>` with the correct device name in two places.
+
+----
+sudo mkfs.ext4 /dev/<device name>
+sudo mkdir -p /var/lib/data
+echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/data\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-data.mount
+sudo systemctl daemon-reload
+sudo systemctl enable var-lib-data.mount
+sudo systemctl start var-lib-data.mount
+----
+
+=== Docker Device
+
+Unless specified, Docker configuration defaults to the use of the overlay driver, which is recommended for production.
+
+Format this device as `xfs` or `ext4` and mount as `/var/lib/gravity/planet/docker`.
+
+The following example shell snippet mounts the Docker device using `systemd` mount files to the path:
+`/var/lib/gravity/planet/docker`. You can also mount the Docker device using `/etc/fstab` or another method.
+Consult with your system administrator to determine the best way to meet this requirement.
+If you use the following example as a guide for this process, replace `<device name>` with the correct device name in two places.
 
 [NOTE]
 Mount this device AFTER you mount the System State device under `/var/lib/gravity/planet`. If you are using system.d units to mount the volumes, declare mount dependencies using `After=<device-name>.<mount>`
@@ -133,7 +241,7 @@ xvda    202:0    0   90G   0 disk
 xvdb    202:16   0  100G   0 disk /var/lib/gravity/planet/docker
 xvdc    202:32   0   20G   0 disk /var/lib/gravity/planet/etcd
 xvdd    202:48   0  250G   0 disk /var/lib/data
-xvde    202:64   0  100G   0 disk /var/lib/gravity
+xvde    202:64   0  200G   0 disk /var/lib/gravity
 xvdf    202:64   0   20G   0 disk /tmp
 ----
 
@@ -177,6 +285,7 @@ Your load balancer must route the following TCP ports:
 |`443` | `30443` | HTTPS port
 |`8083` | `30883` | HTTPS port for Mule runtimes to authenticate and renew certificates
 |`8889` | `30889` | WebSocket port for Mule runtimes to connect
+|`8895` | `30895` | (Only when Monitoring Center is enabled)
 |`9500` | `32009` | Ops Center access port
 |===
 
@@ -225,6 +334,11 @@ server {
 }
 
 server {
+   listen 8895;
+   proxy_pass 0.0.0.0:30895;
+}
+
+server {
    listen 9500;
    proxy_pass 0.0.0.0:32009;
 }
@@ -240,6 +354,7 @@ server {
 ----
 semanage port -a -t http_port_t  -p tcp 8083
 semanage port -a -t http_port_t  -p tcp 8889
+semanage port -a -t http_port_t  -p tcp 8895
 semanage port -a -t http_port_t  -p tcp 9500
 semanage port -a -t http_port_t  -p tcp 9501
 ----
