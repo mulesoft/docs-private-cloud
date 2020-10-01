@@ -8,7 +8,17 @@ To ensure platform performance, stability, and high availability, Anypoint Platf
 
 To ensure high availability and performance, each node must run on its own server in both configurations. If you are using a virtual machine to host the nodes, you must ensure that each VM node is running on a separate physical server.
 
-== 4-Node Configuration
+(TBD: Reword properly, or update the whole content to better include Mon Center)
+
+There are 2 components of PCE:
+
+- Anypoint Platform Core
+
+- Monitoring Center Add-On
+
+== Anypoint Platform Core
+
+=== 4-Node Configuration
 
 Three is the minimum number of nodes that can enable high-availability and failover. In this configuration, each node hosts the platform applications and services. You must configure a load balancer to use round-robin distribution of traffic among each of the four nodes.
 
@@ -18,7 +28,7 @@ image::prereqs-priv-cloud-3-node.png[3-node Configuration]
 
 Three of the nodes host an instance of the database and object store. Hosting the database and object store enables persistence but requires larger minimum disk and memory requirements. Although three of the nodes contain a database, only one  database is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
 
-=== Environment Limitations
+==== Environment Limitations
 
 You must understand and adhere to the following recommendations and limitations when installing Anypoint Platform PCE and deploying apps.
 
@@ -61,7 +71,7 @@ These limitations are based on a 4-node environment consisting of 4 nodes of 8 c
 
 ***** Maximum of 30,000 Exchange assets
 
-== 7-Node Configuration
+=== 7-Node Configuration
 
 In the 7-node configuration, four nodes are dedicated to hosting platform applications and services. The other three nodes host the database and object store instances. Although each node contains a database, only one of the database nodes is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
 
@@ -71,7 +81,7 @@ image::prereqs-priv-cloud-6-node.png[6-node Configuration]
 
 You must configure a load balancer to use round-robin distribution of traffic among all of the nodes in your cluster.
 
-=== Environment Limitations
+==== Environment Limitations
 
 You must understand and adhere to the following recommendations and limitations when installing Anypoint Platform PCE and deploying apps.
 
@@ -114,3 +124,13 @@ in which:
 **** Exchange
 
 ***** Maximum 60,000 Exchange Assets
+
+
+== Monitoring Center Add-On
+
+=== 3-Node Configuration
+
+(TBD, but first try...)
+Monitoring Center can be enabled as an additional add-on.  
+Monitoring Center runs on 3 nodes that are different from the ones to run the Anypoint Platform Core.
+These nodes host the stateful and stateless services that compose Monitoring Center.
