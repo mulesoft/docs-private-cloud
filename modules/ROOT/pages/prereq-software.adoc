@@ -18,8 +18,8 @@ Before you install Anypoint Platform PCE, your infrastructure team must review e
 === Verify Linux Distribution
 The following Linux distributions are supported:
 
-* Red Hat Enterprise Linux (RHEL) 7.5.x, 7.6, 7.7, 7.8, and 8.1
-* CentOS 7.5.x, 7.6, 7.7, 7.8, and 8.1
+* Red Hat Enterprise Linux (RHEL) 7.5.x, 7.6, 7.7, 7.8 ~~, and 8.1~~ (8.x coming soon because of SELinux compatibility)
+* CentOS 7.5.x, 7.6, 7.7, 7.8 ~~, and 8.1~~ (8.x coming soon because of SELinux compatibility)
 
 === Check for SELinux Custom Profiles
 Although SELinux is not required, Anypoint Platform PCE supports the default SELinux profile running 
@@ -79,16 +79,6 @@ echo net.ipv4.ip_forward=1 >> /etc/sysctl.d/10-ipv4-forwarding.conf
 Ensure that no processes or files conflict with those settings.
 
 == Third Party Software Prerequisites
-
-=== Install LVM2
-
-To install and run Anypoint Platform PCE, you must install and use Logical Volume Manager 2 (LVM2). LVM2 is a tool that adds a layer of abstraction between your operating system and the disks and partitions it uses. You must have root access to install LVM2.
-
-You can install LVM2 using Yum. Yum is an open-source command-line package-management utility for Linux operating systems using the RPM Package Manager. Using Yum, you can install LVM2 using the following command:
-
-----
-sudo yum install lvm2
-----
 
 === Requirements When Firewalld Is Enabled
 
