@@ -37,7 +37,7 @@ For production environments, each node in your configuration must have the follo
 .Dedicated Device Requirements
 |===
 | Component |Size|Minimum IOPS|Mount Point|Description
-|HDD 2 xref:prereq-hardware#system-state-directory-device[System State Directory Device] | 200 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. Because package sizes can be large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
+|HDD 2 xref:prereq-hardware#system-state-directory-device[System State Directory Device] | 250 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. Because package sizes can be large, it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
 |HDD 3 xref:prereq-hardware#application-data-device[Application Data Device]| 250 GB |1500|/var/lib/data | Stores application configuration and data. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 |HDD 4 xref:prereq-hardware#docker-device[Docker Device] | 100 GB |3000|/var/lib/gravity/planet/docker | Used by Docker’s overlay storage driver. A minimum of 100GB is required for the overlay directory. Devices with 50GB or less will experience degraded system performance or might not work at all.
 |HDD 5 xref:prereq-hardware#etcd-device[Etcd Device] | 20 GB |3000|/var/lib/gravity/planet/etcd | Provides dedicated storage for the distributed database used for cluster coordination.
@@ -161,7 +161,7 @@ For production environments, each node in your configuration must have the follo
 .Dedicated Device Requirements
 |===
 | Component |Size|Minimum IOPS|Mount Point|Description
-|HDD 2 xref:prereq-hardware#system-state-directory-device[System State Directory Device] | 200 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. Package sizes can be large, so it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
+|HDD 2 xref:prereq-hardware#system-state-directory-device[System State Directory Device] | 250 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. Package sizes can be large, so it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
 |HDD 3 xref:prereq-hardware#application-data-device[Application Data Device]| 250 GB |1500|/var/lib/data | Stores application configuration and data. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 |HDD 4 xref:prereq-hardware#docker-device[Docker Device] | 100 GB |3000|/var/lib/gravity/planet/docker | Used by Docker's overlay storage driver. A minimum of 100GB is required for the overlay directory. Devices with 50GB or less will experience degraded system performance or might not work at all.
 |/tmp (Installer) | 20 GB |N/A| |
@@ -241,7 +241,7 @@ xvda    202:0    0   90G   0 disk
 xvdb    202:16   0  100G   0 disk /var/lib/gravity/planet/docker
 xvdc    202:32   0   20G   0 disk /var/lib/gravity/planet/etcd
 xvdd    202:48   0  250G   0 disk /var/lib/data
-xvde    202:64   0  200G   0 disk /var/lib/gravity
+xvde    202:64   0  250G   0 disk /var/lib/gravity
 xvdf    202:64   0   20G   0 disk /tmp
 ----
 
