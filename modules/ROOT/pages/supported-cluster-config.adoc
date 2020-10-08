@@ -20,25 +20,30 @@ Each node also hosts an instance of the database and object store. Hosting the d
 
 You must understand and adhere to the following recommendations and limitations when installing Anypoint Platform PCE and deploying apps.
 
-These limitations are based on a 3-node environment consisting of 3 nodes of 8 cores and 32GB RAM.
+These limitations are based on a 3-node PCE environment consisting of 3 nodes of 8 cores and 32GB RAM.
 
 **** Runtime management
 
-***** Maximum number of servers: 500
+***** Maximum number of servers across all business groups: 700 (for example, 350 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
 ***** Maximum number of servers per server group: 20
 ***** Maximum servers per cluster: 8
 
-**** Applications per environment 
+**** Applications per business group environment 
 
-***** Mule applications under management per environment:
+***** Mule applications under management per business groups environment:
 ****** Recommended: Under 200
 ****** Maximum: 500
 
-***** Mule runtime engines under management
-****** Maximum: 500 single Mule runtime engines (or 250 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
+**** Applications across all business groups 
+
+***** Mule applications under management across all business groups:
+****** Maximum: 5,000
+
+***** Mule runtime engines under management per business groups environment:
+****** Maximum: 500 single Mule runtime engines per business groups environment
 
 ***** Mule applications per Mule runtime engine 
-****** Maximum number of apps: 100
+****** Maximum number of apps: 50
 ****** Recommended number of apps: fewer than 25
 
 **** API management
@@ -69,22 +74,27 @@ You must configure a load balancer to use round-robin distribution of traffic am
 
 You must understand and adhere to the following recommendations and limitations when installing Anypoint Platform PCE and deploying apps.
 
-These limitations are based on a 6-node environment consisting of 6 nodes of 8 cores and 32GB RAM.
+These limitations are based on a 6-node PCE environment consisting of 6 nodes of 8 cores and 32GB RAM.
 
 **** Runtime management
 
-***** Maximum number of servers: 1000
+***** Maximum number of servers across all business groups: 1500 (for example, 750 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
 ***** Maximum number of servers per server group: 20
 ***** Maximum servers per cluster: 8
 
-**** Applications per environment 
+**** Applications per business group environment 
 
-***** Mule applications under management:
+***** Mule applications under management per business groups environment:
 ****** Recommended: around 200
 ****** Maximum: 500
 
-***** Mule runtime engines under management
-****** Maximum: 1000 single Mule runtime engines (or 500 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
+**** Applications across all business groups 
+
+***** Mule applications under management across all business groups:
+****** Maximum: 10,000
+
+***** Mule runtime engines under management per business groups environment:
+****** Maximum: 500 single Mule runtime engines per business groups environment
 
 ***** Mule applications per Mule runtime engine
 ****** Maximum number of apps: 50 
