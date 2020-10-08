@@ -24,7 +24,7 @@ These limitations are based on a 3-node PCE environment consisting of 3 nodes of
 
 **** Runtime management
 
-***** Maximum number of servers across all business groups: 700 (or 350 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
+***** Maximum number of servers across all business groups: 700 (for example, 350 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
 ***** Maximum number of servers per server group: 20
 ***** Maximum servers per cluster: 8
 
@@ -78,7 +78,7 @@ These limitations are based on a 6-node PCE environment consisting of 6 nodes of
 
 **** Runtime management
 
-***** Maximum number of servers across all business groups: 1500 (or 750 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
+***** Maximum number of servers across all business groups: 1500 (for example, 750 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster)
 ***** Maximum number of servers per server group: 20
 ***** Maximum servers per cluster: 8
 
