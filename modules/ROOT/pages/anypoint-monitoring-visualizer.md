@@ -1,4 +1,5 @@
 = Anypoint Monitoring and Visualizer
+
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
