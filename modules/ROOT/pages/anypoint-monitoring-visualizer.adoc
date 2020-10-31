@@ -81,7 +81,7 @@ Each stateful set uses different directories to hold its data, resulting in the 
   /var/lib/data/influxdb/meta
   /var/lib/data/logstash
   /var/lib/data/dias-cassandra
-  /var/lib/data/dias-meld---
+  /var/lib/data/dias-meld
 
 InfluxDB meta pods (3 pods) use `/var/lib/data/influxdb/meta` while data pods use `/var/lib/data/influxdb/data`. Logstash uses `/var/lib/data/logstash` and finally Insight uses the remaining two directories to hold its data.
 
