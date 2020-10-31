@@ -5,7 +5,7 @@ endif::[]
 
 Anypoint Monitoring
 
-= Overall Architecture
+== Overall Architecture
 
 Anypoint Monitoring is an optional feature during installation, which includes Anypoint Visualizer. Both products require 3 dedicated nodes, normally labeled *amv_node*.
 
@@ -42,17 +42,16 @@ In those 3 nodes, the following Helm charts will be installed in 4 different nam
 
 It's important to mentioned that a dedicated Stolon DB will be deployed in addition to the one used by the platform.
 
-==
 
 
 self-signed certs
 
-= Requirements
+== Requirements
 
 hardware, ports, certs
 
 
-= Restore/Backup
+== Restore/Backup
 
 required size
 
