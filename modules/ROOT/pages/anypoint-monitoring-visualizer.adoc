@@ -4,8 +4,6 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Monitoring
-
 == Overall Architecture
 
 Anypoint Monitoring is an optional feature during installation, which includes Anypoint Visualizer. Both products require 3 dedicated nodes, normally labeled *amv_node*.
@@ -43,13 +41,34 @@ In those 3 nodes, the following Helm charts will be installed in 4 different nam
 
 It's important to mentioned that a dedicated Stolon DB will be deployed in addition to the one used by the platform.
 
+=== DIAS Components
+
+DIAS provides the foundations for data transmission between the Mule runtime (running Filebeat) and the InfluxDB storing that data. Once data reaches InfluxDB, it becomes available to the Anypoint Monitoring UI as well as the Insight alerting engine.
+
+The `dias-prov-k8s-amr-ingestor-router-comp` pods run Nginx accepting connections from remote runtimes thought mTLS (it uses a node-port service). Data is then forwarded to `dias-prov-k8s-am-ingestor-comp` pods running Logstash.
+
+Logstash processes and transform those messages and batch them before hitting InfluxDB. The `dias-prov-k8s-am-influxdb-comp` component is a stateful InfluxDB cluster consisting in 3 meta and 2 data nodes.
+
+The Insight alerting engine is managed by the `dias-prov-k8s-insight-comp` component. It periodically fetches metrics from InfluxDB and based on the customer's alerts definition, the engine triggers alarms. Each pod has 4 containers, including a Mule application, Meld, Meld-Drill and Cassandra.
+
+Logstash, Insight and InfluxDB are all K8s stateful sets.
+
+
+=== Monitoring Center Components
+
+Mati
+
+=== Visualizer Components
+
+Yevhen
+
 
 
 self-signed certs
 
 == Requirements
 
-hardware, ports, certs
+hardware, ports, certs, directories...
 
 
 == Restore/Backup
