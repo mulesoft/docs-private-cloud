@@ -83,21 +83,53 @@ Each stateful set uses different directories to hold its data, resulting in the 
   /var/lib/data/dias-cassandra
   /var/lib/data/dias-meld
 
-InfluxDB meta pods (3 pods) use `/var/lib/data/influxdb/meta` while data pods use `/var/lib/data/influxdb/data`. Logstash uses `/var/lib/data/logstash` and finally Insight uses the remaining two directories to hold its data.
+InfluxDB meta pods (3 pods) use `/var/lib/data/influxdb/meta` while data pods (2 pods) use `/var/lib/data/influxdb/data`. Logstash uses `/var/lib/data/logstash` and finally Insight uses the remaining two directories to hold its data.
 
 == Requirements
 
-hardware, ports, certs, directories...
+Hardware requirements are listed in the main PCE hardware section but 3 nodes are required for all Anypoint Monitoring/Visualizer workload.
 
-CPU, memory, fetches
+Port 8895 needs to be accesible in the main balancer along with the rest of the required ports.
 
 
 === InfluxDB License
 
+InfluxDB requires a valid license to operate.
+
 == Restore/Backup
 
-required size
+Both backup and restore procedures for Anypoint Monitoring are outside the normal Gravitational backup/restore mechanism and therefore requires additional procedures.
 
-----
-openssl dhparam 2048 -out dhparam.pem
-----
+Anypoint Monitoring/Visualizer need to backup the following component's data
+
+. InfluxDB (`dias-prov-k8s-am-influxdb-comp`)
+. Cassandra ('dias-prov-k8s-am-ingestor-comp')
+
+
+Each component has its own way to backup, and restore, the data. It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stolon DB will be backup/restore by the default Gravitational mechanism and it is not considered in this document.
+
+---
+It is up to the customer to provide enough space to run the backup/restore for each of the mentioned components, considering that we will need double the space, at most. For instance, InfluxDB data directories might use 200GB and therefore the underlying disk (where the backup is meant to be written) should have 200GB+ free space.
+---
+
+=== InfluxDB
+
+All InfluxDB data/meta nodes run on the 3 nodes labeled `amv_node` and therefore we need to backup the data sitting in those 3 nodes. Data is under '/var/lib/data/influxdb' for both meta and data pods. The following steps consider that the underlying hard drive has enough space to hold the backup. The destination can be actually anything (disk, S3 bucket, etc).
+
+. `kubectl get nodes | grep amv` will provide the Anypoint nodes
+. Connect to each `amv` node and run `sudo gravity enter`
+. Under `cd /var/lib/data/influxdb` we can find the data that needs to be backup. At this point, any approach to copy that data to a secure location is acceptable. The following steps are provided just as a local backup.
+. Copy over data with `cp -a meta/. bck/meta & cp -a data/. bck/data` (`bck` is just a directory in the same location, it can be anywhere)
+. On a fresh new installation with InfluxDB pods already running we will restore data with `cp -a bck/data/. data/ & cp -a bck/meta/. meta/`
+. Restarting all meta/data pods will reload that data
+
+
+Backing up InfluxDB is as simple as copying over all the data under `/var/lib/data/influxdb`. Upon restore, all influxDB pods need to be restarted (if they are already running) to restore the data.
+
+=== Cassandra
+
+Ejaz to complete
+
+=== Logstash
+
+When it comes to Logstash data (`dias-prov-k8s-am-ingestor-comp`) it is important to consider that Logstash keeps "watermark" files which indicate which metric files have been processed. In a fresh new instal (either from scratch or after a restore) there will not be any metric files to process and therefore no need to backup those "watermark" files. This is acceptable since Logstash has a flush mechanism built-in where upon pod graceful termination, all data is flushed to InfluxDB.
