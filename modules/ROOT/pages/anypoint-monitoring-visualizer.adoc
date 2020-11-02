@@ -103,7 +103,7 @@ Both backup and restore procedures for Anypoint Monitoring are outside the norma
 Anypoint Monitoring/Visualizer need to backup the following component's data
 
 . InfluxDB (`dias-prov-k8s-am-influxdb-comp`)
-. Cassandra ('dias-prov-k8s-am-ingestor-comp')
+. Cassandra (`dias-prov-k8s-am-ingestor-comp`)
 
 
 Each component has its own way to backup, and restore, the data. It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stolon DB will be backup/restore by the default Gravitational mechanism and it is not considered in this document.
