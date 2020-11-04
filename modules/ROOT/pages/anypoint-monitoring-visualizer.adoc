@@ -76,12 +76,13 @@ All Anypoint Monitoring/Visualizer components use self-signed certificates for T
 
 Each stateful set uses different directories to hold its data, resulting in the following directories:
 
----
+```
   /var/lib/data/influxdb/data
   /var/lib/data/influxdb/meta
   /var/lib/data/logstash
   /var/lib/data/dias-cassandra
   /var/lib/data/dias-meld
+```
 
 InfluxDB meta pods (3 pods) use `/var/lib/data/influxdb/meta` while data pods (2 pods) use `/var/lib/data/influxdb/data`. Logstash uses `/var/lib/data/logstash` and finally Insight uses the remaining two directories to hold its data.
 
@@ -105,9 +106,9 @@ kubectl create secret generic dias-prov-k8s-am-influxdb-comp-license -n dias --f
 
 If no secret is given, InfluxDB will fail with the following message
 
----
+```
 ts=ZULU_TIME lvl=error msg="LICENSE IS INVALID OR CANNOT BE FOUND" log_id=LOG_ID service=licensing error=ERROR_MESSAGE
----
+```
 
 If that is the case, the secret will need to be created and InfluxDB chart redeployed. Before redeploying InfluxDB, all *pvc*, *pv* and *jobs* (named `dias-prov-k8s-am-influxdb-comp-bootstrap`) will need to be deleted.
 
