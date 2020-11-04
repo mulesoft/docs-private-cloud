@@ -17,15 +17,15 @@ In those 3 nodes, the following Helm charts will be installed in 4 different nam
 |prov-k8s-am-influxdb-comp
 |Influx DB
 |prov-k8s-am-ingestor-comp
-|?? Logstash ??
+|Logstash service
 |prov-k8s-amr-certs-comp
 |Service for certificates generation/rotation
 |prov-k8s-amr-ingestor-router-comp
 |Public Nginx entrypoint (proxy) for mule agent events
 |prov-k8s-insight-comp
-|??
+|Alerting engine
 |provisioning-api
-|??
+|Configuration service for all Monitoring/Visualizer
 
 .6+|monitoring-center
 |alerts-api
