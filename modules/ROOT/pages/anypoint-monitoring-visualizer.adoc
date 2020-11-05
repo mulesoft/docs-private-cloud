@@ -97,11 +97,11 @@ Port 8895 needs to be accesible in the main balancer along with the rest of the 
 
 InfluxDB requires a valid license to operate. Anypoint Monitoring requires a Kubernetes secret to be present in the cluster before all Anypoint Monitoring/Visualizer charts are deployed.
 
-The following command needs to be run in order to create the required secret
+The following command needs to be run in order to create the required secret in the default namespace:
 
 
 ```
-kubectl create secret generic dias-prov-k8s-am-influxdb-comp-license -n dias --from-literal=license={license}
+kubectl create secret generic influxdb-license --from-literal=license={license}
 ```
 
 If no secret is given, InfluxDB will fail with the following message
