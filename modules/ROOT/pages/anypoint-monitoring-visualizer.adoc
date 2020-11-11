@@ -135,6 +135,8 @@ The following command needs to be run in order to create the required secret in 
 kubectl create secret generic influxdb-license --from-literal=license={license}
 ```
 
+Note that InfluxDB license might be a JSON file in which case we only need the `key` value in that secret.
+
 If no secret is given, InfluxDB will fail with the following message
 
 ```
