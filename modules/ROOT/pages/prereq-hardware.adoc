@@ -190,7 +190,7 @@ sudo systemctl start var-lib-gravity.mount
 
 === Application Data Device
 
-The main purpose of the application data directory device is to store application configuration and data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
+The main purpose of the application data directory device is to store Monitoring Center Add-On application configuration and data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
 
 Format this device either as `xfs` or `ext4` and mount as `/var/lib/data`. 
 
@@ -204,6 +204,14 @@ sudo systemctl daemon-reload
 sudo systemctl enable var-lib-data.mount
 sudo systemctl start var-lib-data.mount
 ----
+
+Once mounted, create the following dirs if necessary on every Monitor Center Add-On node:
+
+- /var/lib/data/influxdb/data
+- /var/lib/data/influxdb/meta
+- /var/lib/data/logstash
+- /var/lib/data/dias-cassandra
+- /var/lib/data/dias-meld
 
 === Docker Device
 
