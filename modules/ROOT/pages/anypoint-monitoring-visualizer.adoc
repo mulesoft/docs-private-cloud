@@ -126,7 +126,9 @@ Port 8895 needs to be accesible in the main balancer along with the rest of the 
 
 === InfluxDB License
 
-InfluxDB requires a valid license to operate. Anypoint Monitoring requires a Kubernetes secret to be present in the cluster before all Anypoint Monitoring/Visualizer charts are deployed.
+InfluxDB requires a valid license to operate, which should have been provided at the time of purchase of Anypoint Monitoring.
+
+Anypoint Monitoring requires a Kubernetes secret to be present in the cluster before all Anypoint Monitoring/Visualizer charts are deployed.
 
 The following command needs to be run in order to create the required secret in the default namespace:
 
