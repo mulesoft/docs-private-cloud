@@ -122,6 +122,20 @@ in which:
 **** Exchange
 
 ***** Maximum 60,000 Exchange Assets
+***** Max file size when publishing asset through UI: 5MB 
+***** Max uncompressed file size: 50MB 
+***** Max file size when publishing asset through Maven: 200MB
+***** Max number of dependencies for a single asset: 100
+***** Max Icon Size: 2MB
+***** Max number of resources (attachments) per asset (portal): 100
+***** Max resource size: 2MB (attachments to the Asset Portal)
+***** Max Indexable Asset Content (RAML or Asset Portal): 1MB (This means if your Portal has more than 1MB in text, only the first 1MB will be indexed. Same applied to the RAML Spec)
+***** Max number of categories per organization: 500
+***** Max number of custom configurations per organization: 500
+***** Max number of pages in a portal: 50
+***** Max length of page name: 128 characters
+***** Max Review Title Length: 30 characters
+***** Max Review Text Length: 2048 characters
 
 
 == Monitoring Center Add-On
