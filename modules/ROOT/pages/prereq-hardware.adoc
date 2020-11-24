@@ -42,7 +42,7 @@ For production environments, each node in your configuration must have the follo
 |HDD 4 xref:prereq-hardware#docker-device[Docker Device] | 100 GB |3000|/var/lib/gravity/planet/docker | Used by Docker’s overlay storage driver. A minimum of 100GB is required for the overlay directory. Devices with 50GB or less will experience degraded system performance or might not work at all.
 |HDD 5 xref:prereq-hardware#etcd-device[Etcd Device] | 20 GB |3000|/var/lib/gravity/planet/etcd | Provides dedicated storage for the distributed database used for cluster coordination.
 |/tmp (Installer) | 20 GB |N/A| |
-|/ (root) | 10 GB | N/A | | You must have at least 10GB in your home directory to download and unzip the installer file.|
+|/ (root) | 25 GB | N/A | | You must have at least 25GB in your home directory to download and unzip the installer file.|
 |===
 
 [NOTE]
@@ -136,13 +136,8 @@ Prerequisites: The extra 3 nodes for the Monitoring Center Add-On.
 
 === Memory and CPU Requirements
 
-(TO-DO: As of 2020 Oct 1, the only differences between the Monitoring Center and the Platform Core nodes are:  
-
-- Memory
-- CPU
-- No etcd disk
-
-The disks probably need to be different but this still needs to be confirmed before the PCE 3.0 release.)
+Monitoring Center Add-On hardware requirements are different from the Platform Core nodes,
+they require more CPU, more memory and different disk mounts.
 
 [%header%autowidth.spread]
 .Memory and CPU Requirements
@@ -152,9 +147,6 @@ The disks probably need to be different but this still needs to be confirmed bef
 |CPU |16 Cores
 |===
 
-[IMPORTANT]
-If the stated requirements for Memory and CPU are not met, Anypoint Platform PCE installation will fail. 
-
 For production environments, each node in your configuration must have the following dedicated devices. All devices must be formatted either as *xfs* or *ext4*.
 
 [%header%autowidth.spread]
@@ -162,8 +154,11 @@ For production environments, each node in your configuration must have the follo
 |===
 | Component |Size|Minimum IOPS|Mount Point|Description
 |HDD 2 xref:prereq-hardware#system-state-directory-device[System State Directory Device] | 250 GB |1500|/var/lib/gravity | Stores system configuration and metadata, including databases and packages. Package sizes can be large, so it is important to estimate the minimum size requirements and allocate enough space as a dedicated device before installation.
-|HDD 3 xref:prereq-hardware#application-data-device[Application Data Device]| 250 GB |1500|/var/lib/data | Stores application configuration and data. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
-|HDD 4 xref:prereq-hardware#docker-device[Docker Device] | 100 GB |3000|/var/lib/gravity/planet/docker | Used by Docker's overlay storage driver. A minimum of 100GB is required for the overlay directory. Devices with 50GB or less will experience degraded system performance or might not work at all.
+|HDD 3 xref:prereq-hardware#docker-device[Docker Device] | 100 GB |3000|/var/lib/gravity/planet/docker | Used by Docker's overlay storage driver. A minimum of 100GB is required for the overlay directory. Devices with 50GB or less will experience degraded system performance or might not work at all.
+|HDD 4 xref:prereq-hardware#dias-amv-device[Cassandra AMV Device]| 250 GB |1500|/var/lib/data/dias-meld & /var/lib/data/dias-cassandra | Stores Cassandra database data for Monitoring Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|HDD 5 xref:prereq-hardware#stolon-amv-device[Stolon AMV Device]| 250 GB |1500|/var/lib/data/stolon-amv | Stores Postgres database data for Monitorng Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time. 
+|HDD 7 xref:prereq-hardware#influxdb-amv-device[InfluxDB AMV Device]| 250 GB |1500|/var/lib/data/influxdb | Stores InfluxDB data for Monitoring Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|HDD 7 xref:prereq-hardware#logstash-amv-device[logstash AMV Device]| 250 GB |1500|/var/lib/data/logstash | Stores Logstash data for Monitoring Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 |/tmp (Installer) | 20 GB |N/A| |
 |/ (root) | 10 GB | N/A | | You must have at least 10GB in your home directory to download and unzip the installer file.|
 |===
@@ -188,31 +183,6 @@ sudo systemctl enable var-lib-gravity.mount
 sudo systemctl start var-lib-gravity.mount
 ----
 
-=== Application Data Device
-
-The main purpose of the application data directory device is to store Monitoring Center Add-On application configuration and data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
-
-Format this device either as `xfs` or `ext4` and mount as `/var/lib/data`. 
-
-The following shell snippet is provided as an example for mounting the application data device using `systemd` mount files, and cannot be used as-is in production. You can also mount the application data device using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example as a guide for this process, replace `<device name>` with the correct device name in two places.
-
-----
-sudo mkfs.ext4 /dev/<device name>
-sudo mkdir -p /var/lib/data
-echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/data\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-data.mount
-sudo systemctl daemon-reload
-sudo systemctl enable var-lib-data.mount
-sudo systemctl start var-lib-data.mount
-----
-
-Once mounted, create the following dirs if necessary on every Monitor Center Add-On node:
-
-- /var/lib/data/influxdb/data
-- /var/lib/data/influxdb/meta
-- /var/lib/data/logstash
-- /var/lib/data/dias-cassandra
-- /var/lib/data/dias-meld
-
 === Docker Device
 
 Unless specified, Docker configuration defaults to the use of the overlay driver, which is recommended for production.
@@ -236,6 +206,84 @@ sudo systemctl enable var-lib-gravity-planet-docker.mount
 sudo systemctl start var-lib-gravity-planet-docker.mount
 ----
 
+=== DIAS Data Device
+
+The main purpose of the DIAS Data directory device is to store Monitoring Center Add-On Cassandra and Meld database data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
+
+Format this device either as `xfs` or `ext4` and mount as `/var/lib/data`. 
+
+The following shell snippet is provided as an example for mounting the application data device using `systemd` mount files, and cannot be used as-is in production. You can also mount the application data device using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example as a guide for this process, replace `<device name>` with the correct device name in two places.
+
+----
+sudo mkfs.ext4 /dev/<device name>
+sudo mkdir -p /var/lib/data
+echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/data\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-data-dias.mount
+sudo systemctl daemon-reload
+sudo systemctl enable var-lib-data-dias.mount
+sudo systemctl start var-lib-data-dias.mount
+----
+
+Once mounted, create the following dirs if necessary on every Monitor Center Add-On node:
+
+- /var/lib/data/dias-cassandra
+- /var/lib/data/dias-meld
+
+=== Stolon AMV Device
+
+The main purpose of the Stolon AMV directory device is to store Monitoring Center Add-On Postgres database data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
+
+Format this device either as `xfs` or `ext4` and mount as `/var/lib/data/stolon-amv`. 
+
+The following shell snippet is provided as an example for mounting the application data device using `systemd` mount files, and cannot be used as-is in production. You can also mount the application data device using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example as a guide for this process, replace `<device name>` with the correct device name in two places.
+
+----
+sudo mkfs.ext4 /dev/<device name>
+sudo mkdir -p /var/lib/data/stolon-amv
+echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/data/stolon-amv\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-data-stolon-amv.mount
+sudo systemctl daemon-reload
+sudo systemctl enable var-lib-data-stolon-amv.mount
+sudo systemctl start var-lib-data-stolon-amv.mount
+----
+
+=== InfluxDB AMV Device
+
+The main purpose of the InfluxDB AMV directory device is to store Monitoring Center Add-On InfluxDB data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
+
+Format this device either as `xfs` or `ext4` and mount as `/var/lib/data/influxdb`. 
+
+The following shell snippet is provided as an example for mounting the application data device using `systemd` mount files, and cannot be used as-is in production. You can also mount the application data device using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example as a guide for this process, replace `<device name>` with the correct device name in two places.
+
+----
+sudo mkfs.ext4 /dev/<device name>
+sudo mkdir -p /var/lib/data/influxdb
+echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/data/influxdb\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-data-influxdb.mount
+sudo systemctl daemon-reload
+sudo systemctl enable var-lib-data-influxdb.mount
+sudo systemctl start var-lib-data-influxdb.mount
+----
+
+Once mounted, create the following dirs if necessary on every Monitor Center Add-On node:
+
+- /var/lib/data/influxdb/data
+- /var/lib/data/influxdb/meta
+
+=== Logstash AMV Device
+
+The main purpose of the Logstash AMV directory device is to store Monitoring Center Add-On Logstash database data. The minimum amount of space required is 250GB, but your use case might require more. It is important to allocate enough space for the dedicated device.
+
+Format this device either as `xfs` or `ext4` and mount as `/var/lib/data/logstash`. 
+
+The following shell snippet is provided as an example for mounting the application data device using `systemd` mount files, and cannot be used as-is in production. You can also mount the application data device using `/etc/fstab` or some other method. Consult with your system administrator to determine the best way to meet this requirement. If you use the following example as a guide for this process, replace `<device name>` with the correct device name in two places.
+
+----
+sudo mkfs.ext4 /dev/<device name>
+sudo mkdir -p /var/lib/data/logstash
+echo -e "[Mount]\nWhat=/dev/<device name>\nWhere=/var/lib/data/logstash\nType=ext4\n[Install]\nWantedBy=local-fs.target" | sudo tee /etc/systemd/system/var-lib-data-logstash.mount
+sudo systemctl daemon-reload
+sudo systemctl enable var-lib-data-logstash.mount
+sudo systemctl start var-lib-data-logstash.mount
+----
+
 == Verify Devices
 
 To verify that all devices are set up the same way on all nodes, run the `lsblk` command. Output from `lsblk` should resemble the following example: 
@@ -247,10 +295,12 @@ xvda    202:0    0   90G   0 disk
 ├─xvda1 202:1    0    1M   0 part
 └─xvda2 202:2    0   90G   0 part /
 xvdb    202:16   0  100G   0 disk /var/lib/gravity/planet/docker
-xvdc    202:32   0   20G   0 disk /var/lib/gravity/planet/etcd
 xvdd    202:48   0  250G   0 disk /var/lib/data
 xvde    202:64   0  250G   0 disk /var/lib/gravity
-xvdf    202:64   0   20G   0 disk /tmp
+xvdf    202:64   0  250G   0 disk /var/lib/stolon-amv
+xvdg    202:64   0  250G   0 disk /var/lib/influxdb
+xvdh    202:64   0  250G   0 disk /var/lib/logstash
+xvdi    202:64   0   20G   0 disk /tmp
 ----
 
 == Verify Disk IOPS
