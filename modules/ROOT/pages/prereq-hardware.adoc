@@ -143,8 +143,8 @@ they require more CPU, more memory and different disk mounts.
 .Memory and CPU Requirements
 |===
 | Component |Requirement
-|RAM |64 GB
-|CPU |16 Cores
+|RAM |128 GB
+|CPU |32 Cores
 |===
 
 For production environments, each node in your configuration must have the following dedicated devices. All devices must be formatted either as *xfs* or *ext4*.
