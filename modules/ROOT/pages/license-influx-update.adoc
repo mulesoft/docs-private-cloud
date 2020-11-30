@@ -5,6 +5,9 @@ endif::[]
 
 == To Update the InfluxDB License
 
+If the influx license is updated, it needs to be added to the secret in the default namespace and then ensure it is running in the pods
+
+
 1. Encode the new key
 
 ----
