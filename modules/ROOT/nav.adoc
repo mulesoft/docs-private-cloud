@@ -31,4 +31,5 @@
  ** xref:ext-analytics-elk.adoc[Analyze Business and API Data Using ELK]
  ** xref:register-server.adoc[Troubleshoot Mule Runtime Engine Registration]
 * xref:upgrade.adoc[Upgrade Workflow]
+* xref:license-influx-update.adoc[Update Influx License]
 * xref:amv-uninstall.adoc[Uninstall Anypoint Monitoring]
