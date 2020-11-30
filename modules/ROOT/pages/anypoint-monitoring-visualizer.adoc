@@ -67,7 +67,7 @@ The `dias-prov-k8s-amr-ingestor-router-comp` pods run Nginx accepting connection
 
 Logstash processes and transform those messages and batch them before hitting InfluxDB. The `dias-prov-k8s-am-influxdb-comp` component is a stateful InfluxDB cluster consisting in 3 meta and 2 data nodes.
 
-The Insight alerting engine is managed by the `dias-prov-k8s-insight-comp` and the `dias-prov-k8s-cassandra-comp` component. Both of these components are statefulsets. It periodically fetches metrics from InfluxDB and based on the customer's alerts definition, the engine triggers alarms. Each pod in `dias-prov-k8s-insight-comp` has 3 main containers, including a Mule application, Meld, Meld-Drill.
+The Insight alerting engine is managed by the `dias-prov-k8s-insight-comp` and the `dias-prov-k8s-cassandra-comp` component. Both of these components are statefulsets. It periodically fetches metrics from InfluxDB and based on the customer's alerts definition, the engine triggers alarms. Each pod in `dias-prov-k8s-insight-comp` has 3 main containers, including a Mule Runtime, Meld and Meld-Drill.
 
 Logstash, Insight and InfluxDB are all K8s stateful sets.
 
@@ -179,18 +179,13 @@ All InfluxDB data/meta nodes run on the 3 nodes labeled `amv_node` and therefore
 
 Backing up InfluxDB is as simple as copying over all the data under `/var/lib/data/influxdb`. Upon restore, all influxDB pods need to be restarted (if they are already running) to restore the data.
 
-=== Cassandra
+=== Alerting Engine
 
-The `dias-prov-k8s-cassandra-comp` represents the cassandra cluster required by Insights. To create a snapshot of the cassandra cluster, we need to follow the below steps:
+The Alerting engine is built on top of the metrics collected by the Influx component. Hence, as long as Influx is backed up, we can easily fetch the required data from influx to continue processing the alerts defined by the customers.
 
-. Make sure you have copied any previous backups generated. The next step will override any existing backup created
-. There are 3 Cassandra Pods. We need to back-up the data from each pod separately
-  . For Pod-0: `kubectl -n dias exec -it dias-prov-k8s-cassandra-comp-0 -c cassandra ./cassandra-backup.sh`
-  . For Pod-1: `kubectl -n dias exec -it dias-prov-k8s-cassandra-comp-1 -c cassandra ./cassandra-backup.sh`
-  . For Pod-2: `kubectl -n dias exec -it dias-prov-k8s-cassandra-comp-2 -c cassandra ./cassandra-backup.sh`
-. The backup gets created on each of the `amv` nodes. There should be 3 `amv` nodes. `kubectl get nodes | grep amv` will provide the Anypoint nodes
-. Connect to each `amv` node and run `sudo gravity enter`
-. Under `cd /var/lib/data/dias-cassandra/backup` we can find the data that needs to be backup. At this point, any approach to copy that data to a secure location is acceptable. Please, move the data out of this location else, it will be over-written by the next backup operation.
+Once, Influx is restored, run the following command against any one of `dias-prov-k8s-insight-comp` pods.
+
+`kubectl -n dias exec -it dias-prov-k8s-insight-comp-0 -c insight-apps <TODO: command>`
 
 === Logstash
 
