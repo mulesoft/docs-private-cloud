@@ -156,7 +156,7 @@ Both backup and restore procedures for Anypoint Monitoring are outside the norma
 Anypoint Monitoring/Visualizer need to backup the following component's data
 
 . InfluxDB (`dias-prov-k8s-am-influxdb-comp`)
-. Cassandra (`dias-prov-k8s-am-ingestor-comp`)
+. Alerting Engine (`dias-prov-k8s-insight-comp`)
 
 
 Each component has its own way to backup, and restore, the data. It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stolon DB will be backup/restore by the default Gravitational mechanism and it is not considered in this document.
@@ -181,7 +181,7 @@ Backing up InfluxDB is as simple as copying over all the data under `/var/lib/da
 
 === Alerting Engine
 
-The Alerting engine is built on top of the metrics collected by the Influx component. Hence, as long as Influx is backed up, we can easily fetch the required data from influx to continue processing the alerts defined by the customers.
+The Alerting engine is built on top of the metrics collected by the Influx component. Hence, as long as Influx is backed up, we can easily fetch the required data from Influx to continue processing the alerts defined by the customer.
 
 Once, Influx is restored, run the following command against any one of `dias-prov-k8s-insight-comp` pods.
 
