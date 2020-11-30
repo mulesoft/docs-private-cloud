@@ -1,14 +1,14 @@
-= Configure Backup and Restore for Anypoint Private Cloud
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
+## Uninstall Anypoint Monitoring
 
-== To Uninstall Anypoint Monitoring
-Run the following script
+Follow the steps below to completely and permanently uninstall Anypoint Monitoring Visualizer Addon.
 
-----
+WARNING: All related data and metrics related to Anypoint Monitoring Visualizer Addon will be lost
+
+1. Create a file named `amv-uninstall.sh` inside gravity with the following contents:
+```bash
+kubectl patch configmap anypoint-addons -p '{"data": {"AMV_ADDON_ENABLED": "false"}}'
 # Delete Everything for ${COMPONENT}
-COMPONENTS=( dias ) # Add more components to this list, separated by space
+COMPONENTS=( dias monitoring-center visualizer ) # Add more components to this list, separated by space
 for COMPONENT in ${${COMPONENT}[@]}; do
   # Delete HELM Charts
   helm ls --all | grep ${COMPONENT}
@@ -38,34 +38,36 @@ for COMPONENT in ${${COMPONENT}[@]}; do
   kubectl get secrets -n ${COMPONENT}
   sleep 10
 done
-----
 
+# Delete stolon-amv
+gravity app uninstall stolon-amv
 
-Once run, validate that the pods in the namespace are gone
+# Delete Infludb License
+kubectl delete secret influxdb-license --ignore-not-found
+```
 
-----
-kubectl get pods -n dias
-----
+1. Run `chmod +x uninstall-amv.sh`
 
+1. Run `./uninstall-amv.sh`
 
-There may be Persistent Volumes and Persistent Volume Claims remaining:
+1. Once run, validate that the pods in all related namespaces are gone by running the following commands:
 
-----
+`kubectl get pods -n dias`
+`kubectl get pods -n monitoring-center`
+`kubectl get pods -n visualizer`
+
+1. There might still be dangling Persistent Volumes and Persistent Volume Claims. Check by running the following commands
+```
 kubectl get pvc -n dias
 kubectl get pv | grep dias
-----
+```
+1. If after 10 mins after deleting the helm charts the volumes still exist then they need to be deleted manually:
 
-
-If after 10 mins after deleting the helm charts the volumes still exist then need to delete them manually
 To delete Persistent Volumes:
-
-----
+```
 kubectl delete pv $(kubectl get pv | grep "dias" | awk -F" " '{print $1}')
-----
-
-
+```
 To delete Persistent Volume Claims:
-
-----
+```
 kubectl delete pvc $(kubectl get pvc -n dias | awk -F" " '{print $1}') -n dias
-----
+```
