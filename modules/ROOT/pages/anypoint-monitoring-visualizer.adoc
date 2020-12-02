@@ -174,7 +174,8 @@ All InfluxDB data/meta nodes run on the 3 nodes labeled `amv_node` and therefore
 . Under `cd /var/lib/data/influxdb` we can find the data that needs to be backup. At this point, any approach to copy that data to a secure location is acceptable. The following steps are provided just as a local backup.
 . Copy over data with `cp -a meta/. bck/meta & cp -a data/. bck/data` (`bck` is just a directory in the same location, it can be anywhere)
 . On a fresh new installation with InfluxDB pods already running we will restore data with `cp -a bck/data/. data/ & cp -a bck/meta/. meta/`
-. Restarting all meta/data pods will reload that data
+. IMPORTANT: InfluxData has only two data nodes (in a three node installation) and the data in the `/data` directory needs to go to the to the nodes running the data pods. `kubectl describe nodes` outputs the pods-to-nodes assignment. Looking for the 'dias-prov-k8s-am-influxdb-comp-data*' in that output will those two nodes.
+. Restarting all meta/data pods will reload the original backup data
 
 
 Backing up InfluxDB is as simple as copying over all the data under `/var/lib/data/influxdb`. Upon restore, all influxDB pods need to be restarted (if they are already running) to restore the data.
