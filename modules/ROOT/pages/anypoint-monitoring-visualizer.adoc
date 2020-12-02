@@ -182,11 +182,17 @@ Backing up InfluxDB is as simple as copying over all the data under `/var/lib/da
 
 === Alerting Engine
 
-The Alerting engine is built on top of the metrics collected by the Influx component. Hence, as long as Influx is backed up, we can easily fetch the required data from Influx to continue processing the alerts defined by the customer.
+The Alerting engine processes alerts by relying on the metrics stored in InfluxDB. Hence, as long as InfluxDB is backed up, we can easily fetch the required data from Influx to continue processing the alerts defined by the customer.
 
-Once, Influx is restored, run the following command against any one of `dias-prov-k8s-insight-comp` pods.
+The first step is to restore InfluxDB. Once, InfluxDB is restored, we can reset the Alerting Engine to start processing alerts from any point in time. Let's assume we want to reset the Alerting Engine to start processing alerts from 12:00am on 1st December, 2020. We first need to convert this date to an `epoch timestamp` in `milliseconds`. In this example, the corresponding epoch timestamp is `1606780800000`. We have to make sure that we are not choosing a point in time more than 6 hours in the past. It makes little sense to notify customers on alerts that happened so far in the past. Hence, as a thumb rule, let's not reset the time more than 6 hours in the past.
 
-`kubectl -n dias exec -it dias-prov-k8s-insight-comp-0 -c insight-apps <TODO: command>`
+Now that we have the `epoch timestamp` we are ready to reset the Alerting Engine to start processing Alerts from that point of time. Run the following commands against any one of `dias-prov-k8s-insight-comp` pods.
+
+. Enter the `insight-apps` container by running the following command: `kubectl -n dias exec -it dias-prov-k8s-insight-comp-0 -c insight-apps /bin/bash`
+. Run the following curl command to verify that the workflow exists: `curl -H "Content-Type: application/json" -H "client_id: $DATACHANNEL_CLIENT_ID" -H "client_secret: $DATACHANNEL_CLIENT_SECRET" -H "client_user_name: restore" http://localhost:$DATACHANNEL_PORT/api/v1/workflows/1`
+. Once, we have verified that the above API call returns a successful response, we can proceed to restoring the Alerting Engine to the point in time from which we want to continue processing alerts.
+. Run the following curl command to reset the Alerting Engine: `curl -X PUT  -H "Content-Type: application/json" -H "client_id: $DATACHANNEL_CLIENT_ID" -H "client_secret: $DATACHANNEL_CLIENT_SECRET" -H "client_user_name: restore" -d '{"workflowId":1, "nextLogicalStartTime":1606780800000, "nextRunIndex":0}' http://localhost:$DATACHANNEL_PORT/api/v1/workflows/1/runstate`
+. If the above API call returns success, we are all done! Be really careful on the timestamp set in the above API call. DO NOT set the above timestamp to a date too much in the past. Always, remember the `6 hour` thumb rule.
 
 === Logstash
 
