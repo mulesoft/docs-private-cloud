@@ -175,6 +175,6 @@ InfluxDB backup/restore mechanism is based in a single script located in `https:
 
 === Examples
 
-. Verbose backup ==> `sudo bash amv-backup-restore.sh -vf 2020-01-01-influxdb-backup -d path/to/backup/dir -a backup`
+. Verbose backup => `sudo bash amv-backup-restore.sh -vf 2020-01-01-influxdb-backup -d path/to/backup/dir -a backup`
 
-. Non Verbose restore ==> `sudo bash backup.sh -f path/to/backup/dir/backup_of_2020-01-01.tar.gz -a restore`
+. Non Verbose restore => `sudo bash backup.sh -f path/to/backup/dir/backup_of_2020-01-01.tar.gz -a restore`
