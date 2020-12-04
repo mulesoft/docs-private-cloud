@@ -168,7 +168,7 @@ IMPORTANT: Anypoint Monitoring/Visualizer requires 4TB volumes for `amv` nodes a
 InfluxDB backup/restore mechanism is based in a single script located in `https://github.com/mulesoft/anypoint/tree/develop/resources/3.0/kubernetes/amv-backup` named `amv-backup-restore.sh`. The script requires the following parameters:
 
 . -a : (Required) action to perform (backup|restore) - No default
-. -f : (Required) name of the destination tar file - Default: "dias-prov-k8s-am-influxdb-comp_YYYYMMDD" - Backup will fail if file is already present in the backup path. Restore will fail if file is not present.
+. -f : (Required) name of the destination tar file - Default for backup : "dias-prov-k8s-am-influxdb-comp_YYYYMMDD" & Default for restore : "/var/lib/data/influxdb/backup/dias-prov-k8s-am-influxdb-comp_YYYYMMDD.tar.gz" - Backup will fail if file is already present in the backup path. Restore will fail if file is not present.
 . -d : (Required only in backup) full path to location where backup tar file is stored - Default: "/var/lib/data/influxdb/backup" - It will be created if not present
 . -v : (optional) verbose output during backup - Default: non-verbose
 . -h : Print help
