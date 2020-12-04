@@ -171,7 +171,7 @@ InfluxDB backup/restore mechanism is based in a single script located in `https:
 . -f : (Required) name of the destination tar file - Default: "dias-prov-k8s-am-influxdb-comp_YYYYMMDD" - Backup will fail if file is already present in the backup path. Restore will fail if file is not present.
 . -d : (Required only in backup) full path to location where backup tar file is stored - Default: "/var/lib/data/influxdb/backup" - It will be created if not present
 . -v : (optional) verbose output during backup - Default: non-verbose
-. -h : Print all commands
+. -h : Print help
 
 === Examples
 
