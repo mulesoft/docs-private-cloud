@@ -4,99 +4,6 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== Overall Architecture
-
-Anypoint Monitoring is an optional feature during installation, which includes Anypoint Visualizer. Both products require 3 dedicated nodes, normally labeled *amv_node*.
-
-In those 3 nodes, the following Helm charts will be installed in 4 different namespaces:
-
-|===
-|Namespace | Service | Notes
-
-.6+|dias
-|prov-k8s-am-influxdb-comp
-|Influx DB
-|prov-k8s-am-ingestor-comp
-|Logstash service
-|prov-k8s-amr-certs-comp
-|Service for certificates generation/rotation
-|prov-k8s-amr-ingestor-router-comp
-|Public Nginx entrypoint (proxy) for mule agent events
-|prov-k8s-insight-comp
-|Alerting engine
-|provisioning-api
-|Configuration service for all Monitoring/Visualizer
-
-.6+|monitoring-center
-|alerts-api
-|Basic alerts functionality
-|metrics-api
-|Influx DB query service
-|settings-api
-|User settings service
-|ui
-|Nginx service for serving static UI artifact files
-|ui-api
-|Gateway / Experience API
-|visualizer
-|Grafana fork responsible for advanced alerts, dashboards
-
-|default
-|stolon-amv
-|An additional Postgres 9.6 cluster for analytics products only
-
-.5+|visualizer
-|experience-api
-|Gateway / Experience API
-|janitor
-|Contains a set of cron jobs for stale data clean up
-|topology-api
-|Building application network topology for Visualizer
-|topology-processor
-|Processing mule runtime events for Visualizer
-|ui
-|Nginx service for serving static UI artifact files
-
-|===
-
-=== DIAS Components
-
-DIAS provides the foundations for data transmission between the Mule runtime (running Filebeat) and the InfluxDB storing that data. Once data reaches InfluxDB, it becomes available to the Anypoint Monitoring UI as well as the Insight alerting engine.
-
-The `dias-prov-k8s-amr-ingestor-router-comp` pods run Nginx accepting connections from remote runtimes thought mTLS (it uses a node-port service). Data is then forwarded to `dias-prov-k8s-am-ingestor-comp` pods running Logstash.
-
-Logstash processes and transform those messages and batch them before hitting InfluxDB. The `dias-prov-k8s-am-influxdb-comp` component is a stateful InfluxDB cluster consisting in 3 meta and 2 data nodes.
-
-The Insight alerting engine is managed by the `dias-prov-k8s-insight-comp` and the `dias-prov-k8s-cassandra-comp` component. Both of these components are statefulsets. It periodically fetches metrics from InfluxDB and based on the customer's alerts definition, the engine triggers alarms. Each pod in `dias-prov-k8s-insight-comp` has 3 main containers, including a Mule Runtime, Meld and Meld-Drill.
-
-Logstash, Insight and InfluxDB are all K8s stateful sets.
-
-
-=== Monitoring Center Components
-
-Monitoring Center components represents the "Anypoint Monitoring" product that visualizer the data stored in DIAS products.
-
-All user traffic goes to the experience api (`monitoring-center-ui-api`) and from there it can proxied to:
-
-- `monitoring-center-settings-api` to manage user settings.
-
-- `monitoring-center-alerts-api` to manage alerts, synchronize the changes with Insights engine and trigger basic alerts notifications.
-
-- `monitoring-center-visualizer` that is Grafana fork. It manages the dashboards logic, advanced alerts and the rest of the functionality available in PCE 3.0.
-
-- `monitoring-center-metrics-api` to validate Influx DB queries and proxy the calls to the data source (`dias-prov-k8s-am-influxdb-comp`).
-
-=== Visualizer Components
-
-Visualizer components represents the "Anypoint Visualizer" product.
-
-Logstash `dias-prov-k8s-am-ingestor-comp` sends a subset of mule agent events to the `visualizer-topology-processor` service.
-That service process those events and stores the results in the Postgres DB (`stolon-amv`).
-The final application network generation will be handled by `visualizer-topology-api` service and is invoked by a user traffic.
-There is a set of cron jobs to prevent the uncontrolled DB growth for mule agent events. They perform the stale data clean and runs as part of `visualizer-janitor` service.
-
-All user traffic comes to the `visualizer-experience-api` service that orchestrates loading all necessary data from different data sources (like `visualizer-topology-api`, `monitoring-center-ui-api`, etc.) and performs further data decorations.
-
 == Considerations
 
 === Cluster secrets
@@ -117,9 +24,7 @@ Each stateful set uses different directories to hold its data, resulting in the 
 
 InfluxDB meta pods (3 pods) use `/var/lib/data/influxdb/meta` while data pods (2 pods) use `/var/lib/data/influxdb/data`. Logstash uses `/var/lib/data/logstash` and finally Insight uses the remaining two directories to hold its data.
 
-== Requirements
-
-Hardware requirements are listed in the main PCE hardware section but 3 nodes are required for all Anypoint Monitoring/Visualizer workload.
+== Port Requirements
 
 Port 8895 needs to be accesible in the main balancer along with the rest of the required ports.
 
@@ -148,7 +53,7 @@ ts=ZULU_TIME lvl=error msg="LICENSE IS INVALID OR CANNOT BE FOUND" log_id=LOG_ID
 If that is the case, the secret will need to be created and InfluxDB chart redeployed. Before redeploying InfluxDB, all *pvc*, *pv* and *jobs* (named `dias-prov-k8s-am-influxdb-comp-bootstrap`) will need to be deleted.
 
 
-== Restore/Backup
+== Backup/Restore
 
 Both backup and restore procedures for Anypoint Monitoring are outside the normal Gravitational backup/restore mechanism and therefore requires additional procedures.
 
@@ -161,7 +66,7 @@ It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stol
 
 ---
 IMPORTANT: Anypoint Monitoring/Visualizer requires 4TB volumes for `amv` nodes and therefore a InfluxDB full backup can be up to 8TB of data (only two data nodes are operative). It's up to the customer to provide enough free space for the entire backup.
----
+
 
 === Procedure
 
