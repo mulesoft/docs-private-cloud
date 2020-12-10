@@ -61,21 +61,31 @@ It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stol
 
 
 ---
-IMPORTANT: Anypoint Monitoring/Visualizer requires 4TB volumes for `amv` nodes and therefore a InfluxDB full backup can be up to 8TB of data (only two data nodes are operative). It's up to the customer to provide enough free space for the entire backup.
+IMPORTANT: Anypoint Monitoring/Visualizer requires 4TB volumes for `amv` nodes and therefore a InfluxDB full backup can be up to 8TB of data (only two data nodes are operative). 
+. It's up to the customer to provide enough free space for the entire backup
+. Restore time is proportional to size of the backup
+. During restore, existing data on target cluster will be backed-up and erased upon user approval
 
 
 === Procedure
 
-InfluxDB backup/restore mechanism is based in a single script located in `https://github.com/mulesoft/anypoint/tree/develop/resources/3.0/kubernetes/amv-backup` named `amv-backup-restore.sh`. The script requires the following parameters:
+InfluxDB backup/restore mechanism is based in a single script located in `https://github.com/mulesoft/anypoint/tree/develop/resources/3.0/kubernetes/amv-backup-restore` named `amv-backup-restore.sh`. The script requires the following parameters:
 
-. -a : (Required) action to perform (backup|restore) - No default
-. -f : (Required) name of the destination tar file - Default for backup : "dias-prov-k8s-am-influxdb-comp_YYYYMMDD" & Default for restore : "/var/lib/data/influxdb/backup/dias-prov-k8s-am-influxdb-comp_YYYYMMDD.tar.gz" - Backup will fail if file is already present in the backup path. Restore will fail if file is not present.
-. -d : (Required only in backup) full path to location where backup tar file is stored - Default: "/var/lib/data/influxdb/backup" - It will be created if not present
-. -v : (optional) verbose output during backup - Default: non-verbose
-. -h : Print help
+ . -a : (Required) action to perform : backup or restore
+        Default NO DEFAULT ACTION
+ . -va : (optional) verbose output
+        Default non-verbose
+ . -f : (Required) name of the tar file
+        Default for backup : dias-prov-k8s-am-influxdb-comp_YYYYMMD
+        Default for Restore : /var/lib/data/influxdb/backup/dias-prov-k8s-am-influxdb-comp_YYYYMMDD.tar.gz
+ . -d : (Required for backup) full path to location where backup tar file is stored
+        Default for backup : /var/lib/data/influxdb/backup
+        Default for restore : same as tar file path
+ . -s : (optional) Optional sub-component filter, Use only for back up of only meta or only data
+ . -h : Print HELP
 
 === Examples
 
-. Verbose backup => `sudo bash amv-backup-restore.sh -vf 2020-01-01-influxdb-backup -d path/to/backup/dir -a backup`
+. Verbose backup => `sudo bash amv-backup-restore.sh -va backup -f 2020-01-01-influxdb-backup -d path/to/backup/dir`
 
-. Non Verbose restore => `sudo bash backup.sh -f path/to/backup/dir/backup_of_2020-01-01.tar.gz -a restore`
+. Non Verbose restore => `sudo bash amv-backup-restore.sh -a restore -f /var/lib/data/influxdb/backup/dias-prov-k8s-am-influxdb-comp_YYYYMMDD.tar.gz`
