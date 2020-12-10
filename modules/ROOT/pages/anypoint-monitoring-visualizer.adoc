@@ -60,12 +60,11 @@ Anypoint Monitoring/Visualizer need to backup the following component's data
 It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stolon DB will be backup/restore by the default Gravitational mechanism and it is not considered in this document.
 
 
-===
-IMPORTANT: 
-. Anypoint Monitoring/Visualizer requires 4TB volumes for `amv` nodes and therefore a InfluxDB full backup can be up to 8TB of data (only two data nodes are operative) 
-. It's up to the customer to provide enough free space for the entire backup
-. Restore time is proportional to size of the backup
-. During restore, existing data on target cluster will be backed-up and erased upon user approval
+=== IMPORTANT 
+ . Anypoint Monitoring/Visualizer requires 4TB volumes for `amv` nodes and therefore a InfluxDB full backup can be up to 8TB of data (only two data nodes are operative) 
+ . It's up to the customer to provide enough free space for the entire backup
+ . Restore time is proportional to size of the backup
+ . During restore, existing data on target cluster will be backed-up and erased upon user approval
 
 
 === Procedure
