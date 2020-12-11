@@ -65,6 +65,7 @@ It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stol
  . It's up to the customer to provide enough free space for the entire backup
  . Restore time is proportional to size of the backup
  . During restore, existing data on target cluster will be backed-up and erased upon user approval
+ . MUST be SUDO to run the following script in both the source and destination machines
 
 
 === Procedure
