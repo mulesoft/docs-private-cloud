@@ -65,10 +65,10 @@ It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stol
 
 === IMPORTANT 
  . Anypoint Monitoring/Visualizer requires 4TB volumes for `amv` nodes and therefore a InfluxDB full backup can be up to 8TB of data (only two data nodes are operative) 
- . It's up to the customer to provide enough free space for the entire backup
+ . It's up to the customer to provide enough free space on the target directory for the entire backup.
  . Restore time is proportional to size of the backup
  . During restore, existing data on target cluster will be backed-up and erased upon user approval
- . MUST be SUDO to run the following script in both the source and destination machines
+ . Script must be run inside gravity on any gravity master node
  . The script validates the restore disk size, databases, measurements, retention policies and series cardinality for all measurements in each DB
  . The credentials for restored cluster will be different from the source cluster
 
