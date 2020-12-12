@@ -34,7 +34,6 @@ kubectl edit configmap/dias-prov-k8s-am-influxdb-comp-data -n dias
 Where this example shows `old-license-uuid-key`, the file will show the key.
 +
 . Replace the old key with the new key.
-+
 . Restart the pods:
 +
 ----
