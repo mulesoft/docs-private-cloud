@@ -20,7 +20,7 @@ Each stateful set uses different directories to hold its data, resulting in the 
 
 InfluxDB meta pods (3 pods) use `/var/lib/data/influxdb/meta` while data pods (2 pods) use `/var/lib/data/influxdb/data`. Logstash uses `/var/lib/data/logstash` and finally Insight uses the remaining two directories to hold its data.
 
-== Port Requirements
+=== Port Requirements
 
 Port 8895 needs to be accesible in the main balancer along with the rest of the required ports.
 
@@ -53,9 +53,9 @@ It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stol
 
 InfluxDB backup/restore mechanism is based in a single script located in.
 
-- Git Repo :
+- Git Repo:
   `https://github.com/mulesoft/anypoint/tree/develop/resources/3.0/kubernetes/amv-backup-restore/amv-backup-restore.sh`.
-- Location on PCE environment :
+- Location on PCE environment:
   `/var/lib/gravity/site/packages/unpacked/gravitational.io/anypoint/3.0.0*/resources/kubernetes/amv-backup-restore/amv-backup-restore.sh`.
 
 The script requires the following parameters:
@@ -70,7 +70,7 @@ The script requires the following parameters:
  -d : (Required for backup) full path to location where backup tar file is stored.
         Default for backup : /var/lib/data/influxdb/backup. [Full Path].
         Default for restore : same as tar file path. [Full Path].
- -s : (optional) Optional sub-component filter, Use only for back up of only meta or only data.
+ -s : (optional) Optional sub-component filter, use only for backup of only meta or only data.
  -h : Print HELP.
 
 === Examples
