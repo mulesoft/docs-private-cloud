@@ -25,29 +25,6 @@ InfluxDB meta pods (3 pods) use `/var/lib/data/influxdb/meta` while data pods (2
 Port 8895 needs to be accesible in the main balancer along with the rest of the required ports.
 
 
-=== InfluxDB License
-
-InfluxDB requires a valid license to operate, which should have been provided at the time of purchase of Anypoint Monitoring.
-
-Anypoint Monitoring requires a Kubernetes secret to be present in the cluster before all Anypoint Monitoring/Visualizer charts are deployed.
-
-The following command needs to be run in order to create the required secret in the default namespace:
-
-
-```
-kubectl create secret generic influxdb-license --from-literal=license={license}
-```
-
-Note that InfluxDB license might be a JSON file in which case we only need the `key` value in that secret.
-
-If no secret is given, InfluxDB will fail with the following message
-
-```
-ts=ZULU_TIME lvl=error msg="LICENSE IS INVALID OR CANNOT BE FOUND" log_id=LOG_ID service=licensing error=ERROR_MESSAGE
-```
-
-If that is the case, the secret will need to be created and InfluxDB chart redeployed. Before redeploying InfluxDB, all *pvc*, *pv* and *jobs* (named `dias-prov-k8s-am-influxdb-comp-bootstrap`) will need to be deleted.
-
 == Monitoring known issues
 
  . Won't be able to create a new Advanced Alert if the sum of Advanced and Basic alerts is >= 20
@@ -63,39 +40,38 @@ Anypoint Monitoring/Visualizer need to backup the following component's data
 It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stolon DB will be backup/restore by the default Gravitational mechanism and it is not considered in this document.
 
 
-=== IMPORTANT 
- . Anypoint Monitoring/Visualizer requires 4TB volumes for `amv` nodes and therefore a InfluxDB full backup can be up to 8TB of data (only two data nodes are operative) 
+=== IMPORTANT
+ . Anypoint Monitoring/Visualizer requires 4TB volumes for `amv` nodes and therefore a InfluxDB full backup can be up to 8TB of data (only two data nodes are operative)
  . It's up to the customer to provide enough free space on the target directory for the entire backup.
  . Restore time is proportional to size of the backup
  . During restore, existing data on target cluster will be backed-up and erased upon user approval
- . Script must be run inside gravity on any gravity master node
+ . Script must be run inside gravity on any gravity `master` node. It uses kubectl
  . The script validates the restore disk size, databases, measurements, retention policies and series cardinality for all measurements in each DB
- . The credentials for restored cluster will be different from the source cluster
 
 
 === Procedure
 
 InfluxDB backup/restore mechanism is based in a single script located in.
 
-- Git Repo : 
+- Git Repo :
   `https://github.com/mulesoft/anypoint/tree/develop/resources/3.0/kubernetes/amv-backup-restore/amv-backup-restore.sh`.
-- Location on PCE environment : 
+- Location on PCE environment :
   `/var/lib/gravity/site/packages/unpacked/gravitational.io/anypoint/3.0.0*/resources/kubernetes/amv-backup-restore/amv-backup-restore.sh`.
 
 The script requires the following parameters:
 
  -a : (Required) action to perform : backup or restore. [string].
         Default NO DEFAULT ACTION.
- -va : (optional) verbose output. 
+ -va : (optional) verbose output.
         Default non-verbose.
- -f : (Required) name of the tar file.  
+ -f : (Required) name of the tar file.
         Default for backup : dias-prov-k8s-am-influxdb-comp_YYYYMMD.  [string].
         Default for Restore : /var/lib/data/influxdb/backup/dias-prov-k8s-am-influxdb-comp_YYYYMMDD.tar.gz.  [Full Path].
- -d : (Required for backup) full path to location where backup tar file is stored. 
+ -d : (Required for backup) full path to location where backup tar file is stored.
         Default for backup : /var/lib/data/influxdb/backup. [Full Path].
         Default for restore : same as tar file path. [Full Path].
- -s : (optional) Optional sub-component filter, Use only for back up of only meta or only data. 
- -h : Print HELP. 
+ -s : (optional) Optional sub-component filter, Use only for back up of only meta or only data.
+ -h : Print HELP.
 
 === Examples
 
