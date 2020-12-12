@@ -3,45 +3,41 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== To Update the InfluxDB License
+== Update the InfluxDB License
 
-If the influx license is updated, it needs to be added to the secret in the default namespace and then ensure it is running in the pods
+When the InfluxDB license is updated, add it to the secret in the default namespace, then ensure it is running in the pods.
 
-
-1. Encode the new key
-
+. Encode the new key, replacing `new-license-uuid-key` with the key:
++
 ----
 echo -n "new-license-uuid-key" | base64
 ----
-
-2. Edit the secret
-
++
+. Edit the secret:
++
 ----
 kubectl edit secret/influxdb-license
 ----
-
-3. As the license is only added to the helm chart/configmap on deploy, the config map needs to be updated:
-
++
+. Update the config map, since the license is only added to the helm chart or configmap on deploy:
++
 ----
 kubectl edit configmap/dias-prov-k8s-am-influxdb-comp-data -n dias
 ----
-
-4. Replace the key in influxdb.com (probably line 29)
-
++
+. Find the old key in influxdb.com, probably on line 29:
++
 ----
 \ license-key = \"old-license-uuid-key\"
 ----
-
-with the new key
-
-----
-\ license-key = \"new-license-uuid-key\"
-----
-
-5. Then restart the pods
-
++
+Where this example shows `old-license-uuid-key`, the file will show the key.
++
+. Replace the old key with the new key.
++
+. Restart the pods:
++
 ----
 kubectl delete pod dias-prov-k8s-am-influxdb-comp-data-0 -n dias
 kubectl delete pod dias-prov-k8s-am-influxdb-comp-data-1 -n dias
 ----
-
