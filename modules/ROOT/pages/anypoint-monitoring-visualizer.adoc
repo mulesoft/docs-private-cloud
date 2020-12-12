@@ -75,7 +75,11 @@ It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stol
 
 === Procedure
 
-InfluxDB backup/restore mechanism is based in a single script located in `https://github.com/mulesoft/anypoint/tree/develop/resources/3.0/kubernetes/amv-backup-restore` named `amv-backup-restore.sh`. The script requires the following parameters:
+InfluxDB backup/restore mechanism is based in a single script located in
+- Git Repo : `https://github.com/mulesoft/anypoint/tree/develop/resources/3.0/kubernetes/amv-backup-restore/amv-backup-restore.sh`
+- Location on PCE environment : 
+  `/var/lib/gravity/site/packages/unpacked/gravitational.io/anypoint/3.0.0*/resources/kubernetes/amv-backup-restore/amv-backup-restore.sh` 
+The script requires the following parameters:
 
  . -a : (Required) action to perform : backup or restore. 
         Default NO DEFAULT ACTION
