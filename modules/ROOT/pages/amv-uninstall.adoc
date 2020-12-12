@@ -1,3 +1,7 @@
-## Uninstall Anypoint Monitoring
+= Uninstall Anypoint Monitoring
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
 
 If you wish to uninstall the Anypoint Monitoring Visualizer Add-on, please contact MuleSoft services.
