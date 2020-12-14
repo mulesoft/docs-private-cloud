@@ -40,7 +40,7 @@ It is important to mentioned that the Anypoint Monitoring/Visualizer custom Stol
  . It's up to the customer to provide enough free space on the target directory for the entire backup.
  . Restore time is proportional to size of the backup
  . During restore, existing data on target cluster will be backed-up and erased upon user approval
- . Script must be run inside gravity on any gravity `master` node. It uses kubectl
+ . Script must be run on a `master` node and must be SUDO as it uses kubectl
  . The script validates the restore disk size, databases, measurements, retention policies and series cardinality for all measurements in each DB
 
 
