@@ -129,7 +129,7 @@ in which:
 ***** Maximum icon size: 2 MB
 ***** Maximum number of resources (attachments) per asset (portal): 100
 ***** Maximum resource size for attachments to the asset portal: 2 MB
-***** Maximum indexable asset content for RAML or asset portal: 1MB
+***** Maximum indexable asset content for RAML or asset portal: 1 MB
 ***** Maximum number of categories per organization: 500
 ***** Maximum number of custom configurations per organization: 500
 ***** Maximum number of pages in a portal: 50
