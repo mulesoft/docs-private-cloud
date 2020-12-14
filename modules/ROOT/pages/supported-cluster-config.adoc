@@ -117,26 +117,27 @@ in which:
 
 **** Access Manager
 
-***** Limit to 100 Business Groups
+***** Limit to 100 business groups
 
 **** Exchange
 
-***** Maximum 60,000 Exchange Assets
-***** Max file size when publishing asset through UI: 5MB 
-***** Max uncompressed file size: 50MB 
-***** Max file size when publishing asset through Maven: 200MB
-***** Max number of dependencies for a single asset: 100
-***** Max Icon Size: 2MB
-***** Max number of resources (attachments) per asset (portal): 100
-***** Max resource size: 2MB (attachments to the Asset Portal)
-***** Max Indexable Asset Content (RAML or Asset Portal): 1MB (This means if your Portal has more than 1MB in text, only the first 1MB will be indexed. Same applied to the RAML Spec)
-***** Max number of categories per organization: 500
-***** Max number of custom configurations per organization: 500
-***** Max number of pages in a portal: 50
-***** Max length of page name: 128 characters
-***** Max Review Title Length: 30 characters
-***** Max Review Text Length: 2048 characters
+***** Maximum Exchange assets: 60,000
+***** Maximum file size when publishing asset through UI: 5 MB 
+***** Maximum uncompressed file size: 50 MB 
+***** Maximum file size when publishing asset through Maven: 200 MB
+***** Maximum number of dependencies for a single asset: 100
+***** Maximum icon size: 2 MB
+***** Maximum number of resources (attachments) per asset (portal): 100
+***** Maximum resource size for attachments to the asset portal: 2 MB
+***** Maximum indexable asset content for RAML or asset portal: 1MB
+***** Maximum number of categories per organization: 500
+***** Maximum number of custom configurations per organization: 500
+***** Maximum number of pages in a portal: 50
+***** Maximum length of page name: 128 characters
+***** Maximum review title length: 30 characters
+***** Maximum review text length: 2048 characters
 
+The 1 MB maximum indexable asset content for RAML or asset portal means that if your portal has more than 1MB in text, only the first 1MB will be indexed, and if your portal has more than 1 MB in RAML specifications, only the first 1 MB will be indexed.
 
 == Monitoring Center Add-On
 
