@@ -24,11 +24,6 @@ InfluxDB meta pods (3 pods) use `/var/lib/data/influxdb/meta` while data pods (2
 
 Port 8895 needs to be accesible in the main balancer along with the rest of the required ports.
 
-
-== Monitoring known issues
-
- . Won't be able to create a new Advanced Alert if the sum of Advanced and Basic alerts is >= 20
-
 == Backup/Restore
 
 Both backup and restore procedures for Anypoint Monitoring are outside the normal Gravitational backup/restore mechanism and therefore requires additional procedures.
