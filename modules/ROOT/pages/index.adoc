@@ -90,23 +90,23 @@ a|
 
 a|
 
-* 0.7.513
-* 1.0.23
-* 0.6.957
-* 0.7.60
-* 0.9.27
-* 0.6.46
-* 0.6.347-pce-X
-* 0.9.27
-* 0.6.3
-* 0.2.25
-* 0.8.520
-* 0.7.576-pce-X
-* 0.8.171-pce-X
-* 0.8.3309
-* 0.8.1655
+* 0.7.535-4.pce30
+* 1.0.84-10.pce30
+* 0.6.993-9.pce30
+* 0.7.79
+* 0.9.64-5.pce30
+* 0.6.77-8.pce30
+* 0.6.351-1.pce30
+* 0.9.36-3.pce30
+* 0.6.9
+* 0.2.52
+* 0.8.524
+* 0.7.614-7.pce30
+* 0.8.179-10.pce30
+* 0.8.3606-9.pce30
+* 0.8.1755-5.pce30
 
-| Connectivity | Rest Connect Service | v1.12.10
+| Connectivity | Rest Connect Service | v1.12.40
 | API Platform | API Platform API | v2.7.0
 | API Platform | API Platform Web | v1.15.104
 | API Platform | API Manager Web | v1.5.365
