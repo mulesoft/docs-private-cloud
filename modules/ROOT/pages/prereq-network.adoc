@@ -39,6 +39,7 @@ configured correctly on all nodes.
 |TCP | 6443 | Kubernetes API server | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP/UDP | 7496 | Serf RPC agent | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 7373 | Serf RPC agent | localhost | localhost
+|TCP | 9100 | Prometheus node-exporter | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 10248, 10250 | Kubernetes Kubelet | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 10249 | Kubernetes kube-proxy | localhost | localhost
 |TCP | 10251, 10252 | Kubernetes controller-manager and scheduler | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
