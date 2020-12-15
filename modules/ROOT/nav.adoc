@@ -1,5 +1,4 @@
 .xref:index.adoc[About Anypoint Platform Private Cloud Edition]
-* xref:dummy-relnotes.adoc[UPDATED: Release Notes info (will be moved to Release notes repo when finalized)]
 * xref:index.adoc[*UPDATED*: Overview]
 * xref:supported-cluster-config.adoc[*NEEDS UPDATES*: Supported Configurations]
 * xref:install-checklist.adoc[Product Prerequisites]
