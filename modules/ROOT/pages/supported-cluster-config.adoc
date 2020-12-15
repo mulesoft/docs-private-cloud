@@ -127,7 +127,7 @@ in which:
 ***** Maximum file size when publishing asset through Maven: 200 MB
 ***** Maximum number of dependencies for a single asset: 100
 ***** Maximum icon size: 2 MB
-***** Maximum number of resources (attachments) per asset (portal): 100
+***** Maximum number of resources (attachments) per asset portal: 100
 ***** Maximum resource size for attachments to the asset portal: 2 MB
 ***** Maximum indexable asset content for RAML or asset portal: 1 MB
 ***** Maximum number of categories per organization: 500
