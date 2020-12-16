@@ -19,7 +19,7 @@
  ** xref:access-management-dns.adoc[Configure DNS in Anypoint Platform PCE]
  ** xref:access-management-security.adoc[Configure Security in Anypoint Platform PCE]
  ** xref:access-management-disclaimer.adoc[Configure a Disclaimer in Anypoint Platform PCE]
- ** xref:amv-uninstall.adoc[Uninstall Anypoint Monitoring]
+ ** xref:anypoint-monitoring-visualizer.adoc[Anypoint Monitoring and Visualizer]
 * xref:operating-about.adoc[Manage Anypoint Platform PCE]
  ** xref:operating-about.adoc[Close port 61009]
  ** xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore in Anypoint Platform PCE]
