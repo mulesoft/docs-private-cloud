@@ -12,19 +12,18 @@ Anypoint Platform PCE version 2.0 and later requires a Network File System (NFS)
 * Must be running on a filesystem that has at least 250 GB available.
 * Must be using NFS 4.0.
 * Can be backed by a network-attached storage (NAS) system.
-* Must have ports 111 and 2049 enabled for both TCP and UDP.
+* Must have port 2049 enabled for both TCP and UDP.
 * Configure your network so that all of the PCE nodes can access the NFS server. The direct NFS client is Kubernetes 1.9 and requires conformance with NFS version 4.
 
-== Verify Required Ports Are Open
+NFS 4.0 does not use the `portmapper` service.
 
-The NFS server requires ports 2049 and 111 to be open for TCP and UDP.
+== Verify Required Port Is Open
+
+The NFS server requires port 2049 to be open for TCP and UDP.
  
-On each node, use netcat or a similar utility to verify that the required ports are open. Netcat is a computer networking utility used to read and write to network connections using TCP or UDP. 
+On each node, use netcat or a similar utility to verify that the required port is open. Netcat is a computer networking utility used to read and write to network connections using TCP or UDP. 
 
-On each node, run the following commands:
-
-- `nc -zvu <host_name> 111`
-- `nc -zv <host_name> 2049`
+On each node, run: `nc -zv <host_name> 2049`
 
 [NOTE]
 By default, the netcat tool is not included with Anypoint Platform PCE. If you receive a `command not found` error, you can download and install netcat or a similar utility.
