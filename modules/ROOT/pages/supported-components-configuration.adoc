@@ -1,0 +1,32 @@
+= Supported Platform Components and Configuration
+
+[WARNING]
+====
+The recommendations and limits provided in this topic are based on the following resources:
+
+* A 4-node environment consisting of 4 nodes of 8 cores and 32GB RAM, or
+* A 7-node environment consisting of 7 nodes of 8 cores and 32GB RAM.
+====
+
+
+== Supported Number of Mule Runtime Server and Mule Application Instances
+
+The following table shows the recommended and maximum number of Mule runtime servers and Mule applications that Private Cloud supports:
+
+[%header%autowidth.spread]
+.Mule Runtime Server
+|===
+| | 4-node Configuration | 7-node Configuration
+| Maximum number of servers per environment | 500 | 500
+| Maximum number of servers across all environments | 1500 | 3000
+| Maximum number of servers per server group | 20 | 20
+| Maximum servers per cluster | 8 | 8
+| Mule applications under management per environment (recommended) | Under 200 | Around 200
+| Mule applications under management per environment (maximum) | 500 | 500
+| Mule runtime engines under management (maximum) | 500 single Mule runtime engines, or 250 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster | 1000 single Mule runtime engines, or 500 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster
+| Mule applications per Mule runtime engine (recommended) | Fewer than 25 | Fewer than 25
+| Mule applications per Mule runtime engine (maximum) | 100 | 50
+|===
+
+
+==  
