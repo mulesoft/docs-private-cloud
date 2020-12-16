@@ -23,9 +23,11 @@ The required ports must be accessible in the main balancer, including port 8895.
 
 Anypoint Monitoring and Visualizer backup and restore are outside the normal Gravitational backup and restore mechanism, and require additional procedures.
 
+These components store metrics and other information, but they do not store platform configuration.
+
 Anypoint Monitoring and Visualizer must back up the data of the component InfluxDB (`dias-prov-k8s-am-influxdb-comp`).
 
-The Anypoint Monitoring and Visualizer custom Stolon DB is backed up and restored by the default Gravitational mechanism.
+Anypoint Monitoring and Visualizer holds configuration for the Monitoring and Visualizer components in a Postgres database. The default Gravitational mechanism backs up and restores this database.
 
 Anypoint Monitoring and Visualizer requires 4 TB volumes for `amv` nodes. A full InfluxDB backup can be up to 8 TB of data. (Only two data nodes are operative.)
 
