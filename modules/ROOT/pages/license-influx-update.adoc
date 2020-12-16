@@ -1,11 +1,9 @@
-= Configure InfluxDB License key
+= Update InfluxDB License
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== Update the InfluxDB License
-
-When the InfluxDB license is updated, add it to the secret in the default namespace, then ensure it is running in the pods.
+When the InfluxDB license is updated, add the key to the secret in the default namespace, then ensure it is running in the pods.
 
 . Encode the new key, replacing `new-license-uuid-key` with the key:
 +
@@ -25,7 +23,7 @@ kubectl edit secret/influxdb-license
 kubectl edit configmap/dias-prov-k8s-am-influxdb-comp-data -n dias
 ----
 +
-. Find the old key in influxdb.com, probably on line 29:
+. Find the old key in influxdb.com, typically on line 29:
 +
 ----
 \ license-key = \"old-license-uuid-key\"
