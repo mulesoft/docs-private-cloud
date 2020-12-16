@@ -73,3 +73,7 @@ The script requires the following parameters:
 . Verbose backup => `sudo bash amv-backup-restore.sh -va backup -f 2020-01-01-influxdb-backup -d path/to/backup/dir`
 
 . Non Verbose restore => `sudo bash amv-backup-restore.sh -a restore -f /var/lib/data/influxdb/backup/dias-prov-k8s-am-influxdb-comp_YYYYMMDD.tar.gz`
+
+== Uninstall Anypoint Monitoring and Visualizer
+
+If you wish to uninstall the Anypoint Monitoring and Visualizer Add-on, please contact MuleSoft services.
