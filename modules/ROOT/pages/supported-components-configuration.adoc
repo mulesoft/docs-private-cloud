@@ -9,9 +9,9 @@ The recommendations and limits provided in this topic are based on the following
 ====
 
 
-== Supported Number of Mule Runtime Server and Mule Application Instances
+== Mule Runtime Server and Mule Applications
 
-The following table shows the recommended and maximum number of Mule runtime servers and Mule applications that Private Cloud supports:
+The following table shows the recommended and maximum number of Mule runtime servers and Mule applications that Anypoint Platform PCE supports:
 
 [%header%autowidth.spread]
 .Mule Runtime Server
@@ -29,4 +29,24 @@ The following table shows the recommended and maximum number of Mule runtime ser
 |===
 
 
-==  
+==  Anypoint Monitoring and Visualizer
+
+Anypoint Platform PCE includes Anypoint Monitoring and Anypoint Visualizer. However, some features of these platform components are not supported as described in the following sections.
+
+===  Anypoint Monitoring
+
+Anypoint Platform PCE does not the support the following Anypoint Monitoring features:
+
+** Support for Mule 3.8.x
+** Log Management. As an alternative, use your server's logging capabilties or a third-party vendor like Splunk.
+** Increased storage capacity. This is not required since the Archive API is not supported.
+** Archive API. This API is not applicable since log management is not supported.
+** API Functional Monitoring. As an alternative, use a third-party vendor like Pingdom.
+** The *Tools* tab of Anypoint Monitoring is not included on Anypoint Platform PCE
+
+=== Visualizer
+
+Anypoint Platform PCE does not the support the following Anypoint Visualizer features:
+
+* List of applications. If an application does not use Anypoint Monitoring, it cannot be tracked by Anypoint Visualizer on Anypoint Platform PCE.
+* Policy visualization.
