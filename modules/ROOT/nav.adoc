@@ -31,5 +31,5 @@
  ** xref:restarting-a-node.adoc[Update Nodes]
  ** xref:ext-analytics-elk.adoc[Analyze Business and API Data Using ELK]
  ** xref:register-server.adoc[Troubleshoot Mule Runtime Engine Registration]
- ** xref:license-influx-update.adoc[Update Influx License]
+ ** xref:license-influx-update.adoc[Update InfluxDB License]
 * xref:upgrade.adoc[Upgrade Workflow]
