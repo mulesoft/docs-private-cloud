@@ -13,9 +13,9 @@ Both the 4-node and 7-node configurations have two separate components:
 
 == 4-Node Configuration
 
-Three is the minimum number of nodes that can enable high-availability and failover. In this configuration, each node hosts the platform applications and services. You must configure a load balancer to use round-robin distribution of traffic among each of the four nodes.
+The 4-node configuration is the smallest configuration that Anypoint Platform PCE supports. This is the minimum number of nodes that can enable high-availability and failover. In this configuration, each node hosts the platform applications and services. You must configure a load balancer to use round-robin distribution of traffic among each of the four nodes.
 
-image::prereqs-priv-cloud-3-node.png[3-node Configuration]
+image::configuration-4-node.png[4-node Configuration]
 
 Three of the nodes host an instance of the database and object store. Hosting the database and object store enables persistence but requires larger minimum disk and memory requirements. Although three of the nodes contain a database, only one database is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
 
