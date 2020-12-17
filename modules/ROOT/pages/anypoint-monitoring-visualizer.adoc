@@ -6,18 +6,7 @@ endif::[]
 
 == Requirements
 
-=== Stateful Set Directories
-
-Each stateful set uses a different directory to hold its data.
-
-* InfluxDB meta pods (3 pods): `/var/lib/data/influxdb/meta`
-* Data pods (2 pods): `/var/lib/data/influxdb/data`
-* Logstash: `/var/lib/data/logstash`
-* Insight: `/var/lib/data/dias-cassandra` and `/var/lib/data/dias-meld`
-
-=== Port Requirements
-
-The required ports must be accessible in the main balancer, including port 8895.
+Anypoint Monitoring and Visualizer have disk and network port requirements in addition to the normal Anypoint Private Cloud requirements. These additional requirements are described in the Anypoint Private Cloud hardware prerequisites documentation.
 
 == Backup and Restore
 
@@ -29,4 +18,5 @@ If you wish to uninstall the Anypoint Monitoring and Visualizer Add-on, please c
 
 == See Also
 
+* xref:prereq-hardware.adoc[Hardware Prerequisites]
 * xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore for Anypoint Private Cloud]
