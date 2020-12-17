@@ -99,6 +99,8 @@ Outputs logs to a file.
 
 == Anypoint Monitoring and Visualizer
 
+If Anypoint Monitoring and Visualizer are enabled, follow these procedures to back up and restore them.
+
 Anypoint Monitoring and Visualizer backup and restore are outside the normal Gravitational backup and restore mechanism, and require additional procedures.
 
 These components store metrics and other information, but they do not store platform configuration.
