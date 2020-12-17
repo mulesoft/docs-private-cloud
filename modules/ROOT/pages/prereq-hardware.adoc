@@ -315,9 +315,9 @@ xvda    202:0    0   90G   0 disk
 xvdb    202:16   0  100G   0 disk /var/lib/gravity/planet/docker
 xvdd    202:48   0  250G   0 disk /var/lib/data
 xvde    202:64   0  250G   0 disk /var/lib/gravity
-xvdf    202:64   0  250G   0 disk /var/lib/stolon-amv
-xvdg    202:64   0  250G   0 disk /var/lib/influxdb
-xvdh    202:64   0  250G   0 disk /var/lib/logstash
+xvdf    202:64   0  250G   0 disk /var/lib/data/stolon-amv
+xvdg    202:64   0  250G   0 disk /var/lib/data/influxdb
+xvdh    202:64   0  250G   0 disk /var/lib/data/logstash
 xvdi    202:64   0   20G   0 disk /tmp
 ----
 
