@@ -20,7 +20,6 @@
  ** xref:access-management-disclaimer.adoc[Configure a Disclaimer in Anypoint Platform PCE]
  ** xref:anypoint-monitoring-visualizer.adoc[Anypoint Monitoring and Visualizer]
 * xref:operating-about.adoc[Manage Anypoint Platform PCE]
- ** xref:operating-about.adoc[Close port 61009]
  ** xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore in Anypoint Platform PCE]
  ** xref:managing-via-the-ops-center.adoc[Ops Center]
   *** xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
