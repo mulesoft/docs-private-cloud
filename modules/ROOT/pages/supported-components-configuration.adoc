@@ -1,4 +1,4 @@
-= Supported Platform Components and Configuration
+== Supported Platform Components and Configuration
 
 [WARNING]
 ====
@@ -14,7 +14,6 @@ The recommendations and limits provided in this topic are based on the following
 The following table shows the recommended and maximum number of Mule runtime servers and Mule applications that Anypoint Platform PCE supports:
 
 [%header%autowidth.spread]
-.Mule Runtime Server
 |===
 | | 4-node Configuration | 7-node Configuration
 | Maximum number of servers per environment | 500 | 500
@@ -29,7 +28,7 @@ The following table shows the recommended and maximum number of Mule runtime ser
 |===
 
 
-== APIs
+=== APIs
 
 For both 4-node and 7-node configurations, the following apply there is a maximum of 5000 managed APIs where:
 
@@ -37,7 +36,7 @@ For both 4-node and 7-node configurations, the following apply there is a maximu
 * A single clustered proxy with up to 5 policies counts as 1.
 * All runtimes are polling every 60 seconds.
 
-== Access Managment
+=== Access Managment
 
 [%header%autowidth.spread]
 
@@ -48,7 +47,7 @@ For both 4-node and 7-node configurations, the following apply there is a maximu
 |===
 
 
-== Exchange
+=== Exchange
 
 [%header%autowidth.spread]
 |===
@@ -71,11 +70,25 @@ For both 4-node and 7-node configurations, the following apply there is a maximu
 |===
 
 
-==  Anypoint Monitoring and Visualizer
+The 1 MB maximum indexable asset content for RAML or asset portal means that if your portal has more than 1MB in text, only the first 1MB will be indexed, and if your portal has more than 1 MB in RAML specifications, only the first 1 MB will be indexed.
+
+=== API Designer and API Mocking Service
+
+The following apply to both 4-node and 7-node configurations.
+
+[%autowidth.spread]
+|===
+| Maximum number of projects | Limited by version control system
+| Maximum number of concurrent users | 16
+| Maximum number of mocking service instances | One per API version
+| Maximum number of mocking service users | 16
+|===
+
+===  Anypoint Monitoring and Visualizer
 
 Anypoint Platform PCE includes Anypoint Monitoring and Anypoint Visualizer. However, some features of these platform components are not supported as described in the following sections.
 
-===  Anypoint Monitoring
+====  Anypoint Monitoring
 
 Anypoint Platform PCE does not the support the following Anypoint Monitoring features:
 
@@ -86,9 +99,13 @@ Anypoint Platform PCE does not the support the following Anypoint Monitoring fea
 ** API Functional Monitoring. As an alternative, use a third-party vendor like Pingdom.
 ** The *Tools* tab of Anypoint Monitoring is not included on Anypoint Platform PCE
 
-=== Visualizer
+==== Visualizer
 
 Anypoint Platform PCE does not the support the following Anypoint Visualizer features:
 
 * List of applications. If an application does not use Anypoint Monitoring, it cannot be tracked by Anypoint Visualizer on Anypoint Platform PCE.
 * Policy visualization.
+
+== Monitoring Center Add-On
+
+Monitoring Center can be enabled as an additional add-on. Monitoring Center runs on 3 nodes separate from the nodes that run the Anypoint Platform Core. These nodes host the stateful and stateless services that compose Monitoring Center.
