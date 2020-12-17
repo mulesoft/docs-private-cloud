@@ -6,4 +6,4 @@ To install Anypoint Platform PCE, MuleSoft professional services must be involve
 
 == Install Anypoint Monitoring and Anypoint Visualizer
 
-After installing Anypoint Platform PCE, you must contact your customer success representative to enable Anypoint Monitoring and Anypoint Visualizer. After they are enabled, you must install the agent for each of these product components. See xref:monitoring::am-installing[Monitor Hybrid Runtimes] and xref:visualizer::setup[Set up Anypoint Visualizer].
+After installing Anypoint Platform PCE, contact your customer success representative to enable Anypoint Monitoring and Anypoint Visualizer. After they are enabled, you must install the agent for each of these product components. See xref:monitoring::am-installing[Monitor Hybrid Runtimes] and xref:visualizer::setup[Set up Anypoint Visualizer].
