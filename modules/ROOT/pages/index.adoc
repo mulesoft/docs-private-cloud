@@ -7,8 +7,12 @@ With Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), you run an
 
 Anypoint Platform PCE uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
 
+For information about a previous version of Anypoint Platform PCE, select the version in the documentation sidebar.
+
 == Anypoint Platform PCE Components
+
 The following table provides component information for Anypoint Platform PCE:
+
 [%header%autowidth.spread]
 .Component Information
 |===
@@ -30,6 +34,7 @@ The following table provides component information for Anypoint Platform PCE:
 |===
 
 For Anypoint Platform PCE Version 3.0, the following policies are included with API Manager:
+
 [%header%autowidth.spread]
 .API Manager Policies for Anypoint Platform PCE Version 3.0
 |===
@@ -139,177 +144,6 @@ a|
 | VCS | VCS Git Proxy | v0.2.85
 | Anypoint Studio | Studio | v7.7.0
 |===
-
-
-For Anypoint Platform PCE Version 2.1, the following policies are included with API Manager:
-[%header%autowidth.spread]
-.API Manager Policies for Anypoint Platform PCE Version 2.1
-|===
-| Policy | Version
-| Basic authentication: Simple | 1.2.1
-| Basic Authentication - LDAP | 1.3.0
-| Client ID Enforcement | 1.2.1
-| Cross-Origin Resource Sharing | 1.1.3
-| Detokenization | 1.1.0
-| Header Injection | 1.2.0
-| Header Removal | 1.0.2
-| HTTP Caching | 1.0.2
-| IP Blacklist | 1.2.1
-| IP Whitelist | 1.2.1
-| JSON Threat Protection | 1.1.3
-| JWT Validation | 1.1.2
-| LDAP Security Manager | 1.3.0
-| Message Logging | 1.0.0
-| Mule OAuth 2.0 Access Token | 1.3.1
-| OpenAM OAuth 2.0 Token Enforcement | 1.3.1
-| OpenID Connect OAuth 2.0 Token Enforcement | 1.3.1
-| PingFederate Access Token Enforcement | 1.3.1
-| Rate Limiting | 1.3.3
-| Rate limiting - SLA based | 1.2.5
-| Spike Control | 1.1.3
-| Tokenization | 1.1.0
-| XML Threat Protection | 1.1.3
-|===
-
-For additional information about policies, refer to xref:api-manager::policies-landing-page.adoc[Policies].
-
-== Features Shipped with Anypoint Platform PCE Version 2.1
-
-Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
-
-[%header%autowidth.spread]
-.Features Shipped with Anypoint Platform PCE Version 2.1
-|===
-| Component | Feature Description | Feature Version
-| Exchange
-a|
-
-* API Metadata Service
-* Asset Manager Service
-* Asset Portal Service
-* Assets Reviews Service
-* Custom Assets Facade Service
-* Customization Service
-* Dependency Resolver Service
-* File Service
-* File Upload Service
-* Graph Node Service
-* Graph Service
-* Maven Facade Service
-* Search Service
-* Exchange UI
-* XAPI Service
-
-a|
-
-* v0.7.442
-* v0.8.2284
-* v0.6.877
-* v0.6.620
-* v0.8.749
-* v0.5.594
-* v0.6.329-2.pce-21
-* v0.8.216
-* v0.5.258
-* v0.1.264
-* v0.8.509
-* v0.7.541-86.pce-21
-* v0.8.148-2.pce-21
-* v0.8.2992-2.pce-21
-* v0.8.1515
-| Connectivity | Rest Connect Service | v0.4.535-1.v04532
-| API Platform | API Platform API | v2.6.1-3.v260
-| API Platform | API Platform Web | v1.15.95-1.v11589
-| API Platform | API Manager Web | v1.5.210-2.v15194
-| API Platform | Contract Caching Service | v1.1.13-1.v118
-| API Platform | API Proxy Builder Service | v1.2.49-3.v1237
-| API Platform | RAML Parser Service | v0.3.76-3.v0375
-| API Platform | Proxies XAPI Service | v1.2.64-2.v1261
-| API Designer | API Designer XAPI | v3.11.3-3.release-2123
-| API Designer | API Designer UI | v2.12.4-9.pce-21
-| Mocking Service | Mocking Service | v2.9.6-4.pce-21
-| Mozart | Mozart UI | v1.12.1-rc.1
-| Mozart | Mozart XAPI | v2.0.173
-| Mozart | Mozart Project Manager Service | v2.0.189
-| Runtime Manager | Cloudhub MCM | v2.17.5
-| Runtime Manager | Cloudhub UI | v8.0.6
-| Runtime Manager | AMC UI Rest Facade | v2.12.4
-| Runtime Manager | Hybrid Rest | v2.31.0
-| Runtime Manager | Platform Alerts | v1.9.11
-| Runtime Manager | Mule Message Processor | v1.6.8
-| Runtime Manager | Platform Messages | v1.7.13
-| CS | Authentication Server | 0.73.26-roles5.13.4
-| CS | Core Services UI | v0.70.4
-| CS | Anypoint Signin | v2.18.6-2.ga2cee28c
-| CS | Landing Page UI | v2.12.0
-| CS | Navbar | v1.54.2
-| CS | Audit Log | v2.6.10
-| Anypoint Platform PCE | Anypoint Platform PCE packaging | v2.1
-| API Modeling Framework (AMF) | AMF Service | v1.0.107
-| VCS | VCS  | v0.3.1285-55.v031231
-| Anypoint Studio | Studio | v7.5.0
-|===
-
-
-== Features Shipped with Anypoint Platform PCE Version 2.0
-
-Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
-
-[%header%autowidth.spread]
-.Features Shipped with Anypoint Platform PCE Version 2.0
-|===
-| Component | Feature Description
-| Exchange | Store all integration assets in one place in Anypoint Exchange, such as best practices, integration patterns, API fragments, API specifications, examples, templates, and connectors.
-| Exchange |	Enrich portal content using the visual editor and markdown editor.
-| Exchange |	Upload Open API specifications (Swagger) in Anypoint Exchange, which automatically converts to RAML for use across Anypoint Platform.
-| Exchange |	Upload WSDLs (SOAP APIs) in Anypoint Exchange.
-| Exchange |	Consume and reuse from Anypoint Studio and Anypoint Design Center.	
-| Exchange |	Share an asset with users from other business groups.
-| Exchange |	Autogenerate a Mule 4.0 Design Center connector (using REST Connect) for any valid API specification for use within Anypoint Design Center.
-| Exchange |	View a list of dependencies (API fragments) for any API specification.
-| Exchange |	Version any asset published to Anypoint Exchange.
-| Exchange |	View dependency snippet for connectors for use in Maven, Gradle, SBT, and Ivy.
-| Exchange |	Publish examples and templates using Anypoint Studio 6.3 and later.
-| Exchange |	API portals are now part of Anypoint Exchange.
-| Exchange |	Create public portals for any APIs in Anypoint Exchange.
-| Exchange |	Automatically generate rich documentation for RAML and OAS specifications.
-| Exchange |	Perform interactive API use-case validation through API Notebook.
-| Exchange |	Use a new mocking service for testing API calls without API implementation.
-| Exchange |	Register clients and request access for APIs managed by Anypoint Platform.
-| Exchange |	Automatically index API instances and endpoints via Anypoint Exchange.
-| Exchange |	Share APIs externally using Anypoint Exchange portal.
-| Exchange |	Customize and brand features of Anypoint Exchange portal.
-| Exchange |	Leverage HTML support for content inserted in a markdown editor (limitations apply).
-| Exchange |	Save a search for organizations that provides consistent search navigation to all business group users.
-| Exchange |	Use personalized saved searches to save frequently used searches.
-| Exchange |	Copy images into the Anypoint Exchange visual editor, which eliminates the need to serve images from outside Exchange.
-| Exchange |	Managed categories allow Anypoint Exchange administrators and organization owners to create categories and group Exchange assets.
-| Exchange |	Anypoint Exchange contributors can now organize assets into different groups to improve asset browsing and discovery.
-| Exchange |	Custom fields allow Anypoint Exchange administrators and contributors to extend existing asset attributes through the API.
-| Exchange |	Reorder pages on the asset detail page.
-| API Manager |	Environment support provided on API Manager.
-| API Manager |	Support provided for Mule 4 APIs.
-| API Manager |	Create multiple instances of an API.
-| API Manager |	Integrate with Anypoint Exchange 2.0.
-| API Manager |	Promote APIs between different environments.
-| API Manager |	Environment-based granular permissions are available for API Manager.
-| API Manager |	Resource level policy support, which was formerly restricted to RAML-based APIs, is extended to any HTTP API.
-| API Manager	
-a| Mule 4-related changes to API Manager:
-
-* Classloader isolation between the application, the runtime, the connectors, and the policies.
-* Packaging, size, and policy scope changes.
-* All policies are nonblocking.
-* All policies can be ordered except CORS, which is executed first.
-| API Manager	
-a| Two new platform APIs for managing APIs:
-
-* API Manager API v1.0 to manage an API.
-* API Manager proxy API v1.0 to manage the deployment of API proxies through API Manager.
-| Runtime Manager |	Improved error description on alert creation.	
-|===
-
-The Anypoint Platform Private Cloud Edition uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
 
 == See Also
 
