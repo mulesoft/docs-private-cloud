@@ -29,7 +29,6 @@ The following table provides component information for Anypoint Platform PCE:
 | API Testing	|   | X |
 |===
 
-VERIFY: 
 For Anypoint Platform PCE Version 3.0, the following policies are included with API Manager:
 [%header%autowidth.spread]
 .API Manager Policies for Anypoint Platform PCE Version 3.0
