@@ -304,7 +304,7 @@ sudo systemctl start var-lib-data-logstash.mount
 
 == Verify Devices
 
-To verify that all devices are set up the same way on all nodes, run the `lsblk` command. Output from `lsblk` should resemble the following example: 
+To verify that all devices are set up the same way on all nodes, run the `lsblk` command on the Anypoint Monitoring and Visualizer nodes. Output from `lsblk` should resemble the following example: 
 
 ----
 [root@ip-0-0-0-0 ~]# lsblk
