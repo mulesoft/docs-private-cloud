@@ -1,0 +1,22 @@
+= Anypoint Monitoring and Visualizer
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+== Requirements
+
+Anypoint Monitoring and Visualizer have disk and network port requirements in addition to the normal Anypoint Private Cloud requirements. These additional requirements are described in the Anypoint Private Cloud hardware prerequisites documentation.
+
+== Backup and Restore
+
+Anypoint Monitoring and Visualizer backup and restore are outside the normal Gravitational backup and restore mechanism, and require the additional procedures described in the Anypoint Private Cloud backup and restore documentation.
+
+== Uninstall Anypoint Monitoring and Visualizer
+
+If you wish to uninstall the Anypoint Monitoring and Visualizer Add-on, please contact MuleSoft services.
+
+== See Also
+
+* xref:prereq-hardware.adoc[Hardware Prerequisites]
+* xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore for Anypoint Private Cloud]

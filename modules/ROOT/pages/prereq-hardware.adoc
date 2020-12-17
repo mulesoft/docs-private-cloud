@@ -9,10 +9,26 @@ To ensure the performance and stability of Anypoint Platform Private Cloud Editi
 [IMPORTANT]
 Before you install Anypoint Platform PCE, your infrastructure team must review each of the following sections and verify that your environment meets the stated disk and device requirements. If needed, contact your MuleSoft representative for assistance.
 
-There are 2 components of PCE:  
+There are 2 components of PCE:
 
 - Anypoint Platform Core
 - Monitoring Center Add-On
+
+To ensure platform performance, stability, and high availability, Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) supports two network configurations: 4-node and 7-node.
+
+Small configuration:
+- 4 nodes for Control Plane
+- 3 additional nodes for Monitoring (optional)
+- NFS for asset storage
+- Load balancer
+
+Large configuration:
+- 7 nodes for Control Plane
+- 3 additional nodes for Monitoring (optional)
+- NFS for asset storage
+- Load balancer
+
+To ensure high availability and performance, each node must run on its own server in both configurations. If you are using a virtual machine to host the nodes, you must ensure that each VM node is running on a separate physical server.
 
 == Anypoint Platform Core
 

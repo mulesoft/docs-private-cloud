@@ -1,0 +1,10 @@
+= Configure Anypoint Studio for Anypoint Platform PCE
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+To configure Anypoint Studio 7.7 for Anypoint Platform Private Cloud Edition 3.0, follow the steps in
+https://docs.mulesoft.com/studio/latest/pce-configuration[Configure Private Cloud Edition in Studio].
+
+To configure Anypoint Studio 6.6 for Anypoint Platform Private Cloud Edition 3.0, follow the steps in
+https://docs.mulesoft.com/studio/6/setting-up-your-development-environment#enable-private-cloud-edition-setup[Enable Private Cloud Edition Setup].

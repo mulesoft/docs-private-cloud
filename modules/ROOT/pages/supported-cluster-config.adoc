@@ -1,8 +1,4 @@
 = Supported Configurations for Anypoint Platform PCE
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
-:page-aliases: prereq-env.adoc
 
 To ensure platform performance, stability, and high availability, Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) supports two network configurations: 4-node and 7-node. To ensure high availability and performance, each node must run on its own server in both configurations. If you are using a virtual machine to host the nodes, you must ensure that each VM node is running on a separate physical server.
 
@@ -98,7 +94,6 @@ For both 4-node and 7-node configurations, the following apply there is a maximu
 | Maximum review text length | 2048 characters | 2048 characters
 |===
 
-
 The 1 MB maximum indexable asset content for RAML or asset portal means that if your portal has more than 1MB in text, only the first 1MB will be indexed, and if your portal has more than 1 MB in RAML specifications, only the first 1 MB will be indexed.
 
 === API Designer and API Mocking Service
@@ -134,7 +129,3 @@ Anypoint Platform PCE does not the support the following Anypoint Visualizer fea
 
 * List of applications. If an application does not use Anypoint Monitoring, it cannot be tracked by Anypoint Visualizer on Anypoint Platform PCE.
 * Policy visualization.
-
-== Monitoring Center Add-On
-
-Monitoring Center can be enabled as an additional add-on. Monitoring Center runs on 3 nodes separate from the nodes that run the Anypoint Platform Core. These nodes host the stateful and stateless services that compose Monitoring Center.
