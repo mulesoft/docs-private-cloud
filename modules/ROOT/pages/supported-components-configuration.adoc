@@ -29,6 +29,48 @@ The following table shows the recommended and maximum number of Mule runtime ser
 |===
 
 
+== APIs
+
+For both 4-node and 7-node configurations, the following apply there is a maximum of 5000 managed APIs where:
+
+* A single API implementation with one policy counts as 0.5 APIs.
+* A single clustered proxy with up to 5 policies counts as 1.
+* All runtimes are polling every 60 seconds.
+
+== Access Managment
+
+[%header%autowidth.spread]
+
+|===
+| | 4-node Configuration | 7-node Configuration
+| Maximum number of supported business groups | 75 | N/A
+| Maximum number of users | 10000 | N/A
+|===
+
+
+== Exchange
+
+[%header%autowidth.spread]
+|===
+| | 4-node Configuration | 7-node Configuration
+| Maximum Exchange assets | 60,000 | 60,000
+| Maximum file size when publishing asset through UI | 5 MB | 5 MB
+| Maximum uncompressed file size | 50 MB | 
+| Maximum file size when publishing asset through Maven | 200 MB | 200
+| Maximum number of dependencies for a single asset | 100 | 100
+| Maximum icon size | 2 MB | 2 MB
+| Maximum number of resources (attachments) per asset portal | 100 | 100
+| Maximum resource size for attachments to the asset portal | 2 MB | 2 MB
+| Maximum indexable asset content for RAML or asset portal | 1 MB | 1 MB
+| Maximum number of categories per organization | 500 | 500
+| Maximum number of custom configurations per organization | 500 | 500
+| Maximum number of pages in a portal | 50 | 50
+| Maximum length of page name | 128 characters | 128 characters
+| Maximum review title length | 300 characters | 300 characters
+| Maximum review text length | 2048 characters | 2048 characters
+|===
+
+
 ==  Anypoint Monitoring and Visualizer
 
 Anypoint Platform PCE includes Anypoint Monitoring and Anypoint Visualizer. However, some features of these platform components are not supported as described in the following sections.
