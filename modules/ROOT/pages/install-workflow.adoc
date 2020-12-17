@@ -1,7 +1,9 @@
 = Installation Workflow
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
 
-== MuleSoft Professional Services Required
-MuleSoft professional services must be involved throughout the installation process. Prior to installation, have your infrastructure team verify that the required infrastructure is correctly installed and configured as described in xref:install-checklist.adoc[Product Prerequisites]. 
+== Install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)
+
+To install Anypoint Platform PCE, MuleSoft professional services must be involved throughout the installation process. Prior to installation, have your infrastructure team verify that the required infrastructure is correctly installed and configured as described in xref:install-checklist.adoc[Product Prerequisites]. 
+
+== Install Anypoint Monitoring and Anypoint Visualizer
+
+After installing Anypoint Platform PCE, contact your customer success representative to enable Anypoint Monitoring and Anypoint Visualizer. After they are enabled, you must install the agent for each of these product components. See xref:monitoring::am-installing[Monitor Hybrid Runtimes] and xref:visualizer::setup[Set up Anypoint Visualizer].
