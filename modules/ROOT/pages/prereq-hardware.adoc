@@ -17,12 +17,14 @@ There are 2 components of PCE:
 To ensure platform performance, stability, and high availability, Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) supports two network configurations: 4-node and 7-node.
 
 Small configuration:
+
 - 4 nodes for Control Plane
 - 3 additional nodes for Monitoring (optional)
 - NFS for asset storage
 - Load balancer
 
 Large configuration:
+
 - 7 nodes for Control Plane
 - 3 additional nodes for Monitoring (optional)
 - NFS for asset storage
