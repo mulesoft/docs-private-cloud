@@ -81,7 +81,7 @@ You can also include the following set of optional environment variables:
 .Optional Environment Variables
 |===
 | Name | Description
-| TF_VAR_ami_name | (TO-DO: This may change before the PCE 3.0 release, but for now please use `RHEL-7.8_HVM_GA-20200225-x86_64-1-Hourly2-GP2`.) Specifies the AMI name to be used for the instances. Use the AMI name, *NOT* the AMI ID. *Ensure that the AMI does not provision any additional volumes*. If you do not set this variable, the provisioner uses the following AMI by default: `RHEL-7.6_HVM_GA-20181017-x86_64-0-Hourly2-GP2`
+| TF_VAR_ami_name | Specifies the AMI name to be used for the instances. Use the AMI name, *NOT* the AMI ID. *Ensure that the AMI does not provision any additional volumes*. If you do not set this variable, the provisioner uses the following AMI by default: `RHEL-8.3.0_HVM-20201031-x86_64-0-Hourly2-GP2`
 | TF_VAR_monitoring=<true or false> | If true, creates basic instance alarms in Cloudwatch.
 | TF_VAR_use_bastion=<true or false> | If true, creates a small instance (using an ASG) in a public subnet as a jumpbox and associates a public IP address, and launches the cluster instances in the private subnets.
 | TF_VAR_internal=<true or false> | If true, the cluster instances are launched in private subnets and do not have public IPs associated with them. Also, the provisioned load balancer is internal only.
