@@ -8,117 +8,140 @@ Anypoint Platform Private Cloud Edition includes support for Anypoint Monitoring
 
 Anypoint Monitoring includes tools that provide feedback from Mule runtime engine (Mule) flows and components in your application network.
 
+
 [IMPORTANT]
-For Mule applications deployed to Anypoint Platform PCE, Anypoint Monitoring provides basic metrics to all customers.
-Titanium-plan customers have access to additional capabilities, including application log retrieval and search.
+Anypoint Monitoring is an add-on to your Anypoint Platform PCE product.
+Contact your customer success representative for more information.
 
-
-For information about features of these platform components that Anypoint Platform PCE does not support, see xref:supported-cluster-config.adoc#anypoint-monitoring[Anypoint Monitoring].
 
 == Supported Anypoint Monitoring Features
 
-WE NEED INFO ON WHICH ARE INCLUDED IN PCE RELEASE
-
-Anypoint Monitoring is the standard method of monitoring Mule application and API performance so that you can more quickly identify and resolve issues. While all customers receive fundamental monitoring capabilities with their subscriptions, customers subscribing at the Titanium tier receive greater storage, guaranteed resources, and advanced capabilities that allow for greater control and flexibility.
-
 |===
-| Feature | Gold and Platinum Subscription Features | Titanium Subscription Features
+| Feature | Gold and Platinum Subscription Features | Titanium Subscription Features | Anypoint Platform PCE Features
 
 |Dedicated infrastructure for data processing and storage
 |No
+|Yes
 |Yes
 
 |Custom metrics
 |No
 |Yes
+|Yes
 
-3+| *Built-in Application Dashboards*
+4+| *Built-in Application Dashboards*
 |More than 80 out-of-the-box charts covering metrics in the following categories: Overview, Inbound, Outbound, Performance, Failures, JVM, and Infrastructure
 
+|Yes
 |Yes
 |Yes
 
 |Advanced metrics for Inbound and Outbound charts
 |No
 |Yes
+|Yes
 
 |Flows charts
 |No
+|Yes
 |Yes
 
 |Connectors charts
 |No
 |Yes
+|Yes
 
 |Anypoint Visualizer application network integration
 |No
 |Yes
+|Yes
 
 |xref:monitoring::performance-and-impact.adoc#data-retention-and-aggregation[Data retention] for more than 30 days
 |No
 |Yes
+|Yes
 
-3+| *Built-in API Dashboards*
+4+| *Built-in API Dashboards*
 
 |16 out-of-the-box charts covering metrics in the following categories: Overview, Requests, Failures, Performance, and Client Application 
 |Yes
 |Yes
+|Yes
 
 |xref:monitoring::performance-and-impact.adoc#data-retention-and-aggregation[Data retention] for more than 30 days
 |No
 |Yes
+|Yes
 
-3+| *Custom Dashboards*
+4+| *Custom Dashboards*
 
 |Basic mode
+|Yes
 |Yes
 |Yes
 
 |Advanced mode
 |Yes, with limited functionality
 |Yes
+|Yes
 
 |Advanced mode with additional features
 |No
 |Yes
+|Yes
 
-3+| *Alerts*
+4+| *Alerts*
 
 |Basic alerts
 |Yes
 |Yes, with xref:performance-and-impact.adoc#data-retention-and-aggregation[higher limits]
+|Yes
 
 |Advanced alerts
 |No
 |Yes
+|Yes
 
-3+| *Log Management*
+4+| *Log Management*
 
 |Log search
 |No
 |Yes
+|No
 
 |Log points
 |No
 |Yes
+|No
 
 |Raw data
 |No
 |Yes
+|No
 
-3+| *Additional Anypoint Monitoring features*
+4+| *Additional Anypoint Monitoring features*
 
 |Anypoint Monitoring Archive API
 |No
 |Yes
+|Yes
 
 |xref:api-functional-monitoring[API Functional Monitoring] +
+|Yes
 |Yes
 |Yes
 
 |Reports
 |No
 |Yes
+|Yes
+
+4+| *Enhanced Support*
+
+|Enhanced Support
+|No
+|Yes
+|No
 
 |===
 
