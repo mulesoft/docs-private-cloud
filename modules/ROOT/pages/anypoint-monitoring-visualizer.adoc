@@ -1,22 +1,44 @@
-= Anypoint Monitoring and Visualizer
+= Configure Anypoint Monitoring and Visualizer
 
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+Anypoint Platform Private Cloud Edition includes support for these platform components:
+
+* Anypoint Monitoring
++
+Includes tools that provide feedback from Mule runtime engine (Mule) flows and components in your application network.
++
+[IMPORTANT]
+For Mule applications deployed to Anypoint Platform PCE, Anypoint Monitoring provides basic metrics to all customers.
+Titanium-plan customers have access to additional capabilities, including application log retrieval and search.
+
+* Anypoint Visualizer
++
+Displays views of different aspects of an application network graph, which you can use to explore your application network.
+
+For information about features of these platform components that Anypoint Platform PCE does not support, see xref:supported-cluster-config.adoc#anypoint-monitoring-and-visualizer[Anypoint Monitoring and Visualizer].
+
+
 == Requirements
 
-Anypoint Monitoring and Visualizer have disk and network port requirements in addition to the normal Anypoint Private Cloud requirements. These additional requirements are described in the Anypoint Private Cloud hardware prerequisites documentation.
+Anypoint Monitoring and Visualizer have disk and network port requirements in addition to the Anypoint Platform PCE requirements.
+
+For information, see xref:prereq-hardware.adoc[Hardware Prerequisites].
 
 == Backup and Restore
 
-Anypoint Monitoring and Visualizer backup and restore are outside the normal Gravitational backup and restore mechanism, and require the additional procedures described in the Anypoint Private Cloud backup and restore documentation.
+Anypoint Monitoring and Visualizer backup and restore are outside the normal Gravitational backup and restore mechanism, and require the additional procedures. 
+For information, see xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore for Anypoint Platform PCE].
 
 == Uninstall Anypoint Monitoring and Visualizer
 
-If you wish to uninstall the Anypoint Monitoring and Visualizer Add-on, please contact MuleSoft services.
+If you want to uninstall the Anypoint Monitoring and Visualizer Add-on, contact MuleSoft services.
 
 == See Also
 
 * xref:prereq-hardware.adoc[Hardware Prerequisites]
-* xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore for Anypoint Private Cloud]
+* xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore for Anypoint Platform PCE]
+* xref:monitoring::index.adoc[Anypoint Monitoring Overview]
+* xref:visualizer::index.adoc[Anypoint Visualizer]

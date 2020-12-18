@@ -126,7 +126,7 @@ docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/ext
 
 == Open Port 61009 Before Installation
 
-If you are installing Anypoint Private Cloud using the GUI-based installer, you must enable this port before running the installer. You must open this port in the cluster's security group before running the installer using AWS Web Console.
+If you are installing Anypoint Platform PCE using the GUI-based installer, you must enable this port before running the installer. You must open this port in the cluster's security group before running the installer using AWS Web Console.
 
 == Destroy Resources
 

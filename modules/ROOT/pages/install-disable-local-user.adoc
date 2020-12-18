@@ -1,4 +1,4 @@
-= Delete the Local User After Installing Anypoint Private Cloud
+= Delete the Local User After Installing Anypoint Platform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

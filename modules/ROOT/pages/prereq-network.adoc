@@ -79,14 +79,14 @@ Any software that monitors the network traffic must be tuned to allow this type 
 == Verify SMTP Server Requirements
 Your network must include an SMTP server to manage email alerts that are triggered by the platform. Anypoint Platform PCE must be connected to this SMTP server. 
 
-For additional information, refer to the instructions in xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Private Cloud].
+For additional information, refer to the instructions in xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Platform PCE].
 
 == Verify External Identity Provider Configuration and Client Management 
 Your network must include an external identity provider that is compatible with LDAP, OpenIDConnect, or SAML. 
 To configure an External Identity Provider for user SSO (LDAP, OpenIDConnect, and SAML) or for external 
 client management as OpenID Connect, the cluster must be able to access the external identity provider endpoint. 
 
-For additional information, refer to the instructions in xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Private Cloud].
+For additional information, refer to the instructions in xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Platform PCE].
 
 == Synchronize Clocks
 
