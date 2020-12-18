@@ -122,30 +122,8 @@ The following apply to both 4-node and 7-node configurations.
 | Maximum number of mocking service users | 16
 |===
 
-===  Anypoint Monitoring and Visualizer
 
-Anypoint Platform PCE includes support for Anypoint Monitoring and Anypoint Visualizer with some exceptions.
-
-====  Anypoint Monitoring
-
-Anypoint Platform PCE does not the support the following Anypoint Monitoring features:
-
-** Support for Mule 3.8.x
-** Log management
-+
-As an alternative, use your server's logging capabilties or a third-party vendor like Splunk.
-** Increased storage capacity
-+
-This capacity is not required because the Archive API is not supported.
-** Archive API
-+
-This API is not applicable because log management is not supported.
-** API Functional Monitoring
-+
-As an alternative, use a third-party vendor, such as Pingdom.
-** The *Tools* option in the left-hand menu is not available.
-
-==== Visualizer
+=== Anypoint Visualizer
 
 Anypoint Platform PCE does not the support the following Anypoint Visualizer features:
 
@@ -156,4 +134,5 @@ If an application does not use Anypoint Monitoring, Anypoint Visualizer cannot t
 
 == See Also
 
-* xref:anypoint-monitoring-visualizer.adoc[Configure Anypoint Monitoring and Visualizer]
+* xref:anypoint-monitoring.adoc[Anypoint Monitoring]
+* xref:visualizer::index.adoc[Anypoint Visualizer]
