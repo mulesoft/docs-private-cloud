@@ -19,7 +19,7 @@ Three of the nodes host an instance of the database and object store. Hosting th
 
 In the 7-node configuration, four nodes are dedicated to hosting platform applications and services. The other three nodes host the database and object store instances. Although each node contains a database, only one of the database nodes is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
 
-image::prereqs-priv-cloud-6-node.png[6-node Configuration]
+image::configuration-7-node.png[7-node Configuration]
 
 You must configure a load balancer to use round-robin distribution of traffic among all of the nodes in your cluster.
 
