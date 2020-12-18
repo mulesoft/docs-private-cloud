@@ -19,7 +19,7 @@ Three of the nodes host an instance of the database and object store. Hosting th
 
 In the 7-node configuration, four nodes are dedicated to hosting platform applications and services. The other three nodes host the database and object store instances. Although each node contains a database, only one of the database nodes is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
 
-image::prereqs-priv-cloud-6-node.png[6-node Configuration]
+image::configuration-7-node.png[7-node Configuration]
 
 You must configure a load balancer to use round-robin distribution of traffic among all of the nodes in your cluster.
 
@@ -27,14 +27,14 @@ You must configure a load balancer to use round-robin distribution of traffic am
 
 [WARNING]
 ====
-The recommendations and limits provided in this topic are based on the following resources:
+The following recommendations and limits are based on the following resources:
 
 * A 4-node environment consisting of 4 nodes of 8 cores and 32GB RAM, or
 * A 7-node environment consisting of 7 nodes of 8 cores and 32GB RAM.
 ====
 
 
-=== Mule Runtime Server and Mule Applications
+=== Mule Runtime Engine and Mule Applications
 
 The following table shows the recommended and maximum number of Mule runtime servers and Mule applications that Anypoint Platform PCE supports:
 
@@ -53,15 +53,29 @@ The following table shows the recommended and maximum number of Mule runtime ser
 |===
 
 
-=== APIs
+=== APIs and API Manager
 
-For both 4-node and 7-node configurations, the following apply there is a maximum of 5000 managed APIs where:
+|===
+| | 4-node Configuration | 7-node Configuration
+| Maximum instances per API group | 100 | 100
+| Client applications (per user) | 5000 | 5000
+| Client applications (per master organization) | 10000 | 10000
+| Maximum API instances manager per master organization | 6000 | 12000
+| Applied policies | 12000 | 24000
+| Created contracts | 12000 | 24000
+|===
+
+
+For both 4-node and 7-node configurations, the following apply:
+
+* Maximum instances per API group
+* Applications
 
 * A single API implementation with one policy counts as 0.5 APIs.
 * A single clustered proxy with up to 5 policies counts as 1.
 * All runtimes are polling every 60 seconds.
 
-=== Access Managment
+=== Access Management
 
 [%header%autowidth.spread]
 
@@ -79,7 +93,7 @@ For both 4-node and 7-node configurations, the following apply there is a maximu
 | | 4-node Configuration | 7-node Configuration
 | Maximum Exchange assets | 60,000 | 60,000
 | Maximum file size when publishing asset through UI | 5 MB | 5 MB
-| Maximum uncompressed file size | 50 MB | 
+| Maximum uncompressed file size | 50 MB | 50 MB
 | Maximum file size when publishing asset through Maven | 200 MB | 200
 | Maximum number of dependencies for a single asset | 100 | 100
 | Maximum icon size | 2 MB | 2 MB
