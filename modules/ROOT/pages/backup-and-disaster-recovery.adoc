@@ -7,7 +7,7 @@ To preserve your data in case of system failure or problems with other operation
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires you to install, configure, and manage an NFS server. Ensure that you configure and perform frequent backups of this server.
 
-Anypoint Monitoring and Visualizer backup and restore are outside the normal Gravitational backup and restore mechanism, and require a separate procedure.
+Anypoint Monitoring and Visualizer backup and restore are outside the normal Gravity backup and restore mechanism, and require a separate procedure.
 
 == Create a Backup
 
@@ -17,7 +17,7 @@ To create a backup, run the following command on any node in the cluster:
 gravity backup /var/lib/gravity/planet/share/backup.tar.gz
 ----
 
-This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. You can pass the following optional parameters to the gravity backup command:
+This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. You can pass the following optional parameters to the `gravity` backup command:
 
 * `--follow`
 +
@@ -101,13 +101,13 @@ Outputs logs to a file.
 
 If Anypoint Monitoring and Visualizer are enabled, follow these procedures to back up and restore them.
 
-Anypoint Monitoring and Visualizer backup and restore are outside the normal Gravitational backup and restore mechanism, and require additional procedures.
+Anypoint Monitoring and Visualizer backup and restore are outside the normal Gravity backup and restore mechanism, and require additional procedures.
 
 These components store metrics and other information, but they do not store platform configuration.
 
 Anypoint Monitoring and Visualizer must back up the data of the component InfluxDB (`dias-prov-k8s-am-influxdb-comp`).
 
-Anypoint Monitoring and Visualizer holds configuration for the Monitoring and Visualizer components in a Postgres database. The default Gravitational mechanism backs up and restores this database.
+Anypoint Monitoring and Visualizer holds configuration for the Monitoring and Visualizer components in a Postgres database. The default Gravity mechanism backs up and restores this database.
 
 Anypoint Monitoring and Visualizer requires 4 TB volumes for `amv` nodes. A full InfluxDB backup can be up to 8 TB of data. (Only two data nodes are operative.)
 
