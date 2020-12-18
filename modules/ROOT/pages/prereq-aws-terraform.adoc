@@ -41,11 +41,11 @@ You can also run provisioner remotely from any other machine with Docker and int
 
 . Download the Private Cloud Provisioner (PCP) Docker image from:
 +
-https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-3.0.7.tar.gz?Signature=695RDHWqASBS%2FylTRYgsI7ONd9Q%3D&AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Expires=1759726375
+`+https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-3.0.16.tar.gz?AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Signature=gg3SLK48UjBX6qC8iB2Rj3bN1d0%3D&Expires=1765246802+`
 . Copy the provisioner Docker image to the instance via SCP:
 +
 ----
-scp -i <guest>.pem ~/Downloads/private-cloud-provisioner-3.0.7.tar.gz ec2-user@W.X.Y.Z:/home/ec2-user
+scp -i <guest>.pem ~/Downloads/private-cloud-provisioner-3.0.16.tar.gz ec2-user@W.X.Y.Z:/home/ec2-user
 ----
 
 . SSH into the instance:
@@ -96,20 +96,20 @@ You can also include the following set of optional environment variables:
 . Load the provisioner Docker image into the local Docker registry:
 +
 ----
-docker load -i private-cloud-provisioner-3.0.7.tar.gz
+docker load -i private-cloud-provisioner-3.0.16.tar.gz
 ----
 
 . Perform a dry-run test:
 +
 ----
-docker run --rm --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.0.7 dry-run
+docker run --rm --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.0.16 dry-run
 ----
 +
 
 .  Run the provisioner:
 +
 ----
-docker run --rm --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.0.7 cluster-provision
+docker run --rm --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.0.16 cluster-provision
 ----
 +
 After the provisioner runs successfully, it displays information about your environment including IP addresses and DNS name of the load balancer.
@@ -121,7 +121,7 @@ After the provisioner runs successfully, it displays information about your envi
 You can have your own shell scripts to run on the provisioned instances before and/or after the PCE provisioner scripts. To do so, place your shell scripts with .sh extension inside a folder named `pre-user-data` and/or `post-user-data`. Include the following volume mounts on the docker run command:
 
 ----
-docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/external/pre-user-data -v $(pwd)/post-user-data:/usr/local/bin/provisioner/terraform/external/post-user-data --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.0.7 cluster-provision
+docker run --rm -v $(pwd)/pre-user-data:/usr/local/bin/provisioner/terraform/external/pre-user-data -v $(pwd)/post-user-data:/usr/local/bin/provisioner/terraform/external/post-user-data --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.0.16 cluster-provision
 ----
 
 == Open Port 61009 Before Installation
@@ -133,7 +133,7 @@ If you are installing Anypoint Private Cloud using the GUI-based installer, you 
 You can destroy all resources that were created using the provisioner by running the `cluster-deprovision` command, as shown in the following example. Ensure the `TELEKUBE_CLUSTER_NAME` environment variable in your environment file has the correct value for the target cluster you want to destroy:
 
 ----
-docker run --rm --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.0.7 cluster-deprovision
+docker run --rm --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.0.16 cluster-deprovision
 ----
 
 == Troubleshooting
