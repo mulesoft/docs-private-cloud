@@ -27,7 +27,7 @@ You must configure a load balancer to use round-robin distribution of traffic am
 
 [WARNING]
 ====
-The recommendations and limits provided in this topic are based on the following resources:
+The following recommendations and limits are based on the following resources:
 
 * A 4-node environment consisting of 4 nodes of 8 cores and 32GB RAM, or
 * A 7-node environment consisting of 7 nodes of 8 cores and 32GB RAM.
