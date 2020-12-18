@@ -1,4 +1,4 @@
-= Configure Backup and Restore for Anypoint Private Cloud
+= Configure Backup and Restore for Anypoint Platform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -123,10 +123,7 @@ The script validates the restore disk size, databases, measurements, retention p
 
 === Procedure
 
-The InfluxDB backup and restore script is in these locations:
-
-* Git repository: `https://github.com/mulesoft/anypoint/tree/develop/resources/3.0/kubernetes/amv-backup-restore/amv-backup-restore.sh`
-* In the PCE environment: `/var/lib/gravity/site/packages/unpacked/gravitational.io/anypoint/3.0.0*/resources/kubernetes/amv-backup-restore/amv-backup-restore.sh`
+The InfluxDB backup and restore script is in the PCE environment: `/var/lib/gravity/site/packages/unpacked/gravitational.io/anypoint/3.0.0*/resources/kubernetes/amv-backup-restore/amv-backup-restore.sh`
 
 The script has these parameters:
 

@@ -1,4 +1,4 @@
-= Configure an External Identity Provider in Anypoint Private Cloud
+= Configure an External Identity Provider in Anypoint Platform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
