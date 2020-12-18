@@ -34,7 +34,7 @@ The recommendations and limits provided in this topic are based on the following
 ====
 
 
-=== Mule Runtime Server and Mule Applications
+=== Mule Runtime Engine and Mule Applications
 
 The following table shows the recommended and maximum number of Mule runtime servers and Mule applications that Anypoint Platform PCE supports:
 
@@ -53,9 +53,23 @@ The following table shows the recommended and maximum number of Mule runtime ser
 |===
 
 
-=== APIs
+=== APIs and API Manager
 
-For both 4-node and 7-node configurations, the following apply there is a maximum of 5000 managed APIs where:
+|===
+| | 4-node Configuration | 7-node Configuration
+| Maximum instances per API group | 100 | 100
+| Client applications (per user) | 5000 | 5000
+| Client applications (per master organization) | 10000 | 10000
+| Maximum API instances manager per master organization | 6000 | 12000
+| Applied policies | 12000 | 24000
+| Created contracts | 12000 | 24000
+|===
+
+
+For both 4-node and 7-node configurations, the following apply:
+
+* Maximum instancers per API group
+* Applications
 
 * A single API implementation with one policy counts as 0.5 APIs.
 * A single clustered proxy with up to 5 policies counts as 1.
