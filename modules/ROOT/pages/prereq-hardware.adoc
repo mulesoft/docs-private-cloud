@@ -17,12 +17,14 @@ There are 2 components of PCE:
 To ensure platform performance, stability, and high availability, Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) supports two network configurations: 4-node and 7-node.
 
 Small configuration:
+
 - 4 nodes for Control Plane
 - 3 additional nodes for Monitoring (optional)
 - NFS for asset storage
 - Load balancer
 
 Large configuration:
+
 - 7 nodes for Control Plane
 - 3 additional nodes for Monitoring (optional)
 - NFS for asset storage
@@ -302,7 +304,7 @@ sudo systemctl start var-lib-data-logstash.mount
 
 == Verify Devices
 
-To verify that all devices are set up the same way on all nodes, run the `lsblk` command. Output from `lsblk` should resemble the following example: 
+To verify that all devices are set up the same way on all nodes, run the `lsblk` command on the Anypoint Monitoring and Visualizer nodes. Output from `lsblk` should resemble the following example: 
 
 ----
 [root@ip-0-0-0-0 ~]# lsblk
@@ -313,9 +315,9 @@ xvda    202:0    0   90G   0 disk
 xvdb    202:16   0  100G   0 disk /var/lib/gravity/planet/docker
 xvdd    202:48   0  250G   0 disk /var/lib/data
 xvde    202:64   0  250G   0 disk /var/lib/gravity
-xvdf    202:64   0  250G   0 disk /var/lib/stolon-amv
-xvdg    202:64   0  250G   0 disk /var/lib/influxdb
-xvdh    202:64   0  250G   0 disk /var/lib/logstash
+xvdf    202:64   0  250G   0 disk /var/lib/data/stolon-amv
+xvdg    202:64   0  250G   0 disk /var/lib/data/influxdb
+xvdh    202:64   0  250G   0 disk /var/lib/data/logstash
 xvdi    202:64   0   20G   0 disk /tmp
 ----
 
