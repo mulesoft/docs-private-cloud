@@ -122,6 +122,9 @@ The following apply to both 4-node and 7-node configurations.
 | Maximum number of mocking service users | 16
 |===
 
+=== Anypoint Monitoring
+
+For limitations onf using Anypoint Monitoring with Anypoint Platform PCE see xref:anypoint-monitoring.adoc[Anypoint Monitoring on Anypoint Platform PCE]
 
 === Anypoint Visualizer
 

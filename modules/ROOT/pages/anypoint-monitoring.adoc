@@ -1,17 +1,12 @@
-= Anypoint Monitoring
+= Anypoint Monitoring on Anypoint Platform PCE
 
-ifndef::env-site,env-github[]
-include::_attributes.adoc[]
-endif::[]
+Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) includes support for Anypoint Monitoring.
 
-Anypoint Platform Private Cloud Edition includes support for Anypoint Monitoring.
-
-Anypoint Monitoring includes tools that provide feedback from Mule runtime engine (Mule) flows and components in your application network.
+Anypoint Monitoring is a suite of tools that provide feedback from Mule flows and components in your application network.
 
 
 [IMPORTANT]
-Anypoint Monitoring is an add-on to your Anypoint Platform PCE product.
-Contact your customer success representative for more information.
+Anypoint Monitoring is an add-on to your Anypoint Platform PCE product. Contact your customer success representative for more information.
 
 
 == Supported Anypoint Monitoring Features
@@ -172,7 +167,7 @@ For information, see xref:prereq-hardware.adoc[Hardware Prerequisites].
 
 == Backup and Restore
 
-Anypoint Monitoring backup and restore are outside the normal Gravitational backup and restore mechanism, and require the additional procedures. 
+Anypoint Monitoring backup and restore are outside the normal gravity backup and restore mechanism, and require the additional procedures. 
 For information, see xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore for Anypoint Platform PCE].
 
 == Uninstall Anypoint Monitoring
