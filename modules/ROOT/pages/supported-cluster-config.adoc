@@ -68,14 +68,14 @@ The following table shows the recommended and maximum number of Mule runtime ser
 
 For both 4-node and 7-node configurations, the following apply:
 
-* Maximum instancers per API group
+* Maximum instances per API group
 * Applications
 
 * A single API implementation with one policy counts as 0.5 APIs.
 * A single clustered proxy with up to 5 policies counts as 1.
 * All runtimes are polling every 60 seconds.
 
-=== Access Managment
+=== Access Management
 
 [%header%autowidth.spread]
 
