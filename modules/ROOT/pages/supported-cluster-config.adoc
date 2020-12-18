@@ -93,7 +93,7 @@ For both 4-node and 7-node configurations, the following apply:
 | | 4-node Configuration | 7-node Configuration
 | Maximum Exchange assets | 60,000 | 60,000
 | Maximum file size when publishing asset through UI | 5 MB | 5 MB
-| Maximum uncompressed file size | 50 MB | 
+| Maximum uncompressed file size | 50 MB | 50 MB
 | Maximum file size when publishing asset through Maven | 200 MB | 200
 | Maximum number of dependencies for a single asset | 100 | 100
 | Maximum icon size | 2 MB | 2 MB
