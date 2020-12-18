@@ -1,0 +1,164 @@
+= Anypoint Monitoring
+
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Anypoint Platform Private Cloud Edition includes support for Anypoint Monitoring.
+
+Anypoint Monitoring includes tools that provide feedback from Mule runtime engine (Mule) flows and components in your application network.
+
+[IMPORTANT]
+For Mule applications deployed to Anypoint Platform PCE, Anypoint Monitoring provides basic metrics to all customers.
+Titanium-plan customers have access to additional capabilities, including application log retrieval and search.
+
+
+For information about features of these platform components that Anypoint Platform PCE does not support, see xref:supported-cluster-config.adoc#anypoint-monitoring[Anypoint Monitoring].
+
+== Supported Anypoint Monitoring Features
+
+WE NEED INFO ON WHICH ARE INCLUDED IN PCE RELEASE
+
+Anypoint Monitoring is the standard method of monitoring Mule application and API performance so that you can more quickly identify and resolve issues. While all customers receive fundamental monitoring capabilities with their subscriptions, customers subscribing at the Titanium tier receive greater storage, guaranteed resources, and advanced capabilities that allow for greater control and flexibility.
+
+|===
+| Feature | Gold and Platinum Subscription Features | Titanium Subscription Features
+
+|Dedicated infrastructure for data processing and storage
+|No
+|Yes
+
+|Custom metrics
+|No
+|Yes
+
+3+| *Built-in Application Dashboards*
+|More than 80 out-of-the-box charts covering metrics in the following categories: Overview, Inbound, Outbound, Performance, Failures, JVM, and Infrastructure
+
+|Yes
+|Yes
+
+|Advanced metrics for Inbound and Outbound charts
+|No
+|Yes
+
+|Flows charts
+|No
+|Yes
+
+|Connectors charts
+|No
+|Yes
+
+|Anypoint Visualizer application network integration
+|No
+|Yes
+
+|xref:monitoring::performance-and-impact.adoc#data-retention-and-aggregation[Data retention] for more than 30 days
+|No
+|Yes
+
+3+| *Built-in API Dashboards*
+
+|16 out-of-the-box charts covering metrics in the following categories: Overview, Requests, Failures, Performance, and Client Application 
+|Yes
+|Yes
+
+|xref:monitoring::performance-and-impact.adoc#data-retention-and-aggregation[Data retention] for more than 30 days
+|No
+|Yes
+
+3+| *Custom Dashboards*
+
+|Basic mode
+|Yes
+|Yes
+
+|Advanced mode
+|Yes, with limited functionality
+|Yes
+
+|Advanced mode with additional features
+|No
+|Yes
+
+3+| *Alerts*
+
+|Basic alerts
+|Yes
+|Yes, with xref:performance-and-impact.adoc#data-retention-and-aggregation[higher limits]
+
+|Advanced alerts
+|No
+|Yes
+
+3+| *Log Management*
+
+|Log search
+|No
+|Yes
+
+|Log points
+|No
+|Yes
+
+|Raw data
+|No
+|Yes
+
+3+| *Additional Anypoint Monitoring features*
+
+|Anypoint Monitoring Archive API
+|No
+|Yes
+
+|xref:api-functional-monitoring[API Functional Monitoring] +
+|Yes
+|Yes
+
+|Reports
+|No
+|Yes
+
+|===
+
+=== Unsupported Anypoint Monitoring Features
+
+Anypoint Platform PCE does not the support the following Anypoint Monitoring features:
+
+** Support for Mule 3.8.x
+** Log management
++
+As an alternative, use your server's logging capabilties or a third-party vendor like Splunk.
+** Increased storage capacity
++
+This capacity is not required because the Archive API is not supported.
+** Archive API
++
+This API is not applicable because log management is not supported.
+** API Functional Monitoring
++
+As an alternative, use a third-party vendor, such as Pingdom.
+** The *Tools* option in the left-hand menu is not available.
+
+== Requirements
+
+Anypoint Monitoring has disk and network port requirements in addition to the Anypoint Platform PCE requirements.
+
+For information, see xref:prereq-hardware.adoc[Hardware Prerequisites].
+
+== Backup and Restore
+
+Anypoint Monitoring backup and restore are outside the normal Gravitational backup and restore mechanism, and require the additional procedures. 
+For information, see xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore for Anypoint Platform PCE].
+
+== Uninstall Anypoint Monitoring
+
+If you want to uninstall the Anypoint Monitoring add-on, contact MuleSoft services.
+
+== See Also
+
+* xref:prereq-hardware.adoc[Hardware Prerequisites]
+* xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore for Anypoint Platform PCE]
+* xref:monitoring::index.adoc[Anypoint Monitoring Overview]
+

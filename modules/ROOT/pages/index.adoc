@@ -143,16 +143,16 @@ a|
 | VCS | VCS  | v0.3.1420
 | VCS | VCS Git Proxy | v0.2.85
 | Anypoint Studio | Studio | v7.7.0
+| Anypoint Visualizer | Network Graphs | v0.6.2.0
 |===
 
-== Anypoint Monitoring Features Supported by Anypoint Platform PCE Version 3.0
+== Add-On Features Supported by Anypoint Platform PCE Version 3.0
 
 [%header%autowidth.spread]
-.Features Supported by Anypoint Platform PCE Version 3.0
+.Add-On Features Supported by Anypoint Platform PCE Version 3.0
 |===
 | Feature | Version
 | Anypoint Monitoring | v0.6.2.0
-| Anypoint Visualizer | v0.6.2.0
 |===
 
 

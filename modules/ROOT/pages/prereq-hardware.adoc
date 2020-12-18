@@ -449,4 +449,4 @@ service nginx restart
 * xref:verify-nfs.adoc[NFS Server Prerequisites]
 * xref:prereq-gravity-check.adoc[Preinstallation Verification]
 * https://www.nginx.com/[Nginx]
-* xref:anypoint-monitoring-visualizer.adoc[Configure Anypoint Monitoring and Visualizer]
+* xref:anypoint-monitoring.adoc[Anypoint Monitoring]
