@@ -1,7 +1,7 @@
 .xref:index.adoc[About Anypoint Platform Private Cloud Edition]
 * xref:index.adoc[Overview]
 * xref:supported-cluster-config.adoc[Supported Configurations]
- ** xref:anypoint-monitoring.adoc[Anypoint Monitoring]
+* xref:anypoint-monitoring.adoc[Anypoint Monitoring]
 * xref:install-checklist.adoc[Product Prerequisites]
  ** xref:prereq-platform.adoc[Environment Prerequisites]
   *** xref:prereq-aws-terraform.adoc[Amazon Web Services (AWS) Prerequisites]
