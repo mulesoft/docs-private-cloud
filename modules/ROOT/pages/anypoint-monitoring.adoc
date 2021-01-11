@@ -88,7 +88,7 @@ To use Anypoint Monitoring with more than two Anypoint Platform PCE installation
 
 |Basic alerts
 |Yes
-|Yes, with xref:performance-and-impact.adoc#data-retention-and-aggregation[higher limits]
+|Yes, with xref:monitoring::performance-and-impact.adoc#data-retention-and-aggregation[higher limits]
 |Yes
 
 |Advanced alerts
