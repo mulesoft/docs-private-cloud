@@ -7,7 +7,10 @@ To preserve your data in case of system failure or problems with other operation
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires you to install, configure, and manage an NFS server. Ensure that you configure and perform frequent backups of this server.
 
-Anypoint Monitoring and Visualizer backup and restore are outside the normal Gravity backup and restore mechanism, and require a separate procedure.
+[IMPORTANT]
+====
+Backup and restore for Anypoint Monitoring and Anypoint Visualizer are perfored outside the normal Gravity backup and restore mechanism, and require a separate procedure.
+====
 
 == Create a Backup
 
@@ -47,9 +50,10 @@ Backup contents:
 | NFS files | N	
 | Drives | N
 | Runtimes* | N	
+| Anypoint Monitoring metrics | N
 |===
  
-*Anypoint Platform PCE has INFORMATION only about runtimes, such as their names and status.
+*Anypoint Platform PCE has information only about runtimes, such as their names and status.
 
 == Perform a System Restore
 
@@ -94,32 +98,23 @@ Outputs logs to a file.
 ====
 
 . Wait for the operation to complete, which is typically 40 to 60 minutes.
-
 . Manually restore the NFS files if you are not reusing the original NFS.
 
-== Anypoint Monitoring and Visualizer
 
-If Anypoint Monitoring and Visualizer are enabled, follow these procedures to back up and restore them.
 
-Anypoint Monitoring and Visualizer backup and restore are outside the normal Gravity backup and restore mechanism, and require additional procedures.
+== Anypoint Monitoring and Anypoint Visualizer
 
-These components store metrics and other information, but they do not store platform configuration.
+If Anypoint Monitoring and Anypoint Visualizer are enabled, follow these procedures to back up and restore them.
 
-Anypoint Monitoring and Visualizer must back up the data of the component InfluxDB (`dias-prov-k8s-am-influxdb-comp`).
+Anypoint Monitoring and Anypoint Visualizer backup and restore are outside the normal Gravity backup and restore mechanism, and require additional procedures. These components store metrics and other information, but they do not store platform configuration. Platform configuration information is handled by the system backup and restore procedures.
 
-Anypoint Monitoring and Visualizer holds configuration for the Monitoring and Visualizer components in a Postgres database. The default Gravity mechanism backs up and restores this database.
+Anypoint Monitoring and Anypoint Visualizer must back up the data of the component InfluxDB (`dias-prov-k8s-am-influxdb-comp`). Anypoint Monitoring and Anypoint Visualizer both store their configuration data in a Postgres database. The default Gravity mechanism backs up and restores this database.
 
-Anypoint Monitoring and Visualizer requires 4 TB volumes for `amv` nodes. A full InfluxDB backup can be up to 8 TB of data. (Only two data nodes are operative.)
+Anypoint Monitoring and Anypoint Visualizer requires 4 TB volumes for `amv` nodes. A full InfluxDB backup can be up to 8 TB of data. (Only two data nodes are operative.) You must provide enough free space on the target directory for the entire backup.
 
-You must provide enough free space on the target directory for the entire backup.
+Restore time is proportional to the size of the backup. During restore, existing data on the target cluster will be backed up and erased upon user approval.
 
-Restore time is proportional to the size of the backup.
-
-During restore, existing data on the target cluster will be backed up and erased upon user approval.
-
-The script must be run on a `master` node and must have `sudo` access because it uses `kubectl`.
-
-The script validates the restore disk size, databases, measurements, retention policies, and series cardinality for all measurements in each database.
+The backup and restore script must be run on a `master` node and must have `sudo` access because it uses `kubectl`. The script validates the restore disk size, databases, measurements, retention policies, and series cardinality for all measurements in each database.
 
 === Procedure
 
