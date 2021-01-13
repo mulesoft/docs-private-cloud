@@ -73,7 +73,7 @@ For both 4-node and 7-node configurations, the following apply:
 
 * A single API implementation with one policy counts as 0.5 APIs.
 * A single clustered proxy with up to 5 policies counts as 1.
-* All runtimes are polling every 60 seconds.
+* All Mule runtimes are polling every 60 seconds.
 
 === Access Management
 
@@ -124,7 +124,65 @@ The following apply to both 4-node and 7-node configurations.
 
 === Anypoint Monitoring
 
-For limitations onf using Anypoint Monitoring with Anypoint Platform PCE see xref:anypoint-monitoring.adoc[Anypoint Monitoring on Anypoint Platform PCE]
+Anypoint Monitoring is an optional, add-on component. See xref:anypoint-monitoring.adoc[Anypoint Monitoring on Anypoint Platform PCE]. The following limitations apply when using Anypoint Monitoring with Anpoint Platform PCE.
+
+==== Enhanced API Analytics Monitoring Limits
+
+* API Summary Metrics
+** Retention: 1 year
+
+* API IP Metrics
+** Number of IP addresses per API per minute: restricted to 20 unique IP addresses.
+** Retention: 1 hour
+
+* API Endpoint Metrics
+** Number of endpoints per API per minute: restricted to 100 unique endpoints
+** Retention: 1 hour
+
+==== Application Monitoring Limits
+
+* Number of endpoints per application per minute: 5 unique endpoints
+* Number of client IP addresses per application per minute: 5 unique endpoints
+
+
+==== Custom Metrics
+
+* Up to 10000 alerts
+* System performs
+
+====  Advanced Alert Limits
+
+* Up to 20 alerts
+
+==== Performance Limits
+
+* Number of Mule runtimes: 3000
+* Number of applications: 12000
+* Number of application replicas: up to 12000. An application can run on multiple Mule runtimes in a server group or cluster.
+* Number of APIs: up to 120000
+* Number of custom metrics: 50
+
+==== Examples of Supported Parameters
+
+* 6000 applications, each with 1 extra replica corresponds to 12000 application replicas
+* 2000 applications, each with 6 extra replicas corresponds to 12000 application replicas
+* 12000 applications, with no replicas corresponds to 12000 application replicas
+
+==== Hardware Requirements
+
+* 3 Nodes
+* CPU: 32 cores
+* Memory: 128 GB
+* Disk requirements:
+** 4TB InfluxDB volume for each AMV node
+** 500 GB Logstash volume per AMV node
+** 500 GB insight-cassandra-meld volume per AMV node
+** IOPS: 1500 IPS per volume (1 voolume each for Influx, logstash, and insight-cassandra-meld)
+** Network: 10 GB/second
+
+==== License Requirements
+
+* Influx license that includes 2 data nodes times 8 cores
 
 === Anypoint Visualizer
 
