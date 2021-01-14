@@ -36,18 +36,18 @@ The following recommendations and limits are based on the following resources:
 
 === Mule Runtime Engine and Mule Applications
 
-The following table shows the recommended and maximum number of Mule runtime servers and Mule applications that Anypoint Platform PCE supports:
+The following table shows the recommended and maximum number of Mule instances and Mule applications that Anypoint Platform PCE supports:
 
 [%header%autowidth.spread]
 |===
 | | 4-node Configuration | 7-node Configuration
-| Maximum number of servers per environment | 500 | 500
-| Maximum number of servers across all environments | 1500 | 3000
-| Maximum number of servers per server group | 20 | 20
-| Maximum servers per cluster | 8 | 8
+| Maximum number of Mule instances per environment | 500 | 500
+| Maximum number of Mule instances across all environments | 1500 | 3000
+| Maximum number of Mule instances per server group | 20 | 20
+| Maximum Mule instances per cluster | 8 | 8
 | Mule applications under management per environment (recommended) | Under 200 | Around 200
 | Mule applications under management per environment (maximum) | 500 | 500
-| Mule runtime engines under management (maximum) | 500 single Mule runtime engines, or 250 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster | 1000 single Mule runtime engines, or 500 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster
+| Mule instances under management (maximum) | 500 single Mule runtime engine, or 250 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster | 1000 single Mule runtime engines, or 500 Mule runtime clusters, consisting of 2 Mule runtime engines per cluster
 | Mule applications per Mule runtime engine (recommended) | Fewer than 25 | Fewer than 25
 | Mule applications per Mule runtime engine (maximum) | 100 | 50
 |===
@@ -73,7 +73,7 @@ For both 4-node and 7-node configurations, the following apply:
 
 * A single API implementation with one policy counts as 0.5 APIs.
 * A single clustered proxy with up to 5 policies counts as 1.
-* All Mule runtimes are polling every 60 seconds.
+* All Mule instances are polling every 60 seconds.
 
 === Access Management
 
@@ -124,7 +124,7 @@ The following apply to both 4-node and 7-node configurations.
 
 === Anypoint Monitoring
 
-Anypoint Monitoring is an optional, add-on component. See xref:anypoint-monitoring.adoc[Anypoint Monitoring on Anypoint Platform PCE]. The following limitations apply when using Anypoint Monitoring with Anpoint Platform PCE.
+Anypoint Monitoring is an optional, add-on component. See xref:anypoint-monitoring.adoc[Anypoint Monitoring on Anypoint Platform PCE]. The following limitations apply when using Anypoint Monitoring with Anypoint Platform PCE.
 
 ==== Enhanced API Analytics Monitoring Limits
 
@@ -156,9 +156,9 @@ Anypoint Monitoring is an optional, add-on component. See xref:anypoint-monitori
 
 ==== Performance Limits
 
-* Number of Mule runtimes: 3000
+* Number of Mule instances: 3000
 * Number of applications: 12000
-* Number of application replicas: up to 12000. An application can run on multiple Mule runtimes in a server group or cluster.
+* Number of application replicas: up to 12000. An application can run on multiple Mule instances in a server group or cluster.
 * Number of APIs: up to 120000
 * Number of custom metrics: 50
 
