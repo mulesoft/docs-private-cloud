@@ -113,8 +113,8 @@ a|
 | API Platform | API Proxy Builder Service | v1.2.49-3.v1237
 | API Platform | RAML Parser Service | v0.3.76-3.v0375
 | API Platform | Proxies XAPI Service | v1.2.64-2.v1261
-| API Designer | API Designer XAPI | v3.11.3-3.release-2123
-| API Designer | API Designer UI | v2.12.4-9.pce-21
+| API Designer | API Designer XAPI | v3.11.5 
+| API Designer | API Designer UI | v2.12.6
 | Mocking Service | Mocking Service | v2.9.6-4.pce-21
 | Mozart | Mozart UI | v1.12.1-rc.1
 | Mozart | Mozart XAPI | v2.0.173
