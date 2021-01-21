@@ -113,7 +113,7 @@ a|
 | API Platform | API Proxy Builder Service | v1.2.49-3.v1237
 | API Platform | RAML Parser Service | v0.3.76-3.v0375
 | API Platform | Proxies XAPI Service | v1.2.64-2.v1261
-| API Designer | API Designer XAPI | v3.11.5 
+| API Designer | API Designer XAPI | v3.11.5
 | API Designer | API Designer UI | v2.12.6
 | Mocking Service | Mocking Service | v2.9.6-4.pce-21
 | Mozart | Mozart UI | v1.12.1-rc.1
@@ -151,7 +151,7 @@ Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypo
 | Exchange |	Enrich portal content using the visual editor and markdown editor.
 | Exchange |	Upload Open API specifications (Swagger) in Anypoint Exchange, which automatically converts to RAML for use across Anypoint Platform.
 | Exchange |	Upload WSDLs (SOAP APIs) in Anypoint Exchange.
-| Exchange |	Consume and reuse from Anypoint Studio and Anypoint Design Center.	
+| Exchange |	Consume and reuse from Anypoint Studio and Anypoint Design Center.
 | Exchange |	Share an asset with users from other business groups.
 | Exchange |	Autogenerate a Mule 4.0 Design Center connector (using REST Connect) for any valid API specification for use within Anypoint Design Center.
 | Exchange |	View a list of dependencies (API fragments) for any API specification.
@@ -182,19 +182,19 @@ Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypo
 | API Manager |	Promote APIs between different environments.
 | API Manager |	Environment-based granular permissions are available for API Manager.
 | API Manager |	Resource level policy support, which was formerly restricted to RAML-based APIs, is extended to any HTTP API.
-| API Manager	
+| API Manager
 a| Mule 4-related changes to API Manager:
 
 * Classloader isolation between the application, the runtime, the connectors, and the policies.
 * Packaging, size, and policy scope changes.
 * All policies are nonblocking.
 * All policies can be ordered except CORS, which is executed first.
-| API Manager	
+| API Manager
 a| Two new platform APIs for managing APIs:
 
 * API Manager API v1.0 to manage an API.
 * API Manager proxy API v1.0 to manage the deployment of API proxies through API Manager.
-| Runtime Manager |	Improved error description on alert creation.	
+| Runtime Manager |	Improved error description on alert creation.
 |===
 
 The Anypoint Platform Private Cloud Edition uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
