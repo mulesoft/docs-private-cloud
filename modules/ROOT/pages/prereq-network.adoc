@@ -47,7 +47,7 @@ configured correctly on all nodes.
 |TCP | 5000 | Docker registry | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 3009-3012 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 3022 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 3023-3026 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 3023-3025 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 7575 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 7580 | Cluster control plane monitoring endpoint| localhost | localhost
 |TCP | 6060 | Cluster control plane profiling endpoint| localhost | localhost
