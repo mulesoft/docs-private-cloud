@@ -29,7 +29,7 @@ If the output from the previous commands mentions a `degraded` state or `errors`
 . Verify that all pods are running:
 +
 ```
-gravity get pod -o wide--all-namespaces | grep -vi Running
+kubectl get pod -o wide --all-namespaces | grep -vi Running
 ```
 +
 If the output from the previous command lists any pod not in "Running" state, then fix all issues before proceeding.
