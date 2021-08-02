@@ -1,4 +1,4 @@
-= Add Whitelist Addresses for API Platform Proxies
+= Allow Addresses for API Platform Proxies
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -9,7 +9,7 @@ To add whitelist addresses:
 
 . Log in to Ops Center and select *Configuration*.
 . Select the `api-manager` namespace from the right drop-down menu and then select the `api-platform-web-env` config map from the left drop-down menu.
-. Select *APW_FEATURES_PROXYWHITELIST* and ensure that value is set to `true`. 
+. Select *APW_FEATURES_PROXYWHITELIST* and ensure that value is set to `true`.
 +
 If not, set it to `true` and then select `Apply`.
 . Select *APW_PROXYWHITELIST_RULES*.
@@ -18,7 +18,7 @@ If not, set it to `true` and then select `Apply`.
 The following example defines regular expressions that allow requests to be made to the `*.somewhere.com/*` and `*.somewhereelse.com/*` domains, where `*` is any part of a DNS name or URL:
 
 ----
-.*\.somewhere\.com,.*\.somewhereelse\.com 
+.*\.somewhere\.com,.*\.somewhereelse\.com
 ----
 
 . Select *Apply* to save changes to the `api-platform-web-env` config map.
