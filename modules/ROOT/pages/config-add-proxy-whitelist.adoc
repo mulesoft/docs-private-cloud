@@ -1,11 +1,11 @@
-= To Add Allowlist Addresses for API Platform Proxies
+= Allow Addresses for API Platform Proxies
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 This topic describes how to add allowlist addresses for API Platform Proxies in Anypoint Platform Private Cloud Edition. By default, proxy requests are enabled to the domain name where the platform is running.
 
-To add allowlist addresses:
+To allow addresses:
 
 . Login to Ops Center, the click then select Configuration.
 . Select the `api-platform-web-config` config map from the drop-down list.

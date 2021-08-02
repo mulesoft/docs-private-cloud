@@ -9,6 +9,6 @@ The following topics describe how to manage Anypoint Private Cloud after install
 *** xref:backup-and-disaster-recovery.adoc[To Configure Backup and Restore]
 *** xref:ops-center-update-lic.adoc[To Add a Product License Using Ops Center]
 *** xref:config-alerts.adoc[To Setup Alerts for CPU and Memory Usage]
-*** xref:config-add-proxy-whitelist.adoc[To Add Whitelist Addresses for API Platform Proxies]
+*** xref:config-add-proxy-whitelist.adoc[Allow Addresses for API Platform Proxies]
 *** xref:demo-ldap-server.adoc[To Configure the Demo LDAP Server]
 *** xref:ext-analytics-elk.adoc[To Analyze Business and API Data using ELK]
