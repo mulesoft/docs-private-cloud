@@ -5,7 +5,7 @@ endif::[]
 
 By default, proxy requests are enabled for the domain name where the platform is running.
 
-To add whitelist addresses:
+To allow addresses:
 
 . Log in to Ops Center and select *Configuration*.
 . Select the `api-manager` namespace from the right drop-down menu and then select the `api-platform-web-env` config map from the left drop-down menu.
