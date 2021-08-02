@@ -3,11 +3,11 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-After your installation is complete, your instance of Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) is ready to use. Users registered in your external identity service should have access to your Anypoint platform xref:access-management::organization.adoc[organization]. As an admin, you can add xref:access-management::roles.adoc[roles] to these users. 
+After your installation is complete, your instance of Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) is ready to use. Users registered in your external identity service should have access to your Anypoint platform xref:access-management::organization.adoc[organization]. As an admin, you can add xref:access-management::roles.adoc[roles] to these users.
 
 You can also xref:runtime-manager::managing-servers.adoc[register servers] so that you can then xref:runtime-manager::deploying-to-your-own-servers.adoc[deploy to them], and so on.
 
-Mule app developers in your organization who create Mule apps through the xref:studio::index.adoc[Anypoint Studio] IDE must set up their editors so the Mule apps interface with your locally installed Anypoint Platform rather than the default cloud Anypoint Platform. 
+Mule app developers in your organization who create Mule apps through the xref:studio::index.adoc[Anypoint Studio] IDE must set up their editors so the Mule apps interface with your locally installed Anypoint Platform rather than the default cloud Anypoint Platform.
 
 The following topics describe how to manage Anypoint Platform PCE after installation and configuration is complete:
 
@@ -16,7 +16,7 @@ The following topics describe how to manage Anypoint Platform PCE after installa
 * xref:managing-via-the-ops-center.adoc[Ops Center]
 * xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
 * xref:config-alerts.adoc[Setup Alerts for CPU and Memory Usage]
-* xref:config-add-proxy-whitelist.adoc[Add Allowlist Addresses for API Platform Proxies]
+* xref:config-add-proxy-whitelist.adoc[Allow Addresses for API Platform Proxies]
 * xref:custom-policies.adoc[Upload Custom Policies and Publish Assets to Exchange Using the Maven Client]
 * xref:restarting-a-node.adoc[Update Nodes]
 * xref:ext-analytics-elk.adoc[Analyze Business and API Data Using ELK]
