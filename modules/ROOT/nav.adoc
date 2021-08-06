@@ -17,7 +17,7 @@
 * xref:managing-via-the-ops-center.adoc[To Manage Anypoint Platform Private Cloud Edition Using Ops Center]
  ** xref:ops-center-update-lic.adoc[To Add a Product License Using Ops Center]
 * xref:config-alerts.adoc[To Setup Alerts for CPU and Memory Usage]
-* xref:config-add-proxy-whitelist.adoc[To Add Whitelist Addresses for API Platform Proxies]
+* xref:config-add-proxy-whitelist.adoc[Allow Addresses for API Platform Proxies]
 * xref:demo-ldap-server.adoc[About the Demo LDAP Server]
 * xref:upgrade.adoc[About Migrating Anypoint Platform Private Cloud]
  ** xref:upgrade-1.6.1.adoc[To Migrate Anypoint Platform Private Cloud Edition, Version 1.5.x to 1.6.1]
