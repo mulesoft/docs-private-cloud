@@ -93,21 +93,21 @@ a|
 
 a|
 
-* 0.7.535-4.pce30
-* 1.0.84-10.pce30
-* 0.6.993-9.pce30
-* 0.7.79
-* 0.9.64-5.pce30
-* 0.6.77-8.pce30
-* 0.6.351-1.pce30
-* 0.9.36-3.pce30
-* 0.6.9
-* 0.2.52
-* 0.8.524
-* 0.7.614-7.pce30
-* 0.8.179-10.pce30
-* 0.8.3606-9.pce30
-* 0.8.1755-5.pce30
+* v0.7.585
+* v1.0.257
+* v0.6.1089
+* v0.7.103
+* v0.9.160
+* v0.6.116
+* v0.6.376
+* v0.9.70
+* v0.6.24
+* v0.2.90
+* v0.8.531
+* v0.7.664
+* v0.8.193
+* v0.8.4134
+* v0.8.1948
 
 | Connectivity | Rest Connect Service | v1.12.40
 | API Platform | API Platform API | v2.7.0
@@ -123,13 +123,13 @@ a|
 | Mozart | Design Center UI | v2.0.109
 | Mozart | Mozart XAPI | v2.0.232
 | Mozart | Mozart Project Manager Service | v3.0.45
-| Runtime Manager | Cloudhub MCM | 
+| Runtime Manager | Cloudhub MCM | v2.17.34
 | Runtime Manager | Cloudhub UI | 
-| Runtime Manager | AMC UI Rest Facade | 
-| Runtime Manager | Hybrid Rest | 
-| Runtime Manager | Metadata Manager |
+| Runtime Manager | AMC UI Rest Facade | v2.12.25
+| Runtime Manager | Hybrid Rest | v2.31.159
+| Runtime Manager | Metadata Manager | 
 | Runtime Manager | Platform Alerts | 
-| Runtime Manager | Mule Message Processor | 
+| Runtime Manager | Mule Message Processor | v2.0.37
 | Runtime Manager | Platform Messages | 
 | Access Management | Authentication Server | v1.2.48
 | Access Management | Core Services UI | v0.81.x
