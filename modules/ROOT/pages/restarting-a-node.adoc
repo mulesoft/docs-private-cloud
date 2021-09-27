@@ -17,7 +17,7 @@ You must perform the following steps on one Anypoint Platform Private Cloud Edit
 
 Verify that the cluster is healthy before starting the update process. Otherwise, many of the assumptions made in this process are not valid.
 
-. Verify the output from the following commands:
+. From a gravity shell, verify the output from the following commands:
 +
 ```
 gravity status
@@ -29,7 +29,7 @@ If the output from the previous commands mentions a `degraded` state or `errors`
 . Verify that all pods are running:
 +
 ```
-gravity get pod -o wide--all-namespaces | grep -vi Running
+kubectl get pod -o wide --all-namespaces | grep -vi Running
 ```
 +
 If the output from the previous command lists any pod not in "Running" state, then fix all issues before proceeding.
