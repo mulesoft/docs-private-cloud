@@ -189,7 +189,6 @@ a|
 * Custom Assets Facade Service v0.8.x
 * Customization Service v0.5.x
 * Dependency Resolver Service v0.6.x
-* File Service -
 * File Upload Service -
 * Graph Node Service v0.8.x
 * Graph Service v0.8.x
