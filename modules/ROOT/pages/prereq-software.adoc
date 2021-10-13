@@ -145,7 +145,7 @@ This software usually changes kernel modules and settings that are required, and
 
 === Obtain Install Archive and License Key
  
-Obtain the installer archive (`anypoint-3.0.x-installer.tar.gz`) and license key from your MuleSoft account representative.
+Obtain the installer archive (`anypoint-3.1.x-installer.tar.gz`) and license key from your MuleSoft account representative.
 
 === Verify IP Forwarding and Bridging
 
