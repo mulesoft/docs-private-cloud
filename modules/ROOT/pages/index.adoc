@@ -14,7 +14,6 @@ For information about a previous version of Anypoint Platform PCE, select the ve
 The following table provides component information for Anypoint Platform PCE:
 
 [%header%autowidth.spread]
-.Component Information
 |===
 | Component | Included | Not Included | Description
 | Anypoint Runtime Manager | X |  | Enables you to track and manage your deployed Mule applications.
@@ -33,10 +32,9 @@ The following table provides component information for Anypoint Platform PCE:
 | API Testing	|   | X |
 |===
 
-For Anypoint Platform PCE Version 3.0, the following policies are included with API Manager:
+For Anypoint Platform PCE Version 3.1, the following policies are included with API Manager:
 
 [%header%autowidth.spread]
-.API Manager Policies for Anypoint Platform PCE Version 3.1
 |===
 | Policy | Version
 | Basic authentication: Simple | 1.2.2
@@ -46,18 +44,18 @@ For Anypoint Platform PCE Version 3.0, the following policies are included with 
 | Detokenization | 1.1.1
 | Header Injection | 1.2.1
 | Header Removal | 1.0.3
-| HTTP Caching | 1.0.3
-| IP Blacklist | 1.2.2
-| IP Whitelist | 1.2.2
+| HTTP Caching | 2.0.2
+| IP Blocklist | 1.0.0
+| IP Allowlist | 1.0.0
 | JSON Threat Protection | 1.1.4
 | JWT Validation | 1.1.3
 | Message Logging | 1.0.0
-| Mule OAuth 2.0 Access Token | 1.3.2
-| OpenAM OAuth 2.0 Token Enforcement | 1.3.2
-| OpenID Connect OAuth 2.0 Token Enforcement | 1.3.2
-| PingFederate Access Token Enforcement | 1.3.2
-| Rate Limiting | 1.3.4
-| Rate limiting - SLA based | 1.2.6
+| Mule OAuth 2.0 Access Token | 1.5.0
+| OpenAM OAuth 2.0 Token Enforcement | 1.5.0
+| OpenID Connect OAuth 2.0 Token Enforcement | 1.5.0
+| PingFederate Access Token Enforcement | 1.5.0
+| Rate Limiting | 1.3.5
+| Rate limiting - SLA based | 1.2.8
 | Spike Control | 1.1.5
 | Tokenization | 1.1.1
 | XML Threat Protection | 1.1.4
@@ -69,8 +67,8 @@ For additional information about policies, refer to xref:api-manager::policies-l
 
 Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
 
+Anypoint Platform PCE Version 3.1 contains the following features:
 [%header%autowidth.spread]
-.Features Shipped with Anypoint Platform PCE Version 3.1
 |===
 | Component | Feature Description | Feature Version
 | Exchange
@@ -94,21 +92,21 @@ a|
 
 a|
 
-* 0.7.535-4.pce30
-* 1.0.84-10.pce30
-* 0.6.993-9.pce30
-* 0.7.79
-* 0.9.64-5.pce30
-* 0.6.77-8.pce30
-* 0.6.351-1.pce30
-* 0.9.36-3.pce30
-* 0.6.9
-* 0.2.52
-* 0.8.524
-* 0.7.614-7.pce30
-* 0.8.179-10.pce30
-* 0.8.3606-9.pce30
-* 0.8.1755-5.pce30
+* v0.7.585
+* v1.0.257
+* v0.6.1089
+* v0.7.103
+* v0.9.160
+* v0.6.116
+* v0.6.376
+* v0.9.70
+* v0.6.24
+* v0.2.90
+* v0.8.531
+* v0.7.664
+* v0.8.193
+* v0.8.4134
+* v0.8.1948
 
 | Connectivity | Rest Connect Service | v1.12.40
 | API Platform | API Platform API | v2.7.0
@@ -118,38 +116,37 @@ a|
 | API Platform | API Proxy Builder Service | v1.2.52
 | API Platform | RAML Parser Service | v0.3.76
 | API Platform | Proxies XAPI Service | v1.2.75
-| API Designer | API Designer XAPI | v3.17.0
-| API Designer | API Designer UI | v2.18.2
-| Mocking Service | Mocking Service | v2.15.2
-| Mozart | Design Center UI | v2.0.69
-| Mozart | Mozart XAPI | v2.0.216
-| Mozart | Mozart Project Manager Service | v3.0.20
-| Runtime Manager | Cloudhub MCM | 
+| API Designer | API Designer XAPI | v3.29.0
+| API Designer | API Designer UI | v2.32.0
+| Mocking Service | Mocking Service | v2.29.1
+| Mozart | Design Center UI | v2.0.109
+| Mozart | Mozart XAPI | v2.0.232
+| Mozart | Mozart Project Manager Service | v3.0.45
+| Runtime Manager | Cloudhub MCM | v2.17.34
 | Runtime Manager | Cloudhub UI | 
-| Runtime Manager | AMC UI Rest Facade | 
-| Runtime Manager | Hybrid Rest | 
-| Runtime Manager | Metadata Manager |
+| Runtime Manager | AMC UI Rest Facade | v2.12.25
+| Runtime Manager | Hybrid Rest | v2.31.159
+| Runtime Manager | Metadata Manager | 
 | Runtime Manager | Platform Alerts | 
-| Runtime Manager | Mule Message Processor | 
+| Runtime Manager | Mule Message Processor | v2.0.37
 | Runtime Manager | Platform Messages | 
-| Access Management | Authentication Server | v0.81.x
+| Access Management | Authentication Server | v1.2.48
 | Access Management | Core Services UI | v0.81.x
 | Access Management | Anypoint Signin | v0.81.x
 | Access Management | Audit Log | v0.81.x
 | Access Management | Landing Page UI | v0.81.x
 | Access Management | Navbar | v0.81.x
 | Anypoint Platform PCE | Anypoint Platform PCE packaging | v3.0.0
-| API Modeling Framework (AMF) | AMF Service | v1.0.152
-| VCS | VCS  | v0.3.1420
-| VCS | VCS Git Proxy | v0.2.85
-| Anypoint Studio | Studio | v7.7.0
+| API Modeling Framework (AMF) | AMF Service | v1.1.81
+| VCS | VCS  | v0.3.1540
+| VCS | VCS Git Proxy | v0.2.106
+| Anypoint Studio | Studio | v7.12.0
 | Anypoint Visualizer | Network Graphs | v0.6.2.0
 |===
 
 == Add-On Features Supported by Anypoint Platform PCE Version 3.1
 
 [%header%autowidth.spread]
-.Add-On Features Supported by Anypoint Platform PCE Version 3.1
 |===
 | Feature | Version
 | Anypoint Monitoring | v0.6.2.0
