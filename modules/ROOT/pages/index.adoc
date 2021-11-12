@@ -21,15 +21,15 @@ The following table provides component information for Anypoint Platform PCE:
 | Anypoint API Manager | X	| | Enables you to manage your registered APIs.
 | Secrets Manager |  | X | Stores and manages secrets for supported Anypoint Platform services.
 | Anypoint Exchange	| X | | Enables your organization to share various assets for reuse across integration projects.
-| Access Management	| X | |
-| Anypoint Design Center, excluding Flow Designer	| X | |
-| Anypoint Analytics - Insights	|   | X |
-| Anypoint Analytics - Anypoint Visualizer	| X  |  |
-| Anypoint Analytics - API	|   | X |
-| Anypoint Monitoring	| X  |  |
-| Object Store	|   | X |
-| Anypoint MQ	|   | X |
-| API Testing	|   | X |
+| Access Management	| X | | Enables you to create your Anypoint Platform account or configure federated External Identity.
+| Anypoint Design Center, excluding Flow Designer	| X | | Enables you to create API specifications in several modeling languages, and to create RAML API fragments
+| Anypoint Analytics - Insights	|   | X | Provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers.
+| Anypoint Analytics - Anypoint Visualizer	| X  |  | Enables you to explore your application network via an application network graph.
+| Anypoint Analytics - API	|   | X | Provides insight into how your APIs are being used and how they are performing.
+| Anypoint Monitoring	| X  |  | Provides visibility into integrations, Mule flows, and components in your application network.
+| Object Store	|   | X | Object Store v2 lets CloudHub applications store data and states across batch processes, Mule components, and applications, from within an application or by using the Object Store REST API.
+| Anypoint MQ	|   | X | A multi-tenant, cloud messaging service that enables your to perform advanced asynchronous messaging scenarios between their applications
+| API Testing	|   | X | Provides a testing framework that allows you to easily build automated tests for your integrations and APIs.
 |===
 
 For Anypoint Platform PCE Version 3.1, the following policies are included with API Manager:
