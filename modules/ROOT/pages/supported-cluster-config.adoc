@@ -87,7 +87,6 @@ For both 4-node and 7-node configurations, the following apply:
 
 See the Access Management documentation for more information on xref:access-management::external-identity.adoc[identity management and supported providers]. 
 
-
 === Exchange
 
 [%header%autowidth.spread]
