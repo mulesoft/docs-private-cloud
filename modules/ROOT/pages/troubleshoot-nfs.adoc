@@ -35,7 +35,7 @@ If the mount fails, you are probably missing some NFS-required libraries. If thi
 
 === "mount failed: Not Permitted"
 
-The error message `mount failed: exit status 32. Mounting command ... not permitted` may occurr when trying to mount with the `noresvport` option since the ports may be limited. If this happens, remove the `noresvport` option and add the `insecure` flag to the mounting command.
+The error message `mount failed: exit status 32. Mounting command ... not permitted` might occur when trying to mount using the `noresvport` option because the ports might be limited. If this happens, remove the `noresvport` option and add the `insecure` flag to the mount command.
 
 == See Also
 
