@@ -85,8 +85,7 @@ For both 4-node and 7-node configurations, the following apply:
 | Maximum number of users | 10000 | N/A
 |===
 
-See the Access Management documentation for more information about xref:access-management::external-identity.adoc[identity management and supported providers]. 
-
+See the Access Management documentation for more information on xref:access-management::external-identity.adoc[identity management and supported providers]. 
 
 === Exchange
 
