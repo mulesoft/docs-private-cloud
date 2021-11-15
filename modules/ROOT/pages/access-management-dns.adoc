@@ -13,7 +13,7 @@ If you did not perform this step before installation, you must provide the DNS o
 
 [NOTE]
 ==
-If you perform a DNS update that changes the endpoints that Mule runtimes use to connect to Runtime Manager, you must restart the Mule runtimes before they can connect to the new endpoints.
+If you perform a DNS update that changes the endpoints that Mule instances use to connect to Runtime Manager, you must restart the Mule instances before they can connect to the new endpoints.
 ==
 
 
