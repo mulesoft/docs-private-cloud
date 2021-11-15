@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If this step was not performed prior to installation, you must provide the DNS or IP address where your Anypoint Platform Private Cloud Edition installation is exposed to the local network. This is required for Mule to communicate with Anypoint Platform.
+If you did not perform this step before installation, you must provide the DNS or IP address where your Anypoint Platform Private Cloud Edition installation is exposed to the local network. This is required for Mule to communicate with Anypoint Platform.
 
 . From Anypoint Platform, click Access Management.
 . Click the *DNS/IP* tab.
@@ -11,4 +11,10 @@ If this step was not performed prior to installation, you must provide the DNS o
 . Click *Save*.
 
 
-image::on-premises-features-2f348.png[]
+[NOTE]
+==
+If you perform a DNS update that changes the endpoints Mule runtimes use to connect to Runtime Manager, you must restart the Mule runtimes before they can connect to the new endpoints.
+==
+
+
+
