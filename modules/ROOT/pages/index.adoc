@@ -136,7 +136,7 @@ a|
 | Access Management | Audit Log | v0.81.x
 | Access Management | Landing Page UI | v0.81.x
 | Access Management | Navbar | v0.81.x
-| Anypoint Platform PCE | Anypoint Platform PCE packaging | v3.0.0
+| Anypoint Platform PCE | Anypoint Platform PCE packaging | v3.1.0
 | API Modeling Framework (AMF) | AMF Service | v1.1.81
 | VCS | VCS  | v0.3.1540
 | VCS | VCS Git Proxy | v0.2.106
