@@ -42,7 +42,8 @@ configured correctly on all nodes.
 |TCP | 9100 | Prometheus node-exporter | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 10248, 10250 | Kubernetes Kubelet | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 10249 | Kubernetes kube-proxy | localhost | localhost
-|TCP | 10251, 10252 | Kubernetes controller-manager and scheduler | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 10251-10252 | Kubernetes controller-manager and scheduler | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 10257-10259 | Kubernetes controller-manager and scheduler (secure) | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 10255 | Kubernetes Kubelet (read-only) | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 5000 | Docker registry | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 3009-3012 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
