@@ -67,6 +67,7 @@ ssh -i 'anypoint.pem' ec2-user@W.X.Y.Z
 | AWS_KEY_NAME | Specifies the AWS SSH key. Do not include the `.pem` extension.
 | AWS_REGION | Specifies the AWS region where Terraform creates the cluster, for example, `us-east-2`.
 | TF_VAR_ssh_user=<SSH_USER> | Specifies the ssh user, for example, `ec2-user`, `centos`, etc.
+| TF_VAR_trusted_cidrs_list | List of trusted cidrs to open the environment to. Use `[0.0.0.0/0]` to open the cluster to the internet.
 | TELEKUBE_CLUSTER_NAME | Specifies the name of the cluster and the corresponding AWS resources.
 | TELEKUBE_NODE_PROFILES | Must be set to `node`.
 | TELEKUBE_NODE_PROFILE_COUNT_node | Specifies the number of nodes in your cluster. Possible values are `4` and `7`.
