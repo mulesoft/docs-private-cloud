@@ -41,12 +41,12 @@ You can also run provisioner remotely from any other machine with Docker and int
 
 . Download the Private Cloud Provisioner (PCP) Docker image from:
 +
-`https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-3.1.10.tar.gz?AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Expires=1795375932&Signature=4ag%2BMwNuUdW5A3kGqSXcwOfSazU%3D`
+`https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-3.1.11.tar.gz?AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Expires=1796001225&Signature=sDFqyNDC3MdgURQyFyUYO0TkMXU%3D`
 +
 . Copy the provisioner Docker image to the instance via SCP:
 +
 ----
-scp -i <guest>.pem ~/Downloads/private-cloud-provisioner-3.1.0.tar.gz ec2-user@W.X.Y.Z:/home/ec2-user
+scp -i <guest>.pem ~/Downloads/private-cloud-provisioner-3.1.11.tar.gz ec2-user@W.X.Y.Z:/home/ec2-user
 ----
 
 . SSH into the instance:
@@ -98,20 +98,20 @@ You can also include the following set of optional environment variables:
 . Load the provisioner Docker image into the local Docker registry:
 +
 ----
-docker load -i private-cloud-provisioner-3.1.0.tar.gz
+docker load -i private-cloud-provisioner-3.1.11.tar.gz
 ----
 
 . Perform a dry-run test:
 +
 ----
-docker run --rm --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.1.0 dry-run
+docker run --rm --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.1.11 dry-run
 ----
 +
 
 .  Run the provisioner:
 +
 ----
-docker run --rm --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.1.0 cluster-provision
+docker run --rm --env-file pce.env artifacts.msap.io/mulesoft/core-paas-private-cloud-provisioner:v3.1.11 cluster-provision
 ----
 +
 After the provisioner runs successfully, it displays information about your environment including IP addresses and DNS name of the load balancer.
