@@ -21,7 +21,7 @@ The following table provides component information for Anypoint Platform PCE:
 | Anypoint API Manager | X	| | Enables you to manage your registered APIs.
 | Secrets Manager |  | X | Stores and manages secrets for supported Anypoint Platform services.
 | Anypoint Exchange	| X | | Enables your organization to share various assets for reuse across integration projects.
-| Access Management	| X | | Enables you to create your Anypoint Platform account or configure federated External Identity.
+| Access Management	| X | | Enables you to create your Anypoint Platform account or configure external federated identity.
 | Anypoint Design Center, excluding Flow Designer	| X | | Enables you to create API specifications in several modeling languages and to create RAML API fragments.
 | Anypoint Analytics - Insights	|   | X | Provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers.
 | Anypoint Analytics - Anypoint Visualizer	| X  |  | Enables you to explore your application network via an application network graph.
@@ -55,7 +55,7 @@ For Anypoint Platform PCE version 3.1, the following policies are included with 
 | OpenID Connect OAuth 2.0 Token Enforcement | 1.5.0
 | PingFederate Access Token Enforcement | 1.5.0
 | Rate Limiting | 1.3.5
-| Rate limiting - SLA based | 1.2.8
+| Rate Limiting - SLA based | 1.2.8
 | Spike Control | 1.1.5
 | Tokenization | 1.1.1
 | XML Threat Protection | 1.1.4
@@ -132,11 +132,11 @@ a|
 | Runtime Manager | Platform Messages | 
 | Access Management | Authentication Server | v1.2.48
 | Access Management | Core Services UI | v0.81.x
-| Access Management | Anypoint Signin | v0.81.x
+| Access Management | Anypoint Sign In | v0.81.x
 | Access Management | Audit Log | v0.81.x
 | Access Management | Landing Page UI | v0.81.x
 | Access Management | Navbar | v0.81.x
-| Anypoint Platform PCE | Anypoint Platform PCE packaging | v3.1.0
+| Anypoint Platform PCE | Anypoint Platform PCE Packaging | v3.1.0
 | API Modeling Framework (AMF) | AMF Service | v1.1.81
 | VCS | VCS  | v0.3.1540
 | VCS | VCS Git Proxy | v0.2.106
