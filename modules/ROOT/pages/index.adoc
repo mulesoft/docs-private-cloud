@@ -108,7 +108,7 @@ a|
 * v0.8.4134
 * v0.8.1948
 
-| Connectivity | Rest Connect Service | v1.12.40
+| Connectivity | REST Connect Service | v1.12.40
 | API Platform | API Platform API | v2.7.0
 | API Platform | API Platform Web | v1.15.104
 | API Platform | API Manager Web | v1.5.365
@@ -124,8 +124,8 @@ a|
 | Mozart | Mozart Project Manager Service | v3.0.45
 | Runtime Manager | Cloudhub MCM | v2.17.34
 | Runtime Manager | Cloudhub UI | 
-| Runtime Manager | AMC UI Rest Facade | v2.12.25
-| Runtime Manager | Hybrid Rest | v2.31.159
+| Runtime Manager | AMC UI REST Facade | v2.12.25
+| Runtime Manager | Hybrid REST | v2.31.159
 | Runtime Manager | Metadata Manager | 
 | Runtime Manager | Platform Alerts | 
 | Runtime Manager | Mule Message Processor | v2.0.37
