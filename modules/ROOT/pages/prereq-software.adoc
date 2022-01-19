@@ -18,14 +18,12 @@ Before you install Anypoint Platform PCE, your infrastructure team must review e
 === Verify Linux Distribution
 The following Linux distributions are supported:
 
-* Red Hat Enterprise Linux (RHEL) 7.8, 7.9, 8.1, 8.2, and 8.3.
-* CentOS 7.8, 7.9, 8.1, 8.2, and 8.3.
+* Red Hat Enterprise Linux (RHEL) 7.8, 7.9, 8.1, 8.2, 8.3., and 8.4
+* CentOS 7.8, 7.9, 8.1, 8.2, and 8.3., and 8.4
 
 === Check for SELinux Custom Profiles
 
-Although SELinux is not required, Anypoint Platform PCE supports the default SELinux profile running 
-in strict mode. If your environment uses a custom profile, it must provide an unconstrained user context when 
-running the installer. Review any custom profiles with your MuleSoft representative.
+Although SELinux is not required, Anypoint Platform PCE supports the default SELinux profile running in strict mode. If your environment uses a custom profile, it must provide an unconstrained user context when running the installer. Review any custom profiles with your MuleSoft representative.
 
 === Enable and Load Kernel Modules
 

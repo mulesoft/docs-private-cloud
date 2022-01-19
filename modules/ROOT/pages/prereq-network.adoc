@@ -11,26 +11,20 @@ Before you install Anypoint Platform PCE, your infrastructure team must review e
 
 == Verify Static IPs
 
-All nodes in the cluster must have static private IPv4 assigned to them, and these must persist after
-restarts. If IP addresses are not persistent between reboots, the cluster can fail.
+All nodes in the cluster must have static private IPv4 assigned to them, and these must persist after restarts. If IP addresses are not persistent between reboots, the cluster can fail.
 
 == Verify VXLAN
 
-The version of Kubernetes supported by Anypoint Platform PCE uses an overlay VXLAN and UDP
-transport to encapsulate traffic. There is direct communication between cluster components.
+The version of Kubernetes supported by Anypoint Platform PCE uses an overlay VXLAN and UDP transport to encapsulate traffic. There is direct communication between cluster components.
 
-The following table lists the ports used for inter-host communication and uses the following source and destination descriptions:
+The following table lists the ports used for inter-host communication. The table uses the following source and destination descriptions:
 
-== RHEL 8.4+ on AWS limitations
-In some operating systems like RHEL 8.4, NetworkManager includes two extra services called `nm-cloud-setup.service` and `nm-cloud-setup.timer`. These services add a routing table that interfere with the Kubernetes CNI plugin's configuration. If those services exist, they should be disabled and the node must be rebooted before proceeding with the installation.
+* Anypoint Platform PCE nodes: Nodes that are members of the cluster.
+* Installer node: The node on which you started the installation.
+* Load Balancer: Any source that is outside the cluster.
+* localhost: The port that is used only within the host where the request started.
 
-Anypoint Platform PCE nodes:: Nodes that are members of the cluster.
-installer node:: Node on which the installation was started.
-load Balancer:: Any source that is outside the cluster.
-localhost:: The port that is used only within the host where the request started.
-
-You must ensure that all of the following ports are
-configured correctly on all nodes.
+You must ensure that all of the following ports are configured correctly on all nodes.
 
 [%header%autowidth.spread]
 .Port Configuration Requirements
@@ -81,15 +75,16 @@ receive packages with a source and destination different from the node’s inter
 
 Any software that monitors the network traffic must be tuned to allow this type of network interaction.
 
+== Disable OS NetworkManager Services
+In some operating systems, like RHEL/CentOS 8.4, NetworkManager includes two extra services: `nm-cloud-setup.service` and `nm-cloud-setup.timer`. These services add routing tables that interfere with the configuration of the Kubernetes Container Network Interface (CNI) plugin. If those services exist, disable them and restart the node before proceeding with the installation.
+
 == Verify SMTP Server Requirements
 Your network must include an SMTP server to manage email alerts that are triggered by the platform. Anypoint Platform PCE must be connected to this SMTP server.
 
 For additional information, refer to the instructions in xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Platform PCE].
 
 == Verify External Identity Provider Configuration and Client Management
-Your network must include an external identity provider that is compatible with LDAP, OpenIDConnect, or SAML.
-To configure an External Identity Provider for user SSO (LDAP, OpenIDConnect, and SAML) or for external
-client management as OpenID Connect, the cluster must be able to access the external identity provider endpoint.
+Your network must include an external identity provider that is compatible with LDAP, OpenIDConnect, or SAML. To configure an External Identity Provider for user SSO (LDAP, OpenIDConnect, and SAML) or for external client management as OpenID Connect, the cluster must be able to access the external identity provider endpoint.
 
 For additional information, refer to the instructions in xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Platform PCE].
 
