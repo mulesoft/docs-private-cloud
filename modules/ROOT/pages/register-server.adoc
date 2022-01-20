@@ -3,9 +3,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If you encounter a Mule runtime engine registration error when xref:runtime-manager::servers-create.adoc[creating a server in Runtime Manager], perform the following steps.
+If you encounter a Mule runtime engine registration error when xref:runtime-manager::servers-create.adoc[creating a server in Runtime Manager], you may need to configure Mule to trust the TLS certificates you are using. 
 
-Before registering Mule runtime engine, you must configure Mule to trust the TLS certificates you are using. To do so:
+To do so:
 
 . Get the public certificate for Anypoint Platform Private Cloud Edition.
 . Add the certificate to the truststore of the JVM you are using for the Mule runtime engine.
