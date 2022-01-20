@@ -4,30 +4,27 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-firewalld-forwarding.adoc, install-create-lb.adoc
 
-To ensure the performance and stability of Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), every node in your Anypoint Platform PCE environment must meet the network requirements described in this topic. 
+To ensure the performance and stability of Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), every node in your Anypoint Platform PCE environment must meet the network requirements described in this topic.
 
 [IMPORTANT]
 Before you install Anypoint Platform PCE, your infrastructure team must review each of the following sections and verify that your environment meets the stated network requirements. If needed, contact your MuleSoft representative for assistance.
 
 == Verify Static IPs
 
-All nodes in the cluster must have static private IPv4 assigned to them, and these must persist after  
-restarts. If IP addresses are not persistent between reboots, the cluster can fail.
+All nodes in the cluster must have static private IPv4 assigned to them, and these must persist after restarts. If IP addresses are not persistent between reboots, the cluster can fail.
 
 == Verify VXLAN
 
-The version of Kubernetes supported by Anypoint Platform PCE uses an overlay VXLAN and UDP 
-transport to encapsulate traffic. There is direct communication between cluster components. 
+The version of Kubernetes supported by Anypoint Platform PCE uses an overlay VXLAN and UDP transport to encapsulate traffic. There is direct communication between cluster components.
 
-The following table lists the ports used for inter-host communication and uses the following source and destination descriptions:
+The following table lists the ports used for inter-host communication. The table uses the following source and destination descriptions:
 
-Anypoint Platform PCE nodes:: Nodes that are members of the cluster.
-installer node:: Node on which the installation was started.
-load Balancer:: Any source that is outside the cluster.
-localhost:: The port that is used only within the host where the request started.
+* Anypoint Platform PCE nodes: Nodes that are members of the cluster.
+* Installer node: The node on which you started the installation.
+* Load Balancer: Any source that is outside the cluster.
+* localhost: The port that is used only within the host where the request started.
 
-You must ensure that all of the following ports are 
-configured correctly on all nodes.
+You must ensure that all of the following ports are configured correctly on all nodes.
 
 [%header%autowidth.spread]
 .Port Configuration Requirements
@@ -66,27 +63,28 @@ configured correctly on all nodes.
 
 You can use netcat or a similar utility to verify port configuration.
 
-== Enable Required Ports 
+== Enable Required Ports
 
 * You must enable TCP ports 53, 3011, and 3012 on all nodes to allow communication with the database cluster.
 * If you plan to use the GUI installer to install Anypoint Platform PCE, you must enable port 61009.
 
 == Verify NAT Traffic Requirements
 
-In some situations, the Kubernetes overlay network uses NAT. NAT requires that nodes be able to send and 
+In some situations, the Kubernetes overlay network uses NAT. NAT requires that nodes be able to send and
 receive packages with a source and destination different from the node’s internal IP.
 
 Any software that monitors the network traffic must be tuned to allow this type of network interaction.
 
+== Disable OS NetworkManager Services
+In some operating systems, like RHEL/CentOS 8.4, NetworkManager includes two extra services: `nm-cloud-setup.service` and `nm-cloud-setup.timer`. These services add routing tables that interfere with the configuration of the Kubernetes Container Network Interface (CNI) plugin. If those services exist, disable them and restart the node before proceeding with the installation.
+
 == Verify SMTP Server Requirements
-Your network must include an SMTP server to manage email alerts that are triggered by the platform. Anypoint Platform PCE must be connected to this SMTP server. 
+Your network must include an SMTP server to manage email alerts that are triggered by the platform. Anypoint Platform PCE must be connected to this SMTP server.
 
 For additional information, refer to the instructions in xref:access-management-SMTP.adoc[Configure SMTP in Anypoint Platform PCE].
 
-== Verify External Identity Provider Configuration and Client Management 
-Your network must include an external identity provider that is compatible with LDAP, OpenIDConnect, or SAML. 
-To configure an External Identity Provider for user SSO (LDAP, OpenIDConnect, and SAML) or for external 
-client management as OpenID Connect, the cluster must be able to access the external identity provider endpoint. 
+== Verify External Identity Provider Configuration and Client Management
+Your network must include an external identity provider that is compatible with LDAP, OpenIDConnect, or SAML. To configure an External Identity Provider for user SSO (LDAP, OpenIDConnect, and SAML) or for external client management as OpenID Connect, the cluster must be able to access the external identity provider endpoint.
 
 For additional information, refer to the instructions in xref:install-config-ldap-pce.adoc[Configure an External Identity Provider in Anypoint Platform PCE].
 
