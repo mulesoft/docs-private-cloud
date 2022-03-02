@@ -15,7 +15,7 @@ This topic describes how to use the Ops Center to manage and monitor the Anypoin
 
 == To Access the Ops Center
 
-The Ops center is reached through port `9500`, so in a browser you can type `{platform-host}:9500`
+The Ops center is reached through port `9500`, so in a browser you can type `\{platform-host}:9500`
 
 You must then log in using the email and password of the *admin* user that you set up in the final screen of the installation wizard
 
