@@ -35,8 +35,8 @@ This topic describes how to configure user management in Anypoint Platform Priva
 [%header%autowidth.spread]
 |===
 | Property | Description
-| Find User by Username | The search filter to find users by user name. For example, `(&(objectClass=inetOrgPerson)(uid={{username}}))`.
-| Find User's Groups by Username | The search filter to find user groups by user name. For example, `(&objectClass=GroupOfNames)(member=uid={{username}},ou=people,dc=mulesoft,dc=com))`.
+| Find User by Username | The search filter to find users by user name. For example, `(&(objectClass=inetOrgPerson)(uid={\{username}}))`.
+| Find User's Groups by Username | The search filter to find user groups by user name. For example, `(&objectClass=GroupOfNames)(member=uid={\{username}},ou=people,dc=mulesoft,dc=com))`.
 |===
 
 . Specify the user field mappings
