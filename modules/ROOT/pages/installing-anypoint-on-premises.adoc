@@ -111,7 +111,7 @@ Please follow the instructions listed on https://docs.docker.com/compose/install
 
 ==== Copy platform config files to `/opt/config`
 
-The Anypoint Platform configuration files must be in a predictable location on each host machine because Rancher dynamically launches services on any available host.  This means that it won’t have the benefit of finding config files from a current working directory the same way docker-compose would.  `/opt/config` has been chosen as the default directory to store platform configuration files, so what you need to do is download the link:{attachmentsdir}/anypoint-platform.zip[Anypoint Platform On Premsies] and copy the config directory into the `/opt` folder.  Repeat this procedure on every host you will setup.
+The Anypoint Platform configuration files must be in a predictable location on each host machine because Rancher dynamically launches services on any available host.  This means that it won’t have the benefit of finding config files from a current working directory the same way docker-compose would.  `/opt/config` has been chosen as the default directory to store platform configuration files, so what you need to do is download the link:{attachmentsdir}/anypoint-platform.zip[Anypoint Platform On Premises] and copy the config directory into the `/opt` folder.  Repeat this procedure on every host you will setup.
 
 ----
 > cd anypoint-platform
@@ -205,7 +205,7 @@ image::add-registry3.png[Verify]
 
 [NOTE]
 ====
-We use our own internal docker registry. To download these images you will need to have the appropriate permissions added to your Anypoint account.  If you do not already have these, please contact Account Representative (CSM or AE) and they will guide you throught the provisioning process.
+We use our own internal docker registry. To download these images you will need to have the appropriate permissions added to your Anypoint account.  If you do not already have these, please contact Account Representative (CSM or AE) and they will guide you through the provisioning process.
 ====
 
 ==== OPTIONAL: Regenerate certificates, keys and keystores in the platform config
@@ -430,7 +430,7 @@ image::rancher-add-load-balancer2.png[load balancer]
 
 === OpenAM Configuration (Version 12)
 
-Below is an OpenAM configuration. Please replace $OPEN_AM_URL and @PLATFORM_URL for the approapiate URLs.
+Below is an OpenAM configuration. Please replace $OPEN_AM_URL and @PLATFORM_URL for the appropriate URLs.
 
 *Identity Federation Service Provider*
 [%header,cols="2*a"]
@@ -551,7 +551,7 @@ Then sign in to OpenAM with your username and password.
 
 === Ping Federate Configuration (Version 6.10)
 
-Below is a PingFederate configuration. Please replace the $PING_FEDERATE_URL and $PLATFORM_URL with the approapiate URLs.
+Below is a PingFederate configuration. Please replace the $PING_FEDERATE_URL and $PLATFORM_URL with the appropriate URLs.
 
 *Identity Federation Service Provider*
 [%header,cols="2*a"]
