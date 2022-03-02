@@ -6,7 +6,7 @@ endif::[]
 [WARNING]
 This product was previously named Anypoint Platform On-Premises Edition. Beginning with the 1.5.1 release, it is named Anypoint Platform Private Cloud Edition.
 
-Anypoint Platform Private Cloud Edition must be run in production environment with multiple servers. To distribute traffic amonng servers and to restrict access to specific ports, you must install and configure a load balancer.
+Anypoint Platform Private Cloud Edition must be run in production environment with multiple servers. To distribute traffic among servers and to restrict access to specific ports, you must install and configure a load balancer.
 
 [NOTE]
 In a single server development environment, MuleSoft recommends using a load balancer.

@@ -56,7 +56,7 @@ You can easily remove individual servers from the cluster in which you installed
 +
 image::installing-anypoint-on-premises-4e182.png[]
 
-. Click the trash can icon next to the server you want to delte:
+. Click the trash can icon next to the server you want to delete:
 +
 image::managing-via-the-ops-center-delete.png[]
 
@@ -182,7 +182,7 @@ The *PostgreSQL* dashboard displays data for the PostgreSQL server included in t
 * Active Connections
 * Buffers
 * Conflicts/Deadlocks
-* PostrgreSQL Containers CPU Usage per Pod
+* PostgreSQL Containers CPU Usage per Pod
 
 Activity per type displays different curves for rows fetched, returned, inserted, updated and deleted, at the level of time granularity that you choose.
 
