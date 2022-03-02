@@ -28,7 +28,7 @@ The main purpose of the etcd device is to provide dedicated storage for a distri
 
 This device will be formatted either as `xfs` or `ext4` and mounted as `/var/lib/gravity/planet/etcd`. You can use the following shell snippet to guide this process (be sure to specify the correct device name in 2 places).
 
-The following is provided only as an example, and should not be used as-is in production. Formatting and mounting disks is something that should be done by your system administrator. The end result of this is mounting the Etcd device to the path `/var/lib/gravityi/planet/etcd`. This can be achieved using systemd mount files as shown in the example below, or `/etc/fstab`, or some other method. Please consult with your system administrator to determine the best way to meet this requirement.
+The following is provided only as an example, and should not be used as-is in production. Formatting and mounting disks is something that should be done by your system administrator. The end result of this is mounting the Etcd device to the path `/var/lib/gravity/planet/etcd`. This can be achieved using systemd mount files as shown in the example below, or `/etc/fstab`, or some other method. Please consult with your system administrator to determine the best way to meet this requirement.
 
 ----
 sudo mkfs.ext4 /dev/<device name>
