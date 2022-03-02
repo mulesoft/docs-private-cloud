@@ -127,7 +127,7 @@ From the master node, run the following command:
 +
 You must run this command sequentially on each node of your cluster. Wait until this command completes on one node before running it on the next node.
 
-. Peform the system update by logging into each node of your cluster and running the following command.
+. Perform the system update by logging into each node of your cluster and running the following command.
 +
 ----
 ./manual_update_161.sh update-system

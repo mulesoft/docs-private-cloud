@@ -191,7 +191,7 @@ The *PostgreSQL* dashboard displays data for the PostgreSQL server included in t
 * Active Connections
 * Buffers
 * Conflicts/Deadlocks
-* PostrgreSQL Containers CPU Usage per Pod
+* PostgreSQL Containers CPU Usage per Pod
 
 Activity per type displays different curves for rows fetched, returned, inserted, updated and deleted, at the level of time granularity that you choose.
 

@@ -63,7 +63,7 @@ The following configurations are supported:
 	* **3-node configuration**: installs and registers all servers as *General Purpose Nodes*.
 	* **6-node configuration**: installs and registers three nodes as *App-only* and three nodes as *Data Store*.
 +
-After installation, you can add or remove nodes as necessary using the Ops Center. Depending on the number of nodes you select, the installer displayes one or more `curl` commands.
+After installation, you can add or remove nodes as necessary using the Ops Center. Depending on the number of nodes you select, the installer displays one or more `curl` commands.
 
 . Run the 'curl' command from the command line of each node in your installation.
 +
