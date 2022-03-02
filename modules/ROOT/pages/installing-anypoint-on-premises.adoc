@@ -470,7 +470,7 @@ Below is an OpenAM configuration. Please replace $OPEN_AM_URL and @PLATFORM_URL 
 [%header,cols="2*a"]
 |===
 |Create Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/?_action=create
-|Delete Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/{{client_id}}
+|Delete Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/{\{client_id}}
 |Scopes |cn, sn, mail, uid, givenName
 |Default Scopes |cn, sn, mail, uid, givenName
 |===
@@ -530,7 +530,7 @@ Then sign in to OpenAM with your username and password.
 [%header,cols="2*a"]
 |===
 |Create Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/?_action=create
-|Delete Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/{{client_id}}
+|Delete Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/{\{client_id}}
 |Scopes | cn, sn, mail, uid, givenName
 |Default Scopes | cn, sn, mail, uid, givenName
 |===
@@ -583,7 +583,7 @@ Below is a PingFederate configuration. Please replace the $PING_FEDERATE_URL and
 [%header,cols="2*a"]
 |===
 |Create Url | https://$PING_FEDERATE_URL:9031/pf-ws/rest/oauth/clients
-|Delete Url | https://$PING_FEDERATE_URL:9031/pf-ws/rest/oauth/clients/{{client_id}}
+|Delete Url | https://$PING_FEDERATE_URL:9031/pf-ws/rest/oauth/clients/{\{client_id}}
 |Username | admin
 |Password | 11111
 |===
@@ -627,17 +627,17 @@ Below is an LDAP configuration. You can use your own LDAP as it's fully configur
 *DNs*
 [%header,cols="2*a"]
 |===
-|user | uid={{username}},ou=people,dc=muleforge,dc=org
-|group | cn={{groupName}},ou=groups,dc=muleforge,dc=org
+|user | uid={\{username}},ou=people,dc=muleforge,dc=org
+|group | cn={\{groupName}},ou=groups,dc=muleforge,dc=org
 |===
 
 *Filters*
 [%header,cols="2*a"]
 |===
-|userByUsername | (&(objectClass=inetOrgPerson)(uid={{username}}))
-|userByEmail | (&(objectClass=inetOrgPerson)(mail={{email}}))
-|groupByGroupName | (&(objectClass=groupOfUniqueNames)(cn={{groupName}}))
-|groupsByUsername |(&(objectClass=groupOfUniqueNames)(uniqueMember=uid={{username}},ou=people,dc=muleforge,dc=org))
+|userByUsername | (&(objectClass=inetOrgPerson)(uid={\{username}}))
+|userByEmail | (&(objectClass=inetOrgPerson)(mail={\{email}}))
+|groupByGroupName | (&(objectClass=groupOfUniqueNames)(cn={\{groupName}}))
+|groupsByUsername |(&(objectClass=groupOfUniqueNames)(uniqueMember=uid={\{username}},ou=people,dc=muleforge,dc=org))
 |===
 
 *User Field Mappings*
