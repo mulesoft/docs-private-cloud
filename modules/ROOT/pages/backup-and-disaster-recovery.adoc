@@ -9,7 +9,7 @@ Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires you to 
 
 [IMPORTANT]
 ====
-Backup and restore for Anypoint Monitoring and Anypoint Visualizer are perfored outside the normal Gravity backup and restore mechanism, and require a separate procedure.
+Backup and restore for Anypoint Monitoring and Anypoint Visualizer are performed outside the normal Gravity backup and restore mechanism, and require a separate procedure.
 ====
 
 == Create a Backup
@@ -128,7 +128,7 @@ The script has these parameters:
  -va : (optional) verbose output.
         Default non-verbose.
  -f : (Required) name of the tar file.
-        Default for backup : dias-prov-k8s-am-influxdb-comp_YYYYMMD.  [string].
+        Default for backup : dias-prov-k8s-am-influxdb-comp_YYYYMMDD.  [string].
         Default for restore : /var/lib/data/influxdb/backup/dias-prov-k8s-am-influxdb-comp_YYYYMMDD.tar.gz.  [Full Path].
  -d : (Required for backup) full path to location where backup tar file is stored.
         Default for backup : /var/lib/data/influxdb/backup. [Full Path].

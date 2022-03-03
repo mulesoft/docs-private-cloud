@@ -71,7 +71,7 @@ Connection closed.
 == Troubleshooting
 
 If the connection is working, you can check Kapacitor logs for other errors when sending email alerts. 
-On Ops Center, you can retrieve log information in the console ouput by running the following command: 
+On Ops Center, you can retrieve log information in the console output by running the following command: 
 ----
 kubectl logs -n monitoring -l component=kapacitor -c kapacitor
 ----

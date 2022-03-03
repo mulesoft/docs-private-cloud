@@ -179,7 +179,7 @@ Anypoint Monitoring is an optional, add-on component. See xref:anypoint-monitori
 ** 4TB InfluxDB volume for each AMV node
 ** 500 GB Logstash volume per AMV node
 ** 500 GB insight-cassandra-meld volume per AMV node
-** IOPS: 1500 IPS per volume (1 voolume each for Influx, logstash, and insight-cassandra-meld)
+** IOPS: 1500 IPS per volume (1 volume each for Influx, logstash, and insight-cassandra-meld)
 ** Network: 10 GB/second
 
 ==== License Requirements
