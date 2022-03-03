@@ -111,7 +111,7 @@ Please follow the instructions listed on https://docs.docker.com/compose/install
 
 ==== Copy platform config files to `/opt/config`
 
-The Anypoint Platform configuration files must be in a predictable location on each host machine because Rancher dynamically launches services on any available host.  This means that it won’t have the benefit of finding config files from a current working directory the same way docker-compose would.  `/opt/config` has been chosen as the default directory to store platform configuration files, so what you need to do is download the link:{attachmentsdir}/anypoint-platform.zip[Anypoint Platform On Premsies] and copy the config directory into the `/opt` folder.  Repeat this procedure on every host you will setup.
+The Anypoint Platform configuration files must be in a predictable location on each host machine because Rancher dynamically launches services on any available host.  This means that it won’t have the benefit of finding config files from a current working directory the same way docker-compose would.  `/opt/config` has been chosen as the default directory to store platform configuration files, so what you need to do is download the link:{attachmentsdir}/anypoint-platform.zip[Anypoint Platform On Premises] and copy the config directory into the `/opt` folder.  Repeat this procedure on every host you will setup.
 
 ----
 > cd anypoint-platform
@@ -205,7 +205,7 @@ image::add-registry3.png[Verify]
 
 [NOTE]
 ====
-We use our own internal docker registry. To download these images you will need to have the appropriate permissions added to your Anypoint account.  If you do not already have these, please contact Account Representative (CSM or AE) and they will guide you throught the provisioning process.
+We use our own internal docker registry. To download these images you will need to have the appropriate permissions added to your Anypoint account.  If you do not already have these, please contact Account Representative (CSM or AE) and they will guide you through the provisioning process.
 ====
 
 ==== OPTIONAL: Regenerate certificates, keys and keystores in the platform config
@@ -430,7 +430,7 @@ image::rancher-add-load-balancer2.png[load balancer]
 
 === OpenAM Configuration (Version 12)
 
-Below is an OpenAM configuration. Please replace $OPEN_AM_URL and @PLATFORM_URL for the approapiate URLs.
+Below is an OpenAM configuration. Please replace $OPEN_AM_URL and @PLATFORM_URL for the appropriate URLs.
 
 *Identity Federation Service Provider*
 [%header,cols="2*a"]
@@ -470,7 +470,7 @@ Below is an OpenAM configuration. Please replace $OPEN_AM_URL and @PLATFORM_URL 
 [%header,cols="2*a"]
 |===
 |Create Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/?_action=create
-|Delete Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/{{client_id}}
+|Delete Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/{\{client_id}}
 |Scopes |cn, sn, mail, uid, givenName
 |Default Scopes |cn, sn, mail, uid, givenName
 |===
@@ -530,7 +530,7 @@ Then sign in to OpenAM with your username and password.
 [%header,cols="2*a"]
 |===
 |Create Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/?_action=create
-|Delete Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/{{client_id}}
+|Delete Url | https://$OPEN_AM_URL:8443/openam/frrest/oauth2/client/{\{client_id}}
 |Scopes | cn, sn, mail, uid, givenName
 |Default Scopes | cn, sn, mail, uid, givenName
 |===
@@ -551,7 +551,7 @@ Then sign in to OpenAM with your username and password.
 
 === Ping Federate Configuration (Version 6.10)
 
-Below is a PingFederate configuration. Please replace the $PING_FEDERATE_URL and $PLATFORM_URL with the approapiate URLs.
+Below is a PingFederate configuration. Please replace the $PING_FEDERATE_URL and $PLATFORM_URL with the appropriate URLs.
 
 *Identity Federation Service Provider*
 [%header,cols="2*a"]
@@ -583,7 +583,7 @@ Below is a PingFederate configuration. Please replace the $PING_FEDERATE_URL and
 [%header,cols="2*a"]
 |===
 |Create Url | https://$PING_FEDERATE_URL:9031/pf-ws/rest/oauth/clients
-|Delete Url | https://$PING_FEDERATE_URL:9031/pf-ws/rest/oauth/clients/{{client_id}}
+|Delete Url | https://$PING_FEDERATE_URL:9031/pf-ws/rest/oauth/clients/{\{client_id}}
 |Username | admin
 |Password | 11111
 |===
@@ -627,17 +627,17 @@ Below is an LDAP configuration. You can use your own LDAP as it's fully configur
 *DNs*
 [%header,cols="2*a"]
 |===
-|user | uid={{username}},ou=people,dc=muleforge,dc=org
-|group | cn={{groupName}},ou=groups,dc=muleforge,dc=org
+|user | uid={\{username}},ou=people,dc=muleforge,dc=org
+|group | cn={\{groupName}},ou=groups,dc=muleforge,dc=org
 |===
 
 *Filters*
 [%header,cols="2*a"]
 |===
-|userByUsername | (&(objectClass=inetOrgPerson)(uid={{username}}))
-|userByEmail | (&(objectClass=inetOrgPerson)(mail={{email}}))
-|groupByGroupName | (&(objectClass=groupOfUniqueNames)(cn={{groupName}}))
-|groupsByUsername |(&(objectClass=groupOfUniqueNames)(uniqueMember=uid={{username}},ou=people,dc=muleforge,dc=org))
+|userByUsername | (&(objectClass=inetOrgPerson)(uid={\{username}}))
+|userByEmail | (&(objectClass=inetOrgPerson)(mail={\{email}}))
+|groupByGroupName | (&(objectClass=groupOfUniqueNames)(cn={\{groupName}}))
+|groupsByUsername |(&(objectClass=groupOfUniqueNames)(uniqueMember=uid={\{username}},ou=people,dc=muleforge,dc=org))
 |===
 
 *User Field Mappings*
