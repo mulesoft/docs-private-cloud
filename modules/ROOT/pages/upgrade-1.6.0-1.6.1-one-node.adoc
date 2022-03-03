@@ -113,7 +113,7 @@ From the master node, run the following command:
 ./manual_update_161.sh bootstrap-system
 ----
 
-. Peform the system update
+. Perform the system update
 +
 Perform the following command by logging into each node in your cluster. You must run this command sequentially on each node. Wait until this command completes before running it on the next node.
 +
@@ -151,7 +151,7 @@ From the master node, run the following command one each node in your cluster. Y
 ./manual_update_161.sh drain=<node-name>
 ----
 +
-The ouput of this command should be similar to the following:
+The output of this command should be similar to the following:
 +
 ----
 ./manual_update_161.sh drain=172.31.11.215

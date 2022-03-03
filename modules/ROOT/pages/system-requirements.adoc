@@ -8,7 +8,7 @@ To ensure the performance and stability of Anypoint Platform Private Cloud Editi
 [WARNING]
 If your system does not meet all of the minimum system requirements, you cannot install Anypoint Platform Private Cloud Edition.
 
-== Supported Viritualization Environments
+== Supported Virtualization Environments
 
 Only VMWare bare metal virtualization environments and physical servers are supported.
 

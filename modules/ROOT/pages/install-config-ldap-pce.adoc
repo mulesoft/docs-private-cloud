@@ -35,7 +35,7 @@ The following procedure describes how to configure user management using LDAP ve
 [%header%autowidth.spread]
 |===
 | Property | Description
-| User | The distinguished name for your user search base object. For example,`uid={{username}},ou=people.dc=mulesoft,dc=com`.
+| User | The distinguished name for your user search base object. For example,`uid={\{username}},ou=people.dc=mulesoft,dc=com`.
 | Group | The distinguished name for your groups search base object. For example, `ou=groups,dc=mulesoft,dc=com`.
 |===
 
@@ -44,10 +44,10 @@ The following procedure describes how to configure user management using LDAP ve
 [%header%autowidth.spread]
 |===
 | Property | Description
-| User by Username | The search filter to find users by user name. For example, `(&(objectClass=inetOrgPerson)(uid={{username}}))`.
-| User by Email | The search filter to find users by email. For example, `(&(objectClass=inetOrgPerson)(mail={{email}}))`.
-| Group by GroupName | The search filter to find groups by groupName. For example, `(&(objectClass=groupOfNames)(cn={{groupName}}))`.
-| User's Groups by Username | The search filter to find user groups by userName. For example, `(&objectClass=GroupOfNames)(member=uid={{username}},ou=people,dc=mulesoft,dc=com))`.
+| User by Username | The search filter to find users by user name. For example, `(&(objectClass=inetOrgPerson)(uid={\{username}}))`.
+| User by Email | The search filter to find users by email. For example, `(&(objectClass=inetOrgPerson)(mail={\{email}}))`.
+| Group by GroupName | The search filter to find groups by groupName. For example, `(&(objectClass=groupOfNames)(cn={\{groupName}}))`.
+| User's Groups by Username | The search filter to find user groups by userName. For example, `(&objectClass=GroupOfNames)(member=uid={\{username}},ou=people,dc=mulesoft,dc=com))`.
 |===
 
 . Specify the user field mappings
