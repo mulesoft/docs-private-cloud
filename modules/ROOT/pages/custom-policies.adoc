@@ -34,7 +34,7 @@ The following snippet shows the relevant sections:
     ...
 ----
 +
-In the following examples, ${ANYPOINT_DNS} is set to your DNS for Anypoint Platform PCE. The `username` and `password` must correspond with your installation.
+In the following examples, $\{ANYPOINT_DNS} is set to your DNS for Anypoint Platform PCE. The `username` and `password` must correspond with your installation.
 
 . Generate the archetype:
 +
@@ -83,7 +83,7 @@ keytool -printcert -sslserver ${ANYPOINT_DNS}:443 -rfc > /tmp/anypoint.crt
 keytool -importcert -alias my-company.com -keystore /etc/ssl/certs/java/cacerts -storepass changeit -file /tmp/anypoint.crt
 ----
 +
-In the previous example, $ANYPOINT_DNS is set to the DNS for Anypoint Platform PCE. Replace the location and password for your JVM’s truststore.
+In the previous example, $ANYPOINT_DNS is set to the DNS for Anypoint Platform PCE. Replace the location and password for your JVM's truststore.
 
 . Verify your policy was uploaded by directly visiting `+https://${ANYPOINT_DNS}/exchange/?type=policy+` or `+https://${ANYPOINT_DNS}/exchange/${orgID}/${artifactId}/+`.
 +

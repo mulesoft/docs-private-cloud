@@ -189,7 +189,7 @@ This file contains default, search, and visualization dashboards that you can us
 
 . Add the Index Pattern ID to the `searchSourceJSON` Property of `searches.json`.
 +
-Modify `searches.json` to include the index pattern ID retrieved in a previous step. You must modify every occurence of `searchSourceJSON` in this file.
+Modify `searches.json` to include the index pattern ID retrieved in a previous step. You must modify every occurrence of `searchSourceJSON` in this file.
 +
 ----
 "kibanaSavedObjectMeta": {
