@@ -146,7 +146,7 @@ Anypoint Platform PCE does not the support the following Anypoint Monitoring fea
 ** Support for Mule 3.8.x
 ** Log management
 +
-As an alternative, use your server's logging capabilties or a third-party vendor like Splunk.
+As an alternative, use your server's logging capabilities or a third-party vendor like Splunk.
 ** Increased storage capacity
 +
 This capacity is not required because the Archive API is not supported.
@@ -178,4 +178,3 @@ If you want to uninstall the Anypoint Monitoring add-on, contact MuleSoft servic
 * xref:prereq-hardware.adoc[Hardware Prerequisites]
 * xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore for Anypoint Platform PCE]
 * xref:monitoring::index.adoc[Anypoint Monitoring Overview]
-

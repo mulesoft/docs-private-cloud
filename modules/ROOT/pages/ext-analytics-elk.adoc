@@ -120,7 +120,7 @@ var:
 
 . Set up Filebeat and provision dashboards to Kibana.
 +
-Inside your Filebeat installation folder, execute the following command. Replace the `${filebeat-installation-folder}` with the path to your Filebeat installation root folder, and change the Elasticsearch host if needed.
+Inside your Filebeat installation folder, execute the following command. Replace the `$\{filebeat-installation-folder}` with the path to your Filebeat installation root folder, and change the Elasticsearch host if needed.
 +
 ---
 ./filebeat setup -e \
@@ -136,7 +136,7 @@ Inside your Filebeat installation folder, execute the following command. Replace
 
 . Start Filebeat.
 +
-Inside your Filebeat installation folder, execute the following command. Replace the `${filebeat-installation-folder}` with the path to your Filebeat installation root folder, and change the Elasticsearch host if needed.
+Inside your Filebeat installation folder, execute the following command. Replace the `$\{filebeat-installation-folder}` with the path to your Filebeat installation root folder, and change the Elasticsearch host if needed.
 +
 ----
 ./filebeat -e \
