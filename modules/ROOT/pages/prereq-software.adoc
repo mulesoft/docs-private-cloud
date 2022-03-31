@@ -19,7 +19,12 @@ Before you install Anypoint Platform PCE, your infrastructure team must review e
 The following Linux distributions are supported:
 
 * Red Hat Enterprise Linux (RHEL) 7.8, 7.9, 8.1, 8.2, 8.3., 8.4, and 8.5
-* CentOS 7.8, 7.9, 8.1, 8.2, and 8.3., 8.4, and 8.5
+* CentOS 7.8 and 7.9
+
+[NOTE]
+--
+Anypoint Platform PCE no longer supports CentOS 8, as it has reached https://www.centos.org/centos-linux-eol/[end-of-life^]. 
+--
 
 === Check for SELinux Custom Profiles
 
