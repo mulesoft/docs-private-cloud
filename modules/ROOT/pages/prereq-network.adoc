@@ -70,6 +70,9 @@ You can use netcat or a similar utility to verify port configuration.
 * You must enable TCP ports 53, 3011, and 3012 on all nodes to allow communication with the database cluster.
 * If you plan to use the GUI installer to install Anypoint Platform PCE, you must enable port 61009.
 
+== Disable OS NetworkManager Services
+In some operating systems, like RHEL/CentOS 8.4, NetworkManager includes two extra services: `nm-cloud-setup.service` and `nm-cloud-setup.timer`. These services add routing tables that interfere with the configuration of the Kubernetes Container Network Interface (CNI) plugin. If those services exist, disable them and restart the node before proceeding with the installation.
+
 == Verify NAT Traffic Requirements
 
 In some situations, the Kubernetes overlay network uses NAT. NAT requires that nodes be able to send and 
