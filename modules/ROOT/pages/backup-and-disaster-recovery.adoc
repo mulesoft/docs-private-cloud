@@ -24,7 +24,7 @@ This command creates an archive of the current system state in: `/var/lib/gravit
 
 * `--follow`
 +
-Outputs the backup job logs to stdout. In the following example, `tee` enables you to output in stdout and file at the same time:
+Outputs the backup job logs to stdout. In the following example, `tee` enables you to output to stdout and file at the same time:
 ----
 gravity backup /var/lib/gravity/planet/share/backup.tar.gz --follow | tee -a /var/lib/gravity/planet/share/backup.log
 ----
