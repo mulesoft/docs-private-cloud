@@ -28,7 +28,7 @@ This command creates an archive of the current system state in: `/var/lib/gravit
 gravity backup /var/lib/gravity/planet/share/backup.tar.gz --follow | tee -a /var/lib/gravity/planet/share/backup.log
 ----
 
-* ``--timeout`
+* `--timeout`
 +
 Specifies the deadline for the backup job, for example, 30s or 5m. Default is 20m.
 
