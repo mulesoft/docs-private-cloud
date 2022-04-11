@@ -20,17 +20,11 @@ To create a backup, run the following command on any node in the cluster:
 gravity backup /var/lib/gravity/planet/share/backup.tar.gz
 ----
 
-This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. You can pass the following optional parameters to the `gravity` backup command:
-
-* `--follow`
+This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. You can pass the `--follow` parameter to the `gravity` backup command to outputs the backup job logs to stdout:
 +
-Outputs the backup job logs to stdout.
-* `--timeout`
-+
-Specifies the deadline for the backup job, for example, 30s or 5m. Default is 20m.
-* `--log-file`
-+
-Outputs logs to a file.
+----
+gravity backup /var/lib/gravity/planet/share/backup.tar.gz --follow | tee -a /var/lib/gravity/planet/share/backup.log
+----
 
 Backup contents:
 
@@ -53,7 +47,7 @@ Backup contents:
 | Anypoint Monitoring metrics | N
 |===
  
-*Anypoint Platform PCE has information only about runtimes, such as their names and status.
+Anypoint Platform PCE has information only about runtimes, such as their names and status.
 
 == Perform a System Restore
 
@@ -83,19 +77,7 @@ scp /backup-path/to-restore.tar.gz your_username@remotehost.edu:/var/lib/gravity
 sudo gravity restore /var/lib/gravity/planet/share/to-restore.tar.gz
 ----
 +
-You can pass the following optional parameters:
-+
-====
-* `--follow`
-+
-Outputs the restore job logs to stdout.
-* `--timeout`
-+
-Specifies the maximum time allowed for the restore operation, for example, 30s, 5m, and so on. The default value is `80m`. If you have a very large number of applications and files, use a minimum of `160m` as the `--timeout` value.
-* `--log-file`
-+
-Outputs logs to a file.
-====
+You can pass `--follow` to output the restore job logs to stdout.
 
 . Wait for the operation to complete, which is typically 40 to 60 minutes.
 . Manually restore the NFS files if you are not reusing the original NFS.
