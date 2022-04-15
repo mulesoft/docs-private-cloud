@@ -113,7 +113,7 @@ The backup and restore script must be run on a `master` node and must have `sudo
 
 === Procedure
 
-The InfluxDB backup and restore script is in the PCE environment: `/var/lib/gravity/site/packages/unpacked/gravitational.io/anypoint/3.0.0*/resources/kubernetes/amv-backup-restore/amv-backup-restore.sh`
+The InfluxDB backup and restore script is in the Anypoint Platform PCE environment: `/var/lib/gravity/site/packages/unpacked/gravitational.io/anypoint/3.1.0*/resources/kubernetes/amv-backup-restore/amv-backup-restore.sh`
 
 The script has these parameters:
 
