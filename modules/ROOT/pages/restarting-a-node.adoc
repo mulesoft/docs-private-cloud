@@ -114,4 +114,3 @@ gravity status
 ```
 +
 This command should display a `healthy` status for all nodes of the cluster. After you verify that the node has rejoined the cluster and is in healthy status, repeat the process for the next node in the cluster until all nodes are updated.
-****
