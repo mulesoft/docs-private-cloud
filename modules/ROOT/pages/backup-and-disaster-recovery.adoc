@@ -47,6 +47,7 @@ Backup contents:
 | SMTP settings | Y
 | DNS settings | N
 | Platform certificate | N
+| Ops Center certificate | N
 | NFS settings | N
 | NFS files | N	
 | Drives | N
