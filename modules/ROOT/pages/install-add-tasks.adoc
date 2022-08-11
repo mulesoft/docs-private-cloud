@@ -52,6 +52,6 @@ You can add a custom message to your login page, that all users in your organiza
 
 Now that your installation is complete, your platform is ready for being used. Users registered in your external identity service should have access to your Anypoint platform xref:access-management::organization.adoc[organization]. As an admin you can now add xref:access-management::roles.adoc[roles] to these users. You can also start xref:runtime-manager::managing-servers.adoc[registering servers] so that you can then xref:runtime-manager::deploying-to-your-own-servers.adoc[deploy to them], etc.
 
-The developers of your organization that create Mule apps through the xref:6@studio::index.adoc[Anypoint Studio] IDE should set up their editors so that these interface with your locally installed Anypoint Platform (instead of the default cloud Anypoint Platform). See xref:6@studio::setting-up-your-development-environment.adoc#enable-on-premises-setup[Enable on-premises Setup].
+The developers of your organization that create Mule apps through the xref:6.x@studio::index.adoc[Anypoint Studio] IDE should set up their editors so that these interface with your locally installed Anypoint Platform (instead of the default cloud Anypoint Platform). See xref:6.x@studio::setting-up-your-development-environment.adoc#enable-on-premises-setup[Enable on-premises Setup].
 
 See xref:managing-via-the-ops-center.adoc[Managing via the Ops Center] for instructions on how to add or remove servers from the platform cluster and other changes you may want to carry out after installation.
