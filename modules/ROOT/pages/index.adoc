@@ -92,44 +92,44 @@ a|
 
 a|
 
-* v0.7.585
-* v1.0.257
-* v0.6.1089
-* v0.7.103
-* v0.9.160
-* v0.6.116
-* v0.6.376
-* v0.9.70
-* v0.6.24
-* v0.2.90
-* v0.8.531
-* v0.7.664
-* v0.8.193
-* v0.8.4134
-* v0.8.1948
+* v0.7.636
+* v1.0.504
+* v0.6.1192
+* v0.8.71
+* v0.9.246
+* v0.6.214
+* v0.6.469
+* v1.1.47
+* v0.6.86
+* v0.2.172
+* v0.8.584
+* v0.7.757
+* v0.8.250
+* v0.8.4803
+* v0.8.2127
 
 | Connectivity | REST Connect Service | v1.12.40
-| API Platform | API Platform API | v2.7.0
-| API Platform | API Platform Web | v1.15.104
-| API Platform | API Manager Web | v1.5.365
-| API Platform | Contract Caching Service | v1.1.28
-| API Platform | API Proxy Builder Service | v1.2.52
-| API Platform | RAML Parser Service | v0.3.76
-| API Platform | Proxies XAPI Service | v1.2.75
-| API Designer | API Designer XAPI | v3.29.0
-| API Designer | API Designer UI | v2.32.0
-| Mocking Service | Mocking Service | v2.29.1
-| Mozart | Design Center UI | v2.0.109
+| API Platform | API Platform API | v2.7.792
+| API Platform | API Platform Web | v1.15.117
+| API Platform | API Manager Web | v1.5.1031
+| API Platform | Contract Caching Service | v1.1.158
+| API Platform | API Proxy Builder Service | v1.2.123
+| API Platform | RAML Parser Service | v0.3.102
+| API Platform | Proxies XAPI Service | v1.2.206
+| API Designer | API Designer XAPI | v3.41.0
+| API Designer | API Designer UI | v2.44.0
+| Mocking Service | Mocking Service | v2.41.0
+| Mozart | Design Center UI | v2.0.143
 | Mozart | Mozart XAPI | v2.0.232
 | Mozart | Mozart Project Manager Service | v3.0.45
-| Runtime Manager | Cloudhub MCM | v2.17.34
-| Runtime Manager | Cloudhub UI | 
-| Runtime Manager | AMC UI REST Facade | v2.12.25
-| Runtime Manager | Hybrid REST | v2.31.159
-| Runtime Manager | Metadata Manager | 
-| Runtime Manager | Platform Alerts | 
+| Runtime Manager | Cloudhub MCM | v2.17.155
+| Runtime Manager | Cloudhub UI | 1.100
+| Runtime Manager | AMC UI REST Facade | v2.12.75
+| Runtime Manager | Hybrid REST | v2.31.269
+| Runtime Manager | Metadata Manager | 1.9.49
+| Runtime Manager | Platform Alerts | 1.10.59
 | Runtime Manager | Mule Message Processor | v2.0.37
-| Runtime Manager | Platform Messages | 
+| Runtime Manager | Platform Messages | 1.7.58
 | Access Management | Authentication Server | v1.2.48
 | Access Management | Core Services UI | v0.81.x
 | Access Management | Anypoint Sign In | v0.81.x
@@ -137,10 +137,10 @@ a|
 | Access Management | Landing Page UI | v0.81.x
 | Access Management | Navbar | v0.81.x
 | Anypoint Platform PCE | Anypoint Platform PCE Packaging | v3.2.0
-| API Modeling Framework (AMF) | AMF Service | v1.1.81
-| VCS | VCS  | v0.3.1540
-| VCS | VCS Git Proxy | v0.2.106
-| Anypoint Studio | Studio | v7.12.0
+| API Modeling Framework (AMF) | AMF Service | v1.2.49
+| VCS | VCS  | v0.24+
+| VCS | VCS Git Proxy | v0.2.132+
+| Anypoint Studio | Studio | v7.15.0
 | Anypoint Visualizer | Network Graphs | v0.6.2.0
 |===
 
