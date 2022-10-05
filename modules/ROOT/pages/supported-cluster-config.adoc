@@ -13,11 +13,11 @@ The 4-node configuration is the smallest configuration that Anypoint Platform PC
 
 image::configuration-4-node.png[4-node Configuration]
 
-Three of the nodes host an instance of the database and object store. Hosting the database and object store enables persistence but requires larger minimum disk and memory requirements. Although three of the nodes contain a database, only one database is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
+Three of the nodes host an instance of the database and object store. Hosting the database and object store enables persistence but requires larger minimum disk and memory requirements. Although three of the nodes contain a database, only one database is used as the primary. Applications on each node write to this database only. The other two database instances are hot standby instances of the primary database that take over as the primary database in case of failure.
 
 == 7-Node Configuration
 
-In the 7-node configuration, four nodes are dedicated to hosting platform applications and services. The other three nodes host the database and object store instances. Although each node contains a database, only one of the database nodes is used as the master. Applications on each node write to this database only. The other two database instances are hot standby instances of the master database that take over as the master database in case of failure.
+In the 7-node configuration, four nodes are dedicated to hosting platform applications and services. The other three nodes host the database and object store instances. Although each node contains a database, only one of the database nodes is used as the primary. Applications on each node write to this database only. The other two database instances are hot standby instances of the primary database that take over as the primary database in case of failure.
 
 image::configuration-7-node.png[7-node Configuration]
 
@@ -59,8 +59,8 @@ The following table shows the recommended and maximum number of Mule instances a
 | | 4-node Configuration | 7-node Configuration
 | Maximum instances per API group | 100 | 100
 | Client applications (per user) | 5000 | 5000
-| Client applications (per master organization) | 10000 | 10000
-| Maximum API instances manager per master organization | 6000 | 12000
+| Client applications (per root organization) | 10000 | 10000
+| Maximum API instances manager per root organization | 6000 | 12000
 | Applied policies | 12000 | 24000
 | Created contracts | 12000 | 24000
 |===
