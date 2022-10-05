@@ -89,7 +89,7 @@ gravity get pod -o wide--all-namespaces | grep -vi Running
 
 === Rejoin the Node
 
-. Check the gravity Planet master and teleport status:
+. Check the gravity Planet service and teleport status:
 +
 ```
 systemctl list-units '*gravity__gravitational*'
