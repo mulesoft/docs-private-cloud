@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+include::reuse::partial$non-inclusive-banner.adoc[]
+
 == Before You Begin
 
 * Set up and test the backup procedure on all clusters.
