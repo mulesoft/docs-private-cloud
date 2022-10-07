@@ -22,8 +22,4 @@ Before performing this workflow, ensure that you have verified the prerequisites
 
 . (Optional) Delete the default Anypoint Platform user created during installation. See xref:install-disable-local-user.adoc[To Delete the Local User after Installing Private Cloud Edition].
 
-. (Optional) Install Anypoint Platform for PCF
-+
-To deploy your applications to Pivotal Cloud Foundry, complete the xref:1.5@anypoint-platform-pcf::pcf-workflow.adoc[Workflow: Install, Configure, and Use Anypoint Platform for PCF].
-
 After completing the steps in this workflow, you can deploy and manage applications, register APIs and use the API Exchange on an Anypoint Platform environment running on your own local network.
