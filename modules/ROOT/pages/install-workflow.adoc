@@ -18,8 +18,4 @@ Before performing this workflow, ensure that you have verified the prerequisites
 
 . Ensure that you have configured your system to perform regular backups. See xref:backup-and-disaster-recovery.adoc[About Backup and Recovery] for more information.
 
-. (Optional) Install Anypoint Platform for PCF
-+
-To deploy your applications to Pivotal Cloud Foundry, complete the xref:1.5@anypoint-platform-pcf::pcf-workflow.adoc[Workflow: Install, Configure, and Use Anypoint Platform for PCF].
-
 After completing the steps in this workflow, you can deploy and manage applications, register APIs and use the API Exchange on an Anypoint Platform environment running on your own local network.
