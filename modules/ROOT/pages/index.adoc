@@ -1,4 +1,4 @@
-= About Anypoint Platform PCE
+= Anypoint Platform PCE Overview
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
