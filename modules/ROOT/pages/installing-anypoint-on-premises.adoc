@@ -217,7 +217,7 @@ Included with both zip files available for download in this document, there's a 
 > keystore-generation.sh
 ----
 
-Follow the on-screen prompts.  Notice that once executed a new file will be generated from this process named `truststore.jks)`.  This file is required by xref:3.8@mule-runtime::mule-agents.adoc[the Mule Agent] for all runtimes you wish to register to the console because the agent uses 2-way SSL validation.  Before registering a runtime, you must copy this file to the `conf/` folder of that runtime.
+Follow the on-screen prompts.  Notice that once executed a new file will be generated from this process named `truststore.jks)`.  This file is required by xref:3.9@mule-runtime::mule-agents.adoc[the Mule Agent] for all runtimes you wish to register to the console because the agent uses 2-way SSL validation.  Before registering a runtime, you must copy this file to the `conf/` folder of that runtime.
 
 
 ==== Copy platform config files to `/opt/config`
