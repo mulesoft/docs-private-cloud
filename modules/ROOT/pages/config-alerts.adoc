@@ -6,7 +6,7 @@ endif::[]
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) provides built-in alerts that are triggered when a condition specified in any alert definition is detected.
 
-Measurements are stored in https://www.influxdata.com/products/influxdb-overview[Influxdb] and read by https://www.influxdata.com/time-series-platform/kapacitor[Kapacitor]. Kapacitor sends emails when an alert is triggered.
+Measurements are stored in https://prometheus.io/docs/introduction/overview/[Promethus] and read by https://prometheus.io/docs/alerting/alertmanager/[Alertmanager]. Alertmanager sends emails when an alert is triggered.
 
 == Alert Definitions
 
@@ -29,6 +29,42 @@ Measurements are stored in https://www.influxdata.com/products/influxdb-overview
 | Stolon Replication Lag | Verifies that `Postgres` replicas are in sync | When a replica is lagging by 1800 or more seconds | kapacitor-alerts 
 | Cassandra Load | Verifies that Cassandra nodes are in sync | Warning 10% difference, Critical 20% difference | cassandra-load
 |===
+
+== Configure Alerts Delivery
+
+To configure Alertmanager to send email alerts you need to create some gravity resources
+
+1. Use the following spec replacing the values with your SMTP config and create a file named `smtp-config.yaml` inside gravity:
+
+    
+    kind: smtp
+    version: v2
+    metadata:
+    name: smtp
+    spec:
+    host: <SMTP_HOST>
+    port: <SMTP_PORT>
+    username: <SMTP_USERNAME>
+    password: <SMTP_PASSWORD>
+    ---
+    kind: alerttarget
+    version: v2
+    metadata:
+    name: email-alerts
+    spec:
+    # email address of the alerts recipient
+    email: <RECIPIENT_EMAIL>
+    
+
+2. Run `gravity resource create smtp-config.yaml`. You should see the following output:
+
+    
+    Created cluster SMTP configuration
+    Created monitoring alert target "email-alerts"
+
+3. Add a default router to Alertmanager config
+
+
 
 == Configure Alert Definitions 
 
