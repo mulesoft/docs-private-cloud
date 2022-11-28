@@ -34,7 +34,7 @@ The following table shows the alerts that are shipped by default:
 
 To configure Alertmanager to send email alerts you need to create some gravity resources
 
-1. Use the following spec replacing the values with your SMTP config and create a file named `smtp-config.yaml` inside gravity:
+. Use the following spec replacing the values with your SMTP config and create a file named `smtp-config.yaml` inside gravity:
 
     
     kind: smtp
@@ -56,25 +56,25 @@ To configure Alertmanager to send email alerts you need to create some gravity r
         email: <RECIPIENT_EMAIL>
     
 
-2. Run `gravity resource create smtp-config.yaml`. You should see the following output:
+. Run `gravity resource create smtp-config.yaml`. You should see the following output:
 
     
     Created cluster SMTP configuration
     Created monitoring alert target "email-alerts"
 
-3. Add a default router to Alertmanager config by running this one-liner inside gravity:
+. Add a default router to Alertmanager config by running this one-liner inside gravity:
 
     kubectl get secret -n monitoring alertmanager-main -o json | jq --arg foo "$(kubectl get secret -n monitoring alertmanager-main -o json | jq -r '.data["alertmanager.yaml"]' | base64 -d | yq r - --tojson | jq -r '.route.routes[1] |= . + {"match":{"alertname": "Watchdog", "receiver": "default", "continue": true}}' | jq -r '.route.routes[0].match += {"continue":true}' | yq r - -P | base64 | tr -d '\n')" '.data["alertmanager.yaml"]=$foo' | kubectl apply -f -
 
-4. Configure the FROM email address by replacing <SMTP_FROM> in the next one-line and running it inside gravity:
+. Configure the FROM email address by replacing <SMTP_FROM> in the next one-line and running it inside gravity:
 
     kubectl get secret -n monitoring alertmanager-main -o json | jq --arg foo "$(kubectl get secret -n monitoring alertmanager-main -o json | jq -r '.data["alertmanager.yaml"]' | base64 -d | yq w - 'global.smtp_from' <SMTP_FROM> | base64 | tr -d '\n')" '.data["alertmanager.yaml"]=$foo' | kubectl apply -f -
 
-5. Restart alertmanager pods by running the following:
+. Restart alertmanager pods by running the following:
 
     kubectl delete pod -n monitoring -l app=alertmanager
 
-6. Test Alertmanager by running the following inside gravity:
+. Test Alertmanager by running the following inside gravity:
 
     curl -H 'Content-Type: application/json' -d '[{"labels":{"alertname":"test-alert","state":"firing"}}]' http://alertmanager-main.monitoring.svc.cluster.local:9093/api/v1/alerts
 
