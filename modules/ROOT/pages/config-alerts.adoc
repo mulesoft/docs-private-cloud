@@ -10,77 +10,29 @@ Measurements are stored in https://prometheus.io/docs/introduction/overview/[Pro
 
 == Alert Definitions
 
-The following table shows the alerts that are shipped by default:
+Default alerts are listed in the following table:
 
 [%header%autowidth.spread]
 .Alert Definitions
 |===
-| Component   | Alert         | Description
-| CPU      | High CPU usage     | Triggers a warning, when > 75% used, with > 90% used, triggers a critical error
-| Memory | High memory usage     | Triggers a warning, when > 80% used, with > 90% used, triggers a critical error
-| Systemd      | Overall systemd health     |  Triggers an error when systemd detects a failed service
-| Systemd      | Individual systemd unit health     | Triggers an error when a systemd unit is not loaded/active
-| Filesystem | High disk space usage | Triggers a warning, when > 80% used, with > 90% used, triggers a critical error
-| Filesystem | High inode usage | Triggers a warning, when > 90% used, with > 95% used, triggers a critical error
-| System | Uptime | Triggers a warning when a node's uptime is less than 5min
+| Component | Alert | Description
+| CPU | High CPU usage | Triggers a warning when > 75% used, triggers a critical error when > 90% used
+| Memory | High memory usage | Triggers a warning when > 80% used, triggers a critical error when > 90% used
+| Systemd | Overall systemd health | Triggers an error when systemd detects a failed service
+| Systemd  | Individual systemd unit health | Triggers an error when a systemd unit is not loaded or active
+| Filesystem | High disk space usage | Triggers a warning when > 80% used, triggers a critical error when > 90% used
+| Filesystem | High inode usage | Triggers a warning when > 90% used, triggers a critical error when > 95% used
+| System | Uptime | Triggers a warning when a node's uptime is less than 5 minutes
 | System | Kernel parameters | Triggers an error if a parameter is not set. See [value matrix](requirements.md#kernel-module-matrix) for details.
-| Etcd | Etcd instance health | Triggers an error when an Etcd master is down longer than 5min
-| Etcd | Etcd latency check | Triggers a warning, when follower <-> leader latency exceeds 500ms, then an error when it exceeds 1s over a period of 1min
+| Etcd | Etcd instance health | Triggers an error when an etcd master is down longer than 5 minutes
+| Etcd | Etcd latency check | Triggers a warning when follower <-> leader latency exceeds 500ms, triggers an error when it exceeds 1 second over a period of 1 minute
 | Docker | Docker daemon health | Triggers an error when docker daemon is down
 | Kubernetes | Kubernetes node readiness | Triggers an error when the node is not ready
 |===
 
-== Configure Alerts Delivery
-
-To configure Alertmanager to send email alerts you need to create some gravity resources
-
-. Use the following spec replacing the values with your SMTP config and create a file named `smtp-config.yaml` inside gravity:
-
-    
-    kind: smtp
-    version: v2
-    metadata:
-        name: smtp
-    spec:
-        host: <SMTP_HOST>
-        port: <SMTP_PORT>
-        username: <SMTP_USERNAME>
-        password: <SMTP_PASSWORD>
-    ---
-    kind: alerttarget
-    version: v2
-    metadata:
-        name: email-alerts
-    spec:
-        # email address of the alerts recipient
-        email: <RECIPIENT_EMAIL>
-    
-
-. Run `gravity resource create smtp-config.yaml`. You should see the following output:
-
-    
-    Created cluster SMTP configuration
-    Created monitoring alert target "email-alerts"
-
-. Add a default router to Alertmanager config by running this one-liner inside gravity:
-
-    kubectl get secret -n monitoring alertmanager-main -o json | jq --arg foo "$(kubectl get secret -n monitoring alertmanager-main -o json | jq -r '.data["alertmanager.yaml"]' | base64 -d | yq r - --tojson | jq -r '.route.routes[1] |= . + {"match":{"alertname": "Watchdog", "receiver": "default", "continue": true}}' | jq -r '.route.routes[0].match += {"continue":true}' | yq r - -P | base64 | tr -d '\n')" '.data["alertmanager.yaml"]=$foo' | kubectl apply -f -
-
-. Configure the FROM email address by replacing <SMTP_FROM> in the next one-line and running it inside gravity:
-
-    kubectl get secret -n monitoring alertmanager-main -o json | jq --arg foo "$(kubectl get secret -n monitoring alertmanager-main -o json | jq -r '.data["alertmanager.yaml"]' | base64 -d | yq w - 'global.smtp_from' <SMTP_FROM> | base64 | tr -d '\n')" '.data["alertmanager.yaml"]=$foo' | kubectl apply -f -
-
-. Restart alertmanager pods by running the following:
-
-    kubectl delete pod -n monitoring -l app=alertmanager
-
-. Test Alertmanager by running the following inside gravity:
-
-    curl -H 'Content-Type: application/json' -d '[{"labels":{"alertname":"test-alert","state":"firing"}}]' http://alertmanager-main.monitoring.svc.cluster.local:9093/api/v1/alerts
-
 == Configure Alert Definitions 
 
-- Defining new alerts is done via a gravity resource called alert:
+You define new alerts using a gravity resource called `alert`, as shown in the of following example:
 
     kind: alert
     version: v2
@@ -102,36 +54,103 @@ To configure Alertmanager to send email alerts you need to create some gravity r
         description: |
         Cluster CPU usage exceeds 80%.
 
-See https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/[Alerting Rules] documentation for more details about Prometheus alerts.
+See the https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/[Alerting Rules] documentation for more details about Prometheus alerts.
 
-- Create the alert:
+* To create an alert, run:
++
+----
+gravity resource create alert.yaml
+----
 
-    gravity resource create alert.yaml
+* To view existing alerts run:
++
+----
+gravity resource get alerts
+----
 
-- View existing alerts:
+* To remove an alert, run:
++
+----  
+gravity resource rm alert cpu-alert
+----
 
-    gravity resource get alerts
+== Configure Alerts Delivery
 
-- Remove an alert:
+To configure Alertmanager to send email alerts, create the following gravity resources. 
 
-    gravity resource rm alert cpu-alert
+. Using the following spec, create a file named `smtp-config.yaml` inside gravity, and replace the placeholder values with those of your SMTP configuration:
++
+[source,copy]
+----    
+kind: smtp
+version: v2
+metadata:
+    name: smtp
+spec:
+   host: <SMTP_HOST>
+   port: <SMTP_PORT>
+   username: <SMTP_USERNAME>
+   password: <SMTP_PASSWORD>
+---
+kind: alerttarget
+version: v2
+metadata:
+    name: email-alerts
+spec:
+    # email address of the alerts recipient
+    email: <RECIPIENT_EMAIL>
+----
 
-== Troubleshooting
+. Run `gravity resource create smtp-config.yaml`. You should see the following output:
++
+----     
+Created cluster SMTP configuration
+Created monitoring alert target "email-alerts"
+----
 
-** Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses defined above
-** Verify that your cluster nodes can communicate with your SMTP server.
+. Add a default router to the Alertmanager configuration inside gravity:
++
+----
+kubectl get secret -n monitoring alertmanager-main -o json | jq --arg foo "$(kubectl get secret -n monitoring alertmanager-main -o json | jq -r '.data["alertmanager.yaml"]' | base64 -d | yq r - --tojson | jq -r '.route.routes[1] |= . + {"match":{"alertname": "Watchdog", "receiver": "default", "continue": true}}' | jq -r '.route.routes[0].match += {"continue":true}' | yq r - -P | base64 | tr -d '\n')" '.data["alertmanager.yaml"]=$foo' | kubectl apply -f -
+----
+
+. Configure the FROM email address by replacing the <SMTP_FROM> value:
++
+----
+kubectl get secret -n monitoring alertmanager-main -o json | jq --arg foo "$(kubectl get secret -n monitoring alertmanager-main -o json | jq -r '.data["alertmanager.yaml"]' | base64 -d | yq w - 'global.smtp_from' <SMTP_FROM> | base64 | tr -d '\n')" '.data["alertmanager.yaml"]=$foo' | kubectl apply -f -
+----
+
+. Restart Alertmanager pods:
++
+----
+kubectl delete pod -n monitoring -l app=alertmanager
+----
+
+. Test Alertmanager by running the following command inside gravity:
++
+----
+curl -H 'Content-Type: application/json' -d '[{"labels":{"alertname":"test-alert","state":"firing"}}]' http://alertmanager-main.monitoring.svc.cluster.local:9093/api/v1/alerts
+----
+
+== Troubleshooting Alerts
+
+Common troubleshooting tasks include the following:
+
+* Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses defined above
+* Verify that your cluster nodes can communicate with your SMTP server.
 +
 For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
 +
-
-    telnet my.smtp.server.com 587
-    Trying XXX.XXX.XXX.XXX...
-    Connected to my.smtp.server.com.
-    Escape character is '^]'.
-    220 my.smtp.server.com ESMTP
-    ^[^]
-    telnet> quit
-    Connection closed.
+----
+telnet my.smtp.server.com 587
+Trying XXX.XXX.XXX.XXX...
+Connected to my.smtp.server.com.
+Escape character is '^]'.
+220 my.smtp.server.com ESMTP
+^[^]
+telnet> quit
+Connection closed.
+----
 
 == See Also
 
