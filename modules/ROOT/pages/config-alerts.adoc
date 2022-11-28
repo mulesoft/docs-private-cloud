@@ -118,7 +118,7 @@ See https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/[A
 
 == Troubleshooting
 
-** Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses in the following section.
+** Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses defined above
 ** Verify that your cluster nodes can communicate with your SMTP server.
 +
 For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
