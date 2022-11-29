@@ -6,54 +6,141 @@ endif::[]
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) provides built-in alerts that are triggered when a condition specified in any alert definition is detected.
 
-Measurements are stored in https://www.influxdata.com/products/influxdb-overview[Influxdb] and read by https://www.influxdata.com/time-series-platform/kapacitor[Kapacitor]. Kapacitor sends emails when an alert is triggered.
+Measurements are stored in https://prometheus.io/docs/introduction/overview/[Promethus^] and read by https://prometheus.io/docs/alerting/alertmanager/[Alertmanager^]. Alertmanager sends emails when an alert is triggered.
 
 == Alert Definitions
+
+Default alerts are listed in the following table:
 
 [%header%autowidth.spread]
 .Alert Definitions
 |===
-| Name | Description | Threshold | Config map
-| High CPU | Measures the total CPU usage on all cluster nodes | Warning 75%, Critical 90% | kapacitor-alerts 
-| High Memory | Measures the memory consumption on all cluster nodes | Warning 75%, Critical 90% | kapacitor-alerts 
-| Filesystem Usage	| Measures the file system usage | Warning 80%, Critical 90% | kapacitor-alerts 
-| Kubernetes Node Status | Checks Kubernetes status for all nodes| When Kubernetes reports a `NotReady` node status | kapacitor-alerts 
-| Etcd Latency | Measures the latency between nodes, which can affect `etcd` performance | Warning 521 seconds, Critical 1024 seconds | kapacitor-alerts 
-| Systemd health | Checks if the `systemd` slice (where gravity is running) is healthy | When gravity or child systems, such as `docker`, `etcd`, `kube-proxy`, `kube-kubelet`, `planet-agent`, `dnsmasq`, and `flanneld`, are down | kapacitor-alerts 
-| Influxdb Healthcheck Status | Checks the health of `Influxdb` (where the metrics for monitoring are stored) | No connection to `Influxdb` | kapacitor-alerts 
-| Networking Configuration | Checks networking operating system flag status | When `ip_forward` or `br_netfilter` flags are disabled | kapacitor-alerts 
-| Node Uptime | Checks if nodes are online | When a node is down for more than five minutes | kapacitor-alerts 
-| Etcd Health | Check the status of `etcd` | When `etcd` is down or not healthy | kapacitor-alerts 
-| Docker Status	| Verifies that the docker service is running on each node | When docker service is not running on a node | kapacitor-alerts 
-| Backup Failing | Checks the result of a backup operation | When a backup operation fails | backup-status-alert
-| Stolon Replication Lag | Verifies that `Postgres` replicas are in sync | When a replica is lagging by 1800 or more seconds | kapacitor-alerts 
-| Cassandra Load | Verifies that Cassandra nodes are in sync | Warning 10% difference, Critical 20% difference | cassandra-load
+| Component | Alert | Description
+| CPU | High CPU usage | Triggers a warning when > 75% used; triggers a critical error when > 90% used
+| Memory | High memory usage | Triggers a warning when > 80% used; triggers a critical error when > 90% used
+| Systemd | Overall systemd health | Triggers an error when systemd detects a failed service
+| Systemd  | Individual systemd unit health | Triggers an error when a systemd unit is not loaded or active
+| Filesystem | High disk space usage | Triggers a warning when > 80% used; triggers a critical error when > 90% used
+| Filesystem | High inode usage | Triggers a warning when > 90% used; triggers a critical error when > 95% used
+| System | Uptime | Triggers a warning when the uptime for a node is less than 5 minutes
+| System | Kernel parameters | Triggers an error if a parameter is not set. See https://github.com/gravitational/gravity/blob/master/docs/8.x/requirements.md#kernel-module-matrix[value matrix^] for details.
+| Etcd | Etcd instance health | Triggers an error when an etcd master is down longer than five minutes
+| Etcd | Etcd latency check | Triggers a warning when follower <-> leader latency exceeds 500 ms; triggers an error when it exceeds 1 second over a period of one minute
+| Docker | Docker daemon health | Triggers an error when the Docker daemon is down
+| Kubernetes | Kubernetes node readiness | Triggers an error when the node is not ready
 |===
 
 == Configure Alert Definitions 
 
-. From OpsCenter, navigate to *Configuration*.
-. Select the *monitoring* namespace.
-. Select a config map and apply your changes.
+You define new alerts using a gravity resource called `alert`, as shown in the following example:
 
-If you apply changes to the `kapacitor-alerts` config map, you must restart Kapacitor. Follow the instructions in the Restart Kapacitor section.
+[source,copy]
+----
+kind: alert
+version: v2
+metadata:
+name: cpu-alert
+spec:
+# the alert name
+alert_name: CPUAlert
+# the rule group the alert belongs to
+group_name: test-group
+# the alert expression
+formula: |
+    node:cluster_cpu_utilization:ratio * 100 > 80
+# the alert labels
+labels:
+    severity: info
+# the alert annotations
+annotations:
+    description: |
+    Cluster CPU usage exceeds 80%.
+----
 
-== Configure Alerts
+See the https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/[Alerting Rules] documentation for more details about Prometheus alerts.
 
-. Configure the `FROM` and `TO` email addresses:
-.. Log in to the Ops Center console and then select *Configuration*.
-.. From the *Namespace* drop-down list, select *monitoring*.
-.. From the *Config maps* drop-down list, select *alerting-addresses*.
-.. Select *From* and then enter the `FROM` email address used for the alert.
-.. Select *To* and then enter the `TO` email address used for the alert.
-
-. Configure your SMTP email server to send alerts.
+* To create an alert, run:
 +
-Configuring the SMTP server in Anypoint Access Management restarts the Anypoint Platform service responsible for initiating alerts.
-. Verify alerts configuration:
+----
+gravity resource create alert.yaml
+----
+
+* To view existing alerts, run:
 +
-** Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses in the following section.
-** Verify that your cluster nodes can communicate with your SMTP server.
+----
+gravity resource get alerts
+----
+
+* To remove an alert, run:
++
+----  
+gravity resource rm alert cpu-alert
+----
+
+== Configure Alerts Delivery
+
+To configure Alertmanager to send email alerts, create the following gravity resources:
+
+. Using the following spec, create a file named `smtp-config.yaml` inside gravity, and replace the placeholder values with those of your SMTP configuration:
++
+[source,copy]
+----    
+kind: smtp
+version: v2
+metadata:
+    name: smtp
+spec:
+   host: <SMTP_HOST>
+   port: <SMTP_PORT>
+   username: <SMTP_USERNAME>
+   password: <SMTP_PASSWORD>
+---
+kind: alerttarget
+version: v2
+metadata:
+    name: email-alerts
+spec:
+    # email address of the alerts recipient
+    email: <RECIPIENT_EMAIL>
+----
+
+. Run `gravity resource create smtp-config.yaml`. You should see the following output:
++
+----     
+Created cluster SMTP configuration
+Created monitoring alert target "email-alerts"
+----
+
+. Add a default router to the Alertmanager configuration inside gravity:
++
+----
+kubectl get secret -n monitoring alertmanager-main -o json | jq --arg foo "$(kubectl get secret -n monitoring alertmanager-main -o json | jq -r '.data["alertmanager.yaml"]' | base64 -d | yq r - --tojson | jq -r '.route.routes[1] |= . + {"match":{"alertname": "Watchdog", "receiver": "default", "continue": true}}' | jq -r '.route.routes[0].match += {"continue":true}' | yq r - -P | base64 | tr -d '\n')" '.data["alertmanager.yaml"]=$foo' | kubectl apply -f -
+----
+
+. Configure the FROM email address by replacing the <SMTP_FROM> value:
++
+----
+kubectl get secret -n monitoring alertmanager-main -o json | jq --arg foo "$(kubectl get secret -n monitoring alertmanager-main -o json | jq -r '.data["alertmanager.yaml"]' | base64 -d | yq w - 'global.smtp_from' <SMTP_FROM> | base64 | tr -d '\n')" '.data["alertmanager.yaml"]=$foo' | kubectl apply -f -
+----
+
+. Restart Alertmanager pods:
++
+----
+kubectl delete pod -n monitoring -l app=alertmanager
+----
+
+. Test Alertmanager by running the following command inside gravity:
++
+----
+curl -H 'Content-Type: application/json' -d '[{"labels":{"alertname":"test-alert","state":"firing"}}]' http://alertmanager-main.monitoring.svc.cluster.local:9093/api/v1/alerts
+----
+
+== Troubleshooting Alerts
+
+Common troubleshooting tasks include the following:
+
+* Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses defined when you configured alerts delivery.
+* Verify that your cluster nodes can communicate with your SMTP server.
 +
 For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
 +
@@ -67,31 +154,6 @@ Escape character is '^]'.
 telnet> quit
 Connection closed.
 ----
-
-== Troubleshooting
-
-If the connection is working, you can check Kapacitor logs for other errors when sending email alerts. 
-On Ops Center, you can retrieve log information in the console output by running the following command: 
-----
-kubectl logs -n monitoring -l component=kapacitor -c kapacitor
-----
-
-== Restart Kapacitor
-When you change the SMTP settings from Access Management, Kapacitor is automatically restarted to include the updated settings. 
-
-If you change an alert definition or the `alerting-addresses` config map without changing the SMTP settings from Access Management, Kapacitor must be manually restarted:
-
-. Open a terminal to one of the master servers.
-. Run the following command:
-+
-```
-`kubectl delete pod -n monitoring -l component=kapacitor`
-```
-. Wait for a `kapacitor` pod to run. Run the following command for verification:
-+
-```
-kubectl get pod -n monitoring -l component=kapacitor` 
-```
 
 == See Also
 
