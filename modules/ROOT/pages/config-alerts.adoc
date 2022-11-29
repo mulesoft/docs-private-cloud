@@ -139,7 +139,7 @@ curl -H 'Content-Type: application/json' -d '[{"labels":{"alertname":"test-alert
 
 Common troubleshooting tasks include the following:
 
-* Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses defined above
+* Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses defined you configured alerts delivery.
 * Verify that your cluster nodes can communicate with your SMTP server.
 +
 For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
