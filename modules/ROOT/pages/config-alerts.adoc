@@ -22,10 +22,10 @@ Default alerts are listed in the following table:
 | Systemd  | Individual systemd unit health | Triggers an error when a systemd unit is not loaded or active
 | Filesystem | High disk space usage | Triggers a warning when > 80% used; triggers a critical error when > 90% used
 | Filesystem | High inode usage | Triggers a warning when > 90% used; triggers a critical error when > 95% used
-| System | Uptime | Triggers a warning when the uptime for a node is less than 5 minutes
+| System | Uptime | Triggers a warning when the uptime for a node is less than five minutes
 | System | Kernel parameters | Triggers an error if a parameter is not set. See https://github.com/gravitational/gravity/blob/master/docs/8.x/requirements.md#kernel-module-matrix[value matrix^] for details.
 | Etcd | Etcd instance health | Triggers an error when an etcd master is down longer than five minutes
-| Etcd | Etcd latency check | Triggers a warning when follower <-> leader latency exceeds 500 ms; triggers an error when it exceeds 1 second over a period of one minute
+| Etcd | Etcd latency check | Triggers a warning when follower <-> leader latency exceeds 500 ms; triggers an error when it exceeds one second over a period of one minute
 | Docker | Docker daemon health | Triggers an error when the Docker daemon is down
 | Kubernetes | Kubernetes node readiness | Triggers an error when the node is not ready
 |===
@@ -57,7 +57,7 @@ annotations:
     Cluster CPU usage exceeds 80%.
 ----
 
-See the https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/[Alerting Rules] documentation for more details about Prometheus alerts.
+See the https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/[Alerting Rules^] documentation for more details about Prometheus alerts.
 
 * To create an alert, run:
 +
@@ -139,7 +139,7 @@ curl -H 'Content-Type: application/json' -d '[{"labels":{"alertname":"test-alert
 
 Common troubleshooting tasks include the following:
 
-* Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses defined when you configured alerts delivery.
+* Verify that your SMTP server can send and receive emails using the addresses you defined as the `FROM` and `TO` addresses when you configured alerts delivery.
 * Verify that your cluster nodes can communicate with your SMTP server.
 +
 For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
