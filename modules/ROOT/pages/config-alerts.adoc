@@ -26,7 +26,7 @@ Default alerts are listed in the following table:
 | System | Kernel parameters | Triggers an error if a parameter is not set. See https://github.com/gravitational/gravity/blob/master/docs/8.x/requirements.md#kernel-module-matrix[value matrix^] for details.
 | Etcd | Etcd instance health | Triggers an error when an etcd master is down longer than 5 minutes
 | Etcd | Etcd latency check | Triggers a warning when follower <-> leader latency exceeds 500ms, triggers an error when it exceeds 1 second over a period of 1 minute
-| Docker | Docker daemon health | Triggers an error when docker daemon is down
+| Docker | Docker daemon health | Triggers an error when the Docker daemon is down
 | Kubernetes | Kubernetes node readiness | Triggers an error when the node is not ready
 |===
 
