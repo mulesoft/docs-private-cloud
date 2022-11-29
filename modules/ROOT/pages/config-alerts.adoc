@@ -16,16 +16,16 @@ Default alerts are listed in the following table:
 .Alert Definitions
 |===
 | Component | Alert | Description
-| CPU | High CPU usage | Triggers a warning when > 75% used, triggers a critical error when > 90% used
-| Memory | High memory usage | Triggers a warning when > 80% used, triggers a critical error when > 90% used
+| CPU | High CPU usage | Triggers a warning when > 75% used; triggers a critical error when > 90% used
+| Memory | High memory usage | Triggers a warning when > 80% used; triggers a critical error when > 90% used
 | Systemd | Overall systemd health | Triggers an error when systemd detects a failed service
 | Systemd  | Individual systemd unit health | Triggers an error when a systemd unit is not loaded or active
-| Filesystem | High disk space usage | Triggers a warning when > 80% used, triggers a critical error when > 90% used
-| Filesystem | High inode usage | Triggers a warning when > 90% used, triggers a critical error when > 95% used
-| System | Uptime | Triggers a warning when a node's uptime is less than 5 minutes
+| Filesystem | High disk space usage | Triggers a warning when > 80% used; triggers a critical error when > 90% used
+| Filesystem | High inode usage | Triggers a warning when > 90% used; triggers a critical error when > 95% used
+| System | Uptime | Triggers a warning when the uptime for a node is less than 5 minutes
 | System | Kernel parameters | Triggers an error if a parameter is not set. See https://github.com/gravitational/gravity/blob/master/docs/8.x/requirements.md#kernel-module-matrix[value matrix^] for details.
-| Etcd | Etcd instance health | Triggers an error when an etcd master is down longer than 5 minutes
-| Etcd | Etcd latency check | Triggers a warning when follower <-> leader latency exceeds 500ms, triggers an error when it exceeds 1 second over a period of 1 minute
+| Etcd | Etcd instance health | Triggers an error when an etcd master is down longer than five minutes
+| Etcd | Etcd latency check | Triggers a warning when follower <-> leader latency exceeds 500 ms; triggers an error when it exceeds 1 second over a period of one minute
 | Docker | Docker daemon health | Triggers an error when the Docker daemon is down
 | Kubernetes | Kubernetes node readiness | Triggers an error when the node is not ready
 |===
