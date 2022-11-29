@@ -68,7 +68,7 @@ The following flags must be enabled:
 * `fs.may_detach_mounts=1`
 * `fs.inotify.max_user_watches=524288`
 
-Required settings for the kubelet, which does not update the Kernel settings automatically:
+The kubelet requires the following settings, which do not update the Kernel settings automatically:
 
 * `vm.overcommit_memory=1`
 * `kernel.panic=10`
