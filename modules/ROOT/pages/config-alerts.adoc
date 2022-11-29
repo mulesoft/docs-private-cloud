@@ -32,27 +32,30 @@ Default alerts are listed in the following table:
 
 == Configure Alert Definitions 
 
-You define new alerts using a gravity resource called `alert`, as shown in the of following example:
+You define new alerts using a gravity resource called `alert`, as shown in the following example:
 
-    kind: alert
-    version: v2
-    metadata:
-    name: cpu-alert
-    spec:
-    # the alert name
-    alert_name: CPUAlert
-    # the rule group the alert belongs to
-    group_name: test-group
-    # the alert expression
-    formula: |
-        node:cluster_cpu_utilization:ratio * 100 > 80
-    # the alert labels
-    labels:
-        severity: info
-    # the alert annotations
-    annotations:
-        description: |
-        Cluster CPU usage exceeds 80%.
+[source,copy]
+----
+kind: alert
+version: v2
+metadata:
+name: cpu-alert
+spec:
+# the alert name
+alert_name: CPUAlert
+# the rule group the alert belongs to
+group_name: test-group
+# the alert expression
+formula: |
+    node:cluster_cpu_utilization:ratio * 100 > 80
+# the alert labels
+labels:
+    severity: info
+# the alert annotations
+annotations:
+    description: |
+    Cluster CPU usage exceeds 80%.
+----
 
 See the https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/[Alerting Rules] documentation for more details about Prometheus alerts.
 
