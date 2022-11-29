@@ -65,7 +65,7 @@ See the https://prometheus.io/docs/prometheus/latest/configuration/alerting_rule
 gravity resource create alert.yaml
 ----
 
-* To view existing alerts run:
+* To view existing alerts, run:
 +
 ----
 gravity resource get alerts
