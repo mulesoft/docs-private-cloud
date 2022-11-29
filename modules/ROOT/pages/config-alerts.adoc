@@ -79,7 +79,7 @@ gravity resource rm alert cpu-alert
 
 == Configure Alerts Delivery
 
-To configure Alertmanager to send email alerts, create the following gravity resources. 
+To configure Alertmanager to send email alerts, create the following gravity resources:
 
 . Using the following spec, create a file named `smtp-config.yaml` inside gravity, and replace the placeholder values with those of your SMTP configuration:
 +
@@ -139,7 +139,7 @@ curl -H 'Content-Type: application/json' -d '[{"labels":{"alertname":"test-alert
 
 Common troubleshooting tasks include the following:
 
-* Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses defined you configured alerts delivery.
+* Verify that your SMTP server can send and receive emails using the addresses you configure as the `FROM` and `TO` addresses defined when you configured alerts delivery.
 * Verify that your cluster nodes can communicate with your SMTP server.
 +
 For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
