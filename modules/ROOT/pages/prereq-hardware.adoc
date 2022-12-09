@@ -38,6 +38,8 @@ Prerequisites for 4-nodes or 7-nodes to run the Anypoint Platform Core.
 
 === Memory and CPU Requirements
 
+The following are the minimum requirements needed for the Anypoint Platform core. Depending on your environment, you may need more CPU or memory.
+
 [%header%autowidth.spread]
 .Memory and CPU Requirements
 |===
