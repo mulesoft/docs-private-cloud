@@ -39,25 +39,25 @@ For Anypoint Platform PCE version 3.2, the following policies are included with 
 | Policy | Version
 | Basic authentication: Simple | 1.2.2
 | Basic Authentication - LDAP | 1.3.1
-| Client ID Enforcement | 1.2.2
-| Cross-Origin Resource Sharing | 1.1.5
-| Detokenization | 1.1.1
+| Client ID Enforcement | 1.2.4
+| Cross-Origin Resource Sharing | 1.2.1
+| Detokenization | 1.1.2
+| Tokenization | 1.1.2
 | Header Injection | 1.2.1
 | Header Removal | 1.0.3
-| HTTP Caching | 2.0.2
+| HTTP Caching | 1.0.5
 | IP Blocklist | 1.0.0
 | IP Allowlist | 1.0.0
-| JSON Threat Protection | 1.1.4
-| JWT Validation | 1.1.3
+| JSON Threat Protection | 1.1.5
+| JWT Validation | 1.3.0
 | Message Logging | 1.0.0
-| Mule OAuth 2.0 Access Token | 1.5.0
-| OpenAM OAuth 2.0 Token Enforcement | 1.5.0
-| OpenID Connect OAuth 2.0 Token Enforcement | 1.5.0
-| PingFederate Access Token Enforcement | 1.5.0
-| Rate Limiting | 1.3.5
+| Mule OAuth 2.0 Access Token | 1.5.1
+| OpenAM OAuth 2.0 Token Enforcement | 1.5.1
+| OpenID Connect OAuth 2.0 Token Enforcement | 1.5.1
+| PingFederate Access Token Enforcement | 1.5.1
+| Rate Limiting | 1.3.6
 | Rate Limiting - SLA based | 1.2.8
 | Spike Control | 1.1.5
-| Tokenization | 1.1.1
 | XML Threat Protection | 1.1.4
 |===
 
