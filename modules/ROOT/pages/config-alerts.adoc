@@ -3,6 +3,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+include::reuse::partial$non-inclusive-banner.adoc[]
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) provides built-in alerts that are triggered when a condition specified in any alert definition is detected.
 
