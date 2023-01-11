@@ -71,75 +71,53 @@ Anypoint Platform PCE version 3.2 contains the following features:
 [%header%autowidth.spread]
 |===
 | Component | Feature Description | Feature Version
-| Exchange
-a|
-
-* API Metadata Service
-* Asset Manager Service
-* Asset Portal Service
-* Assets Reviews Service
-* Custom Assets Facade Service
-* Customization Service
-* Dependency Resolver Service
-* File Service
-* File Upload Service
-* Graph Node Service
-* Graph Service
-* Maven Facade Service
-* Search Service
-* Exchange UI
-* XAPI Service
-
-a|
-
-* v0.7.636
-* v1.0.504
-* v0.6.1192
-* v0.8.71
-* v0.9.246
-* v0.6.214
-* v0.6.469
-* v1.1.47
-* v0.6.86
-* v0.2.172
-* v0.8.584
-* v0.7.757
-* v0.8.250
-* v0.8.4803
-* v0.8.2127
-
+.15+| Exchange | API Metadata Service | v0.7.636
+|Asset Manager Service | v1.0.504
+|Asset Portal Service | v0.6.1192
+| Assets Reviews Service | v0.8.71
+| Custom Assets Facade Service | v0.9.246
+| Customization Service | v0.6.214
+| Dependency Resolver Service | v0.6.469
+| File Service | v1.1.47
+| File Upload Service |v0.6.86
+| Graph Node Service | v0.2.172
+| Graph Service | v0.8.584
+| Maven Facade Service | v0.7.757
+| Search Service | v0.8.250
+| Exchange UI | v0.8.4803
+| XAPI Service | v0.8.2127
 | Connectivity | REST Connect Service | v1.12.40
-| API Platform | API Platform API | v2.7.792
-| API Platform | API Platform Web | v1.15.117
-| API Platform | API Manager Web | v1.5.1031
-| API Platform | Contract Caching Service | v1.1.158
-| API Platform | API Proxy Builder Service | v1.2.123
-| API Platform | RAML Parser Service | v0.3.102
-| API Platform | Proxies XAPI Service | v1.2.206
-| API Designer | API Designer XAPI | v3.41.0
-| API Designer | API Designer UI | v2.44.0
+.7+| API Platform | API Platform API | v2.7.792
+| API Platform Web | v1.15.117
+| API Manager Web | v1.5.1031
+| Contract Caching Service | v1.1.158
+| API Proxy Builder Service | v1.2.123
+| RAML Parser Service | v0.3.102
+| Proxies XAPI Service | v1.2.206
+.2+| API Designer | API Designer XAPI | v3.41.0
+| API Designer UI | v2.44.0
 | Mocking Service | Mocking Service | v2.41.0
-| Mozart | Design Center UI | v2.0.143
-| Mozart | Mozart XAPI | v2.0.232
-| Mozart | Mozart Project Manager Service | v3.0.45
-| Runtime Manager | Cloudhub MCM | v2.17.155
-| Runtime Manager | Cloudhub UI | 1.100
-| Runtime Manager | AMC UI REST Facade | v2.12.75
-| Runtime Manager | Hybrid REST | v2.31.269
-| Runtime Manager | Metadata Manager | 1.9.49
-| Runtime Manager | Platform Alerts | 1.10.59
-| Runtime Manager | Mule Message Processor | v2.0.37
-| Runtime Manager | Platform Messages | 1.7.58
-| Access Management | Authentication Server | v1.2.48
-| Access Management | Core Services UI | v0.81.x
-| Access Management | Anypoint Sign In | v0.81.x
-| Access Management | Audit Log | v0.81.x
-| Access Management | Landing Page UI | v0.81.x
-| Access Management | Navbar | v0.81.x
+.3+|Mozart| Design Center UI | v2.0.143
+| Mozart XAPI | v2.0.232
+| Mozart Project Manager Service | v3.0.45
+.8+| Runtime Manager | Cloudhub MCM | v2.17.155
+| Cloudhub UI | 1.100
+| AMC UI REST Facade | v2.12.75
+| Hybrid REST | v2.31.269
+| Metadata Manager | 1.9.49
+| Platform Alerts | 1.10.59
+| Mule Message Processor | v2.0.37
+| Platform Messages | 1.7.58
+.6+| Access Management | Authentication Server | v1.2.48
+| Core Services UI | v0.81.x
+| Anypoint Sign In | v0.81.x
+| Audit Log | v0.81.x
+| Landing Page UI | v0.81.x
+| Navbar | v0.81.x
 | Anypoint Platform PCE | Anypoint Platform PCE Packaging | v3.2.0
 | API Modeling Framework (AMF) | AMF Service | v1.2.49
-| VCS | VCS  | v0.24+
-| VCS | VCS Git Proxy | v0.2.132+
+.2+| VCS | VCS  | v0.24+
+| VCS Git Proxy | v0.2.132+
 | Anypoint Studio | Studio | v7.15.0
 | Anypoint Visualizer | Network Graphs | v0.6.2.0
 |===
