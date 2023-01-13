@@ -73,7 +73,7 @@ You cannot perform a backup between different versions of Anypoint Platform PCE.
 
 . Log in to one of the nodes in your cluster.
 
-. Move the compressed backup archive file to a folder on any master node in the environment to be restored. You can transfer this file securely by using the following command:
+. Move the compressed backup archive file to a folder on any main node in the environment to be restored. You can transfer this file securely by using the following command:
 +
 ----
 scp /backup-path/to-restore.tar.gz your_username@remotehost.edu:/var/lib/gravity/planet/share
@@ -110,7 +110,7 @@ Anypoint Monitoring and Anypoint Visualizer requires 4 TB volumes for `amv` node
 
 Restore time is proportional to the size of the backup. During restore, existing data on the target cluster will be backed up and erased upon user approval.
 
-The backup and restore script must be run on a `master` node and must have `sudo` access because it uses `kubectl`. The script validates the restore disk size, databases, measurements, retention policies, and series cardinality for all measurements in each database.
+The backup and restore script must be run on a main node and must have `sudo` access because it uses `kubectl`. The script validates the restore disk size, databases, measurements, retention policies, and series cardinality for all measurements in each database.
 
 === Procedure
 

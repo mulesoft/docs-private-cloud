@@ -3,6 +3,8 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+include::reuse::partial$non-inclusive-banner.adoc[]
+
 == Before You Begin
 
 * Set up and test the backup procedure on all clusters.
@@ -89,7 +91,7 @@ gravity get pod -o wide--all-namespaces | grep -vi Running
 
 === Rejoin the Node
 
-. Check the gravity Planet master and teleport status:
+. Check the gravity Planet service and teleport status:
 +
 ```
 systemctl list-units '*gravity__gravitational*'
