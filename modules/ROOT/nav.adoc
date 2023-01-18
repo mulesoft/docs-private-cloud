@@ -1,5 +1,5 @@
 .xref:index.adoc[About Anypoint Platform Private Cloud Edition]
-* xref:index.adoc[Overview]
+* xref:index.adoc[Anypoint Platform PCE Overview]
 * xref:supported-cluster-config.adoc[Supported Configurations]
 * xref:anypoint-monitoring.adoc[Anypoint Monitoring]
 * xref:install-checklist.adoc[Product Prerequisites]
