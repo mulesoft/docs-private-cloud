@@ -3,3 +3,6 @@ title: Anypoint Platform Private Cloud Edition
 version: '3.0'
 nav:
 - modules/ROOT/nav.adoc
+asciidoc:
+  attributes:
+    endOfLifeScheduled: true
