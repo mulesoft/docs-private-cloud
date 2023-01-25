@@ -18,7 +18,7 @@ Before you install Anypoint Platform PCE, your infrastructure team must review e
 === Verify Linux Distribution
 The following Linux distributions are supported:
 
-* Red Hat Enterprise Linux (RHEL) 7.8, 7.9, 8.1, 8.2, 8.3., 8.4, and 8.5
+* Red Hat Enterprise Linux (RHEL) 7.8, 7.9, 8.1, 8.2, 8.3., 8.4, 8.5 and 8.6
 * CentOS 7.8 and 7.9
 
 [NOTE]
