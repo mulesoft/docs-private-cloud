@@ -24,13 +24,13 @@ Default alerts are listed in the following table:
 | Filesystem | High inode usage | Triggers a warning when > 90% used; triggers a critical error when > 95% used
 | System | Uptime | Triggers a warning when the uptime for a node is less than five minutes
 | System | Kernel parameters | Triggers an error if a parameter is not set. See https://github.com/gravitational/gravity/blob/master/docs/8.x/requirements.md#kernel-module-matrix[value matrix^] for details.
-| Etcd | Etcd instance health | Triggers an error when an etcd master is down longer than five minutes
+| Etcd | Etcd instance health | Triggers an error when an etcd leader is down longer than five minutes
 | Etcd | Etcd latency check | Triggers a warning when follower <-> leader latency exceeds 500 ms; triggers an error when it exceeds one second over a period of one minute
 | Docker | Docker daemon health | Triggers an error when the Docker daemon is down
 | Kubernetes | Kubernetes node readiness | Triggers an error when the node is not ready
 |===
 
-== Configure Alert Definitions 
+== Configure Alert Definitions
 
 You define new alerts using a gravity resource called `alert`, as shown in the following example:
 
@@ -73,7 +73,7 @@ gravity resource get alerts
 
 * To remove an alert, run:
 +
-----  
+----
 gravity resource rm alert cpu-alert
 ----
 
@@ -84,7 +84,7 @@ To configure Alertmanager to send email alerts, create the following gravity res
 . Using the following spec, create a file named `smtp-config.yaml` inside gravity, and replace the placeholder values with those of your SMTP configuration:
 +
 [source,copy]
-----    
+----
 kind: smtp
 version: v2
 metadata:
