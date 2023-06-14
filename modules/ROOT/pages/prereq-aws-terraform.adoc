@@ -41,7 +41,7 @@ You can also run provisioner remotely from any other machine with Docker and int
 
 . Download the Private Cloud Provisioner (PCP) Docker image from:
 +
-`https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-4.0.13.tar.gz.tar.gz?Expires=1827968341&Signature=jXWPj7fncm9MHdZA5M8uULePiO8%3D&AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ`
+`https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-4.0.13.tar.gz?AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Signature=zkGxTvmk73rZsjBvlTiod9awJOI%3D&Expires=1843268858`
 +
 . Copy the provisioner Docker image to the instance via SCP:
 +
