@@ -8,7 +8,7 @@ If you are using Amazon Web Services (AWS), you must create the resources requir
 You do not need this information if you are starting from bare metal servers.
 
 [IMPORTANT]
-Your infrastructure team, or someone with AWS administrator level knowledge, must perform the following tasks. If needed, contact your MuleSoft representative for assistance.
+Your infrastructure team, or someone with AWS administrator level knowledge, must perform the following tasks. If needed, contact your MuleSoft representative for help.
 
 == AWS Account Permissions and Resources
 
@@ -41,12 +41,12 @@ You can also run provisioner remotely from any other machine with Docker and int
 
 . Download the Private Cloud Provisioner (PCP) Docker image from:
 +
-`https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-4.0.13.tar.gz?AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&Signature=zkGxTvmk73rZsjBvlTiod9awJOI%3D&Expires=1843268858`
+`https://anypoint-anywhere.s3.amazonaws.com/pcp/private-cloud-provisioner-3.1.14.tar.gz?Signature=jB4UiQgzsSSE3iyaPWYNJ67dCyM%3D&amp;AWSAccessKeyId=AKIAI6LBJNQFR2V3CQWQ&amp;Expires=1801445392`
 +
 . Copy the provisioner Docker image to the instance via SCP:
 +
 ----
-scp -i <guest>.pem ~/Downloads/private-cloud-provisioner-4.0.13.tar.gz ec2-user@W.X.Y.Z:/home/ec2-user
+scp -i <guest>.pem ~/Downloads/private-cloud-provisioner-3.1.14.tar.gz ec2-user@W.X.Y.Z:/home/ec2-user
 ----
 
 . SSH into the instance:
