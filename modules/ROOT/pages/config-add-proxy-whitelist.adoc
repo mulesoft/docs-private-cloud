@@ -48,9 +48,7 @@ To add a new domain:
 The domain must not match with any existing domain,  must not be any domain or subdomain of MuleSoft or Anypoint Platform, and should be written in the format `exampledomain.com`.
 NOTE: Regular expressions are not supported at the moment.
 
-5. Under Trust level, select if you want the domain to be *Allowed* or *Blocked*.
-
-6. In the dialog box that appears, type the domain name and click Add domain. +
+5. In the dialog box that appears, type the domain name and click Add domain. +
 
 Result: The domain has been added to your list of trusted domains. You are redirected to the trusted domains page, where you can edit or delete your domains. If you register a domain on a parent organization, it is also allowlisted on all your business groups.
 
