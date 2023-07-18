@@ -58,14 +58,15 @@ When using the proxy, there are two authentication modes available:
 
 *Strict Authentication*: All requests reaching the proxy must be authenticated. This means that user token credentials must be included in the ms-authorization header of the request. This is the default option.
 
-WARNING: Requests to external domains from the Exchange Public Portals will fail, as there is no Anypoint user involved in the event, and external domains require authentication.
+WARNING: As requests to external domains from the Exchange Public Portals go through the API Console Proxy, they will fail as no Anypoint user is involved in the call.
 
-*Non-Strict Authentication*: ACP continues to be unauthenticated, but also allows unauthenticated requests. The incoming request must provide either the users credentials or a reference ot the Organization ID that the request belongs to.
+
+*Non-Strict Authentication*: API Console Proxy continues to be unauthenticated, but also allows unauthenticated requests. The incoming request must provide either the user's token or a reference to the Organization ID that the request belongs to. The Organization ID must be sent on the `ms-organization-id` header.
 
 To change the authentication method from strict to non-strict, follow these steps:
 
 . Log in to Ops Center and select *Kubernetes* on the left side-bar.
-. Select the `api-console-proxy` namespace from the drop-down menu on the top, and then select *Configmaps*. Find the xservice-env` configmap and then click on *Edit Config Map*.
+. Select the `api-console-proxy` namespace from the drop-down menu on the top, and then select *Configmaps*. Find the `service-env` configmap and then click on *Edit Config Map*.
 . Select the *STRICT_AUTHENTICATION_FF* tab and ensure that the value is set to `false`. (You'll have to hover your mouse over the tabs to get a tooltip with the full name to find the right tab)
 . Select *Apply* to save changes to the `service-env` config map.
 . Re-create the pods to ensure that each node in the cluster uses the most recent configuration:
