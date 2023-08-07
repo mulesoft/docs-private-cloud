@@ -58,14 +58,15 @@ The domain is added to your list of trusted domains. You are redirected to the t
 
 When using the proxy, there are two authentication modes: 
 
-*Strict Authentication*: 
+*Strict Authentication: 
 +
 (Default) All requests that reach the proxy must be authenticated, which means that user token credentials must be included in the `ms-authorization` header of the request.
++
+[WARNING]
+If requests to external domains from the Exchange Public Portals go through the API Console Proxy, they fail because no Anypoint user is involved in the call.
 
-WARNING: If requests to external domains from the Exchange Public Portals go through the API Console Proxy, they fail because no Anypoint user is involved in the call.
 
-
-*Non-Strict Authentication*: 
+*Non-Strict Authentication: 
 +
 API Console Proxy continues to be unauthenticated but it allows unauthenticated requests. The incoming request must provide either the user's token or a reference to the Organization ID that the request belongs to. The Organization ID must be sent on the `ms-organization-id` header.
 
