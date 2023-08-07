@@ -24,7 +24,7 @@
  ** xref:managing-via-the-ops-center.adoc[Ops Center]
   *** xref:ops-center-update-lic.adoc[Add a Product License Using Ops Center]
   *** xref:config-alerts.adoc[Configure Alerts for Anypoint Platform PCE]
- ** xref:config-add-proxy-whitelist.adoc[Allow Addresses for API Platform Proxies]
+ ** xref:config-add-proxy-allowlist.adoc[Allow Addresses for API Platform Proxies]
  ** xref:custom-policies.adoc[Upload Custom Policies and Publish Assets to Exchange Using the Maven Client]
  ** xref:config-studio.adoc[Configure Anypoint Studio for Anypoint Platform PCE]
  ** xref:restarting-a-node.adoc[Update Nodes]
