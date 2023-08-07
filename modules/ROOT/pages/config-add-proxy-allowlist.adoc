@@ -1,0 +1,84 @@
+= Allow Addresses for API Platform Proxies
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+By default, proxy requests are enabled for the domain name where the platform runs. 
+
+NOTE: For versions 3.2.2 and later, refer to Trusted Domains.
+
+To allow addresses in versions 3.2.0 and 3.2.1:
+
+. Log in to Ops Center and select *Kubernetes* on the left side-bar.
+. Select the `api-manager` namespace from the drop-down menu on the top, and then select *Configmaps*. Find the `api-platform-web-env` configmap and then click on `Edit Config Map`.
+. Select the *APW_FEATURES_PROXYWHITELIST* tab and ensure that value is set to `true`. (You'll have to hover your mouse over the tabs to get a tooltip with the full name to find the right tab)
++
+If not, set it to `true` and then select `Apply`.
+. Select the *APW_PROXYWHITELIST_RULES* tab.
+. Write your rules separated by commas.
++
+The following example defines regular expressions that allow requests to be made to the `*.somewhere.com/*` and `*.somewhereelse.com/*` domains, where `*` is any part of a DNS name or URL:
+
+----
+.*\.somewhere\.com,.*\.somewhereelse\.com
+----
+
+. Select *Apply* to save changes to the `api-platform-web-env` config map.
+. Re-create the pods to ensure that each node in the cluster uses the most recent configuration:
++
+----
+kubectl delete pod -n api-manager -l component=api-platform-web
+----
+
+
+== Trusted Domains
+
+Every HTTP request you make to an external resource goes through the API Console Proxy. For security reasons, you must register the domain as an allowed domain in Anypoint Platform. 
+
+By default, proxy requests are blocked for external domains on authenticated requests.
+
+To add a new domain:
+
+1. Log in to Anypoint Platform using an account that has the Organization Administrator permission.
+
+2. In the navigation bar, click *Access Management*.
+
+3. Click *Trusted domains*.
+
+4. Click *Add domain*. 
++
+The domain must not match an existing domain,  must not be a domain or subdomain of MuleSoft or Anypoint Platform, and must be written in the format `exampledomain.com`.
+NOTE: Regular expressions are not supported.
+
+5. Type the domain name and click *Add domain*.
++
+The domain is added to your list of trusted domains. You are redirected to the trusted domains page, where you can edit or delete your domains. If you register a domain on a parent organization, the domain is allowlisted for all of your business groups.
+
+== Authentication 
+
+When using the proxy, there are two authentication modes: 
+
+* Strict Authentication: 
++
+(Default) All requests that reach the proxy must be authenticated, which means that user token credentials must be included in the `ms-authorization` header of the request.
++
+[WARNING]
+If requests to external domains from the Exchange Public Portals go through the API Console Proxy, they fail because no Anypoint user is involved in the call.
+
+
+* Non-Strict Authentication: 
++
+API Console Proxy continues to be unauthenticated but it allows unauthenticated requests. The incoming request must provide either the user's token or a reference to the Organization ID that the request belongs to. The Organization ID must be sent on the `ms-organization-id` header.
+
+To change the authentication method from strict to non-strict, follow these steps:
+
+. Log in to Ops Center and select *Kubernetes* on the left side-bar.
+. Select the `api-console-proxy` namespace from the drop-down menu on the top, and select *Configmaps*. 
+. Locate the `service-env` configmap and then click on *Edit Config Map*.
+. Select the *STRICT_AUTHENTICATION_FF* tab and ensure that the value is set to `false`. (To find the right tab, hover your mouse over the tabs to get a tooltip with the full name.)
+. Click *Apply* to save changes to the `service-env` config map.
+. Recreate the pods to ensure that each node in the cluster uses the most recent configuration:
++
+----
+kubectl delete pod -n api-console-proxy -l component=service
+----
