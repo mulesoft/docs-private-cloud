@@ -66,7 +66,7 @@ For additional information about policies, refer to xref:api-manager::policies-l
 == Mule Runtime Version Compatibility
 
 * Anypoint Platform PCE is compatible with Mule runtime engine v3.9 and later.
-* PCE supports the mule runtime engine LTS and Edge release channels. The recommended customer profile is LTS. For more information, visit xref:release-notes::mule-runtime/lts-edge-release-cadence.adoc[]. 
+* PCE supports the Mule runtime engine LTS and Edge release channels. The recommended customer profile is LTS. For more information, visit xref:release-notes::mule-runtime/lts-edge-release-cadence.adoc[]. 
 
 == Features Shipped with Anypoint Platform PCE Version 3.2
 
