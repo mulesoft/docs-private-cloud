@@ -34,6 +34,7 @@ You must ensure that all of the following ports are configured correctly on all 
 |TCP | 2379, 2380, 4001, 7001 | etcd distributed database | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 4242 | Installer | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 6443 | Kubernetes API server | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 9443 | HAProxy to load balance Kubernetes API Server | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP/UDP | 7496 | Serf RPC agent | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 7373 | Serf RPC agent | localhost | localhost
 |TCP | 9100 | Prometheus node-exporter | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
@@ -41,7 +42,6 @@ You must ensure that all of the following ports are configured correctly on all 
 |TCP | 10249 | Kubernetes kube-proxy | localhost | localhost
 |TCP | 10251-10252 | Kubernetes controller-manager and scheduler | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 10257-10259 | Kubernetes controller-manager and scheduler (secure) | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 10255 | Kubernetes Kubelet (read-only) | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 5000 | Docker registry | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 3009-3012 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 3022 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
