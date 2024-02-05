@@ -9,29 +9,31 @@ Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires you to 
 
 [IMPORTANT]
 ====
-Backup and restore for Anypoint Monitoring and Anypoint Visualizer are perfored outside the normal Gravity backup and restore mechanism, and require a separate procedure.
+Backup and restore for Anypoint Monitoring and Anypoint Visualizer are performed outside the normal PCE backup and restore mechanism, and require a separate procedure.
 ====
 
 == Create a Backup
 
-To create a backup, run the following command on any node in the cluster:
-
-----
-gravity backup /var/lib/gravity/planet/share/backup.tar.gz
-----
-
-This command creates an archive of the current system state in: `/var/lib/gravity/planet/share/backup.tar.gz`. You can pass the following optional parameters to the gravity backup command:
-
-* `--follow`
+. To create a backup, run the following command:
 +
-Outputs the backup job logs to stdout. In the following example, `tee` enables you to output to stdout and file at the same time:
 ----
-gravity backup /var/lib/gravity/planet/share/backup.tar.gz --follow | tee -a /var/lib/gravity/planet/share/backup.log
+curl -k https://<platformDns>/platform/backup \
+  -X POST \ -H "Authorization: Bearer $token" \
+  -H "Content-Type:application/json" \
+  -d '{"nfs-server": "<nfsServer>", "nfs-path": "<nfsPath>", "backup-file-name": "backup.tar.gz" }'
 ----
 
-* `--timeout`
+. This command creates an archive of the current system state in the provided NFS with the name: `backup.tar.gz`. It also outputs a JSON response with the status of the operation and the job name:
 +
-Specifies the deadline for the backup job, for example, 30s or 5m. Default is 20m.
+----
+{"success":"backup job triggered","jobName":"<anypoint-backup-job-id>"}
+----
+
+. To stream the backup job logs to stdout run:
++
+----
+kubectl logs jobs/<anypoint-backup-job-id> -f
+----
 
 Backup contents:
 
@@ -66,34 +68,28 @@ To restore a system from your backup archive, use the original cluster or create
 Some settings, including NFS, certificates, and DNS, are not backed up and must be configured for the environment in which the restore will be performed before running the restore.
 ====
 
-[WARNING]
-====
-You cannot perform a backup between different versions of Anypoint Platform PCE. The new installation you create must use the same version of Anypoint Platform PCE as your backup.
-====
-
-. Log in to one of the nodes in your cluster.
-
-. Move the compressed backup archive file to a folder on any main node in the environment to be restored. You can transfer this file securely by using the following command:
-+
-----
-scp /backup-path/to-restore.tar.gz your_username@remotehost.edu:/var/lib/gravity/planet/share
-----
+. Move the compressed backup archive file to an NFS Server.
 
 . Restore the cluster from the backup archive:
 +
 ----
-sudo gravity restore /var/lib/gravity/planet/share/to-restore.tar.gz
+curl -k https://<platformDns>/platform/restore \
+  -X POST \ -H "Authorization: Bearer $token" \
+  -H "Content-Type:application/json" \
+  -d '{"nfs-server": "<nfsServer>", "nfs-path": "<nfsPath>", "backup-file-name": "backup.tar.gz" }'
 ----
-+
-You can pass the following optional parameters:
-+
-* `--follow`
-+
-Outputs the restore job logs to stdout.
 
-* `--timeout`
+. It outputs a JSON response with the status of the operation and the job name:
 +
-Specifies the maximum time allowed for the restore operation, for example, 30s, 5m, and so on. The default value is `80m`. If you have a very large number of applications and files, use a minimum of `160m` as the `--timeout` value.
+----
+{"success":"restore job triggered","jobName":"<anypoint-restore-job-id>"}
+----
+
+. To stream the backup job logs to stdout:
++
+----
+kubectl logs jobs/<anypoint-restore-job-id> -f
+----
 
 . Wait for the operation to complete, which is typically 40 to 60 minutes.
 . Manually restore the NFS files if you are not reusing the original NFS.
@@ -102,42 +98,62 @@ Specifies the maximum time allowed for the restore operation, for example, 30s, 
 
 If Anypoint Monitoring and Anypoint Visualizer are enabled, follow these procedures to back up and restore them.
 
-Anypoint Monitoring and Anypoint Visualizer backup and restore are outside the normal Gravity backup and restore mechanism, and require additional procedures. These components store metrics and other information, but they do not store platform configuration. Platform configuration information is handled by the system backup and restore procedures.
+Anypoint Monitoring and Anypoint Visualizer backup and restore are outside the normal PCE backup and restore mechanism, and require additional procedures. These components store metrics and other information, but they do not store platform configuration. Platform configuration information is handled by the system backup and restore procedures.
 
-Anypoint Monitoring and Anypoint Visualizer must back up the data of the component InfluxDB (`dias-prov-k8s-am-influxdb-comp`). Anypoint Monitoring and Anypoint Visualizer both store their configuration data in a Postgres database. The default Gravity mechanism backs up and restores this database.
+Anypoint Monitoring and Anypoint Visualizer must back up the data of the component InfluxDB (`dias-prov-k8s-am-influxdb-comp`). Anypoint Monitoring and Anypoint Visualizer both store their configuration data in a Postgres database. The default PCE mechanism backs up and restores this database.
 
-Anypoint Monitoring and Anypoint Visualizer requires 4 TB volumes for `amv` nodes. A full InfluxDB backup can be up to 8 TB of data. (Only two data nodes are operative.) You must provide enough free space on the target directory for the entire backup.
+Anypoint Monitoring and Anypoint Visualizer requires 4 TB volumes for `amv` nodes. A full InfluxDB backup can be up to 8 TB of data. (Only two data nodes are operative.) You must provide enough free space on the target NFS server for the entire backup.
 
 Restore time is proportional to the size of the backup. During restore, existing data on the target cluster will be backed up and erased upon user approval.
 
-The backup and restore script must be run on a main node and must have `sudo` access because it uses `kubectl`. The script validates the restore disk size, databases, measurements, retention policies, and series cardinality for all measurements in each database.
+The job validates the restore disk size, databases, measurements, retention policies, and series cardinality for all measurements in each database.
 
 === Procedure
 
-The InfluxDB backup and restore script is in the Anypoint Platform PCE environment: `/var/lib/gravity/site/packages/unpacked/gravitational.io/anypoint/3.2.0*/resources/kubernetes/amv-backup-restore/amv-backup-restore.sh`
-
-The script has these parameters:
-
+==== AMV Backup
+. Run the amv backup operation
++
 ----
- -a : (Required) action to perform : backup or restore. [string].
-        Default NO DEFAULT ACTION.
- -va : (optional) verbose output.
-        Default non-verbose.
- -f : (Required) name of the tar file.
-        Default for backup : dias-prov-k8s-am-influxdb-comp_YYYYMMD.  [string].
-        Default for restore : /var/lib/data/influxdb/backup/dias-prov-k8s-am-influxdb-comp_YYYYMMDD.tar.gz.  [Full Path].
- -d : (Required for backup) full path to location where backup tar file is stored.
-        Default for backup : /var/lib/data/influxdb/backup. [Full Path].
-        Default for restore : same as tar file path. [Full Path].
- -s : (optional) Optional sub-component filter, use only for backup of only meta or only data.
- -h : Print HELP.
+curl -k https://<platformDns>/platform/amv/backup \
+  -X POST \ -H "Authorization: Bearer $token" \
+  -H "Content-Type:application/json" \
+  -d '{"nfs-server": "<nfsServer>", "nfs-path": "<nfsPath>", "backup-file-name": "amv_backup.tar.gz" }'
+----
+. It outputs a JSON response with the status of the operation and the job name:
++
+----
+{"success":"backup job triggered","jobName":"<amv-backup-job-id>"}
+----
+. To stream the backup job logs to stdout:
++
+----
+kubectl logs jobs/<amv-backup-job-id> -f
 ----
 
-=== Examples
+==== AMV Restore
+. Move the compressed backup archive file to an NFS Server.
 
-Verbose backup: `sudo bash amv-backup-restore.sh -va backup -f 2020-01-01-influxdb-backup -d path/to/backup/dir`
+. Restore the cluster from the backup archive:
++
+----
+curl -k https://<platformDns>/platform/amv/restore \
+  -X POST \ -H "Authorization: Bearer $token" \
+  -H "Content-Type:application/json" \
+  -d '{"nfs-server": "<nfsServer>", "nfs-path": "<nfsPath>", "backup-file-name": "amv_backup.tar.gz" }'
+----
 
-Non-verbose restore: `sudo bash amv-backup-restore.sh -a restore -f /var/lib/data/influxdb/backup/dias-prov-k8s-am-influxdb-comp_YYYYMMDD.tar.gz`
+. It outputs a JSON response with the status of the operation and the job name:
++
+----
+{"success":"restore job triggered","jobName":"<amv-restore-job-id>"}
+----
+
+. To stream the backup job logs to stdout:
++
+----
+kubectl logs jobs/<amv-restore-job-id> -f
+----
+
 
 == See Also
 

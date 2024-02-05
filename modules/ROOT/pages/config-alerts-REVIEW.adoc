@@ -156,5 +156,3 @@ Connection closed.
 ----
 
 == See Also
-
-* xref:managing-via-the-ops-center.adoc[Ops Center]

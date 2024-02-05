@@ -166,7 +166,7 @@ For information, see xref:prereq-hardware.adoc[Hardware Prerequisites].
 
 == Backup and Restore
 
-Anypoint Monitoring backup and restore are outside the normal gravity backup and restore mechanism, and require the additional procedures. 
+Anypoint Monitoring backup and restore are outside the normal PCE backup and restore mechanism, and require the additional procedures.
 For information, see xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore for Anypoint Platform PCE].
 
 == Uninstall Anypoint Monitoring

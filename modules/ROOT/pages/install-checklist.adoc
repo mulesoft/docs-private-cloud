@@ -103,7 +103,3 @@ Refer to xref:verify-nfs.adoc[NFS Server Prerequisites] for additional details a
 | xref:verify-nfs#verify-nfs-server-is-mounted[Verify NFS Server is Mounted]
 | xref:verify-nfs#verify-nfs-performance[Verify NFS Performance]
 |===
-
-== Verify Environment
-
-Perform the steps in xref:prereq-gravity-check.adoc[Verify Environment] to ensure that your infrastructure meets Anypoint Platform PCE requirements.

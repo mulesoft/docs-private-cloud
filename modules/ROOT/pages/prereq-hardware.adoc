@@ -451,6 +451,5 @@ service nginx restart
 * xref:prereq-software.adoc[Software Prerequisites]
 * xref:prereq-network.adoc[Network Prerequisites]
 * xref:verify-nfs.adoc[NFS Server Prerequisites]
-* xref:prereq-gravity-check.adoc[Preinstallation Verification]
 * https://www.nginx.com/[Nginx]
 * xref:anypoint-monitoring.adoc[Anypoint Monitoring]
