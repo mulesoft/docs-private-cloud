@@ -1,0 +1,18 @@
+= Update License on Anypoint Platform PCE
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+When your product license expires, Access Management displays a message stating that the license is expired. It continues to display this message until you upload a valid license.
+
+To add a new Anypoint Platform Private Cloud Edition license:
+
+. From Anypoint Platform, click Access Management.
+. Click the *License* tab.
+. In the *License* field, select Choose file to select the license on your local system.
+. Click *Save*.
+
+
+== See Also
+
+* xref:license-influx-update.adoc[Update InfluxDB License]
