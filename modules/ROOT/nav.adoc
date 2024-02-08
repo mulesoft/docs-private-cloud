@@ -22,6 +22,7 @@
  ** xref:access-management-license.adoc[Update License on Anypoint Platform PCE]
 * xref:operating-about.adoc[Manage Anypoint Platform PCE]
  ** xref:backup-and-disaster-recovery.adoc[Configure Backup and Restore in Anypoint Platform PCE]
+ ** xref:config-alerts.adoc[Configure Alerts for Anypoint Platform PCE]
  ** xref:config-add-proxy-allowlist.adoc[Allow Addresses for API Platform Proxies]
  ** xref:custom-policies.adoc[Upload Custom Policies and Publish Assets to Exchange Using the Maven Client]
  ** xref:config-studio.adoc[Configure Anypoint Studio for Anypoint Platform PCE]

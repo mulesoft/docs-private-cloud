@@ -1,0 +1,129 @@
+
+= Configure Alerts for Anypoint Platform PCE
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) provides built-in alerts that are triggered when a condition specified in any alert definition is detected.
+
+Measurements are stored in https://prometheus.io/docs/introduction/overview/[Prometheus^] and read by https://prometheus.io/docs/alerting/alertmanager/[Alertmanager^]. Alertmanager sends emails when an alert is triggered.
+
+== Alerting Rules
+
+By default prometheus provides a set of alerts which can be found https://github.com/kubernetes-monitoring/kubernetes-mixin/blob/master/runbook.md[here^]
+
+== Configure Alerting Rules
+
+You define new rules using a prometheus resource called `PrometheusRule`, as shown in the following example:
+
+[source,copy]
+----
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: cpu-alert
+  namespace: your-namespace
+spec:
+  groups:
+  - name: test-group
+    rules:
+    - alert: CPUAlert
+      expr: |
+        node:node_cpu_utilization:ratio_rate5m * 100 > 80
+      labels:
+        severity: info
+      annotations:
+        description: "Node CPU usage exceeds 80%."
+----
+
+See the https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/[Alerting Rules^] documentation for more details about Prometheus alerts.
+
+* To create an alert, run:
++
+----
+kubectl apply -f cpu-alert.yaml -n your-namespace
+----
+
+* To view existing alerts, run:
++
+----
+kubectl get PrometheusRule -n your-namespace
+----
+
+* To remove an alert, run:
++
+----
+kubectl delete PrometheusRule cpu-alerts -n your-namespace
+----
+
+== Configure Alerts Delivery
+
+To configure Alertmanager to send email alerts, create the following resources:
+
+. Retrieve current Alertmanager configuration:
++
+----
+kubectl get secret -n monitoring alertmanager-kube-prometheus-stack-alertmanager -o jsonpath='{.data.alertmanager\.yaml}' | base64 -d > alertmanager.yaml
+----
+. Add a Global SMTP configuration:
++
+----
+global:
+  ...
+  smtp_smarthost: 'smtp.example.com'
+  smtp_from: 'alertmanager@example.org'
+  smtp_auth_username: 'alertmanager'
+  smtp_auth_password: 'password'
+...
+----
+. Add a default router to the Alertmanager with the email receiver:
++
+----
+receivers:
+  - name: 'default'
+    email_configs:
+      - to: 'your-email@example.com'
+route:
+  ...
+  receiver: "default"
+----
+. Update Alertmanager configuration with the new file:
++
+----
+kubectl patch secret alertmanager-kube-prometheus-stack-alertmanager -n monitoring --type=json -p='[{"op": "replace", "path": "/data/alertmanager.yaml", "value": "'$(cat alertmanager.yaml | base64)'" }]'
+----
+. Restart Alertmanager pods:
++
+----
+kubectl delete pod -n monitoring -l app.kubernetes.io/name=alertmanager
+----
+
+== Alertmanager UI
+To access the built-in UI for alertmanager follow these steps:
+
+. Enable port forwarding for the alertmanager service
++
+----
+kubectl -n monitoring port-forward svc/kube-prometheus-stack-alertmanager -p <port>:9093
+----
+. Navigate to http://localhost:<port>/#/alerts with your browser
+
+== Troubleshooting Alerts
+
+Common troubleshooting tasks include the following:
+
+* Verify that your SMTP server can send and receive emails using the addresses you defined as the `FROM` and `TO` addresses when you configured alerts delivery.
+* Verify that your cluster nodes can communicate with your SMTP server.
++
+For example, use `telnet` to connect to your SMTP server from one of your cluster nodes:
++
+----
+telnet my.smtp.server.com 587
+Trying XXX.XXX.XXX.XXX...
+Connected to my.smtp.server.com.
+Escape character is '^]'.
+220 my.smtp.server.com ESMTP
+^[^]
+telnet> quit
+Connection closed.
+----
