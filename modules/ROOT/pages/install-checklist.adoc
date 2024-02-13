@@ -34,7 +34,6 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
 |===
 |Task Description
 | xref:prereq-platform.adoc[Verify Your Environment Is Supported]
-| If you are using AWS, xref:prereq-aws-terraform.adoc[Provision Amazon Web Services (AWS) Prerequisites].
 |===
 
 === Hardware Prerequisites

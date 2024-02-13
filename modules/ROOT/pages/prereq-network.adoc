@@ -13,48 +13,31 @@ Before you install Anypoint Platform PCE, your infrastructure team must review e
 
 All nodes in the cluster must have static private IPv4 assigned to them, and these must persist after restarts. If IP addresses are not persistent between reboots, the cluster can fail.
 
-== Verify VXLAN
-
-The version of Kubernetes supported by Anypoint Platform PCE uses an overlay VXLAN and UDP transport to encapsulate traffic. There is direct communication between cluster components.
+== Port Requirements
 
 The following table lists the ports used for inter-host communication. The table uses the following source and destination descriptions:
 
 * Anypoint Platform PCE nodes: Nodes that are members of the cluster.
-* Installer node: The node on which you started the installation.
 * Load Balancer: Any source that is outside the cluster.
 * localhost: The port that is used only within the host where the request started.
 
-You must ensure that all of the following ports are configured correctly on all nodes.
+You must ensure that all the following ports are configured correctly on all nodes.
 
 [%header%autowidth.spread]
 .Port Configuration Requirements
 |===
 |Protocol |Port/Range |Purpose |Source |Destination
 |TCP/UDP | 53 | Internal cluster DNS | localhost | localhost
-|TCP | 2379, 2380, 4001, 7001 | etcd distributed database | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 4242 | Installer | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 2379, 2380 | etcd distributed database | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 6443 | Kubernetes API server | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 9443 | HAProxy to load balance Kubernetes API Server | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP/UDP | 7496 | Serf RPC agent | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 7373 | Serf RPC agent | localhost | localhost
 |TCP | 9100 | Prometheus node-exporter | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 10248, 10250 | Kubernetes Kubelet | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 10249 | Kubernetes kube-proxy | localhost | localhost
 |TCP | 10251-10252 | Kubernetes controller-manager and scheduler | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 10257-10259 | Kubernetes controller-manager and scheduler (secure) | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 5000 | Docker registry | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 3009-3012 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 3022 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 3023-3025 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 7575 | Cluster control plane | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 7580 | Cluster control plane monitoring endpoint| localhost | localhost
-|TCP | 6060 | Cluster control plane profiling endpoint| localhost | localhost
 |TCP | 30000-32767 | Internal services port range | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 61009-61010 | Installer port ranges (only used during install) | Anypoint Platform PCE nodes | installer node
-|TCP | 61022-61024 | Installer port ranges (only used during install) | Anypoint Platform PCE nodes | installer node
-|TCP | 61025 | Installer port ranges (only used during install) | localhost | installer node
 |UDP | 8472 | Overlay VXLAN network | Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 32009 | Ops Center Admin UI | Load Balancer | Anypoint Platform PCE nodes
 |TCP | 30080 | HTTP public access | Load Balancer | Anypoint Platform PCE nodes
 |TCP | 30443 | HTTPS public access | Load Balancer | Anypoint Platform PCE nodes
 |TCP | 30889 | Mule Runtime Websocket | Load Balancer | Anypoint Platform PCE nodes
@@ -62,11 +45,6 @@ You must ensure that all of the following ports are configured correctly on all 
 |===
 
 You can use netcat or a similar utility to verify port configuration.
-
-== Enable Required Ports
-
-* You must enable TCP ports 53, 3011, and 3012 on all nodes to allow communication with the database cluster.
-* If you plan to use the GUI installer to install Anypoint Platform PCE, you must enable port 61009.
 
 == Verify NAT Traffic Requirements
 

@@ -5,7 +5,6 @@
 * xref:anypoint-monitoring.adoc[Anypoint Monitoring]
 * xref:install-checklist.adoc[Product Prerequisites]
  ** xref:prereq-platform.adoc[Environment Prerequisites]
-  *** xref:prereq-aws-terraform.adoc[Amazon Web Services (AWS) Prerequisites]
  ** xref:prereq-hardware.adoc[Hardware Prerequisites]
  ** xref:prereq-software.adoc[Software Prerequisites]
  ** xref:prereq-network.adoc[Network Prerequisites]

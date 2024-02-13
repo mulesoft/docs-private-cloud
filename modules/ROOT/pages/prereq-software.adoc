@@ -15,31 +15,25 @@ Before you install Anypoint Platform PCE, your infrastructure team must review e
 
 == Operating System Prerequisites
 
-=== Verify Linux Distribution
-The following Linux distributions are supported:
+=== Install required tools
 
-* Red Hat Enterprise Linux (RHEL) 7.8, 7.9, 8.1, 8.2, 8.3., 8.4, 8.5, 8.6, 8.7, and 8.8.
-* CentOS 7.8 and 7.9
+----
+yum install -y python3 bash-completion nfs-utils iptables-services
+----
 
-[NOTE]
---
-Anypoint Platform PCE no longer supports CentOS 8, as it has reached https://www.centos.org/centos-linux-eol/[end-of-life^]. 
---
+==== Tool to Verify NFS Server Ports
 
-=== Check for SELinux Custom Profiles
-
-Although SELinux is not required, Anypoint Platform PCE supports the default SELinux profile running in strict mode. If your environment uses a custom profile, it must provide an unconstrained user context when running the installer. Review any custom profiles with your MuleSoft representative.
+Netcat is recommended, but you can use your tool of choice to verify the correct ports are open on the NFS server. If you do not have `netcat`, you can install it from  http://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
 
 === Enable and Load Kernel Modules
 
 You must enable the following kernel modules on each node:
 
-* `br_netfilter`
-* `ebtable_filter`
-* `ip_tables`
-* `iptable_filter`
-* `iptable_nat`
-* `overlay`
+* overlay
+* br_netfilter
+* ebtable_filter
+* iptable_nat
+* iptable_filter
 
 For each kernel module, run a command similar to the following example to verify that each module is loaded. Replace `br_netfilter` with the name of the kernel module you are checking:
 
@@ -63,18 +57,10 @@ root$ echo 'br_netfilter' > /etc/modules-load.d/br_netfilter.conf
 
 The following flags must be enabled:
 
-* `net.bridge.bridge-nf-call-iptables=1`
 * `net.ipv4.ip_forward=1`
-* `fs.may_detach_mounts=1`
-* `fs.inotify.max_queued_events=16384`
-* `fs.inotify.max_user_instances=8192`
-* `fs.inotify.max_user_watches=1048576`
-
-The kubelet requires the following settings, which do not update the Kernel settings automatically:
-
+* `net.bridge.bridge-nf-call-iptables=1`
+* `fs.inotify.max_user_watches=524288`
 * `vm.overcommit_memory=1`
-* `kernel.panic=10`
-* `kernel.panic_on_oops=1`
 
 Ensure that no processes on your system overrides any of these flags. To set a parameter, use `sysctl -w`, as shown in the following example:
 
@@ -82,90 +68,30 @@ Ensure that no processes on your system overrides any of these flags. To set a p
 root$ sysctl -w net.ipv4.ip_forward=1
 ----
 
-To make the changes permanent for the next reboot, write the changes to a file under `/etc/sysctl.d`. Replace the setting in the following example with the setting you are configuring.
+To make the changes permanent for the next reboot, write the changes to a file under `/etc/sysctl.d/50-k8s.conf`. Replace the setting in the following example with the setting you are configuring and reload systemd
 
 ----
-echo net.ipv4.ip_forward=1 >> /etc/sysctl.d/10-ipv4-forwarding.conf
-----
-
-Permanently configure settings required by the kubelet:
-----
-cat > /etc/sysctl.d/90-kubelet.conf << EOF
+net.ipv4.ip_forward=1
+net.bridge.bridge-nf-call-iptables=1
+fs.inotify.max_user_watches=524288
 vm.overcommit_memory=1
-kernel.panic=10
-kernel.panic_on_oops=1
-EOF
 ----
 
 Ensure that no processes or files conflict with those settings.
 
-== Third Party Software Prerequisites
+=== Block AWS metadata service
 
-=== Requirements When Firewalld Is Enabled
-
-Firewalld is an iptables controller that defines rules for persistent network traffic.
-If you are using firewalld with a Red Hat Enterprise Linux (RHEL) 7.3 operating system, you must enable forwarding on the `docker0` device.
-You must also forward any packets being sent from or to the 10.0.0.0/8 subnet.
-
-
-==== Determine If You Are Using Firewalld
-
-To determine if your system is using firewalld, run the following command on every node:
+For AWS, block forwarding to AWS metadata service. Not valid for any other cloud providers.
 
 ----
-systemctl status firewalld.service
+iptables -A FORWARD -p tcp -d 169.254.169.254 -j REJECT
 ----
-
-If firewalld is installed, the following output is displayed:
-
-----
-$ sudo systemctl status firewalld.service
-* firewalld.service - firewalld - dynamic firewall daemon
-Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
-Active: inactive (dead)
-Docs: man:firewalld(1)
-----
-
-If firewalld is not installed, an error message is displayed.
-
-==== Enable Forwarding on Docker Device
-
-To enable forwarding on the docker0 device, run the following commands:
-
-----
-firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -o docker0 -j ACCEPT -m comment --comment "docker subnet"
-
-firewall-cmd --permanent --direct --add-rule ipv4 filter FORWARD 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
-----
-
-To enable forwarding on the 10.0.0.0/8 subnet, run the following commands:
-
-----
-firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -s 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
-
-firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 1 -d 10.0.0.0/8 -j ACCEPT -m comment --comment "docker subnet"
-----
-
-=== Remove Local DNS Servers
-
-Remove local caching DNS servers listening on port 53, for example, `named`, `dnsmasq`, and `bind`.
-
-=== Install Required Tools
-
-* Tool to Verify NFS Server Ports are Open
-+
-Netcat is recommended, but you can use your tool of choice to verify the correct ports are open on the NFS server. If you do not have `netcat`, you can install it from  http://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
-
-=== Remove Server Configuration Management Software
-
-Any Server Configuration Management software, such as Puppet, Chef, Ansible, and SaltStack, must be removed.
-This software usually changes kernel modules and settings that are required, and can also restart servers without following the correct shut down procedure, causing the system to enter a failed state.
 
 == MuleSoft Software Prerequisites
 
 === Obtain Install Archive and License Key
  
-Obtain the installer archive (`anypoint-3.2.x-installer.tar.gz`) and license key from your MuleSoft account representative.
+Obtain the installer archive (`anypoint-4.x.x-installer.tar.gz`) and license from your MuleSoft account representative.
 
 === Verify IP Forwarding and Bridging
 
@@ -192,10 +118,6 @@ You must register the same SSL certificate on every node containing Mule runtime
 === Uninstall Unsupported Software
 
 Some software causes conflicts with Anypoint Platform PCE. You must uninstall this software before performing Anypoint Platform PCE installation.
-
-==== Docker
-
-Uninstall Docker from all servers running the Anypoint Platform PCE. The Anypoint Platform PCE installation includes a Docker package officially supported by Kubernetes.
 
 == See Also
 

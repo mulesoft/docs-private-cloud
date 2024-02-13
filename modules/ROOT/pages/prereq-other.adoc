@@ -6,7 +6,7 @@ endif::[]
 During installation, you will be asked to provide the following information:
 
 * Your Anypoint Platform Private Cloud Edition license file. For example, `license.pem`. Contact your MuleSoft representative for assistance.
-* Name and location of the installation package. For example, `/home/ec2-user/anypoint-2.0.3-installer.tar.gz`. Contact your MuleSoft representative for assistance.
+* Name and location of the installation package. For example, `/home/ec2-user/anypoint-4.0.0-installer.tar.gz`. Contact your MuleSoft representative for assistance.
 * AWS credentials
 
 ** Admin ID

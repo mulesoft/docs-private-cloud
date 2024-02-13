@@ -3,14 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-== Supported Environments
-The following environments are the only environments supported by Anypoint Platform Private Cloud Edition (Anypoint Platform PCE):
+Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) has been tested on environments with the following features:
 
-* VMWare bare metal virtualization
-* Physical servers
-* Amazon Web Services (AWS)
-
-If you are using AWS, perform the steps provided in xref:prereq-aws-terraform.adoc[Provision AWS Prerequisites].
+* Kubernetes distribution: `RKE2/EKS-A`
+* Kubernetes version: `1.28/1.29`
 
 == See Also
 
