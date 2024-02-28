@@ -71,9 +71,7 @@ a|
 a|
 * xref:prereq-software#obtain-install-archive-and-license-key[Obtain Install Archive and License Key]
 * xref:prereq-software#verify-ip-forwarding-and-bridging[Verify IP Forwarding and Bridging]
-* xref:prereq-software#enable-forwarding-on-docker-device[Enable Forwarding on Docker device] 
 * xref:prereq-software#verify-ssl-certificate-requirements[Verify SSL Certificate Requirements]
-* xref:prereq-software#uninstall-unsupported-software[Uninstall Unsupported Software]
 |===
 
 === Network Prerequisites

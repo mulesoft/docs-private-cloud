@@ -7,7 +7,6 @@ endif::[]
 To ensure the performance and stability of Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), every node in your Anypoint Platform PCE environment must meet the software prerequisites described in this topic:
 
 * Operating system (OS) prerequisites
-* Third-party software prerequisites
 * MuleSoft software prerequisites
 
 [IMPORTANT]
@@ -114,10 +113,6 @@ connected to the platform.
 
 [WARNING]
 You must register the same SSL certificate on every node containing Mule runtime engines managed by your installation.
-
-=== Uninstall Unsupported Software
-
-Some software causes conflicts with Anypoint Platform PCE. You must uninstall this software before performing Anypoint Platform PCE installation.
 
 == See Also
 
