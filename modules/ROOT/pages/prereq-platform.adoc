@@ -5,7 +5,7 @@ endif::[]
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) has been tested on environments with the following features:
 
-* Kubernetes distribution: `RKE2/EKS-A`
+* Kubernetes distribution: `RKE2/EKS Anywhere`
 * Kubernetes version: `1.28/1.29`
 
 == See Also
