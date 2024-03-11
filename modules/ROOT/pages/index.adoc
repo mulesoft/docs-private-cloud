@@ -16,6 +16,7 @@ The following table provides component information for Anypoint Platform PCE:
 [%header%autowidth.spread]
 |===
 | Component | Included | Not Included | Description
+| Anypoint Code Builder | | X | Enables you to create API specifications, implementations, and integration projects.
 | Anypoint Runtime Manager | X |  | Enables you to track and manage your deployed Mule applications.
 | Runtime Fabric Management (including Security Edge and Tokenization) |  | X | Automates the deployment and orchestration of customer-hosted Mule applications and API gateways.
 | Anypoint API Manager | X	| | Enables you to manage your registered APIs.
