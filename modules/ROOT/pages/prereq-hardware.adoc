@@ -116,7 +116,7 @@ Make sure the following Storage Classes are provided following these requirement
 |===
 
 [NOTE]
-The space requirements listed in the previous table are based on average use. For environments with heavy traffic, validate the amount of space needed with your Customer Success Manager.
+The space requirements listed in the previous table are based on average use. For environments with heavy traffic, validate the amount of space needed with MuleSoft Professional Services.
 
 == Load Balancer Requirements
 Anypoint Platform PCE must run in a production environment with multiple servers. To distribute traffic among servers and to restrict access to specific ports, you must provide and configure a load balancer.

@@ -2,11 +2,11 @@
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) includes support for Anypoint Monitoring. Anypoint Monitoring is a suite of tools that provides feedback from Mule flows and components in your application network.
 
-Anypoint Monitoring is an add-on to Anypoint Platform PCE. To use Anypoint Monitoring with Anypoint Platform PCE, contact your customer success representative.
+Anypoint Monitoring is an add-on to Anypoint Platform PCE. To use Anypoint Monitoring with Anypoint Platform PCE, contact MuleSoft Professional Services.
 
 Using Anypoint Monitoring with Anypoint Platform PCE requires the "Monitoring for On-Premises Management" subscription. This subscription entitles you to use two monitoring instances. A monitoring instance is an implementation of the 3-node Anypoint Monitoring configuration described in xref:supported-cluster-config.adoc[Supported Configurations for Anypoint Platform PCE]. Each monitoring instance is dedicated to a single Anypoint Platform PCE installation.
 
-To use Anypoint Monitoring with more than two Anypoint Platform PCE installations, you must purchase additional monitoring subscriptions. Contact your customer success representative for more information.
+To use Anypoint Monitoring with more than two Anypoint Platform PCE installations, you must purchase additional monitoring subscriptions. Contact MuleSoft Professional Services for more information.
 
 == Supported Anypoint Monitoring Features
 
