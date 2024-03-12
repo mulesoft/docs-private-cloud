@@ -19,11 +19,6 @@ During installation, Anypoint Platform Private Cloud Edition (Anypoint Platform 
 +
 image::access-management-user-id.png[User ID]
 
-. Enter the gravity shell:
-+
-----
-gravity enter
-----
 
 . Identify one of the `authentication-server` containers:
 +
