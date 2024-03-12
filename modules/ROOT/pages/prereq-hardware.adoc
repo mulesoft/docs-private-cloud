@@ -49,16 +49,26 @@ The following are the minimum requirements needed for the Anypoint Platform core
 |===
 
 [IMPORTANT]
-If the stated requirements for Memory and CPU are not met, Anypoint Platform PCE installation will fail. 
+If the stated requirements for Memory and CPU are not met, Anypoint Platform PCE installation will fail.
 
-For production environments, each node in your configuration requires the following EBS volumes:
+Make sure link:https://kubernetes.io/docs/concepts/storage/storage-classes[Storage Classes] are provided with the following configuration:
 
 [%header%autowidth.spread]
-.EBS Volumes Requirements
+.Storage Classes Configuration
 |===
-| Volume |Requirement
-|/dev/sda1 |200 GB
-|/dev/xvdj |256 GB
+| Parameter |Value
+|`reclaimPolicy` | `Retain`
+|`allowVolumeExpansion` | `true`
+|===
+
+The following Storage Classes should be provided following these requirements:
+
+[%header%autowidth.spread]
+.Dedicated Storage Classes Requirements
+|===
+| Name |Minimum IOPS|Description
+|`objectstore`|1500| Stores Seaweed object store data. The amount of space required can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|`stolon`|1500|Stores Postgres database data. The amount of space required can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 |===
 
 
@@ -81,20 +91,32 @@ they require more CPU, more memory and different disk mounts.
 |CPU |32 Cores
 |===
 
-[NOTE]
-The space requirements listed in the previous table are based on average use. For environments with heavy traffic, validate the amount of space needed with your Customer Success Manager.
-
-Make sure the following directories are mounted on persistent disks following these requirements:
+Make sure link:https://kubernetes.io/docs/concepts/storage/storage-classes[Storage Classes] are provided with the following configuration:
 
 [%header%autowidth.spread]
-.Dedicated Device Requirements
+.Storage Classes Configuration
 |===
-| Component |Size|Minimum IOPS|Mount Point|Description
-|HDD 4 xref:prereq-hardware#dias-amv-device[Cassandra AMV Device]| 500 GB |1500|/var/lib/data/dias-meld & /var/lib/data/dias-cassandra | Stores Cassandra database data for Monitoring Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
-|HDD 5 xref:prereq-hardware#stolon-amv-device[Stolon AMV Device]| 250 GB |1500|/var/lib/data/stolon-amv | Stores Postgres database data for Monitorng Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
-|HDD 7 xref:prereq-hardware#influxdb-amv-device[InfluxDB AMV Device]| 4 TB |1500|/var/lib/data/influxdb | Stores InfluxDB data for Monitoring Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
-|HDD 7 xref:prereq-hardware#logstash-amv-device[logstash AMV Device]| 500 GB |1500|/var/lib/data/logstash | Stores Logstash data for Monitoring Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+| Parameter |Value
+|`reclaimPolicy` | `Retain`
+|`allowVolumeExpansion` | `true`
 |===
+
+Make sure the following Storage Classes are provided following these requirements:
+
+[%header%autowidth.spread]
+.Dedicated Storage Classes Requirements
+|===
+| Name |Size|Minimum IOPS|Description
+|`objectstore`| - |1500| Stores Seaweed object store data. The amount of space required can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|`stolon`| - |1500|Stores Postgres database data. The amount of space required can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|`stolonAmv`| 250 GB |1500| Stores Postgres database data for Monitorng Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|`influxdb`| 4 TB |1500| Stores InfluxDB data for Monitoring Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|`logstash`| 500 GB |1500| Stores Logstash data for Monitoring Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|`cassandra`| 500 GB |1500|Stores Cassandra database data for Monitoring Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|===
+
+[NOTE]
+The space requirements listed in the previous table are based on average use. For environments with heavy traffic, validate the amount of space needed with your Customer Success Manager.
 
 == Load Balancer Requirements
 Anypoint Platform PCE must run in a production environment with multiple servers. To distribute traffic among servers and to restrict access to specific ports, you must provide and configure a load balancer.
