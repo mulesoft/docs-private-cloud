@@ -67,7 +67,7 @@ The following Storage Classes should be provided following these requirements:
 .Dedicated Storage Classes Requirements
 |===
 | Name |Minimum IOPS|Description
-|`objectstore`|1500| Stores Seaweed object store data. The amount of space required can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|`pceobjectstore`|1500| Stores Seaweed object store data. The amount of space required can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 |`stolon`|1500|Stores Postgres database data. The amount of space required can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 |===
 
@@ -107,7 +107,7 @@ Make sure the following Storage Classes are provided following these requirement
 .Dedicated Storage Classes Requirements
 |===
 | Name |Size|Minimum IOPS|Description
-|`objectstore`| - |1500| Stores Seaweed object store data. The amount of space required can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
+|`pceobjectstore`| - |1500| Stores Seaweed object store data. The amount of space required can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 |`stolon`| - |1500|Stores Postgres database data. The amount of space required can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 |`stolonAmv`| 250 GB |1500| Stores Postgres database data for Monitorng Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
 |`influxdb`| 4 TB |1500| Stores InfluxDB data for Monitoring Center Add-On. The amount of space required should be at least 250 GB, but can vary depending on your specific use case. It is important to estimate the minimum size requirements and allocate enough space as a dedicated device ahead of time.
