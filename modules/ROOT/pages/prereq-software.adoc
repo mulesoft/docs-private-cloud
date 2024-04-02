@@ -14,15 +14,18 @@ Before you install Anypoint Platform PCE, your infrastructure team must review e
 
 == Operating System Prerequisites
 
-=== Install required tools
+=== Installer OS requirements
 
-----
-yum install -y python3 bash-completion nfs-utils iptables-services
-----
+The PCE command line tool `pcectl` that enables you to perform installations supports *RHEL 8* and above.
 
-==== Tool to Verify NFS Server Ports
+=== Environment OS Requirements
 
-Netcat is recommended, but you can use your tool of choice to verify the correct ports are open on the NFS server. If you do not have `netcat`, you can install it from  http://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
+Anypoint Platform PCE has been tested on environments on the following operating systems: `RHEL 8.8`
+
+For environment OS requirements, please refer to the documentation corresponding to the chosen `Kubernetes` distribution:
+
+* https://docs.rke2.io/install/requirements#operating-systems[RKE2 Operating System Requirements]
+* https://anywhere.eks.amazonaws.com/docs/osmgmt/overview/[EKS Anywhere Operating System Management]
 
 === Enable and Load Kernel Modules
 
@@ -85,6 +88,10 @@ For AWS, block forwarding to AWS metadata service. Not valid for any other cloud
 ----
 iptables -A FORWARD -p tcp -d 169.254.169.254 -j REJECT
 ----
+
+=== Tool to Verify NFS Server Ports
+
+Netcat is recommended, but you can use your tool of choice to verify the correct ports are open on the NFS server. If you do not have `netcat`, you can install it from  http://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
 
 == MuleSoft Software Prerequisites
 
