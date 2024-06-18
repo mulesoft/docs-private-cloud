@@ -27,7 +27,7 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
 * Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform PCE does not support.
 ====
 
-=== Environment Prerequisites
+== Environment Prerequisites
 
 [%header,cols="1*a"]
 .Prerequisite Environment-Related Tasks
@@ -37,7 +37,7 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
 | If you are using AWS, xref:prereq-aws-terraform.adoc[Provision Amazon Web Services (AWS) Prerequisites].
 |===
 
-=== Hardware Prerequisites
+== Hardware Prerequisites
 Refer to xref:prereq-hardware.adoc[Hardware Prerequisites] for additional details and instructions for the following tasks:
 [%header,cols="1*a"]
 .Prerequisite Hardware-Related Tasks
@@ -49,7 +49,7 @@ Refer to xref:prereq-hardware.adoc[Hardware Prerequisites] for additional detail
 | xref:prereq-hardware#load-balancer-requirements[Configure Load Balancer]
 |===
 
-=== Software Prerequisites
+== Software Prerequisites
 Refer to xref:prereq-software.adoc[Software Prerequisites] for additional details and instructions for the following tasks:
 [%header,cols="1*a"]
 .Prerequisite Software-Related Tasks
@@ -77,7 +77,7 @@ a|
 * xref:prereq-software#uninstall-unsupported-software[Uninstall Unsupported Software]
 |===
 
-=== Network Prerequisites
+== Network Prerequisites
 Refer to xref:prereq-network.adoc[Network Prerequisites] for additional details and instructions for the following tasks:
 [%header,cols="1*a"]
 .Prerequisite Network-Related Tasks
@@ -92,7 +92,7 @@ Refer to xref:prereq-network.adoc[Network Prerequisites] for additional details 
 | xref:prereq-network#synchronize-clocks[Synchronize Clocks]
 |===
 
-=== NFS Prerequisites
+== NFS Prerequisites
 Refer to xref:verify-nfs.adoc[NFS Server Prerequisites] for additional details and instructions for the following tasks:
 [%header,cols="1*a"]
 .Prerequisite NFS-Related Tasks
