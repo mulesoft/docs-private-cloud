@@ -23,7 +23,6 @@ The following table provides component information for Anypoint Platform PCE:
 | Secrets Manager |  | X | Stores and manages secrets for supported Anypoint Platform services.
 | Anypoint Exchange	| X | | Enables your organization to share various assets for reuse across integration projects.
 | Access Management	| X | | Enables you to create your Anypoint Platform account or configure external federated identity.
-| Anypoint Design Center, excluding Flow Designer	| X | | Enables you to create API specifications in several modeling languages and to create RAML API fragments.
 | Anypoint Analytics - Insights	|   | X | Provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers.
 | Anypoint Analytics - Anypoint Visualizer	| X  |  | Enables you to explore your application network via an application network graph.
 | Anypoint Analytics - API	|   | X | Provides insight into how your APIs are being used and how they are performing.
