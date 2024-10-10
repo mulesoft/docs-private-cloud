@@ -105,7 +105,7 @@ See the Access Management documentation for more information on xref:access-mana
 | Maximum number of custom configurations per organization | 500 | 500
 | Maximum number of pages in a portal | 50 | 50
 | Maximum length of page name | 128 characters | 128 characters
-| Maximum review title length | 300 characters | 300 characters
+| Maximum review title length | 30 characters | 30 characters
 | Maximum review text length | 2048 characters | 2048 characters
 |===
 
