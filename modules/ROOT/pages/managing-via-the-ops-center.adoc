@@ -149,7 +149,7 @@ The *Cluster Information* dashboard displays the following metrics for the vario
 * Overall CPU Usage
 * CPU Usage by Node
 * Individual CPU Usage
-* Memory Usage Usage by Node
+* Memory Usage by Node
 * Individual Memory Usage
 * Overall Cluster Network Usage
 * Network Usage by Node
