@@ -3,9 +3,9 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Use the Maven Facade API (v1 and v2) to add the compatible Java versions for assets. The Java versions display in the Exchange UI, Exchange API, and GraphQL console for PCE environments. Only Java 8, 11, and 17 are supported.  
+Add the compatible Java versions of assets for Anypoint Platform PCE using the Maven Facade API (v1 and v2). The Java versions display in the Exchange UI, Exchange API, and GraphQL console for PCE environments. Only Java 8, 11, and 17 are supported.  
 
-To add the Java version compatibility for Anypoint Platform PCE, in the POM file, add the properties section and set each Java version to either true or false. 
+To add the Java version compatibility, in the POM file, add the properties section and set each Java version to either true or false. 
 
 This example snippet shows the properties section:
 [source,xml,linenums]
