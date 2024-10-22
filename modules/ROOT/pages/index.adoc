@@ -3,11 +3,20 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-With Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), you run and manage Mule applications on your local servers using your required security policies. With Anypoint Platform PCE, the control plane functionality is locally available and does not require interaction with external systems or public internet connectivity. You configure and run Anypoint Platform software and maintain all data storage, processing, and transmission. Refer to the following table for components included in Anypoint Platform PCE.
+Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) lets you run and manage Mule apps on your local servers, following your security policies. It offers local control plane functionality, with no external system interactions or internet connectivity required. You maintain all data storage, processing, and transmission.
+Anypoint Platform PCE uses Docker and Kubernetes for built-in high availability and scalability. While you can install it without deep Docker or Kubernetes knowledge, understanding these tools is essential for management and troubleshooting.
 
-Anypoint Platform PCE uses Docker and Kubernetes to provide built-in high availability and scalability. You can install the platform without understanding Docker or Kubernetes, but you must understand how they work to manage and troubleshoot the platform.
+Anypoint Platform PCE version 4.0 runs on enterprise-ready Kubernetes Openshift, Amazon EKS Anywhere (EKS-A) and Rancher Kubernetes Engine (RKE2). Additionally, it supports Java 17, in addition to Java 8 and 11.
 
 For information about a previous version of Anypoint Platform PCE, select the version in the documentation sidebar.
+
+== Before You Begin
+
+=== Upgrade Anypoint Platform PCE version 3.2.3 to 4.0
+If you are upgrading from version 3.2.3 of Anypoint Platform PCE to version 4.0, see xref:upgrading-pce.adoc[Upgrading PCE 3.2.3 to 4.0].
+
+=== Install Anypoint Platform PCE 4.0
+If you are installing Anypoint Platform PCE version 4.0 for the first time, see xref:install-workflow.adoc [Installing Anypoint Platform PCE].
 
 == Anypoint Platform PCE Components
 
@@ -15,133 +24,97 @@ The following table provides component information for Anypoint Platform PCE:
 
 [%header%autowidth.spread]
 |===
-| Component | Included | Not Included | Description
-| Anypoint Code Builder | | X | Enables you to create API specifications, implementations, and integration projects.
-| Anypoint Runtime Manager | X |  | Enables you to track and manage your deployed Mule applications.
-| Runtime Fabric Management (including Security Edge and Tokenization) |  | X | Automates the deployment and orchestration of customer-hosted Mule applications and API gateways.
-| Anypoint API Manager | X	| | Enables you to manage your registered APIs.
-| Secrets Manager |  | X | Stores and manages secrets for supported Anypoint Platform services.
-| Anypoint Exchange	| X | | Enables your organization to share various assets for reuse across integration projects.
-| Access Management	| X | | Enables you to create your Anypoint Platform account or configure external federated identity.
-| Anypoint Analytics - Insights	|   | X | Provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers.
-| Anypoint Analytics - Anypoint Visualizer	| X  |  | Enables you to explore your application network via an application network graph.
-| Anypoint Analytics - API	|   | X | Provides insight into how your APIs are being used and how they are performing.
-| Anypoint Monitoring	| X  |  | Provides visibility into integrations, Mule flows, and components in your application network.
-| Object Store	|   | X | Object Store v2 allows CloudHub applications to store data and states across batch processes, Mule components, and applications, either from within an application or by using the Object Store REST API.
-| Anypoint MQ	|   | X | A multi-tenant cloud messaging service that enables you to perform advanced asynchronous messaging scenarios between tenant applications.
-| API Testing	|   | X | Provides a testing framework that enables you to easily build automated tests for your integrations and APIs.
+| Component | Included | Description
+| Access Management	| Yes | Enables you to create your Anypoint Platform account or configure external federated identity.
+| Anypoint API Manager | Yes | Enables you to manage your registered APIs.
+| Anypoint Analytics - API	| No | Provides insight into how your APIs are being used and how they are performing.
+| Anypoint Analytics - Anypoint Visualizer	| No | Enables you to explore your application network via an application network graph.
+| Anypoint Analytics - Insights	| No | Provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers.
+| Anypoint Code Builder | No | Enables you to create API specifications, implementations, and integration projects.
+| Anypoint Exchange	| Yes | Enables your organization to share various assets for reuse across integration projects.
+| Anypoint MQ	| No | A multi-tenant cloud messaging service that enables you to perform advanced asynchronous messaging scenarios between tenant applications.
+| Anypoint Monitoring | No | Provides visibility into integrations, Mule flows, and components in your application network.
+| Anypoint Runtime Fabric Management | No | Automates the deployment and orchestration of customer-hosted Mule applications and API gateways.
+| Anypoint Runtime Manager | Yes | Enables you to track and manage your deployed Mule applications.
+| API Testing	|  No | Provides a testing framework that enables you to easily build automated tests for your integrations and APIs.
+| Object Store	| No | Object Store v2 allows CloudHub applications to store data and states across batch processes, Mule components, and applications, either from within an application or by using the Object Store REST API.
+| Secrets Manager | No | Stores and manages secrets for supported Anypoint Platform services.
 |===
-
-For Anypoint Platform PCE version 3.2, the following policies are included with API Manager:
-
-[%header%autowidth.spread]
-|===
-| Policy | Version
-| Basic authentication: Simple | 1.2.2
-| Basic Authentication - LDAP | 1.3.1
-| Client ID Enforcement | 1.2.4
-| Cross-Origin Resource Sharing | 1.2.1
-| Detokenization | 1.1.2
-| Tokenization | 1.1.2
-| Header Injection | 1.2.1
-| Header Removal | 1.0.3
-| HTTP Caching | 1.0.5
-| IP Blocklist | 1.0.0
-| IP Allowlist | 1.0.0
-| JSON Threat Protection | 1.1.5
-| JWT Validation | 1.3.0
-| Message Logging | 1.0.0
-| Mule OAuth 2.0 Access Token | 1.5.1
-| OpenAM OAuth 2.0 Token Enforcement | 1.5.1
-| OpenID Connect OAuth 2.0 Token Enforcement | 1.5.1
-| PingFederate Access Token Enforcement | 1.5.1
-| Rate Limiting | 1.3.6
-| Rate Limiting - SLA based | 1.2.8
-| Spike Control | 1.1.5
-| XML Threat Protection | 1.1.4
-|===
-
-For additional information about policies, refer to xref:api-manager::policies-landing-page.adoc[Policies].
 
 == Mule Runtime Version Compatibility
 
-* Anypoint Platform PCE is compatible with Mule runtime engine v3.9 and later.
-* Anypoint Platform PCE supports the Mule runtime engine LTS and Edge release channels. The recommended customer profile is LTS. For more information, visit xref:release-notes::mule-runtime/lts-edge-release-cadence.adoc[]. 
+* Anypoint Platform PCE is compatible with Mule runtime engine versions under support, 4.3 and later. Use version 4.6 LTS and later to get the best performance from all Anypoint Platform connectors.
+* Anypoint Platform PCE supports the Mule runtime engine LTS and Edge release channels. The recommended customer profile is LTS. For more information, visit xref:release-notes::mule-runtime/lts-edge-release-cadence.adoc[].
+
+== Java Version Compatibility
+
+Anypoint Platform PCE is compatible with Java 17, 11, and 8.
 
 == Features Shipped with Anypoint Platform PCE Version 3.2
 
 Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
 
-Anypoint Platform PCE version 3.2 contains the following features:
+Anypoint Platform PCE version 4.0 contains the following features:
 [%header%autowidth.spread]
 |===
 | Component | Feature Description | Feature Version
-.15+| Exchange | API Metadata Service | v0.7.636
-|Asset Manager Service | v1.0.504
-|Asset Portal Service | v0.6.1192
-| Assets Reviews Service | v0.8.71
-| Custom Assets Facade Service | v0.9.246
+.6+|Access Management| Audit Log | v5.1.45
+| Authentication Server | v1.2.460
+| Authentication Server UI | v2.1.240-56.develop
+| Anypoint Sign In | v3.2.143
+| Anypoint Roles Client | v8.1.1573
+| ARC Informer | v1.0.374
+| Anypoint Studio | Studio | v7.19.0
+.3+| API Designer | API Designer DC Projects Service | v3.13.1
+| API Designer DC XAPI Service | v2.11.2
+| API Designer DC UI | v2.10.5
+| API Gateway and API Tooling | <TBD> | <TBD>
+.9+| API Manager | API Manager API DB Migrations  | v1.0.451
+| API Manager API Platform Web | v1.15.204
+| API Manager API Proxy Builder Service  | v1.3.69
+| API Manager API  | v2.31.5
+| API Manager Contract Caching DB Migrations  | v1.0.238
+| API Manager Contract Caching Service  | v1.1.418
+| API Manager Proxies XAPI Service   | v1.24.0
+| API Manager RAML Parser Service   | v0.3.159
+| API Manager Web   | v1.29.1
+| API Modeling Framework (AMF) | AMF Service | v1.4.61
+| Connectivity | REST Connect Service | v1.14.53
+.24+| Exchange | Asset Manager DB Migrations | v2.0.20
+|Asset Manager Service  | v1.0.808
+|Asset Portals DB Migrations  | v2.0.25
+| Asset Portals Service | v0.6.1503
+| Content Provider | v1.0.12
+| Custom Assets Facade Service | v0.9.436
 | Customization Service | v0.6.214
-| Dependency Resolver Service | v0.6.469
+| Dependency Resolver Service | v0.8.27
 | File Service | v1.1.47
-| File Upload Service |v0.6.86
-| Graph Node Service | v0.2.172
-| Graph Service | v0.8.584
-| Maven Facade Service | v0.7.757
-| Search Service | v0.8.250
-| Exchange UI | v0.8.4803
-| XAPI Service | v0.8.2127
-| Connectivity | REST Connect Service | v1.12.40
-.7+| API Platform | API Platform API | v2.7.792
-| API Platform Web | v1.15.117
-| API Manager Web | v1.5.1031
-| Contract Caching Service | v1.1.158
-| API Proxy Builder Service | v1.2.123
-| RAML Parser Service | v0.3.102
-| Proxies XAPI Service | v1.2.206
-.2+| API Designer | API Designer XAPI | v3.41.0
-| API Designer UI | v2.44.0
-| Mocking Service | Mocking Service | v2.41.0
-.3+|Mozart| Design Center UI | v2.0.143
-| Mozart XAPI | v2.0.232
-| Mozart Project Manager Service | v3.0.45
-.8+| Runtime Manager | Cloudhub MCM | v2.17.155
-| Cloudhub UI | 1.100
-| AMC UI REST Facade | v2.12.75
-| Hybrid REST | v2.31.269
-| Metadata Manager | 1.9.49
-| Platform Alerts | 1.10.59
-| Mule Message Processor | v2.0.37
-| Platform Messages | 1.7.58
-.6+| Access Management | Authentication Server | v1.2.48
-| Core Services UI | v0.81.x
-| Anypoint Sign In | v0.81.x
-| Audit Log | v0.81.x
-| Landing Page UI | v0.81.x
-| Navbar | v0.81.x
-| Anypoint Platform PCE | Anypoint Platform PCE Packaging | v3.2.0
-| API Modeling Framework (AMF) | AMF Service | v1.2.49
-.2+| VCS | VCS  | v0.24+
-| VCS Git Proxy | v0.2.132+
-| Anypoint Studio | Studio | v7.15.0
-| Anypoint Visualizer | Network Graphs | v0.6.2.0
+| File Upload Service |v1.1.226
+| Maven Facade Service | v0.8.47
+| Region Synchronizer Service  | v0.2.147
+| Exchange API Metadata DB Migrations  | v1.7.324
+| Exchange API Metadata Service  | v0.7.954
+| Exchange Asset Reviews DB Migrations  | v1.6.359
+| Exchange Asset Reviews Service  | v0.8.353
+| Exchange Customization DB Migrations  | v1.0.264
+| Exchange Customization Service | v0.6.576
+| Exchange Customization Service | v0.6.576
+| Exchange Graph Node Service  | v0.2.563
+| Exchange Search DB Migrations  | v1.7.283
+| Exchange Search Service  | v1.0.90
+| Exchange UI  | v1.0.126
+| Exchange XAPI Service  | v0.8.2717
+| Mocking Service | Mocking Service | v2.68.6
+.4+| Runtime Manager | Application Manager DB Migration | v1.0.92
+| Application Manager Service | v2.33.0
+| Atlas Service | v1.9.109
+| MCM Service | v2.17.322
+.3+| Runtime Services | Anypoint Flash Platform Messages DB Migrations | v1.1.31
+| Platform Messages | v2.2.21
+| Mule Message Processor | v3.2.17
 |===
-
-== Add-On Features Supported by Anypoint Platform PCE Version 3.2
-
-[%header%autowidth.spread]
-|===
-| Feature | Version
-| Anypoint Monitoring | v0.6.2.0
-|===
-
 
 == See Also
 
-* xref:supported-cluster-config.adoc[Supported Configurations]
-* xref:install-checklist.adoc[Product Prerequisites]
-* xref:runtime-manager::index.adoc[Runtime Manager]
-* xref:exchange::index.adoc[Anypoint Exchange]
-* xref:2.x@api-manager::index.adoc[API Manager]
 * https://www.docker.com/[Docker]
 * https://kubernetes.io/[Kubernetes]
