@@ -1,12 +1,13 @@
-= Installation Workflow
+= Installing Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)
 
-== Install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)
+To install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), follow these steps:
 
-To install Anypoint Platform PCE, MuleSoft professional services must be involved throughout the installation process. Prior to installation, have your infrastructure team verify that the required infrastructure is correctly installed and configured as described in xref:install-checklist.adoc[Product Prerequisites]. 
+. Set up and verify your infrastructure +
+Before you install Anypoint Platform PCE, your infrastructure team must confirm that they installed and configured correctly the infrastructure for your organization following the requirements as described in xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites].
 
-== Install Anypoint Monitoring and Anypoint Visualizer
+. Contact MuleSoft Professional Services +
+After your infrastructure is correctly set up, contact MuleSoft Professional Services to assist you with installing Anypoint Platform PCE.
 
-After installing Anypoint Platform PCE, contact MuleSoft Professional Services to enable Anypoint Monitoring and Anypoint Visualizer. After they are enabled, you must install the agent for each of these product components. See xref:monitoring::am-installing.adoc[Monitor Hybrid Runtimes] and xref:visualizer::setup.adoc[Set up Anypoint Visualizer].
+== See Also
 
-[NOTE]
-Multi-instance operation of On-Premises Anypoint Runtime Manager is available only if you purchase Anypoint Platform Base Subscription, On-premises Management, API Manager and API Analytics, and Platinum Subscription all together.
+xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites].

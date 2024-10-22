@@ -3,6 +3,4 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To configure Anypoint Studio 7.15 for Anypoint Platform Private Cloud Edition 3.2, follow the steps in xref:studio::pce-configuration.adoc[Configure Anypoint PCE in Studio].
-
-
+To configure Anypoint Studio 7.19 for Anypoint Platform Private Cloud Edition 4.0, follow the steps in xref:studio::pce-configuration.adoc[Configure Anypoint PCE in Studio].
