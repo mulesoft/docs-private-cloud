@@ -1,4 +1,4 @@
-= Upload Custom Policies and Publish Assets to Exchange Using the Maven Client
+= Uploading Custom Policies and Publish Assets to Exchange Using the Maven Client
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

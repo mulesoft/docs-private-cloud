@@ -2,7 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:page-aliases: prereq-workflow.adoc
+:page-aliases: prereq-workflow.adoc, prereq-platform.adoc, prereq-hardware.adoc, prereq-software.adoc, prereq-network.adoc, prereq-gravity-check.adoc
 
 You can install Anypoint Platform Private Cloud Edition (PCE) version 4.0 and later in the Kubernetes (K8s) cluster that you provision and manage.
 

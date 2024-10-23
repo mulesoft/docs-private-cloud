@@ -1,4 +1,4 @@
-= Analyze Business and API Data Using ELK
+= Analyzing Business and API Data Using ELK
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

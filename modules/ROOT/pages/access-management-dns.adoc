@@ -1,4 +1,4 @@
-= Configure DNS on Anypoint Platform PCE
+= Configuring DNS on Anypoint Platform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -15,6 +15,3 @@ If you did not perform this step before installation, you must provide the DNS o
 ==
 If you perform a DNS update that changes the endpoints that Mule instances use to connect to Runtime Manager, you must restart the Mule instances before they can connect to the new endpoints.
 ==
-
-
-

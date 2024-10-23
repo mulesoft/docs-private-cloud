@@ -1,4 +1,4 @@
-= Configure a Disclaimer for Anypoint Platform PCE
+= Configuring a Disclaimer for Anypoint Platform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]

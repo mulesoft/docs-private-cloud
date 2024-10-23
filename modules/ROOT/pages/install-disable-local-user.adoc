@@ -1,4 +1,4 @@
-= Delete the Local User After Installing Anypoint Platform PCE
+= Deleting the Local User After Installing Anypoint Platform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -19,11 +19,9 @@ During installation, Anypoint Platform Private Cloud Edition (Anypoint Platform 
 +
 image::access-management-user-id.png[User ID]
 
-. Enter the gravity shell:
-+
-----
-gravity enter
-----
+. Configure your installer machine with kubeconfig.yaml to access the Anypoint Platform PCE K8s cluster.
+.. Set the environment variable `KUBECONFIG=/path/to/kubeconfig.yaml`.
+.. Check access to kubernetes cluster with `kubectl get nodes`.
 
 . Identify one of the `authentication-server` containers:
 +

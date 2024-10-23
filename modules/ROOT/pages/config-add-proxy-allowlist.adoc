@@ -1,4 +1,4 @@
-= Allow Addresses for API Platform Proxies
+= Allowing Addresses for API Platform Proxies
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
