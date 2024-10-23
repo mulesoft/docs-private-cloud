@@ -6,14 +6,14 @@ endif::[]
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) lets you run and manage Mule apps on your local servers, following your security policies. It offers local control plane functionality, with no external system interactions or internet connectivity required. You maintain all data storage, processing, and transmission.
 Anypoint Platform PCE uses Docker and Kubernetes for built-in high availability and scalability. While you can install it without deep Docker or Kubernetes knowledge, understanding these tools is essential for management and troubleshooting.
 
-Anypoint Platform PCE version 4.0 runs on enterprise-ready Kubernetes Openshift, Amazon EKS Anywhere (EKS-A) and Rancher Kubernetes Engine (RKE2). Additionally, it supports Java 17, in addition to Java 8 and 11.
+Anypoint Platform PCE version 4.0 runs on enterprise-ready Kubernetes RedHat OpenShift, Amazon EKS Anywhere (EKS-A) and Rancher Kubernetes Engine (RKE2). Additionally, it supports Java 17, in addition to Java 8 and 11.
 
 For information about a previous version of Anypoint Platform PCE, select the version in the documentation sidebar.
 
 == Before You Begin
 
 === Upgrade Anypoint Platform PCE version 3.2.3 to 4.0
-If you are upgrading from version 3.2.3 of Anypoint Platform PCE to version 4.0, see xref:upgrading-pce.adoc[Upgrading PCE 3.2.3 to 4.0].
+If you are upgrading from version 3.2.3 of Anypoint Platform PCE to version 4.0, see xref:upgrade-workflow.adoc[Upgrading PCE 3.2.3 to 4.0].
 
 === Install Anypoint Platform PCE 4.0
 If you are installing Anypoint Platform PCE version 4.0 for the first time, see xref:install-workflow.adoc [Installing Anypoint Platform PCE].
