@@ -105,9 +105,10 @@ Anypoint Platform PCE version 4.0 contains the following features:
 | Exchange UI  | v1.0.126
 | Exchange XAPI Service  | v0.8.2717
 | Mocking Service | Mocking Service | v2.68.6
-.4+| Runtime Manager | Application Manager DB Migration | v1.0.92
+.5+| Runtime Manager | Application Manager DB Migration | v1.0.92
 | Application Manager Service | v2.33.0
 | Atlas Service | v1.9.109
+| Mule Agent | v2.6.6
 | MCM Service | v2.17.322
 .3+| Runtime Services | Anypoint Flash Platform Messages DB Migrations | v1.1.31
 | Platform Messages | v2.2.21
