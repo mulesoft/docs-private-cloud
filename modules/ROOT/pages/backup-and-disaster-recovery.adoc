@@ -17,9 +17,7 @@ The backup and restore process is controlled via Anypoint Platform PCE APIs.
 
 To create a backup, run the following command:
 
-----
-curl -k <platform-dns>/platform/backup-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}'
-----
+`curl -k <platform-dns>/platform/backup-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}'`
 
 === Backup Content
 
@@ -54,9 +52,9 @@ Consider the following points before you perform a system restore:
 
 To perform the restore, run the following command:
 
-----
-curl -k <platform-dns>/platform/restore-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}
-----
+
+`curl -k <platform-dns>/platform/restore-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}`
+
 
 The backup file is stored on the NFS storage.
 

@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-workflow.adoc, prereq-platform.adoc, prereq-hardware.adoc, prereq-software.adoc, prereq-network.adoc
 
-You can install Anypoint Platform Private Cloud Edition (PCE) version 4.0 and later in the Kubernetes (K8s) cluster that you provision and manage.
+You can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) version 4.0 and later in the Kubernetes (K8s) cluster that you provision and manage.
 
 MuleSoft performed installations on popular K8s providers, which are listed in the following sections. The hardware and software requirements for installing Anypoint Platform PCE on your chosen provider are dictated by that provider, unless otherwise specified in this document. 
 
@@ -43,9 +43,8 @@ Running Anypoint Platform PCE workloads on K8s control plane nodes can degrade b
 
 == Hardware Requirements
 
-These are the requirements:
+These are the requirements for the cluster nodes:
 
-* Cluster nodes:
 * Dedicated control plane nodes:
     ** AWS c5.xlarge
     ** Architecture x86_64
@@ -70,7 +69,7 @@ For more information, see the provider specific requirements:
 
 These are the requirements:
 
-* Operating System: RHEL 8.10
+* Operating system: RHEL 8.10
 
 For more information, see the provider specific requirements:
 

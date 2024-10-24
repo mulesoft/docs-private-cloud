@@ -76,4 +76,4 @@ After your infrastructure is correctly set up and you performed a pre-installati
 
 == See Also
 
-xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites].
+* xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites].
