@@ -1,4 +1,4 @@
-= Configure Backup and Restore for Anypoint Platform PCE
+= Configuring Backup and Restore for Anypoint Platform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -60,5 +60,6 @@ The backup file is stored on the NFS storage.
 
 == See Also
 
+* xref:operating-about.adoc[]
 * xref:install-workflow.adoc[Installing Anypoint Platform Private Cloud]
 * xref:upgrade.adoc[Upgrade Anypoint Platform Private Cloud]

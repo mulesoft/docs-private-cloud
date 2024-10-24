@@ -18,3 +18,7 @@ $ keytool -importcert -alias anypoint.my-company -keystore <path to keystore> -s
 ----
 
 For more information about the CA certificate truststore, refer to your JVM vendor's documentation: for example,  https://docs.oracle.com/en/java/javase/17/security/java-security-overview1.html#GUID-EB29B931-D1DE-420B-849C-D731A8DF9CDC[Oracle documentation^].
+
+== See Also
+
+* xref:operating-about.adoc[]

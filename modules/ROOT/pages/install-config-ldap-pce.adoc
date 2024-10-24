@@ -6,10 +6,13 @@ endif::[]
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires an external identity provider. All users must be registered via external identity except the admin you register in the installation wizard. The following external identity providers are supported:
 
-* xref:access-management::conf-ldap-private-cloud-task.adoc[Configure LDAP in Anypoint Platform Private Cloud]
-* xref:access-management::conf-client-mgmt-pf-task.adoc[Configure Ping Federate]
-* xref:access-management::managing-users.adoc[Configure SAML]
-* xref:access-management::conf-openid-connect-task.adoc[Configure OpenID Connect]
-+
-Troubleshooting information can be found at https://help.mulesoft.com/s/article/Anypoint-Platform-Single-Sign-On-SSO-using-OpenID-Connect-OIDC-Troubleshooting-Guide[Anypoint Platform Single Sign-On (SSO) using OpenID Connect (OIDC) Troubleshooting Guide].
-+
+* xref:access-management::conf-ldap-private-cloud-task.adoc[Configuring LDAP in Anypoint Platform PCE]
+* xref:access-management::conf-client-mgmt-pf-task.adoc[Configuring Ping Federate]
+* xref:access-management::managing-users.adoc[Configuring SAML]
+* xref:access-management::conf-openid-connect-task.adoc[Configuring OpenID Connect]
+
+For troubleshooting information, see  https://help.mulesoft.com/s/article/Anypoint-Platform-Single-Sign-On-SSO-using-OpenID-Connect-OIDC-Troubleshooting-Guide[Anypoint Platform Single Sign-On (SSO) using OpenID Connect (OIDC) Troubleshooting Guide].
+
+== See Also
+
+* xref:config-workflow.adoc[]

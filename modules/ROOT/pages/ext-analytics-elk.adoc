@@ -172,3 +172,7 @@ This is required for Kibana to be able to recognize the index to be created. To 
 .. Create the index.
 +
 You can now access all the Mule dashboards in the *Dashboard* tab.
+
+== See Also
+
+* xref:operating-about.adoc[]

@@ -2,6 +2,7 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+:page-aliases: restarting-a-node.adoc
 
 After your installation is complete, your instance of Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) is ready to use. 
 

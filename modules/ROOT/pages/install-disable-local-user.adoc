@@ -5,7 +5,7 @@ endif::[]
 
 During installation, Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) creates a local Anypoint Platform user that enables you to configure platform components during installation. The credentials for this user are stored locally in Anypoint Platform. However, after configuring an external authentication provider such as LDAP, you should delete this user to improve security.
 
-. Before deleting the local user, perform the following:
+. Before deleting the local user, perform the following steps:
 
 ** Install and configure your external identity provider.
 ** Ensure that `SystemAdmin` user is not the owner of any other organizations.
@@ -13,13 +13,14 @@ During installation, Anypoint Platform Private Cloud Edition (Anypoint Platform 
 . Select the new user to whom you want to assign administrator privileges. This user must be defined in your external identity provider.
 
 . Determine the internal user ID for this user.
-.. From Anypoint Platform, select Access Management.
-.. Select Users and then select the name of the user.
+.. From Anypoint Platform, select *Access Management*.
+.. Select *Users*.
+.. Select the name of the user.
 .. Record the internal user ID. This ID appears in the URL as:
 +
-image::access-management-user-id.png[User ID]
+image::access-management-user-id.png["Example of User ID in the URL"]
 
-. Configure your installer machine with kubeconfig.yaml to access the Anypoint Platform PCE K8s cluster.
+. Configure your installer machine with `kubeconfig.yaml to access the Anypoint Platform PCE K8s cluster.
 .. Set the environment variable `KUBECONFIG=/path/to/kubeconfig.yaml`.
 .. Check access to kubernetes cluster with `kubectl get nodes`.
 
@@ -43,8 +44,14 @@ kubectl exec -it -n access-management <authentication-server-pod> -c application
 
 . Disable and delete the `System Admin` user.
 .. Log in as the user you just added as the organization owner.
-.. From Anypoint Platform, select Access Management.
-.. Select Users and then select `username` in the same row as `SystemAdmin`.
-.. Select Disable and then select Delete.
-+
+.. From Anypoint Platform, select *Access Management*.
+.. Select *Users*.
+.. Select `username` in the same row as `SystemAdmin`.
+.. Select *Disable*.
+.. Select *Delete*.
+
 This removes the default user from the platform.
+
+== See Also
+
+* xref:config-workflow.adoc[]
