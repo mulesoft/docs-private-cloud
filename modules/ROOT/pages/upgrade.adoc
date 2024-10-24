@@ -31,7 +31,7 @@ If you access via a load balancer, update your DNS following these steps:
 . Select *DNS/IP*.
 . For *Platform DNS/IP*, enter the DNS address where you are hosting the platform.
 +
-image::pce4-access-management.adoc["Platform DNS/IP field to enter DNS address in Access Management UI"]
+image::pce4-access-management.png["Platform DNS/IP field to enter DNS address in Access Management UI"]
 +
 [start=5]
 . Click *Save*.
