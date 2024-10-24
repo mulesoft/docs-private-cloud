@@ -33,7 +33,7 @@ These are the requirements:
 ** Have cluster worker nodes exclusively dedicated to Anypoint Platform PCE workloads. No Anypoint Platform PCE pods can run on the K8s control plane nodes.
 ** A large cluster can have: 
 *** 3 K8s control plane nodes
-*** 7 K8s Worker nodes
+*** 7 K8s worker nodes
 ** A small cluster can have: 
 *** 3 K8s control plane nodes
 *** 4 K8s worker nodes
