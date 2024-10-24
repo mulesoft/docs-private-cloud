@@ -27,7 +27,7 @@
   *** xref:config-alerts.adoc[Configure Alerts for Anypoint Platform PCE]
  ** xref:config-add-proxy-allowlist.adoc[Allow Addresses for API Platform Proxies]
  ** xref:custom-policies.adoc[Upload Custom Policies and Publish Assets to Exchange Using the Maven Client]
- ** xref:add-compatible-java-versions-using-the-maven-client.adoc[]
+ ** xref:adding-compatible-java-versions-using-the-maven-client.adoc[]
  ** xref:config-studio.adoc[Configure Anypoint Studio for Anypoint Platform PCE]
  ** xref:restarting-a-node.adoc[Update Nodes]
  ** xref:ext-analytics-elk.adoc[Analyze Business and API Data Using ELK]

@@ -1,4 +1,4 @@
-= Add Compatible Java Versions for Assets Using the Maven Client
+= Adding Compatible Java Versions for Assets Using the Maven Client
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -18,5 +18,9 @@ This example snippet shows the properties section:
    <isJava17Supported>true</isJava17Supported>
 </properties>
 ----
-In the example, Java 8 is set to false. Only version 11 and 17 appear for the asset version in the Exchange UI, Exchange API, and the GraphQL console.
+In the example, Java 8 is set to `false`. Only version 11 and 17 appear for the asset version in the Exchange UI, Exchange API, and the GraphQL console.
 
+
+== See Also
+
+* xref:operating-about.adoc[]
