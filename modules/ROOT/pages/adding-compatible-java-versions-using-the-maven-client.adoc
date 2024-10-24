@@ -20,7 +20,6 @@ This example snippet shows the properties section:
 ----
 In the example, Java 8 is set to `false`. Only version 11 and 17 appear for the asset version in the Exchange UI, Exchange API, and the GraphQL console.
 
-
 == See Also
 
 * xref:operating-about.adoc[]
