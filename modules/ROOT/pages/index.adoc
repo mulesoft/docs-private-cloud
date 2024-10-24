@@ -124,7 +124,7 @@ image:pce4-diagram-architecture.png[""]
 Control plane:
 
 * A subset of Anypoint services is deployed in Kubernetes (customer's choice - Anypoint Platform PCE v 4.0 supports RKE2, EKS-A, OpenShift).
-* This constitutes the MuleSoft Control Plane, a web-based management and administration tool for the lifecycle of MuleSoft Integration apps and APIs.
+* This constitutes the MuleSoft Control Plane, a web-based management and administration tool for the lifecycle of MuleSoft integration apps and APIs.
 * Starting with Anypoint Platform PCE v4.0, use a dedicated Kubernetes control plane to separate cluster management components from customer workloads.
 
 Runtime plane:
