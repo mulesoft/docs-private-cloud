@@ -2,108 +2,161 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
-:page-aliases: prereq-workflow.adoc
+:page-aliases: prereq-workflow.adoc, prereq-platform.adoc, prereq-hardware.adoc, prereq-software.adoc, prereq-network.adoc
 
-Before you install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE):
+You can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) version 4.0 and later in the Kubernetes (K8s) cluster that you provision and manage.
 
-* Your organization’s operations, networking, and security teams must review the listed infrastructure prerequisites, including Amazon Web Services (if applicable), hardware, software, network, and NFS, and verify successful completion of all prerequisites listed in this topic. If needed, contact your MuleSoft representative for assistance.
-+
-All prerequisites apply to all xref:prereq-platform#supported-environments[Supported Environments].
+MuleSoft performed installations on popular K8s providers, which are listed in the following sections. The hardware and software requirements for installing Anypoint Platform PCE on your chosen provider are dictated by that provider, unless otherwise specified in this document. 
 
-* Knowledge in the following areas is required:
+Before you begin, make sure your organization’s operations, networking, and security teams review the listed infrastructure prerequisites. These include the K8s cluster, hardware, software, networking, NFS storage, container registry, installer node, and storage requirements.
 
-** Linux system commands. 
-** Working in Linux with root access. Installation requires root access (permission to run the `sudo` command) on all servers in your environment.
-** Working with Terraform. This is only required if your environment includes AWS.
-** Remote connection mechanisms, such as SSL and SSH.
-
-[WARNING]
+[NOTE]
 ==== 
-You must contact MuleSoft Professional Services prior to installation. MuleSoft professional services must be involved with your installation.
+You must contact MuleSoft Professional Services prior to installing Anypoint Platform PCE, as they are involved with your installation.
 
-Installing Anypoint Platform PCE requires specific versions of operating systems, NFS, and other software. Most issues experienced with Anypoint Platform PCE occur because the required environment was not set up prior to installing or upgrading. For example, the following situations cause known problems:
-
-* Using your own AWS images when using AWS.
-* Using existing provisioning processes that install specific versions of RHEL, Docker, or other software that Anypoint Platform PCE does not support.
+Installing Anypoint Platform PCE requires specific versions of operating systems, NFS, and other software. Most issues experienced with Anypoint Platform PCE occur because the required environment was not set up prior to installing or upgrading. 
 ====
 
-== Environment Prerequisites
+== Kubernetes Cluster Requirements
 
-[%header,cols="1*a"]
-.Prerequisite Environment-Related Tasks
+These are the requirements:
+
+* Kubernetes (K8s) version 1.29 or 1.30.
+
+* Kubernetes providers: +
+    ** Rancher Kubernetes Engine (RKE2) versions 1.29 and 1.30.
+    ** RedHat OpenShift versions 4.15 and 4.16.
+    ** Amazon EKS Anywhere (EKS-A) 0.18 (K8s version 1.28)
+
+* Cluster configurations: +
+** Have a dedicated control plane node within the K8s cluster. Preferably, 3 or 5 nodes must be allocated for the K8s control planes. For example, only K8s management workload run on these nodes.
+** Have cluster worker nodes exclusively dedicated to Anypoint Platform PCE workloads. No Anypoint Platform PCE pods can run on the K8s control plane nodes.
+** A large cluster can have: 
+*** 3 K8s control plane nodes
+*** 7 K8s worker nodes
+** A small cluster can have: 
+*** 3 K8s control plane nodes
+*** 4 K8s worker nodes
+
+[NOTE]
+Running Anypoint Platform PCE workloads on K8s control plane nodes can degrade both Anypoint Platform PCE and cluster performance.  
+
+== Hardware Requirements
+
+These are the requirements for the cluster nodes:
+
+* Dedicated control plane nodes:
+    ** AWS c5.xlarge
+    ** Architecture x86_64
+    ** 4 vCPUS
+    ** Memory 8 GiB
+    ** Root volume 50GB
+
+* Worker nodes:
+    ** AWS m5.2xlarge
+    ** Architecture x86_64
+    ** 8 vCPUS
+    ** Memory 32 GiB
+    ** Root volume 50GB
+
+For more information, see the provider specific requirements:
+
+* https://docs.rke2.io/install/requirements#hardware[Rancher Kubernetes Engine (RKE2) - Hardware]
+* https://docs.openshift.com/container-platform/4.16/installing/overview/index.html[RedHat OpenShift]
+* https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
+
+== Software Requirements
+
+These are the requirements:
+
+* Operating system: RHEL 8.10
+
+For more information, see the provider specific requirements:
+
+* https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Software]
+* https://docs.openshift.com/container-platform/4.16/installing/overview/index.html[RedHat OpenShift]
+* https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
+
+
+== Networking Requirements
+
+Use the following ports to communicate with Anypoint Platform PCE:
+
+[%header%autowidth.spread]
+
 |===
-|Task Description
-| xref:prereq-platform.adoc[Verify Your Environment Is Supported]
-| If you are using AWS, xref:prereq-aws-terraform.adoc[Provision Amazon Web Services (AWS) Prerequisites].
+|Protocol |Port / Range|Purpose | Source | Destination
+|TCP/UDP | 53 | Internal cluster DNS |localhost |localhost
+|TCP | 2379, 2380, 4001, 7001 |etcd distributed database |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 4242 |Installer |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 6443 |Kubernetes API Server |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 9443 |HAProxy to load balance Kubernetes API Server |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 9100 |Prometheus node-exporter |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 10248, 10250 |Kubernetes Kubelet |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 10249 |Kubernetes kube-proxy |localhost | localhost
+|TCP | 10251-10252 |Kubernetes controller-manager and scheduler |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 10257-10259 |Kubernetes controller-manager and scheduler (secure) |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 30000-32767 |Internal services port range |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 8472 | Overlay VXLAN network |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 30080 | HTTP public access |Load balancer  | Anypoint Platform PCE nodes
+|TCP | 30443| HTTP public access |Load balancer  | Anypoint Platform PCE nodes
+|TCP | 30889| Mule Runtime Websocket |Load balancer  | Anypoint Platform PCE nodes
+|TCP | 30883| Mule Runtime Authentication Service (for certificate renewals) |Load balancer  | Anypoint Platform PCE nodes
 |===
 
-== Hardware Prerequisites
-Refer to xref:prereq-hardware.adoc[Hardware Prerequisites] for additional details and instructions for the following tasks:
-[%header,cols="1*a"]
-.Prerequisite Hardware-Related Tasks
-|===
-|Task Description
-| xref:prereq-hardware#memory-and-cpu-requirements[Verify Memory and CPU Requirements]
-| xref:prereq-hardware#device-requirements[Verify Device Requirements]
-| xref:prereq-hardware#device-requirements[Verify Disk IOPS]
-| xref:prereq-hardware#load-balancer-requirements[Configure Load Balancer]
-|===
+For more information, see the provider specific requirements:
 
-== Software Prerequisites
-Refer to xref:prereq-software.adoc[Software Prerequisites] for additional details and instructions for the following tasks:
-[%header,cols="1*a"]
-.Prerequisite Software-Related Tasks
-|===
-|Task Description
-| Operating system prerequisites
-a| 
-* xref:prereq-software#verify-linux-distribution[Verify Linux Distribution]
-* xref:prereq-software#selinux[Check for SELinux Custom Profiles]
-* xref:prereq-software#enable-and-load-kernel-modules[Enable and Load Kernel Modules]
-* xref:prereq-software#verify-kernel-settings[Verify Kernel Settings]
-| Third party software prerequisites
-a|
-* xref:prereq-software#install-logical-volume-manager-2-lvm2[Install Logical Volume Manager 2 (LVM2)]
-* xref:prereq-software#determine-if-you-are-using-firewalld[Determine if You Are Using firewalld]
-* xref:prereq-software#remove-local-dns-servers[Remove Local DNS Servers]
-* xref:prereq-software#download-and-install-required-tools[Install Required Tools]
-* xref:prereq-software#remove-server-configuration-management-software[Remove Server Configuration Management Software]
-| MuleSoft software prerequisites
-a|
-* xref:prereq-software#obtain-install-archive-and-license-key[Obtain Install Archive and License Key]
-* xref:prereq-software#verify-ip-forwarding-and-bridging[Verify IP Forwarding and Bridging]
-* xref:prereq-software#enable-forwarding-on-docker-device[Enable Forwarding on Docker device] 
-* xref:prereq-software#verify-ssl-certificate-requirements[Verify SSL Certificate Requirements]
-* xref:prereq-software#uninstall-unsupported-software[Uninstall Unsupported Software]
-|===
+* https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Networking]
+* https://docs.openshift.com/container-platform/4.16/networking/understanding-networking.html[RedHat OpenShift - Networking]
+* https://anywhere.eks.amazonaws.com/docs/clustermgmt/networking/networking-and-security/[Amazon EKS Anywhere (EKS-A) - Networking]
 
-== Network Prerequisites
-Refer to xref:prereq-network.adoc[Network Prerequisites] for additional details and instructions for the following tasks:
-[%header,cols="1*a"]
-.Prerequisite Network-Related Tasks
-|===
-|Task Description
-| xref:prereq-network#verify-static-ips[Verify Static IPs]
-| xref:prereq-network#verify-vxlan[Verify VXLAN]
-| xref:prereq-network#enable-required-ports[Enable Required Ports]
-| xref:prereq-network#verify-nat-traffic-requirements[Verify NAT Traffic Requirements]
-| xref:prereq-network#verify-smtp-server-requirements[Verify SMTP Server Requirements]
-| xref:prereq-network#verify-external-identity-provider-configuration-and-client-management[Verify External Identity Provider Configuration and Client Management]
-| xref:prereq-network#synchronize-clocks[Synchronize Clocks]
-|===
+== NFS Storage Requirements
 
-== NFS Prerequisites
-Refer to xref:verify-nfs.adoc[NFS Server Prerequisites] for additional details and instructions for the following tasks:
-[%header,cols="1*a"]
-.Prerequisite NFS-Related Tasks
-|===
-|Task Description
-| xref:verify-nfs#verify-nfs-server-setup[Verify NFS Server Setup]
-| xref:verify-nfs#verify-required-ports-are-open[Verify Required Ports are Open]
-| xref:verify-nfs#verify-nfs-server-is-mounted[Verify NFS Server is Mounted]
-| xref:verify-nfs#verify-nfs-performance[Verify NFS Performance]
-|===
+See xref:verify-nfs.adoc[]
 
-== Verify Environment
+== Container Registry Requirements
 
-Perform the steps in xref:prereq-gravity-check.adoc[Verify Environment] to ensure that your infrastructure meets Anypoint Platform PCE requirements.
+These are the requirements:
+
+* Must be secured over TLS.
+* Must be accessible from installer nodes and Kubernetes clusters.
+* Must be secured with either username and password orcCertificate based authentication. Ensure that the new or updated certificates are distributed to all nodes to facilitate uninterrupted TLS communication.
+
+== Installer Node Requirements
+
+These are the requirements:
+
+* Operating system: RHEL, Ubuntu or any Linux based systems.
+* Storage required minimum 100GB.
+* Access to Kubernetes cluster using kubeconfig.yaml
+    ** The cluster needs `cluster:admin` access, as Anypoint Platform PCE installer needs to create resources of different types.
+    ** The cluster needs `read/write` access in the default namespace to run Anypoint Platform PCE installer jobs and other supporting services.
+* Access and connectivity to private container registry
+
+== Storage Requirements
+
+These are the requirements:
+
+In Anypoint Platform PCE version 4.0 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. Currently there are two services that require PVCs:
+
+* Object Store - S3, such as object store service
+* Stolon - PostgressSQL database
+
+The storage class for the previous services can be the same. Depending on the type of underlying infrastructure or storage solution you choose, the storage class configuration can vary.
+
+== Platform Configuration
+
+To make Anypoint Platform PCE accessible, configure the following specifications in the final step of the Anypoint Platform PCE installation process:
+
+* Platform DNS
+* File System DNS
+* First User Account details
+    ** Org Name
+    ** Username
+    ** Email
+    ** Password
+* Platform certificate and certificate key with the Subject Alternative Name (SAN) of the platform DNS.
+
+== See Also
+
+* xref:install-workflow.adoc[]

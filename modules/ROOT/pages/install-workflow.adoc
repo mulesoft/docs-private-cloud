@@ -1,12 +1,79 @@
-= Installation Workflow
+= Installing Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)
+:page-aliases: prereq-gravity-check.adoc
 
-== Install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)
+The process to install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), consist of the following steps:
 
-To install Anypoint Platform PCE, MuleSoft professional services must be involved throughout the installation process. Prior to installation, have your infrastructure team verify that the required infrastructure is correctly installed and configured as described in xref:install-checklist.adoc[Product Prerequisites]. 
-
-== Install Anypoint Monitoring and Anypoint Visualizer
-
-After installing Anypoint Platform PCE, contact MuleSoft Professional Services to enable Anypoint Monitoring and Anypoint Visualizer. After they are enabled, you must install the agent for each of these product components. See xref:monitoring::am-installing.adoc[Monitor Hybrid Runtimes] and xref:visualizer::setup.adoc[Set up Anypoint Visualizer].
+. Setting up and verifying your infrastructure
+. Performing a pre-installation verification
+. Installing Anypoint Platform PCE
 
 [NOTE]
-Multi-instance operation of On-Premises Anypoint Runtime Manager is available only if you purchase Anypoint Platform Base Subscription, On-premises Management, API Manager and API Analytics, and Platinum Subscription all together.
+You must contact MuleSoft Professional Services prior performing the pre-installation verification and installation of Anypoint Platform PCE, as they are involved in these processes. 
+
+== Set Up and Verify your Infrastructure
+
+Before you install Anypoint Platform PCE, your infrastructure team must confirm that they installed and configured correctly the infrastructure for your organization following the requirements as described in xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites].
+
+== Perform a Pre-installation Verification
+
+To perform the pre-installation healthcheck verification for the Kubernetes (K8s) cluster, follow these steps:
+
+. Confirm your Kubernetes cluster version is 1.30.x or 1.29.x.
+. Create an `input.yaml` file using the following template and update it with your environment details:
+
+[source,json,linenums]
+----
+    containerRegistry:
+      endpoint: <PLACEHOLDER_URL>
+      username: ''
+      password: ''
+      certificate: /etc/registry/certificate/ca.crt
+      subproject: mulesoft
+      tlsSkipVerify: true
+    postInstallConfiguration:
+      platformDNS: <PLACEHOLDER_URL>
+      fileSystemDNS: <PLACEHOLDER_URL>
+      firstUserAccount:
+        organizationName: Test Org
+        username: <PLACEHOLDER_USERNAME>
+        email: <PLACEHOLDER_EMAIL>
+        password: <PLACEHOLDER_PASSWORD>
+      platformCertificate: /usr/src/app/workdir/cert.crt
+      platformCertificateKey: /usr/src/app/workdir/cert.key
+    amvInstallConfiguration:
+      enabled: false
+      influxdbLicensePath: ''
+    storageConfiguration:
+      pceobjectstore:
+        type: persistentVolumeClaim
+        storageClass: local-path
+      stolon:
+        type: persistentVolumeClaim
+        storageClass: local-path
+      stolonAmv:
+        type: persistentVolumeClaim
+        storageClass: local-path
+      influxdb:
+        type: persistentVolumeClaim
+        storageClass: local-path
+      logstash:
+        type: persistentVolumeClaim
+        storageClass: local-path
+      cassandra:
+        type: persistentVolumeClaim
+        storageClass: local-path
+----
+[start=3]
+. Obtain the `license.pem` file from the MuleSoft Professional Services team.
+. Verify that the cluster satisfies the prerequisites by running the following command against your `input.yaml` file and the `license.pem` file:
+
+`./pcectl pre-install-check --input-file/path/to/input.yaml --license-file /path/to/license.pem`
+
+
+== Install Anypoint Platform PCE 
+
+After your infrastructure is correctly set up and you performed a pre-installation verification, the MuleSoft Professional Services will assist you with the installation of Anypoint Platform PCE.
+
+== See Also
+
+* xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites].

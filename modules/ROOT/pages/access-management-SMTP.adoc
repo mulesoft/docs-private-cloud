@@ -1,4 +1,4 @@
-= Configure SMTP in Anypoint Platform PCE
+= Configuring SMTP in Anypoint Platform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
@@ -8,28 +8,31 @@ Because Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) does not
 You must direct your local installation of Anypoint Platform PCE to this server from the Access Management panel. 
 
 [NOTE]
-Only SMTP servers with Authentication are supported (anonymous SMTP relay servers are not supported). +
-SMTPS is not supported.
+Only SMTP servers with authentication are supported (anonymous SMTP relay servers are not supported). SMTPS is not supported.
 
 == Connect to an Existing SMTP Server 
 
 . From Anypoint Platform, select *Access Management*.
 . Select *SMTP*.
-. Provide the following information for your SMTP server:
-+
-image::on-premises-features-2c60a.png[]
-+
+. Provide the following parameters information for your SMTP server:
+
 [%header,cols="20a,50a,30a"]
-.SMTP Server Parameters
 |===
 |Field | Description | Example
-|Host | The host name of your SMTP server | `smtp.gmail.com`
-|Port | The port used to communicate to your SMTP server | `587`
-|Username | The username to authenticate to your SMTP server | `mulesoft.onprem.smtp@gmail.com`
-|Password | Your SMTP password | `examplepassphrase`
+|Host | Host name of your SMTP server. | `smtp.gmail.com`
+|Port | Port used to communicate to your SMTP server. | `587`
+|Username | Username to authenticate to your SMTP server. | `mulesoft.onprem.smtp@gmail.com`
+|Password | SMTP password. | `examplepassphrase`
 |===
-+
+
 [NOTE]
 To use anonymous logins for your SMTP server, leave the *Username* and *Password* fields empty. 
 
+[start=4]
 . After entering your configuration, select *Save*.
+
+image::on-premises-features-2c60a.png[SMTP configuration window under the Access Management UI]
+
+== See Also
+
+* xref:config-workflow.adoc[]

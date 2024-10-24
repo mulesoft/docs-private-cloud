@@ -1,6 +1,10 @@
-= Update InfluxDB License
+= Updating InfluxDB License
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 To update the InfluxDB license, contact MuleSoft Professional Services for the new license and the update instructions.
+
+== See Also
+
+* xref:operating-about.adoc[]
