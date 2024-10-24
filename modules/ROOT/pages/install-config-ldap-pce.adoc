@@ -11,7 +11,7 @@ Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires an exte
 * xref:access-management::managing-users.adoc[Configuring SAML]
 * xref:access-management::conf-openid-connect-task.adoc[Configuring OpenID Connect]
 
-For troubleshooting information, see  https://help.mulesoft.com/s/article/Anypoint-Platform-Single-Sign-On-SSO-using-OpenID-Connect-OIDC-Troubleshooting-Guide[Anypoint Platform Single Sign-On (SSO) using OpenID Connect (OIDC) Troubleshooting Guide].
+For troubleshooting information, see https://help.mulesoft.com/s/article/Anypoint-Platform-Single-Sign-On-SSO-using-OpenID-Connect-OIDC-Troubleshooting-Guide[Anypoint Platform Single Sign-On (SSO) using OpenID Connect (OIDC) Troubleshooting Guide].
 
 == See Also
 
