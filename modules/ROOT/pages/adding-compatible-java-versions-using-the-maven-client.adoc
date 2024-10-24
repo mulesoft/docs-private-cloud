@@ -1,0 +1,25 @@
+= Adding Compatible Java Versions for Assets Using the Maven Client
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Add the compatible Java versions of assets for Anypoint Platform PCE using the Maven Facade API (v1 and v2). The Java versions display in the Exchange UI, Exchange API, and GraphQL console for PCE environments. Only Java 8, 11, and 17 are supported.  
+
+To add the Java version compatibility, in the POM file, add the properties section and set each Java version to either true or false. 
+
+This example snippet shows the properties section:
+[source,xml,linenums]
+----
+<properties>
+   <type>app</type>
+   <tags>connector, mulesoft</tags>
+   <isJava8Supported>false</isJava8Supported>
+   <isJava11Supported>true</isJava11Supported>
+   <isJava17Supported>true</isJava17Supported>
+</properties>
+----
+In the example, Java 8 is set to `false`. Only version 11 and 17 appear for the asset version in the Exchange UI, Exchange API, and the GraphQL console.
+
+== See Also
+
+* xref:operating-about.adoc[]

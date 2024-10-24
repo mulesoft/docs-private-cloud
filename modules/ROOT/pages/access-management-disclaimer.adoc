@@ -1,14 +1,16 @@
-= Configure a Disclaimer for Anypoint Platform PCE
+= Configuring a Disclaimer for Anypoint Platform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can add a custom message to your login page that users in your organization see every time they log in:
+To configure a disclaimer for your Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), you can add a custom message to your login page that users in your organization see every time they log in:
 
 . From Anypoint Platform, select *Access Management* > *Disclaimer*.
-. Enter your disclaimer text.
+. Enter your disclaimer text (you can also set up a custom HTML message).
 . Select *Save*.
 
-image::on-prem-features-d22af.png[]
+image::on-prem-features-d22af.png[Disclaimer window to enter text under the Access Mananagemet UI]
 
-You can also set up a custom HTML message.
+== See Also
+
+* xref:config-workflow.adoc[]

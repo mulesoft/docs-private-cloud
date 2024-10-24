@@ -1,4 +1,4 @@
-= Upgrade Workflow
+= Upgrading Anypoint Platform PCE v3.2.3 ro v4.0.0
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
