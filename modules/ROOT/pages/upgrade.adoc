@@ -30,7 +30,11 @@ If you access via a load balancer, update your DNS following these steps:
 . Access Anypoint Platform and select *Access Management*.
 . Select *DNS/IP*.
 . For *Platform DNS/IP*, enter the DNS address where you are hosting the platform.
-. Click Save.
++
+image::pce4-access-management.adoc["Platform DNS/IP field to enter DNS address in Access Management UI"]
++
+[start=5]
+. Click *Save*.
 . Access Anypoint Platform PCE UI via DNS to ensure the login is successful. 
 . In your Anypoint Platform PCE v3.2.3 cluster, scale down `nginx-wss-service`` to 0 replicas. After 5 minutes, scale it back to 3 replicas.
 
@@ -38,25 +42,25 @@ If you access via a load balancer, update your DNS following these steps:
 == Create a Backup
 To create a backup for upgrading Anypoint Platform PCE 3.2.3 to 4.0, follow these steps:
 
-. Run the following command to patch the Anypoint Platform PCE 3.2.4 cluster ConfigMap to include ignored secrets and buckets:
-
+. Run the following command to patch the Anypoint Platform PCE 3.2.4 cluster ConfigMap to include ignored secrets and buckets: 
++
 `kubectl apply -f backup-restore-config(1).yaml`
-
++
 [start=2]
-. Generate a backup using `gravity backup`:
-
+. Generate a backup using `gravity backup`: 
++
 `gravity backup /var/lib/gravity/planet/share/backup-3x-dd-mm-yy.tar.gz`
-
++
 . Copy all the files from the NFS server of your Anypoint Platform PCE v3.2.3 cluster over to the NFS server of your Anypoint Platform PCE v4.0 cluster.
 
 . Run the following commands to copy the gravity backup file to the Anypoint Platform PCE v4.0 NFS server:
-
++
 ----
 mkdir nfs_mount_folder 
 mount ${nfsServer}/${nfsPath} nfs_mount_folder
 cp backup-3x-dd-mm-yy.tar.gz nfs_mount_folder/
 ----
-
++
 Ensure the backup is copied to the NFS server so you can then perform a system restore.
 
 == Install Anypoint Platform PCE v4.0
@@ -73,6 +77,7 @@ To complete the upgrade, you must perform a system restore by following these st
 .. Set `skip-version-check` to `true`.
 
 . Perform the restore to v4.0 using the API:
++
 ----
 curl -k https://${platformDns}/platform/restore \
 -X POST \ -H "Authorization: Bearer $token" \
@@ -81,6 +86,7 @@ curl -k https://${platformDns}/platform/restore \
 \"nfs-path\": \"${nfsPath}\", \
 \"backup-file-name\": \"backup-3x-dd-mm-yy.tar.gz\" }"
 ----
++
 Ensure the restore is successful by checking the restore logs. All the services and pods should be up and running successfully. 
 
 [start=3]
@@ -93,14 +99,14 @@ This ensures that there will be no blockling to a possible backup and restore pr
 . On the new Anypoint Platform PCE v4.0 environment, update the xref:upgrade.adoc#update-dns[previously created DNS] to point to the v4.0 load balancer in AWS route-53.
 
 . On the new Anypoint Platform PCE v4.0 cluster, update the DNS configuration in *Access Management* through the API (`pce3.mulesoft.com`):
-
++
 ----
 curl --location --request PUT 'https://swethas4a-600577b350bc4163.elb.us-west-2.amazonaws.com/platform/configuration/dns' \
 --header 'Authorization: Bearer token' \
 --header 'Content-Type: application/json' \
 --data-raw '{"platform-dns":"test.upgrade1.pce.mulesoft.com"}'
 ----
-
++
 [start=6]
 . In your Anypoint Platform PCE v3.2.3 cluster, scale down `nginx-wss-service` to 0 replicas. 
 . Ensure the login to Anypoint Platform PCE v4.0 works with the updated DNS.
