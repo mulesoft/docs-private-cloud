@@ -16,6 +16,7 @@
  ** xref:backup-and-disaster-recovery.adoc[Backing up and Restoring in Anypoint Platform PCE]
  ** xref:config-add-proxy-allowlist.adoc[Allowing Addresses for API Platform Proxies]
  ** xref:custom-policies.adoc[Uploading Custom Policies and Publish Assets to Exchange Using the Maven Client]
+ ** xref:adding-compatible-java-versions-using-the-maven-client.adoc[]
  ** xref:config-studio.adoc[Configuring Anypoint Studio for Anypoint Platform PCE]
  ** xref:ext-analytics-elk.adoc[Analyzing Business and API Data Using ELK]
  ** xref:register-server.adoc[Troubleshooting Mule Runtime Engine Registration]
