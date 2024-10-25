@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 [NOTE]
-If your Anypoint Platform PCE version is earlier than version 3.2.3, you must first upgrade to version 3.2.3 and then upgrade to version 4.0. 
+If your Anypoint Platform PCE version is earlier than version 3.2.3, upgrade to version 3.2.3 first and then upgrade to version 4.0. 
 
 Upgrading Anypoint Platform Private Cloud Edition version 3.2.3 to version 4.0, consist of the following process:
 
