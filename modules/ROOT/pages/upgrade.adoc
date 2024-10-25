@@ -26,7 +26,7 @@ If you access via DNS, follow the steps to xref:upgrade.adoc#create-backup[creat
 
 If you access via a load balancer, update your DNS following these steps: 
 
-. In Amazon Route53, create a new record to update the load balancer to point to a DNS, an example DNS for PCE 3.x is `pce3.mulesoft.com`. 
+. In Amazon Route53, create a new record to update the load balancer to point to a DNS. An example DNS for PCE 3.x is `pce3.mulesoft.com`. 
 . Access Anypoint Platform and select *Access Management*.
 . Select *DNS/IP*.
 . For *Platform DNS/IP*, enter the DNS address where you are hosting the platform.
