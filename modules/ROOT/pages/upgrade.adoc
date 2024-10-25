@@ -70,7 +70,7 @@ After you complete the backup, the MuleSoft Professional Services team will assi
 After the installation is complete don’t add data or new Mule apps in your Anypoint Platform PCE v4.0 environment.
 
 == Perform a System Restore
-To complete the upgrade, you must perform a system restore by following these steps:
+To complete the upgrade, perform a system restore by following these steps:
 
 . Temporarily set `skip-version-check` to `true` in your Anypoint Platform PCE v4.0 environment:
 .. Edit the ConfigMap by running `kubectl edit cm backup-restore-config`
