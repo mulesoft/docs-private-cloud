@@ -47,7 +47,7 @@ To create a backup for upgrading Anypoint Platform PCE 3.2.3 to 4.0, follow thes
 `kubectl apply -f backup-restore-config(1).yaml`
 +
 [start=2]
-. Generate a backup using `gravity backup`: 
+. Run the following command to generate a backup: 
 +
 `gravity backup /var/lib/gravity/planet/share/backup-3x-dd-mm-yy.tar.gz`
 +
