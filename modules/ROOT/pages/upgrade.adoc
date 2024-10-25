@@ -64,7 +64,7 @@ cp backup-3x-dd-mm-yy.tar.gz nfs_mount_folder/
 Ensure the backup is copied to the NFS server so you can then perform a system restore.
 
 == Install Anypoint Platform PCE v4.0
-After you complete the backup, the MuleSoft Professional Services team will assist you and provide you the steps to xref:install-workflow.adoc[install Anypoint Platform PCE v4.0].
+After you complete the backup, the MuleSoft Professional Services team will assist you with xref:install-workflow.adoc[installing Anypoint Platform PCE v4.0].
 
 [NOTE]
 After the installation is complete don’t add data or new Mule apps in your Anypoint Platform PCE v4.0 environment.
