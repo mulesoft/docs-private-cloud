@@ -73,7 +73,7 @@ After the installation is complete don’t add data or new Mule apps in your Any
 To complete the upgrade, perform a system restore by following these steps:
 
 . Temporarily set `skip-version-check` to `true` in your Anypoint Platform PCE v4.0 environment:
-.. Edit the ConfigMap by running `kubectl edit cm backup-restore-config`
+.. Edit the ConfigMap by running `kubectl edit cm backup-restore-config`.
 .. Set `skip-version-check` to `true`.
 
 . Perform the restore to v4.0 using the API:
