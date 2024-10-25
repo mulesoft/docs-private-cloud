@@ -6,7 +6,7 @@ endif::[]
 [NOTE]
 If your Anypoint Platform PCE version is earlier than version 3.2.3, upgrade to version 3.2.3 first and then upgrade to version 4.0. 
 
-Upgrading Anypoint Platform Private Cloud Edition version 3.2.3 to version 4.0, consist of the following process:
+To upgrade Anypoint Platform Private Cloud Edition version 3.2.3 to version 4.0:
 
 . Verify your infrastructure environment. +
 Before you upgrade to version 4.0, your infrastructure team must verify that your working installation meets any additional requirements described in xref:install-checklist.adoc[Anypoint PCE Prerequisites].
