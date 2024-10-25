@@ -90,7 +90,7 @@ curl -k https://${platformDns}/platform/restore \
 Ensure the restore is successful by checking the restore logs. All the services and pods should be up and running successfully. 
 
 [start=3]
-. After the restore is complete from Anypoint Platform PCE v3.2.3 to v4.0 change back `skip-version-check` to `false`:
+. After the restore from Anypoint Platform PCE v3.2.3 to v4.0 is complete, change back `skip-version-check` to `false`:
 .. Edit the ConfigMap by running `kubectl edit cm backup-restore-config`
 .. Set `skip-version-check` to `false`. +
 This ensures that there will be no blockling to a possible backup and restore process in the future. 
