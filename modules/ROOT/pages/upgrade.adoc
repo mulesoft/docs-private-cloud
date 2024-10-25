@@ -93,7 +93,7 @@ Ensure the restore is successful by checking the restore logs. All the services 
 . After the restore from Anypoint Platform PCE v3.2.3 to v4.0 is complete, change back `skip-version-check` to `false`:
 .. Edit the ConfigMap by running `kubectl edit cm backup-restore-config`
 .. Set `skip-version-check` to `false`. +
-This ensures that there will be no blockling to a possible backup and restore process in the future. 
+This ensures there's no blocker for a possible backup and restore process in the future. 
 
 [start=4]
 . On the new Anypoint Platform PCE v4.0 environment, update the xref:upgrade.adoc#update-dns[previously created DNS] to point to the v4.0 load balancer in AWS route-53.
