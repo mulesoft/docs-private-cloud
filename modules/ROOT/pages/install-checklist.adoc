@@ -8,7 +8,7 @@ You can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) 
 
 MuleSoft performed installations on popular K8s providers, which are listed in the following sections. The hardware and software requirements for installing Anypoint Platform PCE on your chosen provider are dictated by that provider, unless otherwise specified in this document. 
 
-Before you begin, make sure your organization’s operations, networking, and security teams review the listed infrastructure prerequisites. These include the K8s cluster, hardware, software, networking, NFS storage, container registry, installer node, and storage requirements.
+Before you begin, ensure your organization’s operations, networking, and security teams review the listed infrastructure prerequisites. These include the K8s cluster, hardware, software, networking, NFS storage, container registry, installer node, and storage requirements.
 
 [NOTE]
 ==== 
@@ -29,7 +29,7 @@ These are the requirements:
     ** Amazon EKS Anywhere (EKS-A) 0.18 (K8s version 1.28)
 
 * Cluster configurations: +
-** Have a dedicated control plane node within the K8s cluster. Preferably, 3 or 5 nodes must be allocated for the K8s control planes. For example, only K8s management workload run on these nodes.
+** Have a dedicated control plane node within the K8s cluster. Preferably, allocate 3 or 5 nodes for the K8s control planes. For example, only K8s management workload run on these nodes.
 ** Have cluster worker nodes exclusively dedicated to Anypoint Platform PCE workloads. No Anypoint Platform PCE pods can run on the K8s control plane nodes.
 ** A large cluster can have: 
 *** 3 K8s control plane nodes
@@ -120,7 +120,7 @@ These are the requirements:
 
 * Must be secured over TLS.
 * Must be accessible from installer nodes and Kubernetes clusters.
-* Must be secured with either username and password orcCertificate based authentication. Ensure that the new or updated certificates are distributed to all nodes to facilitate uninterrupted TLS communication.
+* Must be secured with either username and password or certificate based authentication. Ensure that the new or updated certificates are distributed to all nodes to facilitate uninterrupted TLS communication.
 
 == Installer Node Requirements
 

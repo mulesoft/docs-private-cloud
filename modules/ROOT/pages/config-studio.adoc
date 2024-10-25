@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To configure Anypoint Studio 7.19 for Anypoint Platform Private Cloud Edition 4.0, follow the steps in xref:studio::pce-configuration.adoc[Configure Anypoint PCE in Studio].
+include::studio::partial$pce4-configuration-macos.adoc[tag=pce4macOS]
 
 == See Also
 

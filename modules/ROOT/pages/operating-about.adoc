@@ -7,7 +7,7 @@ endif::[]
 After your installation is complete, your instance of Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) is ready to use. 
 
 == Users Using Anypoint Platform PCE
-Users registered in your external identity service should have access to your Anypoint Platform xref:access-management::organization.adoc[organization]. As an administrator, you can add xref:access-management::roles.adoc[roles] to these users.
+Ensure that users registered in your external identity service have access to your Anypoint Platform xref:access-management::organization.adoc[organization].
 
 You can also xref:runtime-manager::managing-servers.adoc[register servers] so that you can then xref:runtime-manager::deploying-to-your-own-servers.adoc[deploy to them], and so on.
 

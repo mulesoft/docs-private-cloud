@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To use Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), you must supply TLS credentials. You can upload a certificate via the Anypoint Platform UI under *Access Management*, and configure the platform to use this certificate to secure communications. Ensure that every machine connected to the platform, including Mule runtime engine (Mule), trusts this certificate. Additionally, you have the option to specify custom ciphers and Diffie-Hellman (DH) groups for the key exchange method if needed.
+To use Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), you must supply TLS credentials. Upload a certificate via the Anypoint Platform UI under *Access Management*, and configure the platform to use this certificate to secure communications. Ensure that every machine connected to the platform, including Mule runtime engine (Mule), trusts this certificate. Additionally, you have the option to specify custom ciphers and Diffie-Hellman (DH) groups for the key exchange method if needed.
 
 When you replace or change the certificate, Anypoint Platform restarts the nginx server.
 
@@ -13,7 +13,7 @@ To configure the security, follow these steps:
 
 . Create a certificate.
 +
-You can generate your certificate using a tool like OpenSSL. To be compatible with Anypoint Platform, ensure your certificate is in an `nginx` friendly format. The certificate must include the domain name of your installation as both the Common Name (CN) and the Subject Alternative Name (SAN).
+Generate your certificate using a tool like OpenSSL. To be compatible with Anypoint Platform, ensure your certificate is in an `nginx` friendly format. The certificate must include the domain name of your installation as both the Common Name (CN) and the Subject Alternative Name (SAN).
 
 . From Anypoint Platform, select *Access Management*.
 . Select *Security*.

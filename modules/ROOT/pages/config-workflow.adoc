@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: install-add-tasks.adoc
 
-After you complete Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) installation, review the following tasks, so you can successfully deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform PCE environment running on your own local network.
+After you complete the Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) installation, review the following task to deploy and manage applications, register APIs, and use API Exchange on an Anypoint Platform PCE environment running on your own local network.
 
 * xref:install-disable-local-user.adoc[Deleting the Local User after Installing Anypoint Platform PCE]
 * xref:install-config-ldap-pce.adoc[Configuring an External Identity Provider in Anypoint Platform PCE]

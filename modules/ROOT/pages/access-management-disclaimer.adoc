@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To configure a disclaimer for your Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), you can add a custom message to your login page that users in your organization see every time they log in:
+To configure a disclaimer for your Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), add a custom message to your login page that users in your organization see every time they log in:
 
 . From Anypoint Platform, select *Access Management* > *Disclaimer*.
 . Enter your disclaimer text (you can also set up a custom HTML message).
