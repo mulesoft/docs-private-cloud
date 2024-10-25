@@ -36,7 +36,7 @@ image::pce4-access-management.png["Platform DNS/IP field to enter DNS address in
 [start=5]
 . Click *Save*.
 . Access Anypoint Platform PCE UI via DNS to ensure the login is successful. 
-. In your Anypoint Platform PCE v3.2.3 cluster, scale down `nginx-wss-service`` to 0 replicas. After 5 minutes, scale it back to 3 replicas.
+. In your Anypoint Platform PCE v3.2.3 cluster, scale down `nginx-wss-service` to 0 replicas. After 5 minutes, scale it up to 3 replicas.
 
 [[create-backup]]
 == Create a Backup
