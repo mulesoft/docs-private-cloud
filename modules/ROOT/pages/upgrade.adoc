@@ -91,7 +91,7 @@ Ensure the restore is successful by checking the restore logs. All the services 
 
 [start=3]
 . After the restore from Anypoint Platform PCE v3.2.3 to v4.0 is complete, change back `skip-version-check` to `false`:
-.. Edit the ConfigMap by running `kubectl edit cm backup-restore-config`
+.. Edit the ConfigMap by running `kubectl edit cm backup-restore-config`.
 .. Set `skip-version-check` to `false`. +
 This ensures there's no blocker for a possible backup and restore process in the future. 
 
