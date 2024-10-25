@@ -113,7 +113,7 @@ curl --location --request PUT 'https://swethas4a-600577b350bc4163.elb.us-west-2.
 
 == Perform Post-Upgrade Configurations
 
-After you complete the upgrade, you can perform the following configurations:
+After you complete the upgrade, you can:
 
 . Add any custom DNS certificate that needs updating.
 . Update your Mule Agent to the compatible version 2.6.7 and higher. For details, see xref:runtime-manager::installing-and-configuring-runtime-manager-agent#update-the-agent[Install or Update the Runtime Manager Agent].
