@@ -9,16 +9,19 @@ include::reuse::partial$non-inclusive-banner.adoc[]
 
 * Set up and test the backup procedure on all clusters.
 * Perform a backup before attempting node maintenance to preserve data in the event of a failure.
-* RKE2 - Follow the article - https://www.suse.com/support/kb/doc/?id=000021301
-* EKSA-  TBD
 
-* Openshift - From 4.16, Updating the node's OS is performed by Openshift's Machine Config Operator as part of the Updating clusters. Details about how nodes are update and how Machine Config Operator works can be read in the following links:
+== Update Nodes for Clusters
 
-* Openshift Updates - https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/intro-to-updates.html
+See the following topics for details on each provider:
 
-* Openshift Update Service - https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/intro-to-updates.html#update-service-about_understanding-openshift-updates
+* https://www.suse.com/support/kb/doc/?id=000021301[Rancher Kubernetes Engine (RKE2) OS Upgrade Process]
 
- * How does Machine Config Operator work: https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/how-updates-work.html#mco-update-process_how-updates-work
+* OpenShift: Starting with version 4.16, the Machine Config Operator manages the node's OS updates as part of the cluster update process. For more on node updates and the Machine Config Operator, see:
+
+** https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/intro-to-updates.html[Openshift Updates] 
+
+** https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/intro-to-updates.html#update-service-about_understanding-openshift-updates[Openshift Update Service]
+ ** https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/how-updates-work.html#mco-update-process_how-updates-work[Machine Config Operator Functionality]
 
 == See Also
 
