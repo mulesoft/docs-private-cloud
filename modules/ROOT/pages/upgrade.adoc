@@ -63,7 +63,10 @@ data:
 . Create a final `tar` file that includes:
 * The backup `tar` file created in the previous step (`backup-3x-dd-mm-yy.tar.gz`).
 * The projects and workingDirectories folders from the NFS server of your Anypoint Platform PCE v3.2.3 cluster.
-
++
+`tar cvzf backup-final-3x-dd-mm-yy.tar.gz projects workingDirectories backup-3x-dd-mm-yy.tar.gz`
++
+[start=4]
 . Run the following commands to copy the `tar` file created in the previous step to the Anypoint Platform PCE v4.0.0 NFS server:
 +
 ----
