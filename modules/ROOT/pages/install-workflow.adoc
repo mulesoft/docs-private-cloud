@@ -50,18 +50,6 @@ To perform the pre-installation healthcheck verification for the Kubernetes (K8s
       stolon:
         type: persistentVolumeClaim
         storageClass: local-path
-      stolonAmv:
-        type: persistentVolumeClaim
-        storageClass: local-path
-      influxdb:
-        type: persistentVolumeClaim
-        storageClass: local-path
-      logstash:
-        type: persistentVolumeClaim
-        storageClass: local-path
-      cassandra:
-        type: persistentVolumeClaim
-        storageClass: local-path
 ----
 [start=3]
 . Obtain the `license.pem` file from the MuleSoft Professional Services team.
