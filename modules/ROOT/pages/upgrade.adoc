@@ -4,9 +4,9 @@ include::_attributes.adoc[]
 endif::[]
 
 [NOTE]
-If your Anypoint Platform PCE version is earlier than version 3.2.3, you must first upgrade to version 3.2.3 and then upgrade to version 4.0. 
+If your Anypoint Platform PCE version is earlier than version 3.2.3, upgrade to version 3.2.3 first and then upgrade to version 4.0. 
 
-Upgrading Anypoint Platform Private Cloud Edition version 3.2.3 to version 4.0, consist of the following process:
+To upgrade Anypoint Platform Private Cloud Edition version 3.2.3 to version 4.0:
 
 . Verify your infrastructure environment. +
 Before you upgrade to version 4.0, your infrastructure team must verify that your working installation meets any additional requirements described in xref:install-checklist.adoc[Anypoint PCE Prerequisites].
@@ -17,6 +17,29 @@ After you verify your infrastructure is correctly set up, contact MuleSoft Profe
 . Perform a system restore.
 . Perform post-upgrade configurations.
 
+<<<<<<< HEAD
+=======
+[[update-dns]]
+== Update your DNS
+As an Anypoint Platform PCE user, you can access Anypoint Platform UI via DNS or directly via a load balancer.
+
+If you access via DNS, follow the steps to xref:upgrade.adoc#create-backup[create a backup].
+
+If you access via a load balancer, update your DNS following these steps: 
+
+. In Amazon Route53, create a new record to update the load balancer to point to a DNS. An example DNS for PCE 3.x is `pce3.mulesoft.com`. 
+. Access Anypoint Platform and select *Access Management*.
+. Select *DNS/IP*.
+. For *Platform DNS/IP*, enter the DNS address where you are hosting the platform.
++
+image::pce4-access-management.png["Platform DNS/IP field to enter DNS address in Access Management UI"]
++
+[start=5]
+. Click *Save*.
+. Access Anypoint Platform PCE UI via DNS to ensure the login is successful. 
+. In your Anypoint Platform PCE v3.2.3 cluster, scale down `nginx-wss-service` to 0 replicas. After 5 minutes, scale it up to 3 replicas.
+
+>>>>>>> 604743e1675647a0b82091624488432688dac806
 [[create-backup]]
 == Create a Backup
 To create a backup for upgrading Anypoint Platform PCE 3.2.3 to 4.0, follow these steps:
@@ -56,7 +79,7 @@ data:
 ----
 +
 [start=2]
-. Generate a backup using `gravity backup`: 
+. Run the following command to generate a backup: 
 +
 `gravity backup /var/lib/gravity/planet/share/backup-3x-dd-mm-yy.tar.gz`
 +
@@ -78,16 +101,16 @@ cp backup-3x-dd-mm-yy.tar.gz nfs_mount_folder/
 Ensure the backup is copied to the NFS server so you can then perform a system restore.
 
 == Install Anypoint Platform PCE v4.0
-After you complete the backup, the MuleSoft Professional Services team will assist you and provide you the steps to xref:install-workflow.adoc[install Anypoint Platform PCE v4.0].
+After you complete the backup, the MuleSoft Professional Services team will assist you with xref:install-workflow.adoc[installing Anypoint Platform PCE v4.0].
 
 [NOTE]
 After the installation is complete don’t add data or new Mule apps in your Anypoint Platform PCE v4.0 environment.
 
 == Perform a System Restore
-To complete the upgrade, you must perform a system restore by following these steps:
+To complete the upgrade, perform a system restore by following these steps:
 
 . Temporarily set `skip-version-check` to `true` in your Anypoint Platform PCE v4.0 environment:
-.. Edit the ConfigMap by running `kubectl edit cm backup-restore-config`
+.. Edit the ConfigMap by running `kubectl edit cm backup-restore-config`.
 .. Set `skip-version-check` to `true`.
 
 . Perform the restore to v4.0 using the API:
@@ -104,10 +127,10 @@ curl -k https://${platformDns}/platform/restore \
 Ensure the restore is successful by checking the restore logs. All the services and pods should be up and running successfully. 
 
 [start=3]
-. After the restore is complete from Anypoint Platform PCE v3.2.3 to v4.0 change back `skip-version-check` to `false`:
-.. Edit the ConfigMap by running `kubectl edit cm backup-restore-config`
+. After the restore from Anypoint Platform PCE v3.2.3 to v4.0 is complete, change back `skip-version-check` to `false`:
+.. Edit the ConfigMap by running `kubectl edit cm backup-restore-config`.
 .. Set `skip-version-check` to `false`. +
-This ensures that there will be no blockling to a possible backup and restore process in the future. 
+This ensures there's no blocker for a possible backup and restore process in the future. 
 
 [start=4]
 . On the new Anypoint Platform PCE v4.0 environment, update the xref:upgrade.adoc#update-dns[previously created DNS] to point to the v4.0 load balancer in AWS route-53.
@@ -127,7 +150,7 @@ curl --location --request PUT 'https://swethas4a-600577b350bc4163.elb.us-west-2.
 
 == Perform Post-Upgrade Configurations
 
-After you complete the upgrade, you can perform the following configurations:
+After you complete the upgrade, you can:
 
 . Add any custom DNS certificate that needs updating.
 . Update your Mule Agent to the compatible version 2.6.7 and higher. For details, see xref:runtime-manager::installing-and-configuring-runtime-manager-agent#update-the-agent[Install or Update the Runtime Manager Agent].
