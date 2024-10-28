@@ -132,6 +132,7 @@ These are the requirements:
     ** The cluster needs `cluster:admin` access, as Anypoint Platform PCE installer needs to create resources of different types.
     ** The cluster needs `read/write` access in the default namespace to run Anypoint Platform PCE installer jobs and other supporting services.
 * Access and connectivity to private container registry
+* For OpenShift use SecurityContextConstraints for installing Anypoint Platform PCE.
 
 == Storage Requirements
 
