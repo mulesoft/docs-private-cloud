@@ -12,31 +12,10 @@ Upgrading Anypoint Platform Private Cloud Edition version 3.2.3 to version 4.0, 
 Before you upgrade to version 4.0, your infrastructure team must verify that your working installation meets any additional requirements described in xref:install-checklist.adoc[Anypoint PCE Prerequisites].
 . Contact MuleSoft Professional Services. +
 After you verify your infrastructure is correctly set up, contact MuleSoft Professional Services to assist you with upgrading Anypoint Platform PCE.
-. Update your DNS.
 . Create a backup of Anypoint Platform PCE v3.2.3.
 . Install Anypoint Platform PCE v4.0.
 . Perform a system restore.
 . Perform post-upgrade configurations.
-
-[[update-dns]]
-== Update your DNS
-As an Anypoint Platform PCE user, you can access Anypoint Platform UI via DNS or directly via a load balancer.
-
-If you access via DNS, follow the steps to xref:upgrade.adoc#create-backup[create a backup].
-
-If you access via a load balancer, update your DNS following these steps: 
-
-. In Amazon Route53, create a new record to update the load balancer to point to a DNS, an example DNS for PCE 3.x is `pce3.mulesoft.com`. 
-. Access Anypoint Platform and select *Access Management*.
-. Select *DNS/IP*.
-. For *Platform DNS/IP*, enter the DNS address where you are hosting the platform.
-+
-image::pce4-access-management.png["Platform DNS/IP field to enter DNS address in Access Management UI"]
-+
-[start=5]
-. Click *Save*.
-. Access Anypoint Platform PCE UI via DNS to ensure the login is successful. 
-. In your Anypoint Platform PCE v3.2.3 cluster, scale down `nginx-wss-service`` to 0 replicas. After 5 minutes, scale it back to 3 replicas.
 
 [[create-backup]]
 == Create a Backup
@@ -46,14 +25,46 @@ To create a backup for upgrading Anypoint Platform PCE 3.2.3 to 4.0, follow thes
 +
 `kubectl apply -f backup-restore-config(1).yaml`
 +
+
+The ConfigMap file looks like this:
++
+----
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backup-restore-config
+data:
+  namespaces: "default access-management amf amc anypoint-flash arm audit-log api-designer api-manager core-paas design-center exchange mocking mozart pce visualizer dias monitoring-center api-console-proxy trusted-domains"
+  ignore-buckets: "cpc-resources static-assets"
+  ignore-databases: crowdmigrator ^db\S*$ sw_database
+  ignore-secrets: "objectstore-s3-secret telegraf-influxdb-creds nginx-ssl dias-insight-cassandra-connection-password hybrid-rest-cloudhub-keystore hybrid-rest-root-cert runtime-manager-keystore runtime-manager-truststore cloudhub-mcm-keystore" 
+ ignore-releases: "core-paas-namespaces stolon stolon-amv pce-seaweedfs-app pce-cluster-ssl-app dias-prov-k8s-am-influxdb-comp dias-prov-k8s-am-ingestor-comp"
+  pvc-to-delete: "dias-prov-k8s-cassandra-comp dias-prov-k8s-insight-comp"
+  skip-version-check: "false"
+  backup_s3_max_attempts: "3"
+  backup_s3_sleep_time_seconds: "30"
+  backup_s3_sequentially_bucket_names: ""
+  backup_s3_continue_if_error: "false"
+  backup_timeout_seconds: "3600"
+  seaweedfs_master_pod_count: "3"
+  seaweedfs_filer_pod_count: "2"
+  seaweedfs_volume_pod_count: "3"
+  restore_s3_max_attempts: "3"
+  restore_s3_sleep_time_seconds: "30"
+  restore_in_parallel: "false"
+  restore_timeout_seconds: "10800"
+----
++
 [start=2]
 . Generate a backup using `gravity backup`: 
 +
 `gravity backup /var/lib/gravity/planet/share/backup-3x-dd-mm-yy.tar.gz`
 +
-. Copy all the files from the NFS server of your Anypoint Platform PCE v3.2.3 cluster over to the NFS server of your Anypoint Platform PCE v4.0 cluster.
+. Create a final `tar` file that includes:
+* The backup `tar` file created in the previous step (`backup-3x-dd-mm-yy.tar.gz`).
+* The projects and workingDirectories folders from the NFS server of your Anypoint Platform PCE v3.2.3 cluster.
 
-. Run the following commands to copy the gravity backup file to the Anypoint Platform PCE v4.0 NFS server:
+. Run the following commands to copy the `tar` file created in the previous step to the Anypoint Platform PCE v4.0.0 NFS server:
 +
 ----
 mkdir nfs_mount_folder 
@@ -61,6 +72,9 @@ mount ${nfsServer}/${nfsPath} nfs_mount_folder
 cp backup-3x-dd-mm-yy.tar.gz nfs_mount_folder/
 ----
 +
+[start=5]
+. Extract the contents of the `tar` files to merge the projects and workingDirectories folders. Additionally, ensure that the gravity `tar` file is also extracted during this process. 
+
 Ensure the backup is copied to the NFS server so you can then perform a system restore.
 
 == Install Anypoint Platform PCE v4.0
@@ -119,6 +133,26 @@ After you complete the upgrade, you can perform the following configurations:
 . Update your Mule Agent to the compatible version 2.6.7 and higher. For details, see xref:runtime-manager::installing-and-configuring-runtime-manager-agent#update-the-agent[Install or Update the Runtime Manager Agent].
 
 All connected Mule apps are automatically reconnected after a few minutes.
+
+[[update-dns]]
+== Update your DNS
+As an Anypoint Platform PCE user, you can access Anypoint Platform UI via DNS or directly via a load balancer.
+
+If you access via DNS, follow the steps to xref:upgrade.adoc#create-backup[create a backup].
+
+If you access via a load balancer, update your DNS following these steps: 
+
+. In Amazon Route53, create a new record to update the load balancer to point to a DNS, an example DNS for PCE 3.x is `pce3.mulesoft.com`. 
+. Access Anypoint Platform and select *Access Management*.
+. Select *DNS/IP*.
+. For *Platform DNS/IP*, enter the DNS address where you are hosting the platform.
++
+image::pce4-access-management.png["Platform DNS/IP field to enter DNS address in Access Management UI"]
++
+[start=5]
+. Click *Save*.
+. Access Anypoint Platform PCE UI via DNS to ensure the login is successful. 
+. In your Anypoint Platform PCE v3.2.3 cluster, scale down `nginx-wss-service` to 0 replicas. After 5 minutes, scale it back to 3 replicas.
 
 == See Also
 
