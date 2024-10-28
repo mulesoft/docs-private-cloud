@@ -26,7 +26,7 @@ These are the requirements:
 * Kubernetes providers: +
     ** Rancher Kubernetes Engine (RKE2) versions 1.29 and 1.30.
     ** RedHat OpenShift versions 4.15 and 4.16.
-    ** Amazon EKS Anywhere (EKS-A) 0.18 (K8s version 1.28)
+    ** Amazon EKS Anywhere (EKS-A) 0.20 (K8s version 1.29, 1.30)
 
 * Cluster configurations: +
 ** Have a dedicated control plane node within the K8s cluster. Preferably, allocate 3 or 5 nodes for the K8s control planes. For example, only K8s management workload run on these nodes.
@@ -43,17 +43,15 @@ Running Anypoint Platform PCE workloads on K8s control plane nodes can degrade b
 
 == Hardware Requirements
 
-These are the requirements for the cluster nodes:
+These are the minimum requirements for the cluster nodes:
 
 * Dedicated control plane nodes:
-    ** AWS c5.xlarge
     ** Architecture x86_64
     ** 4 vCPUS
     ** Memory 8 GiB
     ** Root volume 50GB
 
 * Worker nodes:
-    ** AWS m5.2xlarge
     ** Architecture x86_64
     ** 8 vCPUS
     ** Memory 32 GiB
@@ -120,14 +118,14 @@ These are the requirements:
 
 * Must be secured over TLS.
 * Must be accessible from installer nodes and Kubernetes clusters.
-* Must be secured with either username and password or certificate based authentication. Ensure that the new or updated certificates are distributed to all nodes to facilitate uninterrupted TLS communication.
+* Must be secured with either a username and password or Certificate based authentication. Ensure that the new or updated certificates are distributed to all nodes to facilitate uninterrupted TLS communication.
 
 == Installer Node Requirements
 
 These are the requirements:
 
 * Operating system: RHEL, Ubuntu or any Linux based systems.
-* Storage required minimum 100GB.
+* Storage required a minimum 100GB.
 * Access to Kubernetes cluster using kubeconfig.yaml
     ** The cluster needs `cluster:admin` access, as Anypoint Platform PCE installer needs to create resources of different types.
     ** The cluster needs `read/write` access in the default namespace to run Anypoint Platform PCE installer jobs and other supporting services.
@@ -138,7 +136,7 @@ These are the requirements:
 
 These are the requirements:
 
-In Anypoint Platform PCE version 4.0 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. Currently there are two services that require PVCs:
+In Anypoint Platform PCE version 4.0 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. Currently, there are two services that require PVCs:
 
 * SeaweedFS - S3 object store service
 * Stolon - PostgreSQL HA database
