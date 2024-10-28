@@ -6,7 +6,7 @@ endif::[]
 [NOTE]
 If your Anypoint Platform PCE version is earlier than version 3.2.3, upgrade to version 3.2.3 first and then upgrade to version 4.0. 
 
-To upgrade Anypoint Platform Private Cloud Edition version 3.2.3 to version 4.0:
+To upgrade Anypoint Platform Private Cloud Edition version 3.2.3 to version 4.0 perform a backup and restore to a new cluster:
 
 . Verify your infrastructure environment. +
 Before you upgrade to version 4.0, your infrastructure team must verify that your working installation meets any additional requirements described in xref:install-checklist.adoc[Anypoint PCE Prerequisites].
@@ -17,29 +17,6 @@ After you verify your infrastructure is correctly set up, contact MuleSoft Profe
 . Perform a system restore.
 . Perform post-upgrade configurations.
 
-<<<<<<< HEAD
-=======
-[[update-dns]]
-== Update your DNS
-As an Anypoint Platform PCE user, you can access Anypoint Platform UI via DNS or directly via a load balancer.
-
-If you access via DNS, follow the steps to xref:upgrade.adoc#create-backup[create a backup].
-
-If you access via a load balancer, update your DNS following these steps: 
-
-. In Amazon Route53, create a new record to update the load balancer to point to a DNS. An example DNS for PCE 3.x is `pce3.mulesoft.com`. 
-. Access Anypoint Platform and select *Access Management*.
-. Select *DNS/IP*.
-. For *Platform DNS/IP*, enter the DNS address where you are hosting the platform.
-+
-image::pce4-access-management.png["Platform DNS/IP field to enter DNS address in Access Management UI"]
-+
-[start=5]
-. Click *Save*.
-. Access Anypoint Platform PCE UI via DNS to ensure the login is successful. 
-. In your Anypoint Platform PCE v3.2.3 cluster, scale down `nginx-wss-service` to 0 replicas. After 5 minutes, scale it up to 3 replicas.
-
->>>>>>> 604743e1675647a0b82091624488432688dac806
 [[create-backup]]
 == Create a Backup
 To create a backup for upgrading Anypoint Platform PCE 3.2.3 to 4.0, follow these steps:
