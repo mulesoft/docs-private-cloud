@@ -23,36 +23,46 @@ To perform the pre-installation healthcheck verification for the Kubernetes (K8s
 
 [source,json,linenums]
 ----
-    containerRegistry:
-      endpoint: <PLACEHOLDER_URL>
-      username: ''
-      password: ''
-      certificate: /etc/registry/certificate/ca.crt
-      subproject: mulesoft
-      tlsSkipVerify: true
-    postInstallConfiguration:
-      platformDNS: <PLACEHOLDER_URL>
-      fileSystemDNS: <PLACEHOLDER_URL>
-      firstUserAccount:
-        organizationName: Test Org
-        username: <PLACEHOLDER_USERNAME>
-        email: <PLACEHOLDER_EMAIL>
-        password: <PLACEHOLDER_PASSWORD>
-      platformCertificate: /usr/src/app/workdir/cert.crt
-      platformCertificateKey: /usr/src/app/workdir/cert.key
-    amvInstallConfiguration:
-      enabled: false
-      influxdbLicensePath: ''
-    storageConfiguration:
-      pceobjectstore:
-        type: persistentVolumeClaim
-        storageClass: local-path
-      stolon:
-        type: persistentVolumeClaim
-        storageClass: local-path
+    # Container Registry configuration to upload PCE images
+containerRegistry:
+ endpoint: "" # Container Registry Endpoint
+ username: "" # Provide either Username/Password OR Certificate to authenticate with container registry
+ password: ""
+ certificate: "/etc/registry/certificate/ca.crt"
+ subproject: "mulesoft" # Container registry subproject under which all the PCE images will be part of.
+ tlsSkipVerify: True  # True or False.
+# Configuration required to perform post installation setup for Anypoint platform
+# All the fields in `postInstallConfiguration` are required.
+postInstallConfiguration: 
+ platformDNS: ""
+ fileSystemDNS: ""
+ firstUserAccount:
+   organizationName: 'Test Org' 
+   username: 'username'
+   email: 'username@mulesoft.com'
+   password: '<a-valid-password>'
+ platformCertificate: /path/to/platform/certificate/cert.crt
+ platformCertificateKey: path/to/platform/certificate/cert.key
+# Storage class configuration for persistent data services
+storageConfiguration:
+ pceobjectstore:
+   type: "persistentVolumeClaim"
+   storageClass: "<storage-class-name>"
+   controlPlaneSize: "10Gi" # Optional. Defaults to 10Gi
+   volumeSize: "100Gi" # Optional. Defaults to 100Gi
+   volumeIndexSize: "10Gi" # Optional. Defaults to 10Gi
+ stolon:
+   type: "persistentVolumeClaim"
+   storageClass: "<storage-class-name>"
+   size: "100Gi" # Optional. Defaults to 100Gi
+# Configuration options for monitoring stack
+monitoringAppConfiguration:
+ monitoringStackEnabled: True # Defaults to True. Must be set to False for Openshift clusters.
+ grafanaEnabled: True # Defaults to True.
 ----
 [start=3]
 . Obtain the `license.pem` file from the MuleSoft Professional Services team.
+. Set the `KUBECONFIG` environment variable to the path to the `kubeconfig` file of the cluster.
 . Verify that the cluster satisfies the prerequisites by running the following command against your `input.yaml` file and the `license.pem` file:
 +
 `./pcectl pre-install-check --input-file/path/to/input.yaml --license-file /path/to/license.pem`
@@ -61,6 +71,11 @@ To perform the pre-installation healthcheck verification for the Kubernetes (K8s
 == Install Anypoint Platform PCE 
 
 After your infrastructure is correctly set up and you performed a pre-installation verification, MuleSoft Professional Services will assist you with the installation of Anypoint Platform PCE.
+
+To install Anypoint Platform PCE, run this command:
+
+`./pcectl install --input-file /path/to/input.yaml --license-file /path/to/license.pem`
+
 
 == See Also
 
