@@ -12,8 +12,11 @@ For information about a previous version of Anypoint Platform PCE, select the ve
 
 == Before You Begin
 
-=== Upgrade Anypoint Platform PCE version 3.2.3 to 4.0
+=== Upgrade to Anypoint Platform PCE version 4.0
 If you are upgrading from version 3.2.3 of Anypoint Platform PCE to version 4.0, see xref:upgrade.adoc[Upgrading PCE 3.2.3 to 4.0].
+
+[NOTE]
+If you're using a version of Anypoint Platform older than 3.2.3, upgrade to version 3.2.3 first. Then proceed to upgrade to version 4.0.
 
 === Install Anypoint Platform PCE 4.0
 If you are installing Anypoint Platform PCE version 4.0 for the first time, see xref:install-workflow.adoc [Installing Anypoint Platform PCE].
@@ -33,7 +36,6 @@ The following table provides component information for Anypoint Platform PCE:
 | Anypoint Code Builder | No | Enables you to create API specifications, implementations, and integration projects.
 | Anypoint Exchange	| Yes | Enables your organization to share various assets for reuse across integration projects.
 | Anypoint MQ	| No | A multi-tenant cloud messaging service that enables you to perform advanced asynchronous messaging scenarios between tenant applications.
-| Anypoint Monitoring | No | Provides visibility into integrations, Mule flows, and components in your application network.
 | Anypoint Runtime Fabric Management | No | Automates the deployment and orchestration of customer-hosted Mule applications and API gateways.
 | Anypoint Runtime Manager | Yes | Enables you to track and manage your deployed Mule applications.
 | API Testing	|  No | Provides a testing framework that enables you to easily build automated tests for your integrations and APIs.
@@ -41,9 +43,20 @@ The following table provides component information for Anypoint Platform PCE:
 | Secrets Manager | No | Stores and manages secrets for supported Anypoint Platform services.
 |===
 
+== Add-On Features Supported by Anypoint Platform PCE 4.0
+
+The following table provides add-on features supported Anypoint Platform PCE 4.0:
+
+[%header%autowidth.spread]
+|===
+| Component | Description
+| Anypoint Monitoring | Provides visibility into integrations, Mule flows, and components in your application network.
+|===
+
+
 == Mule Runtime Version Compatibility
 
-* Anypoint Platform PCE is compatible with Mule runtime engine versions under support, 4.3 and later. Use version 4.6 LTS and later to get the best performance from all Anypoint Platform connectors.
+* Anypoint Platform PCE is compatible with Mule runtime engine versions 4.3 - 4.6. Use version 4.6 LTS to get the best performance from all Anypoint Platform connectors.
 * Anypoint Platform PCE supports the Mule runtime engine LTS and Edge release channels. The recommended customer profile is LTS. For more information, visit xref:release-notes::mule-runtime/lts-edge-release-cadence.adoc[].
 
 == Java Version Compatibility
