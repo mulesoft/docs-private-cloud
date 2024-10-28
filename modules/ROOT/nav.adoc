@@ -18,7 +18,6 @@
  ** xref:custom-policies.adoc[Uploading Custom Policies and Publish Assets to Exchange Using the Maven Client]
  ** xref:adding-compatible-java-versions-using-the-maven-client.adoc[]
  ** xref:config-studio.adoc[Configuring Anypoint Studio for Anypoint Platform PCE]
- ** xref:ext-analytics-elk.adoc[Analyzing Business and API Data Using ELK]
  ** xref:register-server.adoc[Troubleshooting Mule Runtime Engine Registration]
- ** xref:license-influx-update.adoc[Updating InfluxDB License]
+ ** xref:restarting-a-node.adoc[Updating Nodes]
 * xref:upgrade.adoc[Upgrading Anypoint Platform PCE to v4.0]

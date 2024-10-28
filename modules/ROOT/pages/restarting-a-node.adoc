@@ -1,0 +1,25 @@
+= Updating Nodes
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+include::reuse::partial$non-inclusive-banner.adoc[]
+
+== Before You Begin
+
+* Set up and test the backup procedure on all clusters.
+* Perform a backup before attempting node maintenance to preserve data in the event of a failure.
+* RKE2 - Follow the article - https://www.suse.com/support/kb/doc/?id=000021301
+* EKSA-  TBD
+
+* Openshift - From 4.16, Updating the node's OS is performed by Openshift's Machine Config Operator as part of the Updating clusters. Details about how nodes are update and how Machine Config Operator works can be read in the following links:
+
+* Openshift Updates - https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/intro-to-updates.html
+
+* Openshift Update Service - https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/intro-to-updates.html#update-service-about_understanding-openshift-updates
+
+ * How does Machine Config Operator work: https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/how-updates-work.html#mco-update-process_how-updates-work
+
+== See Also
+
+* xref:operating-about.adoc
