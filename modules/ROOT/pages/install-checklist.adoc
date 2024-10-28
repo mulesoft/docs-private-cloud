@@ -139,14 +139,14 @@ These are the requirements:
 
 In Anypoint Platform PCE version 4.0 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. Currently there are two services that require PVCs:
 
-* Object Store - S3, such as object store service
-* Stolon - PostgressSQL database
+* SeaweedFS - S3 object store service
+* Stolon - PostgreSQL HA database
 
 The storage class for the previous services can be the same. Depending on the type of underlying infrastructure or storage solution you choose, the storage class configuration can vary.
 
 == Platform Configuration
 
-To make Anypoint Platform PCE accessible, configure the following specifications in the final step of the Anypoint Platform PCE installation process:
+To make Anypoint Platform PCE accessible, configure these specifications in the input config file before installing Anypoint Platform PCE:
 
 * Platform DNS
 * File System DNS
