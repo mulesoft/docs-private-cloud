@@ -1,0 +1,7 @@
+= Supported Platform Components and Configuration
+
+To ensure platform performance, stability, and high availability for Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) review the supported platform components and configuration.
+
+== Mule Runtime Engine and Mule Applications
+
+The following table shows the recommended and maximum number of Mule instances and Mule applications that Anypoint Platform PCE supports:
