@@ -1,7 +1,89 @@
-= Supported Platform Components and Configuration
+= Supported Configurations for Anypoint Platform PCE
 
-To ensure platform performance, stability, and high availability for Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) review the supported platform components and configuration.
+To ensure platform performance, stability, and high availability, Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) supports two network configurations: 4-node and 7-node. To ensure high availability and performance, each node must run on its own server in both configurations. If you are using a virtual machine to host the nodes, you must ensure that each VM node is running on a separate physical server.
 
 == Mule Runtime Engine and Mule Applications
 
 The following table shows the recommended and maximum number of Mule instances and Mule applications that Anypoint Platform PCE supports:
+
+[%header%autowidth.spread]
+|===
+| Description| Small cluster 4-node Configuration | Large cluster 7-node Configuration
+| Maximum number of Mule instances per environment | 500 | 500
+| Maximum number of Mule instances across all environments | 1500 | 3000
+| Maximum number of Mule instances per server group | 20 | 20
+| Maximum Mule instances per cluster | 8 | 8
+| Mule applications under management per environment (recommended) | Under 200 | Around 200
+| Mule applications under management per environment (maximum) | 500 | 500
+| Mule applications per Mule runtime engine (recommended) | Fewer than 25 | Fewer than 25
+| Mule applications per Mule runtime engine (maximum) | 100 | 150
+| Number of Mule applications | 6000 | 1200
+| Number of Mule application replicas. An application can run on multiple Mule instances in a server group or cluster. | 12000| 24000
+|===
+
+== APIs and API Manager
+
+The following table show the maximum instances per API, number of client applications, applied policies and created contracts that Anypoint Platform PCE supports:
+
+|===
+|Description | Small cluster 4-node Configuration | Large cluster 7-node Configuration
+| Maximum instances per API group | 100 | 100
+| Client applications (per user) | 5000 | 5000
+| Client applications (per root organization) | 10000 | 10000
+| Maximum API instances manager per root organization | 6000 | 12000
+| Applied policies | 18000 | 36000
+| Created contracts | 12000 | 24000
+|===
+
+== Access Management
+
+The following table show the maximum number of business groups and number of users of Access Management that Anypoint Platform PCE supports:
+
+[%header%autowidth.spread]
+|===
+| Description| Small cluster 4-node Configuration | Large cluster 7-node Configuration
+| Maximum number of supported business groups | 75 | N/A
+| Maximum number of users | 10000 | N/A
+|===
+
+See the Access Management documentation for more information on xref:access-management::external-identity.adoc[identity management and supported providers]. 
+
+== Exchange
+
+The following table show the maximum number of exchange assets and file size information that Anypoint Platform PCE supports:
+
+[%header%autowidth.spread]
+|===
+|Description| Small cluster 4-node Configuration | Large cluster 7-node Configuration
+| Maximum Exchange assets | 60,000 | 60,000
+| Maximum file size when publishing asset through UI | 5 MB | 5 MB
+| Maximum uncompressed file size | 50 MB | 50 MB
+| Maximum file size when publishing asset through Maven | 200 MB | 200
+| Maximum number of dependencies for a single asset | 100 | 100
+| Maximum icon size | 2 MB | 2 MB
+| Maximum number of resources (attachments) per asset portal | 100 | 100
+| Maximum resource size for attachments to the asset portal | 2 MB | 2 MB
+| Maximum indexable asset content for RAML or asset portal | 1 MB | 1 MB
+| Maximum number of categories per organization | 500 | 500
+| Maximum number of custom configurations per organization | 500 | 500
+| Maximum number of pages in a portal | 50 | 50
+| Maximum length of page name | 128 characters | 128 characters
+| Maximum review title length | 30 characters | 30 characters
+| Maximum review text length | 2048 characters | 2048 characters
+|===
+
+== API Designer and API Mocking Service
+
+The following apply to both 4-node and 7-node configurations.
+
+[%autowidth.spread]
+|===
+| Maximum number of projects | Limited by version control system
+| Maximum number of concurrent users | 16
+| Maximum number of mocking service instances | One per API version
+| Maximum number of mocking service users | 16
+|===
+
+== See Also
+
+* xref:index.adoc[]
