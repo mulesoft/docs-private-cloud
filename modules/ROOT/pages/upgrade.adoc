@@ -41,18 +41,6 @@ data:
  ignore-releases: "core-paas-namespaces stolon stolon-amv pce-seaweedfs-app pce-cluster-ssl-app dias-prov-k8s-am-influxdb-comp dias-prov-k8s-am-ingestor-comp"
   pvc-to-delete: "dias-prov-k8s-cassandra-comp dias-prov-k8s-insight-comp"
   skip-version-check: "false"
-  backup_s3_max_attempts: "3"
-  backup_s3_sleep_time_seconds: "30"
-  backup_s3_sequentially_bucket_names: ""
-  backup_s3_continue_if_error: "false"
-  backup_timeout_seconds: "3600"
-  seaweedfs_master_pod_count: "3"
-  seaweedfs_filer_pod_count: "2"
-  seaweedfs_volume_pod_count: "3"
-  restore_s3_max_attempts: "3"
-  restore_s3_sleep_time_seconds: "30"
-  restore_in_parallel: "false"
-  restore_timeout_seconds: "10800"
 ----
 +
 [start=2]
