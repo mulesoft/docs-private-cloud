@@ -67,6 +67,18 @@ monitoringAppConfiguration:
 +
 `./pcectl pre-install-check --input-file/path/to/input.yaml --license-file /path/to/license.pem`
 
+[start=6]
+. For Anypoint Platform PCE workload to be scheduled on designated nodes, apply the following labels to all worker nodes:
+* `mulesoft-role=node`
+* `redis-role=node`
+. Apply the following labels to any three worker nodes. These do not need to be the same three nodes:
+* `stolon-keeper=yes`
+* `pce-data-nodes=yes`
+. (Optional) Apply taints to controlplane nodes to ensure that no Anypoint Platform PCE workload is scheduled on the control plane. This also affects any other workload your organization may want to run on control plane nodes. Consult with your Kubernetes cluster admin to perform this step:
++
+`mulesoft.pce/controlplane-node=true:NoSchedule`
+
+
 
 == Install Anypoint Platform PCE 
 
