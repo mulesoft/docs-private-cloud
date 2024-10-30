@@ -12,8 +12,6 @@ See the following topics:
 
 Contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved throughout the upgrade process.
 
-[NOTE]
-
 
 == See Also
 
