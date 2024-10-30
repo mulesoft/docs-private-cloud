@@ -70,7 +70,6 @@ Anypoint Platform PCE version 4.0 contains the following features:
 | Anypoint Sign In | v3.2.143
 | Anypoint Roles Client | v8.1.1573
 | ARC Informer | v1.0.374
-| Anypoint Studio | Studio | v7.19.0
 .3+| API Designer | API Designer DC Projects Service | v3.13.1
 | API Designer DC XAPI Service | v2.11.2
 | API Designer DC UI | v2.10.5
