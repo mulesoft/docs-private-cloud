@@ -5,6 +5,8 @@ Before installing Anypoint Platform Private Cloud Edition (Anypoint Platform PCE
 [NOTE]
 You must have an operational OpenShift cluster prior installing Anypoint Platform PCE. If you do not have one set up, refer to the OpenShift documentation for setup instructions.
 
+You must contact MuleSoft Professional Services to perform the installation.
+
 == Configure the Openshift Environment
 
 To configure the OpenShift Environment, configure Security Context Constraints (SCC) and roles for Prometheus.
