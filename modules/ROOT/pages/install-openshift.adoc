@@ -1,0 +1,66 @@
+= Installation on OpenShift
+
+== Configure the Openshift Environment
+
+This guide assumes you have an operational OpenShift cluster. If not, refer to the OpenShift documentation for setup instructions.
+
+Before installing Anypoint Platform PCE, you must configure Security Context Constraints (SCC) to grant the required permissions for pods and create roles for Prometheus, allowing it to collect metrics from the services. After these configurations are in place, you can proceed with installing Anypoint Platform PCE.
+
+
+=== Security Context Constraints (SCC)
+
+The following snippet contains the SCC configuration:
+
+[source,yaml]
+----
+include::../assets/src/openshift/openshift-scc.yaml[]
+----
+
+Save this file as `openshift-scc.yaml` and apply it to the OpenShift cluster:
+
+[source]
+----
+oc apply -f openshift-scc.yaml
+----
+
+=== Roles for Prometheus
+
+Prometheus requires specific roles to collect metrics from Anypoint Platform PCE services. The following snippet provides the necessary roles configuration:
+
+[source,yaml]
+----
+include::../assets/src/openshift/openshift-monitoring.yaml[]
+----
+
+Save this file as `openshift-monitoring.yaml` and apply it to the OpenShift cluster:
+
+[source]
+----
+oc apply -f openshift-monitoring.yaml
+----
+
+== Install Anypoint Platform PCE on OpenShift
+
+The following snippet provides an example installation manifest for deploying Anypoint Platform PCE on an OpenShift cluster:
+
+[source,yaml]
+----
+include::../assets/src/openshift/openshift-example.yaml[]
+----
+
+Note the `monitoringAppConfiguration` section in the snippet. This section disables the monitoring stack for Anypoint Platform PCE and enables only the Grafana application. Disabling the monitoring stack is recommended, as OpenShift includes Prometheus by default. Only Grafana needs to be enabled, with its datasource configured to connect to Prometheus.
+
+To obtain the `Token` for connecting to Prometheus, run:
+
+[source]
+----
+oc create token prometheus-k8s -n openshift-monitoring --duration=87600h
+----
+
+After completing the installation, use the following commands to allow Prometheus in OpenShift to collect metrics from platform services:
+
+[source]
+----
+oc label namespace default openshift.io/cluster-monitoring="true" --overwrite
+oc label namespace pce openshift.io/cluster-monitoring="true" --overwrite
+----
