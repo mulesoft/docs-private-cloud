@@ -2,6 +2,27 @@
 
 To ensure platform performance, stability, and high availability, Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) supports two network configurations in Kubernetes (K8s) nodes: 4-node and 7-node. 
 
+== Anypoint Platform PCE 4.0 Architecture
+
+The diagram illustrates MuleSoft's planes (control plane and runtime plane) and their general traffic flow within the Anypoint Platform PCE context:
+
+image:pce4-diagram-architecture.png[""]
+
+Control plane:
+
+* A subset of Anypoint services is deployed in Kubernetes (customer's choice - Anypoint Platform PCE v 4.0 supports RKE2, EKS-A, OpenShift).
+* This constitutes the MuleSoft Control Plane, a web-based management and administration tool for the lifecycle of MuleSoft integration apps and APIs.
+* Starting with Anypoint Platform PCE v4.0, use a dedicated Kubernetes control plane to separate cluster management components from customer workloads.
+
+Runtime plane:
+
+* MuleSoft offers various runtime planes
+* Within Anypoint Platform PCE context, the test uses the Hybrid runtime plane to deploy and manage runtimes via the MuleSoft control plane.
+
+The following recommendations and limits are based on these resources:
+* A small (4-node) environment consisting of 4 K8s worker nodes of 8 cores and 32GB RAM and 3 dedicated K8s control plane nodes, or
+* A large (7-node) environment consisting of 7 K8s worker nodes of 8 cores and 32GB RAM and 3 dedicated K8s control plane nodes
+
 == Mule Runtime Engine and Mule Applications
 
 The following table shows the recommended and maximum number of Mule instances and Mule applications that Anypoint Platform PCE supports:
@@ -17,7 +38,7 @@ The following table shows the recommended and maximum number of Mule instances a
 | Mule applications under management per environment (maximum) | 500 | 500
 | Mule applications per Mule runtime engine (recommended) | Fewer than 25 | Fewer than 25
 | Mule applications per Mule runtime engine (maximum) | 100 | 150
-| Number of Mule applications | 6000 | 1200
+| Number of Mule applications | 6000 | 12000
 | Number of Mule application replicas. An application can run on multiple Mule instances in a server group or cluster. | 12000| 24000
 |===
 
