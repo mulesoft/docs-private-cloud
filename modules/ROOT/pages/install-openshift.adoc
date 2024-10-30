@@ -263,7 +263,7 @@ monitoringAppConfiguration:
 
 Note the `monitoringAppConfiguration` section in the snippet. This section disables the monitoring stack for Anypoint Platform PCE and enables only the Grafana application. It is recommended to disable the monitoring stack because OpenShift includes Prometheus by default. Enable Grafana and configure its datasource to connect to Prometheus.
 
-To obtain the token for connecting to Prometheus, run this comand:
+To obtain the token for connecting to Prometheus, run this command:
 
 [source]
 ----
