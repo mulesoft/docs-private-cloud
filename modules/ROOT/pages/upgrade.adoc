@@ -2,3 +2,18 @@
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
+
+Before an Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) upgrade is performed, you must verify that your working installation meets any additional requirements of the new Anypoint Platform PCE version, such as opening additional ports or adding a new port for the load balancer, see the following topics:
+
+* xref:index.adoc[]
+* xref:install-checklist.adoc[]
+
+Contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved throughout the upgrade process.
+
+[NOTE]
+If your Anypoint Platform PCE version is earlier than version 3.2.3, you must first upgrade to version 3.2.3 and then upgrade to version 4.0.0. 
+
+== See Also
+
+* xref:index.adoc[]
+* xref:install-workflow.adoc[]
