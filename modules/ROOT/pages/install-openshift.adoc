@@ -15,7 +15,145 @@ The following snippet contains the SCC configuration:
 
 [source,yaml]
 ----
-include::../assets/src/openshift/openshift-scc.yaml[]
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: anypoint-anyuid
+allowHostDirVolumePlugin: false
+allowHostIPC: false
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: false
+allowedCapabilities: null
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
+users: []
+groups: []
+readOnlyRootFilesystem: false
+requiredDropCapabilities:
+  - MKNOD
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: MustRunAs
+seccompProfiles:
+  - runtime/default
+supplementalGroups:
+  type: RunAsAny
+volumes:
+  - configMap
+  - csi
+  - downwardAPI
+  - emptyDir
+  - ephemeral
+  - persistentVolumeClaim
+  - projected
+  - secret
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: anypoint-scc
+  namespace: default
+rules:
+  - apiGroups: [ "security.openshift.io" ]
+    resourceNames:
+      - anypoint-anyuid
+    resources: [ "securitycontextconstraints" ]
+    verbs: [ "use" ]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: anypoint-scc
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: anypoint-scc
+subjects:
+  - kind: ServiceAccount
+    name: anypoint-install
+    namespace: default
+  - kind: ServiceAccount
+    name: anypoint-install
+    namespace: dias
+  - kind: ServiceAccount
+    name: default
+    namespace: pce
+  - kind: ServiceAccount
+    name: default
+    namespace: access-management
+  - kind: ServiceAccount
+    name: authentication-server-service-account
+    namespace: access-management
+  - kind: ServiceAccount
+    name: default
+    namespace: design-center
+  - kind: ServiceAccount
+    name: default
+    namespace: api-console-proxy
+  - kind: ServiceAccount
+    name: default
+    namespace: amf
+  - kind: ServiceAccount
+    name: default
+    namespace: arm
+  - kind: ServiceAccount
+    name: default
+    namespace: api-manager
+  - kind: ServiceAccount
+    name: default
+    namespace: mozart
+  - kind: ServiceAccount
+    name: default
+    namespace: mocking
+  - kind: ServiceAccount
+    name: default
+    namespace: api-manager
+  - kind: ServiceAccount
+    name: default
+    namespace: audit-log
+  - kind: ServiceAccount
+    name: default
+    namespace: trusted-domains
+  - kind: ServiceAccount
+    name: default
+    namespace: api-designer
+  - kind: ServiceAccount
+    name: monitoring
+    namespace: pce
+  - kind: ServiceAccount
+    name: default
+    namespace: exchange
+  - kind: ServiceAccount
+    name: xapi-service-deployment-manager
+    namespace: exchange
+  - kind: ServiceAccount
+    name: default
+    namespace: core-paas
+  - kind: ServiceAccount
+    name: default
+    namespace: monitoring-center
+  - kind: ServiceAccount
+    name: default
+    namespace: visualizer
+  - kind: ServiceAccount
+    name: secrets-robot
+    namespace: dias
+  - kind: ServiceAccount
+    name: default
+    namespace: dias
+  - kind: ServiceAccount
+    name: default
+    namespace: amc
+  - kind: Group
+    name: system:serviceaccounts:monitoring
+  - kind: ServiceAccount
+    name: default
+    namespace: anypoint-flash
 ----
 
 Save this file as `openshift-scc.yaml` and apply it to the OpenShift cluster:
@@ -31,7 +169,36 @@ Prometheus requires specific roles to collect metrics from Anypoint Platform PCE
 
 [source,yaml]
 ----
-include::../assets/src/openshift/openshift-monitoring.yaml[]
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pce-prometheus
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - endpoints
+      - pods
+      - services
+      - nodes
+      - secrets
+    verbs:
+      - get
+      - list
+      - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: pce-prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: pce-prometheus
+subjects:
+  - kind: ServiceAccount
+    name: prometheus-k8s
+    namespace: openshift-monitoring
 ----
 
 Save this file as `openshift-monitoring.yaml` and apply it to the OpenShift cluster:
@@ -47,10 +214,54 @@ The following snippet provides an example installation manifest for deploying An
 
 [source,yaml]
 ----
-include::../assets/src/openshift/openshift-example.yaml[]
+containerRegistry:
+  endpoint: registry.pce.example.com
+  username: username
+  password: password
+  certificate: ''
+  subproject: example
+  tlsSkipVerify: true
+postInstallConfiguration:
+  platformDNS: anypoint.pce.example.com
+  fileSystemDNS: fs.pce.example.com
+  firstUserAccount:
+    organizationName: Example Org
+    username: username
+    email: username@mulesoft.com
+    password: password
+  platformCertificate: cert.pem
+  platformCertificateKey: key.pem
+amvInstallConfiguration:
+  enabled: false
+storageConfiguration:
+  pceobjectstore:
+    type: persistentVolumeClaim
+    storageClass: example-csi
+  stolon:
+    type: persistentVolumeClaim
+    storageClass: example-csi
+monitoringAppConfiguration:
+  monitoringStackEnabled: false
+  grafana:
+    enabled: true
+    values: |
+      datasources:
+        datasources.yaml:
+          apiVersion: 1
+          datasources:
+          - name: Prometheus
+            type: prometheus
+            url: https://prometheus-k8s.openshift-monitoring.svc:9091
+            access: proxy
+            isDefault: true
+            jsonData:
+              tlsSkipVerify: true
+              httpHeaderName1: 'Authorization'
+            secureJsonData:
+              httpHeaderValue1: 'Bearer <Token>'
 ----
 
-Note the `monitoringAppConfiguratio` section in the snippet. This section disables the monitoring stack for Anypoint Platform PCE and enables only the Grafana application. It is recommended to disable the monitoring stack because OpenShift includes Prometheus by default. Enable Grafana and configure its datasource to connect to Prometheus.
+Note the `monitoringAppConfiguration` section in the snippet. This section disables the monitoring stack for Anypoint Platform PCE and enables only the Grafana application. It is recommended to disable the monitoring stack because OpenShift includes Prometheus by default. Enable Grafana and configure its datasource to connect to Prometheus.
 
 To obtain the token for connecting to Prometheus, run this comand:
 
@@ -69,5 +280,5 @@ oc label namespace pce openshift.io/cluster-monitoring="true" --overwrite
 
 == See Also
 
-* xref:install-worflow.adoc[]
+* xref:install-workflow.adoc[]
 * xref:install-checklist.adoc[]
