@@ -6,6 +6,7 @@
  ** xref:verify-nfs.adoc[NFS Prerequisites]
   *** xref:troubleshoot-nfs.adoc[Troubleshoot NFS Errors]
 * xref:install-workflow.adoc[Installing Anypoint Platform PCE]
+** xref:install-openshift.adoc[Installing Anypoint Platform PCE on OpenShift]
 * xref:config-workflow.adoc[Configuring Anypoint Platform PCE]
  ** xref:install-disable-local-user.adoc[Deleting the Local User after Installing Anypoint Platform PCE]
  ** xref:install-config-ldap-pce.adoc[Configuring an External Identity Provider in Anypoint Platform PCE]

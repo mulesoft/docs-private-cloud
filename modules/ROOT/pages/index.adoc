@@ -21,6 +21,8 @@ If you're using a version of Anypoint Platform older than 3.2.3, upgrade to vers
 === Install Anypoint Platform PCE 4.0
 If you are installing Anypoint Platform PCE version 4.0 for the first time, see xref:install-workflow.adoc[Installing Anypoint Platform PCE].
 
+To install Anypoint Platform PCE on OpenShift, see xref:install-openshift.adoc[Installing Anypoint Platform PCE on OpenShift].
+
 == Anypoint Platform PCE Components
 
 The following table provides component information for Anypoint Platform PCE:

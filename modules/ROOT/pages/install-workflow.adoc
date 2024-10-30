@@ -10,6 +10,10 @@ The process to install Anypoint Platform Private Cloud Edition (Anypoint Platfor
 [NOTE]
 Contact MuleSoft Professional Services before performing the pre-installation verification and installation of Anypoint Platform PCE because they are involved in these processes.
 
+[NOTE]
+To install Anypoint Platform PCE on OpenShift, see xref:install-openshift.adoc[Installing Anypoint Platform PCE on OpenShift].
+
+
 == Set Up and Verify your Infrastructure
 
 Before you install Anypoint Platform PCE, ensure your infrastructure team installed and configured correctly the infrastructure for your organization following the requirements as described in xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites].

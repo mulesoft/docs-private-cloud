@@ -1,13 +1,15 @@
-= Installation on OpenShift
+= Installing Anypoint Platform PCE on OpenShift
+
+Before installing Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) on OpenShift, you must configure Security Context Constraints (SCC) to grant the required permissions for pods and create roles for Prometheus, allowing it to collect metrics from the services. After these configurations are complete, proceed with installing Anypoint Platform PCE.
+
+[NOTE]
+You must have an operational OpenShift cluster prior installing Anypoint Platform PCE. If you do not have one set up, refer to the OpenShift documentation for setup instructions.
 
 == Configure the Openshift Environment
 
-This guide assumes you have an operational OpenShift cluster. If not, refer to the OpenShift documentation for setup instructions.
+To configure the OpenShift Environment, configure Security Context Constraints (SCC) and roles for Prometheus.
 
-Before installing Anypoint Platform PCE, you must configure Security Context Constraints (SCC) to grant the required permissions for pods and create roles for Prometheus, allowing it to collect metrics from the services. After these configurations are in place, you can proceed with installing Anypoint Platform PCE.
-
-
-=== Security Context Constraints (SCC)
+=== Configure Security Context Constraints (SCC)
 
 The following snippet contains the SCC configuration:
 
@@ -23,7 +25,7 @@ Save this file as `openshift-scc.yaml` and apply it to the OpenShift cluster:
 oc apply -f openshift-scc.yaml
 ----
 
-=== Roles for Prometheus
+=== Configure Roles for Prometheus
 
 Prometheus requires specific roles to collect metrics from Anypoint Platform PCE services. The following snippet provides the necessary roles configuration:
 
@@ -48,19 +50,24 @@ The following snippet provides an example installation manifest for deploying An
 include::../assets/src/openshift/openshift-example.yaml[]
 ----
 
-Note the `monitoringAppConfiguration` section in the snippet. This section disables the monitoring stack for Anypoint Platform PCE and enables only the Grafana application. Disabling the monitoring stack is recommended, as OpenShift includes Prometheus by default. Only Grafana needs to be enabled, with its datasource configured to connect to Prometheus.
+Note the `monitoringAppConfiguratio` section in the snippet. This section disables the monitoring stack for Anypoint Platform PCE and enables only the Grafana application. It is recommended to disable the monitoring stack because OpenShift includes Prometheus by default. Enable Grafana and configure its datasource to connect to Prometheus.
 
-To obtain the `Token` for connecting to Prometheus, run:
+To obtain the token for connecting to Prometheus, run this comand:
 
 [source]
 ----
 oc create token prometheus-k8s -n openshift-monitoring --duration=87600h
 ----
 
-After completing the installation, use the following commands to allow Prometheus in OpenShift to collect metrics from platform services:
+After completing the installation, run the following commands to allow Prometheus in OpenShift to collect metrics from platform services:
 
 [source]
 ----
 oc label namespace default openshift.io/cluster-monitoring="true" --overwrite
 oc label namespace pce openshift.io/cluster-monitoring="true" --overwrite
 ----
+
+== See Also
+
+* xref:install-worflow.adoc[]
+* xref:install-checklist.adoc[]
