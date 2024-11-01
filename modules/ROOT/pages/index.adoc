@@ -16,7 +16,7 @@ For information about a previous version of Anypoint Platform PCE, select the ve
 If you are upgrading from version 3.2.3 of Anypoint Platform PCE to version 4.0, see xref:upgrade.adoc[Upgrading Anypoint Platform PCE 3.2.3 to 4.0].
 
 [NOTE]
-If you're using a version of Anypoint Platform PCE older than 3.2.3, upgrade to version 3.2.3 first. Then proceed with upgrading to version 4.0.
+If you're using a version of Anypoint Platform PCE earlier than 3.2.3, upgrade to version 3.2.3 first. Then proceed with upgrading to version 4.0.
 
 === Install Anypoint Platform PCE 4.0
 If you are installing Anypoint Platform PCE version 4.0 for the first time, see xref:install-workflow.adoc[Installing Anypoint Platform PCE].
@@ -123,4 +123,4 @@ Anypoint Platform PCE version 4.0 contains the following features:
 
 * xref:install-checklist.adoc[]
 * xref:install-workflow.adoc[]
-* xref:upgrade-workflow.adoc[]
+* xref:upgrade.adoc[]
