@@ -1,20 +1,18 @@
-= Configure DNS on Anypoint Platform PCE
+= Configuring DNS on Anypoint Platform PCE
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-If you did not perform this step before installation, you must provide the DNS or IP address where your Anypoint Platform Private Cloud Edition installation is exposed to the local network. This is required for Mule to communicate with Anypoint Platform.
+For Mule runtime engine (Mule) to communicate with Anypoint Platform, you must provide the DNS or IP address where your Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) installation is exposed to the local network. To do so, follow these steps:
 
-. From Anypoint Platform, click Access Management.
-. Click the *DNS/IP* tab.
-. In the *Platform DNS/IP* field, enter the address where you are hosting the platform.
+. From Anypoint Platform, click *Access Management*.
+. Click *DNS/IP*.
+. In *Platform DNS/IP*, enter the address where you are hosting the platform.
 . Click *Save*.
 
-
 [NOTE]
-==
 If you perform a DNS update that changes the endpoints that Mule instances use to connect to Runtime Manager, you must restart the Mule instances before they can connect to the new endpoints.
-==
 
+== See Also
 
-
+* xref:config-workflow.adoc[]

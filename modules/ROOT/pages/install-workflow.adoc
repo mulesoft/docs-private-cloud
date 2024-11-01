@@ -1,12 +1,98 @@
-= Installation Workflow
+= Installing Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)
+:page-aliases: prereq-gravity-check.adoc
 
-== Install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)
+The process to install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), consist of the following steps:
 
-To install Anypoint Platform PCE, MuleSoft professional services must be involved throughout the installation process. Prior to installation, have your infrastructure team verify that the required infrastructure is correctly installed and configured as described in xref:install-checklist.adoc[Product Prerequisites]. 
-
-== Install Anypoint Monitoring and Anypoint Visualizer
-
-After installing Anypoint Platform PCE, contact MuleSoft Professional Services to enable Anypoint Monitoring and Anypoint Visualizer. After they are enabled, you must install the agent for each of these product components. See xref:monitoring::am-installing.adoc[Monitor Hybrid Runtimes] and xref:visualizer::setup.adoc[Set up Anypoint Visualizer].
+. Setting up and verifying your infrastructure
+. Performing a pre-installation verification
+. Installing Anypoint Platform PCE
 
 [NOTE]
-Multi-instance operation of On-Premises Anypoint Runtime Manager is available only if you purchase Anypoint Platform Base Subscription, On-premises Management, API Manager and API Analytics, and Platinum Subscription all together.
+Contact MuleSoft Professional Services before performing the pre-installation verification and installation of Anypoint Platform PCE because they are involved in these processes.
+
+[NOTE]
+To install Anypoint Platform PCE on OpenShift, see xref:install-openshift.adoc[Installing Anypoint Platform PCE on OpenShift].
+
+
+== Set Up and Verify your Infrastructure
+
+Before you install Anypoint Platform PCE, ensure your infrastructure team installed and configured correctly the infrastructure for your organization following the requirements as described in xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites].
+
+== Perform a Pre-installation Verification
+
+To perform the pre-installation healthcheck verification for the Kubernetes (K8s) cluster, follow these steps:
+
+. Confirm your Kubernetes cluster version is 1.30.x or 1.29.x.
+. Create an `input.yaml` file using the following template and update it with your environment details:
+
+[source,json,linenums]
+----
+    # Container Registry configuration to upload PCE images
+containerRegistry:
+ endpoint: "" # Container Registry Endpoint
+ username: "" # Provide either Username/Password OR Certificate to authenticate with container registry
+ password: ""
+ certificate: "/etc/registry/certificate/ca.crt"
+ subproject: "mulesoft" # Container registry subproject under which all the PCE images will be part of.
+ tlsSkipVerify: True  # True or False.
+# Configuration required to perform post installation setup for Anypoint platform
+# All the fields in `postInstallConfiguration` are required.
+postInstallConfiguration: 
+ platformDNS: ""
+ fileSystemDNS: ""
+ firstUserAccount:
+   organizationName: 'Test Org' 
+   username: 'username'
+   email: 'username@mulesoft.com'
+   password: '<a-valid-password>'
+ platformCertificate: /path/to/platform/certificate/cert.crt
+ platformCertificateKey: path/to/platform/certificate/cert.key
+# Storage class configuration for persistent data services
+storageConfiguration:
+ pceobjectstore:
+   type: "persistentVolumeClaim"
+   storageClass: "<storage-class-name>"
+   controlPlaneSize: "10Gi" # Optional. Defaults to 10Gi
+   volumeSize: "100Gi" # Optional. Defaults to 100Gi
+   volumeIndexSize: "10Gi" # Optional. Defaults to 10Gi
+ stolon:
+   type: "persistentVolumeClaim"
+   storageClass: "<storage-class-name>"
+   size: "100Gi" # Optional. Defaults to 100Gi
+# Configuration options for monitoring stack
+monitoringAppConfiguration:
+ monitoringStackEnabled: True # Defaults to True. Must be set to False for Openshift clusters.
+ grafanaEnabled: True # Defaults to True.
+----
+[start=3]
+. Obtain the `license.pem` file from the MuleSoft Professional Services team.
+. Set the `KUBECONFIG` environment variable to the path to the `kubeconfig` file of the cluster.
+. Verify that the cluster satisfies the prerequisites by running the following command against your `input.yaml` file and the `license.pem` file:
++
+`./pcectl pre-install-check --input-file/path/to/input.yaml --license-file /path/to/license.pem`
+
+[start=6]
+. For Anypoint Platform PCE workload to be scheduled on designated nodes, apply the following labels to all worker nodes:
+* `mulesoft-role=node`
+* `redis-role=node`
+. Apply the following labels to any three worker nodes. These do not need to be the same three nodes:
+* `stolon-keeper=yes`
+* `pce-data-nodes=yes`
+. (Optional) Apply taints to controlplane nodes to ensure that no Anypoint Platform PCE workload is scheduled on the control plane. This also affects any other workload your organization may want to run on control plane nodes. Consult with your Kubernetes cluster admin to perform this step:
++
+`mulesoft.pce/controlplane-node=true:NoSchedule`
+
+
+
+== Install Anypoint Platform PCE 
+
+After your infrastructure is correctly set up and you performed a pre-installation verification, MuleSoft Professional Services will assist you with the installation of Anypoint Platform PCE.
+
+To install Anypoint Platform PCE, run this command:
+
+`./pcectl install --input-file /path/to/input.yaml --license-file /path/to/license.pem`
+
+
+== See Also
+
+* xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites].

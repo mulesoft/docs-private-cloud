@@ -1,11 +1,11 @@
-= Upload Custom Policies and Publish Assets to Exchange Using the Maven Client
+= Uploading Custom Policies and Publish Assets to Exchange Using the Maven Client
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 There are differences between Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) and the cloud version of Anypoint Platform that you must consider when uploading custom policies and publishing assets to Anypoint Exchange using the Maven client.
 
-See the following documentation for the cloud version of Anypoint Platform for details: 
+For details of the cloud version of Anypoint Platform, see: 
 
 * xref:api-manager::custom-policy-getting-started.adoc[Getting started with Custom Policies development]
 * xref:api-manager::custom-policy-uploading-to-exchange.adoc[Uploading Custom Policies]
@@ -88,3 +88,7 @@ In the previous example, $ANYPOINT_DNS is set to the DNS for Anypoint Platform P
 . Verify your policy was uploaded by directly visiting `+https://${ANYPOINT_DNS}/exchange/?type=policy+` or `+https://${ANYPOINT_DNS}/exchange/${orgID}/${artifactId}/+`.
 +
 For an API managed by Mule 4 or later, the policy is displayed in the *Apply Policy* dialog.
+
+== See Also
+
+* xref:operating-about.adoc[]
