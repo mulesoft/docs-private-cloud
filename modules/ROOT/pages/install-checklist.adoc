@@ -25,7 +25,7 @@ These are the requirements:
 
 * Kubernetes providers: +
     ** Rancher Kubernetes Engine (RKE2) versions 1.29 and 1.30.
-    ** RedHat OpenShift versions 4.15 and 4.16.
+    ** Red Hat OpenShift versions 4.15 and 4.16.
     ** Amazon EKS Anywhere (EKS-A) 0.20 (K8s version 1.29, 1.30)
 
 * Cluster configurations: +
@@ -60,7 +60,7 @@ These are the minimum requirements for the cluster nodes:
 For more information, see the provider specific requirements:
 
 * https://docs.rke2.io/install/requirements#hardware[Rancher Kubernetes Engine (RKE2) - Hardware]
-* https://docs.openshift.com/container-platform/4.16/installing/overview/index.html[RedHat OpenShift]
+* https://docs.openshift.com/container-platform/4.16/installing/overview/index.html[Red Hat OpenShift]
 * https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
 
 == Software Requirements
@@ -72,7 +72,7 @@ These are the requirements:
 For more information, see the provider specific requirements:
 
 * https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Software]
-* https://docs.openshift.com/container-platform/4.16/installing/overview/index.html[RedHat OpenShift]
+* https://docs.openshift.com/container-platform/4.16/installing/overview/index.html[Red Hat OpenShift]
 * https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
 
 
@@ -105,7 +105,7 @@ Use the following ports to communicate with Anypoint Platform PCE:
 For more information, see the provider specific requirements:
 
 * https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Networking]
-* https://docs.openshift.com/container-platform/4.16/networking/understanding-networking.html[RedHat OpenShift - Networking]
+* https://docs.openshift.com/container-platform/4.16/networking/understanding-networking.html[Red Hat OpenShift - Networking]
 * https://anywhere.eks.amazonaws.com/docs/clustermgmt/networking/networking-and-security/[Amazon EKS Anywhere (EKS-A) - Networking]
 
 == NFS Storage Requirements
