@@ -38,6 +38,8 @@ These are the requirements:
 *** 3 K8s control plane nodes
 *** 4 K8s worker nodes
 
+If you have Anypoint Platform PCE installed up to version 3.2.x, ensure you disable SWAP on all Anypoint Platform PCE nodes. Anypoint Platform PCE relies heavily on Kubernetes, which does not support the use of SWAP space. When SWAP is enabled, both Kubernetes and the SWAP daemon attempt to manage the same memory space, leading to CPU overload as they compete. To avoid this issue, do not to use SWAP space on machines running Anypoint Platform PCE.
+
 [NOTE]
 Running Anypoint Platform PCE workloads on K8s control plane nodes can degrade both Anypoint Platform PCE and cluster performance.  
 
