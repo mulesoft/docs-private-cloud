@@ -56,7 +56,7 @@ To delete a custom dashboard, delete the corresponding `ConfigMap`. The dashboar
 kubectl -n monitoring delete cm my-custom-dashboard
 ----
 
-== List All Persisted Dashboards
+== List All Persistent Dashboards
 
 To get a list of all ConfigMaps with the label `grafana_dashboard=1`, use the following command:
 
