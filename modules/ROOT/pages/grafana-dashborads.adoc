@@ -16,7 +16,7 @@ kubectl -n monitoring port-forward $(kubectl -n monitoring get svc --selector='a
 
 == Access the Grafana Dashboard
 
-To retrieve credentials for Grafana, use the following commands to get the username and password:
+To retrieve credentials for Grafana, use these commands:
 
 [source,bash]
 ----
