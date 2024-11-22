@@ -26,9 +26,9 @@ kubectl -n monitoring get secrets grafana-creds -ojsonpath='{.data.admin-passwor
 
 == Create a Custom Dashboard
 
-You can create custom dashboards in Grafana using its web interface. However, these dashboards are lost if the Grafana pod restarts. To create a custom dashboard that persists across restarts, create a `ConfigMap` with the label `grafana_dashboard=1`.
+You can create custom dashboards in Grafana using its web interface. However, these dashboards are lost if the Grafana pod restarts. To create a custom dashboard that persists across restarts, create a ConfigMap with the label `grafana_dashboard=1`.
 
-This example demonstrates how to create a `ConfigMap` with a custom dashboard:
+This example demonstrates how to create a ConfigMap with a custom dashboard:
 
 . Create a file with the dashboard configuration, for example, `example-redis.yaml`:
 
@@ -45,11 +45,11 @@ include::../assets/src/dashboard/example-redis.yaml[]
 kubectl apply -f example-redis.yaml
 ----
 
-To update the dashboard, modify the `ConfigMap`, and the dashboard updates automatically.
+To update the dashboard, modify the ConfigMap, and the dashboard updates automatically.
 
 == Delete a Custom Dashboard
 
-To delete a custom dashboard, delete the corresponding `ConfigMap`. The dashboard associated with the `ConfigMap` is removed automatically.
+To delete a custom dashboard, delete the corresponding ConfigMap. The dashboard associated with the ConfigMap is removed automatically.
 
 [source,bash]
 ----
