@@ -45,7 +45,7 @@ include::../assets/src/dashboard/example-redis.yaml[]
 kubectl apply -f example-redis.yaml
 ----
 
-To update the dashboard, modify the `ConfigMap`, and the dashboard is updated automatically.
+To update the dashboard, modify the `ConfigMap`, and the dashboard updates automatically.
 
 == Delete a Custom Dashboard
 
