@@ -62,7 +62,8 @@ storageConfiguration:
 # Configuration options for monitoring stack
 monitoringAppConfiguration:
  monitoringStackEnabled: True # Defaults to True. Must be set to False for Openshift clusters.
- grafanaEnabled: True # Defaults to True.
+ grafana:
+    enabled: False  # Defaults to False. Set to True for OpenShift clusters.
 ----
 [start=3]
 . Obtain the `license.pem` file from the MuleSoft Professional Services team.

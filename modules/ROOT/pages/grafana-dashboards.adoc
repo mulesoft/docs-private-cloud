@@ -1,0 +1,70 @@
+= Configuring Grafana Dashboards
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Monitor the health of your Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) installation and its running applications with Grafana dashboards. These dashboards provide a visual representation of the data collected by the monitoring tools in your Anypoint Platform PCE installation.
+
+The Grafana application uses a Kubernetes service of type `NodePort` to expose the service to the external network. To access Grafana, configure the load balancer to forward traffic to port `32380`.
+
+Alternatively, use the `kubectl port-forward` command to access Grafana locally:
+
+[source,bash]
+----
+kubectl -n monitoring port-forward $(kubectl -n monitoring get svc --selector='app.kubernetes.io/name=grafana' -oname | head -n 1) 3000:80
+----
+
+== Access the Grafana Dashboard
+
+To retrieve credentials for Grafana, use these commands:
+
+[source,bash]
+----
+kubectl -n monitoring get secrets grafana-creds -ojsonpath='{.data.admin-user}' | base64 --decode
+kubectl -n monitoring get secrets grafana-creds -ojsonpath='{.data.admin-password}' | base64 --decode
+----
+
+== Create a Custom Dashboard
+
+You can create custom dashboards in Grafana using its web interface. However, these dashboards are lost if the Grafana pod restarts. To create a custom dashboard that persists across restarts, create a ConfigMap with the label `grafana_dashboard=1`.
+
+This example demonstrates how to create a ConfigMap with a custom dashboard:
+
+. Create a file with the dashboard configuration, for example, `example-redis.yaml`:
+
+[source,yaml]
+----
+include::../assets/src/dashboard/example-redis.yaml[]
+----
+
+[start=2]
+. Create the ConfigMap with the following command:
+
+[source,bash]
+----
+kubectl apply -f example-redis.yaml
+----
+
+To update the dashboard, modify the ConfigMap, and the dashboard updates automatically.
+
+== Delete a Custom Dashboard
+
+To delete a custom dashboard, delete the corresponding ConfigMap. The dashboard associated with the ConfigMap is removed automatically.
+
+[source,bash]
+----
+kubectl -n monitoring delete cm my-custom-dashboard
+----
+
+== List All Persistent Dashboards
+
+To get a list of all ConfigMaps with the label `grafana_dashboard=1`, use this command:
+
+----
+kubectl get configmaps --selector='grafana_dashboard=1' -A
+----
+
+== See Also
+
+* https://grafana.com/docs/grafana/latest/dashboards/[Grafana documentation]
+

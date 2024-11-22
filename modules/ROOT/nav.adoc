@@ -14,6 +14,7 @@
  ** xref:access-management-dns.adoc[Configuring DNS in Anypoint Platform PCE]
  ** xref:access-management-security.adoc[Configuring Security in Anypoint Platform PCE]
  ** xref:access-management-disclaimer.adoc[Configuring a Disclaimer in Anypoint Platform PCE]
+ ** xref:grafana-dashboards.adoc[Configuring Grafana Dashboards]
 * xref:operating-about.adoc[Managing Anypoint Platform PCE]
  ** xref:backup-and-disaster-recovery.adoc[Backing up and Restoring in Anypoint Platform PCE]
  ** xref:config-add-proxy-allowlist.adoc[Allowing Addresses for API Platform Proxies]
