@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) includes Grafana dashboards, which provide a visual representation of the data collected by the monitoring tools in your Anypoint Platform PCE installation. These dashboards help you track the health of your Anypoint Platform PCE installation and its running applications
+Monitor the health of your Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) installation and its running applications with Grafana dashboards. These dashboards provide a visual representation of the data collected by the monitoring tools in your Anypoint Platform PCE installation.
 
 The Grafana application uses a Kubernetes service of type `NodePort` to expose the service to the external network. To access Grafana, configure the load balancer to forward traffic to port `32380`.
 
