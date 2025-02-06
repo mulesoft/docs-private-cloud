@@ -25,4 +25,4 @@ See the following topics for details on each provider:
 
 == See Also
 
-* xref:operating-about.adoc
+* xref:operating-about.adoc[]
