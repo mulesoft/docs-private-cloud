@@ -1,0 +1,22 @@
+= Enabling Anypoint Monitoring for Anypoint Platform PCE
+
+To enable Anypoint Monitoring and view Mule app metrics in the monitoring dashboard for Anypoint Platform PCE, you must upgrade the Filebeat version installed on your local machine. Follow these steps:
+
+. Download the latest version of the Anypoint Monitoring agent from your Support Portal, for example: `am-2.5.11.9`.
+. From `${MULE_HOME}`, unzip the agent file `am-2.5.11.9.zip`.
+. Navigate to the directory `cd /am`.
+. Install the Anypoint Monitoring agent by running the script `./am/bin/install`, which creates the `filebeat.yml` file.
+. Restart the Mule runtime engine by running `${MULE_HOME}/bin/mule restart`.
+. As the default Filebeat 6.2.3 doesn't support Anypoint Platform PCE well, you must upgrade the version:
+.. Replace the default Filebeat version in the location `am/filebeat/<operating system>/filebeat` with a 7.x version, for example `7.17.23`. 
+.. Download the Filebeat version based on your operating system from https://www.elastic.co/downloads/beats/filebeat +
+* Example: for MacOS the file is `am/filebeat/osx`. Select the arch `macOS x86_64 or macOS aarch64`
+* Example: for RHEL the file is `am/filebeat/rpm`. Select the arch `rpm x86_64 or linux x86_64`.
+[start=7]
+. After replacing the Filebeat, update `filebeat.config.prospectors:` to `filebeat.config.inputs:` in the `am/config/filebeat.yml` file.
+. Run `./am/bin/setup` and validate that the connectivity tests say "OK" and it gives you a valid PID for Filebeat.
+. Run `./am/bin/am-service start` to start the process.
+. Run `ps aux | grep filebeat` to confirm the Filebeat process is running.
+
+== See Also
+* xref:config-workflow.adoc[]
