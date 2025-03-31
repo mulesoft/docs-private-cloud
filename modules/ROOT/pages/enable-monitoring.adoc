@@ -1,8 +1,8 @@
 = Enabling Anypoint Monitoring for Anypoint Platform PCE
 
-To enable Anypoint Monitoring and view Mule app metrics in the monitoring dashboard for Anypoint Platform PCE, you must upgrade the Filebeat version installed on your local machine. Follow these steps:
+To enable Anypoint Monitoring and view Mule app metrics in the Monitoring dashboard for Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) , you must upgrade the Filebeat version installed on your local machine. Follow these steps:
 
-. Download the latest version of the Anypoint Monitoring agent from your Support Portal, for example: `am-2.5.11.9`.
+. Download the latest version of the Anypoint Monitoring agent from your Support Portal, for example: `am-2.5.11.9`. Note that Anypoint Platform PCE works only with `am-2.5.11.x` version.
 . From `${MULE_HOME}`, unzip the agent file `am-2.5.11.9.zip`.
 . Navigate to the directory `cd /am`.
 . Install the Anypoint Monitoring agent by running the script `./am/bin/install`, which creates the `filebeat.yml` file.
