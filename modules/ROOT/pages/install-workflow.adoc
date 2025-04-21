@@ -66,11 +66,11 @@ monitoringAppConfiguration:
     enabled: False  # Defaults to False. Set to True for OpenShift clusters.
 ----
 [start=3]
-. Obtain the `license.pem` file from the MuleSoft Professional Services team.
+. Obtain the `license.lic` file from the MuleSoft Professional Services team.
 . Set the `KUBECONFIG` environment variable to the path to the `kubeconfig` file of the cluster.
-. Verify that the cluster satisfies the prerequisites by running the following command against your `input.yaml` file and the `license.pem` file:
+. Verify that the cluster satisfies the prerequisites by running the following command against your `input.yaml` file and the `license.lic` file:
 +
-`./pcectl pre-install-check --input-file/path/to/input.yaml --license-file /path/to/license.pem`
+`./pcectl pre-install-check --input-file/path/to/input.yaml --license-file /path/to/license.lic`
 
 [start=6]
 . For Anypoint Platform PCE workload to be scheduled on designated nodes, apply the following labels to all worker nodes:
@@ -91,7 +91,7 @@ After your infrastructure is correctly set up and you performed a pre-installati
 
 To install Anypoint Platform PCE, run this command:
 
-`./pcectl install --input-file /path/to/input.yaml --license-file /path/to/license.pem`
+`./pcectl install --input-file /path/to/input.yaml --license-file /path/to/license.lic`
 
 
 == See Also
