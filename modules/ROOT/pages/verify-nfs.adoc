@@ -10,7 +10,7 @@ Before you install Anypoint Platform Private Cloud Edition (Anypoint Platform PC
 Anypoint Platform PCE version 2.0 and later requires a Network File System (NFS) server and an available NFS endpoint. Your NFS server must meet the following requirements:
 
 * Must be running on a filesystem that has at least 250 GB available.
-* Must be using any of these supported NFS versions: 4.0 or 4.1
+* Must use any of these supported NFS versions: 4.0 or 4.1
 * Can be backed by a network-attached storage (NAS) system.
 * Must have port 2049 enabled for both TCP and UDP.
 * Configure your network so that all of the PCE nodes can access the NFS server. The direct NFS client is Kubernetes 1.9 and requires conformance with NFS version 4.
