@@ -15,7 +15,7 @@ Anypoint Platform PCE version 2.0 and later requires a Network File System (NFS)
 * Must have port 2049 enabled for both TCP and UDP.
 * Configure your network so that all of the PCE nodes can access the NFS server. The direct NFS client is Kubernetes 1.9 and requires conformance with NFS version 4.
 
-NFS 4.0 and 4.1 do not use the `portmapper` service.
+NFS 4.0 and 4.1 don't use the `portmapper` service.
 
 == Verify Required Port Is Open
 
