@@ -21,7 +21,8 @@ To install Anypoint Platform PCE on AWS:
 .AWS-Created Resources
 |===
 | AWS Resource | Number Required (4-node) | Number Required (7-node) | Anypoint Monitoring (Optional)
-| m5.8xlarge | 4 | 7 | 3
+| m5.8xlarge | 0 | 0 | 3
+| m5.2xlarge | 4 | 7 | 0
 | root disk @ 500 iops | 4 | 7 | 3
 | EBS volumes @ 1500 iops | 8 | 14 | 12
 | EBS volume @ 3000 iops | 8 | 14 | 0
