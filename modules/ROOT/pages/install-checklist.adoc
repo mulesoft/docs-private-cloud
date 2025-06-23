@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-workflow.adoc, prereq-platform.adoc, prereq-hardware.adoc, prereq-software.adoc, prereq-network.adoc
 
-You can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) version 4.0 and later in the Kubernetes (K8s) cluster that you provision and manage.
+You can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) version 4.x and later in the Kubernetes (K8s) cluster that you provision and manage.
 
 MuleSoft performed installations on popular K8s providers, which are listed in the following sections. The hardware and software requirements for installing Anypoint Platform PCE on your chosen provider are dictated by that provider, unless otherwise specified in this document. 
 
