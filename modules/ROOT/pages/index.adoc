@@ -6,20 +6,20 @@ endif::[]
 Run and manage Mule apps on your local servers following your security policies by using Anypoint Platform Private Cloud Edition (Anypoint Platform PCE). Anypoint Platform PCE offers local MuleSoft control plane functionality, with no external system interactions or internet connectivity required, maintaining all data storage, processing, and transmission.  
 Anypoint Platform PCE uses Kubernetes for built-in high availability and scalability. While you can install it without deep Kubernetes knowledge, understanding these tools is essential for management and troubleshooting.
 
-Anypoint Platform PCE version 4.0 runs on enterprise-ready Kubernetes Red Hat OpenShift, Amazon EKS Anywhere (EKS-A), and Rancher Kubernetes Engine (RKE2). Additionally, it supports Java 17, in addition to Java 8 and 11.
+Anypoint Platform PCE version 4.x runs on enterprise-ready Kubernetes Red Hat OpenShift, Amazon EKS Anywhere (EKS-A), and Rancher Kubernetes Engine (RKE2). Additionally, it supports Java 17, in addition to Java 8 and 11.
 
 For information about a previous version of Anypoint Platform PCE, select the version in the documentation sidebar.
 
 == Before You Begin
 
-=== Upgrade to Anypoint Platform PCE version 4.0
-If you are upgrading from version 3.2.3 of Anypoint Platform PCE to version 4.0, see xref:upgrade.adoc[Upgrading Anypoint Platform PCE 3.2.3 to 4.0].
+=== Upgrade to Anypoint Platform PCE version 4.X
+If you are upgrading from version 3.2.3 of Anypoint Platform PCE to version 4.X, see xref:upgrade.adoc[Upgrading Anypoint Platform PCE 3.2.3 to 4.x].
 
 [NOTE]
-If you're using a version of Anypoint Platform PCE earlier than 3.2.3, upgrade to version 3.2.3 first. Then proceed with upgrading to version 4.0.
+If you're using a version of Anypoint Platform PCE earlier than 3.2.3, upgrade to version 3.2.3 first. Then proceed with upgrading to version 4.x.
 
-=== Install Anypoint Platform PCE 4.0
-If you are installing Anypoint Platform PCE version 4.0 for the first time, see xref:install-workflow.adoc[Installing Anypoint Platform PCE].
+=== Install Anypoint Platform PCE 4.X
+If you are installing Anypoint Platform PCE version 4.x for the first time, see xref:install-workflow.adoc[Installing Anypoint Platform PCE].
 
 To install Anypoint Platform PCE on OpenShift, see xref:install-openshift.adoc[Installing Anypoint Platform PCE on OpenShift].
 
@@ -60,7 +60,7 @@ Anypoint Platform PCE is compatible with Java 17, 11, and 8.
 
 Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
 
-Anypoint Platform PCE version 4.0 contains the following features:
+Anypoint Platform PCE version 4.x contains the following features:
 [%header%autowidth.spread]
 |===
 | Component | Feature Description | Feature Version
