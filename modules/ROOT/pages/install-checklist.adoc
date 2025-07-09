@@ -153,6 +153,14 @@ To check your Python version, run this command:
 python --version
 ----
 
+* Use gpg (GnuPG) version 2.1 or higher +
+To check your gpg version, run this command:
++
+----
+gpg --version
+----
+
+
 == Storage Requirements
 
 These are the requirements:
