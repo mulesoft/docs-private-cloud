@@ -161,7 +161,7 @@ gpg --version
 
 These are the requirements:
 
-In Anypoint Platform PCE version 4.0 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. Currently, there are two services that require PVCs:
+In Anypoint Platform PCE version 4.1 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. Currently, there are two services that require PVCs:
 
 * SeaweedFS - S3 object store service
 * Stolon - PostgreSQL HA database
