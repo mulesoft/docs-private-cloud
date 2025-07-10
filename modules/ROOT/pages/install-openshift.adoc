@@ -13,7 +13,7 @@ To configure the OpenShift Environment, configure Security Context Constraints (
 
 === Configure Security Context Constraints (SCC)
 
-The following snippet contains the SCC configuration:
+This snippet contains the SCC configuration:
 
 [source,yaml]
 ----
@@ -26,7 +26,7 @@ allowHostIPC: false
 allowHostNetwork: false
 allowHostPID: false
 allowHostPorts: false
-allowPrivilegeEscalation: true
+allowPrivilegeEscalation: false
 allowPrivilegedContainer: false
 allowedCapabilities: null
 defaultAddCapabilities: null
@@ -38,7 +38,8 @@ readOnlyRootFilesystem: false
 requiredDropCapabilities:
   - MKNOD
 runAsUser:
-  type: RunAsAny
+  type: MustRunAs
+  uid: 2020
 seLinuxContext:
   type: MustRunAs
 seccompProfiles:
@@ -59,7 +60,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: anypoint-scc
-  namespace: default
+  namespace: pce-core
 rules:
   - apiGroups: [ "security.openshift.io" ]
     resourceNames:
@@ -77,8 +78,14 @@ roleRef:
   name: anypoint-scc
 subjects:
   - kind: ServiceAccount
+    name: pce-cluster-ssl-app
+    namespace: pce-core
+  - kind: ServiceAccount
+    name: default
+    namespace: pce-core
+  - kind: ServiceAccount
     name: anypoint-install
-    namespace: default
+    namespace: pce-core
   - kind: ServiceAccount
     name: anypoint-install
     namespace: dias
@@ -91,9 +98,6 @@ subjects:
   - kind: ServiceAccount
     name: authentication-server-service-account
     namespace: access-management
-  - kind: ServiceAccount
-    name: default
-    namespace: design-center
   - kind: ServiceAccount
     name: default
     namespace: api-console-proxy
@@ -156,6 +160,230 @@ subjects:
   - kind: ServiceAccount
     name: default
     namespace: anypoint-flash
+
+---
+
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: anypoint-anyuid-privileged
+allowHostDirVolumePlugin: false
+allowHostIPC: false
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: false
+allowedCapabilities: null
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
+users: []
+groups: []
+readOnlyRootFilesystem: false
+requiredDropCapabilities:
+  - MKNOD
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: MustRunAs
+seccompProfiles:
+  - runtime/default
+supplementalGroups:
+  type: RunAsAny
+volumes:
+  - configMap
+  - csi
+  - downwardAPI
+  - emptyDir
+  - ephemeral
+  - persistentVolumeClaim
+  - projected
+  - secret
+  - nfs
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: anypoint-scc-privileged
+  namespace: pce-core
+rules:
+  - apiGroups: [ "security.openshift.io" ]
+    resourceNames:
+      - anypoint-anyuid-privileged
+    resources: [ "securitycontextconstraints" ]
+    verbs: [ "use" ]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: anypoint-scc-privileged
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: anypoint-scc-privileged
+subjects:
+- kind: ServiceAccount
+  name: stolon
+  namespace: pce-core
+- kind: ServiceAccount
+  name: default
+  namespace: pce-core
+- kind: ServiceAccount
+  name: anypoint-install
+  namespace: pce-core
+- kind: ServiceAccount
+  name: seaweedfs-rw-sa
+  namespace: pce-core
+- kind: ServiceAccount
+  name: default
+  namespace: api-manager
+- kind: ServiceAccount
+  name: default
+  namespace: design-center
+- kind: ServiceAccount
+  name: default
+  namespace: exchange
+- kind: ServiceAccount
+  name: default
+  namespace: logging-internal
+- kind: ServiceAccount
+  name: default
+  namespace: pce
+- kind: ServiceAccount
+  name: monitoring
+  namespace: pce
+- kind: ServiceAccount
+  name: default
+  namespace: trusted-domains
+- kind: ServiceAccount
+  name: default
+  namespace: mocking
+
+---
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: anypoint-pce-monitoring
+allowHostDirVolumePlugin: false
+allowHostIPC: false
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegeEscalation: false
+allowPrivilegedContainer: false
+allowedCapabilities: null
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
+users: []
+groups: []
+readOnlyRootFilesystem: false
+requiredDropCapabilities:
+  - MKNOD
+runAsUser:
+  type: MustRunAs
+  uid: 472
+seLinuxContext:
+  type: MustRunAs
+seccompProfiles:
+  - runtime/default
+supplementalGroups:
+  type: RunAsAny
+volumes:
+  - configMap
+  - csi
+  - downwardAPI
+  - emptyDir
+  - ephemeral
+  - persistentVolumeClaim
+  - projected
+  - secret
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: anypoint-pce-monitoring
+rules:
+  - apiGroups: [ "security.openshift.io" ]
+    resourceNames:
+      - anypoint-pce-monitoring
+    resources: [ "securitycontextconstraints" ]
+    verbs: [ "use" ]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: anypoint-pce-monitoring
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: anypoint-pce-monitoring
+subjects:
+- kind: ServiceAccount
+  name: grafana
+  namespace: monitoring
+
+---
+# THIS SECTION IS REQUIRED FOR INTERNAL TESTING.
+# DO NOT INCLUDE THIS IN THE PUBLIC DOCS.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: anypoint-scc-ldap
+rules:
+  - apiGroups: [ "security.openshift.io" ]
+    resourceNames:
+      - anypoint-scc-ldap
+    resources: [ "securitycontextconstraints" ]
+    verbs: [ "use" ]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: anypoint-scc-ldap
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: anypoint-scc-ldap
+subjects:
+- kind: ServiceAccount
+  name: anypoint-ldap
+  namespace: pce-core
+---
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: anypoint-scc-ldap
+allowHostDirVolumePlugin: false
+allowHostIPC: false
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: false
+allowedCapabilities: null
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
+users: []
+groups: []
+readOnlyRootFilesystem: false
+requiredDropCapabilities:
+  - MKNOD
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: MustRunAs
+seccompProfiles:
+  - runtime/default
+supplementalGroups:
+  type: RunAsAny
+volumes:
+  - configMap
+  - csi
+  - persistentVolumeClaim
+  - projected
 ----
 
 Save this file as `openshift-scc.yaml` and apply it to the OpenShift cluster:

@@ -21,43 +21,41 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
 
 These are the requirements:
 
-* Kubernetes (K8s) version 1.29 or 1.30.
+* Kubernetes (K8s) version 1.32 or 1.31.
 
 * Kubernetes providers: +
-    ** Rancher Kubernetes Engine (RKE2) versions 1.29 and 1.30.
+    ** Rancher Kubernetes Engine (RKE2) versions 1.32 and 1.31.
     ** Red Hat OpenShift versions 4.15 and 4.16.
-    ** Amazon EKS Anywhere (EKS-A) 0.20 (K8s version 1.29, 1.30)
+    ** Amazon EKS Anywhere (EKS-A) 0.20 (K8s version 1.31, 1.32)
 
 * Cluster configurations: +
 ** Have a dedicated control plane node within the K8s cluster. Preferably, allocate 3 or 5 nodes for the K8s control planes. For example, only K8s management workload run on these nodes.
 ** Have cluster worker nodes exclusively dedicated to Anypoint Platform PCE workloads. No Anypoint Platform PCE pods can run on the K8s control plane nodes.
-** A large cluster can have: 
-*** 3 K8s control plane nodes
-*** 7 K8s worker nodes
-** A small cluster can have: 
-*** 3 K8s control plane nodes
-*** 4 K8s worker nodes
 
-If you have Anypoint Platform PCE 3.2.x or earlier installed, ensure you disable SWAP on all Anypoint Platform PCE nodes. Anypoint Platform PCE relies heavily on Kubernetes, which doesn't support the use of SWAP space. When SWAP is enabled, Kubernetes and the SWAP daemon attempt to manage the same memory space, leading to CPU overload as they compete. To avoid this issue, don't use SWAP space on machines running Anypoint Platform PCE.
 
 [NOTE]
 Running Anypoint Platform PCE workloads on K8s control plane nodes can degrade both Anypoint Platform PCE and cluster performance.  
 
 == Hardware Requirements
 
+Anypoint Platform PCE runs as a Kubernetes application and these are the minimum required hardware for all services to be scheduled and running:
+
+* 32 vCPUs
+* 128 GiB Memory
+* x86_64 Architecture
+
+You can provision and distribute these resources across a minimum of 4 worker nodes.
+
 These are the minimum requirements for the cluster nodes:
 
-* Dedicated control plane nodes:
-    ** Architecture x86_64
-    ** 4 vCPUS
-    ** Memory 8 GiB
-    ** Root volume 50GB
+[%header%autowidth.spread]
 
-* Worker nodes:
-    ** Architecture x86_64
-    ** 8 vCPUS
-    ** Memory 32 GiB
-    ** Root volume 50GB
+|===
+|Number of Nodes |Node Composition |Total Resources
+|4 |8 vCPU and 32 GiB memory |32 vCPU and 128 GiB memory
+|10 |4 vCPU and 16 GiB memory |40 vCPU and 160 GiB memory
+|===
+
 
 For more information, see the provider specific requirements:
 
@@ -69,7 +67,7 @@ For more information, see the provider specific requirements:
 
 These are the requirements:
 
-* Operating system: RHEL 8.10
+* Operating system: RHEL 8.10, 9.4
 
 For more information, see the provider specific requirements:
 
@@ -134,8 +132,6 @@ These are the requirements:
 * Access and connectivity to private container registry
 * For OpenShift use SecurityContextConstraints for installing Anypoint Platform PCE.
 
-=== Node Requirements for Anypoint Platform PCE 4.1
-
 Before executing the `pcectl` binary for Anypoint Platform PCE 4.1, ensure you follow these requirements:
 
 * Use a Linux based operating system
@@ -169,6 +165,7 @@ In Anypoint Platform PCE version 4.0 and later, all the persistent data is store
 
 * SeaweedFS - S3 object store service
 * Stolon - PostgreSQL HA database
+* Prometheus - TSDB for k8s metrics (optional)
 
 The storage class for the previous services can be the same. Depending on the type of underlying infrastructure or storage solution you choose, the storage class configuration can vary.
 

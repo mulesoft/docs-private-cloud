@@ -2,7 +2,7 @@
 
 To ensure platform performance, stability, and high availability, Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) supports two network configurations in Kubernetes (K8s) nodes: 4-node and 7-node. 
 
-== Anypoint Platform PCE 4.0 Architecture
+== Anypoint Platform PCE 4.1 Architecture
 
 The diagram illustrates MuleSoft's planes (control plane and runtime plane) and their general traffic flow within the Anypoint Platform PCE context:
 
@@ -25,21 +25,21 @@ The following recommendations and limits are based on these resources:
 
 == Mule Runtime Engine and Mule Applications
 
-The following table shows the recommended and maximum number of Mule instances and Mule applications that Anypoint Platform PCE supports:
+This  table shows the recommended and maximum number of Mule instances and Mule applications that Anypoint Platform PCE supports:
 
 [%header%autowidth.spread]
 |===
-| Description| Small cluster 4-node Configuration | Large cluster 7-node Configuration
-| Maximum number of Mule instances per environment | 500 | 500
-| Maximum number of Mule instances across all environments | 1500 | 3000
-| Maximum number of Mule instances per server group | 20 | 20
-| Maximum Mule instances per cluster | 8 | 8
-| Mule applications under management per environment (recommended) | Under 200 | Around 200
-| Mule applications under management per environment (maximum) | 500 | 500
-| Mule applications per Mule runtime engine (recommended) | Fewer than 25 | Fewer than 25
-| Mule applications per Mule runtime engine (maximum) | 100 | 150
-| Number of Mule applications | 6000 | 12000
-| Number of Mule application replicas. An application can run on multiple Mule instances in a server group or cluster. | 12000| 24000
+| Description| HPA Cluster Configuration Starting 4 Node and 32 vCore Cluster 
+| Maximum number of Mule instances per environment | 500 
+| Maximum number of Mule instances across all environments | 4000
+| Maximum number of Mule instances per server group | 20 
+| Maximum Mule instances per cluster | 8 
+| Mule applications under management per environment (recommended) | Under 200 
+| Mule applications under management per environment (maximum) | 500 
+| Mule applications per Mule runtime engine (recommended) | Fewer than 25 
+| Mule applications per Mule runtime engine (maximum) | 100 
+| Number of Mule applications | 150000
+| Number of Mule application replicas. An application can run on multiple Mule instances in a server group or cluster. | 30000
 |===
 
 == APIs and API Manager
