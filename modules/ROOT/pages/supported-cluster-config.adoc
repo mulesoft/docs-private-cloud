@@ -38,7 +38,7 @@ This  table shows the recommended and maximum number of Mule instances and Mule 
 | Mule applications under management per environment (maximum) | 500 
 | Mule applications per Mule runtime engine (recommended) | Fewer than 25 
 | Mule applications per Mule runtime engine (maximum) | 100 
-| Number of Mule applications | 150000
+| Number of Mule applications | 15000
 | Number of Mule application replicas. An application can run on multiple Mule instances in a server group or cluster. | 30000
 |===
 
