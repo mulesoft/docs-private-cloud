@@ -118,13 +118,13 @@ These are the requirements:
 
 * Must be secured over TLS.
 * Must be accessible from installer nodes and Kubernetes clusters.
-* Must be secured with either a username and password or Certificate based authentication. Ensure that the new or updated certificates are distributed to all nodes to facilitate uninterrupted TLS communication.
+* Must be secured with either a username and password, or Certificate-based authentication. Make sure that the new or updated certificates are distributed to all nodes to facilitate uninterrupted TLS communication.
 
 == Installer Node Requirements
 
 These are the requirements:
 
-* Operating system: RHEL, Ubuntu or any Linux based systems.
+* Operating system: RHEL, Ubuntu, or any Linux-based systems.
 * Storage required a minimum 100GB.
 * Access to Kubernetes cluster using kubeconfig.yaml
     ** The cluster needs `cluster:admin` access, as Anypoint Platform PCE installer needs to create resources of different types.
@@ -132,7 +132,7 @@ These are the requirements:
 * Access and connectivity to private container registry
 * For OpenShift use SecurityContextConstraints for installing Anypoint Platform PCE.
 
-Before executing the `pcectl` binary for Anypoint Platform PCE 4.1, ensure you follow these requirements:
+Before executing the `pcectl` binary for Anypoint Platform PCE 4.1, make sure that you follow these requirements:
 
 * Use a Linux based operating system
 * Use glibc (GNU C library) version 2.28 or higher +
@@ -161,17 +161,61 @@ gpg --version
 
 These are the requirements:
 
-In Anypoint Platform PCE version 4.1 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. Currently, there are two services that require PVCs:
+In Anypoint Platform PCE version 4.1 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. 
 
-* SeaweedFS - S3 object store service
-* Stolon - PostgreSQL HA database
-* Prometheus - TSDB for k8s metrics (optional)
+These services use PVCs with minimum and default storage size:
 
-The storage class for the previous services can be the same. Depending on the type of underlying infrastructure or storage solution you choose, the storage class configuration can vary.
+* SeaweedFS - S3 Object Store service - Total 120Gi
+* Stolon - PostgreSQL HA database  - Total 100 Gi
+* Prometheus - TSDB for k8s metrics (optional) -  Default 50Gi
+
+The storage class for the previous services can be the same. Depending on the type of underlying infrastructure or storage solution you select, the storage class configuration can vary.
+
+You can update the PVC storage size during the installation by updating the `input.yaml` file. See these sections to update the storage size:
+
+```
+# Storage class configuration for persistent data services
+storageConfiguration:
+ pceobjectstore:
+   type: "persistentVolumeClaim"
+   storageClass: "<storage-class-name>"
+   controlPlaneSize: "20Gi" # Optional. Defaults to 10Gi
+   volumeSize: "200Gi" # Optional. Defaults to 100Gi
+   volumeIndexSize: "20Gi" # Optional. Defaults to 10Gi
+ stolon:
+   type: "persistentVolumeClaim"
+   storageClass: "<storage-class-name>"
+   size: "300Gi" # Optional. Defaults to 100Gi
+```
+
+
+In the previous example, you can see the storage for SeaweedFS that is Object Store has increased to 240GiB and stolon has increased to 300 Gi.
+
+Similarly, to set the storage size for monitoring stack, use this configuration:
+
+```
+# Configuration options for monitoring stack
+monitoringAppConfiguration:
+ monitoringStack:
+   enabled:  True # Defaults to True. Must be set to False for Openshift clusters.
+   values: | # Optional. If not provided, the default values will be used.
+      prometheus:
+        prometheusSpec:
+          storageSpec:
+            volumeClaimTemplate:
+              spec:
+                storageClassName: 'local-path',
+                accessModes: ["ReadWriteOnce"]
+                resources:
+                  requests:
+                    storage: 50Gi
+
+ ```
+
 
 == Platform Configuration
 
-To make Anypoint Platform PCE accessible, configure these specifications in the input config file before installing Anypoint Platform PCE:
+To make Anypoint Platform PCE accessible, configure these specifications in the input configuration file before installing Anypoint Platform PCE:
 
 * Platform DNS
 * File System DNS
