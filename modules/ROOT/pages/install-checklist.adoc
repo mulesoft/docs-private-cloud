@@ -213,7 +213,7 @@ monitoringAppConfiguration:
                   requests:
                     storage: 50Gi
 
- ----
+----
 
 
 == Platform Configuration
