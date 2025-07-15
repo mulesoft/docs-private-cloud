@@ -44,7 +44,7 @@ This  table shows the recommended and maximum number of Mule instances and Mule 
 
 == APIs and API Manager
 
-The following table show the maximum instances per API, number of client applications, applied policies and created contracts that Anypoint Platform PCE supports:
+This table shows the maximum number of instances per API, number of client applications, applied policies, and created contracts that Anypoint Platform PCE supports:
 
 |===
 |Description | Small cluster 4-node Configuration | Large cluster 7-node Configuration
@@ -95,7 +95,7 @@ The following table show the maximum number of exchange assets and file size inf
 
 == API Designer and API Mocking Service
 
-The following apply to both 4-node and 7-node configurations.
+These limits apply to both 4-node and 7-node configurations.
 
 [%autowidth.spread]
 |===
