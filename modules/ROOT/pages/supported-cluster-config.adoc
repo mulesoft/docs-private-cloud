@@ -29,7 +29,7 @@ This  table shows the recommended and maximum number of Mule instances and Mule 
 
 [%header%autowidth.spread]
 |===
-| Description| HPA Cluster Configuration Starting 4 Node and 32 vCore Cluster 
+| Description| Supported Capacity
 | Maximum number of Mule instances per environment | 500 
 | Maximum number of Mule instances across all environments | 4000
 | Maximum number of Mule instances per server group | 20 
