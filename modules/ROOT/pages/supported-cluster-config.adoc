@@ -46,51 +46,51 @@ This  table shows the recommended and maximum number of Mule instances and Mule 
 
 This table shows the maximum number of instances per API, number of client applications, applied policies, and created contracts that Anypoint Platform PCE supports:
 
+[%header%autowidth.spread]
 |===
-|Description | Small cluster 4-node Configuration | Large cluster 7-node Configuration
-| Maximum instances per API group | 100 | 100
-| Client applications (per user) | 5000 | 5000
-| Client applications (per root organization) | 10000 | 10000
-| Maximum API instances manager per root organization | 6000 | 12000
-| Applied policies | 18000 | 36000
-| Created contracts | 12000 | 24000
+| Description | Supported Capacity
+| Maximum instances per API group | 100
+| Client applications (per user) | 5000
+| Client applications (per root organization) | 10000
+| Maximum API instances managed per root organization | 12000
+| Applied policies | 36000
+| Created contracts | 24000
 |===
 
 == Access Management
 
-The following table show the maximum number of business groups and number of users of Access Management that Anypoint Platform PCE supports:
+This table shows the maximum number of business groups and number of Access Management users that Anypoint Platform PCE supports:
 
 [%header%autowidth.spread]
 |===
-| Description| Small cluster 4-node Configuration | Large cluster 7-node Configuration
-| Maximum number of supported business groups | 75 | N/A
-| Maximum number of users | 10000 | N/A
+| Description | Supported Capacity
+| Maximum number of supported business groups | 75
+| Maximum number of users | 10000
 |===
 
-See the Access Management documentation for more information on xref:access-management::external-identity.adoc[identity management and supported providers]. 
 
 == Exchange
 
-The following table show the maximum number of exchange assets and file size information that Anypoint Platform PCE supports:
+This table shows the maximum number of Exchange assets and file size information that Anypoint Platform PCE supports:
 
 [%header%autowidth.spread]
 |===
-|Description| Small cluster 4-node Configuration | Large cluster 7-node Configuration
-| Maximum Exchange assets | 60,000 | 60,000
-| Maximum file size when publishing asset through UI | 5 MB | 5 MB
-| Maximum uncompressed file size | 50 MB | 50 MB
-| Maximum file size when publishing asset through Maven | 200 MB | 200
-| Maximum number of dependencies for a single asset | 100 | 100
-| Maximum icon size | 2 MB | 2 MB
-| Maximum number of resources (attachments) per asset portal | 100 | 100
-| Maximum resource size for attachments to the asset portal | 2 MB | 2 MB
-| Maximum indexable asset content for RAML or asset portal | 1 MB | 1 MB
-| Maximum number of categories per organization | 500 | 500
-| Maximum number of custom configurations per organization | 500 | 500
-| Maximum number of pages in a portal | 50 | 50
-| Maximum length of page name | 128 characters | 128 characters
-| Maximum review title length | 30 characters | 30 characters
-| Maximum review text length | 2048 characters | 2048 characters
+| Description | Supported Capacity
+| Maximum Exchange assets | 60,000
+| Maximum file size when publishing asset through UI | 5 MB
+| Maximum uncompressed file size | 50 MB
+| Maximum file size when publishing asset through Maven | 200 MB
+| Maximum number of dependencies for a single asset | 100
+| Maximum icon size | 2 MB
+| Maximum number of resources (attachments) per asset portal | 100
+| Maximum resource size for attachments to the asset portal | 2 MB
+| Maximum indexable asset content for RAML or asset portal | 1 MB
+| Maximum number of categories per organization | 500
+| Maximum number of custom configurations per organization | 500
+| Maximum number of pages in a portal | 50
+| Maximum length of page name | 128 characters
+| Maximum review title length | 30 characters
+| Maximum review text length | 2048 characters
 |===
 
 == API Designer and API Mocking Service
