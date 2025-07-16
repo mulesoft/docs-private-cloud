@@ -57,9 +57,10 @@ These are the minimum requirements for cluster nodes:
 |===
 
 === Load Balancer Configuration
-You can configure your load balancer to use any method for distributing client requests. Use a a round robin strategy for better results in most contexts. Make sure the load balancer is accessible through an IP address that is available to all machines in your network.
 
-Make sure your load balancer routes the following TCP ports:
+You can configure your load balancer to use any method for distributing client requests. Use a a round robin strategy for better results in most contexts. Make sure the load balancer is accessible through an IP address that is available to all machines on your network.
+
+Make sure your load balancer routes these TCP ports:
 
 [%header%autowidth.spread]
 .TCP Port Routing Requirements
