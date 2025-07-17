@@ -22,7 +22,7 @@ Before you install Anypoint Platform PCE, ensure your infrastructure team instal
 
 To perform the pre-installation healthcheck verification for the Kubernetes (K8s) cluster, follow these steps:
 
-. Confirm your Kubernetes cluster version is 1.32.x or 1.21.x.
+. Confirm your Kubernetes cluster version is 1.32.x or 1.31.x.
 . Create an `input.yaml` file using the following template and update it with your environment details:
 
 [source,json,linenums]
