@@ -6,26 +6,26 @@ endif::[]
 Run and manage Mule apps on your local servers following your security policies by using Anypoint Platform Private Cloud Edition (Anypoint Platform PCE). Anypoint Platform PCE offers local MuleSoft control plane functionality, with no external system interactions or internet connectivity required, maintaining all data storage, processing, and transmission.  
 Anypoint Platform PCE uses Kubernetes for built-in high availability and scalability. While you can install it without deep Kubernetes knowledge, understanding these tools is essential for management and troubleshooting.
 
-Anypoint Platform PCE version 4.0 runs on enterprise-ready Kubernetes Red Hat OpenShift, Amazon EKS Anywhere (EKS-A), and Rancher Kubernetes Engine (RKE2). Additionally, it supports Java 17, in addition to Java 8 and 11.
+Anypoint Platform PCE version 4.x runs on enterprise-ready Kubernetes Red Hat OpenShift, Amazon EKS Anywhere (EKS-A), and Rancher Kubernetes Engine (RKE2). Additionally, it supports Java 17, in addition to Java 8 and 11.
 
 For information about a previous version of Anypoint Platform PCE, select the version in the documentation sidebar.
 
 == Before You Begin
 
-=== Upgrade to Anypoint Platform PCE version 4.0
-If you are upgrading from version 3.2.3 of Anypoint Platform PCE to version 4.0, see xref:upgrade.adoc[Upgrading Anypoint Platform PCE 3.2.3 to 4.0].
+=== Upgrade to Anypoint Platform PCE version 4.X
+If you are upgrading from version 3.2.3 of Anypoint Platform PCE to version 4.X, see xref:upgrade.adoc[Upgrading Anypoint Platform PCE 3.2.3 to 4.x].
 
 [NOTE]
-If you're using a version of Anypoint Platform PCE earlier than 3.2.3, upgrade to version 3.2.3 first. Then proceed with upgrading to version 4.0.
+If you're using a version of Anypoint Platform PCE earlier than 3.2.3, upgrade to version 3.2.3 first. Then proceed with upgrading to version 4.x.
 
-=== Install Anypoint Platform PCE 4.0
-If you are installing Anypoint Platform PCE version 4.0 for the first time, see xref:install-workflow.adoc[Installing Anypoint Platform PCE].
+=== Install Anypoint Platform PCE 4.X
+If you are installing Anypoint Platform PCE version 4.x for the first time, see xref:install-workflow.adoc[Installing Anypoint Platform PCE].
 
 To install Anypoint Platform PCE on OpenShift, see xref:install-openshift.adoc[Installing Anypoint Platform PCE on OpenShift].
 
 == Anypoint Platform PCE Components
 
-The following table provides component information for Anypoint Platform PCE:
+This table provides component information for Anypoint Platform PCE:
 
 [%header%autowidth.spread]
 |===
@@ -56,68 +56,70 @@ The following table provides component information for Anypoint Platform PCE:
 
 Anypoint Platform PCE is compatible with Java 17, 11, and 8.
 
-== Features Shipped with Anypoint Platform PCE Version 4.0
+== Features Shipped with Anypoint Platform PCE Version 4.X
 
 Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
 
-Anypoint Platform PCE version 4.0 contains the following features:
+Anypoint Platform PCE version 4.1 contains these features:
 [%header%autowidth.spread]
 |===
 | Component | Feature Description | Feature Version
-.6+|Access Management| Audit Log | v5.1.45
-| Authentication Server | v1.2.460
-| Authentication Server UI | v2.1.240-56.develop
-| Anypoint Sign In | v3.2.143
+.6+|Access Management| Audit Log | v5.1.67
+| Authentication Server | v1.2.548
+| Authentication Server UI | v2.1.269-8.develop
+| Anypoint Sign In | v3.2.161
 | Anypoint Roles Client | v8.1.1573
-| ARC Informer | v1.0.374
-.3+| API Designer | API Designer DC Projects Service | v3.13.1
-| API Designer DC XAPI Service | v2.11.2
-| API Designer DC UI | v2.10.5
-.9+| API Manager | API Manager API DB Migrations  | v1.0.451
-| API Manager API Platform Web | v1.15.204
-| API Manager API Proxy Builder Service  | v1.3.69
-| API Manager API  | v2.31.5
-| API Manager Contract Caching DB Migrations  | v1.0.238
-| API Manager Contract Caching Service  | v1.1.418
-| API Manager Proxies XAPI Service   | v1.24.0
-| API Manager RAML Parser Service   | v0.3.159
-| API Manager Web   | v1.29.1
-| API Modeling Framework (AMF) | AMF Service | v1.4.61
-| Connectivity | REST Connect Service | v1.14.53
-.24+| Exchange | Asset Manager DB Migrations | v2.0.20
-|Asset Manager Service  | v1.0.808
-|Asset Portals DB Migrations  | v2.0.25
-| Asset Portals Service | v0.6.1503
-| Content Provider | v1.0.12
-| Custom Assets Facade Service | v0.9.436
-| Customization Service | v0.6.214
-| Dependency Resolver Service | v0.8.27
-| File Service | v1.1.47
+| ARC Informer | 1.0.374
+.3+| API Designer | API Designer DC Projects Service | v3.18.10
+| API Designer DC XAPI Service | v2.15.7
+| API Designer DC UI | v2.75.8
+.9+| API Manager | API Manager API DB Migrations  | v1.0.500
+| API Manager API Platform Web | v1.15.226
+| API Manager API Proxy Builder Service  | v1.3.92
+| API Manager API  | v2.31.26
+| API Manager Contract Caching DB Migrations  | v1.0.259
+| API Manager Contract Caching Service  | v1.1.459
+| API Manager Proxies XAPI Service   | v1.24.11
+| API Manager RAML Parser Service   | v0.3.173
+| API Manager Web   | v1.29.13
+| API Modeling Framework (AMF) | AMF Service | v1.4.66
+| Connectivity | REST Connect Service | v1.14.57
+.24+| Exchange | Asset Manager DB Migrations | v2.0.51
+|Asset Manager Service  | v1.0.885
+|Asset Portals DB Migrations  | v2.0.57
+| Asset Portals Service | v0.6.1576
+| Content Provider | v1.0.29
+| Custom Assets Facade Service | v1.0.7
+| Customization Service | v0.6.658
+| Dependency Resolver Service | v0.8.77
+| File Service | v1.1.288
 | File Upload Service |v1.1.226
-| Maven Facade Service | v0.8.47
-| Region Synchronizer Service  | v0.2.147
-| Exchange API Metadata DB Migrations  | v1.7.324
-| Exchange API Metadata Service  | v0.7.954
-| Exchange Asset Reviews DB Migrations  | v1.6.359
-| Exchange Asset Reviews Service  | v0.8.353
-| Exchange Customization DB Migrations  | v1.0.264
-| Exchange Customization Service | v0.6.576
-| Exchange Customization Service | v0.6.576
-| Exchange Graph Node Service  | v0.2.563
-| Exchange Search DB Migrations  | v1.7.283
-| Exchange Search Service  | v1.0.90
-| Exchange UI  | v1.0.126
-| Exchange XAPI Service  | v0.8.2717
-| Mocking Service | Mocking Service | v2.68.6
-.5+| Runtime Manager | Application Manager DB Migration | v1.0.92
-| Application Manager Service | v2.33.0
-| Atlas Service | v1.9.109
+| Maven Facade Service | v0.8.109
+| Region Synchronizer Service  | v0.2.163
+| Exchange API Metadata DB Migrations  | v2.0.40
+| Exchange API Metadata Service  | v1.1.1
+| Exchange Asset Reviews DB Migrations  | v2.0.36
+| Exchange Asset Reviews Service  | v0.8.435
+| Exchange Customization DB Migrations  | 2.0.31
+| Exchange Customization Service | 0.6.658
+
+| Exchange Graph Node Service  | 0.2.664
+| Exchange Search DB Migrations  | 2.0.38
+| Exchange Search Service  | v1.0.215
+| Exchange UI  | v1.0.265
+| Exchange XAPI Service  | v0.8.2848
+| Mocking Service | v2.77.0-17.pce
+.6+| Runtime Manager | Application Manager DB Migration | v1.2.11
+| Application Manager Service | v2.33.51
+| Atlas Service | v1.9.121
 | Mule Agent | v2.6.6
-| MCM Service | v2.17.322
-.3+| Runtime Services | Anypoint Flash Platform Messages DB Migrations | v1.1.31
-| Platform Messages | v2.2.21
-| Mule Message Processor | v3.2.17
+| Jafar Service | 0.3.167
+| MCM Service | v2.17.347
+.3+| Runtime Services | Anypoint Flash Platform Messages DB Migrations | 1.1.43
+| Platform Messages | v2.2.43
+| Mule Message Processor | v3.2.40
 |===
+
 
 == See Also
 

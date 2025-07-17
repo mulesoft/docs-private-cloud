@@ -22,48 +22,77 @@ Before you install Anypoint Platform PCE, ensure your infrastructure team instal
 
 To perform the pre-installation healthcheck verification for the Kubernetes (K8s) cluster, follow these steps:
 
-. Confirm your Kubernetes cluster version is 1.30.x or 1.29.x.
+. Confirm your Kubernetes cluster version is 1.32.x or 1.31.x.
 . Create an `input.yaml` file using the following template and update it with your environment details:
 
 [source,json,linenums]
 ----
-    # Container Registry configuration to upload PCE images
+# Container Registry configuration to upload PCE images
 containerRegistry:
- endpoint: "" # Container Registry Endpoint
- username: "" # Provide either Username/Password OR Certificate to authenticate with container registry
- password: ""
- certificate: "/etc/registry/certificate/ca.crt"
- subproject: "mulesoft" # Container registry subproject under which all the PCE images will be part of.
- tlsSkipVerify: True  # True or False.
-# Configuration required to perform post installation setup for Anypoint platform
-# All the fields in `postInstallConfiguration` are required.
-postInstallConfiguration: 
- platformDNS: ""
- fileSystemDNS: ""
- firstUserAccount:
-   organizationName: 'Test Org' 
-   username: 'username'
-   email: 'username@mulesoft.com'
-   password: '<a-valid-password>'
- platformCertificate: /path/to/platform/certificate/cert.crt
- platformCertificateKey: path/to/platform/certificate/cert.key
+  endpoint: "" # Container Registry Endpoint
+  username: "" # Provide either Username/Password OR Certificate to authenticate with container registry
+  password: ""
+  certificate: "/etc/registry/certificate/ca.crt"
+  subproject: "mulesoft" # Container registry subproject under which all the PCE images will be part of.
+  tlsSkipVerify: True  # True or False.
+# All the fields in `platformConfiguration` are required.
+platformConfiguration:
+  platformDNS: ""
+  fileSystemDNS: ""
+  fileSystemPath: ""
+  platformCertificate: /path/to/platform/certificate/cert.crt
+  platformCertificateKey: path/to/platform/certificate/cert.key
+  firstUserAccount:
+    organizationName: 'Test Org'
+    username: 'username'
+    email: 'username@mulesoft.com'
+    password: '<a-valid-password>'
 # Storage class configuration for persistent data services
 storageConfiguration:
- pceobjectstore:
-   type: "persistentVolumeClaim"
-   storageClass: "<storage-class-name>"
-   controlPlaneSize: "10Gi" # Optional. Defaults to 10Gi
-   volumeSize: "100Gi" # Optional. Defaults to 100Gi
-   volumeIndexSize: "10Gi" # Optional. Defaults to 10Gi
- stolon:
-   type: "persistentVolumeClaim"
-   storageClass: "<storage-class-name>"
-   size: "100Gi" # Optional. Defaults to 100Gi
+  pceobjectstore:
+    type: "persistentVolumeClaim"
+    storageClass: "<storage-class-name>"
+    controlPlaneSize: "10Gi" # Optional. Defaults to 10Gi
+    volumeSize: "100Gi" # Optional. Defaults to 100Gi
+    volumeIndexSize: "10Gi" # Optional. Defaults to 10Gi
+  stolon:
+    type: "persistentVolumeClaim"
+    storageClass: "<storage-class-name>"
+    size: "100Gi" # Optional. Defaults to 100Gi
 # Configuration options for monitoring stack
 monitoringAppConfiguration:
- monitoringStackEnabled: True # Defaults to True. Must be set to False for Openshift clusters.
- grafana:
-    enabled: False  # Defaults to False. Set to True for OpenShift clusters.
+  monitoringStack:
+    enabled:  True # Defaults to True. Must be set to False for Openshift clusters.
+      values: | # Optional. If not provided, the default values will be used.
+      prometheus:
+        prometheusSpec:
+          storageSpec:
+            volumeClaimTemplate:
+              spec:
+                storageClassName: 'local-path',
+                accessModes: ["ReadWriteOnce"]
+                resources:
+                  requests:
+                    storage: 50Gi
+
+## The following section is used to configure Grafana for an Openshift cluster. It is recommended to disable the monitoring stack as OpenShift includes Prometheus by default.
+  grafana:
+    enabled: False # Defaults to False.
+    values: |
+     datasources:
+        datasources.yaml:
+          apiVersion: 1
+          datasources:
+          - name: Prometheus
+            type: prometheus
+            url: https://prometheus-k8s.openshift-monitoring.svc:9091
+            access: proxy
+            isDefault: true
+            jsonData:
+              tlsSkipVerify: true
+              httpHeaderName1: 'Authorization'
+            secureJsonData:
+              httpHeaderValue1: 'Bearer <Token>'
 ----
 [start=3]
 . Obtain the `license.lic` file from the MuleSoft Professional Services team.

@@ -33,7 +33,6 @@ To create a backup, run the following command:
 | SMTP settings | Yes
 | DNS settings | No
 | Platform certificate | No
-| Ops Center certificate | No
 | NFS settings | No
 | NFS files | No	
 | Drives | No

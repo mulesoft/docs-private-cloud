@@ -4,60 +4,79 @@ include::_attributes.adoc[]
 endif::[]
 :page-aliases: prereq-workflow.adoc, prereq-platform.adoc, prereq-hardware.adoc, prereq-software.adoc, prereq-network.adoc
 
-You can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) version 4.0 and later in the Kubernetes (K8s) cluster that you provision and manage.
+You can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) version 4.x and later in the Kubernetes (K8s) cluster that you provision and manage.
 
 MuleSoft performed installations on popular K8s providers, which are listed in the following sections. The hardware and software requirements for installing Anypoint Platform PCE on your chosen provider are dictated by that provider, unless otherwise specified in this document. 
 
-Before you begin, ensure your organization’s operations, networking, and security teams review the listed infrastructure prerequisites. These include the K8s cluster, hardware, software, networking, NFS storage, container registry, installer node, and storage requirements.
+Before you begin, make sure that your organization’s operations, networking, and security teams review the listed infrastructure prerequisites. These include the K8s cluster, hardware, software, networking, NFS storage, container registry, installer node, and storage requirements.
 
 [NOTE]
 ==== 
-You must contact MuleSoft Professional Services prior to installing Anypoint Platform PCE, as they are involved with your installation.
+Contact MuleSoft Professional Services prior to installing Anypoint Platform PCE, as they are involved with your installation.
 
 Installing Anypoint Platform PCE requires specific versions of operating systems, NFS, and other software. Most issues experienced with Anypoint Platform PCE occur because the required environment was not set up prior to installing or upgrading. 
 ====
 
 == Kubernetes Cluster Requirements
 
-These are the requirements:
-
-* Kubernetes (K8s) version 1.29 or 1.30.
-
-* Kubernetes providers: +
-    ** Rancher Kubernetes Engine (RKE2) versions 1.29 and 1.30.
-    ** Red Hat OpenShift versions 4.15 and 4.16.
-    ** Amazon EKS Anywhere (EKS-A) 0.20 (K8s version 1.29, 1.30)
+* Supported Kubernetes providers: +
+    ** Rancher Kubernetes Engine (RKE2)
+    ** Red Hat OpenShift
+    ** Amazon EKS Anywhere
+    ** Amazon EKS
 
 * Cluster configurations: +
-** Have a dedicated control plane node within the K8s cluster. Preferably, allocate 3 or 5 nodes for the K8s control planes. For example, only K8s management workload run on these nodes.
-** Have cluster worker nodes exclusively dedicated to Anypoint Platform PCE workloads. No Anypoint Platform PCE pods can run on the K8s control plane nodes.
-** A large cluster can have: 
-*** 3 K8s control plane nodes
-*** 7 K8s worker nodes
-** A small cluster can have: 
-*** 3 K8s control plane nodes
-*** 4 K8s worker nodes
+** Run Kubernetes control plane components on dedicated nodes. Preferably, allocate three nodes for the Kubernetes control plane.
+** Have cluster worker nodes exclusively dedicated to Anypoint Platform PCE workloads. Don't run any Anypoint Platform PCE pods on the K8s control plane nodes. Check the prerequisites to make sure that PCE workloads can be scheduled and run on worker nodes.
 
-If you have Anypoint Platform PCE 3.2.x or earlier installed, ensure you disable SWAP on all Anypoint Platform PCE nodes. Anypoint Platform PCE relies heavily on Kubernetes, which doesn't support the use of SWAP space. When SWAP is enabled, Kubernetes and the SWAP daemon attempt to manage the same memory space, leading to CPU overload as they compete. To avoid this issue, don't use SWAP space on machines running Anypoint Platform PCE.
+
 
 [NOTE]
 Running Anypoint Platform PCE workloads on K8s control plane nodes can degrade both Anypoint Platform PCE and cluster performance.  
 
 == Hardware Requirements
 
-These are the minimum requirements for the cluster nodes:
+Anypoint Platform PCE runs as a Kubernetes application and these are the minimum required hardware for all services to be scheduled and running:
 
-* Dedicated control plane nodes:
-    ** Architecture x86_64
-    ** 4 vCPUS
-    ** Memory 8 GiB
-    ** Root volume 50GB
+* 32 vCPUs
+* 128 GiB Memory
+* x86_64 Architecture
 
-* Worker nodes:
-    ** Architecture x86_64
-    ** 8 vCPUS
-    ** Memory 32 GiB
-    ** Root volume 50GB
+You can provision and distribute these resources across a minimum of four worker nodes. PCE requires at least three worker nodes as hosts for data services that are deployed and configured in a cluster setup with three replicas. Make sure these three replicas run on three separate nodes to honor the anti-affinity rules.
+
+These are the minimum requirements for cluster nodes:
+
+[%header%autowidth.spread]
+
+|===
+|Number of Nodes |Node Composition |Total Resources
+|4 |8 vCPU and 32 GiB memory |32 vCPU and 128 GiB memory
+|10 |4 vCPU and 16 GiB memory |40 vCPU and 160 GiB memory
+|===
+
+=== Load Balancer Configuration
+
+You can configure your load balancer to use any method for distributing client requests. Use a a round robin strategy for better results in most contexts. Make sure the load balancer is accessible through an IP address that is available to all machines on your network.
+
+Make sure your load balancer routes these TCP ports:
+
+[%header%autowidth.spread]
+.TCP Port Routing Requirements
+|===
+|Load Balancer Port |Instance Port | Internal Usage
+|`80` | `30080`  | HTTP redirects to HTTPs
+|`443` | `30443` | HTTPS port
+|`8083` | `30883` | HTTPS port for Mule runtimes to authenticate and renew certificates
+|`8889` | `30889` | WebSocket port for Mule runtimes to connect
+|===
+
+In each case, configure your load balancer to listen on the load balancer port and redirect incoming requests to the instance port. Your Anypoint Platform PCE installation includes an internal NGINX server that listens on each of the configured instance ports, and then performs the action listed in the Internal Usage column.
+
+Make sure your load balancer polls the address `HTTP:10256/healthz` to run a health check on your platform servers and confirm that they are accessible.
+
+[NOTE]
+Don't configure SSL certificates in your load balancer. The platform handles the TLS termination with the certificates configured using Access Management. See xref:config-workflow.adoc[Configure Anypoint Platform PCE].
+
 
 For more information, see the provider specific requirements:
 
@@ -69,7 +88,7 @@ For more information, see the provider specific requirements:
 
 These are the requirements:
 
-* Operating system: RHEL 8.10
+* Operating system: RHEL 8.10, 9.4
 
 For more information, see the provider specific requirements:
 
@@ -120,34 +139,107 @@ These are the requirements:
 
 * Must be secured over TLS.
 * Must be accessible from installer nodes and Kubernetes clusters.
-* Must be secured with either a username and password or Certificate based authentication. Ensure that the new or updated certificates are distributed to all nodes to facilitate uninterrupted TLS communication.
+* Must be secured with either a username and password, or Certificate-based authentication. Make sure that the new or updated certificates are distributed to all nodes to facilitate uninterrupted TLS communication.
 
 == Installer Node Requirements
 
 These are the requirements:
 
-* Operating system: RHEL, Ubuntu or any Linux based systems.
+* Operating system: RHEL, Ubuntu, or any Linux-based systems.
 * Storage required a minimum 100GB.
 * Access to Kubernetes cluster using kubeconfig.yaml
     ** The cluster needs `cluster:admin` access, as Anypoint Platform PCE installer needs to create resources of different types.
-    ** The cluster needs `read/write` access in the default namespace to run Anypoint Platform PCE installer jobs and other supporting services.
+    ** The cluster needs `read/write` access in the pce-core namespace to run Anypoint Platform PCE installer jobs and other supporting services.
 * Access and connectivity to private container registry
 * For OpenShift use SecurityContextConstraints for installing Anypoint Platform PCE.
+
+Before executing the `pcectl` binary for Anypoint Platform PCE 4.1, make sure that you follow these requirements:
+
+* Use a Linux based operating system
+* Use glibc (GNU C library) version 2.28 or higher +
+To check the glibc version, run this command: 
++
+----   
+ldd --version
+----
+
+* Use Python version 3.12 or newer +
+To check your Python version, run this command:
++
+----
+python --version
+----
+
+* Use gpg (GnuPG) version 2.1 or higher +
+To check your gpg version, run this command:
++
+----
+gpg --version
+----
+
 
 == Storage Requirements
 
 These are the requirements:
 
-In Anypoint Platform PCE version 4.0 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. Currently, there are two services that require PVCs:
+In Anypoint Platform PCE version 4.1 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. 
 
-* SeaweedFS - S3 object store service
-* Stolon - PostgreSQL HA database
+These services use PVCs with minimum and default storage size:
 
-The storage class for the previous services can be the same. Depending on the type of underlying infrastructure or storage solution you choose, the storage class configuration can vary.
+* SeaweedFS - S3 Object Store service - Total 120Gi
+* Stolon - PostgreSQL HA database  - Total 100 Gi
+* Prometheus - TSDB for k8s metrics (optional) -  Default 50Gi
+
+The storage class for the previous services can be the same. Depending on the type of underlying infrastructure or storage solution you select, the storage class configuration can vary.
+
+You can update the PVC storage size during the installation by updating the `input.yaml` file. See these sections to update the storage size:
+
+[source,json,linenums]
+----
+# Storage class configuration for persistent data services
+storageConfiguration:
+ pceobjectstore:
+   type: "persistentVolumeClaim"
+   storageClass: "<storage-class-name>"
+   controlPlaneSize: "20Gi" # Optional. Defaults to 10Gi
+   volumeSize: "200Gi" # Optional. Defaults to 100Gi
+   volumeIndexSize: "20Gi" # Optional. Defaults to 10Gi
+ stolon:
+   type: "persistentVolumeClaim"
+   storageClass: "<storage-class-name>"
+   size: "300Gi" # Optional. Defaults to 100Gi
+
+----
+
+
+In the previous example, you can see the storage for SeaweedFS that is Object Store has increased to 240GiB and stolon has increased to 300 Gi.
+
+Similarly, to set the storage size for monitoring stack, use this configuration:
+
+[source,json,linenums]
+----
+# Configuration options for monitoring stack
+monitoringAppConfiguration:
+ monitoringStack:
+   enabled:  True # Defaults to True. Must be set to False for Openshift clusters.
+   values: | # Optional. If not provided, the default values will be used.
+      prometheus:
+        prometheusSpec:
+          storageSpec:
+            volumeClaimTemplate:
+              spec:
+                storageClassName: 'local-path',
+                accessModes: ["ReadWriteOnce"]
+                resources:
+                  requests:
+                    storage: 50Gi
+
+----
+
 
 == Platform Configuration
 
-To make Anypoint Platform PCE accessible, configure these specifications in the input config file before installing Anypoint Platform PCE:
+To make Anypoint Platform PCE accessible, configure these specifications in the input configuration file before installing Anypoint Platform PCE:
 
 * Platform DNS
 * File System DNS
