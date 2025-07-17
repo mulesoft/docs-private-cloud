@@ -108,7 +108,7 @@ Anypoint Platform PCE version 4.1 contains these features:
 | Exchange Search Service  | v1.0.215
 | Exchange UI  | v1.0.265
 | Exchange XAPI Service  | v0.8.2848
-| Mocking Service | Mocking Service | v2.77.0-17.pce
+| Mocking Service | v2.77.0-17.pce
 .6+| Runtime Manager | Application Manager DB Migration | v1.2.11
 | Application Manager Service | v2.33.51
 | Atlas Service | v1.9.121
