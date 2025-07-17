@@ -8,7 +8,7 @@ You can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) 
 
 MuleSoft performed installations on popular K8s providers, which are listed in the following sections. The hardware and software requirements for installing Anypoint Platform PCE on your chosen provider are dictated by that provider, unless otherwise specified in this document. 
 
-Before you begin, ensure your organization’s operations, networking, and security teams review the listed infrastructure prerequisites. These include the K8s cluster, hardware, software, networking, NFS storage, container registry, installer node, and storage requirements.
+Before you begin, make sure that your organization’s operations, networking, and security teams review the listed infrastructure prerequisites. These include the K8s cluster, hardware, software, networking, NFS storage, container registry, installer node, and storage requirements.
 
 [NOTE]
 ==== 
@@ -23,7 +23,7 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
     ** Rancher Kubernetes Engine (RKE2)
     ** Red Hat OpenShift
     ** Amazon EKS Anywhere
-    ** ** Amazon EKS
+    ** Amazon EKS
 
 * Cluster configurations: +
 ** Run Kubernetes control plane components on dedicated nodes. Preferably, allocate three nodes for the Kubernetes control plane.
