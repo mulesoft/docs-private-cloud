@@ -19,18 +19,16 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
 
 == Kubernetes Cluster Requirements
 
-These are the requirements:
-
-* Kubernetes (K8s) version 1.32 or 1.31.
-
-* Kubernetes providers: +
-    ** Rancher Kubernetes Engine (RKE2) versions 1.32 and 1.31.
-    ** Red Hat OpenShift versions 4.15 and 4.16.
-    ** Amazon EKS Anywhere (EKS-A) 0.20 (K8s version 1.31, 1.32)
+* Supported Kubernetes providers: +
+    ** Rancher Kubernetes Engine (RKE2)
+    ** Red Hat OpenShift
+    ** Amazon EKS Anywhere
+    ** ** Amazon EKS
 
 * Cluster configurations: +
-** Have a dedicated control plane node within the K8s cluster. Preferably, allocate 3 or 5 nodes for the K8s control planes. For example, only K8s management workload run on these nodes.
-** Have cluster worker nodes exclusively dedicated to Anypoint Platform PCE workloads. No Anypoint Platform PCE pods can run on the K8s control plane nodes.
+** Run Kubernetes control plane components on dedicated nodes. Preferably, allocate three nodes for the Kubernetes control plane.
+** Have cluster worker nodes exclusively dedicated to Anypoint Platform PCE workloads. Don't run any Anypoint Platform PCE pods on the K8s control plane nodes. Check the prerequisites to make sure that PCE workloads can be scheduled and run on worker nodes.
+
 
 
 [NOTE]
