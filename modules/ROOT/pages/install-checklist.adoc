@@ -75,7 +75,7 @@ In each case, configure your load balancer to listen on the load balancer port a
 Make sure your load balancer polls the address `HTTP:10256/healthz` to run a health check on your platform servers and confirm that they are accessible.
 
 [NOTE]
-Do not configure SSL certificates in your load balancer. The platform handles the TLS termination with the certificates configured using Access Management. See xref:config-workflow.adoc[Configure Anypoint Platform PCE].
+Don't configure SSL certificates in your load balancer. The platform handles the TLS termination with the certificates configured using Access Management. See xref:config-workflow.adoc[Configure Anypoint Platform PCE].
 
 
 For more information, see the provider specific requirements:
