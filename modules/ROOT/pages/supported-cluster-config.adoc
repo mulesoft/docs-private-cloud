@@ -95,8 +95,6 @@ This table shows the maximum number of Exchange assets and file size information
 
 == API Designer and API Mocking Service
 
-These limits apply to both 4-node and 7-node configurations.
-
 [%autowidth.spread]
 |===
 | Maximum number of projects | Limited by version control system
