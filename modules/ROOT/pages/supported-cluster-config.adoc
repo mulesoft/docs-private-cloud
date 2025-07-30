@@ -1,6 +1,6 @@
 = Supported Configurations for Anypoint Platform PCE
 
-To ensure platform performance, stability, and high availability, Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) supports two network configurations in Kubernetes (K8s) nodes: 4-node and 7-node. 
+These are the supported configurations for Anypoint Platform Private Cloud (Anypoint Platform PCE).
 
 == Anypoint Platform PCE 4.1 Architecture
 
@@ -18,10 +18,6 @@ Runtime plane:
 
 * MuleSoft offers various runtime planes
 * Within Anypoint Platform PCE context, the test uses the Hybrid runtime plane to deploy and manage runtimes via the MuleSoft control plane.
-
-The following recommendations and limits are based on these resources:
-* A small (4-node) environment consisting of 4 K8s worker nodes of 8 cores and 32GB RAM and 3 dedicated K8s control plane nodes, or
-* A large (7-node) environment consisting of 7 K8s worker nodes of 8 cores and 32GB RAM and 3 dedicated K8s control plane nodes
 
 == Mule Runtime Engine and Mule Applications
 
