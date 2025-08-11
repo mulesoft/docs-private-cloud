@@ -99,10 +99,12 @@ Use the following ports to communicate with Anypoint Platform PCE:
 |TCP | 30000-32767 |Internal services port range |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 8472 | Overlay VXLAN network |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 30080 | HTTP public access |Load balancer  | Anypoint Platform PCE nodes
-|TCP | 30443| HTTP public access |Load balancer  | Anypoint Platform PCE nodes
+|TCP | 30443| HTTPS public access |Load balancer  | Anypoint Platform PCE nodes
 |TCP | 30889| Mule Runtime Websocket |Load balancer  | Anypoint Platform PCE nodes
 |TCP | 30883| Mule Runtime Authentication Service (for certificate renewals) |Load balancer  | Anypoint Platform PCE nodes
 |===
+
+Anypoint Platform PCE nodes need to hit the platform API address on the load balancer via HTTPS.
 
 For more information, see the provider specific requirements:
 
