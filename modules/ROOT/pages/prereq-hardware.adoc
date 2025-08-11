@@ -353,7 +353,7 @@ You can use any load balancer, including NGINX, but NGINX is not required.
 If using the xref:prereq-aws-terraform.adoc[AWS Provisioner for Anypoint Platform PCE], you do not need to configure a separate load balancer. An Amazon ELB with the required configuration is created during installation.
 
 === Load Balancer Configuration
-You can configure your load balancer to use any method for distributing client requests, but in most contexts a round robin strategy is ideal. The load balancer should be accessible through an IP address that is available to all machines in your network.
+You can configure your load balancer to use any method for distributing client requests, but in most contexts a round robin strategy is ideal. Make sure the load balancer is accessible through an IP address that is available to all machines on your network (including the Anypoint Platform PCE nodes)
 
 Your load balancer must route the following TCP ports:
 

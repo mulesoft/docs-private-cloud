@@ -59,7 +59,9 @@ You must ensure that all of the following ports are configured correctly on all 
 |TCP | 30883 | Mule Runtime Authentication Service (for certificate renewals) | Load Balancer | Anypoint Platform PCE nodes
 |===
 
-You can use netcat or a similar utility to verify port configuration.
+You can use netcat or a similar utility to verify port configuration. +
+Anypoint Platform PCE nodes need to hit platform API address on the load balancer via HTTPS.
+
 
 == Enable Required Ports
 
