@@ -60,7 +60,7 @@ You must ensure that all of the following ports are configured correctly on all 
 |===
 
 You can use netcat or a similar utility to verify port configuration. +
-Anypoint Platform PCE nodes need to hit platform API address on the load balancer via HTTPS.
+Anypoint Platform PCE nodes need to hit the platform API address on the load balancer via HTTPS.
 
 
 == Enable Required Ports
