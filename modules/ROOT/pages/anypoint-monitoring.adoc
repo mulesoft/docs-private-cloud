@@ -120,7 +120,7 @@ To use Anypoint Monitoring with more than two Anypoint Platform PCE installation
 |Yes
 |No
 
-|xref:api-functional-monitoring[API Functional Monitoring] +
+|xref:api-functional-monitoring::index.adoc[API Functional Monitoring] +
 |No
 |No
 |No
