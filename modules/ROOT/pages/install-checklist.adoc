@@ -24,6 +24,7 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
     ** Red Hat OpenShift
     ** Amazon EKS Anywhere
     ** Amazon EKS
+    ** Broadcom VKS (VMware Tanzu)
 
 * Cluster configurations: +
 ** Run Kubernetes control plane components on dedicated nodes. Preferably, allocate three nodes for the Kubernetes control plane.
@@ -88,7 +89,7 @@ For more information, see the provider specific requirements:
 
 These are the requirements:
 
-* Operating system: RHEL 8.10, 9.4
+* Operating system: RHEL 8.10, 9.4, 9.6
 
 For more information, see the provider specific requirements:
 
