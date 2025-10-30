@@ -81,9 +81,10 @@ Don't configure SSL certificates in your load balancer. The platform handles the
 For more information, see the provider specific requirements:
 
 * https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html[Amazon EKS]
++
+AWS EKS is only tested with default networking add-ons.
 * https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
 * https://docs.rke2.io/install/requirements#hardware[Rancher Kubernetes Engine (RKE2) - Hardware]
-* https://docs.openshift.com/container-platform/4.16/installing/overview/index.html[Red Hat OpenShift]
 * https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vsphere-supervisor-services-and-standalone-components/latest/managing-vsphere-kubernetes-service/running-tkg-service-clusters/tkg-service-components.html[vSphere Kubernetes Service (VKS)]
 
 
