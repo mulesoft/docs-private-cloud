@@ -23,7 +23,6 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
     ** Amazon EKS Anywhere
     ** Amazon EKS
     ** Rancher Kubernetes Engine (RKE2)
-    ** Red Hat OpenShift
     ** vSphere Kubernetes Service (VKS)
 
 * Cluster configurations: +
