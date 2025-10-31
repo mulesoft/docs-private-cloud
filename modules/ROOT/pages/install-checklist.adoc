@@ -20,10 +20,10 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
 == Kubernetes Cluster Requirements
 
 * Supported Kubernetes providers: +
-    ** Rancher Kubernetes Engine (RKE2)
-    ** Red Hat OpenShift
     ** Amazon EKS Anywhere
     ** Amazon EKS
+    ** Rancher Kubernetes Engine (RKE2)
+    ** vSphere Kubernetes Service (VKS)
 
 * Cluster configurations: +
 ** Run Kubernetes control plane components on dedicated nodes. Preferably, allocate three nodes for the Kubernetes control plane.
@@ -80,21 +80,26 @@ Don't configure SSL certificates in your load balancer. The platform handles the
 
 For more information, see the provider specific requirements:
 
-* https://docs.rke2.io/install/requirements#hardware[Rancher Kubernetes Engine (RKE2) - Hardware]
-* https://docs.openshift.com/container-platform/4.16/installing/overview/index.html[Red Hat OpenShift]
+* https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html[Amazon EKS]
++
+AWS EKS is only tested with default networking add-ons.
 * https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
+* https://docs.rke2.io/install/requirements#hardware[Rancher Kubernetes Engine (RKE2) - Hardware]
+* https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vsphere-supervisor-services-and-standalone-components/latest/managing-vsphere-kubernetes-service/running-tkg-service-clusters/tkg-service-components.html[vSphere Kubernetes Service (VKS)]
+
 
 == Software Requirements
 
 These are the requirements:
 
-* Operating system: RHEL 8.10, 9.4
+* Operating system: RHEL 8.10, 9.4, 9.6
 
 For more information, see the provider specific requirements:
 
-* https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Software]
-* https://docs.openshift.com/container-platform/4.16/installing/overview/index.html[Red Hat OpenShift]
+* https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html[Amazon EKS]
 * https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
+* https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Software]
+
 
 
 == Networking Requirements
@@ -127,9 +132,10 @@ Anypoint Platform PCE nodes need to hit the platform API address on the load bal
 
 For more information, see the provider specific requirements:
 
-* https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Networking]
-* https://docs.openshift.com/container-platform/4.16/networking/understanding-networking.html[Red Hat OpenShift - Networking]
+* https://docs.aws.amazon.com/eks/latest/userguide/eks-networking.html[Amazon EKS - Networking]
 * https://anywhere.eks.amazonaws.com/docs/clustermgmt/networking/networking-and-security/[Amazon EKS Anywhere (EKS-A) - Networking]
+* https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Networking]
+
 
 == NFS Storage Requirements
 
