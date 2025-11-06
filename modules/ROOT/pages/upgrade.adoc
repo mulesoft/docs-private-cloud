@@ -1,9 +1,12 @@
-= Upgrading Anypoint Platform PCE v3.2.3 to v4.0.0
+= Upgrading Anypoint Platform PCE v3.2.5 to v4.1.x
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Before you upgrade Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) to version 4.0, verify that your working installation meets any additional requirements of the new Anypoint Platform PCE version. Note that if your Anypoint Platform PCE version is earlier than version 3.2.3, you must first upgrade to version 3.2.3 and then upgrade to version 4.0. 
+
+Before you upgrade Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) to version 4.1, verify that your working installation meets any additional requirements of the new Anypoint Platform PCE version. If your current PCE version is earlier than 3.2.4, upgrade to 3.2.5 to minimize potential issues.
+
+
 
 See the following topics:
 
