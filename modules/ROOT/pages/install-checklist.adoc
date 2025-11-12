@@ -48,7 +48,7 @@ You can provision and distribute these resources across a minimum of four worker
 
 Anypoint Platform PCE offers flexibility in how you configure your Kubernetes worker nodes. You can use different numbers of worker nodes (for example, 4, 5, 8, or 10 nodes) with varying resource allocations per node. The key requirement is that your cluster's total resources meet or exceed the minimum requirements of 32 vCPUs and 128 GiB memory.
 
-This table shows sample worker node configurations:
+This table shows sample worker node configurations that MuleSoft's performance teams have tested and validated:
 
 [%header%autowidth.spread]
 
