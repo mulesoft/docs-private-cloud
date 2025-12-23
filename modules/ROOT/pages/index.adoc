@@ -33,8 +33,8 @@ This table provides component information for Anypoint Platform PCE:
 | Access Management	| Yes | Enables you to create your Anypoint Platform account or configure external federated identity.
 | Anypoint API Manager | Yes | Enables you to manage your registered APIs.
 | Anypoint Analytics - API	| No | Provides insight into how your APIs are being used and how they are performing.
-| Anypoint Analytics - Anypoint Visualizer	| No | Enables you to explore your application network via an application network graph.
-| Anypoint Analytics - Insights	| No | Provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers.
+| Anypoint Analytics - Anypoint Visualizer	| Yes | Enables you to explore your application network via an application network graph.
+| Anypoint Analytics - Insights	| Yes | Provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers.
 | Anypoint Code Builder | No | Enables you to create API specifications, implementations, and integration projects.
 | Anypoint Exchange	| Yes | Enables your organization to share various assets for reuse across integration projects.
 | Anypoint Monitoring	| No |Provides visibility into integrations, Mule flows, and components in your application network.
