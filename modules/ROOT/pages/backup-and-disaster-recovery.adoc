@@ -55,6 +55,20 @@ To perform the restore, run the following command:
 
 The backup file is stored on the NFS storage.
 
+== Create an InfluxDB Backup
+
+To create an InfluxDB backup, run the this command:
+
+`curl -k <platform-dns>/platform/amv/backup-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}'`
+
+== Perform an InfluxDB Restore
+
+To perform an InfluxDB restore, run this command:
+
+`curl -k <platform-dns>/platform/amv/restore-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}'`
+
+The backup file is stored on the NFS storage.
+
 == See Also
 
 * xref:operating-about.adoc[]
