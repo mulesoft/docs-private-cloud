@@ -6,31 +6,31 @@ These are the supported configurations for Anypoint Platform Private Cloud (Anyp
 
 The diagram illustrates MuleSoft's planes (control plane and runtime plane) and their general traffic flow within the Anypoint Platform PCE context:
 
-image:pce4-diagram-architecture.png[""]
+image:pce4-diagram-architecture.png["Anypoint Platform PCE 4.1 architecture"]
 
 Control plane:
 
-* A subset of Anypoint services is deployed in Kubernetes (customer's choice - Anypoint Platform PCE v 4.0 supports RKE2, EKS-A, OpenShift).
+* A subset of Anypoint Platform services is deployed to a supported Kubernetes distribution (RKE2, EKS-A, or OpenShift).
 * This constitutes the MuleSoft Control Plane, a web-based management and administration tool for the lifecycle of MuleSoft integration apps and APIs.
 * Starting with Anypoint Platform PCE v4.0, use a dedicated Kubernetes control plane to separate cluster management components from customer workloads.
 
 Runtime plane:
 
-* MuleSoft offers various runtime planes
-* Within Anypoint Platform PCE context, the test uses the Hybrid runtime plane to deploy and manage runtimes via the MuleSoft control plane.
+* MuleSoft offers various runtime planes.
+* Within the Anypoint Platform PCE context, use the Hybrid runtime plane to deploy and manage runtimes via the MuleSoft control plane.
 
 == Mule Runtime Engine and Mule Applications
 
-This  table shows the recommended and maximum number of Mule instances and Mule applications that Anypoint Platform PCE supports:
+This table shows the recommended and maximum number of Mule instances and Mule applications that Anypoint Platform PCE supports:
 
 [%header%autowidth.spread]
 |===
-| Description| Supported Capacity
+| Description | Supported Capacity
 | Maximum number of Mule instances per environment | 500 
 | Maximum number of Mule instances across all environments | 4000
 | Maximum number of Mule instances per server group | 20 
 | Maximum Mule instances per cluster | 8 
-| Mule applications under management per environment (recommended) | Under 200 
+| Mule applications under management per environment (recommended) | Fewer than 200 
 | Mule applications under management per environment (maximum) | 500 
 | Mule applications per Mule runtime engine (recommended) | Fewer than 25 
 | Mule applications per Mule runtime engine (maximum) | 100 
@@ -62,12 +62,13 @@ This table shows the maximum number of business groups and number of Access Mana
 | Description | Supported Capacity
 | Maximum number of supported business groups | 75
 | Maximum number of users | 10000
+| Maximum number of client providers | 25
 |===
 
 
 == Exchange
 
-This table shows the maximum number of Exchange assets and file size information that Anypoint Platform PCE supports:
+This table shows the maximum number of Anypoint Exchange (Exchange) assets and file size information that Anypoint Platform PCE supports:
 
 [%header%autowidth.spread]
 |===
