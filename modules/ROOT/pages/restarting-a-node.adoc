@@ -14,14 +14,14 @@ include::reuse::partial$non-inclusive-banner.adoc[]
 
 See the following topics for details on each provider:
 
-* https://www.suse.com/support/kb/doc/?id=000021301[Rancher Kubernetes Engine (RKE2) OS Upgrade Process]
+* https://support.scc.suse.com/s/redirect?language=en_US&id=000021301[Rancher Kubernetes Engine (RKE2) OS Upgrade Process]
 
 * OpenShift: Starting with version 4.16, the Machine Config Operator manages the node's OS updates as part of the cluster update process. For more on node updates and the Machine Config Operator, see:
 
-** https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/intro-to-updates.html[Openshift Updates] 
+** https://docs.openshift.com/en/container-platform/4.16/updating/understanding_updates/intro-to-updates.html[Openshift Updates] 
 
-** https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/intro-to-updates.html#update-service-about_understanding-openshift-updates[Openshift Update Service]
- ** https://docs.openshift.com/container-platform/4.16/updating/understanding_updates/how-updates-work.html#mco-update-process_how-updates-work[Machine Config Operator Functionality]
+** https://docs.openshift.com/en/container-platform/4.16/updating/understanding_updates/intro-to-updates.html#update-service-about_understanding-openshift-updates[Openshift Update Service]
+ ** https://docs.openshift.com/en/container-platform/4.16/updating/understanding_updates/how-updates-work.html[Machine Config Operator Functionality]
 
 == See Also
 
