@@ -272,5 +272,5 @@ kubectl get configmaps --selector='grafana_dashboard=1' -A
 
 == See Also
 
-* https://grafana.com/docs/grafana/latest/dashboards/[Grafana documentation]
+* https://grafana.com/docs/grafana/latest/visualizations/dashboards/[Grafana documentation]
 

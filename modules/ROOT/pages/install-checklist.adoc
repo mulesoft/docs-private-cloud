@@ -62,7 +62,7 @@ These are the minimum requirements for the cluster nodes:
 For more information, see the provider specific requirements:
 
 * https://docs.rke2.io/install/requirements#hardware[Rancher Kubernetes Engine (RKE2) - Hardware]
-* https://docs.openshift.com/container-platform/4.16/installing/overview/index.html[Red Hat OpenShift]
+* https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/installation_overview/ocp-installation-overview[Red Hat OpenShift]
 * https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
 
 == Software Requirements
@@ -74,7 +74,7 @@ These are the requirements:
 For more information, see the provider specific requirements:
 
 * https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Software]
-* https://docs.openshift.com/container-platform/4.16/installing/overview/index.html[Red Hat OpenShift]
+* https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/installation_overview/ocp-installation-overview[Red Hat OpenShift]
 * https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
 
 
@@ -109,7 +109,7 @@ Anypoint Platform PCE nodes need to hit the platform API address on the load bal
 For more information, see the provider specific requirements:
 
 * https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Networking]
-* https://docs.openshift.com/container-platform/4.16/networking/understanding-networking.html[Red Hat OpenShift - Networking]
+* https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/networking/understanding-networking[Red Hat OpenShift - Networking]
 * https://anywhere.eks.amazonaws.com/docs/clustermgmt/networking/networking-and-security/[Amazon EKS Anywhere (EKS-A) - Networking]
 
 == NFS Storage Requirements
