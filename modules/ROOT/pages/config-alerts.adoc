@@ -6,7 +6,7 @@ endif::[]
 
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) provides built-in alerts that are triggered when a condition specified in any alert definition is detected.
 
-Measurements are stored in https://prometheus.io/docs/introduction/overview/[Prometheus^] and read by https://prometheus.io/docs/alerting/alertmanager/[Alertmanager^]. Alertmanager sends emails when an alert is triggered.
+Measurements are stored in https://prometheus.io/docs/introduction/overview/[Prometheus^] and read by https://prometheus.io/docs/alerting/latest/alertmanager/[Alertmanager^]. Alertmanager sends emails when an alert is triggered.
 
 == Alert Definitions
 
