@@ -154,7 +154,7 @@ Remove local caching DNS servers listening on port 53, for example, `named`, `dn
 
 * Tool to Verify NFS Server Ports are Open
 +
-Netcat is recommended, but you can use your tool of choice to verify the correct ports are open on the NFS server. If you do not have `netcat`, you can install it from  http://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
+Netcat is recommended, but you can use your tool of choice to verify the correct ports are open on the NFS server. If you do not have `netcat`, you can install it from  https://netcat.sourceforge.net/download.php or follow the instructions at https://linoxide.com/linux-how-to/install-use-netcat-command-linux/.
 
 === Remove Server Configuration Management Software
 
