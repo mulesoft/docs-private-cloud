@@ -12,6 +12,7 @@ After you complete the Anypoint Platform Private Cloud Edition (Anypoint Platfor
 * xref:access-management-dns.adoc[Configuring DNS in Anypoint Platform PCE]
 * xref:access-management-security.adoc[Configuring Security in Anypoint Platform PCE]
 * xref:access-management-disclaimer.adoc[Configuring a Disclaimer in Anypoint Platform PCE]
+* xref:access-management-concurrent-login.adoc[Limiting Concurrent Login in Anypoint Platform PCE]
 
 
 
