@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-You can limit concurrent login to Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) so that a user can sign in from only one browser or device at a time. This applies to users in your organization who log in to the platform (for example, to use Runtime Manager, API Manager, or Access Management). When you limit concurrent login, a new sign-in from another browser or device signs the user out of the previous session.
+You can limit concurrent logins to Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) so that a user can sign in from only one browser or device at a time. This applies to users in your organization who log in to the platform to use other features (for example, to use Runtime Manager, API Manager, or Access Management). When you limit concurrent logins, a new sign-in from another browser or device signs the user out of the previous session.
 
 [NOTE]
 The concurrent login limit configuration isn't persistent. When you upgrade Anypoint Platform PCE, the upgrade reverts this configuration. After upgrading, repeat the steps in this section to restore the concurrent login limit.
