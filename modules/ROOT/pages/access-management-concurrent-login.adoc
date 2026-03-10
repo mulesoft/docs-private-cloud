@@ -1,0 +1,32 @@
+= Limiting Concurrent Login in Anypoint Platform PCE
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+You can limit concurrent logins to Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) so that a user can sign in from only one browser or device at a time. This applies to users in your organization who log in to the platform to use other features (for example, to use Runtime Manager, API Manager, or Access Management). When you limit concurrent logins, a new sign-in from another browser or device signs the user out of the previous session.
+
+[NOTE]
+The concurrent login limit configuration isn't persistent. When you upgrade Anypoint Platform PCE, the upgrade reverts this configuration. After upgrading, repeat the steps in this section to restore the concurrent login limit.
+
+== Configure Concurrent Login Limit
+
+Run these commands in a terminal where `kubectl` is configured for your Anypoint Platform PCE cluster and you have permissions to operate on it. No specific directory is required.
+
+. Patch the authentication-server configmap:
++
+----
+kubectl patch configmap authentication-server-env -p '{"data":{"AUTH_SERVER_FEATURES_LIMITCONCURRENTSESSION":"true"}}' -n access-management
+----
+
+. Restart the authentication-server:
++
+----
+kubectl rollout restart deployment authentication-server -n access-management
+----
+
+The concurrent login limit takes effect after you restart the authentication-server.
+
+
+== See Also
+
+* xref:config-workflow.adoc[Configuring Anypoint Platform PCE]
