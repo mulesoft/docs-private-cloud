@@ -116,24 +116,12 @@ For more information, see the provider specific requirements:
 
 == Networking Requirements
 
-Use the following ports to communicate with Anypoint Platform PCE:
+Use these ports to communicate with Anypoint Platform PCE:
 
 [%header%autowidth.spread]
 
 |===
 |Protocol |Port / Range|Purpose | Source | Destination
-|TCP/UDP | 53 | Internal cluster DNS |localhost |localhost
-|TCP | 2379, 2380, 4001, 7001 |etcd distributed database |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 4242 |Installer |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 6443 |Kubernetes API Server |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 9443 |HAProxy to load balance Kubernetes API Server |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 9100 |Prometheus node-exporter |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 10248, 10250 |Kubernetes Kubelet |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 10249 |Kubernetes kube-proxy |localhost | localhost
-|TCP | 10251-10252 |Kubernetes controller-manager and scheduler |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 10257-10259 |Kubernetes controller-manager and scheduler (secure) |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 30000-32767 |Internal services port range |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
-|TCP | 8472 | Overlay VXLAN network |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
 |TCP | 30080 | HTTP public access |Load balancer  | Anypoint Platform PCE nodes
 |TCP | 30443| HTTPS public access |Load balancer  | Anypoint Platform PCE nodes
 |TCP | 30889| Mule Runtime Websocket |Load balancer  | Anypoint Platform PCE nodes
@@ -151,6 +139,8 @@ For more information, see the provider specific requirements:
 
 
 == NFS Storage Requirements
+
+You must install a Container Storage Interface (CSI) driver in the Kubernetes cluster before proceeding in order to mount NFS volumes into pods.
 
 See xref:verify-nfs.adoc[]
 
@@ -174,7 +164,7 @@ These are the requirements:
 * Access and connectivity to private container registry
 * For OpenShift use SecurityContextConstraints for installing Anypoint Platform PCE.
 
-Before executing the `pcectl` binary for Anypoint Platform PCE 4.1, make sure that you follow these requirements:
+Before executing the `pcectl` binary for Anypoint Platform PCE 4.2, make sure that you follow these requirements:
 
 * Use a Linux based operating system
 * Use glibc (GNU C library) version 2.28 or higher +
@@ -203,7 +193,7 @@ gpg --version
 
 These are the requirements:
 
-In Anypoint Platform PCE version 4.1 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. 
+In Anypoint Platform PCE version 4.2 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. 
 
 These services use PVCs with minimum and default storage size:
 

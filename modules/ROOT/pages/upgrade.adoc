@@ -1,21 +1,195 @@
-= Upgrading Anypoint Platform PCE v3.2.5 to v4.1.x
+= Upgrading Anypoint Platform PCE v3.X to v4.X
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
+To migrate an Anypoint Platform Private Cloud Edition (PCE) deployment from version 3.x to 4.x, perform a full state backup on your existing source cluster (Cluster 1) and restore that data onto a newly provisioned target cluster (Cluster 2) running PCE 4.x.
 
-Before you upgrade Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) to version 4.1, verify that your working installation meets any additional requirements of the new Anypoint Platform PCE version. If your current PCE version is earlier than 3.2.4, upgrade to 3.2.5 to minimize potential issues.
+Before proceeding, make sure that in your Anypoint PCE 3.x cluster, you have `ssh` access to your cluster nodes and the necessary `kubectl` permissions for both environments.
 
+== Configure Environment and Security
+Before generating the backup files, you must correctly identify the platform via DNS and secure it with valid certificates.
 
+=== Define DNS and Platform Identification
 
-See the following topics:
+. In Amazon Route 53, create a new A or CNAME record to point your load balancer to the PCE 3.x DNS (for example, `pce3.mulesoft.com`).
+. In the Anypoint Platform UI, navigate to *Access Management > DNS/IP* and enter the Platform DNS address hosting your 3.x instance.
+. In the Anypoint Platform UI, click *Save* to apply the DNS changes to the platform configuration.
 
-* xref:index.adoc[]
-* xref:install-checklist.adoc[]
+=== Set Up SSL Certificates
 
-[NOTE]
-Contact MuleSoft professional services prior to upgrading. MuleSoft professional services must be involved throughout the upgrade process.
+. In your local terminal, generate a 2048-bit RSA key and a self-signed certificate by running the provided `openssl` command.
++
+----
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout key.pem -out cert.pem
+----
+. In the Anypoint Platform UI, navigate to *Access Management > Security*.
+. In the Anypoint Platform UI, click *Choose File* for both the *Certificate* and *Private Key* fields to upload the `cert.pem` and `key.pem` files generated in the previous step.
 
+== Back Up Platform State and Infrastructure
+
+This section focuses on capturing the database state and service configurations using the Gravity and Kubernetes CLI tools.
+
+=== Patch Kubernetes Configuration
+
+. In the PCE Cluster Terminal, apply the configuration patch to exclude incompatible secrets and buckets from the 4.x migration.
++
+----
+kubectl apply -f pce3-update-config.yaml
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backup-restore-config
+data:
+  namespaces: "default access-management amf amc arm audit-log api-designer api-manager core-paas design-center exchange mocking mozart pce pce-core visualizer dias monitoring-center"
+  ignore-buckets: "cpc-resources static-assets healthz"
+  ignore-databases: crowdmigrator ^db\S*$ sw_database
+  ignore-secrets: "objectstore-s3-secret telegraf-influxdb-creds nginx-ssl cluster-ca cluster-default-ssl dias-insight-cassandra-connection-password hybrid-rest-cloudhub-keystore hybrid-rest-root-cert runtime-manager-keystore runtime-manager-truststore cloudhub-mcm-keystore" #these hybrid/runtime-manager secrets are ignored since they are generated based on the platform DNS, which is not modified by b/r. See https://github.com/mulesoft/onprem-config-api/blob/master/assets/cloudhub-mcm-keystore/create-keystore.sh
+  ignore-releases: "core-paas-namespaces stolon stolon-amv pce-seaweedfs-app pce-cluster-ssl-app dias-prov-k8s-am-influxdb-comp dias-prov-k8s-am-ingestor-comp"
+  pvc-to-delete: "dias-prov-k8s-cassandra-comp dias-prov-k8s-insight-comp"
+  skip-version-check: "true"
+
+apiVersion: v1
+data:
+  backup_s3_continue_if_error: "false"
+  backup_s3_max_attempts: "3"
+  backup_s3_sequentially_bucket_names: ""
+  backup_s3_sleep_time_seconds: "30"
+  ignore-buckets: cpc-resources static-assets healthz
+  ignore-databases: crowdmigrator ^db\S*$ sw_database
+  ignore-releases: core-paas-namespaces stolon stolon-amv pce-seaweedfs-app pce-cluster-ssl-app dias-prov-k8s-am-influxdb-comp dias-prov-k8s-am-ingestor-comp
+  ignore-secrets: objectstore-s3-secret telegraf-influxdb-creds nginx-ssl cluster-ca cluster-default-ssl dias-insight-cassandra-connection-password hybrid-rest-cloudhub-keystore hybrid-rest-root-cert runtime-manager-keystore runtime-manager-truststore cloudhub-mcm-keystore
+  namespaces: default access-management amf amc arm audit-log api-designer api-manager core-paas design-center exchange mocking mozart pce pce-core visualizer dias monitoring-center
+  pithos_pod_count: "2"
+  pvc-to-delete: dias-prov-k8s-cassandra-comp dias-prov-k8s-insight-comp
+  restore_in_parallel: "false"
+  restore_s3_max_attempts: "3"
+  restore_s3_sleep_time_seconds: "30"
+  skip-version-check: "true"
+kind: ConfigMap
+metadata:
+  name: backup-restore-config
+----
+
+=== Execute Gravity System Backup
+
+. In the PCE Cluster Terminal (Backup Node), trigger the core platform state backup by executing the gravity backup command.
++
+----
+gravity backup /var/lib/gravity/planet/share/backup-3x-$(date +%d-%m-%y).tar.gz
+----
+[start=2]
+. In the PCE Cluster Terminal (Backup Node), generate the Anypoint Monitoring and Visualizer (AMV) specific backup using the internal restore script.
++
+----
+/var/lib/gravity/site/packages/unpacked/gravitational.io/anypoint/3.2.0*/resources/kubernetes/amv-backup-restore/amv-backup-restore.sh
+----
+
+== Preserve Persistent Data (NFS/EFS)
+
+In addition to the database state, you must manually preserve the project files and working directories stored on the distributed file system.
+
+=== Mount the External Storage
+
+. In the PCE Cluster Terminal, create a mount point and install the necessary NFS utilities.
++
+----
+mkdir nfs_mount_folder
+sudo yum install nfs-utils -y
+----
+
+[start=2]
+. In the PCE Cluster Terminal, mount your AWS EFS (or external NFS) to the local directory.
++
+----
+sudo mount -t nfs4 -o rw,vers=4.1 <your-efs-dns-address>:/ /home/ec2-user/nfs_mount_folder
+----
+
+=== Compress and Offload Assets
+
+. In the PCE Cluster Terminal, navigate to the mounted folder and compress the project and working directories.
++
+----
+tar -cvzf projects.tar.gz projects
+tar -cvzf working_Directories.tar.gz working_Directories
+----
+[start=2]
+. In your Local Terminal, securely download the four critical artifacts (Platform Backup, AMV Backup, Projects Archive, and Working Directories Archive) to your local machine.
++
+----
+scp -i your-key.pem ec2-user@<pce-node-ip>:/tmp/backup-files/*.tar.gz ~/Downloads/pce_migration_assets/
+----
+
+== Initialize the Target 4.x Environment
+
+Before restoring data, you must configure the new cluster to recognize the platform identity and security parameters.
+
+=== Update Platform Routing and Identification
+
+. In Amazon Route 53, update your DNS records to point the load balancer to the new Anypoint PCE 4.x cluster (Cluster 2).
+. In the Anypoint Platform UI (New Cluster), navigate to *Access Management > DNS/IP* and enter the new DNS address assigned to your PCE 4.x instance.
+
+=== Apply New Security Certificates
+
+. In the Anypoint Platform UI (New Cluster), navigate to *Access Management > Security* and upload the certificates generated for the 4.x environment.
+. In the PCE 4.x Cluster Terminal, monitor the cluster to ensure all jobs related to DNS and certificate updates complete successfully and that all platform pods are in a `Running` state.
+
+== Transfer and Stage Migration Assets
+
+Move the data extracted from PCE 3.x into the target 4.x infrastructure.
+
+=== Mount the Target External Storage
+
+. In the PCE 4.x Cluster Terminal, create the `nfs_mount_folder` and ensure the `nfs-utils` package is installed on the node.
+. In the PCE 4.x Cluster Terminal, mount your AWS EFS or external storage to the local mount point using the `mount -t nfs4` command.
+
+=== Upload and Extract Backup Data
+. In your Local Terminal, transfer the backup archives and project directories from your local machine to the new EC2 instance using the `scp` command.
+. In the PCE 4.x Cluster Terminal, extract the `projects.tar.gz` and `working_Directories.tar.gz` files into their respective persistent storage paths.
+
+== Execute the Restoration Process
+
+Finalize the migration by updating system flags and triggering the restoration services via API.
+
+=== Adjust Kubernetes Migration Settings
+
+. In the PCE 4.x Cluster Terminal, open the backup-restore configuration for editing by running the `kubectl edit` command.
++
+----
+kubectl edit cm backup-restore-config -n pce-core
+----
+[start=2]
+. In the editor, update the `skip-version-check` property to true to authorize the version-jump migration.
+
+=== Invoke Restoration Services via API
+
+. In your Local Terminal, obtain an authentication bearer token by providing your credentials to the login endpoint.
++
+----
+curl -k --request POST \
+ --header "Content-Type: application/json" \
+ --data '{"username":"<username>", "password": "<password>"}' \
+ https://<platform-dns>/accounts/login
+----
+[start=2]
+. In your Local Terminal, trigger the core platform restoration using the backup file and target NFS server details.
++
+----
+curl -k https://<platform-dns>/platform/restore -X POST \
+ -H 'Authorization: Bearer ${token}' \
+ -H 'Content-Type: application/json' \
+ -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}'
+----
+[start=3]
+. In your Local Terminal, trigger the AMV restoration to migrate Monitoring and Visualizer data.
++
+----
+curl -k https://<platform-dns>/platform/amv/restore -X POST \
+ -H 'Authorization: Bearer ${token}' \
+ -H 'Content-Type: application/json' \
+-d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}'
+----
 
 == See Also
 

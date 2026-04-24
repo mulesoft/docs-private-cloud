@@ -1,0 +1,82 @@
+= Deploying Mule Apps to Anypoint PCE Using Anypoint Code Builder
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Use Anypoint Code Builder and xref:anypoint-code-builder::mulesoft-vibes.adoc[MuleSoft Vibes] to develop a Mule app using natural language and then deploy it to your Anypoint Private Cloud Edition (Anypoint PCE) environment.
+
+== Before You Begin
+
+To deploy Mule apps to Anypoint PCE using Anypoint Code Builder, check these prerequisites:
+
+=== System Prerequisites
+
+* Anypoint PCE 4.2 environment
+* Anypoint Platform: Access to `anypoint.mulesoft.com` account. This access is separate from your Anypoint PCE license, and connects to Anypoint Code Builder to retrieve assets and export the application artifact.
+* Mule Runtime: 4.6 LTS, 4.9 LTS or 4.11 Edge support
+* Microsoft Visual Studio Code (VS Code) installed on your local machine to set up and run Anypoint Code Builder.
+
+=== Required Permissions and Access
+In your Anypoint Platform account, you need these permissions and acces:
+
+* MuleSoft Vibes: In Access Management, set xref:access-management::permissions-by-product.adoc#anypoint-code-builder[Anypoint Code Builder permissions] to: 
+** Anypoint Code Builder Developer
+** Mule Developer Generative AI User
+* Agentforce: Must be enabled in Access Management
+* Salesforce Org: Connected to relevant Anypoint Platform org
+
+== Deploy Mule Apps Using Anypoint Code Builder
+Follow these steps to configure Anypoint Code Builder and deploy Mule apps to Anypoint PCE.
+
+=== Setup and Connection
+
+Connect your local VS Code environment to your Anypoint Platform account.
+
+. In VS Code, go to *Settings > Extensions > MuleSoft* and update the Control Plane URL to your account (for example, `https://anypoint.platform.com`).
+. Open the Command Palette, run *MuleSoft: Login to Anypoint Platform*, and follow the browser prompts.
+. If your organization uses SSO/MFA, you may need to manually set the `ANYPOINT_BEARER_TOKEN` environment variable in your terminal using a token retrieved from the browser's Network tab (filtering for environments calls).
+
+=== Application Development
+
+Build your Mule app with Anypoint Code Builder using MuleSoft Vibes.
+
+. In VS Code, using Anypoint Code Builder, create a new Mule Project or generate one using MuleSoft Vibes AI-powered natural language prompts.
+. Using MuleSoft Vibes natural language, create your Mule application.
+. Run a Local Debug session using the *Run and Debug* side bar to test the logic before packaging.
+
+=== Package and Export Mule App
+
+Manually create the deployable Mule app artifact:
+
+. In the VS Code Explorer, right-click your `mule-artifact.json` or any XML file in `src/main/mule`.
+. Select *MuleSoft: Export Mule Project*.
+. Choose Deployable JAR and make sure to check *Include project sources* (this allows you to re-import it later if needed).
+. Save the JAR to your local machine. 
+
+=== Deployment to Anypoint PCE Runtime Manager
+Upload the JAR to your hybrid server (the server must be registered and *Running*).
+
+. Log in to your Anypoint Platform PCE  and navigate to *Runtime Manager*.
+. Select the correct *Environment* and click *Deploy Application*   .
+. Set the Deployment Target to your hybrid Server or Cluster.
+. Click *Choose File > Upload File* and select the JAR you exported in Step 3.
+. Click *Deploy Application*.
+
+=== Publish to Exchange
+
+To make the app visible in the "Exchange" asset catalog for other developers:
+
+. In the Anypoint PCE UI, navigate to *Exchange*.
+. Click *Publish New Asset*.
+. Provide an *Asset Name* and select *Mule Application* as the asset type.
+. Upload the same JAR file. This makes the project official in your organization’s private library.
+
+=== Validation
+
+. In Runtime Manager, wait for the status to turn green (*Started*).
+. Use an API client like Postman or the VS Code Thunder Client to send a request to the server's IP and the port defined in your HTTP Listener (for example, `http://10.x.x.x:8081/api/test`).
+. Check the *Logs* tab in Runtime Manager to verify the request was processed successfully.
+
+== See Also
+
+* xref:operating-about.adoc[]
