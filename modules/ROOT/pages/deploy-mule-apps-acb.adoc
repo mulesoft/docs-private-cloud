@@ -17,6 +17,7 @@ To deploy Mule apps to Anypoint PCE using Anypoint Code Builder, check these pre
 * Microsoft Visual Studio Code (VS Code) installed on your local machine to set up and run Anypoint Code Builder.
 
 === Required Permissions and Access
+
 In your Anypoint Platform account, you need these permissions and acces:
 
 * MuleSoft Vibes: In Access Management, set xref:access-management::permissions-by-product.adoc#anypoint-code-builder[Anypoint Code Builder permissions] to: 
