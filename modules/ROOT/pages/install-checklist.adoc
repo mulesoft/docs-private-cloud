@@ -140,9 +140,14 @@ For more information, see the provider specific requirements:
 
 == NFS Storage Requirements
 
-You must install a Container Storage Interface (CSI) driver in the Kubernetes cluster before proceeding in order to mount NFS volumes into pods.
+A pre-installed Container Storage Interface (CSI) driver in the Kubernetes cluster is a mandatory requirement for Anypoint Platform PCE 4.2.0. Anypoint Platform PCE uses the CSI driver to mount NFS volumes into pods.
 
-See xref:verify-nfs.adoc[]
+Supported CSI drivers include:
+
+* `nfs.csi.k8s.io` (NFS CSI Driver)
+* `efs.csi.aws.com` (Amazon EFS CSI Driver)
+
+For detailed configuration instructions, including EFS-specific volume handle setup and NFS mount option overrides, see xref:verify-nfs.adoc[].
 
 == Container Registry Requirements
 
