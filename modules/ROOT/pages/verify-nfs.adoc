@@ -6,6 +6,7 @@ endif::[]
 [IMPORTANT]
 Before you install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your MuleSoft representative for assistance to ensure your NFS server is configured correctly.
 
+[[csi-driver-requirement]]
 == CSI Driver Requirement
 
 Starting with Anypoint Platform PCE 4.2.0, a pre-installed Container Storage Interface (CSI) driver is a mandatory requirement. Anypoint Platform PCE uses the Kubernetes CSI driver to mount NFS volumes into pods, replacing the previous method that relied on host binaries.
@@ -228,6 +229,7 @@ rm -f /mnt/home/*.test
 umount /mnt/home
 ----
 
+[[nfs-mount-options-override]]
 == Override NFS Mount Options
 
 By default, Anypoint Platform PCE 4.2.0 sets the `noresvport` NFS mount option, which is strongly recommended for AWS and other cloud environments. If this default conflicts with your environment requirements, you can override the NFS mount options by providing a comma-separated string in the `platformConfiguration` section of your `input.yaml` file:
