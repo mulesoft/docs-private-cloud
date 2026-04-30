@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-To migrate an Anypoint Platform Private Cloud Edition (PCE) deployment from version 3.x to 4.x, perform a full state backup on your existing source cluster (Cluster 1) and restore that data onto a newly provisioned target cluster (Cluster 2) running PCE 4.x.
+To migrate an Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) deployment from version 3.x to 4.x, perform a full state backup on your existing source cluster (Cluster 1) and restore that data onto a newly provisioned target cluster (Cluster 2) running Anypoint Platform PCE 4.x.
 
 Before proceeding, make sure that in your Anypoint PCE 3.x cluster, you have `ssh` access to your cluster nodes and the necessary `kubectl` permissions for both environments.
 
