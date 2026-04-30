@@ -177,18 +177,18 @@ curl -k --request POST \
 +
 ----
 curl -k https://<platform-dns>/platform/restore -X POST \
- -H 'Authorization: Bearer ${token}' \
- -H 'Content-Type: application/json' \
- -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}'
+ -H "Authorization: Bearer ${token}" \
+ -H "Content-Type: application/json" \
+ -d "{\"backup-file-name\": \"${backupFileName}.tar.gz\", \"nfs-server\": \"${fileSystemDns}\", \"nfs-path\": \"/\"}"
 ----
 [start=3]
 . In your Local Terminal, trigger the AMV restoration to migrate Monitoring and Visualizer data.
 +
 ----
 curl -k https://<platform-dns>/platform/amv/restore -X POST \
- -H 'Authorization: Bearer ${token}' \
- -H 'Content-Type: application/json' \
--d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}'
+ -H "Authorization: Bearer ${token}" \
+ -H "Content-Type: application/json" \
+-d "{\"backup-file-name\": \"${backupFileName}.tar.gz\", \"nfs-server\": \"${fileSystemDns}\", \"nfs-path\": \"/\"}"
 ----
 
 == See Also
