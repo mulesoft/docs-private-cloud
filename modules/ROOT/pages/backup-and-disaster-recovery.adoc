@@ -17,7 +17,7 @@ The backup and restore process is controlled via Anypoint Platform PCE APIs.
 
 To create a backup, run the following command:
 
-`curl -k <platform-dns>/platform/backup-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}'`
+`curl -k <platform-dns>/platform/backup-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz"}'`
 
 === Backup Content
 
@@ -51,7 +51,7 @@ Consider the following before you perform a system restore:
 
 To perform the restore, run the following command:
 
-`curl -k <platform-dns>/platform/restore-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}`
+`curl -k <platform-dns>/platform/restore-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz"}`
 
 The backup file is stored on the NFS storage.
 
@@ -59,13 +59,13 @@ The backup file is stored on the NFS storage.
 
 To create an InfluxDB backup, run the this command:
 
-`curl -k <platform-dns>/platform/amv/backup-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}'`
+`curl -k <platform-dns>/platform/amv/backup-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz"}'`
 
 == Perform an InfluxDB Restore
 
 To perform an InfluxDB restore, run this command:
 
-`curl -k <platform-dns>/platform/amv/restore-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz", "nfs-server": "${fileSystemDns}", "nfs-path": "/"}'`
+`curl -k <platform-dns>/platform/amv/restore-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz"}'`
 
 The backup file is stored on the NFS storage.
 
