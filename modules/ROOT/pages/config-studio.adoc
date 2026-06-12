@@ -8,4 +8,3 @@ include::studio::partial$pce4-configuration-macos.adoc[tag=pce4macOS]
 == See Also
 
 * xref:operating-about.adoc[]
-* xref:deploy-mule-apps-acb.adoc[Deploying Mule Apps to Anypoint PCE Using Anypoint Code Builder]

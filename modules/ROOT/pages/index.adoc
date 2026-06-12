@@ -126,4 +126,3 @@ Anypoint Platform PCE version 4.2 contains these features:
 * xref:install-checklist.adoc[]
 * xref:install-workflow.adoc[]
 * xref:upgrade.adoc[]
-* xref:deploy-mule-apps-acb.adoc[Deploying Mule Apps to Anypoint PCE Using Anypoint Code Builder]
