@@ -121,11 +121,23 @@ Use these ports to communicate with Anypoint Platform PCE:
 [%header%autowidth.spread]
 
 |===
-|Protocol |Port / Range|Purpose | Source | Destination
-|TCP | 30080 | HTTP public access |Load balancer  | Anypoint Platform PCE nodes
-|TCP | 30443| HTTPS public access |Load balancer  | Anypoint Platform PCE nodes
-|TCP | 30889| Mule Runtime Websocket |Load balancer  | Anypoint Platform PCE nodes
-|TCP | 30883| Mule Runtime Authentication Service (for certificate renewals) |Load balancer  | Anypoint Platform PCE nodes
+|Protocol |Port / Range |Purpose |Source |Destination
+|TCP/UDP |53 |Internal cluster DNS |localhost |localhost
+|TCP |2379, 2380, 4001, 7001 |etcd distributed database |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |4242 |Installer |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |6443 |Kubernetes API Server |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |9443 |HAProxy to load balance Kubernetes API Server |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |9100 |Prometheus node-exporter |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |10248, 10250 |Kubernetes Kubelet |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |10249 |Kubernetes kube-proxy |localhost |localhost
+|TCP |10251-10252 |Kubernetes controller-manager and scheduler |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |10257-10259 |Kubernetes controller-manager and scheduler (secure) |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |30000-32767 |Internal services port range |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |8472 |Overlay VXLAN network |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |30080 |HTTP public access |Load balancer |Anypoint Platform PCE nodes
+|TCP |30443 |HTTPS public access |Load balancer |Anypoint Platform PCE nodes
+|TCP |30889 |Mule Runtime Websocket |Load balancer |Anypoint Platform PCE nodes
+|TCP |30883 |Mule Runtime Authentication Service (for certificate renewals) |Load balancer |Anypoint Platform PCE nodes
 |===
 
 Anypoint Platform PCE nodes need to hit the platform API address on the load balancer via HTTPS.
