@@ -6,20 +6,21 @@ endif::[]
 
 You can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) version 4.x and later in the Kubernetes (K8s) cluster that you provision and manage.
 
-MuleSoft performed installations on popular K8s providers, which are listed in the following sections. The hardware and software requirements for installing Anypoint Platform PCE on your chosen provider are dictated by that provider, unless otherwise specified in this document.
+MuleSoft performed installations on popular K8s providers, which are listed in the following sections. The hardware and software requirements for installing Anypoint Platform PCE on your chosen provider are dictated by that provider, unless otherwise specified in this document. 
 
 Before you begin, make sure that your organization’s operations, networking, and security teams review the listed infrastructure prerequisites. These include the K8s cluster, hardware, software, networking, NFS storage, container registry, installer node, and storage requirements.
 
 [NOTE]
-====
+==== 
 Contact MuleSoft Professional Services prior to installing Anypoint Platform PCE, as they are involved with your installation.
 
-Installing Anypoint Platform PCE requires specific versions of operating systems, NFS, and other software. Most issues experienced with Anypoint Platform PCE occur because the required environment was not set up prior to installing or upgrading.
+Installing Anypoint Platform PCE requires specific versions of operating systems, NFS, and other software. Most issues experienced with Anypoint Platform PCE occur because the required environment was not set up prior to installing or upgrading. 
 ====
 
 == Kubernetes Cluster Requirements
 
 * Supported Kubernetes providers: +
+    ** Amazon EKS Anywhere
     ** Amazon EKS
     ** Rancher Kubernetes Engine (RKE2)
     ** Red Hat OpenShift
@@ -32,7 +33,7 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
 
 
 [NOTE]
-Running Anypoint Platform PCE workloads on K8s control plane nodes can degrade both Anypoint Platform PCE and cluster performance.
+Running Anypoint Platform PCE workloads on K8s control plane nodes can degrade both Anypoint Platform PCE and cluster performance.  
 
 == Hardware Requirements
 
@@ -91,6 +92,7 @@ For more information, see the provider specific requirements:
 * https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html[Amazon EKS]
 +
 AWS EKS is only tested with default networking add-ons.
+* https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
 * https://docs.rke2.io/install/requirements#hardware[Rancher Kubernetes Engine (RKE2) - Hardware]
 * https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/installation_overview/ocp-installation-overview[Red Hat OpenShift]
 * https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vsphere-supervisor-services-and-standalone-components/latest/managing-vsphere-kubernetes-service/running-tkg-service-clusters/tkg-service-components.html[vSphere Kubernetes Service (VKS)]
@@ -105,6 +107,7 @@ These are the requirements:
 For more information, see the provider specific requirements:
 
 * https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html[Amazon EKS]
+* https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
 * https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Software]
 * https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/installation_overview/ocp-installation-overview[Red Hat OpenShift]
 
@@ -113,28 +116,28 @@ For more information, see the provider specific requirements:
 
 == Networking Requirements
 
-Use these ports to communicate with Anypoint Platform PCE:
+Use the following ports to communicate with Anypoint Platform PCE:
 
 [%header%autowidth.spread]
 
 |===
-|Protocol |Port / Range |Purpose |Source |Destination
-|TCP/UDP |53 |Internal cluster DNS |localhost |localhost
-|TCP |2379, 2380, 4001, 7001 |etcd distributed database |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
-|TCP |4242 |Installer |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
-|TCP |6443 |Kubernetes API Server |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
-|TCP |9443 |HAProxy to load balance Kubernetes API Server |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
-|TCP |9100 |Prometheus node-exporter |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
-|TCP |10248, 10250 |Kubernetes Kubelet |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
-|TCP |10249 |Kubernetes kube-proxy |localhost |localhost
-|TCP |10251-10252 |Kubernetes controller-manager and scheduler |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
-|TCP |10257-10259 |Kubernetes controller-manager and scheduler (secure) |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
-|TCP |30000-32767 |Internal services port range |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
-|TCP |8472 |Overlay VXLAN network |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
-|TCP |30080 |HTTP public access |Load balancer |Anypoint Platform PCE nodes
-|TCP |30443 |HTTPS public access |Load balancer |Anypoint Platform PCE nodes
-|TCP |30889 |Mule Runtime Websocket |Load balancer |Anypoint Platform PCE nodes
-|TCP |30883 |Mule Runtime Authentication Service (for certificate renewals) |Load balancer |Anypoint Platform PCE nodes
+|Protocol |Port / Range|Purpose | Source | Destination
+|TCP/UDP | 53 | Internal cluster DNS |localhost |localhost
+|TCP | 2379, 2380, 4001, 7001 |etcd distributed database |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 4242 |Installer |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 6443 |Kubernetes API Server |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 9443 |HAProxy to load balance Kubernetes API Server |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 9100 |Prometheus node-exporter |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 10248, 10250 |Kubernetes Kubelet |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 10249 |Kubernetes kube-proxy |localhost | localhost
+|TCP | 10251-10252 |Kubernetes controller-manager and scheduler |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 10257-10259 |Kubernetes controller-manager and scheduler (secure) |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 30000-32767 |Internal services port range |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 8472 | Overlay VXLAN network |Anypoint Platform PCE nodes | Anypoint Platform PCE nodes
+|TCP | 30080 | HTTP public access |Load balancer  | Anypoint Platform PCE nodes
+|TCP | 30443| HTTPS public access |Load balancer  | Anypoint Platform PCE nodes
+|TCP | 30889| Mule Runtime Websocket |Load balancer  | Anypoint Platform PCE nodes
+|TCP | 30883| Mule Runtime Authentication Service (for certificate renewals) |Load balancer  | Anypoint Platform PCE nodes
 |===
 
 Anypoint Platform PCE nodes need to hit the platform API address on the load balancer via HTTPS.
@@ -142,6 +145,7 @@ Anypoint Platform PCE nodes need to hit the platform API address on the load bal
 For more information, see the provider specific requirements:
 
 * https://docs.aws.amazon.com/eks/latest/userguide/eks-networking.html[Amazon EKS - Networking]
+* https://anywhere.eks.amazonaws.com/docs/clustermgmt/networking/networking-and-security/[Amazon EKS Anywhere (EKS-A) - Networking]
 * https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Networking]
 * https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/networking/understanding-networking[Red Hat OpenShift - Networking]
 
@@ -174,9 +178,9 @@ Before executing the `pcectl` binary for Anypoint Platform PCE 4.1, make sure th
 
 * Use a Linux based operating system
 * Use glibc (GNU C library) version 2.28 or higher +
-To check the glibc version, run this command:
+To check the glibc version, run this command: 
 +
-----
+----   
 ldd --version
 ----
 
@@ -199,7 +203,7 @@ gpg --version
 
 These are the requirements:
 
-In Anypoint Platform PCE version 4.1 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs.
+In Anypoint Platform PCE version 4.1 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. 
 
 These services use PVCs with minimum and default storage size:
 

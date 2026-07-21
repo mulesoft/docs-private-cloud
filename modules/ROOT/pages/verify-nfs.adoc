@@ -6,45 +6,6 @@ endif::[]
 [IMPORTANT]
 Before you install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your MuleSoft representative for assistance to ensure your NFS server is configured correctly.
 
-[[csi-driver-requirement]]
-== CSI Driver Requirement
-
-Starting with Anypoint Platform PCE 4.2.0, a pre-installed Container Storage Interface (CSI) driver is a mandatory requirement. Anypoint Platform PCE uses the Kubernetes CSI driver to mount NFS volumes into pods, replacing the previous method that relied on host binaries.
-
-Some key benefits:
-
-* Enhanced support for environments where custom tools cannot be installed on host nodes.
-* Direct support for Amazon EKS users who can only use the Amazon EFS CSI Driver.
-
-=== Configure the CSI Driver
-
-In the `platformConfiguration` section of your `input.yaml` file, specify the CSI driver name:
-
-[source,yaml]
-----
-platformConfiguration:
-  fileSystemCsiDriverName: "" # CSI driver name (e.g., nfs.csi.k8s.io, efs.csi.aws.com)
-----
-
-=== EFS CSI Driver Configuration
-
-When using the Amazon EFS CSI Driver (for example, for Amazon EKS with EFS installations),  provide four individual CSI volume handles. These volume handles must point to four access points that all target the same directory in the EFS:
-
-[source,yaml]
-----
-platformConfiguration:
-  fileSystemCsiDriverName: "efs.csi.aws.com"
-  fileSystemWcCsiVolumeHandle: ""             # CSI volume handle for wc filesystem
-  fileSystem01CsiVolumeHandle: ""             # CSI volume handle for 01 filesystem
-  fileSystemBareCsiVolumeHandle: ""           # CSI volume handle for bare filesystem
-  fileSystemBackupRestoreCsiVolumeHandle: ""  # CSI volume handle for backup-restore filesystem
-----
-
-Each volume handle value follows the format `<file-system-id>::<access-point-id>`, for example: `fs-0835b0d1eb7588eb1::fsap-03f6c68563ceb5acf`.
-
-[NOTE]
-When using the EFS CSI Driver, you do not need to provide `fileSystemDNS` or `fileSystemPath` values.
-
 == Verify NFS Server Setup
 Anypoint Platform PCE version 2.0 and later requires a Network File System (NFS) server and an available NFS endpoint. Your NFS server must meet the following requirements:
 
@@ -59,8 +20,8 @@ NFS 4.x does not use the `portmapper` service.
 == Verify Required Port Is Open
 
 The NFS server requires port 2049 to be open for TCP and UDP.
-
-On each node, use netcat or a similar utility to verify that the required port is open. Netcat is a computer networking utility used to read and write to network connections using TCP or UDP.
+ 
+On each node, use netcat or a similar utility to verify that the required port is open. Netcat is a computer networking utility used to read and write to network connections using TCP or UDP. 
 
 On each node, run: `nc -zv <host_name> 2049`
 
@@ -78,7 +39,7 @@ Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.
 
 == Verify NFS Server Is Mounted
 
-On each node, mount the NFS server in a temporary directory.
+On each node, mount the NFS server in a temporary directory. 
 
 . Switch to root: +
 `sudo su`
@@ -93,7 +54,7 @@ Perform careful analysis of your environment, both from the client and server po
 
 * Testing the performance and latency of your NFS server. Specifically, these operations will transfer data from the client (Anypoint Platform PCE environment) to the NFS server and measure how long each transfer takes.
 * Using the command `time dd if=/dev/zero of=/mnt/home/<nameOfFile> bs=<blockSize> count=<amountOfBlocks>` to test NFS server performance while transferring files and specifying the following parameters: +
-** Names `<nameOfFile>`
+** Names `<nameOfFile>` 
 ** Block size and number of blocks in the transfer: `<blockSize>` and `<amountOfBlocks>`, respectively.
 * Validating how Anypoint Platform PCE handles NFS file transfers. Perform read and write operations with both large (128MB) and small (80KB) files.
 
@@ -105,22 +66,22 @@ Perform the following read and write tests using large files:
 
 * File size: 128 MB
 * Block size: 4 KB
-* Number of blocks: 32768
+* Number of blocks: 32768  
 
 While the tests are running, different files are generated (one file per test).
 
-. Create a directory in which to mount the NFS server:
+. Create a directory in which to mount the NFS server: 
 +
 ----
 sudo su
 mkdir -p /mnt/home
 ----
-. Mount the NFS server:
-+
+. Mount the NFS server: 
++ 
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-. Perform writes (five files of 128 MB each) on the NFS server:
+. Perform writes (five files of 128 MB each) on the NFS server: 
 +
 ----
 time for i in {1..5}; do dd if=/dev/zero of=/mnt/home/greatfile$i.test bs=4k count=32768; done
@@ -141,21 +102,21 @@ user 0m0.034s
 sys 0m0.792s
 ----
 +
-The `real` parameter in the test output should be less than 15 seconds.
+The `real` parameter in the test output should be less than 15 seconds. 
 
 ==== Validate Read Performance
 
-. Unmount the NFS server:
+. Unmount the NFS server: 
 +
 ----
 umount /mnt/home
 ----
-. Remount the NFS server:
+. Remount the NFS server: 
 +
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-. Perform reads from the NFS server by running the following command:
+. Perform reads from the NFS server by running the following command: 
 +
 ----
 time for i in {1..5}; do dd if=/mnt/home/greatfile$i.test of=/dev/null bs=4k; done
@@ -163,7 +124,7 @@ time for i in {1..5}; do dd if=/mnt/home/greatfile$i.test of=/dev/null bs=4k; do
 +
 The `real` parameter in the test output should be less than 15 seconds.
 
-==== Clear the Caches
+==== Clear the Caches 
 
 Unmount the NFS server to clear out any caches:
 
@@ -175,18 +136,18 @@ umount /mnt/home
 
 Test small files as you did large files but with these sizes:
 
- * File size: 80 KB
+ * File size: 80 KB 
  * Block size: 4 KB
  * Number of blocks: 20
-
+ 
 Before starting the test, verify that the `/mnt/home` directory from the previous test is created.
 
-. Mount the NFS server:
-+
+. Mount the NFS server: 
++   
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-. Perform writes (five files of 80 KB each) on the NFS server:
+. Perform writes (five files of 80 KB each) on the NFS server: 
 +
 ----
 time for i in {1..30}; do dd if=/dev/zero of=/mnt/home/smallfile$i.test bs=4k count=20; done
@@ -196,17 +157,17 @@ The `real` parameter in the test output should be around 2 seconds.
 
 ==== Validate Read Performance
 
-. Unmount the NFS server:
+. Unmount the NFS server: 
 +
 ----
 umount <nfs-server>
 ----
-. Remount the NFS server:
+. Remount the NFS server: 
 +
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-. Perform reads from the NFS server:
+. Perform reads from the NFS server: 
 +
 ----
 time for i in {1..30}; do dd if=/mnt/home/smallfile$i.test of=/dev/null bs=4k; done
@@ -216,43 +177,24 @@ The important parameter in the test output is the `real` parameter, which should
 
 ==== Delete the Test Files
 
-When you finish the performance testing, delete the test files.
+When you finish the performance testing, delete the test files. 
 
-. Remove all generated files by running:
+. Remove all generated files by running: 
 +
 ----
 rm -f /mnt/home/*.test
 ----
-. Unmount the NFS server:
+. Unmount the NFS server: 
 +
 ----
 umount /mnt/home
 ----
 
-[[nfs-mount-options-override]]
-== Override NFS Mount Options
-
-By default, Anypoint Platform PCE 4.2.0 sets the `noresvport` NFS mount option, which is strongly recommended for AWS and other cloud environments. If this default conflicts with your environment requirements, you can override the NFS mount options by providing a comma-separated string in the `platformConfiguration` section of your `input.yaml` file:
-
-[source,yaml]
-----
-platformConfiguration:
-  fileSystemBareMountOptionsOverride: ""
-  fileSystemWcMountOptionsOverride: ""
-  fileSystem01MountOptionsOverride: ""
-----
-
-For example, to remove the `noresvport` option, provide a string with your custom mount options:
-
-----
-nfsvers=4.0,retrans=2,rsize=1048576,soft,sync,timeo=600,wsize=1048576
-----
-
-[NOTE]
-These fields are optional. If not specified, the default mount options are used.
-
 == See Also
 
 * xref:troubleshoot-nfs.adoc[Troubleshoot NFS]
-* xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites]
-* xref:install-workflow.adoc[Installing Anypoint Platform PCE]
+* xref:prereq-platform.adoc[Environment Prerequisites]
+* xref:prereq-hardware.adoc[Hardware Prerequisites]
+* xref:prereq-software.adoc[Software Prerequisites]
+* xref:prereq-network.adoc[Network Prerequisites]
+* xref:prereq-gravity-check.adoc[Preinstallation Verification]

@@ -2,11 +2,11 @@
 
 These are the supported configurations for Anypoint Platform Private Cloud (Anypoint Platform PCE).
 
-== Anypoint Platform PCE 4.2 Architecture
+== Anypoint Platform PCE 4.1 Architecture
 
 The diagram illustrates MuleSoft's planes (control plane and runtime plane) and their general traffic flow within the Anypoint Platform PCE context:
 
-image:pce4-diagram-architecture.png["Anypoint Platform PCE 4.2 architecture"]
+image:pce4-diagram-architecture.png["Anypoint Platform PCE 4.1 architecture"]
 
 Control plane:
 
@@ -26,14 +26,14 @@ This table shows the recommended and maximum number of Mule instances and Mule a
 [%header%autowidth.spread]
 |===
 | Description | Supported Capacity
-| Maximum number of Mule instances per environment | 500
+| Maximum number of Mule instances per environment | 500 
 | Maximum number of Mule instances across all environments | 4000
-| Maximum number of Mule instances per server group | 20
-| Maximum Mule instances per cluster | 8
-| Mule applications under management per environment (recommended) | Fewer than 200
-| Mule applications under management per environment (maximum) | 500
-| Mule applications per Mule runtime engine (recommended) | Fewer than 25
-| Mule applications per Mule runtime engine (maximum) | 100
+| Maximum number of Mule instances per server group | 20 
+| Maximum Mule instances per cluster | 8 
+| Mule applications under management per environment (recommended) | Fewer than 200 
+| Mule applications under management per environment (maximum) | 500 
+| Mule applications per Mule runtime engine (recommended) | Fewer than 25 
+| Mule applications per Mule runtime engine (maximum) | 100 
 | Number of Mule applications | 15000
 | Number of Mule application replicas. An application can run on multiple Mule instances in a server group or cluster. | 30000
 |===
