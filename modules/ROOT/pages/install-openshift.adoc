@@ -7,8 +7,8 @@ You must have an operational OpenShift cluster prior to installing Anypoint Plat
 
 Contact MuleSoft Professional Services to perform the installation of Anypoint Platform PCE.
 
-[NOTE]
-Anypoint Platform PCE 4.2.0 is installed and validated on OpenShift 4.16.
+[NOTE] 
+Anypoint Platform PCE 4.1.0 is installed and validated on OpenShift 4.16.
 
 == Configure the Openshift Environment
 
@@ -55,7 +55,6 @@ volumes:
   - downwardAPI
   - emptyDir
   - ephemeral
-  - persistentVolume
   - persistentVolumeClaim
   - projected
   - secret
@@ -88,28 +87,7 @@ subjects:
     name: default
     namespace: pce-core
   - kind: ServiceAccount
-    name: anypoint
-    namespace: pce-core
-  - kind: ServiceAccount
     name: anypoint-install
-    namespace: pce-core
-  - kind: ServiceAccount
-    name: anypoint-install-anypoint-services
-    namespace: pce-core
-  - kind: ServiceAccount
-    name: anypoint-install-cluster-ssl
-    namespace: pce-core
-  - kind: ServiceAccount
-    name: anypoint-install-namespaces-job
-    namespace: pce-core
-  - kind: ServiceAccount
-    name: anypoint-install-seaweedfs
-    namespace: pce-core
-  - kind: ServiceAccount
-    name: anypoint-prometheus-install
-    namespace: pce-core
-  - kind: ServiceAccount
-    name: anypoint-grafana-install
     namespace: pce-core
   - kind: ServiceAccount
     name: anypoint-install
@@ -185,9 +163,6 @@ subjects:
   - kind: ServiceAccount
     name: default
     namespace: anypoint-flash
-  - kind: ServiceAccount
-    name: default
-    namespace: design-center
 
 ---
 
@@ -225,7 +200,6 @@ volumes:
   - downwardAPI
   - emptyDir
   - ephemeral
-  - persistentVolume
   - persistentVolumeClaim
   - projected
   - secret
@@ -235,6 +209,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: anypoint-scc-privileged
+  namespace: pce-core
 rules:
   - apiGroups: [ "security.openshift.io" ]
     resourceNames:
@@ -352,7 +327,6 @@ subjects:
   name: grafana
   namespace: monitoring
 ----
-
 
 Save this file as `openshift-scc.yaml` and apply it to the OpenShift cluster:
 

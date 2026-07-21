@@ -22,8 +22,8 @@ Before you install Anypoint Platform PCE, ensure your infrastructure team instal
 
 To perform the pre-installation healthcheck verification for the Kubernetes (K8s) cluster, follow these steps:
 
-. Confirm your Kubernetes cluster version is 1.34.x or 1.33.x.
-. Create an `input.yaml` file using this template and update it with your environment details:
+. Confirm your Kubernetes cluster version is 1.32.x or 1.31.x.
+. Create an `input.yaml` file using the following template and update it with your environment details:
 
 [source,json,linenums]
 ----
@@ -35,18 +35,11 @@ containerRegistry:
   certificate: "/etc/registry/certificate/ca.crt"
   subproject: "mulesoft" # Container registry subproject under which all the PCE images will be part of.
   tlsSkipVerify: True  # True or False.
-# Platform configuration using CSI driver for filesystem access
+# All the fields in `platformConfiguration` are required.
 platformConfiguration:
   platformDNS: ""
-  fileSystemCsiDriverName: "" # CSI driver name (e.g., nfs.csi.k8s.io, efs.csi.aws.com)
-  # Provide NFS DNS and path (not required if using EFS CSI Driver)
-  # fileSystemDNS: ""
-  # fileSystemPath: ""
-  # Provide individual NFS volume handles (all 4 are required if using EFS CSI Driver. You'll need to create 4 access points pointing to the same dir in the EFS)
-  fileSystemWcCsiVolumeHandle: "" # CSI volume handle for wc filesystem. E.g.: fs-0835b0d1eb7588eb1::fsap-03f6c68563ceb5acf
-  fileSystem01CsiVolumeHandle: "" # CSI volume handle for 01 filesystem
-  fileSystemBareCsiVolumeHandle: "" # CSI volume handle for bare filesystem
-  fileSystemBackupRestoreCsiVolumeHandle: "" # CSI volume handle for backup-restore filesystem
+  fileSystemDNS: ""
+  fileSystemPath: ""
   platformCertificate: /path/to/platform/certificate/cert.crt
   platformCertificateKey: path/to/platform/certificate/cert.key
   firstUserAccount:
@@ -66,42 +59,40 @@ storageConfiguration:
     type: "persistentVolumeClaim"
     storageClass: "<storage-class-name>"
     size: "100Gi" # Optional. Defaults to 100Gi
-  backupRestoreTmp:
-    storageClass: "<storage-class-name>" # Storage class for backup/restore temporary storage
 # Configuration options for monitoring stack
 monitoringAppConfiguration:
   monitoringStack:
     enabled:  True # Defaults to True. Must be set to False for Openshift clusters.
-#    values: | # Optional. If not provided, the default values will be used.
-#      prometheus:
-#        prometheusSpec:
-#          storageSpec:
-#            volumeClaimTemplate:
-#              spec:
-#                storageClassName: 'local-path',
-#                accessModes: ["ReadWriteOnce"]
-#                resources:
-#                  requests:
-#                    storage: 50Gi
+      values: | # Optional. If not provided, the default values will be used.
+      prometheus:
+        prometheusSpec:
+          storageSpec:
+            volumeClaimTemplate:
+              spec:
+                storageClassName: 'local-path',
+                accessModes: ["ReadWriteOnce"]
+                resources:
+                  requests:
+                    storage: 50Gi
 
 ## The following section is used to configure Grafana for an Openshift cluster. It is recommended to disable the monitoring stack as OpenShift includes Prometheus by default.
-#  grafana:
-#    enabled: False # Defaults to False.
-#    values: |
-#      datasources:
-#        datasources.yaml:
-#          apiVersion: 1
-#          datasources:
-#          - name: Prometheus
-#            type: prometheus
-#            url: https://prometheus-k8s.openshift-monitoring.svc:9091
-#            access: proxy
-#            isDefault: true
-#            jsonData:
-#              tlsSkipVerify: true
-#              httpHeaderName1: 'Authorization'
-#            secureJsonData:
-#              httpHeaderValue1: 'Bearer <Token>'
+  grafana:
+    enabled: False # Defaults to False.
+    values: |
+     datasources:
+        datasources.yaml:
+          apiVersion: 1
+          datasources:
+          - name: Prometheus
+            type: prometheus
+            url: https://prometheus-k8s.openshift-monitoring.svc:9091
+            access: proxy
+            isDefault: true
+            jsonData:
+              tlsSkipVerify: true
+              httpHeaderName1: 'Authorization'
+            secureJsonData:
+              httpHeaderValue1: 'Bearer <Token>'
 ----
 [start=3]
 . Obtain the `license.lic` file from the MuleSoft Professional Services team.
@@ -123,7 +114,7 @@ monitoringAppConfiguration:
 
 
 
-== Install Anypoint Platform PCE
+== Install Anypoint Platform PCE 
 
 After your infrastructure is correctly set up and you performed a pre-installation verification, MuleSoft Professional Services will assist you with the installation of Anypoint Platform PCE.
 
