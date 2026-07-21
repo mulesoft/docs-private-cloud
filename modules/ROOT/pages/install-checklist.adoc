@@ -20,7 +20,6 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
 == Kubernetes Cluster Requirements
 
 * Supported Kubernetes providers: +
-    ** Amazon EKS Anywhere
     ** Amazon EKS
     ** Rancher Kubernetes Engine (RKE2)
     ** Red Hat OpenShift
@@ -92,7 +91,6 @@ For more information, see the provider specific requirements:
 * https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html[Amazon EKS]
 +
 AWS EKS is only tested with default networking add-ons.
-* https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
 * https://docs.rke2.io/install/requirements#hardware[Rancher Kubernetes Engine (RKE2) - Hardware]
 * https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/installation_overview/ocp-installation-overview[Red Hat OpenShift]
 * https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vsphere-supervisor-services-and-standalone-components/latest/managing-vsphere-kubernetes-service/running-tkg-service-clusters/tkg-service-components.html[vSphere Kubernetes Service (VKS)]
@@ -107,7 +105,6 @@ These are the requirements:
 For more information, see the provider specific requirements:
 
 * https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html[Amazon EKS]
-* https://anywhere.eks.amazonaws.com/docs/getting-started/baremetal/bare-prereq/[Amazon EKS Anywhere (EKS-A)]
 * https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Software]
 * https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/installation_overview/ocp-installation-overview[Red Hat OpenShift]
 
@@ -121,11 +118,23 @@ Use these ports to communicate with Anypoint Platform PCE:
 [%header%autowidth.spread]
 
 |===
-|Protocol |Port / Range|Purpose | Source | Destination
-|TCP | 30080 | HTTP public access |Load balancer  | Anypoint Platform PCE nodes
-|TCP | 30443| HTTPS public access |Load balancer  | Anypoint Platform PCE nodes
-|TCP | 30889| Mule Runtime Websocket |Load balancer  | Anypoint Platform PCE nodes
-|TCP | 30883| Mule Runtime Authentication Service (for certificate renewals) |Load balancer  | Anypoint Platform PCE nodes
+|Protocol |Port / Range |Purpose |Source |Destination
+|TCP/UDP |53 |Internal cluster DNS |localhost |localhost
+|TCP |2379, 2380, 4001, 7001 |etcd distributed database |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |4242 |Installer |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |6443 |Kubernetes API Server |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |9443 |HAProxy to load balance Kubernetes API Server |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |9100 |Prometheus node-exporter |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |10248, 10250 |Kubernetes Kubelet |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |10249 |Kubernetes kube-proxy |localhost |localhost
+|TCP |10251-10252 |Kubernetes controller-manager and scheduler |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |10257-10259 |Kubernetes controller-manager and scheduler (secure) |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |30000-32767 |Internal services port range |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |8472 |Overlay VXLAN network |Anypoint Platform PCE nodes |Anypoint Platform PCE nodes
+|TCP |30080 |HTTP public access |Load balancer |Anypoint Platform PCE nodes
+|TCP |30443 |HTTPS public access |Load balancer |Anypoint Platform PCE nodes
+|TCP |30889 |Mule Runtime Websocket |Load balancer |Anypoint Platform PCE nodes
+|TCP |30883 |Mule Runtime Authentication Service (for certificate renewals) |Load balancer |Anypoint Platform PCE nodes
 |===
 
 Anypoint Platform PCE nodes need to hit the platform API address on the load balancer via HTTPS.
@@ -133,7 +142,6 @@ Anypoint Platform PCE nodes need to hit the platform API address on the load bal
 For more information, see the provider specific requirements:
 
 * https://docs.aws.amazon.com/eks/latest/userguide/eks-networking.html[Amazon EKS - Networking]
-* https://anywhere.eks.amazonaws.com/docs/clustermgmt/networking/networking-and-security/[Amazon EKS Anywhere (EKS-A) - Networking]
 * https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Networking]
 * https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/networking/understanding-networking[Red Hat OpenShift - Networking]
 
