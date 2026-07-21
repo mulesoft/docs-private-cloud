@@ -6,15 +6,15 @@ endif::[]
 
 You can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) version 4.x and later in the Kubernetes (K8s) cluster that you provision and manage.
 
-MuleSoft performed installations on popular K8s providers, which are listed in the following sections. The hardware and software requirements for installing Anypoint Platform PCE on your chosen provider are dictated by that provider, unless otherwise specified in this document. 
+MuleSoft performed installations on popular K8s providers, which are listed in the following sections. The hardware and software requirements for installing Anypoint Platform PCE on your chosen provider are dictated by that provider, unless otherwise specified in this document.
 
 Before you begin, make sure that your organization’s operations, networking, and security teams review the listed infrastructure prerequisites. These include the K8s cluster, hardware, software, networking, NFS storage, container registry, installer node, and storage requirements.
 
 [NOTE]
-==== 
+====
 Contact MuleSoft Professional Services prior to installing Anypoint Platform PCE, as they are involved with your installation.
 
-Installing Anypoint Platform PCE requires specific versions of operating systems, NFS, and other software. Most issues experienced with Anypoint Platform PCE occur because the required environment was not set up prior to installing or upgrading. 
+Installing Anypoint Platform PCE requires specific versions of operating systems, NFS, and other software. Most issues experienced with Anypoint Platform PCE occur because the required environment was not set up prior to installing or upgrading.
 ====
 
 == Kubernetes Cluster Requirements
@@ -32,7 +32,7 @@ Installing Anypoint Platform PCE requires specific versions of operating systems
 
 
 [NOTE]
-Running Anypoint Platform PCE workloads on K8s control plane nodes can degrade both Anypoint Platform PCE and cluster performance.  
+Running Anypoint Platform PCE workloads on K8s control plane nodes can degrade both Anypoint Platform PCE and cluster performance.
 
 == Hardware Requirements
 
@@ -113,7 +113,7 @@ For more information, see the provider specific requirements:
 
 == Networking Requirements
 
-Use the following ports to communicate with Anypoint Platform PCE:
+Use these ports to communicate with Anypoint Platform PCE:
 
 [%header%autowidth.spread]
 
@@ -174,9 +174,9 @@ Before executing the `pcectl` binary for Anypoint Platform PCE 4.1, make sure th
 
 * Use a Linux based operating system
 * Use glibc (GNU C library) version 2.28 or higher +
-To check the glibc version, run this command: 
+To check the glibc version, run this command:
 +
-----   
+----
 ldd --version
 ----
 
@@ -199,7 +199,7 @@ gpg --version
 
 These are the requirements:
 
-In Anypoint Platform PCE version 4.1 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. 
+In Anypoint Platform PCE version 4.1 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs.
 
 These services use PVCs with minimum and default storage size:
 
