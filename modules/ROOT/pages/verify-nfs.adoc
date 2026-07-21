@@ -6,45 +6,6 @@ endif::[]
 [IMPORTANT]
 Before you install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your MuleSoft representative for assistance to ensure your NFS server is configured correctly.
 
-[[csi-driver-requirement]]
-== CSI Driver Requirement
-
-Starting with Anypoint Platform PCE 4.2.0, a pre-installed Container Storage Interface (CSI) driver is a mandatory requirement. Anypoint Platform PCE uses the Kubernetes CSI driver to mount NFS volumes into pods, replacing the previous method that relied on host binaries.
-
-Some key benefits:
-
-* Enhanced support for environments where custom tools cannot be installed on host nodes.
-* Direct support for Amazon EKS users who can only use the Amazon EFS CSI Driver.
-
-=== Configure the CSI Driver
-
-In the `platformConfiguration` section of your `input.yaml` file, specify the CSI driver name:
-
-[source,yaml]
-----
-platformConfiguration:
-  fileSystemCsiDriverName: "" # CSI driver name (e.g., nfs.csi.k8s.io, efs.csi.aws.com)
-----
-
-=== EFS CSI Driver Configuration
-
-When using the Amazon EFS CSI Driver (for example, for Amazon EKS with EFS installations),  provide four individual CSI volume handles. These volume handles must point to four access points that all target the same directory in the EFS:
-
-[source,yaml]
-----
-platformConfiguration:
-  fileSystemCsiDriverName: "efs.csi.aws.com"
-  fileSystemWcCsiVolumeHandle: ""             # CSI volume handle for wc filesystem
-  fileSystem01CsiVolumeHandle: ""             # CSI volume handle for 01 filesystem
-  fileSystemBareCsiVolumeHandle: ""           # CSI volume handle for bare filesystem
-  fileSystemBackupRestoreCsiVolumeHandle: ""  # CSI volume handle for backup-restore filesystem
-----
-
-Each volume handle value follows the format `<file-system-id>::<access-point-id>`, for example: `fs-0835b0d1eb7588eb1::fsap-03f6c68563ceb5acf`.
-
-[NOTE]
-When using the EFS CSI Driver, you do not need to provide `fileSystemDNS` or `fileSystemPath` values.
-
 == Verify NFS Server Setup
 Anypoint Platform PCE version 2.0 and later requires a Network File System (NFS) server and an available NFS endpoint. Your NFS server must meet the following requirements:
 
@@ -229,30 +190,11 @@ rm -f /mnt/home/*.test
 umount /mnt/home
 ----
 
-[[nfs-mount-options-override]]
-== Override NFS Mount Options
-
-By default, Anypoint Platform PCE 4.2.0 sets the `noresvport` NFS mount option, which is strongly recommended for AWS and other cloud environments. If this default conflicts with your environment requirements, you can override the NFS mount options by providing a comma-separated string in the `platformConfiguration` section of your `input.yaml` file:
-
-[source,yaml]
-----
-platformConfiguration:
-  fileSystemBareMountOptionsOverride: ""
-  fileSystemWcMountOptionsOverride: ""
-  fileSystem01MountOptionsOverride: ""
-----
-
-For example, to remove the `noresvport` option, provide a string with your custom mount options:
-
-----
-nfsvers=4.0,retrans=2,rsize=1048576,soft,sync,timeo=600,wsize=1048576
-----
-
-[NOTE]
-These fields are optional. If not specified, the default mount options are used.
-
 == See Also
 
 * xref:troubleshoot-nfs.adoc[Troubleshoot NFS]
-* xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites]
-* xref:install-workflow.adoc[Installing Anypoint Platform PCE]
+* xref:prereq-platform.adoc[Environment Prerequisites]
+* xref:prereq-hardware.adoc[Hardware Prerequisites]
+* xref:prereq-software.adoc[Software Prerequisites]
+* xref:prereq-network.adoc[Network Prerequisites]
+* xref:prereq-gravity-check.adoc[Preinstallation Verification]
