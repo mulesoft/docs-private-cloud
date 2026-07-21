@@ -123,7 +123,7 @@ monitoringAppConfiguration:
 
 
 
-== Install Anypoint Platform PCE 
+== Install Anypoint Platform PCE
 
 After your infrastructure is correctly set up and you performed a pre-installation verification, MuleSoft Professional Services will assist you with the installation of Anypoint Platform PCE.
 

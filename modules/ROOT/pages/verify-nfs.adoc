@@ -59,8 +59,8 @@ NFS 4.x does not use the `portmapper` service.
 == Verify Required Port Is Open
 
 The NFS server requires port 2049 to be open for TCP and UDP.
- 
-On each node, use netcat or a similar utility to verify that the required port is open. Netcat is a computer networking utility used to read and write to network connections using TCP or UDP. 
+
+On each node, use netcat or a similar utility to verify that the required port is open. Netcat is a computer networking utility used to read and write to network connections using TCP or UDP.
 
 On each node, run: `nc -zv <host_name> 2049`
 
@@ -78,7 +78,7 @@ Ncat: 0 bytes sent, 0 bytes received in 0.01 seconds.
 
 == Verify NFS Server Is Mounted
 
-On each node, mount the NFS server in a temporary directory. 
+On each node, mount the NFS server in a temporary directory.
 
 . Switch to root: +
 `sudo su`
@@ -93,7 +93,7 @@ Perform careful analysis of your environment, both from the client and server po
 
 * Testing the performance and latency of your NFS server. Specifically, these operations will transfer data from the client (Anypoint Platform PCE environment) to the NFS server and measure how long each transfer takes.
 * Using the command `time dd if=/dev/zero of=/mnt/home/<nameOfFile> bs=<blockSize> count=<amountOfBlocks>` to test NFS server performance while transferring files and specifying the following parameters: +
-** Names `<nameOfFile>` 
+** Names `<nameOfFile>`
 ** Block size and number of blocks in the transfer: `<blockSize>` and `<amountOfBlocks>`, respectively.
 * Validating how Anypoint Platform PCE handles NFS file transfers. Perform read and write operations with both large (128MB) and small (80KB) files.
 
@@ -105,22 +105,22 @@ Perform the following read and write tests using large files:
 
 * File size: 128 MB
 * Block size: 4 KB
-* Number of blocks: 32768  
+* Number of blocks: 32768
 
 While the tests are running, different files are generated (one file per test).
 
-. Create a directory in which to mount the NFS server: 
+. Create a directory in which to mount the NFS server:
 +
 ----
 sudo su
 mkdir -p /mnt/home
 ----
-. Mount the NFS server: 
-+ 
+. Mount the NFS server:
++
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-. Perform writes (five files of 128 MB each) on the NFS server: 
+. Perform writes (five files of 128 MB each) on the NFS server:
 +
 ----
 time for i in {1..5}; do dd if=/dev/zero of=/mnt/home/greatfile$i.test bs=4k count=32768; done
@@ -141,21 +141,21 @@ user 0m0.034s
 sys 0m0.792s
 ----
 +
-The `real` parameter in the test output should be less than 15 seconds. 
+The `real` parameter in the test output should be less than 15 seconds.
 
 ==== Validate Read Performance
 
-. Unmount the NFS server: 
+. Unmount the NFS server:
 +
 ----
 umount /mnt/home
 ----
-. Remount the NFS server: 
+. Remount the NFS server:
 +
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-. Perform reads from the NFS server by running the following command: 
+. Perform reads from the NFS server by running the following command:
 +
 ----
 time for i in {1..5}; do dd if=/mnt/home/greatfile$i.test of=/dev/null bs=4k; done
@@ -163,7 +163,7 @@ time for i in {1..5}; do dd if=/mnt/home/greatfile$i.test of=/dev/null bs=4k; do
 +
 The `real` parameter in the test output should be less than 15 seconds.
 
-==== Clear the Caches 
+==== Clear the Caches
 
 Unmount the NFS server to clear out any caches:
 
@@ -175,18 +175,18 @@ umount /mnt/home
 
 Test small files as you did large files but with these sizes:
 
- * File size: 80 KB 
+ * File size: 80 KB
  * Block size: 4 KB
  * Number of blocks: 20
- 
+
 Before starting the test, verify that the `/mnt/home` directory from the previous test is created.
 
-. Mount the NFS server: 
-+   
+. Mount the NFS server:
++
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-. Perform writes (five files of 80 KB each) on the NFS server: 
+. Perform writes (five files of 80 KB each) on the NFS server:
 +
 ----
 time for i in {1..30}; do dd if=/dev/zero of=/mnt/home/smallfile$i.test bs=4k count=20; done
@@ -196,17 +196,17 @@ The `real` parameter in the test output should be around 2 seconds.
 
 ==== Validate Read Performance
 
-. Unmount the NFS server: 
+. Unmount the NFS server:
 +
 ----
 umount <nfs-server>
 ----
-. Remount the NFS server: 
+. Remount the NFS server:
 +
 ----
 mount -t nfs4 -o proto=tcp,port=2049 <nfs-server>:<path> /mnt/home/
 ----
-. Perform reads from the NFS server: 
+. Perform reads from the NFS server:
 +
 ----
 time for i in {1..30}; do dd if=/mnt/home/smallfile$i.test of=/dev/null bs=4k; done
@@ -216,14 +216,14 @@ The important parameter in the test output is the `real` parameter, which should
 
 ==== Delete the Test Files
 
-When you finish the performance testing, delete the test files. 
+When you finish the performance testing, delete the test files.
 
-. Remove all generated files by running: 
+. Remove all generated files by running:
 +
 ----
 rm -f /mnt/home/*.test
 ----
-. Unmount the NFS server: 
+. Unmount the NFS server:
 +
 ----
 umount /mnt/home
