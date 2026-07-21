@@ -113,7 +113,7 @@ For more information, see the provider specific requirements:
 
 == Networking Requirements
 
-Use these ports to communicate with Anypoint Platform PCE:
+Use the following ports to communicate with Anypoint Platform PCE:
 
 [%header%autowidth.spread]
 
@@ -148,10 +148,7 @@ For more information, see the provider specific requirements:
 
 == NFS Storage Requirements
 
-A pre-installed Container Storage Interface (CSI) driver in the Kubernetes cluster is a mandatory requirement for Anypoint Platform PCE 4.2.0. Anypoint Platform PCE uses the CSI driver to mount NFS volumes into pods.
-
-
-For detailed configuration instructions, including EFS-specific volume handle setup and NFS mount option overrides, see xref:verify-nfs.adoc[].
+See xref:verify-nfs.adoc[]
 
 == Container Registry Requirements
 
@@ -173,7 +170,7 @@ These are the requirements:
 * Access and connectivity to private container registry
 * For OpenShift use SecurityContextConstraints for installing Anypoint Platform PCE.
 
-Before executing the `pcectl` binary for Anypoint Platform PCE 4.2, make sure that you follow these requirements:
+Before executing the `pcectl` binary for Anypoint Platform PCE 4.1, make sure that you follow these requirements:
 
 * Use a Linux based operating system
 * Use glibc (GNU C library) version 2.28 or higher +
@@ -202,7 +199,7 @@ gpg --version
 
 These are the requirements:
 
-In Anypoint Platform PCE version 4.2 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. 
+In Anypoint Platform PCE version 4.1 and later, all the persistent data is stored in the Persistent Volume Claims (PVCs). Kubernetes Storage Class commands the PVCs. 
 
 These services use PVCs with minimum and default storage size:
 

@@ -2,11 +2,11 @@
 
 These are the supported configurations for Anypoint Platform Private Cloud (Anypoint Platform PCE).
 
-== Anypoint Platform PCE 4.2 Architecture
+== Anypoint Platform PCE 4.1 Architecture
 
 The diagram illustrates MuleSoft's planes (control plane and runtime plane) and their general traffic flow within the Anypoint Platform PCE context:
 
-image:pce4-diagram-architecture.png["Anypoint Platform PCE 4.2 architecture"]
+image:pce4-diagram-architecture.png["Anypoint Platform PCE 4.1 architecture"]
 
 Control plane:
 

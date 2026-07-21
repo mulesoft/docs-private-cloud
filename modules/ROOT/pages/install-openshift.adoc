@@ -8,7 +8,7 @@ You must have an operational OpenShift cluster prior to installing Anypoint Plat
 Contact MuleSoft Professional Services to perform the installation of Anypoint Platform PCE.
 
 [NOTE] 
-Anypoint Platform PCE 4.2.0 is installed and validated on OpenShift 4.16.
+Anypoint Platform PCE 4.1.0 is installed and validated on OpenShift 4.16.
 
 == Configure the Openshift Environment
 

@@ -35,7 +35,7 @@ This table provides component information for Anypoint Platform PCE:
 | Anypoint Analytics - API	| No | Provides insight into how your APIs are being used and how they are performing.
 | Anypoint Analytics - Anypoint Visualizer	| Yes | Enables you to explore your application network via an application network graph.
 | Anypoint Analytics - Insights	| No | Provides in-depth visibility into business transactions and events on your Mule apps deployed to CloudHub and on-premises servers.
-| Anypoint Code Builder | Yes | Enables you to create API specifications, implementations, and integration projects.
+| Anypoint Code Builder | No | Enables you to create API specifications, implementations, and integration projects.
 | Anypoint Exchange	| Yes | Enables your organization to share various assets for reuse across integration projects.
 | Anypoint Monitoring	| No |Provides visibility into integrations, Mule flows, and components in your application network.
 | Anypoint MQ	| No | A multi-tenant cloud messaging service that enables you to perform advanced asynchronous messaging scenarios between tenant applications.
@@ -60,7 +60,7 @@ Anypoint Platform PCE is compatible with Java 17, 11, and 8.
 
 Refer to xref:release-notes::pce/anypoint-private-cloud-release-notes.adoc[Anypoint Platform Private Cloud Release Notes] for detailed release information.
 
-Anypoint Platform PCE version 4.2 contains these features:
+Anypoint Platform PCE version 4.1 contains these features:
 [%header%autowidth.spread]
 |===
 | Component | Feature Description | Feature Version
