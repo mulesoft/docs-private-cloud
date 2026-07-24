@@ -24,4 +24,4 @@
  ** xref:config-studio.adoc[Configuring Anypoint Studio for Anypoint Platform PCE]
  ** xref:register-server.adoc[Troubleshooting Mule Runtime Engine Registration]
  ** xref:restarting-a-node.adoc[Updating Nodes]
-* xref:upgrade.adoc[Upgrading Anypoint Platform PCE to v4.0]
+* xref:upgrade.adoc[Migrating Anypoint Platform PCE to v4.x]
