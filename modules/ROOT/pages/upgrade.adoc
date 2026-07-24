@@ -1,4 +1,4 @@
-= Upgrading Anypoint Platform PCE v3.X to v4.X
+= Migrating Anypoint Platform PCE v3.X to v4.X
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
