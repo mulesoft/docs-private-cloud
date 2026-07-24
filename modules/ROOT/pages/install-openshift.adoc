@@ -10,6 +10,9 @@ Contact MuleSoft Professional Services or your Anypoint PCE Certified Partner to
 [NOTE] 
 Anypoint Platform PCE 4.2.1 is installed and validated on OpenShift 4.18 and 4.20.
 
+[NOTE]
+It is not supported to upgrade from an existing Openshift PCE 4.1.x cluster that's been installed with full admin privilege to 4.2.1 with no admin scope.
+
 == Configure the Openshift Environment
 
 To configure the OpenShift Environment, configure Security Context Constraints (SCC) and roles for Prometheus.
