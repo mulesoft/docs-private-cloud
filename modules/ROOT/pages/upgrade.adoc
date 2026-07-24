@@ -4,7 +4,7 @@ include::_attributes.adoc[]
 endif::[]
 
 [NOTE]
-This procedure is also applicable if you need to migrate from PCE 4.x to PCE 4.x instead of an in-place upgrade. Replace the 3.x system with your source PCE 4.x system in the below notes.
+This procedure is also applicable if you need to migrate from PCE 4.x to PCE 4.x instead of an in-place upgrade. Replace the 3.x system with your source PCE 4.x system in the procedure below.
 
 [NOTE]
 Contact MuleSoft Professional Services or your Anypoint PCE Certified Partner to perform a migration of your Anypoint Platform PCE.
