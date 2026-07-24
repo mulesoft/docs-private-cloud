@@ -5,10 +5,10 @@ Before installing Anypoint Platform Private Cloud Edition (Anypoint Platform PCE
 [NOTE]
 You must have an operational OpenShift cluster prior to installing Anypoint Platform PCE. If you do not have one set up, refer to the OpenShift documentation for setup instructions.
 
-Contact MuleSoft Professional Services to perform the installation of Anypoint Platform PCE.
+Contact MuleSoft Professional Services or your Anypoint PCE Certified Partner to perform the installation or upgrade of Anypoint Platform PCE.
 
 [NOTE] 
-Anypoint Platform PCE 4.2.0 is installed and validated on OpenShift 4.16.
+Anypoint Platform PCE 4.2.1 is installed and validated on OpenShift 4.18 and 4.20.
 
 == Configure the Openshift Environment
 
