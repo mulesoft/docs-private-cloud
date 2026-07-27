@@ -6,7 +6,7 @@ The process to install Anypoint Platform Private Cloud Edition (Anypoint Platfor
 . Obtaining your Anypoint PCE installation distribution
 . Setting up and verifying your infrastructure
 . Performing a pre-installation verification
-. Installing/Upgrading Anypoint Platform PCE
+. Installing or Upgrading Anypoint Platform PCE
 
 [NOTE]
 Contract Mulesoft Processional Services or your Anypoint PCE Certified Partner to obtain your Anypoint PCE installation distribution and before performing the pre-installation verification and installation or upgrade of the Anypoint PCE Platform to ensure they are involved in these procedures.
