@@ -1,14 +1,15 @@
-= Installing Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)
+= Installing or Upgrading Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)
 :page-aliases: prereq-gravity-check.adoc
 
 The process to install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), consist of the following steps:
 
+. Obtaining your Anypoint PCE installation distribution
 . Setting up and verifying your infrastructure
 . Performing a pre-installation verification
-. Installing Anypoint Platform PCE
+. Installing or Upgrading Anypoint Platform PCE
 
 [NOTE]
-Contact MuleSoft Professional Services before performing the pre-installation verification and installation of Anypoint Platform PCE because they are involved in these processes.
+Contract Mulesoft Processional Services or your Anypoint PCE Certified Partner to obtain your Anypoint PCE installation distribution and before performing the pre-installation verification and installation or upgrade of the Anypoint PCE Platform to ensure they are involved in these procedures.
 
 [NOTE]
 To install Anypoint Platform PCE on OpenShift, see xref:install-openshift.adoc[Installing Anypoint Platform PCE on OpenShift].
@@ -123,14 +124,21 @@ monitoringAppConfiguration:
 
 
 
-== Install Anypoint Platform PCE 
+== Install Anypoint Platform PCE
 
-After your infrastructure is correctly set up and you performed a pre-installation verification, MuleSoft Professional Services will assist you with the installation of Anypoint Platform PCE.
+After your infrastructure is correctly set up and you performed a pre-installation verification, MuleSoft Professional Services or your Anypoint PCE Certified Partner will assist you with the installation of Anypoint Platform PCE.
 
 To install Anypoint Platform PCE, run this command:
 
 `./pcectl install --input-file /path/to/input.yaml --license-file /path/to/license.lic`
 
+== Upgrade Anypoint Platform PCE 
+
+After you have completed a pre-installation/upgrade verification, MuleSoft Professional Services or your Anypoint PCE Certified Partner will assist you with the upgrade of Anypoint Platform PCE.
+
+To upgrade Anypoint Platform PCE, run this command:
+
+`./pcectl upgrade /path/to/input.yaml --license-file /path/to/license.lic`
 
 == See Also
 
