@@ -3,12 +3,17 @@
 Before installing Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) on OpenShift configure Security Context Constraints (SCC) to grant the required permissions for pods and create roles for Prometheus, allowing it to collect metrics from the services. After these configurations are complete, proceed with installing Anypoint Platform PCE.
 
 [NOTE]
-You must have an operational OpenShift cluster prior to installing Anypoint Platform PCE. If you do not have one set up, refer to the OpenShift documentation for setup instructions.
-
-Contact MuleSoft Professional Services to perform the installation of Anypoint Platform PCE.
+Contact MuleSoft Professional Services or your Anypoint PCE Certified Partner to perform the installation or upgrade of Anypoint Platform PCE.
 
 [NOTE]
-Anypoint Platform PCE 4.2.0 is installed and validated on OpenShift 4.16.
+You must have an operational OpenShift cluster prior to installing Anypoint Platform PCE. If you do not have one set up, refer to the OpenShift documentation for setup instructions.
+
+[NOTE] 
+Anypoint Platform PCE 4.2.1 is installed and validated on OpenShift 4.18 and 4.20.
+
+[NOTE]
+It isn't supported to in-place upgrade from an existing Openshift PCE 4.1.x cluster that's been installed with full admin privilege to 4.2.1 or higher with no admin scope. If this is your case, consult xref:upgrade.adoc[Migrating Anypoint Platform PCE to v4.x].
+
 
 == Configure the Openshift Environment
 
