@@ -1,4 +1,4 @@
-= Installing/Upgrading Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)
+= Installing or Upgrading Anypoint Platform Private Cloud Edition (Anypoint Platform PCE)
 :page-aliases: prereq-gravity-check.adoc
 
 The process to install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), consist of the following steps:
