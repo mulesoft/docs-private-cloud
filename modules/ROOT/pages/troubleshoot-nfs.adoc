@@ -40,3 +40,4 @@ The error message `mount failed: exit status 32. Mounting command ... not permit
 == See Also
 
 * xref:verify-nfs.adoc[Verify NFS Server Communication]
+include::release-notes::partial$release-notes/rn-known-issues.adoc[tag=knownIssuesSeeAlsoLink]
