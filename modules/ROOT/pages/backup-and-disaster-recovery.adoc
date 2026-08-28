@@ -3,7 +3,10 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) requires you to install, configure, and manage an NFS server, ensuring frequent backups are configured and performed.
+Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) stores backup archives on the platform shared filesystem. Depending on the storage mode you selected at installation, this is either an NFS server (NFS mode) or a dynamically provisioned volume from your RWX-capable `StorageClass` (StorageClass mode, Anypoint Platform PCE 4.3.0 and later). Make sure that the storage backing your shared filesystem is highly available and that frequent backups are configured and performed.
+
+[IMPORTANT]
+In StorageClass mode, use a `StorageClass` with `reclaimPolicy: Retain` for the backup-restore volume so that deleting the `PersistentVolumeClaim` does not destroy historical backup tarballs.
 
 To preserve your data:
 
@@ -33,8 +36,8 @@ To create a backup, run the following command:
 | SMTP settings | Yes
 | DNS settings | No
 | Platform certificate | No
-| NFS settings | No
-| NFS files | No	
+| Shared filesystem settings (NFS or StorageClass) | No
+| Shared filesystem contents | No
 | Drives | No
 | Runtimes* | No	
 | Anypoint Monitoring metrics | No
@@ -46,14 +49,15 @@ To create a backup, run the following command:
 
 Consider the following before you perform a system restore:
 
-* Before running a restore, configure certain settings, such as NFS, certificates, and DNS because they are not included in the backup.
+* Before running a restore, configure certain settings, such as the shared filesystem (NFS or StorageClass), certificates, and DNS because they are not included in the backup.
 * Backups cannot be transferred between different versions of Anypoint Platform PCE; therefore, your new installation must match the version of your backup.
+* The new installation must use the same storage mode (NFS or StorageClass) as the source installation. The installer rejects changes to the storage mode on an existing cluster.
 
 To perform the restore, run the following command:
 
 `curl -k <platform-dns>/platform/restore-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz"}`
 
-The backup file is stored on the NFS storage.
+The backup file is stored on the platform shared filesystem.
 
 == Create an InfluxDB Backup
 
@@ -67,7 +71,7 @@ To perform an InfluxDB restore, run this command:
 
 `curl -k <platform-dns>/platform/amv/restore-X POST -H 'Authorization: Bearer ${token}' -H 'Content-Type: application/json' -d '{"backup-file-name": "${backupFileName}.tar.gz"}'`
 
-The backup file is stored on the NFS storage.
+The backup file is stored on the platform shared filesystem.
 
 == See Also
 

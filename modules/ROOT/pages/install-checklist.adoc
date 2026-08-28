@@ -8,13 +8,13 @@ You can install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) 
 
 MuleSoft performed installations on popular K8s providers, which are listed in the following sections. The hardware and software requirements for installing Anypoint Platform PCE on your chosen provider are dictated by that provider, unless otherwise specified in this document.
 
-Before you begin, make sure that your organization’s operations, networking, and security teams review the listed infrastructure prerequisites. These include the K8s cluster, hardware, software, networking, NFS storage, container registry, installer node, and storage requirements.
+Before you begin, make sure that your organization’s operations, networking, and security teams review the listed infrastructure prerequisites. These include the K8s cluster, hardware, software, networking, shared filesystem, container registry, installer node, and storage requirements.
 
 [NOTE]
 ====
 Contact MuleSoft Professional Services prior to installing Anypoint Platform PCE, as they are involved with your installation.
 
-Installing Anypoint Platform PCE requires specific versions of operating systems, NFS, and other software. Most issues experienced with Anypoint Platform PCE occur because the required environment was not set up prior to installing or upgrading.
+Installing Anypoint Platform PCE requires specific versions of operating systems, shared filesystem components, and other software. Most issues experienced with Anypoint Platform PCE occur because the required environment was not set up prior to installing or upgrading.
 ====
 
 == Kubernetes Cluster Requirements
@@ -146,12 +146,16 @@ For more information, see the provider specific requirements:
 * https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/networking/understanding-networking[Red Hat OpenShift - Networking]
 
 
-== NFS Storage Requirements
+== Shared Filesystem Requirements
 
-A pre-installed Container Storage Interface (CSI) driver in the Kubernetes cluster is a mandatory requirement for Anypoint Platform PCE 4.2.0. Anypoint Platform PCE uses the CSI driver to mount NFS volumes into pods.
+Anypoint Platform PCE requires a `ReadWriteMany` (RWX) shared filesystem. Starting with Anypoint Platform PCE 4.3.0, you can provide this filesystem using either of the following storage modes:
 
+* *NFS mode* — Bind the platform to an existing NFS server through a pre-installed Container Storage Interface (CSI) driver in the Kubernetes cluster. This is the only supported mode in versions before 4.3.0.
+* *StorageClass mode* — Provide a single RWX-capable Kubernetes `StorageClass` (for example, backed by CephFS) and let Anypoint Platform PCE dynamically provision the shared volumes. This mode removes the requirement to operate an external NFS server.
 
-For detailed configuration instructions, including EFS-specific volume handle setup and NFS mount option overrides, see xref:verify-nfs.adoc[].
+The two modes are mutually exclusive. You cannot change the storage mode on an existing cluster; the installer rejects mode changes to prevent orphaning data on the previous volumes.
+
+For detailed configuration instructions, including CSI driver setup, EFS-specific volume handle setup, NFS mount option overrides, and `StorageClass` requirements, see xref:verify-nfs.adoc[].
 
 == Container Registry Requirements
 

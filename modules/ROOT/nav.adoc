@@ -3,7 +3,7 @@
 ** xref:supported-cluster-config.adoc[Supported Configurations]
 * xref:pce-release-notes.adoc[Release Notes]
 * xref:install-checklist.adoc[Anypoint Platform PCE Prerequisites]
- ** xref:verify-nfs.adoc[NFS Prerequisites]
+ ** xref:verify-nfs.adoc[Shared Filesystem Prerequisites]
   *** xref:troubleshoot-nfs.adoc[Troubleshoot NFS Errors]
 * xref:install-workflow.adoc[Installing or Upgrading Anypoint Platform PCE]
 ** xref:install-openshift.adoc[Installing or Upgrading Anypoint Platform PCE on OpenShift]
