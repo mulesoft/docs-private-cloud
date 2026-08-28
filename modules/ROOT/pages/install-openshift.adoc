@@ -413,7 +413,7 @@ oc apply -f openshift-monitoring.yaml
 
 == Install Anypoint Platform PCE on OpenShift
 
-The following snippet provides an example installation manifest for deploying Anypoint Platform PCE on an OpenShift cluster. The example configures the platform shared filesystem in StorageClass mode (Anypoint Platform PCE 4.3.0 and later) using an OpenShift Data Foundation CephFS `StorageClass`. For the equivalent NFS-mode configuration and the full set of shared-filesystem options, see xref:verify-nfs.adoc[].
+The following snippet provides an example installation manifest for deploying Anypoint Platform PCE on an OpenShift cluster:
 
 [source,yaml]
 ----
@@ -426,7 +426,7 @@ containerRegistry:
   tlsSkipVerify: true
 postInstallConfiguration:
   platformDNS: anypoint.pce.example.com
-  fileSystemStorageClass: ocs-storagecluster-cephfs
+  fileSystemDNS: fs.pce.example.com
   firstUserAccount:
     organizationName: Example Org
     username: username

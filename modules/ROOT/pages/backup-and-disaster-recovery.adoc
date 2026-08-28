@@ -6,7 +6,7 @@ endif::[]
 Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) stores backup archives on the platform shared filesystem. Depending on the storage mode you selected at installation, this is either an NFS server (NFS mode) or a dynamically provisioned volume from your RWX-capable `StorageClass` (StorageClass mode, Anypoint Platform PCE 4.3.0 and later). Make sure that the storage backing your shared filesystem is highly available and that frequent backups are configured and performed.
 
 [IMPORTANT]
-In StorageClass mode, use a `StorageClass` with `reclaimPolicy: Retain` for the backup-restore volume so that deleting the `PersistentVolumeClaim` does not destroy historical backup tarballs.
+In StorageClass mode, use a `StorageClass` with `reclaimPolicy: Retain` for the backup-restore volume so that deleting the `PersistentVolumeClaim` does not destroy historical data.
 
 To preserve your data:
 
