@@ -1,20 +1,33 @@
-= NFS Server Prerequisites
+= Shared Filesystem Prerequisites
 ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
 [IMPORTANT]
-Before you install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your MuleSoft representative for assistance to ensure your NFS server is configured correctly.
+Before you install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE), your infrastructure team must review each of the following sections and verify that your environment meets the stated requirements. If needed, contact your MuleSoft representative for assistance to ensure your shared filesystem is configured correctly.
+
+Anypoint Platform PCE requires a `ReadWriteMany` (RWX) shared filesystem for the platform. Starting with Anypoint Platform PCE 4.3.0, you can provide this filesystem using either of the following storage modes:
+
+* *NFS mode* — Bind the platform to an existing NFS server through a pre-installed CSI driver. Use this mode when your organization already operates an NFS server (for example, AWS EFS, NetApp, Isilon, or a self-managed NFS server) that you want the platform to consume.
+* *StorageClass mode* — Provide a single RWX-capable Kubernetes `StorageClass` and let Anypoint Platform PCE dynamically provision the shared volumes. Use this mode when your cluster has an RWX-capable CSI driver such as CephFS available and you prefer not to operate an external NFS server.
+
+You choose the mode at installation time by setting the corresponding fields in the `platformConfiguration` section of your `input.yaml` file. The two modes are mutually exclusive.
+
+[IMPORTANT]
+The installer rejects changes to the storage mode on an existing cluster. Switching between NFS and StorageClass mode after installation orphans the data stored on the previous volumes. Choose the mode carefully before installing.
 
 [[csi-driver-requirement]]
-== CSI Driver Requirement
+== CSI Driver Requirement (NFS Mode)
 
-Starting with Anypoint Platform PCE 4.2.0, a pre-installed Container Storage Interface (CSI) driver is a mandatory requirement. Anypoint Platform PCE uses the Kubernetes CSI driver to mount NFS volumes into pods, replacing the previous method that relied on host binaries.
+When using NFS mode, a pre-installed Container Storage Interface (CSI) driver is a mandatory requirement. Anypoint Platform PCE uses the Kubernetes CSI driver to mount NFS volumes into pods, replacing the previous method that relied on host binaries.
 
 Some key benefits:
 
 * Enhanced support for environments where custom tools cannot be installed on host nodes.
 * Direct support for Amazon EKS users who can only use the Amazon EFS CSI Driver.
+
+[NOTE]
+The CSI driver requirement applies only to NFS mode. In StorageClass mode, the RWX-capable `StorageClass` handles provisioning through its own CSI driver.
 
 === Configure the CSI Driver
 
@@ -45,7 +58,42 @@ Each volume handle value follows the format `<file-system-id>::<access-point-id>
 [NOTE]
 When using the EFS CSI Driver, you do not need to provide `fileSystemDNS` or `fileSystemPath` values.
 
+[[storage-class-mode]]
+== StorageClass Mode
+
+Starting with Anypoint Platform PCE 4.3.0, you can host the platform shared filesystem on any Kubernetes `StorageClass` that supports `ReadWriteMany` access mode, without operating an external NFS server. The `StorageClass` must be backed by an RWX-compliant CSI driver, for example CephFS (`ocs-storagecluster-cephfs`) on OpenShift Data Foundation.
+
+When you set `fileSystemStorageClass` in `platformConfiguration`, the installer provisions the platform's shared volumes and the backup-restore volume as dynamically created `PersistentVolumeClaim` resources against the specified `StorageClass`. In this mode, the following NFS-mode fields are not used:
+
+* `fileSystemCsiDriverName`
+* `fileSystemDNS`, `fileSystemPath`
+* `fileSystemWcCsiVolumeHandle`, `fileSystem01CsiVolumeHandle`, `fileSystemBareCsiVolumeHandle`, `fileSystemBackupRestoreCsiVolumeHandle`
+
+=== Configure StorageClass Mode
+
+In the `platformConfiguration` section of your `input.yaml` file, specify the RWX-capable `StorageClass`:
+
+[source,yaml]
+----
+platformConfiguration:
+  fileSystemStorageClass: "" # e.g. ocs-storagecluster-cephfs
+----
+
+=== StorageClass Requirements
+
+The `StorageClass` you provide must:
+
+* Support the `ReadWriteMany` (RWX) access mode.
+* Be backed by an RWX-compliant CSI driver (for example, CephFS).
+* Be available and default-usable in the cluster where you install Anypoint Platform PCE.
+
+[IMPORTANT]
+For backup retention, use a `StorageClass` with `reclaimPolicy: Retain` for the backup-restore volume. With `reclaimPolicy: Delete`, deleting the `PersistentVolumeClaim` also destroys the underlying storage and any historical backup tarballs stored on it.
+
 == Verify NFS Server Setup
+
+The following sections apply only when installing in NFS mode. If you are using StorageClass mode, skip to xref:install-workflow.adoc[Installing Anypoint Platform PCE].
+
 Anypoint Platform PCE version 2.0 and later requires a Network File System (NFS) server and an available NFS endpoint. Your NFS server must meet the following requirements:
 
 * Must be running on a filesystem that has at least 250 GB available.
@@ -232,7 +280,7 @@ umount /mnt/home
 [[nfs-mount-options-override]]
 == Override NFS Mount Options
 
-By default, Anypoint Platform PCE 4.2.0 sets the `noresvport` NFS mount option, which is strongly recommended for AWS and other cloud environments. If this default conflicts with your environment requirements, you can override the NFS mount options by providing a comma-separated string in the `platformConfiguration` section of your `input.yaml` file:
+In NFS mode, Anypoint Platform PCE sets the `noresvport` NFS mount option by default, which is strongly recommended for AWS and other cloud environments. If this default conflicts with your environment requirements, you can override the NFS mount options by providing a comma-separated string in the `platformConfiguration` section of your `input.yaml` file:
 
 [source,yaml]
 ----

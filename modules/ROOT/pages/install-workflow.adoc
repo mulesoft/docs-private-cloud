@@ -36,18 +36,34 @@ containerRegistry:
   certificate: "/etc/registry/certificate/ca.crt"
   subproject: "mulesoft" # Container registry subproject under which all the PCE images will be part of.
   tlsSkipVerify: True  # True or False.
-# Platform configuration using CSI driver for filesystem access
+# Platform configuration for the shared ReadWriteMany (RWX) filesystem.
+# Choose exactly one of the two storage modes below. NFS mode has two configuration
+# variants (Option A or Option B). StorageClass mode is Option C. The modes are
+# mutually exclusive.
 platformConfiguration:
   platformDNS: ""
+  # ---- NFS mode (Option A and Option B) ----
+  # Requires a pre-installed CSI driver in the Kubernetes cluster.
   fileSystemCsiDriverName: "" # CSI driver name (e.g., nfs.csi.k8s.io, efs.csi.aws.com)
-  # Provide NFS DNS and path (not required if using EFS CSI Driver)
-  # fileSystemDNS: ""
-  # fileSystemPath: ""
-  # Provide individual NFS volume handles (all 4 are required if using EFS CSI Driver. You'll need to create 4 access points pointing to the same dir in the EFS)
+  # Optional NFS mount option overrides. Comma-separated string. Only used in NFS mode.
+  fileSystemBareMountOptionsOverride: ""
+  fileSystemWcMountOptionsOverride: ""
+  fileSystem01MountOptionsOverride: ""
+  # Option A - Generic NFS CSI driver: provide DNS and path.
+  # fileSystemDNS: ""   # NFS server hostname or IP
+  # fileSystemPath: ""  # NFS export path (e.g., /exports/pce)
+  # Option B - CSI driver with individual volume handles (all 4 required, e.g. EFS CSI Driver
+  # with 4 access points that point to the same directory in the EFS):
   fileSystemWcCsiVolumeHandle: "" # CSI volume handle for wc filesystem. E.g.: fs-0835b0d1eb7588eb1::fsap-03f6c68563ceb5acf
   fileSystem01CsiVolumeHandle: "" # CSI volume handle for 01 filesystem
   fileSystemBareCsiVolumeHandle: "" # CSI volume handle for bare filesystem
   fileSystemBackupRestoreCsiVolumeHandle: "" # CSI volume handle for backup-restore filesystem
+  # ---- StorageClass mode (Option C, Anypoint Platform PCE 4.3.0 and later) ----
+  # Mutually exclusive with NFS mode. The StorageClass must support ReadWriteMany.
+  # Leave fileSystemCsiDriverName and all NFS-mode fields above empty when using this option.
+  # For backup retention, use a StorageClass with reclaimPolicy: Retain so deleting the PVC
+  # does not destroy historical backup tarballs.
+  # fileSystemStorageClass: "" # e.g. ocs-storagecluster-cephfs
   platformCertificate: /path/to/platform/certificate/cert.crt
   platformCertificateKey: path/to/platform/certificate/cert.key
   firstUserAccount:

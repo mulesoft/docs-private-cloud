@@ -1,0 +1,58 @@
+= Configuring Anypoint Code Builder for Anypoint Platform PCE
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Use xref:anypoint-code-builder::start-acb-desktop.adoc[Anypoint Code Builder] and MuleSoft Vibes xref:anypoint-code-builder::vibes-skills.adoc[Skills] to design, develop, and deploy applications to your Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) environment using MuleSoft Vibes Skills.
+
+== Before You Begin
+
+Before you start developing with Anypoint Code Builder and MuleSoft Vibes, ensure that you have:
+
+* An Anypoint Platform PCE 4.3 environment
+* Access to an https://anypoint.mulesoft.com[Anypoint Platform^] account on anypoint.mulesoft.com
++
+This access is separate from your Anypoint Platform PCE license. Anypoint Code Builder uses it to retrieve assets and export the application artifact.
+* Mule runtime engine 4.9 LTS or 4.11 Edge support
+* Microsoft Visual Studio Code (VS Code) installed on your local machine
+* MuleSoft Vibes skills installed on your local machine
++
+For installation instructions, see xref:anypoint-code-builder::vibes-skills.adoc#install-mulesoft-skills-in-claude-code[Using Skills with MuleSoft Vibes].
+* Anypoint CLI installed and configured for your Anypoint Platform PCE instance
++
+For installation instructions, see https://docs.mulesoft.com/anypoint-cli/latest/install[Installing Anypoint CLI^].
+* These Anypoint CLI plugins installed by running the following command once for each plugin:
++
+----
+anypoint-cli-v4 plugins:install <plugin-name>
+----
++
+Replace `<plugin-name>` with each of the following:
++
+** https://docs.mulesoft.com/anypoint-cli/latest/account[anypoint-cli-account-plugin^]
+** https://docs.mulesoft.com/anypoint-cli/latest/api-mgr[anypoint-cli-api-manager-plugin^]
+** https://docs.mulesoft.com/anypoint-cli/latest/exchange-assets[anypoint-cli-exchange-plugin^]
+** https://docs.mulesoft.com/anypoint-cli/latest/design-center[mulesoft-anypoint-cli-designcenter-plugin^]
+
+== Connect Anypoint Platform PCE with Anypoint Code Builder
+
+To configure Anypoint Platform PCE with Anypoint Code Builder, connect your local VS Code environment to your Anypoint Platform account:
+
+. In VS Code, navigate to *Settings* > *Extensions* > *Anypoint Code Builder (Platform)*.
+. Set the *Mule Control Plane* dropdown to *Private Cloud Edition*, and enter your PCE URL under *Mule: Control Plane PCE Url*.
++
+For example: `https://pce-instance.elb.us-east-2.amazonaws.com/`
+. Install and configure xref:anypoint-code-builder::vibes-skills.adoc#install-mulesoft-skills-in-claude-code[MuleSoft Vibes Skills].
+. Open the *Command Palette*, run *MuleSoft: Login to Anypoint Platform*, and complete authentication in your browser.
+. If you use SSO or MFA, set the `ANYPOINT_BEARER_TOKEN` environment variable in your terminal to an access token from your authenticated Anypoint Platform session.
+
+After you complete this setup, you can xref:deploy-apps-code-builder.adoc[deploy Mule applications] to Anypoint Platform PCE.
+
+== See Also
+
+* xref:deploy-apps.adoc[]
+* xref:deploy-apps-code-builder.adoc[]
+* xref:anypoint-code-builder::int-developing-integrations.adoc[Developing Integrations]
+* xref:anypoint-code-builder::des-designing-api-specs.adoc[Designing API Specs and Fragments]
+* xref:config-studio.adoc[]
+* xref:operating-about.adoc[]
