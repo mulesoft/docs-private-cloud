@@ -1,0 +1,83 @@
+= Deploying Mule Applications Using Anypoint Code Builder
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Follow these steps to develop, package, and deploy Mule applications to Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) using Anypoint Code Builder and MuleSoft Vibes Skills:
+
+. xref:#connect-acb[Connect Anypoint Platform PCE with Anypoint Code Builder]
+. xref:#develop-mule-app[Develop Mule Application]
+. xref:#package-export[Package and Export the Mule Application]
+. xref:#deploy-runtime-manager[Deploy to Runtime Manager]
+. xref:#publish-exchange[Publish to Exchange]
+. xref:#validate-deployment[Validate the Deployment]
+
+[[connect-acb]]
+== Connect Anypoint Platform PCE with Anypoint Code Builder
+
+To connect Anypoint Platform PCE with Anypoint Code Builder, follow the instructions in xref:config-code-builder.adoc[].
+
+[[develop-mule-app]]
+== Develop Mule Application
+
+Build your Mule application with Anypoint Code Builder using MuleSoft Vibes:
+
+. In VS Code, select the Anypoint Code Builder icon from primary side bar, select `Develop an Integration` and create a new Mule project.
+. If you want to import an asset from Exchange, in the command pallet search `>MuleSoft: Import Asset From Exchange`. Select the type of asset and proceed with the implementation.
+. Develop your Mule application using MuleSoft Vibes Skills and natural language prompts to assist in building flows and logic.
+. Run a local debug session from the *Run and Debug* sidebar to test the logic before packaging.
+
+
+[[package-export]]
+== Package and Export the Mule Application
+
+Manually create the deployable Mule application artifact:
+
+. In the VS Code Explorer, right-click your `mule-artifact.json` file or any XML file in `src/main/mule`.
+. Select *MuleSoft: Export Mule Project*.
+. Choose *Deployable JAR* and select *Include project sources*.
++
+Including project sources enables you to re-import the project later if needed.
+. Save the JAR to your local machine.
+
+[[deploy-runtime-manager]]
+== Deploy to Runtime Manager
+
+Upload the JAR to your hybrid server. The server must be registered and in the *Running* state.
+
+. Log in to Anypoint Platform PCE and navigate to *Runtime Manager*.
+. Select the correct environment, and then click *Deploy Application*.
+. Set the *Deployment Target* to your hybrid server or cluster.
+. Click *Choose File* > *Upload File* and select the JAR you exported.
+. Click *Deploy Application*.
+
+[[publish-exchange]]
+== Publish to Exchange
+
+To make the application available in the Exchange asset catalog for other developers:
+
+. In Anypoint Platform PCE, navigate to *Exchange*.
+. Click *Publish New Asset*.
+. Provide an asset name and select *Mule Application* as the asset type.
+. Upload the same JAR file.
++
+This publishes the project to your organization’s private library.
+
+[[validate-deployment]]
+== Validate the Deployment
+
+To validate the deployment, follow these steps:
+
+. In Runtime Manager, wait until the application status is *Started*.
+. Use an API client such as Postman or the VS Code Thunder Client to send a request to the server IP and the port defined in your HTTP Listener.
++
+For example: `http://10.x.x.x:8081/api/test`
+. Check the *Logs* tab in Runtime Manager to verify that the request was processed successfully.
+
+== See Also
+
+* xref:deploy-apps.adoc[]
+* xref:config-code-builder.adoc[]
+* xref:anypoint-code-builder::int-developing-integrations.adoc[Developing Integrations]
+* xref:runtime-manager::deploying-to-your-own-servers.adoc[Deploying to Your Own Servers]
+* xref:operating-about.adoc[]

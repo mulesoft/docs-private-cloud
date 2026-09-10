@@ -92,9 +92,9 @@ gravity backup /var/lib/gravity/planet/share/backup-3x-$(date +%d-%m-%y).tar.gz
 /var/lib/gravity/site/packages/unpacked/gravitational.io/anypoint/3.2.0*/resources/kubernetes/amv-backup-restore/amv-backup-restore.sh
 ----
 
-== Preserve Persistent Data (NFS/EFS)
+== Preserve Persistent Data (Shared Filesystem)
 
-In addition to the database state, you must manually preserve the project files and working directories stored on the distributed file system.
+In addition to the database state, you must manually preserve the project files and working directories stored on the platform shared filesystem.
 
 === Mount the External Storage
 

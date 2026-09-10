@@ -1,0 +1,37 @@
+= Deploying Mule Applications to Anypoint Platform PCE
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+After you install Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) and register your hybrid servers, you can deploy Mule applications to those servers through Runtime Manager.
+
+Before you deploy, ensure that:
+
+* Your servers are registered and running in Runtime Manager. See xref:runtime-manager::managing-servers.adoc[About Servers, Server Groups, and Clusters].
+* Your IDE is configured to use your Anypoint Platform PCE control plane rather than the default cloud Anypoint Platform.
+
+You can develop and package applications with either Anypoint Code Builder or Anypoint Studio, then deploy them to Anypoint Platform PCE.
+
+== Deploy Using Anypoint Code Builder
+
+Use Anypoint Code Builder and MuleSoft Vibes Skills to develop, package, and deploy Mule applications to Anypoint Platform PCE:
+
+* xref:config-code-builder.adoc[Configuring Anypoint Code Builder for Anypoint Platform PCE]
+* xref:deploy-apps-code-builder.adoc[Deploying Mule Applications Using Anypoint Code Builder]
+
+== Deploy Using Anypoint Studio
+
+Configure Anypoint Studio to connect to your Anypoint Platform PCE instance, then package your application and deploy it to a hybrid server in Runtime Manager:
+
+* xref:config-studio.adoc[Configuring Anypoint Studio for Anypoint Platform PCE]
+* xref:studio::import-export-packages.adoc[Export a Studio Project to a Deployable Mule Application]
+* xref:runtime-manager::deploying-to-your-own-servers.adoc[Deploying to Your Own Servers]
+
+[NOTE]
+Anypoint Studio’s *Deploy to CloudHub* option targets CloudHub and does not deploy applications to Anypoint Platform PCE hybrid servers. For PCE, export a deployable JAR and upload it in Runtime Manager.
+
+== See Also
+
+* xref:operating-about.adoc[]
+* xref:runtime-manager::deploying-to-your-own-servers.adoc[Deploying to Your Own Servers]
+* xref:register-server.adoc[]
