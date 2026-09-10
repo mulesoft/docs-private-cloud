@@ -13,7 +13,7 @@ Before you start developing with Anypoint Code Builder and MuleSoft Vibes, ensur
 * Access to an https://anypoint.mulesoft.com[Anypoint Platform^] account on anypoint.mulesoft.com
 +
 This access is separate from your Anypoint Platform PCE license. Anypoint Code Builder uses it to retrieve assets and export the application artifact.
-* Mule runtime engine 4.9 LTS or 4.11 Edge support
+* Mule runtime engine 4.9 LTS or 4.12 Edge support
 * Microsoft Visual Studio Code (VS Code) installed on your local machine
 * MuleSoft Vibes skills installed on your local machine
 +
