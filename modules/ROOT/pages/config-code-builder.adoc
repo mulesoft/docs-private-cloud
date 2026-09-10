@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Use xref:anypoint-code-builder::start-acb-desktop.adoc[Anypoint Code Builder] and MuleSoft Vibes xref:anypoint-code-builder::vibes-skills.adoc[Skills] to design, develop, and deploy applications to your Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) environment using MuleSoft Vibes Skills.
+Use xref:anypoint-code-builder::start-acb-desktop.adoc[Anypoint Code Builder] and MuleSoft Vibes xref:anypoint-code-builder::vibes-skills.adoc[Skills] to design, develop, and deploy applications to your Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) environment.
 
 == Before You Begin
 
@@ -15,7 +15,7 @@ Before you start developing with Anypoint Code Builder and MuleSoft Vibes, ensur
 This access is separate from your Anypoint Platform PCE license. Anypoint Code Builder uses it to retrieve assets and export the application artifact.
 * Mule runtime engine 4.9 LTS or 4.12 Edge support
 * Microsoft Visual Studio Code (VS Code) installed on your local machine
-* MuleSoft Vibes skills installed on your local machine
+* MuleSoft Vibes Skills installed on your local machine
 +
 For installation instructions, see xref:anypoint-code-builder::vibes-skills.adoc#install-mulesoft-skills-in-claude-code[Using Skills with MuleSoft Vibes].
 * Anypoint CLI installed and configured for your Anypoint Platform PCE instance

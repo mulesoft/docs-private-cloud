@@ -22,9 +22,11 @@ To connect Anypoint Platform PCE with Anypoint Code Builder, follow the instruct
 
 Build your Mule application with Anypoint Code Builder using MuleSoft Vibes:
 
-. In VS Code, using Anypoint Code Builder, create a new Mule project.
+. In VS Code, select the Anypoint Code Builder icon from primary side bar, select `Develop an Integration` and create a new Mule project.
+. If you want to import an asset from Exchange, in the command pallet search `>MuleSoft: Import Asset From Exchange`. Select the type of asset and proceed with the implementation.
 . Develop your Mule application using MuleSoft Vibes Skills and natural language prompts to assist in building flows and logic.
 . Run a local debug session from the *Run and Debug* sidebar to test the logic before packaging.
+
 
 [[package-export]]
 == Package and Export the Mule Application
