@@ -413,40 +413,58 @@ oc apply -f openshift-monitoring.yaml
 
 == Install Anypoint Platform PCE on OpenShift
 
-The following snippet provides an example installation manifest for deploying Anypoint Platform PCE on an OpenShift cluster:
+Create an `input.yaml` file using this template and update it with your environment details. This template matches the PCE 4.2 installation configuration, with monitoring settings for OpenShift:
 
-[source,yaml]
+[source,yaml,linenums]
 ----
+# Container Registry configuration to upload PCE images
 containerRegistry:
-  endpoint: registry.pce.example.com
-  username: username
-  password: password
-  certificate: ''
-  subproject: example
-  tlsSkipVerify: true
-postInstallConfiguration:
-  platformDNS: anypoint.pce.example.com
-  fileSystemDNS: fs.pce.example.com
+  endpoint: "" # Container Registry Endpoint
+  username: "" # Provide either Username/Password OR Certificate to authenticate with container registry
+  password: ""
+  certificate: "/etc/registry/certificate/ca.crt"
+  subproject: "mulesoft" # Container registry subproject under which all the PCE images will be part of.
+  tlsSkipVerify: True  # True or False.
+# Platform configuration using CSI driver for filesystem access
+platformConfiguration:
+  platformDNS: ""
+  fileSystemCsiDriverName: "" # CSI driver name (e.g., nfs.csi.k8s.io, efs.csi.aws.com)
+  # Provide NFS DNS and path (not required if using EFS CSI Driver)
+  # fileSystemDNS: ""
+  # fileSystemPath: ""
+  # Provide individual NFS volume handles (all 4 are required if using EFS CSI Driver. You'll need to create 4 access points pointing to the same dir in the EFS)
+  fileSystemWcCsiVolumeHandle: "" # CSI volume handle for wc filesystem. E.g.: fs-0835b0d1eb7588eb1::fsap-03f6c68563ceb5acf
+  fileSystem01CsiVolumeHandle: "" # CSI volume handle for 01 filesystem
+  fileSystemBareCsiVolumeHandle: "" # CSI volume handle for bare filesystem
+  fileSystemBackupRestoreCsiVolumeHandle: "" # CSI volume handle for backup-restore filesystem
+  platformCertificate: /path/to/platform/certificate/cert.crt
+  platformCertificateKey: path/to/platform/certificate/cert.key
   firstUserAccount:
-    organizationName: Example Org
-    username: username
-    email: username@mulesoft.com
-    password: password
-  platformCertificate: cert.pem
-  platformCertificateKey: key.pem
-amvInstallConfiguration:
-  enabled: false
+    organizationName: 'Test Org'
+    username: 'username'
+    email: 'username@mulesoft.com'
+    password: '<a-valid-password>'
+# Storage class configuration for persistent data services
 storageConfiguration:
   pceobjectstore:
-    type: persistentVolumeClaim
-    storageClass: example-csi
+    type: "persistentVolumeClaim"
+    storageClass: "<storage-class-name>"
+    controlPlaneSize: "10Gi" # Optional. Defaults to 10Gi
+    volumeSize: "100Gi" # Optional. Defaults to 100Gi
+    volumeIndexSize: "10Gi" # Optional. Defaults to 10Gi
   stolon:
-    type: persistentVolumeClaim
-    storageClass: example-csi
+    type: "persistentVolumeClaim"
+    storageClass: "<storage-class-name>"
+    size: "100Gi" # Optional. Defaults to 100Gi
+  backupRestoreTmp:
+    storageClass: "<storage-class-name>" # Storage class for backup/restore temporary storage
+# Configuration options for monitoring stack
 monitoringAppConfiguration:
-  monitoringStackEnabled: false
+  monitoringStack:
+    enabled: False # Defaults to True. Must be set to False for Openshift clusters.
+# Grafana configuration for OpenShift. Disable the monitoring stack because OpenShift includes Prometheus by default.
   grafana:
-    enabled: true
+    enabled: True # Defaults to False.
     values: |
       datasources:
         datasources.yaml:
@@ -464,7 +482,7 @@ monitoringAppConfiguration:
               httpHeaderValue1: 'Bearer <Token>'
 ----
 
-Note the `monitoringAppConfiguration` section in the snippet. This section disables the monitoring stack for Anypoint Platform PCE and enables only the Grafana application. It is recommended to disable the monitoring stack because OpenShift includes Prometheus by default. Enable Grafana and configure its datasource to connect to Prometheus.
+In the `monitoringAppConfiguration` section, set `monitoringStack.enabled` to `False` and enable only Grafana. Disable the Anypoint Platform PCE monitoring stack because OpenShift includes Prometheus by default. Enable Grafana and configure its datasource to connect to Prometheus.
 
 To obtain the token for connecting to Prometheus, run this command:
 
@@ -473,7 +491,7 @@ To obtain the token for connecting to Prometheus, run this command:
 oc create token prometheus-k8s -n openshift-monitoring --duration=87600h
 ----
 
-After completing the installation, run the following commands to allow Prometheus in OpenShift to collect metrics from platform services:
+After you complete the installation, run these commands to allow Prometheus in OpenShift to collect metrics from platform services:
 
 [source]
 ----
