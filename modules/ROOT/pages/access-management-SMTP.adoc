@@ -23,6 +23,7 @@ Only SMTP servers with authentication are supported (anonymous SMTP relay server
 |Port | Port used to communicate to your SMTP server. | `587`
 |Username | Username to authenticate to your SMTP server. | `mulesoft.onprem.smtp@gmail.com`
 |Password | SMTP password. | `examplepassphrase`
+|Sender | Optional. Email address that alert notifications are sent from. Available starting with Anypoint Platform PCE 4.3.0. Leave this field blank to use the default sender address. | `alerts@example.com`
 |===
 
 [NOTE]
@@ -32,6 +33,25 @@ To use anonymous logins for your SMTP server, leave the *Username* and *Password
 . After entering your configuration, select *Save*.
 
 image::on-premises-features-2c60a.png[SMTP configuration window under the Access Management UI]
+
+== Set a Custom Sender Address
+
+In Anypoint Platform PCE versions before 4.3.0, outbound alert emails use a fixed sender address. Mail systems that accept messages only from approved internal domains can reject those emails, and Anypoint Platform PCE does not report the rejection.
+
+Starting with Anypoint Platform PCE 4.3.0, the SMTP page in Access Management includes an optional *Sender* field. To set the address:
+
+. From Anypoint Platform, select *Access Management*.
+. Select *SMTP*.
+. Configure the host, port, username, and password.
+. In *Sender*, enter the email address to send alert notifications from.
+. Select *Save*.
+
+Anypoint Platform PCE checks that *Sender* is a properly formatted email address. If you leave *Sender* blank, Anypoint Platform PCE uses the default sender behavior from versions before 4.3.0.
+
+[IMPORTANT]
+====
+Anypoint Platform PCE checks only that *Sender* is a properly formatted email address. It does not check that your SMTP server is authorized to send from that address or domain. Use an address on a domain your SMTP server is authorized to send from. If the address is outside those domains, alert emails can fail to send, and Anypoint Platform PCE does not show an error. Confirm the domains your SMTP server allows before you set *Sender*.
+====
 
 == See Also
 
