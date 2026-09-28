@@ -42,7 +42,7 @@ Starting with Anypoint Platform PCE 4.3.0, the SMTP page in Access Management in
 
 . From Anypoint Platform, select *Access Management*.
 . Select *SMTP*.
-. Configure the host, port, username, and password.
+. Configure the *Host*, *Port*, *Username*, and *Password* fields.
 . In *Sender*, enter the email address to send alert notifications from.
 . Select *Save*.
 
@@ -52,6 +52,7 @@ Anypoint Platform PCE checks that *Sender* is a properly formatted email address
 ====
 Anypoint Platform PCE checks only that *Sender* is a properly formatted email address. It does not check that your SMTP server is authorized to send from that address or domain. Use an address on a domain your SMTP server is authorized to send from. If the address is outside those domains, alert emails can fail to send, and Anypoint Platform PCE does not show an error. Confirm the domains your SMTP server allows before you set *Sender*.
 ====
+
 
 == See Also
 
