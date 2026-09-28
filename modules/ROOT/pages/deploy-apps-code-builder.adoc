@@ -17,14 +17,28 @@ Follow these steps to develop, package, and deploy Mule applications to Anypoint
 
 To connect Anypoint Platform PCE with Anypoint Code Builder, follow the instructions in xref:config-code-builder.adoc[].
 
+Private cloud mode connects Anypoint Code Builder on your machine to the Anypoint Platform PCE control plane. Sign-in uses OAuth or OIDC with the identity provider hosted by Anypoint Platform PCE. Anypoint Code Builder keeps application metadata in your network and blocks standard cloud telemetry.
+
 [[develop-mule-app]]
 == Develop Mule Application
 
-Build your Mule application with Anypoint Code Builder using MuleSoft Vibes:
+Build the Mule application in VS Code with Anypoint Code Builder. Use MuleSoft Vibes skills to generate the specification, the flow, DataWeave transformations, and security configuration.
 
-. In VS Code, select the Anypoint Code Builder icon from primary side bar, select `Develop an Integration` and create a new Mule project.
-. If you want to import an asset from Exchange, in the command pallet search `>MuleSoft: Import Asset From Exchange`. Select the type of asset and proceed with the implementation.
-. Develop your Mule application using MuleSoft Vibes Skills and natural language prompts to assist in building flows and logic.
+These skills are available in the workspace:
+
+* `build-mule-integration` generates integration flows, configures endpoints, and scaffolds orchestration.
+* `secure-mule-app` scans the configuration for security risks, applies encryption, and suggests logging.
+* DataWeave skills generate transformations and map payload schemas.
+
+You can add organization-specific skills that enforce naming conventions, header standards, and logging policies. Package those skills in a repository and use them with Anypoint Code Builder.
+
+. In VS Code, open the Command Palette and run `MuleSoft: Design an API` to create the API specification. Anypoint Code Builder validates the specification locally.
+. To mock the API on your machine, use the API Console.
+. Run `MuleSoft: Implement an API Specification` to stub the interface and connect the services.
+. To create a project from the canvas instead, select the Anypoint Code Builder icon in the primary side bar, select `Develop an Integration`, and create a Mule project.
+. To import an asset from Exchange, run `MuleSoft: Import Asset From Exchange`. Select the asset type and add it to the project.
+. Develop the flow with MuleSoft Vibes skills. Use natural language prompts for flow logic, DataWeave mappings, and the `secure-mule-app` skill.
+. Create and run MUnit tests in the project before you package the application.
 . Run a local debug session from the *Run and Debug* sidebar to test the logic before packaging.
 
 image::pce-acb-vibes.png["Anypoint Code Builder in VS Code, with the command palette open to MuleSoft: Login to Anypoint Platform, a Mule flow on the canvas, and the local runtime in the terminal"]
@@ -52,10 +66,12 @@ Upload the JAR to your hybrid server. The server must be registered and in the *
 . Click *Choose File* > *Upload File* and select the JAR you exported.
 . Click *Deploy Application*.
 
+After the application status is *Started*, apply API Manager policies to the endpoints. Use API Manager in Anypoint Platform PCE, or the Anypoint CLI API Manager plugin from xref:config-code-builder.adoc[].
+
 [[publish-exchange]]
 == Publish to Exchange
 
-To make the application available in the Exchange asset catalog for other developers:
+Publishing an asset directly from Anypoint Code Builder to Exchange in Anypoint Platform PCE has partial support. Publish the deployable JAR from Exchange in Anypoint Platform PCE:
 
 . In Anypoint Platform PCE, navigate to *Exchange*.
 . Click *Publish New Asset*.
@@ -80,5 +96,6 @@ For example: `http://10.x.x.x:8081/api/test`
 * xref:deploy-apps.adoc[]
 * xref:config-code-builder.adoc[]
 * xref:anypoint-code-builder::int-developing-integrations.adoc[Developing Integrations]
+* xref:anypoint-code-builder::vibes-skills.adoc[Using Skills with MuleSoft Vibes]
 * xref:runtime-manager::deploying-to-your-own-servers.adoc[Deploying to Your Own Servers]
 * xref:operating-about.adoc[]
