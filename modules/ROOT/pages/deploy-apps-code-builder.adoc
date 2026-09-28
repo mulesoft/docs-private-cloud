@@ -27,6 +27,7 @@ Build your Mule application with Anypoint Code Builder using MuleSoft Vibes:
 . Develop your Mule application using MuleSoft Vibes Skills and natural language prompts to assist in building flows and logic.
 . Run a local debug session from the *Run and Debug* sidebar to test the logic before packaging.
 
+image::pce-acb-vibes.png["Anypoint Code Builder in VS Code, with the command palette open to MuleSoft: Login to Anypoint Platform, a Mule flow on the canvas, and the local runtime in the terminal"]
 
 [[package-export]]
 == Package and Export the Mule Application
