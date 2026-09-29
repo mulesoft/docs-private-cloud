@@ -27,6 +27,8 @@ To install in BYONS mode, your team provides the following:
 * A mapping that links each platform component to the namespace name you chose.
 * Cluster-level permissions applied by your cluster administrator before installation begins. The installer doesn't have broad cluster access in BYONS mode.
 
+Additionally, your MuleSoft representative provides the BYONS installation package. The package includes the list of required namespaces, the required labels, a mapping template.
+
 == Compare BYONS with a Standard Installation
 
 [%header%autowidth.spread]
