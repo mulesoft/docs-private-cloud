@@ -14,6 +14,9 @@ Contract Mulesoft Processional Services or your Anypoint PCE Certified Partner t
 [NOTE]
 To install Anypoint Platform PCE on OpenShift, see xref:install-openshift.adoc[Installing Anypoint Platform PCE on OpenShift].
 
+[NOTE]
+To install Anypoint Platform PCE into namespaces that your organization creates and names, see xref:install-byons.adoc[Installing Anypoint Platform PCE with Bring Your Own Namespaces].
+
 
 == Set Up and Verify your Infrastructure
 

@@ -1,0 +1,58 @@
+= Installing Anypoint Platform PCE with Bring Your Own Namespaces
+ifndef::env-site,env-github[]
+include::_attributes.adoc[]
+endif::[]
+
+Starting with Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) 4.3.0, you can install the platform in Bring Your Own Namespaces (BYONS) mode. In a standard installation, the installer creates and names the Kubernetes namespaces it needs. In BYONS mode, your cluster administrator creates and names those namespaces before installation, and Anypoint Platform PCE installs into the namespaces you prepared.
+
+Use BYONS when your organization must apply its own namespace names, or when cluster administrators must create and review namespaces before any application is installed into them. Names must be valid Kubernetes namespace names. They can follow your organization's convention, such as names tied to a cost center or business unit.
+
+In both modes, the installed platform is the same. BYONS changes who creates the namespaces and what they are named.
+
+== Considerations
+
+Before you install in BYONS mode, consider the following:
+
+* BYONS mode is available starting with Anypoint Platform PCE 4.3.0. It is not available in earlier versions.
+* Namespace names must be valid Kubernetes namespace names. Otherwise, they can follow your organization's naming convention.
+* The installer doesn't create or delete namespaces in BYONS mode. Your organization keeps control of the namespace lifecycle.
+* The installer validates the cluster before installation starts. Most configuration mistakes are caught before any change is made, and the installer reports what to correct.
+
+== Before You Begin
+
+To install in BYONS mode, your team provides the following:
+
+* A namespace for every Anypoint Platform PCE component, created before installation.
+* A label on each namespace so Anypoint Platform PCE can identify its purpose.
+* A mapping that links each platform component to the namespace name you chose.
+* Cluster-level permissions applied by your cluster administrator before installation begins. The installer doesn't have broad cluster access in BYONS mode.
+
+== Compare BYONS with a Standard Installation
+
+[%header%autowidth.spread]
+|===
+| | Standard installation | BYONS installation
+| Who creates the namespaces | The Anypoint Platform PCE installer | Your cluster administrator
+| Who names the namespaces | Anypoint Platform PCE, using fixed names | You, using your own names
+| Installer cluster access | Cluster-admin | Limited privileges. The installer doesn't have cluster-admin rights.
+| When cluster-level resources are set up | During installation | Before installation, by your cluster administrator
+|===
+
+== Install in BYONS Mode
+
+A BYONS installation is a hand-off between your cluster administrator and the Anypoint Platform PCE installer.
+
+Before you start, contact your MuleSoft representative to review your naming conventions and obtain the BYONS installation package. The package includes the list of required namespaces, the required labels, a mapping template.
+
+The installation process is as follows:
+
+. Your cluster administrator creates every namespace Anypoint Platform PCE requires, using your organization's names, and applies the required labels so the installer can recognize each namespace. Your cluster administrator also applies the cluster-level permissions the platform needs.
+. Your cluster administrator provides a namespace mapping. The mapping tells Anypoint Platform PCE which of your namespace names corresponds to each platform component.
+. The installer validates the cluster before it makes changes. It checks that every required namespace exists, that the names in the mapping match those namespaces, and that each namespace has the expected labels. If something is missing or inconsistent, the installer stops and reports what to correct.
+. After validation succeeds, installation continues through the same phases as a standard installation. Anypoint Platform PCE places its components in the namespaces you created.
+
+
+== See Also
+
+* xref:install-workflow.adoc[]
+* xref:install-checklist.adoc[]
