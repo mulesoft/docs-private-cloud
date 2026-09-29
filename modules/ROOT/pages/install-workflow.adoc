@@ -14,6 +14,9 @@ Contract Mulesoft Processional Services or your Anypoint PCE Certified Partner t
 [NOTE]
 To install Anypoint Platform PCE on OpenShift, see xref:install-openshift.adoc[Installing Anypoint Platform PCE on OpenShift].
 
+[NOTE]
+To install Anypoint Platform PCE into namespaces that your organization creates and names, see xref:install-byons.adoc[Installing Anypoint Platform PCE with Bring Your Own Namespaces].
+
 
 == Set Up and Verify your Infrastructure
 
@@ -23,7 +26,7 @@ Before you install Anypoint Platform PCE, ensure your infrastructure team instal
 
 To perform the pre-installation healthcheck verification for the Kubernetes (K8s) cluster, follow these steps:
 
-. Confirm your Kubernetes cluster version is 1.34.x or 1.33.x.
+. Confirm your Kubernetes cluster version is 1.35.x, 1.34.x, 1.33.x, or 1.32.x.
 . Create an `input.yaml` file using this template and update it with your environment details:
 
 [source,json,linenums]
@@ -36,18 +39,34 @@ containerRegistry:
   certificate: "/etc/registry/certificate/ca.crt"
   subproject: "mulesoft" # Container registry subproject under which all the PCE images will be part of.
   tlsSkipVerify: True  # True or False.
-# Platform configuration using CSI driver for filesystem access
+# Platform configuration for the shared ReadWriteMany (RWX) filesystem.
+# Choose exactly one of the two storage modes below. NFS mode has two configuration
+# variants (Option A or Option B). StorageClass mode is Option C. The modes are
+# mutually exclusive.
 platformConfiguration:
   platformDNS: ""
+  # ---- NFS mode (Option A and Option B) ----
+  # Requires a pre-installed CSI driver in the Kubernetes cluster.
   fileSystemCsiDriverName: "" # CSI driver name (e.g., nfs.csi.k8s.io, efs.csi.aws.com)
-  # Provide NFS DNS and path (not required if using EFS CSI Driver)
-  # fileSystemDNS: ""
-  # fileSystemPath: ""
-  # Provide individual NFS volume handles (all 4 are required if using EFS CSI Driver. You'll need to create 4 access points pointing to the same dir in the EFS)
+  # Optional NFS mount option overrides. Comma-separated string. Only used in NFS mode.
+  fileSystemBareMountOptionsOverride: ""
+  fileSystemWcMountOptionsOverride: ""
+  fileSystem01MountOptionsOverride: ""
+  # Option A - Generic NFS CSI driver: provide DNS and path.
+  # fileSystemDNS: ""   # NFS server hostname or IP
+  # fileSystemPath: ""  # NFS export path (e.g., /exports/pce)
+  # Option B - CSI driver with individual volume handles (all 4 required, e.g. EFS CSI Driver
+  # with 4 access points that point to the same directory in the EFS):
   fileSystemWcCsiVolumeHandle: "" # CSI volume handle for wc filesystem. E.g.: fs-0835b0d1eb7588eb1::fsap-03f6c68563ceb5acf
   fileSystem01CsiVolumeHandle: "" # CSI volume handle for 01 filesystem
   fileSystemBareCsiVolumeHandle: "" # CSI volume handle for bare filesystem
   fileSystemBackupRestoreCsiVolumeHandle: "" # CSI volume handle for backup-restore filesystem
+  # ---- StorageClass mode (Option C, Anypoint Platform PCE 4.3.0 and later) ----
+  # Mutually exclusive with NFS mode. The StorageClass must support ReadWriteMany.
+  # Leave fileSystemCsiDriverName and all NFS-mode fields above empty when using this option.
+  # For backup retention, use a StorageClass with reclaimPolicy: Retain so deleting the PVC
+  # does not destroy historical backup tarballs.
+  # fileSystemStorageClass: "" # e.g. ocs-storagecluster-cephfs
   platformCertificate: /path/to/platform/certificate/cert.crt
   platformCertificateKey: path/to/platform/certificate/cert.key
   firstUserAccount:
@@ -69,40 +88,6 @@ storageConfiguration:
     size: "100Gi" # Optional. Defaults to 100Gi
   backupRestoreTmp:
     storageClass: "<storage-class-name>" # Storage class for backup/restore temporary storage
-# Configuration options for monitoring stack
-monitoringAppConfiguration:
-  monitoringStack:
-    enabled:  True # Defaults to True. Must be set to False for Openshift clusters.
-#    values: | # Optional. If not provided, the default values will be used.
-#      prometheus:
-#        prometheusSpec:
-#          storageSpec:
-#            volumeClaimTemplate:
-#              spec:
-#                storageClassName: 'local-path',
-#                accessModes: ["ReadWriteOnce"]
-#                resources:
-#                  requests:
-#                    storage: 50Gi
-
-## The following section is used to configure Grafana for an Openshift cluster. It is recommended to disable the monitoring stack as OpenShift includes Prometheus by default.
-#  grafana:
-#    enabled: False # Defaults to False.
-#    values: |
-#      datasources:
-#        datasources.yaml:
-#          apiVersion: 1
-#          datasources:
-#          - name: Prometheus
-#            type: prometheus
-#            url: https://prometheus-k8s.openshift-monitoring.svc:9091
-#            access: proxy
-#            isDefault: true
-#            jsonData:
-#              tlsSkipVerify: true
-#              httpHeaderName1: 'Authorization'
-#            secureJsonData:
-#              httpHeaderValue1: 'Bearer <Token>'
 ----
 [start=3]
 . Obtain the `license.lic` file from the MuleSoft Professional Services team.

@@ -12,7 +12,10 @@ Ensure that users registered in your external identity service have access to yo
 You can also xref:runtime-manager::managing-servers.adoc[register servers] so that you can then xref:runtime-manager::deploying-to-your-own-servers.adoc[deploy to them], and so on.
 
 == Mule Developers Using Anypoint Studio
-Mule app developers in your organization who create Mule apps through the xref:studio::index.adoc[Anypoint Studio] IDE must set up their editors so the Mule apps interface with your locally installed Anypoint Platform rather than the default cloud Anypoint Platform.
+Mule app developers in your organization who create Mule apps through the xref:studio::index.adoc[Anypoint Studio] IDE must set up their editors so the Mule apps interface with your locally installed Anypoint Platform rather than the default cloud Anypoint Platform. See xref:deploy-apps.adoc[Deploying Mule Applications to Anypoint Platform PCE].
+
+== Mule Developers Using Anypoint Code Builder
+Mule app developers in your organization who create Mule apps through xref:anypoint-code-builder::start-acb-desktop.adoc[Anypoint Code Builder] must connect VS Code to your Anypoint Platform PCE control plane, then package and deploy applications to Runtime Manager. See xref:deploy-apps.adoc[Deploying Mule Applications to Anypoint Platform PCE].
 
 == Manage Anypoint Platform PCE
 
@@ -23,6 +26,9 @@ The following topics describe how to manage Anypoint Platform PCE:
 * xref:custom-policies.adoc[Uploading custom policies and publish assets to exchange using the Maven client]
 * xref:adding-compatible-java-versions-using-the-maven-client.adoc[]
 * xref:config-studio.adoc[Configuring Anypoint Studio for Anypoint Platform PCE]
+* xref:deploy-apps.adoc[Deploying Mule Applications to Anypoint Platform PCE]
+* xref:config-code-builder.adoc[Configuring Anypoint Code Builder for Anypoint Platform PCE]
+* xref:deploy-apps-code-builder.adoc[Deploying Mule Applications Using Anypoint Code Builder]
 * xref:ext-analytics-elk.adoc[Analyzing Business and API Data Using ELK]
 * xref:register-server.adoc[Troubleshooting Mule Runtime Engine Registration]
 * xref:restarting-a-node.adoc[Updating Nodes]
