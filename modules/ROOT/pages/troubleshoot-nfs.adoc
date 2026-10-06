@@ -6,6 +6,9 @@ endif::[]
 [IMPORTANT]
 Setting up and configuring an NFS server should be performed by your infrastructure team. If you experience problems with any of the following instructions, contact your infrastructure team for assistance.
 
+[NOTE]
+This page applies only when installing Anypoint Platform PCE in NFS mode. If you are using StorageClass mode (Anypoint Platform PCE 4.3.0 and later), troubleshoot storage issues through your `StorageClass` provider and CSI driver instead. See xref:verify-nfs.adoc#storage-class-mode[StorageClass Mode].
+
 You must have a connection from each node to NFS.
 
 == “Server Not Responding”
