@@ -3,7 +3,7 @@ ifndef::env-site,env-github[]
 include::_attributes.adoc[]
 endif::[]
 
-Follow these steps to develop, package, and deploy Mule applications to Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) using Anypoint Code Builder and MuleSoft Vibes Skills:
+Follow these steps to develop, package, and deploy Mule applications to Anypoint Platform Private Cloud Edition (Anypoint Platform PCE) using Anypoint Code Builder in VS Code. You can complete this workflow without MuleSoft Vibes by following the standard Anypoint Code Builder documentation. MuleSoft Vibes is optional.
 
 . xref:#connect-acb[Connect Anypoint Platform PCE with Anypoint Code Builder]
 . xref:#develop-mule-app[Develop Mule Application]
@@ -22,9 +22,14 @@ Private cloud mode connects Anypoint Code Builder on your machine to the Anypoin
 [[develop-mule-app]]
 == Develop Mule Application
 
-Build the Mule application in VS Code with Anypoint Code Builder. Use MuleSoft Vibes skills to generate the specification, the flow, DataWeave transformations, and security configuration.
+Build the Mule application in VS Code with Anypoint Code Builder. You can create the specification, the flow, DataWeave transformations, and security configuration without MuleSoft Vibes. Follow the standard Anypoint Code Builder documentation:
 
-These skills are available in the workspace:
+* xref:anypoint-code-builder::des-designing-api-specs.adoc[Designing API Specs and Fragments]
+* xref:anypoint-code-builder::int-developing-integrations.adoc[Developing Integrations]
+
+MuleSoft Vibes is optional. If you use it, Vibes skills can generate the specification, the flow, DataWeave transformations, and security configuration.
+
+These skills are available in the skill pack:
 
 * `build-mule-integration` generates integration flows, configures endpoints, and scaffolds orchestration.
 * `secure-mule-app` scans the configuration for security risks, applies encryption, and suggests logging.
@@ -37,7 +42,7 @@ You can add organization-specific skills that enforce naming conventions, header
 . Run `MuleSoft: Implement an API Specification` to stub the interface and connect the services.
 . To create a project from the canvas instead, select the Anypoint Code Builder icon in the primary side bar, select `Develop an Integration`, and create a Mule project.
 . To import an asset from Exchange, run `MuleSoft: Import Asset From Exchange`. Select the asset type and add it to the project.
-. Develop the flow with MuleSoft Vibes skills. Use natural language prompts for flow logic, DataWeave mappings, and the `secure-mule-app` skill.
+. Develop the flow, DataWeave transformations, and security configuration in Anypoint Code Builder. If you use MuleSoft Vibes, you can use natural language prompts for flow logic, DataWeave mappings, and the `secure-mule-app` skill.
 . Create and run MUnit tests in the project before you package the application.
 . Run a local debug session from the *Run and Debug* sidebar to test the logic before packaging.
 

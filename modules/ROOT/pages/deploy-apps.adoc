@@ -14,7 +14,7 @@ You can develop and package applications with either Anypoint Code Builder or An
 
 == Deploy Using Anypoint Code Builder
 
-Use Anypoint Code Builder and MuleSoft Vibes Skills to develop, package, and deploy Mule applications to Anypoint Platform PCE:
+Use Anypoint Code Builder in VS Code to develop, package, and deploy Mule applications to Anypoint Platform PCE. You can follow the standard Anypoint Code Builder documentation without MuleSoft Vibes. MuleSoft Vibes is optional.
 
 * xref:config-code-builder.adoc[Configuring Anypoint Code Builder for Anypoint Platform PCE]
 * xref:deploy-apps-code-builder.adoc[Deploying Mule Applications Using Anypoint Code Builder]
