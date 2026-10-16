@@ -92,22 +92,21 @@ For more information, see the provider specific requirements:
 +
 AWS EKS is only tested with default networking add-ons.
 * https://docs.rke2.io/install/requirements#hardware[Rancher Kubernetes Engine (RKE2) - Hardware]
-* https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/installation_overview/ocp-installation-overview[Red Hat OpenShift]
+* https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/installation_overview/ocp-installation-overview[Red Hat OpenShift]
 * https://techdocs.broadcom.com/us/en/vmware-cis/vcf/vsphere-supervisor-services-and-standalone-components/latest/managing-vsphere-kubernetes-service/running-tkg-service-clusters/tkg-service-components.html[vSphere Kubernetes Service (VKS)]
 
 
 == Software Requirements
 
-These are the requirements:
-
-* Operating system: RHEL 9.4, 9.6
-
-For more information, see the provider specific requirements:
+Provider specific node OS requirements:
 
 * https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html[Amazon EKS]
 * https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Software]
-* https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/installation_overview/ocp-installation-overview[Red Hat OpenShift]
-
++
+Validated against RHEL 9.6 and Kubernetes 1.34.
+* https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/installation_overview/ocp-installation-overview[Red Hat OpenShift]
++
+Validated against Red Hat Enterprise Linux CoreOS (RHCOS) 9.6 and OpenShift 4.21.
 
 
 
@@ -131,7 +130,7 @@ For more information, see the provider specific requirements:
 
 * https://docs.aws.amazon.com/eks/latest/userguide/eks-networking.html[Amazon EKS - Networking]
 * https://docs.rke2.io/install/requirements#operating-systems[Rancher Kubernetes Engine (RKE2) - Networking]
-* https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/networking/understanding-networking[Red Hat OpenShift - Networking]
+* https://docs.redhat.com/en/documentation/openshift_container_platform/4.21/html/networking_overview/understanding-networking[Red Hat OpenShift - Networking]
 
 
 == Shared Filesystem Requirements
