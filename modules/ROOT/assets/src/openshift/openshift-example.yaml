@@ -24,22 +24,3 @@ storageConfiguration:
   stolon:
     type: persistentVolumeClaim
     storageClass: example-csi
-monitoringAppConfiguration:
-  monitoringStackEnabled: false
-  grafana:
-    enabled: true
-    values: |
-      datasources:
-        datasources.yaml:
-          apiVersion: 1
-          datasources:
-          - name: Prometheus
-            type: prometheus
-            url: https://prometheus-k8s.openshift-monitoring.svc:9091
-            access: proxy
-            isDefault: true
-            jsonData:
-              tlsSkipVerify: true
-              httpHeaderName1: 'Authorization'
-            secureJsonData:
-              httpHeaderValue1: 'Bearer <Token>'

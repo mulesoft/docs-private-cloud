@@ -443,34 +443,6 @@ storageConfiguration:
   stolon:
     type: persistentVolumeClaim
     storageClass: example-csi
-monitoringAppConfiguration:
-  monitoringStackEnabled: false
-  grafana:
-    enabled: true
-    values: |
-      datasources:
-        datasources.yaml:
-          apiVersion: 1
-          datasources:
-          - name: Prometheus
-            type: prometheus
-            url: https://prometheus-k8s.openshift-monitoring.svc:9091
-            access: proxy
-            isDefault: true
-            jsonData:
-              tlsSkipVerify: true
-              httpHeaderName1: 'Authorization'
-            secureJsonData:
-              httpHeaderValue1: 'Bearer <Token>'
-----
-
-Note the `monitoringAppConfiguration` section in the snippet. This section disables the monitoring stack for Anypoint Platform PCE and enables only the Grafana application. It is recommended to disable the monitoring stack because OpenShift includes Prometheus by default. Enable Grafana and configure its datasource to connect to Prometheus.
-
-To obtain the token for connecting to Prometheus, run this command:
-
-[source]
-----
-oc create token prometheus-k8s -n openshift-monitoring --duration=87600h
 ----
 
 After completing the installation, run the following commands to allow Prometheus in OpenShift to collect metrics from platform services:
